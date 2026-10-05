@@ -267,6 +267,37 @@
     </div>
   </footer>
 
+  <!-- Modal de felicitaciones al completar todos los pasos de un ejercicio -->
+  <div id="modal-felicitaciones" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden animate-fade-in">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center">
+      <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl border border-emerald-200 dark:border-emerald-800/80">
+        🎉
+      </div>
+      <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-1">
+        ¡Ejercicio completado!
+      </h3>
+      <p id="modal-felicitaciones-texto" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+        Has resuelto correctamente todos los pasos de este problema.
+      </p>
+      <div class="flex items-center justify-center gap-2.5">
+        <button 
+          onclick="cerrarModalFelicitaciones()" 
+          class="px-3.5 py-2 text-xs font-mono rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        >
+          Quedarme aquí
+        </button>
+        <button 
+          id="btn-modal-siguiente-ejercicio"
+          onclick="avanzarDesdeModalFelicitaciones()" 
+          class="px-4 py-2 text-xs font-mono font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center gap-1.5 shadow-sm"
+        >
+          <span>Siguiente ejercicio</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal explicativo para el profesor: Cómo agregar ejercicios -->
   <div id="modal-profesor" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh]">

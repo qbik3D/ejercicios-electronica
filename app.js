@@ -582,10 +582,16 @@ function configurarEventosUI() {
     });
   }
 
-  // Cerrar drawer con Escape
+  // Cerrar drawer o modal con Escape
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && AppState.listaEjerciciosMovilAbierta) {
-      toggleListaEjerciciosMovil(false);
+    if (e.key === 'Escape') {
+      if (AppState.listaEjerciciosMovilAbierta) {
+        toggleListaEjerciciosMovil(false);
+      }
+      const modalFelicitaciones = document.getElementById('modal-felicitaciones');
+      if (modalFelicitaciones && !modalFelicitaciones.classList.contains('hidden')) {
+        cerrarModalFelicitaciones();
+      }
     }
   });
 }
@@ -937,7 +943,7 @@ function renderizarDetalleEjercicio() {
                 onclick="irAlSiguientePaso()"
                 class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0 flex items-center gap-1 shadow-sm"
               >
-                <span>Siguiente</span>
+                <span>${AppState.pasoActualIndex < totalPasos - 1 ? 'Siguiente etapa' : 'Siguiente ejercicio'}</span>
                 <span>→</span>
               </button>
             `}
@@ -1106,7 +1112,19 @@ function verificarRespuesta(pasoId) {
   }
 }
 
-// Avanzar al siguiente paso del ejercicio
+// Cerrar modal de felicitaciones
+function cerrarModalFelicitaciones() {
+  const modal = document.getElementById('modal-felicitaciones');
+  if (modal) modal.classList.add('hidden');
+}
+
+// Avanzar al siguiente ejercicio desde el modal de felicitaciones
+function avanzarDesdeModalFelicitaciones() {
+  cerrarModalFelicitaciones();
+  navegarEjercicioRelativo(1);
+}
+
+// Avanzar al siguiente paso del ejercicio o al siguiente ejercicio si se completó todo
 function irAlSiguientePaso() {
   const banco = getBancoEjerciciosActual();
   const ejercicio = banco.find(e => e.id === AppState.ejercicioActualId);
@@ -1116,7 +1134,27 @@ function irAlSiguientePaso() {
     AppState.pasoActualIndex++;
     renderizarDetalleEjercicio();
   } else {
-    alert("🎉 ¡Felicitaciones! Has completado todos los pasos de este ejercicio.");
+    // Se completó el último paso: mostrar modal de felicitación y preparar avance al siguiente ejercicio
+    mostrarModalFelicitaciones(ejercicio);
+  }
+}
+
+// Mostrar modal de felicitaciones al completar todos los pasos
+function mostrarModalFelicitaciones(ejercicio) {
+  const modal = document.getElementById('modal-felicitaciones');
+  const texto = document.getElementById('modal-felicitaciones-texto');
+  const btnSiguiente = document.getElementById('btn-modal-siguiente-ejercicio');
+
+  if (modal) {
+    if (texto && ejercicio) {
+      texto.innerText = `¡Excelente trabajo! Has resuelto correctamente todos los pasos de "${(ejercicio.titulo || 'este ejercicio').replace(/\$/g, '')}".`;
+    }
+    modal.classList.remove('hidden');
+  } else {
+    // Respaldo con confirmación nativa si el modal HTML no estuviera presente
+    if (confirm("🎉 ¡Felicitaciones! Has completado todos los pasos de este ejercicio.\n\n¿Deseas continuar con el siguiente ejercicio?")) {
+      navegarEjercicioRelativo(1);
+    }
   }
 }
 
