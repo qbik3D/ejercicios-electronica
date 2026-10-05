@@ -37,217 +37,202 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
 
-  <!-- Barra de navegación superior (Sólida, limpia, sin glassmorphism) -->
-  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-2 sm:gap-4">
-      <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+  <!-- Barra de navegación superior ultra-limpia -->
+  <header class="border-b border-slate-800/80 sticky top-0 z-30 bg-slate-950/95">
+    <div class="max-w-4xl mx-auto px-4 h-12 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 min-w-0">
         <!-- Logo Qbik -->
         <a 
           href="https://qbik.com.ar" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="flex items-center hover:opacity-85 transition-opacity shrink-0" 
-          title="Qbik - Soluciones de Ingeniería Electrónica (qbik.com.ar)"
+          class="flex items-center hover:opacity-80 transition-opacity shrink-0" 
+          title="Qbik (qbik.com.ar)"
         >
-          <img src="logo-hz-dark.png" alt="Qbik" class="h-6 sm:h-7 w-auto">
+          <img src="logo-hz-dark.png" alt="Qbik" class="h-5 w-auto">
         </a>
 
         <!-- Botón Volver a todas las materias -->
-        <div id="header-btn-volver-materias" class="hidden items-center gap-2 shrink-0">
-          <div class="h-4 w-px bg-slate-800"></div>
+        <div id="header-btn-volver-materias" class="hidden items-center gap-1.5 shrink-0 text-xs font-mono">
+          <span class="text-slate-700">/</span>
           <button 
             onclick="volverAMaterias()" 
             title="Volver a la selección de materias"
-            class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700 transition-colors text-xs font-medium flex items-center gap-1.5 shrink-0"
+            class="text-slate-400 hover:text-white transition-colors flex items-center gap-1"
           >
-            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            <span class="hidden sm:inline">Materias</span>
-            <span class="sm:hidden">Volver</span>
+            <span>←</span>
+            <span>Materias</span>
           </button>
         </div>
 
         <!-- Info de la materia activa -->
-        <div id="header-info-materia" class="hidden items-center gap-2 min-w-0">
-          <div id="materia-icono-box" class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm text-slate-300 select-none shrink-0">
-            ⚡
-          </div>
-          <div class="min-w-0 flex items-center gap-2">
-            <h1 id="materia-nombre-header" class="font-semibold text-xs sm:text-sm text-white truncate leading-tight">
-              Electrónica I
-            </h1>
-            <span id="materia-badge" class="text-[11px] text-slate-400 font-mono shrink-0 hidden md:inline">
-              [3703]
-            </span>
-            <p id="materia-subtitulo" class="hidden"></p>
-          </div>
+        <div id="header-info-materia" class="hidden items-center gap-1.5 min-w-0 text-xs font-mono">
+          <span class="text-slate-700">/</span>
+          <span id="materia-icono-box" class="text-slate-400 select-none hidden">⚡</span>
+          <h1 id="materia-nombre-header" class="text-slate-200 truncate font-medium">
+            Electrónica I
+          </h1>
+          <span id="materia-badge" class="hidden"></span>
+          <p id="materia-subtitulo" class="hidden"></p>
         </div>
 
         <!-- Tagline visible solo en el portal -->
-        <div id="header-portal-tagline" class="hidden sm:flex items-center gap-2 text-xs text-slate-400">
-          <div class="h-4 w-px bg-slate-800"></div>
-          <span>Cátedra Interactiva de Ingeniería Electrónica</span>
+        <div id="header-portal-tagline" class="hidden sm:flex items-center text-xs text-slate-500 font-mono">
+          <span class="text-slate-700 mx-2">/</span>
+          <span>Cátedra Interactiva</span>
         </div>
       </div>
 
       <!-- Barra de progreso y acciones (lado derecho) -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <!-- Progreso alumno en materia activa -->
-        <div id="header-stats-container" class="hidden sm:flex items-center gap-2 text-xs text-slate-400 font-mono">
+      <div class="flex items-center gap-3 shrink-0 text-xs font-mono">
+        <div id="header-stats-container" class="hidden sm:flex items-center gap-1.5 text-slate-400">
           <span id="stats-ejercicios">0/0 ej.</span>
-          <span class="text-slate-600">•</span>
+          <span class="text-slate-600">·</span>
           <span id="stats-porcentaje" class="text-slate-300">0%</span>
-          <div class="w-16 bg-slate-800 rounded-full h-1 overflow-hidden border border-slate-700">
-            <div id="stats-barra-progreso" class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-          </div>
+          <div class="hidden"><div id="stats-barra-progreso"></div></div>
         </div>
 
         <!-- Botón Guía Docente -->
         <button 
           onclick="document.getElementById('modal-profesor').classList.remove('hidden')" 
           title="Ver cómo agregar o editar ejercicios"
-          class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700 transition-colors text-xs font-normal flex items-center gap-1.5 shrink-0"
+          class="text-slate-400 hover:text-white transition-colors"
         >
-          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-          <span class="hidden md:inline">Docente</span>
+          Docente
         </button>
 
         <!-- Botón Reiniciar Avance -->
         <button 
           id="btn-reiniciar-progreso" 
           title="Reiniciar avance de ejercicios"
-          class="p-1 rounded-lg text-slate-500 hover:text-rose-400 transition-colors hidden shrink-0"
+          class="text-slate-500 hover:text-rose-400 transition-colors hidden"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-          </svg>
+          Reiniciar
         </button>
       </div>
     </div>
   </header>
 
   <!-- VISTA 1: PORTAL DE SELECCIÓN DE MATERIAS (RECUADROS MINIMALISTAS) -->
-  <section id="vista-seleccion-materias" class="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full animate-fade-in">
-    <div class="mb-8">
-      <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">Cátedra de Ingeniería</p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-        Selección de Materia
+  <section id="vista-seleccion-materias" class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full animate-fade-in">
+    <div class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+        Asignaturas
       </h2>
       <p class="text-xs sm:text-sm text-slate-400 mt-1">
-        Elige la asignatura para acceder a los ejercicios guiados y problemas resueltos.
+        Selecciona una materia para resolver problemas paso a paso.
       </p>
     </div>
 
     <!-- Grilla de recuadros de materias -->
-    <div id="grid-materias-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div id="grid-materias-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
       <!-- Se inyecta dinámicamente con app.js -->
     </div>
   </section>
 
   <!-- VISTA 2: ENTORNO DE RESOLUCIÓN DE LA MATERIA SELECCIONADA -->
   <div id="vista-materia-ejercicios" class="hidden flex-1 flex flex-col w-full animate-fade-in">
-    <!-- Filtro horizontal de temas / unidades (Sólido y limpio) -->
-    <div class="bg-slate-900 border-b border-slate-800 py-2 sticky top-14 z-20">
-      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div id="contenedor-filtros-unidades" class="flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
-          <!-- Renderizado dinámico según la materia activa -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Contenedor principal de ejercicios -->
-    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-5 flex-1 w-full">
-      <!-- Barra de control rápido para dispositivos MÓVILES (< lg) -->
-      <div class="lg:hidden mb-3 bg-slate-900 border border-slate-800 rounded-xl p-1.5 flex items-center justify-between gap-1.5">
+    <!-- Contenedor principal de ejercicios centrado en modo enfoque -->
+    <main class="max-w-3xl mx-auto px-4 py-5 flex-1 w-full">
+      <!-- Barra de navegación rápida de ejercicios (Sutil y sin cajas) -->
+      <div class="mb-5 flex items-center justify-between gap-3 text-xs font-mono border-b border-slate-800/80 pb-3">
         <button 
           onclick="toggleListaEjerciciosMovil()"
-          class="flex-1 flex items-center justify-between px-3 py-2 bg-slate-800 hover:bg-slate-750 text-slate-200 rounded-lg text-xs font-medium border border-slate-700 transition-colors min-h-[42px]"
+          class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors truncate text-left"
+          title="Ver índice de ejercicios"
         >
-          <span id="label-ejercicio-movil" class="truncate font-mono">Ver ejercicios</span>
-          <span id="icono-desplegable-movil" class="text-[10px] text-slate-400 font-mono ml-2 shrink-0">
-            Lista ▾
-          </span>
+          <span class="text-slate-500 text-sm">☰</span>
+          <span id="label-ejercicio-movil" class="truncate font-medium text-slate-200">Ver ejercicios</span>
+          <span id="icono-desplegable-movil" class="text-slate-500 text-[10px]">▾</span>
         </button>
 
-        <div class="flex items-center gap-1 shrink-0">
+        <div class="flex items-center gap-1.5 shrink-0 text-slate-400">
           <button 
             onclick="navegarEjercicioRelativo(-1)" 
             title="Ejercicio anterior" 
-            class="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-lg border border-slate-700 transition-colors text-xs"
+            class="px-2 py-1 hover:text-white hover:bg-slate-900 rounded transition-colors"
           >
-            ◀
+            ◀ Ant
           </button>
+          <span class="text-slate-800">|</span>
           <button 
             onclick="navegarEjercicioRelativo(1)" 
             title="Ejercicio siguiente" 
-            class="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-lg border border-slate-700 transition-colors text-xs"
+            class="px-2 py-1 hover:text-white hover:bg-slate-900 rounded transition-colors"
           >
-            ▶
+            Sig ▶
           </button>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-        <!-- Columna izquierda: Lista de ejercicios (Sidebar en desktop, Cajón en móvil) -->
-        <aside 
-          id="columna-lista-ejercicios" 
-          class="hidden lg:block lg:col-span-4 bg-slate-900 border border-slate-800 rounded-xl p-3.5"
-        >
-          <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800">
-            <div class="flex items-center gap-1.5">
-              <span class="font-medium text-xs text-slate-300 uppercase tracking-wider">Ejercicios</span>
-              <span id="unidad-filtro-badge" class="text-[11px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 font-mono">Unidad 1</span>
-            </div>
-            <!-- Botón cerrar para móvil -->
-            <button 
-              onclick="toggleListaEjerciciosMovil(false)" 
-              class="lg:hidden px-2 py-1 rounded text-slate-400 hover:text-white bg-slate-800 text-xs"
-              title="Cerrar lista"
-            >
-              ✕ Cerrar
-            </button>
-          </div>
+      <!-- Backdrop oscuro para cerrar el cajón -->
+      <div 
+        id="backdrop-lista-ejercicios" 
+        onclick="toggleListaEjerciciosMovil(false)" 
+        class="hidden fixed inset-0 bg-slate-950/80 z-40 transition-opacity"
+      ></div>
 
-          <!-- Buscador rápido -->
-          <div class="mb-2 relative">
-            <input 
-              type="text" 
-              id="busqueda-ejercicios" 
-              placeholder="Buscar..." 
-              class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600 transition-colors"
-              oninput="filtrarPorTexto(this.value)"
-            />
-            <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      <!-- Drawer lateral deslizable con el índice y filtros (se abre a demanda) -->
+      <aside 
+        id="columna-lista-ejercicios" 
+        class="hidden fixed inset-y-0 left-0 z-50 w-full sm:w-[360px] bg-slate-950 border-r border-slate-800 p-4 overflow-y-auto flex flex-col shadow-2xl animate-slide-in-left"
+      >
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 shrink-0">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="font-semibold text-xs text-white uppercase tracking-wider font-mono">Índice</span>
+            <span id="unidad-filtro-badge" class="text-[11px] px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 font-mono truncate">Unidad 1</span>
           </div>
+          <!-- Botón cerrar cajón -->
+          <button 
+            onclick="toggleListaEjerciciosMovil(false)" 
+            class="px-2 py-1 rounded text-slate-400 hover:text-white hover:bg-slate-900 text-xs font-mono transition-colors shrink-0"
+            title="Cerrar lista"
+          >
+            ✕ Cerrar
+          </button>
+        </div>
 
-          <!-- Lista scrollable de tarjetas de ejercicios -->
-          <div id="lista-ejercicios" class="max-h-[calc(100vh-240px)] overflow-y-auto pr-1 space-y-1">
-            <!-- Se inyecta dinámicamente con app.js -->
+        <!-- Filtro de unidades integrado adentro del cajón -->
+        <div class="mb-3 shrink-0">
+          <div id="contenedor-filtros-unidades" class="flex flex-wrap gap-1 pb-1">
+            <!-- Renderizado dinámico según la materia activa -->
           </div>
-        </aside>
+        </div>
 
-        <!-- Columna derecha: Espacio de resolución del ejercicio -->
-        <section class="lg:col-span-8 w-full" id="vista-ejercicio">
+        <!-- Buscador rápido dentro del cajón -->
+        <div class="mb-3 relative shrink-0">
+          <input 
+            type="text" 
+            id="busqueda-ejercicios" 
+            placeholder="Buscar por tema o título..." 
+            class="w-full bg-slate-900 border border-slate-800 focus:border-slate-600 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none transition-colors"
+            oninput="filtrarPorTexto(this.value)"
+          />
+          <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+
+        <!-- Lista scrollable de tarjetas de ejercicios -->
+        <div id="lista-ejercicios" class="flex-1 overflow-y-auto pr-1 space-y-1">
           <!-- Se inyecta dinámicamente con app.js -->
-        </section>
-      </div>
+        </div>
+      </aside>
+
+      <!-- Espacio centrado de resolución del ejercicio -->
+      <section class="w-full" id="vista-ejercicio">
+        <!-- Se inyecta dinámicamente con app.js -->
+      </section>
     </main>
   </div>
 
   <!-- Pie de página limpio y minimalista -->
-  <footer class="bg-slate-900 border-t border-slate-800 py-3 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-      <div class="flex items-center gap-2">
-        <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity">
-          <img src="logo-hz-dark.png" alt="Qbik" class="h-5 w-auto">
-        </a>
-        <span>•</span>
-        <span>Cátedra Interactiva</span>
-      </div>
-      <div>
-        <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-300 font-normal transition-colors">
-          qbik.com.ar
-        </a>
-      </div>
+  <footer class="border-t border-slate-800/60 py-3 mt-auto text-xs font-mono text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+      <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">
+        Qbik Cátedra Interactiva
+      </a>
+      <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">
+        qbik.com.ar
+      </a>
     </div>
   </footer>
 

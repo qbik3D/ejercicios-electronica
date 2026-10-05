@@ -230,56 +230,33 @@ function renderizarGridMaterias() {
 
     return `
       <div 
-        class="bg-slate-900 border border-slate-800 hover:border-slate-750 rounded-xl p-5 sm:p-6 transition-colors flex flex-col justify-between"
+        class="border border-slate-800/80 hover:border-slate-750 bg-slate-900/40 rounded-xl p-5 transition-colors flex flex-col justify-between cursor-pointer group"
+        onclick="abrirMateria('${materia.id}')"
       >
         <div>
-          <!-- Cabecera: Icono y código -->
-          <div class="flex items-center justify-between gap-3 mb-3">
-            <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-xl text-slate-200 shrink-0">
-              ${materia.icono}
-            </div>
-            <span class="text-xs font-mono text-slate-400">
-              Código [${materia.codigo}]
-            </span>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+            <span>${materia.codigo}</span>
+            <span>${ejerciciosResueltos}/${totalEjercicios} resueltos</span>
           </div>
 
-          <!-- Título y descripción -->
-          <h3 class="text-lg sm:text-xl font-bold text-white mb-1.5">
-            ${materia.nombre}
+          <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors flex items-center gap-2 mb-1.5">
+            <span>${materia.icono}</span>
+            <span>${materia.nombre}</span>
           </h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+
+          <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
             ${materia.descripcion}
           </p>
-
-          <!-- Resumen de contenido -->
-          <div class="text-xs text-slate-400 flex items-center gap-3 mb-5 font-mono">
-            <span>${unidadesCount} unidades</span>
-            <span>•</span>
-            <span>${totalEjercicios} ejercicios</span>
-            <span>•</span>
-            <span>${totalPasos} etapas</span>
-          </div>
         </div>
 
-        <!-- Barra de avance personal y botón de entrada -->
-        <div class="pt-4 border-t border-slate-800">
-          <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-mono">
-            <span>Progreso: ${ejerciciosResueltos}/${totalEjercicios} resueltos</span>
-            <span class="font-medium text-slate-300">${porcentaje}%</span>
-          </div>
-          <div class="w-full bg-slate-800 rounded-full h-1.5 mb-4 overflow-hidden">
-            <div 
-              class="h-full bg-blue-500 rounded-full transition-all duration-300" 
-              style="width: ${porcentaje}%"
-            ></div>
-          </div>
-
+        <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500">${unidadesCount} unidades · ${totalEjercicios} ej.</span>
           <button 
-            onclick="abrirMateria('${materia.id}')"
-            class="w-full py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-100 hover:text-white border border-slate-700 font-medium text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
+            onclick="event.stopPropagation(); abrirMateria('${materia.id}')"
+            class="text-xs text-slate-300 group-hover:text-white font-mono flex items-center gap-1 transition-colors"
           >
-            <span>Ingresar a la materia</span>
-            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            <span>Ingresar</span>
+            <span>→</span>
           </button>
         </div>
       </div>
@@ -410,31 +387,28 @@ function cambiarMateria(materiaId) {
   abrirMateria(materiaId);
 }
 
-// Alternar cajón flotante de lista de ejercicios en móvil (< lg)
+// Alternar cajón / drawer del índice de ejercicios (escritorio y móvil)
 function toggleListaEjerciciosMovil(forzarEstado) {
   const columna = document.getElementById('columna-lista-ejercicios');
+  const backdrop = document.getElementById('backdrop-lista-ejercicios');
   const icono = document.getElementById('icono-desplegable-movil');
   if (!columna) return;
-
-  const esMovil = window.innerWidth < 1024;
-  if (!esMovil) {
-    columna.classList.remove('fixed', 'inset-0', 'top-16', 'z-50', 'bg-slate-950/98', 'backdrop-blur-xl', 'p-4', 'overflow-y-auto', 'animate-drawer');
-    columna.classList.add('hidden', 'lg:block');
-    AppState.listaEjerciciosMovilAbierta = false;
-    return;
-  }
 
   const nuevoEstado = forzarEstado !== undefined ? forzarEstado : !AppState.listaEjerciciosMovilAbierta;
   AppState.listaEjerciciosMovilAbierta = nuevoEstado;
 
   if (nuevoEstado) {
     columna.classList.remove('hidden');
-    columna.classList.add('fixed', 'inset-0', 'top-14', 'z-50', 'bg-slate-950', 'p-4', 'overflow-y-auto');
+    if (backdrop) backdrop.classList.remove('hidden');
     if (icono) icono.innerText = 'Cerrar ▴';
+    const inputBuscar = document.getElementById('busqueda-ejercicios');
+    if (inputBuscar && window.innerWidth >= 768) {
+      setTimeout(() => inputBuscar.focus(), 60);
+    }
   } else {
     columna.classList.add('hidden');
-    columna.classList.remove('fixed', 'inset-0', 'top-14', 'z-50', 'bg-slate-950', 'p-4', 'overflow-y-auto');
-    if (icono) icono.innerText = 'Lista ▾';
+    if (backdrop) backdrop.classList.add('hidden');
+    if (icono) icono.innerText = 'Índice ▾';
   }
 }
 
@@ -497,9 +471,7 @@ function renderizarFiltrosUnidades() {
   const materia = getMateriaConfig();
   const unidades = materia.unidades || [];
 
-  let html = `
-    <span class="text-xs text-slate-500 font-mono mr-1 hidden md:inline">Unidad:</span>
-  `;
+  let html = '';
 
   unidades.forEach(u => {
     const esActivo = AppState.temaSeleccionado === u.id;
@@ -510,7 +482,7 @@ function renderizarFiltrosUnidades() {
         class="px-2.5 py-1 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap ${
           esActivo 
             ? 'bg-slate-800 text-white border border-slate-600' 
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent'
+            : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700'
         }"
       >
         <span>${u.icono}</span>
@@ -527,7 +499,7 @@ function renderizarFiltrosUnidades() {
       class="px-2.5 py-1 text-xs font-medium rounded-lg transition-colors flex items-center gap-1 whitespace-nowrap ${
         todosActivo 
           ? 'bg-slate-800 text-white border border-slate-600' 
-          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent'
+          : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700'
       }"
     >
       <span>Todas las unidades</span>
@@ -557,6 +529,13 @@ function configurarEventosUI() {
       }
     });
   }
+
+  // Cerrar drawer con Escape
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && AppState.listaEjerciciosMovilAbierta) {
+      toggleListaEjerciciosMovil(false);
+    }
+  });
 }
 
 // Alternar colapso de una unidad en la lista lateral
@@ -654,9 +633,6 @@ function renderizarListaEjercicios() {
 
     // Encabezado de la unidad
     htmlTotal += `
-      <div class="mb-4 bg-slate-950/40 rounded-2xl border border-slate-800/80 overflow-hidden shadow-sm">
-        <div 
-          onclick="toggleColapsoUnidad('${unidad.id}')"
       <div class="mb-3 bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
         <div 
           onclick="toggleColapsoUnidad('${unidad.id}')"
@@ -791,121 +767,94 @@ function renderizarDetalleEjercicio() {
   const indiceEnUnidad = banco.filter(e => e.categoria === ejercicio.categoria).findIndex(e => e.id === ejercicio.id);
   const numeroEjercicio = `${configUnidad.numero}.${indiceEnUnidad !== -1 ? indiceEnUnidad + 1 : 1}`;
 
-  container.innerHTML = `
-    <div class="animate-fade-in space-y-4">
-      <!-- Encabezado del ejercicio: limpio y sin recuadros pesados -->
-      <div class="pb-3 border-b border-slate-800">
-        <div class="flex items-center justify-between gap-3 mb-1.5">
-          <div class="flex items-center gap-2">
-            <span class="font-mono text-xs text-slate-400 font-semibold">Problema ${numeroEjercicio}</span>
-            <span class="text-slate-600">•</span>
-            <span class="text-xs text-slate-400 font-medium">${ejercicio.dificultad}</span>
-          </div>
+  const datosArray = (Array.isArray(ejercicio.datos) ? ejercicio.datos : Object.entries(ejercicio.datos || {}).map(([clave, valor]) => ({ clave, valor })));
 
+  container.innerHTML = `
+    <div class="animate-fade-in space-y-5">
+      <!-- Encabezado sutil sin cajas -->
+      <div>
+        <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1.5">
+          <span>Problema ${numeroEjercicio} · ${ejercicio.dificultad}</span>
           <div class="flex items-center gap-3">
-            ${ejercicioCompletado ? `
-              <span class="text-xs text-emerald-400 font-medium flex items-center gap-1 font-mono">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Resuelto
-              </span>
-            ` : ''}
+            ${ejercicioCompletado ? '<span class="text-emerald-400 font-medium">✓ Resuelto</span>' : ''}
             ${ejercicio.teoria ? `
-              <button 
-                onclick="toggleTeoria()" 
-                class="text-xs text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-1"
-              >
-                <span>Conceptos</span>
-                <span id="btn-toggle-teoria-badge" class="font-mono text-[10px] text-slate-500">${AppState.teoriaAbierta ? '▲' : '▼'}</span>
+              <button onclick="toggleTeoria()" class="hover:text-slate-300 transition-colors">
+                Conceptos ${AppState.teoriaAbierta ? '▲' : '▼'}
               </button>
             ` : ''}
           </div>
         </div>
 
-        <h2 class="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
+        <h2 class="text-xl sm:text-2xl font-semibold text-white tracking-tight">
           ${formatearTextoConLatex(ejercicio.titulo)}
         </h2>
 
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
           ${formatearTextoConLatex(ejercicio.enunciado)}
         </p>
 
-        <!-- Panel de teoría sobrio y desplegable -->
         ${ejercicio.teoria ? `
-          <div id="panel-teoria" class="${AppState.teoriaAbierta ? 'block' : 'hidden'} mt-3 p-3.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs sm:text-sm leading-relaxed overflow-x-auto">
+          <div id="panel-teoria" class="${AppState.teoriaAbierta ? 'block' : 'hidden'} mt-3 p-3 bg-slate-900/60 border-l-2 border-blue-500 text-xs text-slate-300 leading-relaxed">
             ${formatearTextoConLatex(ejercicio.teoria)}
           </div>
         ` : ''}
       </div>
 
-      <!-- Diagrama esquemático y datos del circuito (integrados y sin sombras) -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-start">
-        <div class="md:col-span-8 bg-slate-900 border border-slate-800 rounded-xl p-2.5 circuit-container flex items-center justify-center">
-          <div class="overflow-x-auto w-full flex items-center justify-center bg-white rounded-lg p-2 border border-slate-200">
-            ${ejercicio.circuitoSvg}
-          </div>
+      <!-- Esquema del circuito centrado con parámetros en línea -->
+      <div class="space-y-2.5">
+        <div class="bg-white rounded-lg p-2.5 max-w-full overflow-x-auto border border-slate-700/60 flex items-center justify-center">
+          ${ejercicio.circuitoSvg}
         </div>
-
-        <!-- Parámetros de partida (compacto) -->
-        <div class="md:col-span-4 bg-slate-900 border border-slate-800 rounded-xl p-3">
-          <h4 class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2 font-mono">
-            Parámetros
-          </h4>
-          <div class="space-y-1 font-mono text-xs">
-            ${(Array.isArray(ejercicio.datos) ? ejercicio.datos : Object.entries(ejercicio.datos || {}).map(([clave, valor]) => ({ clave, valor }))).map(d => `
-              <div class="flex items-center justify-between py-1 px-2 rounded bg-slate-950 border border-slate-850">
-                <span class="text-slate-400">${renderLatex(d.clave)}</span>
-                <span class="text-slate-200 font-semibold">${formatearTextoConLatex(d.valor)}</span>
-              </div>
-            `).join('')}
-          </div>
+        <!-- Parámetros en una línea limpia, sin recuadros pesados -->
+        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-mono text-slate-300">
+          ${datosArray.map(d => `
+            <span class="inline-flex items-center gap-1">
+              <span class="text-slate-400">${renderLatex(d.clave)} =</span>
+              <span class="text-white font-medium">${formatearTextoConLatex(d.valor)}</span>
+            </span>
+          `).join('<span class="text-slate-700 hidden sm:inline">•</span>')}
         </div>
       </div>
 
-      <!-- Pestañas de etapas de resolución (Stepper minimalista) -->
-      <div>
-        <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5 font-mono">
-          <span>Etapas</span>
-          <span>Paso ${AppState.pasoActualIndex + 1} de ${totalPasos}</span>
+      <!-- Consigna activa y resolución sin cajas pesadas -->
+      <div class="border-t border-slate-800/80 pt-4 space-y-4">
+        <!-- Stepper horizontal sutil -->
+        <div class="flex items-center justify-between text-xs font-mono">
+          <div class="flex items-center gap-1">
+            <span class="text-slate-500 mr-1.5">Etapa:</span>
+            ${ejercicio.pasos.map((p, idx) => {
+              const pasoCompletado = datosProgreso.pasosCompletados.includes(p.id);
+              const esActivo = idx === AppState.pasoActualIndex;
+              return `
+                <button 
+                  onclick="cambiarPaso(${idx})"
+                  class="px-2 py-0.5 rounded text-xs transition-colors ${
+                    esActivo 
+                      ? 'bg-slate-200 text-slate-950 font-bold' 
+                      : pasoCompletado
+                      ? 'text-emerald-400 hover:text-emerald-300'
+                      : 'text-slate-500 hover:text-slate-300'
+                  }"
+                  title="Paso ${idx + 1}"
+                >
+                  ${idx + 1}${pasoCompletado ? '✓' : ''}
+                </button>
+              `;
+            }).join('<span class="text-slate-800">·</span>')}
+          </div>
+          <span class="text-slate-500">Paso ${AppState.pasoActualIndex + 1} de ${totalPasos}</span>
         </div>
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-          ${ejercicio.pasos.map((p, idx) => {
-            const pasoCompletado = datosProgreso.pasosCompletados.includes(p.id);
-            const esActivo = idx === AppState.pasoActualIndex;
-            return `
-              <button 
-                onclick="cambiarPaso(${idx})"
-                class="px-2.5 py-1 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 whitespace-nowrap ${
-                  esActivo 
-                    ? 'bg-blue-600 text-white' 
-                    : pasoCompletado
-                    ? 'bg-slate-800 text-emerald-400 border border-slate-700'
-                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
-                }"
-              >
-                <span>Paso ${idx + 1}</span>
-                ${p.simbolo ? `<span class="opacity-80">${renderLatex(p.simbolo)}</span>` : ''}
-                ${pasoCompletado ? '<span class="text-emerald-400">✓</span>' : ''}
-              </button>
-            `;
-          }).join('')}
-        </div>
-      </div>
 
-      <!-- Espacio de trabajo activo (enfocado en resolver, sin distracciones) -->
-      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
-        <!-- Pregunta o consigna del paso actual -->
-        <div class="mb-4">
-          <span class="text-xs font-mono text-slate-400 block mb-1">
-            Paso ${AppState.pasoActualIndex + 1}: ${formatearTextoConLatex(pasoActual.titulo)}
-          </span>
+        <!-- Pregunta directa -->
+        <div>
           <h3 class="text-sm sm:text-base font-medium text-white leading-relaxed">
             ${formatearTextoConLatex(pasoActual.pregunta)}
           </h3>
         </div>
 
-        <!-- Entrada de respuesta numérica y validación -->
-        <div class="mb-3">
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+        <!-- Entrada de respuesta y validación -->
+        <div>
+          <div class="flex items-center gap-2 max-w-sm sm:max-w-md">
             <div class="relative flex-1">
               <input 
                 type="text" 
@@ -917,9 +866,9 @@ function renderizarDetalleEjercicio() {
                 value="${yaCompletadoEstePaso ? (pasoActual.valorEsperado !== undefined ? pasoActual.valorEsperado : pasoActual.solucion) : ''}"
                 ${yaCompletadoEstePaso ? 'disabled' : ''}
                 onkeypress="if(event.key === 'Enter') verificarRespuesta('${pasoActual.id}')"
-                class="w-full bg-slate-950 border border-slate-700 focus:border-blue-500 rounded-lg px-3.5 py-2.5 text-white font-mono text-sm focus:outline-none transition-colors min-h-[44px]"
+                class="w-full bg-slate-900 border border-slate-700 focus:border-slate-400 rounded-lg px-3 py-2 text-white font-mono text-sm focus:outline-none transition-colors"
               />
-              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">
                 ${pasoActual.unidad}
               </span>
             </div>
@@ -927,52 +876,52 @@ function renderizarDetalleEjercicio() {
             ${!yaCompletadoEstePaso ? `
               <button 
                 onclick="verificarRespuesta('${pasoActual.id}')"
-                class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg text-xs sm:text-sm transition-colors min-h-[44px] shrink-0"
+                class="px-4 py-2 bg-slate-100 hover:bg-white text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0"
               >
                 Comprobar
               </button>
             ` : `
               <button 
                 onclick="irAlSiguientePaso()"
-                class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg text-xs sm:text-sm transition-colors min-h-[44px] shrink-0 flex items-center justify-center gap-1.5"
+                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0 flex items-center gap-1"
               >
-                <span>Siguiente paso</span>
+                <span>Siguiente</span>
                 <span>→</span>
               </button>
             `}
           </div>
 
           <!-- Mensaje de feedback directo -->
-          <div id="feedback-paso" class="mt-2.5 hidden text-xs sm:text-sm font-medium rounded-lg p-2.5"></div>
+          <div id="feedback-paso" class="mt-2 hidden text-xs font-mono"></div>
         </div>
 
-        <!-- Acciones secundarias (discretas): Pistas y Desarrollo -->
-        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+        <!-- Acciones discretas (Pistas y solución como enlaces de texto) -->
+        <div class="flex items-center gap-4 text-xs font-mono pt-1 text-slate-400">
           ${pistasUsadas < pasoActual.pistas.length && !yaCompletadoEstePaso ? `
             <button 
               onclick="revelarSiguientePista('${ejercicio.id}', '${pasoActual.id}')"
-              class="text-slate-400 hover:text-amber-300 transition-colors flex items-center gap-1"
+              class="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1"
             >
               <span>💡 Pista (${pistasUsadas + 1}/${pasoActual.pistas.length})</span>
             </button>
           ` : `
-            <span class="text-slate-500 font-mono">${pasoActual.pistas.length > 0 ? `${pistasUsadas}/${pasoActual.pistas.length} pistas` : ''}</span>
+            <span class="text-slate-600">${pasoActual.pistas.length > 0 ? `${pistasUsadas}/${pasoActual.pistas.length} pistas` : ''}</span>
           `}
 
           <button 
             onclick="${solucionRevelada ? `ocultarSolucionPaso('${ejercicio.id}', '${pasoActual.id}')` : `revelarSolucionPaso('${ejercicio.id}', '${pasoActual.id}', ${yaCompletadoEstePaso})`}"
-            class="text-slate-400 hover:text-slate-200 transition-colors"
+            class="hover:text-slate-200 transition-colors"
           >
-            ${solucionRevelada ? 'Ocultar desarrollo ▲' : (yaCompletadoEstePaso ? 'Ver desarrollo analítico' : '¿Trabado? Ver resolución')}
+            ${solucionRevelada ? 'Ocultar resolución ▲' : (yaCompletadoEstePaso ? 'Ver desarrollo analítico' : '¿Trabado? Ver resolución')}
           </button>
         </div>
 
-        <!-- Pistas reveladas (limpias, sin cajas chillonas) -->
+        <!-- Pistas reveladas (sutiles sin bordes gruesos) -->
         ${pistasUsadas > 0 ? `
-          <div class="mt-3 space-y-2">
+          <div class="space-y-2 pt-1">
             ${pasoActual.pistas.slice(0, pistasUsadas).map((pista, idx) => `
-              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 text-xs sm:text-sm leading-relaxed">
-                <span class="text-amber-400/90 font-mono text-xs block mb-1">Pista ${idx + 1}:</span>
+              <div class="text-xs text-amber-200/90 bg-amber-950/20 border-l-2 border-amber-500 pl-3 py-1.5 leading-relaxed">
+                <span class="text-amber-400 font-mono block mb-0.5">Pista ${idx + 1}:</span>
                 ${formatearTextoConLatex(pista)}
               </div>
             `).join('')}
@@ -981,8 +930,8 @@ function renderizarDetalleEjercicio() {
 
         <!-- Desarrollo analítico -->
         ${solucionRevelada ? `
-          <div class="mt-3 p-3.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 text-xs sm:text-sm leading-relaxed">
-            <span class="text-emerald-400 font-mono text-xs block mb-1">Desarrollo analítico:</span>
+          <div class="text-xs text-slate-300 bg-slate-900/60 border-l-2 border-slate-500 pl-3 py-2 leading-relaxed">
+            <span class="text-slate-400 font-mono text-[11px] block mb-1">Desarrollo analítico:</span>
             ${formatearTextoConLatex(pasoActual.explicacionPaso || pasoActual.explicacion)}
           </div>
         ` : ''}
@@ -1066,8 +1015,8 @@ function verificarRespuesta(pasoId) {
 
   if (errorAbsoluto <= margenPermitido) {
     // ¡RESPUESTA CORRECTA!
-    feedback.className = "mt-2.5 block text-xs sm:text-sm font-medium rounded-lg p-2.5 bg-slate-950 border border-emerald-600/60 text-emerald-300";
-    feedback.innerHTML = formatearTextoConLatex(`✓ <strong>¡Correcto!</strong> Resultado: $${valorIngresado}\\text{ ${paso.unidad}}$.`);
+    feedback.className = "mt-2 block text-xs font-mono text-emerald-400";
+    feedback.innerHTML = formatearTextoConLatex(`✓ <strong>¡Correcto!</strong> $${valorIngresado}\\text{ ${paso.unidad}}$.`);
 
     // Mostrar inmediatamente la justificación para este paso
     const clave = `${ejercicio.id}_${pasoId}`;
@@ -1095,12 +1044,12 @@ function verificarRespuesta(pasoId) {
     let orientacion = "";
     
     if (Math.abs(ratio - 1000) < 0.1 || Math.abs(ratio - 0.001) < 0.0001) {
-      orientacion = " (Revisa las unidades: parece un error de escala de factor 1000).";
+      orientacion = " (Revisa las unidades: factor 1000).";
     } else if (valorIngresado * esperado < 0) {
-      orientacion = " (Verifica el signo o polaridad).";
+      orientacion = " (Verifica el signo).";
     }
 
-    feedback.className = "mt-2.5 block text-xs sm:text-sm font-medium rounded-lg p-2.5 bg-slate-950 border border-rose-600/60 text-rose-300";
+    feedback.className = "mt-2 block text-xs font-mono text-rose-400";
     feedback.innerHTML = formatearTextoConLatex(`✕ El valor ingresado ($${valorIngresado}\\text{ ${paso.unidad}}$) no coincide.${orientacion}`);
   }
 }
@@ -1144,7 +1093,7 @@ function actualizarEstadisticasGenerales() {
   const elBarra = document.getElementById('stats-barra-progreso');
   const elPorcentaje = document.getElementById('stats-porcentaje');
 
-  if (elContador) elContador.innerText = `${ejerciciosCompletos}/${totalEjercicios} ejercicios`;
-  if (elPorcentaje) elPorcentaje.innerText = `${porcentajeGlobal}% completado`;
+  if (elContador) elContador.innerText = `${ejerciciosCompletos}/${totalEjercicios} ej.`;
+  if (elPorcentaje) elPorcentaje.innerText = `${porcentajeGlobal}%`;
   if (elBarra) elBarra.style.width = `${porcentajeGlobal}%`;
 }
