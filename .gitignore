@@ -1,0 +1,15 @@
+# Entorno de trabajo local y temporales
+scratch/
+__pycache__/
+*.pyc
+.system_generated/
+*.log
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
