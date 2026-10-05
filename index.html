@@ -37,19 +37,19 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
 
-  <!-- Barra de navegación superior ultra-limpia -->
+  <!-- Barra de navegación superior limpia y espaciosa -->
   <header class="border-b border-slate-800/80 sticky top-0 z-30 bg-slate-950/95">
-    <div class="max-w-4xl mx-auto px-4 h-12 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-2.5 min-w-0">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
         <!-- Logo Qbik -->
         <a 
           href="https://qbik.com.ar" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="flex items-center hover:opacity-80 transition-opacity shrink-0" 
+          class="flex items-center hover:opacity-85 transition-opacity shrink-0" 
           title="Qbik (qbik.com.ar)"
         >
-          <img src="logo-hz-dark.png" alt="Qbik" class="h-5 w-auto">
+          <img src="logo-hz-dark.png" alt="Qbik" class="h-7 sm:h-8 w-auto">
         </a>
 
         <!-- Botón Volver a todas las materias -->
@@ -224,15 +224,21 @@
     </main>
   </div>
 
-  <!-- Pie de página limpio y minimalista -->
-  <footer class="border-t border-slate-800/60 py-3 mt-auto text-xs font-mono text-slate-500">
-    <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
-      <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">
-        Qbik Cátedra Interactiva
-      </a>
-      <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">
-        qbik.com.ar
-      </a>
+  <!-- Pie de página limpio y proporcionado con logo -->
+  <footer class="border-t border-slate-800/80 py-5 sm:py-6 mt-auto text-xs font-mono text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:opacity-85 transition-opacity" title="Qbik (qbik.com.ar)">
+          <img src="logo-hz-dark.png" alt="Qbik" class="h-6 sm:h-7 w-auto">
+        </a>
+        <span class="text-slate-700 hidden sm:inline">|</span>
+        <span class="text-slate-400">Cátedra Interactiva de Ingeniería</span>
+      </div>
+      <div>
+        <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-200 transition-colors">
+          qbik.com.ar
+        </a>
+      </div>
     </div>
   </footer>
 
