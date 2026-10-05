@@ -139,8 +139,60 @@ function formatearTextoConLatex(texto) {
   return resultado;
 }
 
+// Control de tema Claro / Oscuro
+function initTheme() {
+  try {
+    const saved = localStorage.getItem('qbik-theme');
+    const isDark = saved ? saved === 'dark' : true;
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } catch (e) {
+    document.documentElement.classList.add('dark');
+  }
+  actualizarLogosYIconoTema();
+}
+
+function toggleTheme() {
+  const isCurrentlyDark = document.documentElement.classList.contains('dark');
+  if (isCurrentlyDark) {
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('qbik-theme', 'light');
+  } else {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('qbik-theme', 'dark');
+  }
+  actualizarLogosYIconoTema();
+}
+
+function actualizarLogosYIconoTema() {
+  const isDark = document.documentElement.classList.contains('dark');
+  
+  // Icono del botón
+  const iconSpan = document.getElementById('theme-toggle-icon');
+  if (iconSpan) {
+    iconSpan.innerText = isDark ? '☀️' : '🌙';
+  }
+  const btnToggle = document.getElementById('btn-theme-toggle');
+  if (btnToggle) {
+    btnToggle.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+  }
+
+  // Logos de Qbik: logo-hz-dark.png (letras claras para fondo oscuro) vs logo-hz-white.png (letras oscuras para fondo claro)
+  const headerLogo = document.getElementById('header-logo-img');
+  const footerLogo = document.getElementById('footer-logo-img');
+  const logoSrc = isDark ? 'logo-hz-dark.png' : 'logo-hz-white.png';
+
+  if (headerLogo) headerLogo.src = logoSrc;
+  if (footerLogo) footerLogo.src = logoSrc;
+}
+
 // Inicialización de la aplicación
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+
   // Asegurar registro de materias
   if (typeof BANCO_MATERIAS !== 'undefined') {
     if (typeof BANCO_EJERCICIOS !== 'undefined') {
@@ -230,30 +282,30 @@ function renderizarGridMaterias() {
 
     return `
       <div 
-        class="border border-slate-800/80 hover:border-slate-750 bg-slate-900/40 rounded-xl p-5 transition-colors flex flex-col justify-between cursor-pointer group"
+        class="border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-900/40 rounded-xl p-5 shadow-sm dark:shadow-none transition-colors flex flex-col justify-between cursor-pointer group"
         onclick="abrirMateria('${materia.id}')"
       >
         <div>
-          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-2">
             <span>${materia.codigo}</span>
             <span>${ejerciciosResueltos}/${totalEjercicios} resueltos</span>
           </div>
 
-          <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors flex items-center gap-2 mb-1.5">
+          <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-2 mb-1.5">
             <span>${materia.icono}</span>
             <span>${materia.nombre}</span>
           </h3>
 
-          <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
             ${materia.descripcion}
           </p>
         </div>
 
-        <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between">
-          <span class="text-xs font-mono text-slate-500">${unidadesCount} unidades · ${totalEjercicios} ej.</span>
+        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-500 dark:text-slate-400">${unidadesCount} unidades · ${totalEjercicios} ej.</span>
           <button 
             onclick="event.stopPropagation(); abrirMateria('${materia.id}')"
-            class="text-xs text-slate-300 group-hover:text-white font-mono flex items-center gap-1 transition-colors"
+            class="text-xs text-slate-600 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white font-mono flex items-center gap-1 transition-colors font-medium"
           >
             <span>Ingresar</span>
             <span>→</span>
@@ -481,8 +533,8 @@ function renderizarFiltrosUnidades() {
         data-tema="${u.id}"
         class="px-2.5 py-1 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap ${
           esActivo 
-            ? 'bg-slate-800 text-white border border-slate-600' 
-            : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700'
+            ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-white border border-slate-900 dark:border-slate-600 shadow-sm' 
+            : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:hover:text-slate-200 dark:border-slate-800 dark:hover:border-slate-700'
         }"
       >
         <span>${u.icono}</span>
@@ -498,8 +550,8 @@ function renderizarFiltrosUnidades() {
       data-tema="todos"
       class="px-2.5 py-1 text-xs font-medium rounded-lg transition-colors flex items-center gap-1 whitespace-nowrap ${
         todosActivo 
-          ? 'bg-slate-800 text-white border border-slate-600' 
-          : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700'
+          ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-white border border-slate-900 dark:border-slate-600 shadow-sm' 
+          : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:hover:text-slate-200 dark:border-slate-800 dark:hover:border-slate-700'
       }"
     >
       <span>Todas las unidades</span>
@@ -633,18 +685,18 @@ function renderizarListaEjercicios() {
 
     // Encabezado de la unidad
     htmlTotal += `
-      <div class="mb-3 bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
+      <div class="mb-3 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
         <div 
           onclick="toggleColapsoUnidad('${unidad.id}')"
-          class="p-2.5 bg-slate-850 hover:bg-slate-800 cursor-pointer flex items-center justify-between border-b border-slate-800 transition-colors select-none"
+          class="p-2.5 bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-850 dark:hover:bg-slate-800 cursor-pointer flex items-center justify-between border-b border-slate-200 dark:border-slate-800 transition-colors select-none"
         >
           <div class="flex items-center gap-2">
             <span class="text-sm">${unidad.icono}</span>
-            <span class="font-semibold text-xs text-slate-200 tracking-wide uppercase">
+            <span class="font-semibold text-xs text-slate-800 dark:text-slate-200 tracking-wide uppercase">
               ${unidad.titulo}
             </span>
           </div>
-          <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+          <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
             <span>${completadosUnidad}/${totalEjerciciosUnidad}</span>
             <span>${estaColapsada ? '▼' : '▲'}</span>
           </div>
@@ -666,20 +718,20 @@ function renderizarListaEjercicios() {
                 onclick="seleccionarEjercicio('${ej.id}')"
                 class="exercise-item cursor-pointer p-2 rounded-lg border transition-colors ${
                   esSeleccionado 
-                    ? 'bg-slate-800 border-slate-600 text-white' 
-                    : 'bg-slate-900 hover:bg-slate-850 border-slate-850 hover:border-slate-800 text-slate-300'
+                    ? 'bg-slate-200 dark:bg-slate-800 border-slate-400 dark:border-slate-600 text-slate-950 dark:text-white font-medium' 
+                    : 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-850 border-slate-200/80 dark:border-slate-850 hover:border-slate-300 dark:hover:border-slate-800 text-slate-700 dark:text-slate-300'
                 }"
               >
                 <div class="flex items-center justify-between gap-2 mb-0.5">
-                  <span class="font-mono text-xs font-semibold ${esSeleccionado ? 'text-blue-400' : 'text-slate-400'}">
+                  <span class="font-mono text-xs font-semibold ${esSeleccionado ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400'}">
                     Ej. ${numeroItem}
                   </span>
                   ${completado 
-                    ? '<span class="text-[11px] text-emerald-400 font-mono">✓</span>' 
-                    : `<span class="text-[10px] text-slate-500 font-mono">${pasosHechos}/${totalPasos}</span>`
+                    ? '<span class="text-[11px] text-emerald-600 dark:text-emerald-400 font-mono">✓</span>' 
+                    : `<span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">${pasosHechos}/${totalPasos}</span>`
                   }
                 </div>
-                <h5 class="text-xs text-slate-200 line-clamp-1 font-normal">
+                <h5 class="text-xs text-slate-800 dark:text-slate-200 line-clamp-1 font-normal">
                   ${formatearTextoConLatex(ej.titulo)}
                 </h5>
               </div>
@@ -773,28 +825,28 @@ function renderizarDetalleEjercicio() {
     <div class="animate-fade-in space-y-5">
       <!-- Encabezado sutil sin cajas -->
       <div>
-        <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1.5">
+        <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
           <span>Problema ${numeroEjercicio} · ${ejercicio.dificultad}</span>
           <div class="flex items-center gap-3">
-            ${ejercicioCompletado ? '<span class="text-emerald-400 font-medium">✓ Resuelto</span>' : ''}
+            ${ejercicioCompletado ? '<span class="text-emerald-600 dark:text-emerald-400 font-medium">✓ Resuelto</span>' : ''}
             ${ejercicio.teoria ? `
-              <button onclick="toggleTeoria()" class="hover:text-slate-300 transition-colors">
+              <button onclick="toggleTeoria()" class="hover:text-slate-800 dark:hover:text-slate-200 transition-colors">
                 Conceptos ${AppState.teoriaAbierta ? '▲' : '▼'}
               </button>
             ` : ''}
           </div>
         </div>
 
-        <h2 class="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+        <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">
           ${formatearTextoConLatex(ejercicio.titulo)}
         </h2>
 
-        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
           ${formatearTextoConLatex(ejercicio.enunciado)}
         </p>
 
         ${ejercicio.teoria ? `
-          <div id="panel-teoria" class="${AppState.teoriaAbierta ? 'block' : 'hidden'} mt-3 p-3 bg-slate-900/60 border-l-2 border-blue-500 text-xs text-slate-300 leading-relaxed">
+          <div id="panel-teoria" class="${AppState.teoriaAbierta ? 'block' : 'hidden'} mt-3 p-3 bg-slate-100 dark:bg-slate-900/60 border-l-2 border-blue-500 text-xs text-slate-700 dark:text-slate-300 leading-relaxed rounded-r">
             ${formatearTextoConLatex(ejercicio.teoria)}
           </div>
         ` : ''}
@@ -802,22 +854,22 @@ function renderizarDetalleEjercicio() {
 
       <!-- Esquema del circuito centrado con parámetros en línea -->
       <div class="space-y-2.5">
-        <div class="bg-white rounded-lg p-2.5 max-w-full overflow-x-auto border border-slate-700/60 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-3 max-w-full overflow-x-auto border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center">
           ${ejercicio.circuitoSvg}
         </div>
         <!-- Parámetros en una línea limpia, sin recuadros pesados -->
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-mono text-slate-300">
+        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-mono text-slate-600 dark:text-slate-300">
           ${datosArray.map(d => `
             <span class="inline-flex items-center gap-1">
-              <span class="text-slate-400">${renderLatex(d.clave)} =</span>
-              <span class="text-white font-medium">${formatearTextoConLatex(d.valor)}</span>
+              <span class="text-slate-500 dark:text-slate-400">${renderLatex(d.clave)} =</span>
+              <span class="text-slate-900 dark:text-white font-medium">${formatearTextoConLatex(d.valor)}</span>
             </span>
-          `).join('<span class="text-slate-700 hidden sm:inline">•</span>')}
+          `).join('<span class="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>')}
         </div>
       </div>
 
       <!-- Consigna activa y resolución sin cajas pesadas -->
-      <div class="border-t border-slate-800/80 pt-4 space-y-4">
+      <div class="border-t border-slate-200 dark:border-slate-800/80 pt-4 space-y-4">
         <!-- Stepper horizontal sutil -->
         <div class="flex items-center justify-between text-xs font-mono">
           <div class="flex items-center gap-1">
@@ -830,24 +882,24 @@ function renderizarDetalleEjercicio() {
                   onclick="cambiarPaso(${idx})"
                   class="px-2 py-0.5 rounded text-xs transition-colors ${
                     esActivo 
-                      ? 'bg-slate-200 text-slate-950 font-bold' 
+                      ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950 font-bold shadow-sm' 
                       : pasoCompletado
-                      ? 'text-emerald-400 hover:text-emerald-300'
-                      : 'text-slate-500 hover:text-slate-300'
+                      ? 'text-emerald-600 dark:text-emerald-400 hover:text-emerald-500'
+                      : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
                   }"
                   title="Paso ${idx + 1}"
                 >
                   ${idx + 1}${pasoCompletado ? '✓' : ''}
                 </button>
               `;
-            }).join('<span class="text-slate-800">·</span>')}
+            }).join('<span class="text-slate-300 dark:text-slate-800">·</span>')}
           </div>
           <span class="text-slate-500">Paso ${AppState.pasoActualIndex + 1} de ${totalPasos}</span>
         </div>
 
         <!-- Pregunta directa -->
         <div>
-          <h3 class="text-sm sm:text-base font-medium text-white leading-relaxed">
+          <h3 class="text-sm sm:text-base font-medium text-slate-900 dark:text-white leading-relaxed">
             ${formatearTextoConLatex(pasoActual.pregunta)}
           </h3>
         </div>
@@ -866,9 +918,9 @@ function renderizarDetalleEjercicio() {
                 value="${yaCompletadoEstePaso ? (pasoActual.valorEsperado !== undefined ? pasoActual.valorEsperado : pasoActual.solucion) : ''}"
                 ${yaCompletadoEstePaso ? 'disabled' : ''}
                 onkeypress="if(event.key === 'Enter') verificarRespuesta('${pasoActual.id}')"
-                class="w-full bg-slate-900 border border-slate-700 focus:border-slate-400 rounded-lg px-3 py-2 text-white font-mono text-sm focus:outline-none transition-colors"
+                class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:border-blue-500 dark:focus:border-slate-400 rounded-lg px-3 py-2 text-slate-900 dark:text-white font-mono text-sm focus:outline-none transition-colors shadow-sm"
               />
-              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-xs">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-mono text-xs">
                 ${pasoActual.unidad}
               </span>
             </div>
@@ -876,14 +928,14 @@ function renderizarDetalleEjercicio() {
             ${!yaCompletadoEstePaso ? `
               <button 
                 onclick="verificarRespuesta('${pasoActual.id}')"
-                class="px-4 py-2 bg-slate-100 hover:bg-white text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0"
+                class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:hover:bg-white dark:text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0 shadow-sm"
               >
                 Comprobar
               </button>
             ` : `
               <button 
                 onclick="irAlSiguientePaso()"
-                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0 flex items-center gap-1"
+                class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-slate-950 font-semibold rounded-lg text-xs sm:text-sm transition-colors shrink-0 flex items-center gap-1 shadow-sm"
               >
                 <span>Siguiente</span>
                 <span>→</span>
@@ -896,21 +948,21 @@ function renderizarDetalleEjercicio() {
         </div>
 
         <!-- Acciones discretas (Pistas y solución como enlaces de texto) -->
-        <div class="flex items-center gap-4 text-xs font-mono pt-1 text-slate-400">
+        <div class="flex items-center gap-4 text-xs font-mono pt-1 text-slate-600 dark:text-slate-400">
           ${pistasUsadas < pasoActual.pistas.length && !yaCompletadoEstePaso ? `
             <button 
               onclick="revelarSiguientePista('${ejercicio.id}', '${pasoActual.id}')"
-              class="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1"
+              class="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium transition-colors flex items-center gap-1"
             >
               <span>💡 Pista (${pistasUsadas + 1}/${pasoActual.pistas.length})</span>
             </button>
           ` : `
-            <span class="text-slate-600">${pasoActual.pistas.length > 0 ? `${pistasUsadas}/${pasoActual.pistas.length} pistas` : ''}</span>
+            <span class="text-slate-400 dark:text-slate-600">${pasoActual.pistas.length > 0 ? `${pistasUsadas}/${pasoActual.pistas.length} pistas` : ''}</span>
           `}
 
           <button 
             onclick="${solucionRevelada ? `ocultarSolucionPaso('${ejercicio.id}', '${pasoActual.id}')` : `revelarSolucionPaso('${ejercicio.id}', '${pasoActual.id}', ${yaCompletadoEstePaso})`}"
-            class="hover:text-slate-200 transition-colors"
+            class="hover:text-slate-950 dark:hover:text-slate-200 transition-colors"
           >
             ${solucionRevelada ? 'Ocultar resolución ▲' : (yaCompletadoEstePaso ? 'Ver desarrollo analítico' : '¿Trabado? Ver resolución')}
           </button>
@@ -920,8 +972,8 @@ function renderizarDetalleEjercicio() {
         ${pistasUsadas > 0 ? `
           <div class="space-y-2 pt-1">
             ${pasoActual.pistas.slice(0, pistasUsadas).map((pista, idx) => `
-              <div class="text-xs text-amber-200/90 bg-amber-950/20 border-l-2 border-amber-500 pl-3 py-1.5 leading-relaxed">
-                <span class="text-amber-400 font-mono block mb-0.5">Pista ${idx + 1}:</span>
+              <div class="text-xs text-amber-900 dark:text-amber-200/90 bg-amber-50 dark:bg-amber-950/20 border-l-2 border-amber-500 pl-3 py-1.5 leading-relaxed rounded-r">
+                <span class="text-amber-700 dark:text-amber-400 font-mono block mb-0.5">Pista ${idx + 1}:</span>
                 ${formatearTextoConLatex(pista)}
               </div>
             `).join('')}
@@ -930,8 +982,8 @@ function renderizarDetalleEjercicio() {
 
         <!-- Desarrollo analítico -->
         ${solucionRevelada ? `
-          <div class="text-xs text-slate-300 bg-slate-900/60 border-l-2 border-slate-500 pl-3 py-2 leading-relaxed">
-            <span class="text-slate-400 font-mono text-[11px] block mb-1">Desarrollo analítico:</span>
+          <div class="text-xs text-slate-800 dark:text-slate-300 bg-slate-100 dark:bg-slate-900/60 border-l-2 border-slate-500 pl-3 py-2 leading-relaxed rounded-r">
+            <span class="text-slate-500 dark:text-slate-400 font-mono text-[11px] block mb-1">Desarrollo analítico:</span>
             ${formatearTextoConLatex(pasoActual.explicacionPaso || pasoActual.explicacion)}
           </div>
         ` : ''}
