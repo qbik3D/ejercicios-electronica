@@ -5,6 +5,7 @@
 
 // Estado global de la aplicación
 const AppState = {
+  vistaActual: 'materias', // 'materias' (portal de recuadros) | 'ejercicios' (interfaz de materia)
   materiaSeleccionada: 'electronica-1', // 'electronica-1' | 'circuitos-3'
   temaSeleccionado: 'cc', // ID de la unidad activa dentro de la materia seleccionada
   textoBusqueda: '',
@@ -14,7 +15,8 @@ const AppState = {
   unidadesColapsadas: {}, // { [unidadId]: boolean }
   pistasReveladasPorPaso: {}, // { [ejercicioId_pasoId]: numeroPistasMostradas }
   solucionReveladaPorPaso: {}, // { [ejercicioId_pasoId]: boolean } - Solo en memoria para la sesión activa
-  progresoUsuario: {} // { [ejercicioId]: { resuelto: bool, pasosCompletados: [pasoId, ...] } }
+  progresoUsuario: {}, // { [ejercicioId]: { resuelto: bool, pasosCompletados: [pasoId, ...] } }
+  listaEjerciciosMovilAbierta: false
 };
 
 // Obtener la configuración de la materia activa
@@ -149,39 +151,197 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Cargar materia guardada
-  const materiaGuardada = localStorage.getItem('electronica_materia_activa');
-  if (materiaGuardada && typeof MATERIAS_CONFIG !== 'undefined' && MATERIAS_CONFIG[materiaGuardada]) {
-    AppState.materiaSeleccionada = materiaGuardada;
-  }
-
-  const materia = getMateriaConfig();
-  if (materia.unidades && materia.unidades.length > 0) {
-    AppState.temaSeleccionado = materia.unidades[0].id;
-  }
-
-  cargarProgreso();
   configurarEventosUI();
-  actualizarUIHeaderMateria();
-  renderizarFiltrosUnidades();
+  renderizarGridMaterias();
 
-  // Seleccionar primer ejercicio de la materia
-  const banco = getBancoEjerciciosActual();
-  const primerEjercicio = banco.find(e => e.categoria === AppState.temaSeleccionado) || banco[0];
-  if (primerEjercicio) {
-    seleccionarEjercicio(primerEjercicio.id);
+  // Escuchar navegación del navegador (adelante / atrás)
+  window.addEventListener('hashchange', procesarRutaHash);
+
+  // Escuchar redimensionamiento para resetear drawer móvil al pasar a desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && AppState.listaEjerciciosMovilAbierta) {
+      toggleListaEjerciciosMovil(false);
+    }
+  });
+
+  // Procesar ruta inicial según hash
+  if (window.location.hash.startsWith('#materia=')) {
+    procesarRutaHash();
+  } else {
+    volverAMaterias();
   }
-
-  renderizarListaEjercicios();
-  actualizarEstadisticasGenerales();
 });
 
-// Cambiar de materia de estudio
-function cambiarMateria(materiaId) {
+// Procesar el hash de la URL para navegación profunda
+function procesarRutaHash() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#materia=')) {
+    const materiaId = hash.replace('#materia=', '').trim();
+    if (typeof MATERIAS_CONFIG !== 'undefined' && MATERIAS_CONFIG[materiaId]) {
+      abrirMateria(materiaId);
+      return;
+    }
+  }
+  volverAMaterias();
+}
+
+// Renderizar la grilla de recuadros de selección de materias
+function renderizarGridMaterias() {
+  const container = document.getElementById('grid-materias-cards');
+  if (!container || typeof MATERIAS_CONFIG === 'undefined') return;
+
+  const materias = Object.values(MATERIAS_CONFIG);
+
+  let html = materias.map(materia => {
+    const banco = (typeof BANCO_MATERIAS !== 'undefined' && BANCO_MATERIAS[materia.id])
+      ? BANCO_MATERIAS[materia.id]
+      : (materia.id === 'electronica-1' && typeof BANCO_EJERCICIOS !== 'undefined' ? BANCO_EJERCICIOS : []);
+
+    const totalEjercicios = banco.length;
+    let totalPasos = 0;
+    let pasosResueltos = 0;
+    let ejerciciosResueltos = 0;
+
+    try {
+      const data = localStorage.getItem(`progreso_${materia.id}`) || (materia.id === 'electronica-1' ? localStorage.getItem('electronica1_progreso') : null);
+      if (data) {
+        const prog = JSON.parse(data);
+        banco.forEach(ej => {
+          const pasosLen = ej.pasos ? ej.pasos.length : 0;
+          totalPasos += pasosLen;
+          if (prog[ej.id] && prog[ej.id].pasosCompletados) {
+            pasosResueltos += prog[ej.id].pasosCompletados.length;
+            if (prog[ej.id].pasosCompletados.length === pasosLen && pasosLen > 0) {
+              ejerciciosResueltos++;
+            }
+          }
+        });
+      } else {
+        banco.forEach(ej => {
+          totalPasos += ej.pasos ? ej.pasos.length : 0;
+        });
+      }
+    } catch (e) {
+      console.warn("Error leyendo progreso:", e);
+    }
+
+    const porcentaje = totalPasos > 0 ? Math.round((pasosResueltos / totalPasos) * 100) : 0;
+    const unidadesCount = materia.unidades ? materia.unidades.length : 0;
+
+    return `
+      <div 
+        class="bg-slate-900/90 border border-slate-800 hover:border-slate-700/80 rounded-3xl p-6 sm:p-7 shadow-xl hover:shadow-2xl transition-all flex flex-col justify-between group relative overflow-hidden"
+      >
+        <!-- Acento decorativo gradiente de fondo -->
+        <div class="absolute top-0 right-0 w-36 h-36 bg-gradient-to-br ${materia.colorGradiente || 'from-blue-600 to-indigo-500'} opacity-10 rounded-bl-full pointer-events-none group-hover:opacity-20 transition-opacity"></div>
+
+        <div>
+          <!-- Cabecera: Icono y código -->
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr ${materia.colorGradiente || 'from-blue-600 to-indigo-500'} flex items-center justify-center text-2xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform shrink-0">
+              ${materia.icono}
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                Código [${materia.codigo}]
+              </span>
+            </div>
+          </div>
+
+          <!-- Título y descripción -->
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+            ${materia.nombre}
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-5">
+            ${materia.descripcion}
+          </p>
+
+          <!-- Badges informativos de contenido -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-xl bg-slate-800/80 text-slate-300 border border-slate-700/60 flex items-center gap-1.5 font-medium">
+              <span>📚</span> ${unidadesCount} ${unidadesCount === 1 ? 'Unidad' : 'Unidades'}
+            </span>
+            <span class="text-xs px-2.5 py-1 rounded-xl bg-slate-800/80 text-slate-300 border border-slate-700/60 flex items-center gap-1.5 font-medium">
+              <span>✏️</span> ${totalEjercicios} ejercicios
+            </span>
+            <span class="text-xs px-2.5 py-1 rounded-xl bg-slate-800/80 text-slate-300 border border-slate-700/60 flex items-center gap-1.5 font-medium">
+              <span>👣</span> ${totalPasos} etapas guiadas
+            </span>
+          </div>
+        </div>
+
+        <!-- Barra de avance personal y botón de entrada -->
+        <div class="pt-4 border-t border-slate-800/80">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-medium">
+            <span>Tu avance: <strong class="text-slate-200">${ejerciciosResueltos}/${totalEjercicios} resueltos</strong></span>
+            <span class="font-bold ${porcentaje > 0 ? 'text-blue-400' : 'text-slate-500'}">${porcentaje}%</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2 mb-5 overflow-hidden border border-slate-700/60">
+            <div 
+              class="h-full bg-gradient-to-r ${materia.colorGradiente || 'from-blue-500 to-emerald-400'} rounded-full transition-all duration-500" 
+              style="width: ${porcentaje}%"
+            ></div>
+          </div>
+
+          <button 
+            onclick="abrirMateria('${materia.id}')"
+            class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r ${materia.colorGradiente || 'from-blue-600 to-indigo-600'} hover:opacity-95 active:scale-[0.99] text-white font-semibold text-sm shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2 min-h-[48px]"
+          >
+            <span>Ingresar a la materia</span>
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = html;
+}
+
+// Abrir entorno de ejercicios de una materia específica
+function abrirMateria(materiaId) {
   if (typeof MATERIAS_CONFIG === 'undefined' || !MATERIAS_CONFIG[materiaId]) return;
 
+  AppState.vistaActual = 'ejercicios';
   AppState.materiaSeleccionada = materiaId;
   localStorage.setItem('electronica_materia_activa', materiaId);
+
+  // Actualizar URL hash si difiere
+  if (window.location.hash !== `#materia=${materiaId}`) {
+    window.location.hash = `materia=${materiaId}`;
+  }
+
+  // Alternar visibilidad de las vistas
+  const vistaSeleccion = document.getElementById('vista-seleccion-materias');
+  const vistaMateria = document.getElementById('vista-materia-ejercicios');
+  if (vistaSeleccion) vistaSeleccion.classList.add('hidden');
+  if (vistaMateria) vistaMateria.classList.remove('hidden');
+
+  // Ajustar cabecera para modo materia
+  const btnVolver = document.getElementById('header-btn-volver-materias');
+  const infoMateria = document.getElementById('header-info-materia');
+  const statsContainer = document.getElementById('header-stats-container');
+  const btnReiniciar = document.getElementById('btn-reiniciar-progreso');
+  const taglinePortal = document.getElementById('header-portal-tagline');
+
+  if (btnVolver) {
+    btnVolver.classList.remove('hidden');
+    btnVolver.classList.add('flex');
+  }
+  if (infoMateria) {
+    infoMateria.classList.remove('hidden');
+    infoMateria.classList.add('flex');
+  }
+  if (statsContainer) {
+    statsContainer.className = 'hidden sm:flex flex-col items-end';
+  }
+  if (btnReiniciar) {
+    btnReiniciar.className = 'p-1.5 sm:p-2 rounded-xl bg-slate-800/80 hover:bg-rose-900/40 text-slate-400 hover:text-rose-300 border border-slate-700/60 transition-all hidden sm:block shrink-0';
+  }
+  if (taglinePortal) {
+    taglinePortal.classList.add('hidden');
+    taglinePortal.classList.remove('flex');
+  }
 
   const materia = getMateriaConfig();
   AppState.temaSeleccionado = (materia.unidades && materia.unidades.length > 0) ? materia.unidades[0].id : 'todos';
@@ -205,21 +365,128 @@ function cambiarMateria(materiaId) {
 
   renderizarListaEjercicios();
   actualizarEstadisticasGenerales();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Volver al portal principal de selección de materias
+function volverAMaterias() {
+  AppState.vistaActual = 'materias';
+  toggleListaEjerciciosMovil(false);
+
+  if (window.location.hash !== '#materias') {
+    window.location.hash = 'materias';
+  }
+
+  const vistaSeleccion = document.getElementById('vista-seleccion-materias');
+  const vistaMateria = document.getElementById('vista-materia-ejercicios');
+  if (vistaSeleccion) vistaSeleccion.classList.remove('hidden');
+  if (vistaMateria) vistaMateria.classList.add('hidden');
+
+  const btnVolver = document.getElementById('header-btn-volver-materias');
+  const infoMateria = document.getElementById('header-info-materia');
+  const statsContainer = document.getElementById('header-stats-container');
+  const btnReiniciar = document.getElementById('btn-reiniciar-progreso');
+  const taglinePortal = document.getElementById('header-portal-tagline');
+
+  if (btnVolver) {
+    btnVolver.classList.add('hidden');
+    btnVolver.classList.remove('flex');
+  }
+  if (infoMateria) {
+    infoMateria.classList.add('hidden');
+    infoMateria.classList.remove('flex');
+  }
+  if (statsContainer) {
+    statsContainer.className = 'hidden flex-col items-end';
+  }
+  if (btnReiniciar) {
+    btnReiniciar.className = 'hidden';
+  }
+  if (taglinePortal) {
+    taglinePortal.classList.remove('hidden');
+    taglinePortal.classList.add('flex');
+  }
+
+  document.title = 'Plataforma Interactiva - Cátedra de Ingeniería Electrónica';
+
+  renderizarGridMaterias();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Compatibilidad
+function cambiarMateria(materiaId) {
+  abrirMateria(materiaId);
+}
+
+// Alternar cajón flotante de lista de ejercicios en móvil (< lg)
+function toggleListaEjerciciosMovil(forzarEstado) {
+  const columna = document.getElementById('columna-lista-ejercicios');
+  const icono = document.getElementById('icono-desplegable-movil');
+  if (!columna) return;
+
+  const esMovil = window.innerWidth < 1024;
+  if (!esMovil) {
+    columna.classList.remove('fixed', 'inset-0', 'top-16', 'z-50', 'bg-slate-950/98', 'backdrop-blur-xl', 'p-4', 'overflow-y-auto', 'animate-drawer');
+    columna.classList.add('hidden', 'lg:block');
+    AppState.listaEjerciciosMovilAbierta = false;
+    return;
+  }
+
+  const nuevoEstado = forzarEstado !== undefined ? forzarEstado : !AppState.listaEjerciciosMovilAbierta;
+  AppState.listaEjerciciosMovilAbierta = nuevoEstado;
+
+  if (nuevoEstado) {
+    columna.classList.remove('hidden');
+    columna.classList.add('fixed', 'inset-0', 'top-16', 'z-50', 'bg-slate-950/98', 'backdrop-blur-xl', 'p-4', 'overflow-y-auto', 'animate-drawer');
+    if (icono) icono.innerText = 'Cerrar ▲';
+  } else {
+    columna.classList.add('hidden');
+    columna.classList.remove('fixed', 'inset-0', 'top-16', 'z-50', 'bg-slate-950/98', 'backdrop-blur-xl', 'p-4', 'overflow-y-auto', 'animate-drawer');
+    if (icono) icono.innerText = 'Lista ▼';
+  }
+}
+
+// Navegación rápida entre ejercicios anterior/siguiente para móvil y atajos
+function navegarEjercicioRelativo(delta) {
+  const banco = getBancoEjerciciosActual();
+  if (!banco || banco.length === 0) return;
+
+  const ejerciciosDisponibles = AppState.temaSeleccionado === 'todos'
+    ? banco
+    : banco.filter(e => e.categoria === AppState.temaSeleccionado);
+
+  const lista = ejerciciosDisponibles.length > 0 ? ejerciciosDisponibles : banco;
+  const indexActual = lista.findIndex(e => e.id === AppState.ejercicioActualId);
+
+  let siguienteIndex = indexActual + delta;
+  if (siguienteIndex < 0) {
+    siguienteIndex = lista.length - 1;
+  } else if (siguienteIndex >= lista.length) {
+    siguienteIndex = 0;
+  }
+
+  const siguienteEjercicio = lista[siguienteIndex];
+  if (siguienteEjercicio) {
+    seleccionarEjercicio(siguienteEjercicio.id);
+  }
 }
 
 // Actualizar textos e íconos del header según la materia activa
 function actualizarUIHeaderMateria() {
   const materia = getMateriaConfig();
 
-  const select = document.getElementById('select-materia');
-  if (select) select.value = materia.id;
-
   const iconoBox = document.getElementById('materia-icono-box');
   if (iconoBox) {
     iconoBox.innerText = materia.icono;
     if (materia.colorGradiente) {
-      iconoBox.className = `w-10 h-10 rounded-xl bg-gradient-to-tr ${materia.colorGradiente} flex items-center justify-center shadow-lg shadow-blue-500/25 text-xl select-none`;
+      iconoBox.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr ${materia.colorGradiente} flex items-center justify-center shadow-lg shadow-blue-500/25 text-base sm:text-xl select-none shrink-0`;
     }
+  }
+
+  const nombreHeader = document.getElementById('materia-nombre-header');
+  if (nombreHeader) {
+    nombreHeader.innerText = materia.nombre;
   }
 
   const subtitulo = document.getElementById('materia-subtitulo');
@@ -519,6 +786,22 @@ function seleccionarEjercicio(id) {
   // Asegurar que la unidad del ejercicio seleccionado no esté colapsada
   AppState.unidadesColapsadas[ejercicio.categoria] = false;
 
+  // Actualizar etiqueta en barra de navegación móvil
+  const labelMovil = document.getElementById('label-ejercicio-movil');
+  if (labelMovil) {
+    const materia = getMateriaConfig();
+    const unidad = (materia.unidades || []).find(u => u.id === ejercicio.categoria);
+    const numUnidad = unidad ? unidad.numero : '1';
+    const indexEnUnidad = (banco.filter(e => e.categoria === ejercicio.categoria).findIndex(e => e.id === ejercicio.id) + 1);
+    const tituloPlano = (ejercicio.titulo || '').replace(/<[^>]*>?/gm, '').replace(/\$/g, '');
+    labelMovil.innerText = `Ej. ${numUnidad}.${indexEnUnidad} - ${tituloPlano.slice(0, 24)}...`;
+  }
+
+  // Cerrar cajón móvil si estaba abierto
+  if (AppState.listaEjerciciosMovilAbierta) {
+    toggleListaEjerciciosMovil(false);
+  }
+
   renderizarListaEjercicios();
   renderizarDetalleEjercicio();
 }
@@ -733,11 +1016,14 @@ function renderizarDetalleEjercicio() {
               <input 
                 type="text" 
                 id="input-respuesta"
+                inputmode="decimal"
+                enterkeyhint="done"
+                autocomplete="off"
                 placeholder="Ingresa tu resultado (ej: 12.5)"
                 value="${yaCompletadoEstePaso ? (pasoActual.valorEsperado !== undefined ? pasoActual.valorEsperado : pasoActual.solucion) : ''}"
                 ${yaCompletadoEstePaso ? 'disabled' : ''}
                 onkeypress="if(event.key === 'Enter') verificarRespuesta('${pasoActual.id}')"
-                class="w-full bg-slate-950 border border-slate-600 focus:border-blue-500 rounded-xl px-4 py-3 text-white font-mono text-base focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all"
+                class="w-full bg-slate-950 border border-slate-600 focus:border-blue-500 rounded-xl px-4 py-3.5 text-white font-mono text-base focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all min-h-[48px]"
               />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">
                 ${pasoActual.unidad}
@@ -747,14 +1033,14 @@ function renderizarDetalleEjercicio() {
             ${!yaCompletadoEstePaso ? `
               <button 
                 onclick="verificarRespuesta('${pasoActual.id}')"
-                class="px-6 py-3 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                class="px-6 py-3.5 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 min-h-[48px] active:scale-95 text-sm sm:text-base shrink-0"
               >
                 Comprobar
               </button>
             ` : `
               <button 
                 onclick="irAlSiguientePaso()"
-                class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 min-h-[48px] active:scale-95 text-sm sm:text-base shrink-0"
               >
                 Siguiente paso →
               </button>
