@@ -201,6 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof EJERCICIOS_CIRCUITOS_3 !== 'undefined') {
       BANCO_MATERIAS['circuitos-3'] = EJERCICIOS_CIRCUITOS_3;
     }
+    if (typeof EJERCICIOS_EA1 !== 'undefined') {
+      BANCO_MATERIAS['electronica-aplicada-1'] = EJERCICIOS_EA1;
+    }
   }
 
   configurarEventosUI();

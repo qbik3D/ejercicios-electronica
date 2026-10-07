@@ -102,11 +102,62 @@ const MATERIAS_CONFIG = {
         badgeColor: 'border-purple-500/40 bg-purple-950/40 text-purple-300'
       }
     ]
+  },
+  'electronica-aplicada-1': {
+    id: 'electronica-aplicada-1',
+    codigo: '3708',
+    nombre: 'Electrónica Aplicada I',
+    tituloCompleto: 'Electrónica Aplicada I - Sistemas Analógicos y Amplificación Lineal',
+    descripcion: 'Señales Fuertes, Potencia y Disipación Térmica, Integrados Lineales (Diferenciales y Op-Amps) y Amplificadores Realimentados',
+    subtitulo: 'Cátedra: Ing. Pablo González Galli / Ing. Adrián Martínez',
+    icono: '🎛️',
+    colorGradiente: 'from-amber-600 to-orange-500',
+    colorBorde: 'border-amber-500/30',
+    colorBadge: 'bg-amber-500/20 text-amber-400',
+    unidades: [
+      {
+        id: 'ea1-u1',
+        numero: 1,
+        titulo: 'Unidad 1: Transistores con Señales Fuertes',
+        tituloCompleto: 'Unidad 1: Amplificación con Transistores en Gran Señal y Rango Dinámico',
+        descripcion: 'Excursión máxima simétrica del punto Q, rango dinámico, distorsión y estabilidad de polarización',
+        icono: '📈',
+        badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300'
+      },
+      {
+        id: 'ea1-u2',
+        numero: 2,
+        titulo: 'Unidad 2: Potencia, Disipación y Regímenes Máximos',
+        tituloCompleto: 'Unidad 2: Balance Energético, Clases de Potencia y Rendimiento Térmico',
+        descripcion: 'Amplificadores Clase A/B/AB, balance de potencias, rendimiento, resistencia térmica y cálculo de disipadores',
+        icono: '🔥',
+        badgeColor: 'border-rose-500/40 bg-rose-950/40 text-rose-300'
+      },
+      {
+        id: 'ea1-u3',
+        numero: 3,
+        titulo: 'Unidad 3: Circuitos Integrados Lineales',
+        tituloCompleto: 'Unidad 3: Amplificador Diferencial, Cargas Activas y Amplificadores Operacionales',
+        descripcion: 'Par diferencial BJT/MOS, fuentes y espejos Widlar/Wilson, CMRR, análisis interno del 741 y arquitectura Rail-to-Rail',
+        icono: '🔬',
+        badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300'
+      },
+      {
+        id: 'ea1-u4',
+        numero: 4,
+        titulo: 'Unidad 4: Amplificadores Realimentados',
+        tituloCompleto: 'Unidad 4: Realimentación Negativa, Topologías y Cuadripolos',
+        descripcion: 'Topologías serie/paralelo, desensibilización, cálculo de impedancias de entrada/salida y funciones de transferencia',
+        icono: '🔁',
+        badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
+      }
+    ]
   }
 };
 
 // Registro dinámico de bancos de ejercicios por materia
 const BANCO_MATERIAS = {
   'electronica-1': [],
-  'circuitos-3': []
+  'circuitos-3': [],
+  'electronica-aplicada-1': []
 };
