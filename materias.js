@@ -5,11 +5,11 @@
 const MATERIAS_CONFIG = {
   'electronica-1': {
     id: 'electronica-1',
-    codigo: '3703',
+    codigo: '3696',
     nombre: 'Electrónica I',
     tituloCompleto: 'Electrónica I - Cátedra Interactiva',
-    descripcion: 'Circuitos en Continua, Diodos y Transistores BJT',
-    subtitulo: 'Resolución guiada paso a paso y con pistas progresivas',
+    descripcion: 'Circuitos en Continua, Diodos, Polarización BJT y Modelos de Pequeña Señal',
+    subtitulo: 'Cátedra: Ing. Adrián Martínez / Ing. Alejandro Bevilacqua',
     icono: '⚡',
     colorGradiente: 'from-blue-600 to-indigo-500',
     colorBorde: 'border-blue-500/30',
@@ -20,27 +20,36 @@ const MATERIAS_CONFIG = {
         numero: 1,
         titulo: 'Unidad 1: Circuitos CC',
         tituloCompleto: 'Unidad 1: Circuitos en Corriente Continua',
-        descripcion: 'Leyes fundamentales, Mallas, Nodos y Teoremas',
+        descripcion: 'Leyes fundamentales, Mallas, Nodos y Teoremas de Thévenin/Norton',
         icono: '⚡',
         badgeColor: 'border-blue-500/40 bg-blue-950/40 text-blue-300'
       },
       {
         id: 'diodos',
         numero: 2,
-        titulo: 'Unidad 2: Diodos',
-        tituloCompleto: 'Unidad 2: Diodos y Aplicaciones',
-        descripcion: 'Punto de polarización, pequeña señal y rectificación',
+        titulo: 'Unidad 2: Física del Semiconductor y Diodos',
+        tituloCompleto: 'Unidad 2: Semiconductores, Juntura PN y Diodos',
+        descripcion: 'Diodos rectificadores, recortadores, modelo incremental y diodo Zener',
         icono: '🔻',
         badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
       },
       {
-        id: 'bjt',
+        id: 'bjt-pol',
         numero: 3,
-        titulo: 'Unidad 3: Transistores BJT',
-        tituloCompleto: 'Unidad 3: Transistores Bipolares (BJT)',
-        descripcion: 'Polarización DC, amplificación y pequeña señal',
+        titulo: 'Unidad 3: Transistor BJT - Polarización',
+        tituloCompleto: 'Unidad 3: Transistor BJT - Teoría y Polarización DC',
+        descripcion: 'Punto de reposo Q, rectas de carga, estabilidad y polarización por fuentes múltiples',
         icono: '🔲',
         badgeColor: 'border-purple-500/40 bg-purple-950/40 text-purple-300'
+      },
+      {
+        id: 'bjt-ac',
+        numero: 4,
+        titulo: 'Unidad 4: Cuadripolos y Pequeña Señal BJT',
+        tituloCompleto: 'Unidad 4: Cuadripolos y Modelos de Pequeña Señal BJT',
+        descripcion: 'Parámetros híbridos "h", modelo híbrido π, etapas EC, BC, CC e impedancias',
+        icono: '📶',
+        badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300'
       }
     ]
   },

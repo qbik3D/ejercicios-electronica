@@ -1,9 +1,10 @@
 // ==========================================================================
 // BANCO COMPLETO DE EJERCICIOS - ELECTRÓNICA I
-// 44 Ejercicios distribuidos en 3 Unidades Académicas:
+// 44 Ejercicios distribuidos en 4 Unidades Académicas:
 //   • Unidad 1: Circuitos CC (19 ejercicios)
 //   • Unidad 2: Diodos y Aplicaciones (13 ejercicios)
-//   • Unidad 3: Transistores BJT (12 ejercicios)
+//   • Unidad 3: Transistor BJT - Polarización (7 ejercicios)
+//   • Unidad 4: Cuadripolos y Pequeña Señal BJT (5 ejercicios)
 // Cada unidad incluye: Problemas Guía (tutorial paso a paso), Prácticas graduales y Desafíos de Clase
 // ==========================================================================
 
@@ -2349,7 +2350,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-0-polarizacion-fija",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "practica",
     "titulo": "Polarización Fija de Base del Transistor BJT",
     "dificultad": "Básico",
@@ -2435,7 +2436,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-1-polarizacion-universal",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "guiado",
     "titulo": "Polarización Universal por Divisor de Tensión",
     "dificultad": "Intermedio",
@@ -2531,7 +2532,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-1b-autobias-emisor",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "practica",
     "titulo": "Polarización de Base con Resistencia de Emisor (Estabilidad)",
     "dificultad": "Intermedio",
@@ -2621,7 +2622,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-1c-recta-carga",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "practica",
     "titulo": "Recta de Carga Estática DC y Límites de Saturación / Corte",
     "dificultad": "Intermedio",
@@ -2701,7 +2702,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-2-realimentacion-colector",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "guiado",
     "titulo": "Polarización por Realimentación de Colector",
     "dificultad": "Intermedio",
@@ -2793,7 +2794,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-3-fuente-dual",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "practica",
     "titulo": "Polarización con Fuente Dual (+VCC / -VEE)",
     "dificultad": "Intermedio",
@@ -2889,7 +2890,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-4-espejo-corriente",
-    "categoria": "bjt",
+    "categoria": "bjt-pol",
     "tipo": "desafio",
     "titulo": "Espejo de Corriente BJT (Desafío Clase)",
     "dificultad": "Avanzado",
@@ -2973,7 +2974,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-5-colector-comun",
-    "categoria": "bjt",
+    "categoria": "bjt-ac",
     "tipo": "guiado",
     "titulo": "Amplificador Colector Común (Seguidor de Emisor)",
     "dificultad": "Intermedio",
@@ -3057,7 +3058,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-6-pequena-senal-ec",
-    "categoria": "bjt",
+    "categoria": "bjt-ac",
     "tipo": "guiado",
     "titulo": "Amplificador Emisor Común (Modelo π Híbrido)",
     "dificultad": "Intermedio",
@@ -3123,7 +3124,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-6b-ganancia-tension-ec",
-    "categoria": "bjt",
+    "categoria": "bjt-ac",
     "tipo": "practica",
     "titulo": "Ganancia de Tensión en Amplificador Emisor Común",
     "dificultad": "Intermedio",
@@ -3205,7 +3206,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-7-emisor-degenerado",
-    "categoria": "bjt",
+    "categoria": "bjt-ac",
     "tipo": "practica",
     "titulo": "Emisor Común con Resistencia de Degeneración",
     "dificultad": "Intermedio",
@@ -3271,7 +3272,7 @@ const BANCO_EJERCICIOS = [
   },
   {
     "id": "bjt-3-8-cascode",
-    "categoria": "bjt",
+    "categoria": "bjt-ac",
     "tipo": "desafio",
     "titulo": "Amplificador Cascode EC-BC (Desafío Clase)",
     "dificultad": "Avanzado",
