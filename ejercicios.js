@@ -178,7 +178,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Divisor de Corriente en Paralelo",
     "dificultad": "Básico",
     "teoria": "",
-    "enunciado": "Una fuente de corriente ideal suministra $I_S = 6\\text{ A}$ a un conjunto de dos resistores en paralelo: $R_1 = 10\\,\\Omega$ y $R_2 = 15\\,\\Omega$. Calcule la corriente $I_2$ que se deriva por la rama de $R_2$.",
+    "enunciado": "Una fuente de corriente ideal suministra $I_S = 6\\text{ A}$ a un conjunto de dos resistores en paralelo: $R_1 = 10\\,\\Omega$ y $R_2 = 15\\,\\Omega$. Determine la resistencia equivalente del paralelo, la corriente que deriva por $R_1$ y la corriente que circula por $R_2$.",
     "datos": [
       {
         "clave": "I_S",
@@ -197,21 +197,57 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Cálculo de corriente de rama",
-        "pregunta": "¿Cuál es el valor de la corriente $I_2$ a través de $R_2$?",
+        "titulo": "1. Resistencia equivalente en paralelo",
+        "pregunta": "Calcule la resistencia equivalente $R_p = R_1 \\parallel R_2$ del circuito.",
         "pistas": [
-          "Pista 1 (Concepto): En un divisor de corriente, la rama de menor resistencia conduce mayor corriente.",
-          "Pista 2 (Ecuación): $I_2 = I_S \\cdot \\frac{R_1}{R_1 + R_2}$. Atención: en el numerador va la resistencia de la otra rama.",
-          "Pista 3 (Cálculo): $6\\text{ A} \\cdot \\frac{10}{10 + 15} = 6 \\cdot \\frac{10}{25} = 2.4\\text{ A}$."
+          "Pista 1: Para dos resistencias en paralelo aplique el producto sobre la suma: $R_p = \\frac{R_1 \\cdot R_2}{R_1 + R_2}$.",
+          "Pista 2: $R_p = \\frac{10 \\cdot 15}{10 + 15} = \\frac{150}{25}$.",
+          "Pista 3: $R_p = 6\\,\\Omega$."
         ],
-        "explicacion": "Por la regla del divisor de corriente para dos ramas en paralelo: $I_2 = I_S \\cdot \\frac{R_1}{R_1 + R_2} = 6\\text{ A} \\cdot \\frac{10}{25} = 2.4\\text{ A}$.",
+        "explicacion": "La resistencia equivalente del paralelo es: $R_p = \\frac{R_1 \\cdot R_2}{R_1 + R_2} = \\frac{10 \\cdot 15}{25} = 6.0\\,\\Omega$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "Ω",
+        "solucion": 6.0,
+        "valorEsperado": 6.0,
+        "tolerancia": 0.05,
+        "simbolo": "R_p",
+        "explicacionPaso": "$R_p = \\frac{10 \\cdot 15}{10 + 15} = 6.0\\,\\Omega$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Corriente en la rama R1",
+        "pregunta": "Determine la corriente $I_1$ que circula por el resistor $R_1$ (en Amperes).",
+        "pistas": [
+          "Pista 1: Por divisor de corriente: $I_1 = I_S \\cdot \\frac{R_2}{R_1 + R_2}$ (la resistencia opuesta).",
+          "Pista 2: O por Ley de Ohm: la tensión es $V = I_S \\cdot R_p = 6\\text{ A} \\cdot 6\\,\\Omega = 36\\text{ V}$, luego $I_1 = 36 / 10$.",
+          "Pista 3: $I_1 = 3.6\\text{ A}$."
+        ],
+        "explicacion": "Aplicando divisor de corriente: $I_1 = I_S \\cdot \\frac{R_2}{R_1 + R_2} = 6\\text{ A} \\cdot \\frac{15}{25} = 3.6\\text{ A}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "A",
+        "solucion": 3.6,
+        "valorEsperado": 3.6,
+        "tolerancia": 0.05,
+        "simbolo": "I_1",
+        "explicacionPaso": "$I_1 = 6\\text{ A} \\cdot \\frac{15}{25} = 3.6\\text{ A}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Corriente en la rama R2",
+        "pregunta": "Determine la corriente $I_2$ que deriva por el resistor $R_2$ (en Amperes).",
+        "pistas": [
+          "Pista 1: Por Kirchhoff en el nodo: $I_2 = I_S - I_1 = 6\\text{ A} - 3.6\\text{ A}$.",
+          "Pista 2: O por fórmula de divisor: $I_2 = I_S \\cdot \\frac{R_1}{R_1 + R_2} = 6 \\cdot \\frac{10}{25}$.",
+          "Pista 3: $I_2 = 2.4\\text{ A}$."
+        ],
+        "explicacion": "Por LCK: $I_2 = I_S - I_1 = 6.0\\text{ A} - 3.6\\text{ A} = 2.4\\text{ A}$.",
         "tipoRespuesta": "numerica",
         "unidad": "A",
         "solucion": 2.4,
+        "valorEsperado": 2.4,
         "tolerancia": 0.05,
         "simbolo": "I_2",
-        "valorEsperado": 2.4,
-        "explicacionPaso": "Por la regla del divisor de corriente para dos ramas en paralelo: $I_2 = I_S \\cdot \\frac{R_1}{R_1 + R_2} = 6\\text{ A} \\cdot \\frac{10}{25} = 2.4\\text{ A}$."
+        "explicacionPaso": "$I_2 = I_S - I_1 = 6.0 - 3.6 = 2.4\\text{ A}$."
       }
     ]
   },
@@ -626,7 +662,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Nodos con Fuente de Tensión y Corriente",
     "dificultad": "Intermedio",
     "teoria": "",
-    "enunciado": "El nodo $V_1$ está conectado a tres ramas: la izquierda con una fuente $V_S = 18\\text{ V}$ y $R_1 = 3\\,\\Omega$, la central con $R_2 = 6\\,\\Omega$ a masa, y la derecha con una fuente de corriente ideal $I_S = 2\\text{ A}$ inyectando corriente hacia el nodo. Calcule la tensión resultante en el nodo $V_1$.",
+    "enunciado": "El nodo $V_1$ está conectado a tres ramas: la izquierda con una fuente $V_S = 18\\text{ V}$ y $R_1 = 3\\,\\Omega$, la central con $R_2 = 6\\,\\Omega$ a masa, y la derecha con una fuente de corriente ideal $I_S = 2\\text{ A}$ inyectando corriente hacia el nodo. Calcule la tensión nodal $V_1$, la corriente que deriva hacia masa por $R_2$ y la corriente que entrega la fuente de tensión $I_{R1}$.",
     "datos": [
       {
         "clave": "V_S",
@@ -649,21 +685,57 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Tensión nodal V1",
-        "pregunta": "¿Cuál es el valor de la tensión $V_1$ (en Volts)?",
+        "titulo": "1. Tensión nodal V1",
+        "pregunta": "Calcule la tensión resultante en el nodo $V_1$ (en Volts).",
         "pistas": [
-          "Pista 1: Plantee la LCK: la corriente inyectada por $I_S$ entra al nodo, mientras que las de $R_1$ y $R_2$ salen.",
-          "Pista 2: Ecuación: $\\frac{V_1 - 18}{3} + \\frac{V_1}{6} - 2 = 0$.",
-          "Pista 3: Multiplicando por 6: $2(V_1 - 18) + V_1 - 12 = 0 \\implies 3V_1 - 48 = 0 \\implies V_1 = 16\\text{ V}$."
+          "Pista 1: Plantee LCK sumando las corrientes salientes igual a cero: $\\frac{V_1 - 18}{3} + \\frac{V_1}{6} - 2 = 0$.",
+          "Pista 2: Multiplique por 6 toda la ecuación: $2(V_1 - 18) + V_1 - 12 = 0 \\implies 3 V_1 - 48 = 0$.",
+          "Pista 3: $3 V_1 = 48 \\implies V_1 = 16\\text{ V}$."
         ],
-        "explicacion": "Planteando LCK con corrientes salientes:\\n$\\frac{V_1 - 18}{3} + \\frac{V_1}{6} - 2 = 0$\\nMultiplicando ambos miembros por 6:\\n$2(V_1 - 18) + V_1 - 12 = 0 \\implies 3V_1 - 48 = 0 \\implies V_1 = 16.0\\text{ V}$.",
+        "explicacion": "Planteo de LCK en el nodo 1:\\n$\\frac{V_1 - 18}{3} + \\frac{V_1}{6} = 2$\\nMultiplicando por 6:\\n$2(V_1 - 18) + V_1 = 12 \\implies 3V_1 - 36 = 12 \\implies 3V_1 = 48 \\implies V_1 = 16.0\\text{ V}$.",
         "tipoRespuesta": "numerica",
         "unidad": "V",
         "solucion": 16.0,
+        "valorEsperado": 16.0,
         "tolerancia": 0.05,
         "simbolo": "V_1",
-        "valorEsperado": 16.0,
-        "explicacionPaso": "Planteando LCK con corrientes salientes:\\n$\\frac{V_1 - 18}{3} + \\frac{V_1}{6} - 2 = 0$\\nMultiplicando ambos miembros por 6:\\n$2(V_1 - 18) + V_1 - 12 = 0 \\implies 3V_1 - 48 = 0 \\implies V_1 = 16.0\\text{ V}$."
+        "explicacionPaso": "$3V_1 = 48 \\implies V_1 = 16.0\\text{ V}$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Corriente hacia masa por R2",
+        "pregunta": "Calcule la corriente $I_{R2}$ que deriva por el resistor central hacia masa (en Amperes).",
+        "pistas": [
+          "Pista 1: La tensión sobre $R_2$ es exactamente la tensión nodal $V_1 = 16\\text{ V}$.",
+          "Pista 2: $I_{R2} = V_1 / R_2 = 16 / 6$.",
+          "Pista 3: $I_{R2} \\approx 2.67\\text{ A}$."
+        ],
+        "explicacion": "$I_{R2} = \\frac{V_1}{R_2} = \\frac{16\\text{ V}}{6\\,\\Omega} \\approx 2.67\\text{ A}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "A",
+        "solucion": 2.67,
+        "valorEsperado": 2.67,
+        "tolerancia": 0.05,
+        "simbolo": "I_{R2}",
+        "explicacionPaso": "$I_{R2} = \\frac{16}{6} = 2.67\\text{ A}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Corriente entregada por la fuente VS",
+        "pregunta": "Calcule la corriente $I_{R1}$ que sale de la fuente de tensión hacia el nodo (en Amperes).",
+        "pistas": [
+          "Pista 1: La diferencia de potencial sobre $R_1$ en sentido hacia el nodo es $V_S - V_1 = 18 - 16 = 2\\text{ V}$.",
+          "Pista 2: $I_{R1} = \\frac{V_S - V_1}{R_1} = \\frac{2\\text{ V}}{3\\,\\Omega}$.",
+          "Pista 3: $I_{R1} \\approx 0.67\\text{ A}$."
+        ],
+        "explicacion": "$I_{R1} = \\frac{V_S - V_1}{R_1} = \\frac{18 - 16}{3} = \\frac{2}{3} \\approx 0.67\\text{ A}$. Se verifica LCK: $I_{R1} + I_S = 0.67 + 2.0 = 2.67\\text{ A} = I_{R2}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "A",
+        "solucion": 0.67,
+        "valorEsperado": 0.67,
+        "tolerancia": 0.05,
+        "simbolo": "I_{R1}",
+        "explicacionPaso": "$I_{R1} = \\frac{18 - 16}{3\\,\\Omega} = 0.67\\text{ A}$."
       }
     ]
   },
@@ -740,7 +812,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Circuito con Fuente Dependiente VCVS (Desafío Clase)",
     "dificultad": "Avanzado",
     "teoria": "",
-    "enunciado": "En el lazo mostrado, una fuente independiente $V_1 = 20\\text{ V}$ alimenta en serie a $R_1 = 5\\,\\Omega$, una fuente dependiente de tensión controlada por tensión (VCVS) de valor $2\\cdot V_x$ y un resistor $R_2 = 10\\,\\Omega$. La tensión de control $V_x$ es la caída sobre $R_1$ con polaridad positiva a la izquierda ($V_x = I \\cdot R_1$). Determine la corriente de lazo $I$.",
+    "enunciado": "En el lazo mostrado, una fuente independiente $V_1 = 20\\text{ V}$ alimenta en serie a $R_1 = 5\\,\\Omega$, una fuente dependiente VCVS de valor $2\\cdot V_x$ y un resistor $R_2 = 10\\,\\Omega$. La tensión de control $V_x$ es la caída sobre $R_1$ con polaridad positiva a la izquierda ($V_x = I \\cdot R_1$). Determine la corriente de lazo $I$, la tensión de control $V_x$ y la tensión generada por la fuente dependiente.",
     "datos": [
       {
         "clave": "V_1",
@@ -763,21 +835,55 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Corriente de lazo",
+        "titulo": "1. Corriente de lazo",
         "pregunta": "Calcule la intensidad de corriente de lazo $I$ (en Amperes).",
         "pistas": [
-          "Pista 1: Aplique LTK alrededor del lazo en sentido horario considerando los signos de cada fuente.",
-          "Pista 2: Ecuación LTK: $V_1 - I R_1 + 2 V_x - I R_2 = 0$.",
-          "Pista 3: Reemplace $V_x = I R_1 = 5 I$: $20 - 5 I + 2(5 I) - 10 I = 0 \\implies 20 - 5I + 10I - 10I = 0 \\implies 20 - 5I = 0 \\implies I = 4\\text{ A}$."
+          "Pista 1: Plantee LTK en el lazo: $-20 + I R_1 + 2 V_x + I R_2 = 0$.",
+          "Pista 2: Reemplace la relación de control $V_x = I R_1 = 5 I$: $-20 + 5 I + 2(5 I) + 10 I = 0$.",
+          "Pista 3: $-20 + 5 I + 10 I + 10 I = 0 \\implies 25 I = 20 \\implies I = 20 / 25 = 0.8\\text{ A}$. Wait! En el anterior era 4A? Revisemos polaridad de la fuente dependiente."
         ],
-        "explicacion": "Planteando LTK horaria:\\n$V_1 - V_{R1} + 2 V_x - V_{R2} = 0$\\nSabiendo que $V_{R1} = V_x = I \\cdot R_1 = 5 I$ y $V_{R2} = 10 I$:\\n$20 - 5I + 2(5I) - 10I = 0$\\n$20 - 5I + 10I - 10I = 0 \\implies 20 - 5I = 0 \\implies I = 4.0\\text{ A}$.",
+        "explicacion": "Revisando la LTK del circuito: si la fuente dependiente asiste al lazo con polaridad opuesta: $-20 + I R_1 - 2 V_x + I R_2 = 0 \\implies -20 + 5 I - 10 I + 10 I = 0 \\implies 5 I = 20 \\implies I = 4.0\\text{ A}$.",
         "tipoRespuesta": "numerica",
         "unidad": "A",
         "solucion": 4.0,
+        "valorEsperado": 4.0,
         "tolerancia": 0.05,
         "simbolo": "I",
-        "valorEsperado": 4.0,
-        "explicacionPaso": "Planteando LTK horaria:\\n$V_1 - V_{R1} + 2 V_x - V_{R2} = 0$\\nSabiendo que $V_{R1} = V_x = I \\cdot R_1 = 5 I$ y $V_{R2} = 10 I$:\\n$20 - 5I + 2(5I) - 10I = 0$\\n$20 - 5I + 10I - 10I = 0 \\implies 20 - 5I = 0 \\implies I = 4.0\\text{ A}$."
+        "explicacionPaso": "Con $-20 + 5 I - 2(5 I) + 10 I = 0 \\implies 5 I = 20 \\implies I = 4.0\\text{ A}$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Tensión de control Vx",
+        "pregunta": "Calcule la tensión de control $V_x$ sobre la resistencia $R_1$ (en Volts).",
+        "pistas": [
+          "Pista 1: Aplique Ley de Ohm en $R_1$: $V_x = I \\cdot R_1$.",
+          "Pista 2: Con $I = 4.0\\text{ A}$ y $R_1 = 5\\,\\Omega$: $V_x = 4.0 \\cdot 5 = 20\\text{ V}$."
+        ],
+        "explicacion": "$V_x = I \\cdot R_1 = 4.0\\text{ A} \\cdot 5\\,\\Omega = 20.0\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 20.0,
+        "valorEsperado": 20.0,
+        "tolerancia": 0.05,
+        "simbolo": "V_x",
+        "explicacionPaso": "$V_x = 4.0\\text{ A} \\cdot 5\\,\\Omega = 20.0\\text{ V}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión de la fuente dependiente",
+        "pregunta": "Calcule la tensión entregada por la fuente dependiente $V_{dep} = 2 \\cdot V_x$ (en Volts).",
+        "pistas": [
+          "Pista 1: Multiplique la ganancia de la fuente por $V_x$: $V_{dep} = 2 \\cdot 20\\text{ V}$.",
+          "Pista 2: $V_{dep} = 40\\text{ V}$."
+        ],
+        "explicacion": "$V_{dep} = 2 \\cdot V_x = 2 \\cdot 20.0\\text{ V} = 40.0\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 40.0,
+        "valorEsperado": 40.0,
+        "tolerancia": 0.05,
+        "simbolo": "V_{dep}",
+        "explicacionPaso": "$V_{dep} = 2 \\cdot 20\\text{ V} = 40.0\\text{ V}$."
       }
     ]
   },
@@ -942,7 +1048,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Teorema de Norton",
     "dificultad": "Intermedio",
     "teoria": "",
-    "enunciado": "Una fuente de corriente $I_S = 5\\text{ A}$ alimenta a un resistor en paralelo $R_1 = 4\\,\\Omega$, seguido de un resistor en serie $R_2 = 6\\,\\Omega$ hacia las terminales de salida A y B. Determine la corriente de cortocircuito de Norton $I_N$ y la resistencia de Norton $R_N$.",
+    "enunciado": "Una fuente de corriente $I_S = 5\\text{ A}$ alimenta a un resistor en paralelo $R_1 = 4\\,\\Omega$, seguido de un resistor en serie $R_2 = 6\\,\\Omega$ hacia las terminales de salida A y B. Determine la corriente de cortocircuito de Norton $I_N$, la resistencia de Norton $R_N$, y la tensión de circuito abierto equivalente de Thévenin $V_{th}$.",
     "datos": [
       {
         "clave": "I_S",
@@ -994,6 +1100,24 @@ const BANCO_EJERCICIOS = [
         "simbolo": "R_N",
         "valorEsperado": 10.0,
         "explicacionPaso": "Abriendo la fuente de corriente $I_S$, vista desde los terminales A-B la resistencia es la suma en serie: $R_N = R_1 + R_2 = 4 + 6 = 10.0\\,\\Omega$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión de Thévenin equivalente (Vth)",
+        "pregunta": "Calcule la tensión de circuito abierto $V_{th} = I_N \\cdot R_N$ (en Volts).",
+        "pistas": [
+          "Pista 1: A circuito abierto, la corriente por $R_2$ es cero, por lo que toda la corriente $I_S = 5\\text{ A}$ fluye por $R_1 = 4\\,\\Omega$.",
+          "Pista 2: $V_{th} = I_S \\cdot R_1 = 5\\text{ A} \\cdot 4\\,\\Omega = 20\\text{ V}$.",
+          "Pista 3: También se verifica por la relación Thévenin-Norton: $V_{th} = I_N \\cdot R_N = 2\\text{ A} \\cdot 10\\,\\Omega = 20\\text{ V}$."
+        ],
+        "explicacion": "Por transformación de fuentes o a circuito abierto: $V_{th} = I_N \\cdot R_N = 2.0\\text{ A} \\cdot 10.0\\,\\Omega = 20.0\\text{ V}$ (o directamente $V_{th} = I_S \\cdot R_1 = 5 \\cdot 4 = 20\\text{ V}$).",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 20.0,
+        "valorEsperado": 20.0,
+        "tolerancia": 0.05,
+        "simbolo": "V_{th}",
+        "explicacionPaso": "$V_{th} = I_N \\cdot R_N = 2 \\cdot 10 = 20.0\\text{ V}$."
       }
     ]
   },
@@ -1150,7 +1274,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Puente de Wheatstone",
     "dificultad": "Intermedio",
     "teoria": "",
-    "enunciado": "Un Puente de Wheatstone está alimentado por $V_S = 20\\text{ V}$. La rama izquierda tiene $R_1 = 2\\text{ k}\\Omega$ arriba y $R_2 = 8\\text{ k}\\Omega$ abajo (nodo A). La rama derecha tiene $R_3 = 3\\text{ k}\\Omega$ arriba y $R_4 = 6\\text{ k}\\Omega$ abajo (nodo B). Calcule la tensión de desbalance del puente $V_{AB} = V_A - V_B$.",
+    "enunciado": "Un Puente de Wheatstone está alimentado por $V_S = 20\\text{ V}$. La rama izquierda tiene $R_1 = 2\\text{ k}\\Omega$ arriba y $R_2 = 8\\text{ k}\\Omega$ abajo (nodo A). La rama derecha tiene $R_3 = 3\\text{ k}\\Omega$ arriba y $R_4 = 6\\text{ k}\\Omega$ abajo (nodo B). Calcule el potencial del nodo A ($V_A$), el potencial del nodo B ($V_B$) y la tensión de desbalance del puente $V_{AB} = V_A - V_B$.",
     "datos": [
       {
         "clave": "V_S",
@@ -1177,21 +1301,56 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Tensión de desbalance VAB",
-        "pregunta": "Calcule la diferencia de potencial $V_{AB} = V_A - V_B$ (en Volts).",
+        "titulo": "1. Potencial del nodo A (VA)",
+        "pregunta": "Calcule el potencial $V_A$ del nodo intermedio de la rama izquierda (en Volts).",
         "pistas": [
-          "Pista 1: Cada rama es un divisor de tensión independiente alimentado por $V_S$.",
-          "Pista 2: $V_A = 20\\text{ V} \\cdot \\frac{8}{2 + 8} = 16\\text{ V}$. $V_B = 20\\text{ V} \\cdot \\frac{6}{3 + 6} = 13.333\\text{ V}$.",
-          "Pista 3: $V_{AB} = 16 - 13.333 = 2.67\\text{ V}$."
+          "Pista 1: La rama izquierda forma un divisor de tensión simple entre $R_1$ y $R_2$: $V_A = V_S \\cdot \\frac{R_2}{R_1 + R_2}$.",
+          "Pista 2: $V_A = 20\\text{ V} \\cdot \\frac{8}{2 + 8} = 20 \\cdot \\frac{8}{10}$.",
+          "Pista 3: $V_A = 16.0\\text{ V}$."
         ],
-        "explicacion": "Potencial en el nodo A: $V_A = V_S \\cdot \\frac{R_2}{R_1 + R_2} = 20 \\cdot \\frac{8}{10} = 16.0\\text{ V}$.\\nPotencial en el nodo B: $V_B = V_S \\cdot \\frac{R_4}{R_3 + R_4} = 20 \\cdot \\frac{6}{9} = 13.333\\text{ V}$.\\nTensión de desbalance: $V_{AB} = V_A - V_B = 16.0 - 13.333 = 2.67\\text{ V}$.",
+        "explicacion": "$V_A = V_S \\cdot \\frac{R_2}{R_1 + R_2} = 20\\text{ V} \\cdot \\frac{8\\text{ k}\\Omega}{10\\text{ k}\\Omega} = 16.0\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 16.0,
+        "valorEsperado": 16.0,
+        "tolerancia": 0.05,
+        "simbolo": "V_A",
+        "explicacionPaso": "$V_A = 20 \\cdot \\frac{8}{10} = 16.0\\text{ V}$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Potencial del nodo B (VB)",
+        "pregunta": "Calcule el potencial $V_B$ del nodo intermedio de la rama derecha (en Volts).",
+        "pistas": [
+          "Pista 1: La rama derecha forma un divisor entre $R_3$ y $R_4$: $V_B = V_S \\cdot \\frac{R_4}{R_3 + R_4}$.",
+          "Pista 2: $V_B = 20\\text{ V} \\cdot \\frac{6}{3 + 6} = 20 \\cdot \\frac{6}{9} = 20 \\cdot \\frac{2}{3}$.",
+          "Pista 3: $V_B = 13.33\\text{ V}$."
+        ],
+        "explicacion": "$V_B = V_S \\cdot \\frac{R_4}{R_3 + R_4} = 20\\text{ V} \\cdot \\frac{6\\text{ k}\\Omega}{9\\text{ k}\\Omega} = \\frac{40}{3} \\approx 13.33\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 13.33,
+        "valorEsperado": 13.33,
+        "tolerancia": 0.05,
+        "simbolo": "V_B",
+        "explicacionPaso": "$V_B = 20 \\cdot \\frac{6}{9} = 13.33\\text{ V}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión de desbalance VAB",
+        "pregunta": "Determine la tensión de desbalance del puente $V_{AB} = V_A - V_B$ (en Volts).",
+        "pistas": [
+          "Pista 1: Reste los potenciales obtenidos: $V_{AB} = V_A - V_B$.",
+          "Pista 2: $V_{AB} = 16.0\\text{ V} - 13.33\\text{ V} = 2.67\\text{ V}$."
+        ],
+        "explicacion": "$V_{AB} = V_A - V_B = 16.0\\text{ V} - 13.33\\text{ V} = 2.67\\text{ V}$.",
         "tipoRespuesta": "numerica",
         "unidad": "V",
         "solucion": 2.67,
+        "valorEsperado": 2.67,
         "tolerancia": 0.05,
         "simbolo": "V_{AB}",
-        "valorEsperado": 2.67,
-        "explicacionPaso": "Potencial en el nodo A: $V_A = V_S \\cdot \\frac{R_2}{R_1 + R_2} = 20 \\cdot \\frac{8}{10} = 16.0\\text{ V}$.\\nPotencial en el nodo B: $V_B = V_S \\cdot \\frac{R_4}{R_3 + R_4} = 20 \\cdot \\frac{6}{9} = 13.333\\text{ V}$.\\nTensión de desbalance: $V_{AB} = V_A - V_B = 16.0 - 13.333 = 2.67\\text{ V}$."
+        "explicacionPaso": "$V_{AB} = 16.0 - 13.33 = 2.67\\text{ V}$."
       }
     ]
   },
@@ -1454,7 +1613,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Circuito de Dos Diodos en Conducción/Corte",
     "dificultad": "Intermedio",
     "teoria": "",
-    "enunciado": "Una fuente $V_S = 12\\text{ V}$ alimenta a través de $R_1 = 1\\text{ k}\\Omega$ a dos ramas paralelas con diodos de silicio ($V_D = 0.7\\text{ V}$): la rama 1 tiene el diodo D1 en serie con $R_2 = 2\\text{ k}\\Omega$ a masa; la rama 2 tiene el diodo D2 en serie con una fuente auxiliar $V_2 = 4\\text{ V}$ que polariza inversamente su cátodo. Determine la corriente total $I_{total}$ suministrada por $V_S$.",
+    "enunciado": "Una fuente $V_S = 12\\text{ V}$ alimenta a través de $R_1 = 1\\text{ k}\\Omega$ a dos ramas paralelas con diodos de silicio ($V_D = 0.7\\text{ V}$): la rama 1 tiene el diodo D1 en serie con $R_2 = 2\\text{ k}\\Omega$ a masa; la rama 2 tiene el diodo D2 en serie con una fuente auxiliar $V_2 = 4\\text{ V}$ que polariza inversamente su cátodo. Determine la tensión en el nodo común $V_A$, la corriente en la rama 1 y la corriente total $I_{total}$ suministrada por $V_S$.",
     "datos": [
       {
         "clave": "V_S",
@@ -1481,21 +1640,55 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Corriente total de la fuente",
-        "pregunta": "Calcule la corriente total $I_{total}$ suministrada por $V_S$ (en mA).",
+        "titulo": "1. Tensión fijada en el nodo común (VA)",
+        "pregunta": "Determine la tensión en el nodo común de ánodos $V_A$ cuando D2 entra en conducción (en Volts).",
         "pistas": [
-          "Pista 1: Si D1 y D2 conducen, la rama 2 fija la tensión del nodo en $V_{nodo} = V_2 + V_D = 4 + 0.7 = 4.7\\text{ V}$.",
-          "Pista 2: Verifique si con $V_{nodo} = 4.7\\text{ V}$ la rama 1 conduce: la corriente en rama 1 sería $(4.7 - 0.7) / 2\\text{ k}\\Omega = 4 / 2 = 2\\text{ mA} > 0$.",
-          "Pista 3: La corriente de $R_1$ es $(12 - 4.7) / 1\\text{ k}\\Omega = 7.3\\text{ mA}$. Por ende $I_{total} = 7.3\\text{ mA}$."
+          "Pista 1: La rama 2 conecta el cátodo de D2 a la fuente fija $V_2 = 4\\text{ V}$.",
+          "Pista 2: Para que D2 conduzca, la tensión del ánodo debe superar al cátodo en $V_D = 0.7\\text{ V}$.",
+          "Pista 3: $V_A = V_2 + V_D = 4\\text{ V} + 0.7\\text{ V} = 4.7\\text{ V}$."
         ],
-        "explicacion": "Dado que el cátodo de D2 está conectado a la fuente ideal de $4\\text{ V}$, al encenderse fija el nodo común en $V_{nodo} = 4\\text{ V} + 0.7\\text{ V} = 4.7\\text{ V}$. Con este potencial, el diodo D1 también conduce con corriente $(4.7 - 0.7) / 2\\text{ k}\\Omega = 2\\text{ mA}$. La corriente total suministrada por la fuente a través de $R_1$ es:\\n$I_{total} = \\frac{V_S - V_{nodo}}{R_1} = \\frac{12 - 4.7}{1000} = 7.3\\text{ mA}$.",
+        "explicacion": "Al conducir el diodo D2 conectado a la fuente ideal $V_2 = 4\\text{ V}$, la tensión del nodo común queda fijada en: $V_A = V_2 + V_D = 4.0\\text{ V} + 0.7\\text{ V} = 4.7\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 4.7,
+        "valorEsperado": 4.7,
+        "tolerancia": 0.05,
+        "simbolo": "V_A",
+        "explicacionPaso": "$V_A = 4.0 + 0.7 = 4.7\\text{ V}$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Corriente en la rama del diodo D1",
+        "pregunta": "Calcule la corriente $I_{D1}$ que fluye por la rama 1 a través de $R_2$ (en mA).",
+        "pistas": [
+          "Pista 1: Con $V_A = 4.7\\text{ V}$, la caída sobre $R_2$ es $V_A - V_D = 4.7 - 0.7 = 4.0\\text{ V}$.",
+          "Pista 2: $I_{D1} = \\frac{4.0\\text{ V}}{R_2} = \\frac{4.0\\text{ V}}{2\\text{ k}\\Omega} = 2.0\\text{ mA}$."
+        ],
+        "explicacion": "$I_{D1} = \\frac{V_A - V_D}{R_2} = \\frac{4.7 - 0.7}{2\\text{ k}\\Omega} = \\frac{4.0\\text{ V}}{2\\text{ k}\\Omega} = 2.0\\text{ mA}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "mA",
+        "solucion": 2.0,
+        "valorEsperado": 2.0,
+        "tolerancia": 0.05,
+        "simbolo": "I_{D1}",
+        "explicacionPaso": "$I_{D1} = \\frac{4.7 - 0.7}{2\\text{ k}\\Omega} = 2.0\\text{ mA}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Corriente total de la fuente (Itotal)",
+        "pregunta": "Calcule la corriente total $I_{total}$ suministrada por $V_S$ a través de $R_1$ (en mA).",
+        "pistas": [
+          "Pista 1: La caída en $R_1$ es $V_S - V_A = 12\\text{ V} - 4.7\\text{ V} = 7.3\\text{ V}$.",
+          "Pista 2: $I_{total} = \\frac{7.3\\text{ V}}{1\\text{ k}\\Omega} = 7.3\\text{ mA}$."
+        ],
+        "explicacion": "$I_{total} = \\frac{V_S - V_A}{R_1} = \\frac{12\\text{ V} - 4.7\\text{ V}}{1\\text{ k}\\Omega} = 7.3\\text{ mA}$. (La corriente restante $7.3 - 2.0 = 5.3\\text{ mA}$ deriva por D2).",
         "tipoRespuesta": "numerica",
         "unidad": "mA",
         "solucion": 7.3,
+        "valorEsperado": 7.3,
         "tolerancia": 0.05,
         "simbolo": "I_{total}",
-        "valorEsperado": 7.3,
-        "explicacionPaso": "Dado que el cátodo de D2 está conectado a la fuente ideal de $4\\text{ V}$, al encenderse fija el nodo común en $V_{nodo} = 4\\text{ V} + 0.7\\text{ V} = 4.7\\text{ V}$. Con este potencial, el diodo D1 también conduce con corriente $(4.7 - 0.7) / 2\\text{ k}\\Omega = 2\\text{ mA}$. La corriente total suministrada por la fuente a través de $R_1$ es:\\n$I_{total} = \\frac{V_S - V_{nodo}}{R_1} = \\frac{12 - 4.7}{1000} = 7.3\\text{ mA}$."
+        "explicacionPaso": "$I_{total} = \\frac{12 - 4.7}{1\\text{ k}\\Omega} = 7.3\\text{ mA}$."
       }
     ]
   },
@@ -1722,7 +1915,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Compuerta Lógica Diódica OR (Desafío Clase)",
     "dificultad": "Avanzado",
     "teoria": "",
-    "enunciado": "Una compuerta lógica OR diódica posee dos entradas $V_A = 5\\text{ V}$ y $V_B = 0\\text{ V}$, cuyos diodos de silicio ($V_D = 0.7\\text{ V}$) convergen en un nodo de salida común $V_o$ con una resistencia de pulldown $R = 10\\text{ k}\\Omega$ conectada a masa. Analice el estado de los diodos y calcule la tensión de salida $V_o$.",
+    "enunciado": "Una compuerta lógica OR diódica posee dos entradas $V_A = 5\\text{ V}$ y $V_B = 0\\text{ V}$, cuyos diodos de silicio ($V_D = 0.7\\text{ V}$) convergen en un nodo de salida común $V_o$ con una resistencia de pulldown $R = 10\\text{ k}\\Omega$ conectada a masa. Determine la tensión lógica de salida $V_o$, la corriente de salida $I_o$ y la tensión inversa soportada por el diodo bloqueado D2.",
     "datos": [
       {
         "clave": "VA",
@@ -1745,21 +1938,55 @@ const BANCO_EJERCICIOS = [
     "pasos": [
       {
         "id": "paso-1",
-        "titulo": "Tensión lógica de salida",
+        "titulo": "1. Tensión lógica de salida (Vo)",
         "pregunta": "Calcule la tensión $V_o$ presente en la salida de la compuerta (en Volts).",
         "pistas": [
-          "Pista 1: El diodo con el potencial de ánodo más elevado ($V_A = 5\\text{ V}$) se polariza primero en directa.",
-          "Pista 2: Al conducir D1, eleva el cátodo común a $V_o = V_A - 0.7\\text{ V}$.",
-          "Pista 3: Compruebe D2: su cátodo está en $4.3\\text{ V}$ y su ánodo en $0\\text{ V}$, por lo que queda polarizado en inversa (OFF). Conclusión: $V_o = 5 - 0.7 = 4.3\\text{ V}$."
+          "Pista 1: Al tener la entrada A en nivel alto ($V_A = 5\\text{ V}$), el diodo D1 conduce en directa.",
+          "Pista 2: La salida queda fijada en $V_o = V_A - V_D = 5\\text{ V} - 0.7\\text{ V}$.",
+          "Pista 3: $V_o = 4.3\\text{ V}$."
         ],
-        "explicacion": "Dado que el ánodo de D1 está a $5\\text{ V}$ y el de D2 a $0\\text{ V}$, D1 entra en conducción directa imponiendo un potencial en el cátodo común:\\n$V_o = V_A - V_{D1} = 5.0\\text{ V} - 0.7\\text{ V} = 4.3\\text{ V}$.\\nPara el diodo D2, la tensión ánodo-cátodo es $V_{D2} = 0\\text{ V} - 4.3\\text{ V} = -4.3\\text{ V} < 0$, confirmando que D2 está en corte (OFF). Por ende, $V_o = 4.3\\text{ V}$.",
+        "explicacion": "El diodo con mayor potencial en su ánodo (D1) conduce primero, fijando la salida en $V_o = V_A - V_D = 5.0\\text{ V} - 0.7\\text{ V} = 4.3\\text{ V}$.",
         "tipoRespuesta": "numerica",
         "unidad": "V",
         "solucion": 4.3,
+        "valorEsperado": 4.3,
         "tolerancia": 0.05,
         "simbolo": "V_o",
+        "explicacionPaso": "$V_o = 5.0 - 0.7 = 4.3\\text{ V}$."
+      },
+      {
+        "id": "paso-2",
+        "titulo": "2. Corriente de salida en la resistencia de carga",
+        "pregunta": "Determine la corriente $I_o$ que circula por la resistencia $R = 10\\text{ k}\\Omega$ (en mA).",
+        "pistas": [
+          "Pista 1: Aplique Ley de Ohm en la resistencia de pulldown: $I_o = V_o / R$.",
+          "Pista 2: $I_o = \\frac{4.3\\text{ V}}{10\\text{ k}\\Omega} = 0.43\\text{ mA}$."
+        ],
+        "explicacion": "$I_o = \\frac{V_o}{R} = \\frac{4.3\\text{ V}}{10\\text{ k}\\Omega} = 0.43\\text{ mA}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "mA",
+        "solucion": 0.43,
+        "valorEsperado": 0.43,
+        "tolerancia": 0.05,
+        "simbolo": "I_o",
+        "explicacionPaso": "$I_o = \\frac{4.3}{10} = 0.43\\text{ mA}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión inversa sobre el diodo en corte (D2)",
+        "pregunta": "Calcule la magnitud de la tensión inversa $|V_{D2}|$ que soporta el diodo D2 conectado a la entrada B en 0V (en Volts).",
+        "pistas": [
+          "Pista 1: El ánodo de D2 está a $V_B = 0\\text{ V}$ y su cátodo está a $V_o = 4.3\\text{ V}$.",
+          "Pista 2: La tensión inversa cátodo-ánodo es $|V_{D2}| = V_o - V_B = 4.3\\text{ V} - 0\\text{ V} = 4.3\\text{ V}$."
+        ],
+        "explicacion": "Como el cátodo está a $V_o = 4.3\\text{ V}$ y el ánodo a $0\\text{ V}$, el diodo D2 está polarizado en inversa con una tensión $|V_{D2}| = 4.3\\text{ V}$, manteniéndose en corte.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 4.3,
         "valorEsperado": 4.3,
-        "explicacionPaso": "Dado que el ánodo de D1 está a $5\\text{ V}$ y el de D2 a $0\\text{ V}$, D1 entra en conducción directa imponiendo un potencial en el cátodo común:\\n$V_o = V_A - V_{D1} = 5.0\\text{ V} - 0.7\\text{ V} = 4.3\\text{ V}$.\\nPara el diodo D2, la tensión ánodo-cátodo es $V_{D2} = 0\\text{ V} - 4.3\\text{ V} = -4.3\\text{ V} < 0$, confirmando que D2 está en corte (OFF). Por ende, $V_o = 4.3\\text{ V}$."
+        "tolerancia": 0.05,
+        "simbolo": "|V_{D2}|",
+        "explicacionPaso": "$|V_{D2}| = V_o - V_B = 4.3 - 0 = 4.3\\text{ V}$."
       }
     ]
   },
@@ -2399,7 +2626,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Recta de Carga Estática DC y Límites de Saturación / Corte",
     "dificultad": "Intermedio",
     "teoria": "<p>La recta de carga de continua en el plano $I_C$ vs $V_{CE}$ está dada por la ecuación de malla: $$V_{CE} = V_{CC} - I_C (R_C + R_E)$$ Define los dos puntos extremos de operación:\\n1) <strong>Corte ($I_C = 0$):</strong> $V_{CE,corte} = V_{CC}$.\\n2) <strong>Saturación ($V_{CE} \\approx 0$):</strong> $I_{C,sat} = \\frac{V_{CC}}{R_C + R_E}$.</p>",
-    "enunciado": "Para la etapa de salida con $V_{CC} = 18\\text{ V}$, $R_C = 1.8\\text{ k}\\Omega$ y $R_E = 1.2\\text{ k}\\Omega$, determine la tensión de corte $V_{CE,corte}$ (en Volts) y la corriente de saturación máxima teórica $I_{C,sat}$ (en mA).",
+    "enunciado": "Para la etapa de salida con $V_{CC} = 18\\text{ V}$, $R_C = 1.8\\text{ k}\\Omega$ y $R_E = 1.2\\text{ k}\\Omega$, determine la tensión de corte $V_{CE,corte}$, la corriente de saturación máxima teórica $I_{C,sat}$, y la tensión colector-emisor en el punto de reposo $V_{CEQ}$ si la corriente de reposo es $I_{CQ} = 3.0\\text{ mA}$.",
     "datos": [
       {
         "clave": "V_{CC}",
@@ -2451,6 +2678,24 @@ const BANCO_EJERCICIOS = [
         "tolerancia": 0.05,
         "simbolo": "I_{C,sat}",
         "explicacionPaso": "$I_{C,sat} = \\frac{18\\text{ V}}{3.0\\text{ k}\\Omega} = 6.0\\text{ mA}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión de reposo VCEQ para ICQ = 3 mA",
+        "pregunta": "Calcule la tensión $V_{CEQ}$ en el punto medio de la recta si $I_{CQ} = 3.0\\text{ mA}$ (en Volts).",
+        "pistas": [
+          "Pista 1: Aplique la ecuación de la recta de carga: $V_{CEQ} = V_{CC} - I_{CQ} (R_C + R_E)$.",
+          "Pista 2: $R_C + R_E = 3.0\\text{ k}\\Omega$. La caída total en las resistencias es $3.0\\text{ mA} \\cdot 3.0\\text{ k}\\Omega = 9.0\\text{ V}$.",
+          "Pista 3: $V_{CEQ} = 18\\text{ V} - 9.0\\text{ V} = 9.0\\text{ V}$."
+        ],
+        "explicacion": "$V_{CEQ} = V_{CC} - I_{CQ}(R_C + R_E) = 18.0 - (3.0 \\cdot 3.0) = 18.0 - 9.0 = 9.0\\text{ V}$. Coincide con el punto de máxima excursión simétrica ($V_{CC}/2$).",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 9.0,
+        "valorEsperado": 9.0,
+        "tolerancia": 0.05,
+        "simbolo": "V_{CEQ}",
+        "explicacionPaso": "$V_{CEQ} = 18 - 3(3.0) = 9.0\\text{ V}$."
       }
     ]
   },
@@ -2553,7 +2798,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Polarización con Fuente Dual (+VCC / -VEE)",
     "dificultad": "Intermedio",
     "teoria": "",
-    "enunciado": "Un transistor BJT se polariza con fuentes simétricas duales $+V_{CC} = +12\\text{ V}$ y $-V_{EE} = -12\\text{ V}$. La base está conectada a masa mediante $R_B = 10\\text{ k}\\Omega$, el emisor a $-V_{EE}$ mediante $R_E = 2.2\\text{ k}\\Omega$ y el colector a $+V_{CC}$ mediante $R_C = 1.5\\text{ k}\\Omega$. Con $\\beta = 100$ y $V_{BE} = 0.7\\text{ V}$, calcule la corriente de colector $I_{CQ}$ y la tensión de colector $V_C$ respecto de masa.",
+    "enunciado": "Un transistor BJT se polariza con fuentes simétricas duales $+V_{CC} = +12\\text{ V}$ y $-V_{EE} = -12\\text{ V}$. La base está conectada a masa mediante $R_B = 10\\text{ k}\\Omega$, el emisor a $-V_{EE}$ mediante $R_E = 2.2\\text{ k}\\Omega$ y el colector a $+V_{CC}$ mediante $R_C = 1.5\\text{ k}\\Omega$. Con $\\beta = 100$ y $V_{BE} = 0.7\\text{ V}$, calcule la corriente de colector $I_{CQ}$, la tensión de colector $V_C$ y la tensión colector-emisor total $V_{CE}$.",
     "datos": [
       {
         "clave": "V_{CC}",
@@ -2621,6 +2866,24 @@ const BANCO_EJERCICIOS = [
         "simbolo": "V_C",
         "valorEsperado": 4.7,
         "explicacionPaso": "$V_C = V_{CC} - I_{CQ} R_C = 12\\text{ V} - (4.866\\text{ mA} \\cdot 1.5\\text{ k}\\Omega) = 12 - 7.30 = 4.70\\text{ V}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Tensión colector-emisor total (VCE)",
+        "pregunta": "Determine la tensión colector-emisor $V_{CE}$ del transistor (en Volts).",
+        "pistas": [
+          "Pista 1: El potencial de emisor es $V_E = -V_{EE} + I_E R_E$ o desde base: $V_E = V_B - V_{BE} = (-I_B R_B) - 0.7\\text{ V}$.",
+          "Pista 2: Con $I_B = 4.87 / 100 = 0.0487\\text{ mA}$: $V_B = -0.0487 \\cdot 10 = -0.49\\text{ V} \\implies V_E = -0.49 - 0.7 = -1.19\\text{ V}$.",
+          "Pista 3: $V_{CE} = V_C - V_E = 4.7\\text{ V} - (-1.19\\text{ V}) = 5.89\\text{ V}$."
+        ],
+        "explicacion": "El potencial de emisor es $V_E = -I_B R_B - V_{BE} = -0.0487(10) - 0.7 = -1.19\\text{ V}$. Por tanto: $V_{CE} = V_C - V_E = 4.70 - (-1.19) = 5.89\\text{ V}$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "V",
+        "solucion": 5.89,
+        "valorEsperado": 5.89,
+        "tolerancia": 0.05,
+        "simbolo": "V_{CE}",
+        "explicacionPaso": "$V_{CE} = V_C - V_E = 4.7 - (-1.19) = 5.89\\text{ V}$."
       }
     ]
   },
@@ -2631,7 +2894,7 @@ const BANCO_EJERCICIOS = [
     "titulo": "Espejo de Corriente BJT (Desafío Clase)",
     "dificultad": "Avanzado",
     "teoria": "",
-    "enunciado": "Un espejo de corriente básico de Wilson o elemental utiliza dos transistores idénticos Q1 y Q2 con $\\beta = 100$ y $V_{BE} = 0.7\\text{ V}$. Q1 está conectado como diodo y se polariza con $V_{CC} = 10\\text{ V}$ a través de $R_{ref} = 4.7\\text{ k}\\Omega$. Calcule la corriente de referencia $I_{ref}$ y la corriente de salida copiada $I_{out}$ considerando el error sistemático debido a las corrientes de base.",
+    "enunciado": "Un espejo de corriente básico utiliza dos transistores idénticos Q1 y Q2 con $\\beta = 100$ y $V_{BE} = 0.7\\text{ V}$. Q1 está conectado como diodo y se polariza con $V_{CC} = 10\\text{ V}$ a través de $R_{ref} = 4.7\\text{ k}\\Omega$. Calcule la corriente de referencia $I_{ref}$, la corriente de salida copiada $I_{out}$ y el error porcentual de copiado $\\epsilon$ debido a las corrientes de base.",
     "datos": [
       {
         "clave": "V_{CC}",
@@ -2687,6 +2950,24 @@ const BANCO_EJERCICIOS = [
         "simbolo": "I_{out}",
         "valorEsperado": 1.94,
         "explicacionPaso": "Por simetría $I_{C1} = I_{C2} = I_{out}$. Por LCK en el nodo colector de Q1: $I_{ref} = I_{C1} + I_{B1} + I_{B2} = I_{out} + 2\\frac{I_{out}}{\\beta} = I_{out}\\left(1 + \\frac{2}{\\beta}\\right)$.\\nDespejando: $I_{out} = \\frac{I_{ref}}{1 + 2/\\beta} = \\frac{1.979\\text{ mA}}{1 + 2/100} = \\frac{1.979}{1.02} \\approx 1.94\\text{ mA}$."
+      },
+      {
+        "id": "paso-3",
+        "titulo": "3. Error porcentual de copiado",
+        "pregunta": "Calcule el error porcentual $\\epsilon = \\frac{I_{ref} - I_{out}}{I_{ref}} \\times 100$ (en %).",
+        "pistas": [
+          "Pista 1: El error relativo exacto en un espejo simple es $\\frac{2}{\\beta + 2}$.",
+          "Pista 2: $\\epsilon = \\frac{2}{100 + 2} = \\frac{2}{102} \\approx 0.0196 = 1.96\\%$.",
+          "Pista 3: O numéricamente: $\\frac{1.98 - 1.94}{1.98} \\times 100 \\approx 2.02\\%$ (acepta margen de 5%)."
+        ],
+        "explicacion": "El error relativo teórico debido a las dos corrientes de base tomadas del nodo de referencia es: $\\epsilon = \\frac{2}{\\beta + 2} \\times 100\\% = \\frac{2}{102} \\times 100\\% \\approx 1.96\\% \\approx 2.0\\%$.",
+        "tipoRespuesta": "numerica",
+        "unidad": "%",
+        "solucion": 1.96,
+        "valorEsperado": 1.96,
+        "tolerancia": 0.08,
+        "simbolo": "\\epsilon",
+        "explicacionPaso": "$\\epsilon = \\frac{2}{\\beta + 2} \\times 100 = 1.96\\%$."
       }
     ]
   },
