@@ -163,6 +163,48 @@ const MATERIAS_CONFIG = {
         badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
       }
     ]
+  },
+  'electronica-2': {
+    id: 'electronica-2',
+    codigo: '3702',
+    nombre: 'Electrónica II',
+    tituloCompleto: 'Electrónica II - Transistores FET/MOSFET, Multietapa y Amplificadores Operacionales',
+    descripcion: 'JFET, MOSFET, Amplificadores Multietapa (capacitivos y directos), Etapas Diferenciales, Cargas Activas y Amplificadores Operacionales',
+    subtitulo: 'Cátedra: Ing. Alejandro Bevilacqua / Ing. Adrián Martínez',
+    advertencia: 'Materia en revisión (contenidos preliminares)',
+    icono: '🔌',
+    colorGradiente: 'from-teal-600 to-emerald-500',
+    colorBorde: 'border-teal-500/30',
+    colorBadge: 'bg-teal-500/20 text-teal-400',
+    unidades: [
+      {
+        id: 'e2-u1',
+        numero: 1,
+        titulo: 'Unidad 1: JFET y MOSFET',
+        tituloCompleto: 'Unidad 1: Transistores de Efecto de Campo JFET y MOSFET',
+        descripcion: 'Teoría de funcionamiento, curvas de transferencia y salida, autopolarización, divisor resistivo y configuraciones Fuente Común / Drenaje Común',
+        icono: '⚡',
+        badgeColor: 'border-teal-500/40 bg-teal-950/40 text-teal-300'
+      },
+      {
+        id: 'e2-u2',
+        numero: 2,
+        titulo: 'Unidad 2: Amplificadores Multietapa',
+        tituloCompleto: 'Unidad 2: Amplificadores Multietapa con Acoplamiento Capacitivo y Directo',
+        descripcion: 'Comportamiento en régimen estático y de señal, efectos de carga entre etapas acopladas, ganancias en cascada y adaptadores de impedancia',
+        icono: '🔗',
+        badgeColor: 'border-sky-500/40 bg-sky-950/40 text-sky-300'
+      },
+      {
+        id: 'e2-u3',
+        numero: 3,
+        titulo: 'Unidad 3: Diferenciales y Operacionales',
+        tituloCompleto: 'Unidad 3: Amplificador Diferencial, Fuentes de Corriente y Amplificador Operacional',
+        descripcion: 'Modo diferencial, modo común, CMRR, cargas activas, características del op-amp ideal y circuitos lineales básicos con amplificadores operacionales',
+        icono: '📐',
+        badgeColor: 'border-indigo-500/40 bg-indigo-950/40 text-indigo-300'
+      }
+    ]
   }
 };
 
@@ -170,5 +212,6 @@ const MATERIAS_CONFIG = {
 const BANCO_MATERIAS = {
   'electronica-1': [],
   'circuitos-3': [],
-  'electronica-aplicada-1': []
+  'electronica-aplicada-1': [],
+  'electronica-2': []
 };
