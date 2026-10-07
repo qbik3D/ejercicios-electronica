@@ -290,7 +290,10 @@ function renderizarGridMaterias() {
       >
         <div>
           <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-2">
-            <span>${materia.codigo}</span>
+            <span class="flex items-center gap-1.5">
+              <span>${materia.codigo}</span>
+              ${materia.advertencia ? `<span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-sans font-medium">En revisión</span>` : ''}
+            </span>
             <span>${ejerciciosResueltos}/${totalEjercicios} resueltos</span>
           </div>
 
@@ -302,6 +305,12 @@ function renderizarGridMaterias() {
           <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
             ${materia.descripcion}
           </p>
+          ${materia.advertencia ? `
+            <div class="mt-2 text-[11px] text-amber-700 dark:text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2 py-1 rounded flex items-center gap-1.5 font-sans">
+              <span>⚠️</span>
+              <span>${materia.advertencia}</span>
+            </div>
+          ` : ''}
         </div>
 
         <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
@@ -509,6 +518,16 @@ function actualizarUIHeaderMateria() {
 
   const subtitulo = document.getElementById('materia-subtitulo');
   if (subtitulo) subtitulo.innerText = materia.subtitulo || materia.descripcion;
+
+  const badgeRevision = document.getElementById('materia-badge-revision');
+  if (badgeRevision) {
+    if (materia.advertencia) {
+      badgeRevision.classList.remove('hidden');
+      badgeRevision.title = materia.advertencia;
+    } else {
+      badgeRevision.classList.add('hidden');
+    }
+  }
 
   const badge = document.getElementById('materia-badge');
   if (badge) {
