@@ -120,7 +120,6 @@ const MATERIAS_CONFIG = {
     tituloCompleto: 'Electrónica Aplicada I - Sistemas Analógicos y Amplificación Lineal',
     descripcion: 'Señales Fuertes, Potencia y Disipación Térmica, Integrados Lineales (Diferenciales y Op-Amps) y Amplificadores Realimentados',
     subtitulo: 'Cátedra: Ing. Pablo González Galli / Ing. Adrián Martínez',
-    advertencia: 'Materia en revisión (contenidos preliminares)',
     icono: '🎛️',
     colorGradiente: 'from-amber-600 to-orange-500',
     colorBorde: 'border-amber-500/30',
