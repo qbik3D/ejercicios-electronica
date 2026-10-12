@@ -318,13 +318,23 @@ function renderizarGridMaterias() {
 
         <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
           <span class="text-xs font-mono text-slate-500 dark:text-slate-400">${unidadesCount} unidades · ${totalEjercicios} ej.</span>
-          <button 
-            onclick="event.stopPropagation(); abrirMateria('${materia.id}')"
-            class="text-xs text-slate-600 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white font-mono flex items-center gap-1 transition-colors font-medium"
-          >
-            <span>Ingresar</span>
-            <span>→</span>
-          </button>
+          <div class="flex items-center gap-3">
+            <button 
+              onclick="event.stopPropagation(); abrirMateria('${materia.id}'); abrirVistaTeoria();"
+              title="Ver compendio teórico de esta materia"
+              class="text-xs text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 font-mono transition-colors flex items-center gap-1"
+            >
+              <span>📖</span>
+              <span>Teoría</span>
+            </button>
+            <button 
+              onclick="event.stopPropagation(); abrirMateria('${materia.id}')"
+              class="text-xs text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white font-mono flex items-center gap-1 transition-colors font-semibold"
+            >
+              <span>Ejercicios</span>
+              <span>→</span>
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -357,6 +367,7 @@ function abrirMateria(materiaId) {
   const infoMateria = document.getElementById('header-info-materia');
   const statsContainer = document.getElementById('header-stats-container');
   const btnReiniciar = document.getElementById('btn-reiniciar-progreso');
+  const btnRepasoTeoria = document.getElementById('btn-repaso-teoria');
   const taglinePortal = document.getElementById('header-portal-tagline');
 
   if (btnVolver) {
@@ -372,6 +383,10 @@ function abrirMateria(materiaId) {
   }
   if (btnReiniciar) {
     btnReiniciar.className = 'p-1 rounded-lg text-slate-500 hover:text-rose-400 transition-colors hidden sm:block shrink-0';
+  }
+  if (btnRepasoTeoria) {
+    btnRepasoTeoria.classList.remove('hidden');
+    btnRepasoTeoria.classList.add('flex');
   }
   if (taglinePortal) {
     taglinePortal.classList.add('hidden');
@@ -415,13 +430,17 @@ function volverAMaterias() {
 
   const vistaSeleccion = document.getElementById('vista-seleccion-materias');
   const vistaMateria = document.getElementById('vista-materia-ejercicios');
+  const vistaTeoria = document.getElementById('vista-compendio-teoria');
+
   if (vistaSeleccion) vistaSeleccion.classList.remove('hidden');
   if (vistaMateria) vistaMateria.classList.add('hidden');
+  if (vistaTeoria) vistaTeoria.classList.add('hidden');
 
   const btnVolver = document.getElementById('header-btn-volver-materias');
   const infoMateria = document.getElementById('header-info-materia');
   const statsContainer = document.getElementById('header-stats-container');
   const btnReiniciar = document.getElementById('btn-reiniciar-progreso');
+  const btnRepasoTeoria = document.getElementById('btn-repaso-teoria');
   const taglinePortal = document.getElementById('header-portal-tagline');
 
   if (btnVolver) {
@@ -438,6 +457,10 @@ function volverAMaterias() {
   if (btnReiniciar) {
     btnReiniciar.className = 'hidden';
   }
+  if (btnRepasoTeoria) {
+    btnRepasoTeoria.classList.add('hidden');
+    btnRepasoTeoria.classList.remove('flex');
+  }
   if (taglinePortal) {
     taglinePortal.classList.remove('hidden');
     taglinePortal.classList.add('flex');
@@ -447,6 +470,132 @@ function volverAMaterias() {
 
   renderizarGridMaterias();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Abrir la vista completa de Compendio Teórico para la materia activa
+function abrirVistaTeoria() {
+  AppState.vistaActual = 'teoria';
+  toggleListaEjerciciosMovil(false);
+
+  const vistaSeleccion = document.getElementById('vista-seleccion-materias');
+  const vistaMateria = document.getElementById('vista-materia-ejercicios');
+  const vistaTeoria = document.getElementById('vista-compendio-teoria');
+
+  if (vistaSeleccion) vistaSeleccion.classList.add('hidden');
+  if (vistaMateria) vistaMateria.classList.add('hidden');
+  if (vistaTeoria) vistaTeoria.classList.remove('hidden');
+
+  const materia = getMateriaConfig();
+  const tituloEl = document.getElementById('teoria-materia-titulo');
+  const subtituloEl = document.getElementById('teoria-materia-subtitulo');
+
+  if (tituloEl) {
+    tituloEl.innerHTML = `<span>📖</span><span>${materia.nombre} - Compendio Teórico y Formularios</span>`;
+  }
+  if (subtituloEl) {
+    subtituloEl.innerText = `${materia.tituloCompleto || materia.nombre} · ${materia.subtitulo || ''}`;
+  }
+
+  renderizarCompendioTeoria();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Volver desde el compendio teórico al entorno de ejercicios de la materia
+function volverAEjercicios() {
+  const vistaMateria = document.getElementById('vista-materia-ejercicios');
+  const vistaTeoria = document.getElementById('vista-compendio-teoria');
+
+  if (vistaTeoria) vistaTeoria.classList.add('hidden');
+  if (vistaMateria) vistaMateria.classList.remove('hidden');
+
+  AppState.vistaActual = 'ejercicios';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Lanzar cuadro de diálogo de impresión para generar PDF del compendio
+function imprimirCompendioPDF() {
+  // Asegura que las fórmulas matemáticas estén completamente renderizadas
+  window.print();
+}
+
+// Generar dinámicamente todo el contenido conceptual de la materia ordenado por Unidades
+function renderizarCompendioTeoria() {
+  const container = document.getElementById('contenedor-compendio-articulos');
+  if (!container) return;
+
+  const materia = getMateriaConfig();
+  const banco = getBancoEjerciciosActual();
+  const unidades = materia.unidades || [];
+
+  if (!unidades.length) {
+    container.innerHTML = `<div class="p-8 text-center text-slate-400">No hay contenido conceptual registrado para esta materia.</div>`;
+    return;
+  }
+
+  let htmlTotal = '';
+
+  unidades.forEach((unidad, idxUnidad) => {
+    const ejerciciosUnidad = banco.filter(e => e.categoria === unidad.id);
+
+    htmlTotal += `
+      <section class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 rounded-2xl p-5 sm:p-6 shadow-sm print-avoid-break">
+        <!-- Encabezado de Unidad -->
+        <div class="flex items-start gap-3 pb-4 mb-4 border-b border-slate-100 dark:border-slate-800/80">
+          <div class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-lg shrink-0">
+            ${unidad.icono}
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Unidad ${unidad.numero}</span>
+              <span class="text-slate-300 dark:text-slate-700">·</span>
+              <span class="text-xs text-slate-500 font-mono">${ejerciciosUnidad.length} temas clave</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight mt-0.5">
+              ${unidad.tituloCompleto || unidad.titulo}
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+              ${unidad.descripcion}
+            </p>
+          </div>
+        </div>
+
+        <!-- Módulos teóricos de cada tema -->
+        <div class="space-y-6">
+    `;
+
+    ejerciciosUnidad.forEach((ej, idxEj) => {
+      if (!ej.teoria) return;
+
+      htmlTotal += `
+        <article class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-2.5 print-avoid-break">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>Tema ${unidad.numero}.${idxEj + 1}: ${ej.titulo}</span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] bg-slate-200/60 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300">${ej.dificultad}</span>
+          </div>
+
+          <div class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+            ${formatearTextoConLatex(ej.teoria)}
+          </div>
+
+          <!-- Si el ejercicio tiene circuito representativo, se puede ver de apoyo -->
+          ${ej.circuitoSvg ? `
+            <div class="pt-2 flex justify-center overflow-x-auto">
+              <div class="bg-white rounded-lg p-2 border border-slate-200 dark:border-slate-800 inline-block max-h-40">
+                ${ej.circuitoSvg}
+              </div>
+            </div>
+          ` : ''}
+        </article>
+      `;
+    });
+
+    htmlTotal += `
+        </div>
+      </section>
+    `;
+  });
+
+  container.innerHTML = htmlTotal;
 }
 
 // Compatibilidad

@@ -179,3 +179,56 @@ input[type="number"] {
   color: #38bdf8 !important;
 }
 
+/* Estilos de impresión profesional en PDF */
+@media print {
+  /* Ocultar elementos de navegación e interfaz no impresos */
+  header,
+  footer,
+  aside,
+  #vista-seleccion-materias,
+  #vista-materia-ejercicios,
+  #backdrop-lista-ejercicios,
+  .print\\:hidden,
+  button {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+  }
+
+  #vista-compendio-teoria {
+    display: block !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* Asegurar buen contraste para fórmulas y diagramas en papel */
+  .katex {
+    color: #000000 !important;
+  }
+
+  .circuit-container svg,
+  svg {
+    max-height: 180px !important;
+    filter: none !important;
+  }
+
+  .bg-blue-50, .bg-emerald-50, .bg-gray-100 {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+}
+
