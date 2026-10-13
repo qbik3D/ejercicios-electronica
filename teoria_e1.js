@@ -186,6 +186,142 @@ const MANUAL_TEORIA_E1 = {
             </div>
             <p class="text-xs text-slate-500 mt-1"><strong>Propiedad fundamental:</strong> $R_{eq,paralelo}$ es siempre <em>estrictamente menor</em> que la menor de las resistencias individuales ($R_{eq} < \\min(R_i)$). Si una resistencia es mucho menor que la otra ($R_1 \\ll R_2$), entonces $R_1 \\parallel R_2 \\approx R_1$.</p>
 
+            <!-- Gráfico SVG: Asociación de Resistores en Serie y en Paralelo -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Asociación de Resistores en Serie vs en Paralelo
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Panel 1: Conexión Serie -->
+                  <g transform="translate(15, 10)">
+                    <rect x="0" y="0" width="310" height="210" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Asociación en Serie (Misma Corriente I)</text>
+                    <text x="155" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">V_total = V1 + V2 + V3 | R_eq = Σ R_k</text>
+
+                    <!-- Terminal A (+) -->
+                    <circle cx="25" cy="70" r="4" fill="#ef4444"/>
+                    <text x="25" y="58" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">A (+)</text>
+
+                    <!-- Corriente I -->
+                    <line x1="28" y1="85" x2="52" y2="85" stroke="#2563eb" stroke-width="1.8"/>
+                    <polygon points="52,82 58,85 52,88" fill="#2563eb"/>
+                    <text x="40" y="96" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8.5">I ➔</text>
+
+                    <!-- Conector y R1 -->
+                    <line x1="25" y1="70" x2="52" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 52 70 L 57 62 L 65 78 L 73 62 L 81 78 L 89 62 L 94 70" stroke="#334155" stroke-width="2" fill="none"/>
+                    <text x="73" y="52" text-anchor="middle" fill="#334155" font-weight="bold" font-size="10.5">R1</text>
+
+                    <!-- Conector intermedio y R2 -->
+                    <line x1="94" y1="70" x2="122" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 122 70 L 127 62 L 135 78 L 143 62 L 151 78 L 159 62 L 164 70" stroke="#334155" stroke-width="2" fill="none"/>
+                    <text x="143" y="52" text-anchor="middle" fill="#334155" font-weight="bold" font-size="10.5">R2</text>
+
+                    <!-- Conector intermedio y R3 -->
+                    <line x1="164" y1="70" x2="192" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 192 70 L 197 62 L 205 78 L 213 62 L 221 78 L 229 62 L 234 70" stroke="#334155" stroke-width="2" fill="none"/>
+                    <text x="213" y="52" text-anchor="middle" fill="#334155" font-weight="bold" font-size="10.5">R3</text>
+
+                    <!-- Conector a Terminal B (-) -->
+                    <line x1="234" y1="70" x2="285" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="285" cy="70" r="4" fill="#3b82f6"/>
+                    <text x="285" y="58" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
+
+                    <!-- Cotas de tensiones parciales V1, V2, V3 -->
+                    <path d="M 52 40 L 94 40" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <text x="73" y="36" text-anchor="middle" fill="#059669" font-size="8.5">V1 = I·R1</text>
+
+                    <path d="M 122 40 L 164 40" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <text x="143" y="36" text-anchor="middle" fill="#059669" font-size="8.5">V2 = I·R2</text>
+
+                    <path d="M 192 40 L 234 40" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <text x="213" y="36" text-anchor="middle" fill="#059669" font-size="8.5">V3 = I·R3</text>
+
+                    <!-- Cota total de tensión V_total -->
+                    <path d="M 27 106 L 283 106" stroke="#ef4444" stroke-width="1.3" fill="none"/>
+                    <polygon points="32,103 26,106 32,109" fill="#ef4444"/>
+                    <polygon points="278,103 284,106 278,109" fill="#ef4444"/>
+                    <text x="155" y="102" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">V_total = V1 + V2 + V3</text>
+
+                    <!-- Circuito equivalente simplificado -->
+                    <line x1="25" y1="135" x2="105" y2="135" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="25" cy="135" r="3.5" fill="#ef4444"/>
+                    <path d="M 105 135 L 112 127 L 122 143 L 132 127 L 142 143 L 152 127 L 162 143 L 169 135" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                    <line x1="169" y1="135" x2="285" y2="135" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="285" cy="135" r="3.5" fill="#3b82f6"/>
+                    <text x="137" y="122" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">R_eq = R1 + R2 + R3</text>
+
+                    <!-- Cuadro resumen de propiedad -->
+                    <rect x="15" y="158" width="280" height="42" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="155" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_eq,serie = R1 + R2 + ... + Rn</text>
+                    <text x="155" y="188" text-anchor="middle" fill="#047857" font-size="8.5">Propiedad: R_eq &gt; max(Ri) — La resistencia neta crece</text>
+                  </g>
+
+                  <!-- Panel 2: Conexión Paralelo -->
+                  <g transform="translate(350, 10)">
+                    <rect x="0" y="0" width="315" height="210" rx="10" fill="#10b981" fill-opacity="0.04" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="157" y="18" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Asociación en Paralelo (Misma Tensión V)</text>
+                    <text x="157" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">I_total = I1 + I2 + I3 | 1/R_eq = Σ(1/R_k)</text>
+
+                    <!-- Terminal A (+) y Riel superior -->
+                    <circle cx="25" cy="50" r="4" fill="#ef4444"/>
+                    <text x="14" y="46" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">A(+)</text>
+                    <line x1="25" y1="50" x2="280" y2="50" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Corriente total entrante -->
+                    <line x1="30" y1="38" x2="65" y2="38" stroke="#059669" stroke-width="1.8"/>
+                    <polygon points="65,35 71,38 65,41" fill="#059669"/>
+                    <text x="48" y="33" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8.5">I_total ➔</text>
+
+                    <!-- Terminal B (-) y Riel inferior -->
+                    <circle cx="25" cy="130" r="4" fill="#3b82f6"/>
+                    <text x="14" y="138" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">B(-)</text>
+                    <line x1="25" y1="130" x2="280" y2="130" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Cota de Tensión Común V -->
+                    <line x1="35" y1="58" x2="35" y2="122" stroke="#ef4444" stroke-width="1.2"/>
+                    <polygon points="32,63 35,57 38,63" fill="#ef4444"/>
+                    <polygon points="32,117 35,123 38,117" fill="#ef4444"/>
+                    <text x="45" y="93" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9.5">V</text>
+
+                    <!-- Rama 1: R1 -->
+                    <circle cx="95" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="95" y1="50" x2="95" y2="65" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 95 65 L 89 71 L 101 79 L 89 87 L 101 95 L 89 103 L 95 109" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="95" y1="109" x2="95" y2="130" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="95" cy="130" r="2.5" fill="#334155"/>
+                    <text x="115" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R1</text>
+                    <text x="82" y="70" text-anchor="middle" fill="#059669" font-size="8">⬇ I1</text>
+
+                    <!-- Rama 2: R2 -->
+                    <circle cx="170" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="170" y1="50" x2="170" y2="65" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 170 65 L 164 71 L 176 79 L 164 87 L 176 95 L 164 103 L 170 109" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="170" y1="109" x2="170" y2="130" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="170" cy="130" r="2.5" fill="#334155"/>
+                    <text x="190" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R2</text>
+                    <text x="157" y="70" text-anchor="middle" fill="#059669" font-size="8">⬇ I2</text>
+
+                    <!-- Rama 3: R3 -->
+                    <circle cx="245" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="245" y1="50" x2="245" y2="65" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 245 65 L 239 71 L 251 79 L 239 87 L 251 95 L 239 103 L 245 109" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="245" y1="109" x2="245" y2="130" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="245" cy="130" r="2.5" fill="#334155"/>
+                    <text x="265" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R3</text>
+                    <text x="232" y="70" text-anchor="middle" fill="#059669" font-size="8">⬇ I3</text>
+
+                    <!-- Regla de 2 ramas y equivalente -->
+                    <rect x="15" y="148" width="285" height="52" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="157" y="163" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="9.5">1/R_eq = 1/R1 + 1/R2 + ... + 1/Rn</text>
+                    <text x="157" y="177" text-anchor="middle" fill="#047857" font-size="8.5">2 Ramas: R_eq = (R1·R2) / (R1 + R2) ("producto/suma")</text>
+                    <text x="157" y="191" text-anchor="middle" fill="#065f46" font-size="8">Propiedad: R_eq &lt; min(Ri) — La resistencia neta disminuye</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Transformación Estrella - Triángulo (Teorema de Kennelly)</h5>
             <p class="mb-2 text-xs sm:text-sm">
               Cuando una red resistiva presenta estructuras en puente (como el Puente de Wheatstone desbalanceado) o configuraciones en malla cerrada, ningún par de resistores se encuentra estrictamente en serie ni en paralelo. El <strong>Teorema de Kennelly</strong> permite convertir una conexión en <strong>Triángulo ($\Delta$)</strong> formada por $R_{AB}, R_{BC}, R_{CA}$ entre tres nodos $A, B, C$ en una conexión equivalente en <strong>Estrella ($Y$)</strong> con resistores $R_A, R_B, R_C$ conectados a un nodo neutro común central (o viceversa), preservando las tensiones y corrientes vistas desde los terminales externos.
@@ -215,6 +351,124 @@ const MANUAL_TEORIA_E1 = {
               <strong>Caso Particular Simétrico ($R_{AB} = R_{BC} = R_{CA} = R_\\Delta$):</strong>
               $$\\mathbf{R_Y = \\frac{R_\\Delta}{3}} \\quad \\Longleftrightarrow \\quad \\mathbf{R_\\Delta = 3 \\cdot R_Y}$$
               <span class="text-slate-500">La resistencia equivalente de cada rama de la estrella es exactamente un tercio del valor de cada rama del triángulo.</span>
+            </div>
+
+            <!-- Gráfico SVG: Transformación de Kennelly Delta <-> Estrella -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Teorema de Kennelly — Equivalencia Triángulo (Δ) y Estrella (Y)
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Lado Izquierdo: Configuración Triángulo (Delta) -->
+                  <g transform="translate(15, 10)">
+                    <rect x="0" y="0" width="265" height="210" rx="10" fill="#a855f7" fill-opacity="0.04" stroke="#a855f7" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="132" y="20" text-anchor="middle" font-weight="bold" fill="#7e22ce" font-size="11">Conexión Triángulo (Δ)</text>
+                    <text x="132" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas externas entre nodos A, B y C</text>
+
+                    <!-- Nodo A (Arriba) -->
+                    <circle cx="132" cy="50" r="5" fill="#ef4444"/>
+                    <text x="132" y="42" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">Nodo A</text>
+
+                    <!-- Nodo B (Abajo Izquierda) -->
+                    <circle cx="35" cy="170" r="5" fill="#3b82f6"/>
+                    <text x="25" y="185" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">Nodo B</text>
+
+                    <!-- Nodo C (Abajo Derecha) -->
+                    <circle cx="230" cy="170" r="5" fill="#10b981"/>
+                    <text x="240" y="185" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="11">Nodo C</text>
+
+                    <!-- Lado A-B: R_AB -->
+                    <line x1="132" y1="50" x2="98" y2="92" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 98 92 L 91 97 L 98 107 L 86 113 L 93 123 L 81 129 L 88 139" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                    <line x1="88" y1="139" x2="35" y2="170" stroke="#64748b" stroke-width="2"/>
+                    <rect x="42" y="96" width="38" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="61" y="109" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_AB</text>
+
+                    <!-- Lado A-C: R_CA -->
+                    <line x1="132" y1="50" x2="166" y2="92" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 166 92 L 173 97 L 166 107 L 178 113 L 171 123 L 183 129 L 176 139" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                    <line x1="176" y1="139" x2="230" y2="170" stroke="#64748b" stroke-width="2"/>
+                    <rect x="185" y="96" width="38" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="204" y="109" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_CA</text>
+
+                    <!-- Lado B-C: R_BC (Base) -->
+                    <line x1="35" y1="170" x2="95" y2="170" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 95 170 L 101 163 L 111 177 L 121 163 L 131 177 L 141 163 L 151 177 L 157 170" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                    <line x1="157" y1="170" x2="230" y2="170" stroke="#64748b" stroke-width="2"/>
+                    <rect x="110" y="182" width="44" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="132" y="195" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_BC</text>
+                  </g>
+
+                  <!-- Panel Central: Conversión Bidireccional -->
+                  <g transform="translate(285, 10)">
+                    <rect x="0" y="0" width="110" height="210" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+
+                    <!-- Flecha Delta -> Estrella -->
+                    <line x1="15" y1="65" x2="90" y2="65" stroke="#7e22ce" stroke-width="2.2"/>
+                    <polygon points="90,60 98,65 90,70" fill="#7e22ce"/>
+                    <text x="55" y="55" text-anchor="middle" fill="#7e22ce" font-weight="bold" font-size="9">Δ ➔ Y</text>
+                    <text x="55" y="77" text-anchor="middle" fill="#64748b" font-size="7.5">R_Y = Prod_ady</text>
+                    <text x="55" y="87" text-anchor="middle" fill="#64748b" font-size="7.5">/ Σ R_Δ</text>
+
+                    <!-- Flecha Estrella -> Delta -->
+                    <line x1="95" y1="125" x2="20" y2="125" stroke="#2563eb" stroke-width="2.2"/>
+                    <polygon points="20,120 12,125 20,130" fill="#2563eb"/>
+                    <text x="55" y="115" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">Y ➔ Δ</text>
+                    <text x="55" y="137" text-anchor="middle" fill="#64748b" font-size="7.5">R_Δ = Σ(R_i·R_j)</text>
+                    <text x="55" y="147" text-anchor="middle" fill="#64748b" font-size="7.5">/ R_opuesta</text>
+
+                    <!-- Simetría -->
+                    <rect x="6" y="165" width="98" height="35" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="55" y="178" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="8">Simétrico:</text>
+                    <text x="55" y="192" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="8.5">R_Y = R_Δ / 3</text>
+                  </g>
+
+                  <!-- Lado Derecho: Configuración Estrella (Wye) -->
+                  <g transform="translate(400, 10)">
+                    <rect x="0" y="0" width="265" height="210" rx="10" fill="#2563eb" fill-opacity="0.04" stroke="#2563eb" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="132" y="20" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="11">Conexión Estrella (Y)</text>
+                    <text x="132" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas unidas al nodo neutro central N</text>
+
+                    <!-- Nodo A (Arriba) -->
+                    <circle cx="132" cy="50" r="5" fill="#ef4444"/>
+                    <text x="132" y="42" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">Nodo A</text>
+
+                    <!-- Nodo B (Abajo Izquierda) -->
+                    <circle cx="35" cy="170" r="5" fill="#3b82f6"/>
+                    <text x="25" y="185" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">Nodo B</text>
+
+                    <!-- Nodo C (Abajo Derecha) -->
+                    <circle cx="230" cy="170" r="5" fill="#10b981"/>
+                    <text x="240" y="185" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="11">Nodo C</text>
+
+                    <!-- Nodo Central Neutro N -->
+                    <circle cx="132" cy="120" r="5" fill="#64748b"/>
+                    <text x="148" y="123" text-anchor="start" fill="#64748b" font-weight="bold" font-size="10">N (Neutro)</text>
+
+                    <!-- Rama A a N: R_A -->
+                    <line x1="132" y1="50" x2="132" y2="65" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 132 65 L 126 71 L 138 79 L 126 87 L 138 95 L 126 103 L 132 109" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                    <line x1="132" y1="109" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
+                    <rect x="142" y="78" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="158" y="91" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_A</text>
+
+                    <!-- Rama B a N: R_B -->
+                    <line x1="35" y1="170" x2="68" y2="152" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 68 152 L 72 144 L 84 153 L 88 141 L 100 150 L 104 138 L 112 144" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                    <line x1="112" y1="144" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
+                    <rect x="68" y="160" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="84" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_B</text>
+
+                    <!-- Rama C a N: R_C -->
+                    <line x1="230" y1="170" x2="197" y2="152" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 197 152 L 193 144 L 181 153 L 177 141 L 165 150 L 161 138 L 153 144" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                    <line x1="153" y1="144" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
+                    <rect x="165" y="160" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="181" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_C</text>
+                  </g>
+                </svg>
+              </div>
             </div>
           `
         },
@@ -263,6 +517,140 @@ const MANUAL_TEORIA_E1 = {
               </p>
             </div>
 
+            <!-- Gráfico SVG: Divisor de Tensión en Vacío vs con Carga -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Divisor de Tensión — En Vacío vs Efecto de Carga (Loading Effect)
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Panel Izquierdo: Divisor en Vacío -->
+                  <g transform="translate(15, 10)">
+                    <rect x="0" y="0" width="310" height="210" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Divisor de Tensión en Vacío</text>
+                    <text x="155" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Sin carga conectada: I_L = 0 | Corriente pura de rama</text>
+
+                    <!-- Borne Vin (+) -->
+                    <circle cx="35" cy="55" r="4" fill="#ef4444"/>
+                    <text x="35" y="44" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">Vin (+)</text>
+                    <line x1="35" y1="55" x2="135" y2="55" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Flecha corriente Vin -->
+                    <line x1="45" y1="67" x2="75" y2="67" stroke="#2563eb" stroke-width="1.8"/>
+                    <polygon points="75,64 81,67 75,70" fill="#2563eb"/>
+                    <text x="60" y="79" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">I ➔</text>
+
+                    <!-- Resistor R1 (vertical) -->
+                    <line x1="135" y1="55" x2="135" y2="68" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 135 68 L 129 74 L 141 82 L 129 90 L 141 98 L 129 106 L 135 112" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="135" y1="112" x2="135" y2="120" stroke="#64748b" stroke-width="2"/>
+                    <text x="152" y="93" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R1</text>
+
+                    <!-- Nodo intermedio -->
+                    <circle cx="135" cy="120" r="3.5" fill="#334155"/>
+
+                    <!-- Resistor R2 (vertical) -->
+                    <line x1="135" y1="120" x2="135" y2="128" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 135 128 L 129 134 L 141 142 L 129 150 L 141 158 L 129 166 L 135 172" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="135" y1="172" x2="135" y2="185" stroke="#64748b" stroke-width="2"/>
+                    <text x="152" y="153" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R2</text>
+
+                    <!-- Riel inferior GND -->
+                    <line x1="35" y1="185" x2="270" y2="185" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="35" cy="185" r="4" fill="#3b82f6"/>
+                    <text x="35" y="198" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">GND (-)</text>
+
+                    <!-- Terminales de salida A y B en vacío -->
+                    <line x1="135" y1="120" x2="270" y2="120" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="270" cy="120" r="4" fill="#ef4444"/>
+                    <text x="282" y="123" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="9.5">A (+)</text>
+
+                    <circle cx="270" cy="185" r="4" fill="#3b82f6"/>
+                    <text x="282" y="188" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B (-)</text>
+
+                    <!-- Cota Vout vacío -->
+                    <line x1="250" y1="126" x2="250" y2="179" stroke="#059669" stroke-width="1.4"/>
+                    <polygon points="247,131 250,124 253,131" fill="#059669"/>
+                    <polygon points="247,174 250,181 253,174" fill="#059669"/>
+                    <text x="240" y="154" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">V_out,vacío</text>
+
+                    <!-- Cuadro fórmula -->
+                    <rect x="15" y="165" width="200" height="38" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="115" y="179" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">V_out = Vin · R2 / (R1 + R2)</text>
+                    <text x="115" y="193" text-anchor="middle" fill="#64748b" font-size="8">I_vacio = Vin / (R1 + R2)</text>
+                  </g>
+
+                  <!-- Panel Derecho: Divisor con Carga (Efecto de Carga) -->
+                  <g transform="translate(350, 10)">
+                    <rect x="0" y="0" width="315" height="210" rx="10" fill="#f59e0b" fill-opacity="0.04" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="157" y="18" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="11">Efecto de Carga (Loading Effect)</text>
+                    <text x="157" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Carga R_L conectada: R2' = R2 || R_L &lt; R2</text>
+
+                    <!-- Borne Vin (+) -->
+                    <circle cx="25" cy="55" r="4" fill="#ef4444"/>
+                    <text x="25" y="44" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">Vin (+)</text>
+                    <line x1="25" y1="55" x2="105" y2="55" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Resistor R1 -->
+                    <line x1="105" y1="55" x2="105" y2="68" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 105 68 L 99 74 L 111 82 L 99 90 L 111 98 L 99 106 L 105 112" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="105" y1="112" x2="105" y2="120" stroke="#64748b" stroke-width="2"/>
+                    <text x="120" y="93" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R1</text>
+
+                    <!-- Nodo intermedio de bifurcación -->
+                    <circle cx="105" cy="120" r="3.5" fill="#ef4444"/>
+
+                    <!-- Resistor R2 -->
+                    <line x1="105" y1="120" x2="105" y2="128" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 105 128 L 99 134 L 111 142 L 99 150 L 111 158 L 99 166 L 105 172" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="105" y1="172" x2="105" y2="185" stroke="#64748b" stroke-width="2"/>
+                    <text x="120" y="153" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R2</text>
+                    <text x="90" y="148" text-anchor="end" fill="#b45309" font-size="7.5">⬇ I_R2</text>
+
+                    <!-- Riel inferior GND -->
+                    <line x1="25" y1="185" x2="285" y2="185" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="25" cy="185" r="4" fill="#3b82f6"/>
+                    <text x="25" y="198" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">GND (-)</text>
+
+                    <!-- Conexión a Carga R_L -->
+                    <line x1="105" y1="120" x2="200" y2="120" stroke="#ef4444" stroke-width="2"/>
+                    <line x1="200" y1="120" x2="200" y2="128" stroke="#ef4444" stroke-width="2"/>
+                    <circle cx="200" cy="120" r="3.5" fill="#ef4444"/>
+
+                    <!-- Flecha corriente de carga I_L -->
+                    <line x1="130" y1="113" x2="165" y2="113" stroke="#dc2626" stroke-width="1.8"/>
+                    <polygon points="165,110 171,113 165,116" fill="#dc2626"/>
+                    <text x="148" y="107" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="8">I_L ➔</text>
+
+                    <!-- Resistor de Carga R_L -->
+                    <path d="M 200 128 L 194 134 L 206 142 L 194 150 L 206 158 L 194 166 L 200 172" stroke="#dc2626" stroke-width="2.2" fill="none"/>
+                    <line x1="200" y1="172" x2="200" y2="185" stroke="#dc2626" stroke-width="2"/>
+                    <circle cx="200" cy="185" r="3.5" fill="#3b82f6"/>
+                    <text x="218" y="153" text-anchor="start" fill="#dc2626" font-weight="bold" font-size="10.5">R_L</text>
+
+                    <!-- Terminales A y B -->
+                    <line x1="200" y1="120" x2="280" y2="120" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="280" cy="120" r="4" fill="#ef4444"/>
+                    <text x="290" y="123" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="9">A</text>
+
+                    <circle cx="280" cy="185" r="4" fill="#3b82f6"/>
+                    <text x="290" y="188" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9">B</text>
+
+                    <!-- Cota Vout cargado -->
+                    <line x1="255" y1="126" x2="255" y2="179" stroke="#b45309" stroke-width="1.4"/>
+                    <polygon points="252,131 255,124 258,131" fill="#b45309"/>
+                    <polygon points="252,174 255,181 258,174" fill="#b45309"/>
+                    <text x="245" y="154" text-anchor="end" fill="#b45309" font-weight="bold" font-size="8">V_out,carg</text>
+
+                    <!-- Cuadro resumen de carga -->
+                    <rect x="12" y="166" width="175" height="38" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="100" y="179" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="8.5">V_out &lt; V_out,vacio</text>
+                    <text x="100" y="193" text-anchor="middle" fill="#b45309" font-size="8">R_L ≥ 10·R2 ⇒ caída &lt; 10%</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Divisor de Corriente</h5>
             <p class="mb-2 text-xs sm:text-sm">
               Considérese una corriente total entrante $I_{in}$ inyectada hacia un conjunto de $n$ ramas en paralelo con resistencias $R_1, R_2, \\dots, R_n$ (conductancias $G_1, G_2, \\dots, G_n$). Como la tensión en bornes del paralelo es idéntica para todas las ramas:
@@ -297,6 +685,103 @@ const MANUAL_TEORIA_E1 = {
               <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <span class="font-bold text-slate-700 dark:text-slate-300">Circuito Abierto en Rama 2 ($R_2 \\to \\infty$):</span>
                 <p class="mt-1">$I_1 = I_{in}$, $I_2 = 0$. Ninguna corriente puede atravesar la rama abierta.</p>
+              </div>
+            </div>
+
+            <!-- Gráfico SVG: Divisor de Corriente -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Divisor de Corriente — Reparto Inversamente Proporcional a la Resistencia
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 220" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Panel Izquierdo: Esquema del Divisor de Corriente -->
+                  <g transform="translate(15, 10)">
+                    <rect x="0" y="0" width="350" height="200" rx="10" fill="#6366f1" fill-opacity="0.04" stroke="#6366f1" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="11">Divisor de Corriente (2 Ramas en Paralelo)</text>
+                    <text x="175" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">I_in = I1 + I2 | Misma caída V entre nodos comunes</text>
+
+                    <!-- Corriente de entrada I_in -->
+                    <line x1="25" y1="50" x2="110" y2="50" stroke="#4f46e5" stroke-width="2.2"/>
+                    <polygon points="110,46 118,50 110,54" fill="#4f46e5"/>
+                    <text x="65" y="42" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="10">I_in ➔</text>
+
+                    <!-- Nodo superior de bifurcación -->
+                    <circle cx="130" cy="50" r="4.5" fill="#4f46e5"/>
+                    <text x="130" y="38" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Sup (+)</text>
+
+                    <!-- Bifurcación Rama 1 (Izquierda) -->
+                    <line x1="130" y1="50" x2="70" y2="50" stroke="#64748b" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="70" y2="65" stroke="#64748b" stroke-width="2"/>
+                    <line x1="62" y1="62" x2="62" y2="78" stroke="#059669" stroke-width="1.8"/>
+                    <polygon points="59,78 62,84 65,78" fill="#059669"/>
+                    <text x="50" y="74" text-anchor="end" fill="#059669" font-weight="bold" font-size="8.5">I1</text>
+                    <path d="M 70 65 L 64 71 L 76 79 L 64 87 L 76 95 L 64 103 L 70 109" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="70" y1="109" x2="70" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <line x1="70" y1="140" x2="130" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <text x="88" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R1</text>
+
+                    <!-- Bifurcación Rama 2 (Derecha) -->
+                    <line x1="130" y1="50" x2="190" y2="50" stroke="#64748b" stroke-width="2"/>
+                    <line x1="190" y1="50" x2="190" y2="65" stroke="#64748b" stroke-width="2"/>
+                    <line x1="182" y1="62" x2="182" y2="78" stroke="#059669" stroke-width="1.8"/>
+                    <polygon points="179,78 182,84 185,78" fill="#059669"/>
+                    <text x="170" y="74" text-anchor="end" fill="#059669" font-weight="bold" font-size="8.5">I2</text>
+                    <path d="M 190 65 L 184 71 L 196 79 L 184 87 L 196 95 L 184 103 L 190 109" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="190" y1="109" x2="190" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <line x1="190" y1="140" x2="130" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <text x="208" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="10">R2</text>
+
+                    <!-- Nodo inferior de recombinación -->
+                    <circle cx="130" cy="140" r="4.5" fill="#4f46e5"/>
+                    <text x="130" y="155" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Inf (-)</text>
+
+                    <!-- Corriente de salida reunida -->
+                    <line x1="130" y1="140" x2="230" y2="140" stroke="#4f46e5" stroke-width="2.2"/>
+                    <polygon points="230,136 238,140 230,144" fill="#4f46e5"/>
+                    <text x="180" y="132" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9.5">I_in ➔</text>
+
+                    <!-- Cuadro fórmula mnemotécnica -->
+                    <rect x="235" y="55" width="105" height="75" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+                    <text x="287" y="70" text-anchor="middle" fill="#3730a3" font-weight="bold" font-size="8.5">Fórmulas:</text>
+                    <text x="287" y="86" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I1 = I_in · R2/(R1+R2)</text>
+                    <text x="287" y="103" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I2 = I_in · R1/(R1+R2)</text>
+                    <text x="287" y="120" text-anchor="middle" fill="#047857" font-size="7.5">Resistencia opuesta</text>
+
+                    <!-- Cota de tensión común V -->
+                    <line x1="15" y1="56" x2="15" y2="134" stroke="#ef4444" stroke-width="1.2"/>
+                    <polygon points="12,61 15,55 18,61" fill="#ef4444"/>
+                    <polygon points="12,129 15,135 18,129" fill="#ef4444"/>
+                    <text x="22" y="98" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="8.5">V</text>
+
+                    <rect x="15" y="165" width="320" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="175" y="182" text-anchor="middle" fill="#334155" font-size="8.5">Principio: La rama de menor resistencia desvía mayor corriente</text>
+                  </g>
+
+                  <!-- Panel Derecho: Casos Particulares y Límites -->
+                  <g transform="translate(380, 10)">
+                    <rect x="0" y="0" width="285" height="200" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+                    <text x="142" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10.5">Casos Particulares Clave</text>
+
+                    <!-- Caso 1: R1 = R2 -->
+                    <rect x="12" y="30" width="260" height="46" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="22" y="45" font-weight="bold" fill="#1e40af" font-size="9">1. Ramas Iguales (R1 = R2):</text>
+                    <text x="22" y="59" fill="#2563eb" font-weight="bold" font-size="9">I1 = I2 = I_in / 2</text>
+                    <text x="22" y="70" fill="#64748b" font-size="7.5">Reparto perfectamente simétrico y equitativo.</text>
+
+                    <!-- Caso 2: R1 << R2 -->
+                    <rect x="12" y="84" width="260" height="46" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="22" y="99" font-weight="bold" fill="#065f46" font-size="9">2. Disparidad Severa (R1 &lt;&lt; R2):</text>
+                    <text x="22" y="113" fill="#059669" font-weight="bold" font-size="9">I1 ≈ I_in  |  I2 ≈ 0</text>
+                    <text x="22" y="124" fill="#64748b" font-size="7.5">Casi la totalidad de corriente fluye por R1.</text>
+
+                    <!-- Caso 3: Cortocircuito R1 = 0 -->
+                    <rect x="12" y="138" width="260" height="48" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+                    <text x="22" y="153" font-weight="bold" fill="#991b1b" font-size="9">3. Cortocircuito (R1 = 0):</text>
+                    <text x="22" y="167" fill="#dc2626" font-weight="bold" font-size="9">I1 = I_in  |  I2 = 0</text>
+                    <text x="22" y="179" fill="#64748b" font-size="7.5">Todo el flujo elude la rama con resistencia R2.</text>
+                  </g>
+                </svg>
               </div>
             </div>
           `
@@ -357,6 +842,134 @@ const MANUAL_TEORIA_E1 = {
             <p class="mb-2">Equivalente dual compuesto por una fuente de corriente ideal $I_N$ en paralelo con $R_N = R_{th}$:</p>
             $$I_N = I_{sc} = \\frac{V_{th}}{R_{th}}$$
 
+            <!-- Gráfico SVG: Equivalentes de Thévenin y Norton y Dualidad -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Teoremas de Thévenin y Norton — Equivalencia y Dualidad de Redes
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 205" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Bloque 1: Red Lineal Original -->
+                  <g transform="translate(10, 10)">
+                    <rect x="0" y="0" width="180" height="185" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+                    <text x="90" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10.5">Red Lineal Activa</text>
+                    <text x="90" y="32" text-anchor="middle" fill="#64748b" font-size="8">Fuentes dep/indep + R</text>
+
+                    <!-- Icono interno estilizado de red -->
+                    <rect x="25" y="48" width="130" height="70" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                    <text x="90" y="78" text-anchor="middle" fill="#475569" font-weight="bold" font-size="9">Circuito Complejo</text>
+                    <text x="90" y="92" text-anchor="middle" fill="#64748b" font-size="7.5">N nodos y M mallas</text>
+
+                    <!-- Bornes de salida A y B -->
+                    <line x1="155" y1="65" x2="195" y2="65" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="195" cy="65" r="4" fill="#ef4444"/>
+                    <text x="195" y="54" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9.5">A</text>
+
+                    <line x1="155" y1="105" x2="195" y2="105" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="195" cy="105" r="4" fill="#3b82f6"/>
+                    <text x="195" y="120" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
+
+                    <rect x="15" y="132" width="150" height="42" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="90" y="146" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">Parámetros:</text>
+                    <text x="90" y="158" text-anchor="middle" fill="#2563eb" font-size="8">Voc = V_AB (ca)</text>
+                    <text x="90" y="169" text-anchor="middle" fill="#2563eb" font-size="8">Isc = I_AB (cc)</text>
+                  </g>
+
+                  <!-- Flecha de simplificación -->
+                  <g transform="translate(205, 90)">
+                    <line x1="0" y1="0" x2="18" y2="0" stroke="#2563eb" stroke-width="2.2"/>
+                    <polygon points="18,-4 25,0 18,4" fill="#2563eb"/>
+                  </g>
+
+                  <!-- Bloque 2: Equivalente de Thévenin -->
+                  <g transform="translate(235, 10)">
+                    <rect x="0" y="0" width="205" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="102" y="20" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Equivalente de Thévenin</text>
+                    <text x="102" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de tensión en serie con R_th</text>
+
+                    <!-- Fuente de tensión V_th -->
+                    <circle cx="35" cy="85" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+                    <text x="35" y="81" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
+                    <text x="35" y="94" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
+                    <text x="35" y="117" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">V_th</text>
+
+                    <!-- Cable y Resistor R_th en serie -->
+                    <line x1="35" y1="69" x2="35" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <line x1="35" y1="55" x2="75" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 75 55 L 80 47 L 88 63 L 96 47 L 104 63 L 112 47 L 117 55" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="117" y1="55" x2="185" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <text x="96" y="40" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R_th</text>
+
+                    <!-- Cable inferior a B -->
+                    <line x1="35" y1="101" x2="35" y2="125" stroke="#64748b" stroke-width="2"/>
+                    <line x1="35" y1="125" x2="185" y2="125" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Terminales A y B -->
+                    <circle cx="185" cy="55" r="4" fill="#ef4444"/>
+                    <text x="195" y="58" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="9.5">A</text>
+
+                    <circle cx="185" cy="125" r="4" fill="#3b82f6"/>
+                    <text x="195" y="128" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
+
+                    <!-- Fórmulas -->
+                    <rect x="15" y="138" width="175" height="36" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="102" y="151" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">V_th = V_AB,ca  (Vacío)</text>
+                    <text x="102" y="164" text-anchor="middle" fill="#2563eb" font-size="8">R_th = Voc / Isc = R_in,pasiva</text>
+                  </g>
+
+                  <!-- Flecha de conversión Thévenin <-> Norton -->
+                  <g transform="translate(448, 85)">
+                    <line x1="0" y1="0" x2="14" y2="0" stroke="#059669" stroke-width="2"/>
+                    <polygon points="14,-3 20,0 14,3" fill="#059669"/>
+                    <line x1="20" y1="12" x2="6" y2="12" stroke="#059669" stroke-width="2"/>
+                    <polygon points="6,9 0,12 6,15" fill="#059669"/>
+                    <text x="10" y="-5" text-anchor="middle" fill="#059669" font-weight="bold" font-size="7">Dual</text>
+                  </g>
+
+                  <!-- Bloque 3: Equivalente de Norton -->
+                  <g transform="translate(475, 10)">
+                    <rect x="0" y="0" width="195" height="185" rx="10" fill="#059669" fill-opacity="0.04" stroke="#059669" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="97" y="20" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Equivalente de Norton</text>
+                    <text x="97" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de corriente || R_N</text>
+
+                    <!-- Fuente de corriente I_N -->
+                    <circle cx="40" cy="90" r="16" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+                    <line x1="40" y1="99" x2="40" y2="81" stroke="#059669" stroke-width="2"/>
+                    <polygon points="36,83 40,76 44,83" fill="#059669"/>
+                    <text x="18" y="93" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">I_N</text>
+
+                    <!-- Riel superior -->
+                    <line x1="40" y1="74" x2="40" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <line x1="40" y1="55" x2="175" y2="55" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Resistor R_N en paralelo -->
+                    <circle cx="110" cy="55" r="3" fill="#334155"/>
+                    <line x1="110" y1="55" x2="110" y2="67" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 110 67 L 104 73 L 116 81 L 104 89 L 116 97 L 104 105 L 110 111" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="110" y1="111" x2="110" y2="125" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="110" cy="125" r="3" fill="#334155"/>
+                    <text x="126" y="93" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R_N</text>
+
+                    <!-- Riel inferior a B -->
+                    <line x1="40" y1="106" x2="40" y2="125" stroke="#64748b" stroke-width="2"/>
+                    <line x1="40" y1="125" x2="175" y2="125" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Terminales A y B -->
+                    <circle cx="175" cy="55" r="4" fill="#ef4444"/>
+                    <text x="185" y="58" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="9.5">A</text>
+
+                    <circle cx="175" cy="125" r="4" fill="#3b82f6"/>
+                    <text x="185" y="128" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
+
+                    <!-- Fórmulas -->
+                    <rect x="15" y="138" width="165" height="36" rx="5" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="97" y="151" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="8.5">I_N = I_sc = V_th / R_th</text>
+                    <text x="97" y="164" text-anchor="middle" fill="#047857" font-size="8">R_N = R_th</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Teorema de Millman (Generadores en Paralelo)</h5>
             <p class="mb-2 text-xs sm:text-sm">
               El <strong>Teorema de Millman</strong> es un método analítico directo de resolución en un único paso para circuitos que constan de múltiples ramas en paralelo conectadas entre dos nodos esenciales comunes $A$ y $B$. Cada rama $k$ puede contener un generador de tensión ideal $E_k$ en serie con una resistencia interna $R_k$, un generador de corriente independiente $I_{sj}$, o ser una rama resistiva pasiva $R_p$.
@@ -395,6 +1008,134 @@ const MANUAL_TEORIA_E1 = {
               <strong>Aplicaciones directas en Electrónica:</strong> Redes de polarización de transistores alimentadas desde múltiples carriles de tensión, sumadores pasivos analógicos de señales, redes de ponderación resistiva R-2R en conversores D/A y referencias estabilizadas con diodos.
             </p>
 
+            <!-- Gráfico SVG: Teorema de Millman (Múltiples Ramas a Equivalente Thévenin) -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Teorema de Millman — Reducción de Múltiples Generadores en Paralelo
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Panel Izquierdo: Circuito Multirrama entre A y B -->
+                  <g transform="translate(10, 10)">
+                    <rect x="0" y="0" width="375" height="210" rx="10" fill="#0d9488" fill-opacity="0.04" stroke="#0d9488" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="11">Circuito Multirrama en Paralelo (Nodos A y B)</text>
+                    <text x="187" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Fuentes de tensión serie, fuentes de corriente y ramas pasivas</text>
+
+                    <!-- Riel superior Nodo A -->
+                    <line x1="25" y1="50" x2="335" y2="50" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="335" cy="50" r="4" fill="#ef4444"/>
+                    <text x="347" y="54" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="10">A (+)</text>
+
+                    <!-- Riel inferior Nodo B -->
+                    <line x1="25" y1="150" x2="335" y2="150" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="335" cy="150" r="4" fill="#3b82f6"/>
+                    <text x="347" y="154" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="10">B (-)</text>
+
+                    <!-- Rama 1: E1 (+) hacia A en serie con R1 -->
+                    <circle cx="65" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="65" y1="50" x2="65" y2="60" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 65 60 L 60 65 L 70 71 L 60 77 L 70 83 L 60 89 L 65 94" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="65" y1="94" x2="65" y2="104" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="65" cy="116" r="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="65" y="113" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+</text>
+                    <text x="65" y="123" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9">-</text>
+                    <line x1="65" y1="128" x2="65" y2="150" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="65" cy="150" r="2.5" fill="#334155"/>
+                    <text x="78" y="78" text-anchor="start" fill="#334155" font-weight="bold" font-size="8.5">R1</text>
+                    <text x="80" y="119" text-anchor="start" fill="#2563eb" font-weight="bold" font-size="8.5">E1</text>
+                    <text x="48" y="90" text-anchor="end" fill="#059669" font-size="7.5">⬆ +E1/R1</text>
+
+                    <!-- Rama 2: E2 (-) hacia A en serie con R2 (polaridad invertida) -->
+                    <circle cx="145" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="145" y1="50" x2="145" y2="60" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 145 60 L 140 65 L 150 71 L 140 77 L 150 83 L 140 89 L 145 94" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="145" y1="94" x2="145" y2="104" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="145" cy="116" r="12" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+                    <text x="145" y="113" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9">-</text>
+                    <text x="145" y="123" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+</text>
+                    <line x1="145" y1="128" x2="145" y2="150" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="145" cy="150" r="2.5" fill="#334155"/>
+                    <text x="158" y="78" text-anchor="start" fill="#334155" font-weight="bold" font-size="8.5">R2</text>
+                    <text x="160" y="119" text-anchor="start" fill="#dc2626" font-weight="bold" font-size="8.5">E2</text>
+                    <text x="128" y="90" text-anchor="end" fill="#dc2626" font-size="7.5">⬇ -E2/R2</text>
+
+                    <!-- Rama 3: Fuente de corriente Is3 inyectando hacia A -->
+                    <circle cx="225" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="225" y1="50" x2="225" y2="85" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="225" cy="100" r="15" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+                    <line x1="225" y1="108" x2="225" y2="92" stroke="#059669" stroke-width="2"/>
+                    <polygon points="221,94 225,87 229,94" fill="#059669"/>
+                    <line x1="225" y1="115" x2="225" y2="150" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="225" cy="150" r="2.5" fill="#334155"/>
+                    <text x="243" y="103" text-anchor="start" fill="#059669" font-weight="bold" font-size="9">Is3</text>
+                    <text x="208" y="103" text-anchor="end" fill="#059669" font-size="7.5">⬆ +Is3</text>
+
+                    <!-- Rama 4: Resistencia Pasiva Rp -->
+                    <circle cx="295" cy="50" r="2.5" fill="#334155"/>
+                    <line x1="295" y1="50" x2="295" y2="80" stroke="#64748b" stroke-width="1.8"/>
+                    <path d="M 295 80 L 289 86 L 301 94 L 289 102 L 301 110 L 289 118 L 295 124" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="295" y1="124" x2="295" y2="150" stroke="#64748b" stroke-width="1.8"/>
+                    <circle cx="295" cy="150" r="2.5" fill="#334155"/>
+                    <text x="308" y="105" text-anchor="start" fill="#334155" font-weight="bold" font-size="8.5">Rp</text>
+                    <text x="280" y="105" text-anchor="end" fill="#64748b" font-size="7.5">aporte 0</text>
+
+                    <!-- Cuadro resumen de fórmula Millman -->
+                    <rect x="15" y="165" width="345" height="36" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                    <text x="187" y="179" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V_AB = [ (E1/R1) - (E2/R2) + Is3 ] / [ (1/R1) + (1/R2) + (1/Rp) ]</text>
+                    <text x="187" y="193" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): apunta al nodo A | Signo (-): apunta al nodo B</text>
+                  </g>
+
+                  <!-- Flecha de conversión de Millman -->
+                  <g transform="translate(390, 100)">
+                    <line x1="0" y1="0" x2="16" y2="0" stroke="#0d9488" stroke-width="2.2"/>
+                    <polygon points="16,-4 23,0 16,4" fill="#0d9488"/>
+                  </g>
+
+                  <!-- Panel Derecho: Equivalente Thévenin Único de Millman -->
+                  <g transform="translate(420, 10)">
+                    <rect x="0" y="0" width="250" height="210" rx="10" fill="#0d9488" fill-opacity="0.05" stroke="#0d9488" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="125" y="18" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="11">Equivalente Thévenin (Millman)</text>
+                    <text x="125" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Rama serie única entre A y B</text>
+
+                    <!-- Fuente V_AB (Thévenin) -->
+                    <circle cx="45" cy="100" r="16" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+                    <text x="45" y="96" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
+                    <text x="45" y="109" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
+                    <text x="45" y="132" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="9">V_AB = V_th</text>
+
+                    <!-- Conexión superior y Resistor R_M -->
+                    <line x1="45" y1="84" x2="45" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <line x1="45" y1="60" x2="90" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 90 60 L 96 52 L 106 68 L 116 52 L 126 68 L 136 52 L 142 60" stroke="#0f766e" stroke-width="2.2" fill="none"/>
+                    <line x1="142" y1="60" x2="225" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <text x="116" y="44" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="10">R_M (R_th)</text>
+
+                    <!-- Conexión inferior a B -->
+                    <line x1="45" y1="116" x2="45" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <line x1="45" y1="140" x2="225" y2="140" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Bornes A y B -->
+                    <circle cx="225" cy="60" r="4" fill="#ef4444"/>
+                    <text x="237" y="63" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="9.5">A</text>
+
+                    <circle cx="225" cy="140" r="4" fill="#3b82f6"/>
+                    <text x="237" y="143" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
+
+                    <!-- Cota de tensión V_AB -->
+                    <line x1="205" y1="66" x2="205" y2="134" stroke="#0f766e" stroke-width="1.3"/>
+                    <polygon points="202,71 205,65 208,71" fill="#0f766e"/>
+                    <polygon points="202,129 205,135 208,129" fill="#0f766e"/>
+                    <text x="195" y="103" text-anchor="end" fill="#0f766e" font-weight="bold" font-size="8.5">V_AB</text>
+
+                    <!-- Fórmulas equivalentes -->
+                    <rect x="15" y="156" width="220" height="45" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                    <text x="125" y="171" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">R_M = 1 / Σ(1/Rk)</text>
+                    <text x="125" y="187" text-anchor="middle" fill="#059669" font-size="8">Resistencia equivalente de Thévenin</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
             <div class="p-4 my-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200">
               <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
                 <span>📐</span> Teorema de Máxima Transferencia de Potencia
@@ -406,6 +1147,129 @@ const MANUAL_TEORIA_E1 = {
               <p class="text-xs mt-1">La potencia máxima entregada a la carga es:</p>
               $$\\mathbf{P_{L,max} = \\frac{V_{th}^2}{4 R_{th}}}$$
               <p class="text-xs text-slate-500 italic mt-1">Nótese que en esta condición el rendimiento es de exactamente el $50\\%$, disipándose la mitad de la potencia dentro del propio generador.</p>
+            </div>
+
+            <!-- Gráfico SVG: Máxima Transferencia de Potencia (Circuito y Curva Característica) -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico: Máxima Transferencia de Potencia — Circuito Adaptado y Curva P_L vs R_L
+              </h6>
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- Panel Izquierdo: Circuito Adaptador Thévenin - Carga R_L -->
+                  <g transform="translate(15, 10)">
+                    <rect x="0" y="0" width="285" height="210" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="142" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Circuito: Generador y Carga R_L</text>
+                    <text x="142" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Generador Thévenin (V_th, R_th) + Carga Variable R_L</text>
+
+                    <!-- Fuente V_th -->
+                    <circle cx="40" cy="100" r="15" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+                    <text x="40" y="96" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+</text>
+                    <text x="40" y="108" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9">-</text>
+                    <text x="18" y="104" text-anchor="end" fill="#2563eb" font-weight="bold" font-size="9.5">V_th</text>
+
+                    <!-- Conexión a R_th -->
+                    <line x1="40" y1="85" x2="40" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <line x1="40" y1="60" x2="80" y2="60" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Resistor R_th -->
+                    <path d="M 80 60 L 86 52 L 96 68 L 106 52 L 116 68 L 126 52 L 132 60" stroke="#334155" stroke-width="2" fill="none"/>
+                    <line x1="132" y1="60" x2="195" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <text x="106" y="44" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R_th</text>
+
+                    <!-- Flecha de corriente de carga I_L -->
+                    <line x1="145" y1="52" x2="175" y2="52" stroke="#2563eb" stroke-width="1.8"/>
+                    <polygon points="175,49 181,52 175,55" fill="#2563eb"/>
+                    <text x="160" y="44" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">I_L ➔</text>
+
+                    <!-- Conexión inferior -->
+                    <line x1="40" y1="115" x2="40" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <line x1="40" y1="140" x2="195" y2="140" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Bornes A y B -->
+                    <circle cx="195" cy="60" r="3.5" fill="#ef4444"/>
+                    <text x="195" y="48" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">A</text>
+
+                    <circle cx="195" cy="140" r="3.5" fill="#3b82f6"/>
+                    <text x="195" y="152" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9">B</text>
+
+                    <!-- Resistor de Carga Variable R_L -->
+                    <line x1="195" y1="60" x2="235" y2="60" stroke="#64748b" stroke-width="2"/>
+                    <line x1="235" y1="60" x2="235" y2="72" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 235 72 L 229 78 L 241 86 L 229 94 L 241 102 L 229 110 L 235 116" stroke="#d97706" stroke-width="2.2" fill="none"/>
+                    <line x1="235" y1="116" x2="235" y2="140" stroke="#64748b" stroke-width="2"/>
+                    <line x1="195" y1="140" x2="235" y2="140" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Flecha de reóstato / carga variable -->
+                    <line x1="215" y1="120" x2="255" y2="68" stroke="#d97706" stroke-width="1.8"/>
+                    <polygon points="250,67 257,65 255,73" fill="#d97706"/>
+                    <text x="256" y="98" text-anchor="start" fill="#d97706" font-weight="bold" font-size="10.5">R_L</text>
+
+                    <!-- Cuadro fórmula óptima -->
+                    <rect x="15" y="158" width="255" height="42" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="142" y="172" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">Condición Óptima: R_L = R_th</text>
+                    <text x="142" y="188" text-anchor="middle" fill="#047857" font-size="8.5">P_L,max = V_th² / (4 · R_th)  |  η = 50%</text>
+                  </g>
+
+                  <!-- Panel Derecho: Curva Gráfica P_L(R_L) y Rendimiento η -->
+                  <g transform="translate(315, 10)">
+                    <rect x="0" y="0" width="350" height="210" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="11">Curva Característica P_L vs R_L</text>
+                    <text x="175" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Pico de potencia transferida vs Rendimiento energético η</text>
+
+                    <!-- Ejes Cartesianos -->
+                    <!-- Eje Y (Potencia P_L) -->
+                    <line x1="45" y1="165" x2="45" y2="45" stroke="#64748b" stroke-width="1.5"/>
+                    <polygon points="42,48 45,40 48,48" fill="#64748b"/>
+                    <text x="35" y="46" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8.5">P_L (W)</text>
+
+                    <!-- Eje X (Resistencia R_L) -->
+                    <line x1="45" y1="165" x2="330" y2="165" stroke="#64748b" stroke-width="1.5"/>
+                    <polygon points="325,162 333,165 325,168" fill="#64748b"/>
+                    <text x="325" y="180" text-anchor="end" fill="#64748b" font-weight="bold" font-size="8.5">R_L (Ω) ➔</text>
+
+                    <!-- Marcas en Eje X -->
+                    <text x="45" y="177" text-anchor="middle" fill="#64748b" font-size="8">0 (cc)</text>
+
+                    <!-- Marca R_L = R_th -->
+                    <line x1="140" y1="163" x2="140" y2="167" stroke="#64748b" stroke-width="1.5"/>
+                    <text x="140" y="178" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">R_th</text>
+
+                    <!-- Marca 2·R_th y 3·R_th -->
+                    <line x1="215" y1="163" x2="215" y2="167" stroke="#64748b" stroke-width="1.5"/>
+                    <text x="215" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">2·R_th</text>
+
+                    <line x1="285" y1="163" x2="285" y2="167" stroke="#64748b" stroke-width="1.5"/>
+                    <text x="285" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">3·R_th</text>
+
+                    <!-- Marca P_L,max en Eje Y -->
+                    <line x1="43" y1="65" x2="47" y2="65" stroke="#1e40af" stroke-width="1.5"/>
+                    <text x="40" y="68" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8">P_L,max</text>
+
+                    <!-- Líneas Guía al Pico -->
+                    <line x1="45" y1="65" x2="140" y2="65" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 3"/>
+                    <line x1="140" y1="65" x2="140" y2="165" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+                    <!-- Curva de Rendimiento η(%) (Ámbar discontinuous) -->
+                    <path d="M 45 165 Q 90 145, 140 120 T 240 85 T 320 72" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 2" fill="none"/>
+                    <circle cx="140" cy="120" r="3" fill="#d97706"/>
+                    <text x="148" y="123" text-anchor="start" fill="#d97706" font-weight="bold" font-size="7.5">η = 50%</text>
+                    <text x="315" y="65" text-anchor="end" fill="#d97706" font-size="7">η → 100% (ca)</text>
+
+                    <!-- Curva de Potencia P_L(R_L) (Azul campana) -->
+                    <path d="M 45 165 C 75 140, 105 70, 140 65 C 180 72, 230 115, 320 145" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+                    <circle cx="140" cy="65" r="4.5" fill="#2563eb"/>
+
+                    <!-- Etiqueta del Pico Máximo -->
+                    <rect x="110" y="42" width="135" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="177" y="55" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8">P_max = V_th² / 4·R_th</text>
+
+                    <!-- Leyenda inferior -->
+                    <rect x="25" y="186" width="300" height="18" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="175" y="198" text-anchor="middle" fill="#475569" font-size="7.5">Azul: Potencia P_L (pico en R_th) | Ámbar: Rendimiento η = R_L / (R_th + R_L)</text>
+                  </g>
+                </svg>
+              </div>
             </div>
           `
         },
