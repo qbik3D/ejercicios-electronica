@@ -371,111 +371,119 @@ const MANUAL_TEORIA_E1 = {
               <div class="overflow-x-auto flex justify-center py-1">
                 <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
                   <!-- Lado Izquierdo: Configuración Triángulo (Delta) -->
-                  <g transform="translate(15, 10)">
-                    <rect x="0" y="0" width="265" height="210" rx="10" fill="#a855f7" fill-opacity="0.04" stroke="#a855f7" stroke-opacity="0.35" stroke-width="1.2"/>
-                    <text x="132" y="20" text-anchor="middle" font-weight="bold" fill="#7e22ce" font-size="11">Conexión Triángulo (Δ)</text>
-                    <text x="132" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas externas entre nodos A, B y C</text>
+                  <g transform="translate(15, 8)">
+                    <rect x="0" y="0" width="265" height="214" rx="10" fill="#a855f7" fill-opacity="0.04" stroke="#a855f7" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="132" y="18" text-anchor="middle" font-weight="bold" fill="#7e22ce" font-size="11">Conexión Triángulo (Δ)</text>
+                    <text x="132" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas externas entre nodos A, B y C</text>
+
+                    <!-- Lado A-B: R_AB (Rotado exactamente a 128.8° a lo largo de la rama) -->
+                    <g transform="translate(87, 110) rotate(128.8)">
+                      <line x1="-71.8" y1="0" x2="-26" y2="0" stroke="#64748b" stroke-width="2"/>
+                      <path d="M -26 0 L -21 -7 L -13 7 L -5 -7 L 3 7 L 11 -7 L 19 7 L 26 0" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                      <line x1="26" y1="0" x2="71.8" y2="0" stroke="#64748b" stroke-width="2"/>
+                    </g>
+                    <rect x="34" y="99" width="38" height="20" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="53" y="113" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">AB</tspan></text>
+
+                    <!-- Lado A-C: R_CA (Rotado exactamente a 51.2° a lo largo de la rama) -->
+                    <g transform="translate(177, 110) rotate(51.2)">
+                      <line x1="-71.8" y1="0" x2="-26" y2="0" stroke="#64748b" stroke-width="2"/>
+                      <path d="M -26 0 L -21 -7 L -13 7 L -5 -7 L 3 7 L 11 -7 L 19 7 L 26 0" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                      <line x1="26" y1="0" x2="71.8" y2="0" stroke="#64748b" stroke-width="2"/>
+                    </g>
+                    <rect x="193" y="99" width="38" height="20" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="212" y="113" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">CA</tspan></text>
+
+                    <!-- Lado B-C: R_BC (Base horizontal) -->
+                    <line x1="42" y1="166" x2="104" y2="166" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 104 166 L 109 159 L 117 173 L 125 159 L 133 173 L 141 159 L 149 173 L 156 166" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
+                    <line x1="156" y1="166" x2="222" y2="166" stroke="#64748b" stroke-width="2"/>
+                    <rect x="113" y="177" width="38" height="20" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="132" y="191" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">BC</tspan></text>
 
                     <!-- Nodo A (Arriba) -->
-                    <circle cx="132" cy="50" r="5" fill="#ef4444"/>
-                    <text x="132" y="42" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">Nodo A</text>
+                    <circle cx="132" cy="54" r="5" fill="#ef4444"/>
+                    <text x="132" y="44" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">Nodo A</text>
 
                     <!-- Nodo B (Abajo Izquierda) -->
-                    <circle cx="35" cy="170" r="5" fill="#3b82f6"/>
-                    <text x="25" y="185" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">Nodo B</text>
+                    <circle cx="42" cy="166" r="5" fill="#3b82f6"/>
+                    <text x="42" y="184" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">Nodo B</text>
 
                     <!-- Nodo C (Abajo Derecha) -->
-                    <circle cx="230" cy="170" r="5" fill="#10b981"/>
-                    <text x="240" y="185" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="11">Nodo C</text>
-
-                    <!-- Lado A-B: R_AB -->
-                    <line x1="132" y1="50" x2="98" y2="92" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 98 92 L 91 97 L 98 107 L 86 113 L 93 123 L 81 129 L 88 139" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
-                    <line x1="88" y1="139" x2="35" y2="170" stroke="#64748b" stroke-width="2"/>
-                    <rect x="42" y="96" width="38" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
-                    <text x="61" y="109" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_AB</text>
-
-                    <!-- Lado A-C: R_CA -->
-                    <line x1="132" y1="50" x2="166" y2="92" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 166 92 L 173 97 L 166 107 L 178 113 L 171 123 L 183 129 L 176 139" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
-                    <line x1="176" y1="139" x2="230" y2="170" stroke="#64748b" stroke-width="2"/>
-                    <rect x="185" y="96" width="38" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
-                    <text x="204" y="109" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_CA</text>
-
-                    <!-- Lado B-C: R_BC (Base) -->
-                    <line x1="35" y1="170" x2="95" y2="170" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 95 170 L 101 163 L 111 177 L 121 163 L 131 177 L 141 163 L 151 177 L 157 170" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
-                    <line x1="157" y1="170" x2="230" y2="170" stroke="#64748b" stroke-width="2"/>
-                    <rect x="110" y="182" width="44" height="18" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
-                    <text x="132" y="195" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="9.5">R_BC</text>
+                    <circle cx="222" cy="166" r="5" fill="#10b981"/>
+                    <text x="222" y="184" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="10.5">Nodo C</text>
                   </g>
 
                   <!-- Panel Central: Conversión Bidireccional -->
-                  <g transform="translate(285, 10)">
-                    <rect x="0" y="0" width="110" height="210" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+                  <g transform="translate(285, 8)">
+                    <rect x="0" y="0" width="110" height="214" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
 
                     <!-- Flecha Delta -> Estrella -->
-                    <line x1="15" y1="65" x2="90" y2="65" stroke="#7e22ce" stroke-width="2.2"/>
-                    <polygon points="90,60 98,65 90,70" fill="#7e22ce"/>
-                    <text x="55" y="55" text-anchor="middle" fill="#7e22ce" font-weight="bold" font-size="9">Δ ➔ Y</text>
-                    <text x="55" y="77" text-anchor="middle" fill="#64748b" font-size="7.5">R_Y = Prod_ady</text>
-                    <text x="55" y="87" text-anchor="middle" fill="#64748b" font-size="7.5">/ Σ R_Δ</text>
+                    <line x1="15" y1="62" x2="90" y2="62" stroke="#7e22ce" stroke-width="2.2"/>
+                    <polygon points="90,57 98,62 90,67" fill="#7e22ce"/>
+                    <text x="55" y="52" text-anchor="middle" fill="#7e22ce" font-weight="bold" font-size="9.5">Δ ➔ Y</text>
+                    <text x="55" y="74" text-anchor="middle" fill="#64748b" font-size="8">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = Prod<tspan baseline-shift="sub" font-size="70%">ady</tspan></text>
+                    <text x="55" y="85" text-anchor="middle" fill="#64748b" font-size="8">/ Σ R<tspan baseline-shift="sub" font-size="70%">Δ</tspan></text>
 
                     <!-- Flecha Estrella -> Delta -->
-                    <line x1="95" y1="125" x2="20" y2="125" stroke="#2563eb" stroke-width="2.2"/>
-                    <polygon points="20,120 12,125 20,130" fill="#2563eb"/>
-                    <text x="55" y="115" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">Y ➔ Δ</text>
-                    <text x="55" y="137" text-anchor="middle" fill="#64748b" font-size="7.5">R_Δ = Σ(R_i·R_j)</text>
-                    <text x="55" y="147" text-anchor="middle" fill="#64748b" font-size="7.5">/ R_opuesta</text>
+                    <line x1="95" y1="124" x2="20" y2="124" stroke="#2563eb" stroke-width="2.2"/>
+                    <polygon points="20,119 12,124 20,129" fill="#2563eb"/>
+                    <text x="55" y="114" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9.5">Y ➔ Δ</text>
+                    <text x="55" y="136" text-anchor="middle" fill="#64748b" font-size="8">R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> = Σ(R<tspan baseline-shift="sub" font-size="70%">i</tspan>·R<tspan baseline-shift="sub" font-size="70%">j</tspan>)</text>
+                    <text x="55" y="147" text-anchor="middle" fill="#64748b" font-size="8">/ R<tspan baseline-shift="sub" font-size="70%">opuesta</tspan></text>
 
                     <!-- Simetría -->
-                    <rect x="6" y="165" width="98" height="35" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <rect x="6" y="165" width="98" height="37" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
                     <text x="55" y="178" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="8">Simétrico:</text>
-                    <text x="55" y="192" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="8.5">R_Y = R_Δ / 3</text>
+                    <text x="55" y="193" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="9">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> / 3</text>
                   </g>
 
                   <!-- Lado Derecho: Configuración Estrella (Wye) -->
-                  <g transform="translate(400, 10)">
-                    <rect x="0" y="0" width="265" height="210" rx="10" fill="#2563eb" fill-opacity="0.04" stroke="#2563eb" stroke-opacity="0.35" stroke-width="1.2"/>
-                    <text x="132" y="20" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="11">Conexión Estrella (Y)</text>
-                    <text x="132" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas unidas al nodo neutro central N</text>
+                  <g transform="translate(400, 8)">
+                    <rect x="0" y="0" width="265" height="214" rx="10" fill="#2563eb" fill-opacity="0.04" stroke="#2563eb" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="132" y="18" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="11">Conexión Estrella (Y)</text>
+                    <text x="132" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas unidas al nodo neutro central N</text>
 
-                    <!-- Nodo A (Arriba) -->
-                    <circle cx="132" cy="50" r="5" fill="#ef4444"/>
-                    <text x="132" y="42" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">Nodo A</text>
+                    <!-- Rama A a N: R_A (Vertical) -->
+                    <line x1="132" y1="54" x2="132" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <path d="M 132 70 L 126 76 L 138 84 L 126 92 L 138 100 L 126 106 L 132 112" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                    <line x1="132" y1="112" x2="132" y2="126" stroke="#64748b" stroke-width="2"/>
+                    <rect x="144" y="81" width="30" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="159" y="95" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">A</tspan></text>
 
-                    <!-- Nodo B (Abajo Izquierda) -->
-                    <circle cx="35" cy="170" r="5" fill="#3b82f6"/>
-                    <text x="25" y="185" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">Nodo B</text>
+                    <!-- Rama B a N: R_B (Rotada exactamente a 156.0° a lo largo de la rama) -->
+                    <g transform="translate(87, 146) rotate(156.0)">
+                      <line x1="-49.2" y1="0" x2="-22" y2="0" stroke="#64748b" stroke-width="2"/>
+                      <path d="M -22 0 L -17 -6 L -10 6 L -3 -6 L 4 6 L 11 -6 L 17 6 L 22 0" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                      <line x1="22" y1="0" x2="49.2" y2="0" stroke="#64748b" stroke-width="2"/>
+                    </g>
+                    <rect x="72" y="159" width="30" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="87" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
 
-                    <!-- Nodo C (Abajo Derecha) -->
-                    <circle cx="230" cy="170" r="5" fill="#10b981"/>
-                    <text x="240" y="185" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="11">Nodo C</text>
+                    <!-- Rama C a N: R_C (Rotada exactamente a 24.0° a lo largo de la rama) -->
+                    <g transform="translate(177, 146) rotate(24.0)">
+                      <line x1="-49.2" y1="0" x2="-22" y2="0" stroke="#64748b" stroke-width="2"/>
+                      <path d="M -22 0 L -17 -6 L -10 6 L -3 -6 L 4 6 L 11 -6 L 17 6 L 22 0" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+                      <line x1="22" y1="0" x2="49.2" y2="0" stroke="#64748b" stroke-width="2"/>
+                    </g>
+                    <rect x="162" y="159" width="30" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="177" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
 
                     <!-- Nodo Central Neutro N -->
-                    <circle cx="132" cy="120" r="5" fill="#64748b"/>
-                    <text x="148" y="123" text-anchor="start" fill="#64748b" font-weight="bold" font-size="10">N (Neutro)</text>
+                    <circle cx="132" cy="126" r="4.5" fill="#64748b"/>
+                    <text x="144" y="124" text-anchor="start" fill="#475569" font-weight="bold" font-size="9.5">N (Neutro)</text>
 
-                    <!-- Rama A a N: R_A -->
-                    <line x1="132" y1="50" x2="132" y2="65" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 132 65 L 126 71 L 138 79 L 126 87 L 138 95 L 126 103 L 132 109" stroke="#2563eb" stroke-width="2.2" fill="none"/>
-                    <line x1="132" y1="109" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
-                    <rect x="142" y="78" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="158" y="91" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_A</text>
+                    <!-- Nodo A (Arriba) -->
+                    <circle cx="132" cy="54" r="5" fill="#ef4444"/>
+                    <text x="132" y="44" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">Nodo A</text>
 
-                    <!-- Rama B a N: R_B -->
-                    <line x1="35" y1="170" x2="68" y2="152" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 68 152 L 72 144 L 84 153 L 88 141 L 100 150 L 104 138 L 112 144" stroke="#2563eb" stroke-width="2.2" fill="none"/>
-                    <line x1="112" y1="144" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
-                    <rect x="68" y="160" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="84" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_B</text>
+                    <!-- Nodo B (Abajo Izquierda) -->
+                    <circle cx="42" cy="166" r="5" fill="#3b82f6"/>
+                    <text x="42" y="184" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">Nodo B</text>
 
-                    <!-- Rama C a N: R_C -->
-                    <line x1="230" y1="170" x2="197" y2="152" stroke="#64748b" stroke-width="2"/>
-                    <path d="M 197 152 L 193 144 L 181 153 L 177 141 L 165 150 L 161 138 L 153 144" stroke="#2563eb" stroke-width="2.2" fill="none"/>
-                    <line x1="153" y1="144" x2="132" y2="120" stroke="#64748b" stroke-width="2"/>
-                    <rect x="165" y="160" width="32" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="181" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">R_C</text>
+                    <!-- Nodo C (Abajo Derecha) -->
+                    <circle cx="222" cy="166" r="5" fill="#10b981"/>
+                    <text x="222" y="184" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="10.5">Nodo C</text>
                   </g>
                 </svg>
               </div>
