@@ -61,83 +61,81 @@ const MANUAL_TEORIA_E1 = {
                 📊 Gráfico: Sentido de Corriente y Polaridad de Tensión sobre una Resistencia (R)
               </h6>
               <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 640 180" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                <svg viewBox="0 0 640 195" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
                   <!-- Caso 1: Convención Pasiva Estándar -->
-                  <g transform="translate(15, 10)">
-                    <rect x="0" y="0" width="295" height="155" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="10.5">Caso Estándar: Convención Pasiva</text>
-                    <text x="147" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (+)</text>
+                  <g transform="translate(15, 8)">
+                    <rect x="0" y="0" width="295" height="175" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Caso Estándar: Convención Pasiva</text>
+                    <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (+)</text>
+
+                    <!-- Flecha de Caída de Tensión V_R (sentido único, opuesto a la corriente) -->
+                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B &gt; 0 (Caída de tensión)</text>
+                    <line x1="60" y1="58" x2="210" y2="58" stroke="#ef4444" stroke-width="1.8"/>
+                    <polygon points="60,54 50,58 60,62" fill="#ef4444"/>
 
                     <!-- Terminal A (+) -->
-                    <circle cx="35" cy="70" r="4" fill="#ef4444"/>
-                    <text x="35" y="58" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">A (+)</text>
+                    <text x="35" y="74" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">A (+)</text>
+                    <circle cx="35" cy="86" r="4" fill="#ef4444"/>
 
                     <!-- Cable conductor -->
-                    <line x1="35" y1="70" x2="85" y2="70" stroke="#64748b" stroke-width="2"/>
-
-                    <!-- Flecha de Corriente I -->
-                    <line x1="45" y1="88" x2="80" y2="88" stroke="#2563eb" stroke-width="2.2"/>
-                    <polygon points="80,84 87,88 80,92" fill="#2563eb"/>
-                    <text x="63" y="103" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔</text>
+                    <line x1="35" y1="86" x2="85" y2="86" stroke="#64748b" stroke-width="2"/>
 
                     <!-- Símbolo de Resistencia R (Zigzag) -->
-                    <path d="M 85 70 L 92 60 L 105 80 L 118 60 L 131 80 L 144 60 L 157 80 L 164 70" fill="none" stroke="#334155" stroke-width="2.2"/>
-                    <text x="125" y="50" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                    <text x="125" y="70" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                    <path d="M 85 86 L 92 76 L 105 96 L 118 76 L 131 96 L 144 76 L 157 96 L 164 86" fill="none" stroke="#334155" stroke-width="2.2"/>
 
                     <!-- Cable conductor a Terminal B (-) -->
-                    <line x1="164" y1="70" x2="220" y2="70" stroke="#64748b" stroke-width="2"/>
-                    <circle cx="220" cy="70" r="4" fill="#3b82f6"/>
-                    <text x="220" y="58" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">B (-)</text>
+                    <line x1="164" y1="86" x2="220" y2="86" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="220" cy="86" r="4" fill="#3b82f6"/>
+                    <text x="220" y="74" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
 
-                    <!-- Cota de Tensión V_AB -->
-                    <path d="M 40 40 L 215 40" fill="none" stroke="#ef4444" stroke-width="1.4"/>
-                    <polygon points="45,37 38,40 45,43" fill="#ef4444"/>
-                    <polygon points="210,37 217,40 210,43" fill="#ef4444"/>
-                    <text x="127" y="34" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B &gt; 0</text>
+                    <!-- Flecha de Corriente I (hacia la derecha) -->
+                    <line x1="50" y1="104" x2="95" y2="104" stroke="#2563eb" stroke-width="2.2"/>
+                    <polygon points="95,100 103,104 95,108" fill="#2563eb"/>
+                    <text x="74" y="118" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔</text>
 
                     <!-- Fórmulas -->
-                    <rect x="25" y="112" width="245" height="32" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="147" y="125" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">V = + I · R</text>
-                    <text x="147" y="137" text-anchor="middle" fill="#047857" font-size="8.5">P = V·I = I²·R &gt; 0 (Absorbe potencia)</text>
+                    <rect x="25" y="130" width="245" height="34" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="147" y="143" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10.5">V = + I · R</text>
+                    <text x="147" y="156" text-anchor="middle" fill="#047857" font-size="8.5">P = V·I = I²·R &gt; 0 (Absorbe potencia)</text>
                   </g>
 
                   <!-- Caso 2: Referencia Invertida -->
-                  <g transform="translate(330, 10)">
-                    <rect x="0" y="0" width="295" height="155" rx="10" fill="#f59e0b" fill-opacity="0.04" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="10.5">Referencia Invertida de Corriente</text>
-                    <text x="147" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (-)</text>
+                  <g transform="translate(330, 8)">
+                    <rect x="0" y="0" width="295" height="175" rx="10" fill="#f59e0b" fill-opacity="0.04" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="11">Referencia Invertida de Corriente</text>
+                    <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (-)</text>
+
+                    <!-- Flecha de Caída de Tensión (sentido único, opuesto a la corriente I) -->
+                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B (Ref. A-B)</text>
+                    <line x1="50" y1="58" x2="200" y2="58" stroke="#b45309" stroke-width="1.8"/>
+                    <polygon points="200,54 210,58 200,62" fill="#b45309"/>
 
                     <!-- Terminal A (+) -->
-                    <circle cx="35" cy="70" r="4" fill="#ef4444"/>
-                    <text x="35" y="58" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">A (+)</text>
+                    <text x="35" y="74" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">A (+)</text>
+                    <circle cx="35" cy="86" r="4" fill="#ef4444"/>
 
                     <!-- Cable conductor -->
-                    <line x1="35" y1="70" x2="85" y2="70" stroke="#64748b" stroke-width="2"/>
+                    <line x1="35" y1="86" x2="85" y2="86" stroke="#64748b" stroke-width="2"/>
 
                     <!-- Símbolo de Resistencia R (Zigzag) -->
-                    <path d="M 85 70 L 92 60 L 105 80 L 118 60 L 131 80 L 144 60 L 157 80 L 164 70" fill="none" stroke="#334155" stroke-width="2.2"/>
-                    <text x="125" y="50" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                    <text x="125" y="70" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                    <path d="M 85 86 L 92 76 L 105 96 L 118 76 L 131 96 L 144 76 L 157 96 L 164 86" fill="none" stroke="#334155" stroke-width="2.2"/>
 
                     <!-- Cable conductor a Terminal B (-) -->
-                    <line x1="164" y1="70" x2="220" y2="70" stroke="#64748b" stroke-width="2"/>
-                    <circle cx="220" cy="70" r="4" fill="#3b82f6"/>
-                    <text x="220" y="58" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">B (-)</text>
+                    <line x1="164" y1="86" x2="220" y2="86" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="220" cy="86" r="4" fill="#3b82f6"/>
+                    <text x="220" y="74" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
 
                     <!-- Flecha de Corriente I Invertida (de derecha a izquierda) -->
-                    <line x1="210" y1="88" x2="175" y2="88" stroke="#b45309" stroke-width="2.2"/>
-                    <polygon points="175,84 168,88 175,92" fill="#b45309"/>
-                    <text x="192" y="103" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="10">⬅ I</text>
-
-                    <!-- Cota de Tensión V_AB -->
-                    <path d="M 40 40 L 215 40" fill="none" stroke="#ef4444" stroke-width="1.4"/>
-                    <polygon points="45,37 38,40 45,43" fill="#ef4444"/>
-                    <polygon points="210,37 217,40 210,43" fill="#ef4444"/>
-                    <text x="127" y="34" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B &gt; 0</text>
+                    <line x1="205" y1="104" x2="160" y2="104" stroke="#b45309" stroke-width="2.2"/>
+                    <polygon points="160,100 152,104 160,108" fill="#b45309"/>
+                    <text x="182" y="118" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="10">⬅ I</text>
 
                     <!-- Fórmulas -->
-                    <rect x="25" y="112" width="245" height="32" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="147" y="125" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="10">V = - I · R</text>
-                    <text x="147" y="137" text-anchor="middle" fill="#64748b" font-size="8.5">Signo (-) por referencia opuesta a la caída</text>
+                    <rect x="25" y="130" width="245" height="34" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="147" y="143" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="10.5">V = - I · R</text>
+                    <text x="147" y="156" text-anchor="middle" fill="#64748b" font-size="8.5">Signo (-) por referencia opuesta a la caída</text>
                   </g>
                 </svg>
               </div>
