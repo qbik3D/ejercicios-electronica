@@ -236,6 +236,9 @@ function procesarRutaHash() {
   if (hash.startsWith('#materia=')) {
     const materiaId = hash.replace('#materia=', '').trim();
     if (typeof MATERIAS_CONFIG !== 'undefined' && MATERIAS_CONFIG[materiaId]) {
+      if (AppState.materiaSeleccionada === materiaId && AppState.vistaActual === 'teoria') {
+        return;
+      }
       abrirMateria(materiaId);
       return;
     }
@@ -473,7 +476,7 @@ function volverAMaterias() {
 }
 
 // Abrir la vista completa de Compendio Teórico para la materia activa
-function abrirVistaTeoria() {
+function abrirVistaTeoria(skipScrollTop = false) {
   AppState.vistaActual = 'teoria';
   toggleListaEjerciciosMovil(false);
 
@@ -484,6 +487,29 @@ function abrirVistaTeoria() {
   if (vistaSeleccion) vistaSeleccion.classList.add('hidden');
   if (vistaMateria) vistaMateria.classList.add('hidden');
   if (vistaTeoria) vistaTeoria.classList.remove('hidden');
+
+  // Asegurar que la barra superior muestre el contexto de la materia
+  const btnVolver = document.getElementById('header-btn-volver-materias');
+  const infoMateria = document.getElementById('header-info-materia');
+  const btnRepasoTeoria = document.getElementById('btn-repaso-teoria');
+  const taglinePortal = document.getElementById('header-portal-tagline');
+
+  if (btnVolver) {
+    btnVolver.classList.remove('hidden');
+    btnVolver.classList.add('flex');
+  }
+  if (infoMateria) {
+    infoMateria.classList.remove('hidden');
+    infoMateria.classList.add('flex');
+  }
+  if (btnRepasoTeoria) {
+    btnRepasoTeoria.classList.remove('hidden');
+    btnRepasoTeoria.classList.add('flex');
+  }
+  if (taglinePortal) {
+    taglinePortal.classList.add('hidden');
+    taglinePortal.classList.remove('flex');
+  }
 
   const materia = getMateriaConfig();
   const tituloEl = document.getElementById('teoria-materia-titulo');
@@ -497,7 +523,14 @@ function abrirVistaTeoria() {
   }
 
   renderizarCompendioTeoria();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (!skipScrollTop) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Alias de retrocompatibilidad
+function abrirCompendioTeoria() {
+  abrirVistaTeoria();
 }
 
 // Volver desde el compendio teórico al entorno de ejercicios de la materia
@@ -528,25 +561,37 @@ function filtrarUnidad(unidadId) {
 function navegarASeccionTeorica(materiaId, seccionOUnidadId) {
   if (AppState.materiaSeleccionada !== materiaId) {
     AppState.materiaSeleccionada = materiaId;
+    localStorage.setItem('electronica_materia_activa', materiaId);
+    if (window.location.hash !== `#materia=${materiaId}`) {
+      window.location.hash = `materia=${materiaId}`;
+    }
     actualizarUIHeaderMateria();
     renderizarFiltrosUnidades();
     renderizarListaEjercicios();
   }
   
-  // Abrir y renderizar el compendio teórico de esa materia
-  abrirCompendioTeoria();
+  // Abrir y renderizar el compendio teórico de esa materia evitando saltar arriba
+  abrirVistaTeoria(true);
 
-  // Scroll suave al elemento objetivo y resaltado temporal visual
+  // Scroll suave al elemento objetivo con compensación del header fijo (h-16 = 64px + margen)
   setTimeout(() => {
     const el = document.getElementById(seccionOUnidadId) 
             || document.getElementById(`seccion-${seccionOUnidadId}`)
             || document.getElementById(`compendio-unidad-${seccionOUnidadId}`);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+
       el.classList.add('ring-2', 'ring-blue-500', 'ring-offset-4', 'dark:ring-offset-slate-900', 'transition-all');
       setTimeout(() => {
         el.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-4', 'dark:ring-offset-slate-900');
-      }, 2500);
+      }, 3000);
     }
   }, 120);
 }
