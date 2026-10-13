@@ -51,6 +51,25 @@ const MANUAL_TEORIA_E2 = {
                 donde $k_n = \\frac{1}{2} \\mu_n C_{ox} \\frac{W}{L}$ y $\\lambda = 1/V_A$ es el parámetro de modulación de longitud de canal (análogo al efecto Early del BJT).
               </p>
             </div>
+
+            <div class="p-3 my-3 rounded-xl bg-teal-500/10 dark:bg-teal-950/40 border border-teal-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-teal-900 dark:text-teal-300">
+                  Concepto Previo de Electrónica I:
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para recordar la física de portadores en silicio, dopaje y la barrera de potencial de la juntura PN que gobierna el estrangulamiento del JFET:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-1', 'e1-u2-fisica-juntura')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica I · Unidad 2 (Física de la Juntura PN)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -114,6 +133,25 @@ const MANUAL_TEORIA_E2 = {
             <p class="mb-2">Para $n$ etapas idénticas no interactuantes con frecuencia de corte individual $\\omega_H$:</p>
             $$\\mathbf{\\omega_{H,total} = \\omega_H \\sqrt{2^{1/n} - 1}}$$
             <p class="text-xs text-slate-600 dark:text-slate-400">Para $n = 2$, $\\omega_{H,total} \\approx 0.64 \\omega_H$; para $n = 3$, $\\omega_{H,total} \\approx 0.51 \\omega_H$. Al agregar etapas en cascada, el ancho de banda global siempre se reduce.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-emerald-900 dark:text-emerald-300">
+                  Profundización en Electrónica Aplicada I (Realimentación):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para el tratamiento formal del cálculo de impedancias y desensibilización al realimentar etapas multietapa mediante cuadripolos:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-aplicada-1', 'u4-topologias-impedancias')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica Aplicada I · Unidad 4 (Topologías e Impedancias)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -181,6 +219,25 @@ const MANUAL_TEORIA_E2 = {
             <p class="mb-2">Al utilizar un espejo de corriente PMOS activo como carga:</p>
             $$\\mathbf{A_d = -g_{mN} (r_{oN} \\parallel r_{oP}) = -\\frac{2}{\\lambda_N + \\lambda_P} \\frac{1}{V_{GSN} - V_{thN}}}$$
             <p class="text-xs text-slate-600 dark:text-slate-400">Proporciona ganancias superiores a $40 - 50\\text{ dB}$ en una sola etapa con área mínima de silicio.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-cyan-500/10 dark:bg-cyan-950/40 border border-cyan-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-cyan-900 dark:text-cyan-300">
+                  Fundamento en Electrónica Aplicada I (Par Bipolar y Fuentes Activas):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para la deducción matemática detallada del par diferencial BJT con función tangente hiperbólica $\\tanh$, CMRR analítico y la fuente Widlar:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-aplicada-1', 'u3-par-diferencial-teoria')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica Aplicada I · Unidad 3 (Par Diferencial BJT)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {

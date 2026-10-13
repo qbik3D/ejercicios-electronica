@@ -277,6 +277,25 @@ const MANUAL_TEORIA_E1 = {
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Recta de Carga Estática</h5>
             $$V_{CEQ} = V_{CC} - I_{CQ}(R_C + R_E)$$
             <p class="text-xs text-slate-600 dark:text-slate-400">Punto Q centrado para señal simétrica: $V_{CEQ} \\approx V_{CC}/2$.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-amber-900 dark:text-amber-300">
+                  Ampliación en Electrónica Aplicada I (Gran Señal y Máxima Excursión):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para el dimensionamiento del punto Q para máxima excursión simétrica sin recorte con carga dinámica $R_L$ acoplada y distorsión armónica:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-aplicada-1', 'u1-excursion-maxima')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica Aplicada I · Unidad 1 (Máxima Excursión Simétrica)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
             <div class="pt-2 flex justify-end">
               <button onclick="filtrarUnidad('bjt-pol'); volverAEjercicios();" class="text-xs font-mono text-purple-600 dark:text-purple-400 hover:underline flex items-center gap-1">
                 <span>Practicar ejercicios guiados de la Unidad 3</span>
@@ -357,6 +376,25 @@ const MANUAL_TEORIA_E1 = {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div class="p-3 my-3 rounded-xl bg-teal-500/10 dark:bg-teal-950/40 border border-teal-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-teal-900 dark:text-teal-300">
+                  Ampliación en Electrónica II (Transistores de Efecto de Campo FET):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para contrastar estas configuraciones BJT con etapas equivalentes en transistores unipolares JFET y MOSFET (Fuente Común y Drenaje Común / Seguidor de fuente) con impedancia de entrada casi infinita ($I_G \\approx 0$):
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-2', 'e2-u1-fisica-jfet-mosfet')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica II · Unidad 1 (Transistores JFET y MOSFET)</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
             <div class="pt-2 flex justify-end">
               <button onclick="filtrarUnidad('bjt-ac'); volverAEjercicios();" class="text-xs font-mono text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1">

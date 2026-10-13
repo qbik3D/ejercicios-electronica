@@ -111,6 +111,25 @@ const MANUAL_TEORIA_TC3 = {
             $$Z_{in}(s) = \\frac{R_1 R_3 R_5}{R_2 \\left( \\frac{1}{s C_4} \\right)} = s \\cdot \\left( \\frac{R_1 R_3 R_5 C_4}{R_2} \\right) = s \\cdot L_{eq}$$
             $$\\mathbf{L_{eq} = \\frac{R_1 R_3 R_5 C_4}{R_2}}$$
             <p class="text-xs text-slate-600 dark:text-slate-400">Permite obtener inductores de alta precisión y factor Q elevado sin masa ni pérdidas magnéticas.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-cyan-500/10 dark:bg-cyan-950/40 border border-cyan-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-cyan-900 dark:text-cyan-300">
+                  Fundamento Físico en Electrónica Aplicada I (Arquitectura del Op-Amp):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para comprender el comportamiento real de los amplificadores operacionales del GIC (producto ganancia-ancho de banda finito, compensación Miller y Slew Rate):
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-aplicada-1', 'u3-carga-activa-opamp')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica Aplicada I · Unidad 3 (Arquitectura Interna del Op-Amp)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -242,6 +261,25 @@ const MANUAL_TEORIA_TC3 = {
                   $$[Y_{red}] = [Y_{11}] - [Y_{12}] [Y_{22}]^{-1} [Y_{21}]$$
                 </li>
               </ol>
+            </div>
+
+            <div class="p-3 my-3 rounded-xl bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-emerald-900 dark:text-emerald-300">
+                  Aplicación en Electrónica Aplicada I (Método de Cuadripolos en Realimentación):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para ver la aplicación directa de los parámetros de cuadripolos de dos puertos en la resolución de amplificadores con efectos de carga de la red $\\beta$:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-aplicada-1', 'u4-metodo-cuadripolos')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica Aplicada I · Unidad 4 (Método Sistemático de Cuadripolos)</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
           `
         },

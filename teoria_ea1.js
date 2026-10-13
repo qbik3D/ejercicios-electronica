@@ -66,6 +66,25 @@ const MANUAL_TEORIA_EA1 = {
 
             <p class="mt-3">La <strong>Distorsión Armónica Total ($THD$)</strong> se calcula como:</p>
             $$THD = \\frac{\\sqrt{\\hat{V}_2^2 + \\hat{V}_3^2 + \\hat{V}_4^2 + \\dots}}{\\hat{V}_1} \\approx \\sqrt{HD_2^2 + HD_3^2}$$
+
+            <div class="p-3 my-3 rounded-xl bg-blue-500/10 dark:bg-blue-950/40 border border-blue-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-blue-900 dark:text-blue-300">
+                  Concepto Previo de Electrónica I:
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para repasar los parámetros lineales de pequeña señal del BJT ($g_m, r_\\pi, r_e, h_{fe}$) y su validez incremental:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-1', 'e1-u4-parametros-hibridos-pi')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica I · Unidad 4 (Modelo Híbrido Pi)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -229,6 +248,25 @@ const MANUAL_TEORIA_EA1 = {
             <p class="my-2">Para evitar la destrucción térmica del semiconductor, la velocidad a la que se genera calor debe ser menor que la velocidad a la que el sistema térmico lo disipa al ambiente:</p>
             $$\\frac{\\partial P_D}{\\partial T_j} < \\frac{1}{\\theta_{ja}}$$
             <p class="text-xs text-slate-600 dark:text-slate-400">Como $P_D = V_{CE} I_C = [V_{CC} - I_C(R_C + R_E)] I_C$, el punto crítico ocurre cuando $V_{CE} < V_{CC}/2$, donde un aumento de $I_C$ reduce la potencia disipada y estabiliza intrínsecamente el circuito.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-purple-500/10 dark:bg-purple-950/40 border border-purple-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-purple-900 dark:text-purple-300">
+                  Fundamento Previo de Electrónica I:
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para repasar el cálculo estático de mallas, divisor resistivo ($V_{BB}, R_B$) y ubicación del punto Q en continua:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-1', 'e1-u3-circuitos-polarizacion')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica I · Unidad 3 (Polarización DC del BJT)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -462,6 +500,25 @@ const MANUAL_TEORIA_EA1 = {
             </div>
 
             <p class="text-xs sm:text-sm mt-3">Para mayor estabilidad contra el embalamiento térmico, se añaden pequeñas resistencias degenerativas de emisor ($R_E \\approx 0.22\\,\\Omega - 0.47\\,\\Omega$) en los transistores de potencia, proveyendo una fuerte realimentación negativa local.</p>
+
+            <div class="p-3 my-3 rounded-xl bg-sky-500/10 dark:bg-sky-950/40 border border-sky-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sky-900 dark:text-sky-300">
+                  Ampliación en Electrónica II (Pares Compuestos de Potencia):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para etapas de salida de audio y potencia con transistores compuestos (Par Darlington y Par Sziklai / Realimentado) para multiplicar la ganancia de corriente $\\beta_{total} \\approx \\beta_1 \\beta_2$:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-2', 'e2-u2-pares-compuestos-cascode')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica II · Unidad 2 (Pares Darlington y Sziklai)</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           `
         },
         {
@@ -606,6 +663,25 @@ const MANUAL_TEORIA_EA1 = {
                   $$g_{md} = \\left. \\frac{d(i_{C1}-i_{C2})}{dv_{id}} \\right|_{v_{id}=0} = \\frac{I_{EE}}{2 V_T} = g_m$$
                 </li>
               </ul>
+            </div>
+
+            <div class="p-3 my-3 rounded-xl bg-teal-500/10 dark:bg-teal-950/40 border border-teal-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-teal-900 dark:text-teal-300">
+                  Comparativa con Electrónica II (Par Diferencial MOS):
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para contrastar el rango lineal del par bipolar frente al par con transistores de efecto de campo MOSFET (donde el rango es $\\Delta V_{in} \\le \\sqrt{2}(V_{GS}-V_{th})$) y cargas activas CMOS:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('electronica-2', 'e2-u3-par-diferencial-mos')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Electrónica II · Unidad 3 (Par Diferencial MOS y Cargas CMOS)</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
           `
         },
@@ -806,6 +882,25 @@ const MANUAL_TEORIA_EA1 = {
                   La función de transferencia global se vuelve completamente independiente de los transistores y queda dictada exclusivamente por resistores pasivos de alta precisión.
                 </li>
               </ul>
+            </div>
+
+            <div class="p-3 my-3 rounded-xl bg-indigo-500/10 dark:bg-indigo-950/40 border border-indigo-500/30 text-xs flex items-start gap-2.5">
+              <span class="text-base shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-indigo-900 dark:text-indigo-300">
+                  Fundamento Matemático de Teoría de Circuitos III:
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                  Para profundizar en el plano complejo $s$, la estabilidad de Hurwitz de funciones de red y los diagramas de Bode de lazo abierto $T(s)$:
+                </p>
+                <button 
+                  onclick="navegarASeccionTeorica('circuitos-3', 'tc3-u1-funciones-red')"
+                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
+                >
+                  <span>📖 Ver Teoría de Circuitos III · Unidad 1 (Funciones de Red y Estabilidad)</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
           `
         },

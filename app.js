@@ -524,6 +524,33 @@ function filtrarUnidad(unidadId) {
   volverAEjercicios();
 }
 
+// Navegar directamente a una sección teórica específica de cualquier materia (referencias cruzadas entre materias)
+function navegarASeccionTeorica(materiaId, seccionOUnidadId) {
+  if (AppState.materiaSeleccionada !== materiaId) {
+    AppState.materiaSeleccionada = materiaId;
+    actualizarUIHeaderMateria();
+    renderizarFiltrosUnidades();
+    renderizarListaEjercicios();
+  }
+  
+  // Abrir y renderizar el compendio teórico de esa materia
+  abrirCompendioTeoria();
+
+  // Scroll suave al elemento objetivo y resaltado temporal visual
+  setTimeout(() => {
+    const el = document.getElementById(seccionOUnidadId) 
+            || document.getElementById(`seccion-${seccionOUnidadId}`)
+            || document.getElementById(`compendio-unidad-${seccionOUnidadId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.classList.add('ring-2', 'ring-blue-500', 'ring-offset-4', 'dark:ring-offset-slate-900', 'transition-all');
+      setTimeout(() => {
+        el.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-4', 'dark:ring-offset-slate-900');
+      }, 2500);
+    }
+  }, 120);
+}
+
 // Generar dinámicamente todo el contenido conceptual de la materia ordenado por Unidades
 function renderizarCompendioTeoria() {
   const container = document.getElementById('contenedor-compendio-articulos');
