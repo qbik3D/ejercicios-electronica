@@ -116,25 +116,44 @@ function toggleTeoria() {
 function formatearTextoConLatex(texto) {
   if (!texto) return '';
 
-  // Procesa bloques $$ ... $$
-  let resultado = texto.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
+  // 1. Proteger bloques SVG intactos para que no sean alterados por KaTeX, markdown o saltos <br/>
+  const bloquesSvg = [];
+  let resultado = texto.replace(/<svg[\s\S]*?<\/svg>/gi, (match) => {
+    bloquesSvg.push(match);
+    return `___PRESERVED_SVG_BLOCK_${bloquesSvg.length - 1}___`;
+  });
+
+  // 2. Procesa bloques $$ ... $$
+  resultado = resultado.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
     return `<div class="katex-display my-2 overflow-x-auto">${renderLatex(formula, true)}</div>`;
   });
 
-  // Procesa bloques $ ... $
+  // 3. Procesa bloques $ ... $
   resultado = resultado.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
     return renderLatex(formula, false);
   });
 
-  // Headers markdown
+  // 4. Headers markdown
   resultado = resultado.replace(/^#### (.*?)$/gm, '<h5 class="text-sm font-bold text-indigo-300 mt-3 mb-1">$1</h5>');
   resultado = resultado.replace(/^### (.*?)$/gm, '<h4 class="text-base font-bold text-indigo-200 mt-4 mb-2 border-b border-indigo-900/50 pb-1">$1</h4>');
 
-  // Markdown básico: negrita, cursiva, listas
+  // 5. Markdown básico: negrita, cursiva, listas
   resultado = resultado.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  resultado = resultado.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  resultado = resultado.replace(/\n\n/g, '<br/><br/>');
-  resultado = resultado.replace(/\n- /g, '<br/>• ');
+  resultado = resultado.replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
+
+  // 6. Saltos de párrafo: No insertar <br/><br/> entre etiquetas de bloque HTML
+  const tieneHtmlBloque = /<\/?(p|div|section|article|table|h[1-6]|ul|ol|li|blockquote|header|footer|nav)[\s>]/i.test(texto);
+  if (!tieneHtmlBloque) {
+    resultado = resultado.replace(/\n\n/g, '<br/><br/>');
+    resultado = resultado.replace(/\n- /g, '<br/>• ');
+  } else {
+    resultado = resultado.replace(/(?<!>)\n\n(?!<)/g, '<br/><br/>');
+  }
+
+  // 7. Restaurar bloques SVG intactos
+  resultado = resultado.replace(/___PRESERVED_SVG_BLOCK_(\d+)___/g, (match, idx) => {
+    return bloquesSvg[parseInt(idx, 10)] || match;
+  });
 
   return resultado;
 }
