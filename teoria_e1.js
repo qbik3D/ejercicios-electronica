@@ -417,59 +417,576 @@ const MANUAL_TEORIA_E1 = {
       titulo: 'Unidad 2: Semiconductores, Juntura PN y Diodos',
       icono: '🔻',
       badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300',
-      introduccion: 'Esta unidad abarca la física de semiconductores de silicio, el dopaje tipo P y N, la formación de la zona de agotamiento o de carga espacial en la juntura PN, la ecuación de Shockley, el modelo incremental y las aplicaciones prácticas en rectificadores, filtros, recortadores y estabilizadores con diodo Zener.',
+      introduccion: 'Esta unidad abarca la teoría de bandas de energía y clasificación de materiales (conductores, aislantes y semiconductores), la física de semiconductores de silicio intrínsecos y extrínsecos (tipo P y N), la formación de la zona de carga espacial en la juntura PN, el análisis gráfico y microscópico de la polarización directa e inversa, la ecuación de Shockley, los modelos del diodo, y las aplicaciones en rectificadores, filtros capacitivos y reguladores Zener.',
       secciones: [
         {
-          id: 'e1-u2-fisica-juntura',
-          titulo: '2.1 Física del Semiconductor y la Juntura PN',
+          id: 'e1-u2-tipos-materiales',
+          titulo: '2.1 Estructura Atómica, Teoría de Bandas y Clasificación de Materiales',
           contenido: `
-            <p class="mb-3">El silicio cristalino es un semiconductor intrínseco del grupo IV. Mediante dopaje con impurezas pentavalentes (fósforo, arsénico) se obtienen materiales <strong>tipo N</strong> con electrones libres como portadores mayoritarios ($n_n \\approx N_D$). Con impurezas trivalentes (boro, galio) se obtienen materiales <strong>tipo P</strong> con huecos como portadores mayoritarios ($p_p \\approx N_A$).</p>
-            <p class="mb-2">Por ley de acción de masas en equilibrio térmico: $n \\cdot p = n_i^2(T)$, donde $n_i \\approx 1.5 \\times 10^{10}\\text{ cm}^{-3}$ a $300\\text{ K}$.</p>
+            <p class="mb-3">Las propiedades de conducción eléctrica de los sólidos se explican mediante la <strong>teoría cuántica de bandas de energía</strong>. En un átomo aislado, los electrones ocupan niveles discretos de energía. Al agruparse trillones de átomos en una red cristalina sólida periódica, el principio de exclusión de Pauli hace que los niveles electrónicos de valencia se desdoblen en rangos continuos de energías permitidas separados por intervalos prohibidos.</p>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Formación de la Zona de Carga Espacial (ZCE)</h5>
-            <p class="mb-2">Al unir un semiconductor P y uno N, se produce difusión de electrones hacia el lado P y de huecos hacia el lado N. Los iones fijos no compensados ($N_D^+$ en el lado N y $N_A^-$ en el lado P) crean un campo eléctrico interno $\\vec{\\mathcal{E}}$ que se opone a la difusión ulterior, alcanzando el equilibrio térmico.</p>
-            <p class="my-2">El <strong>potencial de contacto interno (barrera de potencial)</strong> es:</p>
-            $$V_0 = V_{bi} = V_T \\ln\\left( \\frac{N_A N_D}{n_i^2} \\right)$$
-            <p class="text-xs text-slate-600 dark:text-slate-400">donde $V_T = k T / q \\approx 25.86\\text{ mV}$ a temperatura ambiente. En silicio típico, $V_0 \\approx 0.6\\text{ V} - 0.8\\text{ V}$.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1 uppercase tracking-wider text-[11px]">Banda de Valencia (BV)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Rango de energías ocupado por los electrones más externos ligados a los enlaces químicos covalentes. Sus electrones no tienen libertad de desplazamiento a menos que reciban energía adicional para saltar a la banda superior.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1 uppercase tracking-wider text-[11px]">Banda Prohibida (*Bandgap* $E_g$)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Brecha de energía intermedia ($E_g = E_C - E_V$) en la cual no pueden existir estados cuánticos electrónicos estables en un cristal puro perfecto.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1 uppercase tracking-wider text-[11px]">Banda de Conducción (BC)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Banda energética superior en la que los electrones se hallan deslocalizados (libres de los enlaces individuales). Ante la presencia de un campo eléctrico externo $\\vec{\\mathcal{E}}$, adquieren velocidad de deriva y transportan corriente eléctrica.
+                </p>
+              </div>
+            </div>
+
+            <!-- Gráfico SVG: Diagrama de Bandas de Energía de Materiales -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3 text-center">
+                📊 Diagrama Comparativo de Bandas de Energía ($E_g$)
+              </h6>
+              <div class="overflow-x-auto flex justify-center">
+                <svg viewBox="0 0 680 250" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                  <!-- Fondo sutil de cuadrícula -->
+                  <rect width="680" height="250" fill="transparent"/>
+
+                  <!-- Columna 1: Conductor -->
+                  <g transform="translate(30, 20)">
+                    <rect x="0" y="0" width="180" height="200" rx="12" fill="#3b82f6" fill-opacity="0.06" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1.5"/>
+                    <text x="90" y="24" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="12">1. CONDUCTOR</text>
+                    <text x="90" y="38" text-anchor="middle" fill="#64748b" font-size="10">(Cobre, Plata, Oro)</text>
+                    
+                    <!-- Banda Conducción -->
+                    <rect x="25" y="55" width="130" height="55" rx="6" fill="#8b5cf6" fill-opacity="0.25" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <text x="90" y="85" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">Banda Conducción</text>
+                    
+                    <!-- Zona de Superposición -->
+                    <rect x="25" y="95" width="130" height="30" fill="#3b82f6" fill-opacity="0.4" stroke="#2563eb" stroke-dasharray="3,3"/>
+                    <text x="90" y="113" text-anchor="middle" fill="#1d4ed8" font-size="9" font-weight="bold">Superposición (Overlap)</text>
+                    
+                    <!-- Banda Valencia -->
+                    <rect x="25" y="110" width="130" height="55" rx="6" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="90" y="145" text-anchor="middle" fill="#2563eb" font-size="11" font-weight="600">Banda Valencia</text>
+
+                    <!-- Etiqueta Gap -->
+                    <text x="90" y="185" text-anchor="middle" fill="#059669" font-size="11" font-weight="bold">E_g ≈ 0 eV</text>
+                  </g>
+
+                  <!-- Columna 2: Semiconductor -->
+                  <g transform="translate(250, 20)">
+                    <rect x="0" y="0" width="180" height="200" rx="12" fill="#10b981" fill-opacity="0.06" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5"/>
+                    <text x="90" y="24" text-anchor="middle" font-weight="bold" fill="#059669" font-size="12">2. SEMICONDUCTOR</text>
+                    <text x="90" y="38" text-anchor="middle" fill="#64748b" font-size="10">(Silicio, Germanio, GaAs)</text>
+                    
+                    <!-- Banda Conducción -->
+                    <rect x="25" y="55" width="130" height="42" rx="6" fill="#8b5cf6" fill-opacity="0.25" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <text x="90" y="80" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">Banda Conducción</text>
+                    
+                    <!-- Gap Intermedio -->
+                    <line x1="90" y1="97" x2="90" y2="128" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+                    <rect x="40" y="103" width="100" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+                    <text x="90" y="117" text-anchor="middle" fill="#b45309" font-size="10" font-weight="bold">E_g ≈ 1.12 eV (Si)</text>
+                    
+                    <!-- Banda Valencia -->
+                    <rect x="25" y="128" width="130" height="42" rx="6" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="90" y="153" text-anchor="middle" fill="#2563eb" font-size="11" font-weight="600">Banda Valencia</text>
+
+                    <text x="90" y="185" text-anchor="middle" fill="#047857" font-size="10" font-weight="medium">Gap moderado (excitación térmica)</text>
+                  </g>
+
+                  <!-- Columna 3: Aislante -->
+                  <g transform="translate(470, 20)">
+                    <rect x="0" y="0" width="180" height="200" rx="12" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.3" stroke-width="1.5"/>
+                    <text x="90" y="24" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="12">3. AISLANTE</text>
+                    <text x="90" y="38" text-anchor="middle" fill="#64748b" font-size="10">(SiO2, Vidrio, Diamante)</text>
+                    
+                    <!-- Banda Conducción Vacía -->
+                    <rect x="25" y="55" width="130" height="35" rx="6" fill="#94a3b8" fill-opacity="0.2" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <text x="90" y="77" text-anchor="middle" fill="#64748b" font-size="10">BC Vacía (Sin e⁻)</text>
+                    
+                    <!-- Gap Enorme -->
+                    <rect x="35" y="97" width="110" height="22" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+                    <text x="90" y="112" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="bold">E_g &gt; 5 a 9 eV</text>
+                    
+                    <!-- Banda Valencia Llena -->
+                    <rect x="25" y="135" width="130" height="35" rx="6" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="90" y="157" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="600">BV Completa (e⁻ fijos)</text>
+
+                    <text x="90" y="185" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="medium">Gap inaccesible a 300 K</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Tabla Comparativa Fundamental de Propiedades Eléctricas</h5>
+            <div class="overflow-x-auto my-2">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Parámetro / Propiedad</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Conductor (Metal)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Semiconductor (Silicio)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Aislante (Dieléctrico)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-sans">
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Banda Prohibida ($E_g$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$E_g \\approx 0\\text{ eV}$ (superpuestas)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$1.12\\text{ eV}$ (Si), $0.67\\text{ eV}$ (Ge)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$E_g > 5 - 9\\text{ eV}$</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Resistividad ($\\rho$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\sim 10^{-8}\\,\\Omega\\cdot\\text{m}$ (muy baja)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$10^{-3} - 10^3\\,\\Omega\\cdot\\text{m}$ (modulable)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$> 10^{12}\\,\\Omega\\cdot\\text{m}$ (altísima)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Densidad Portadores ($n$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\sim 10^{28}\\,\\text{m}^{-3}$ (abundancia fija)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$n_i \\approx 1.5 \\times 10^{16}\\,\\text{m}^{-3}$ a $300\\text{ K}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\approx 0$ a temperatura ambiente</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Efecto Térmico ($T \\uparrow$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">
+                      <strong>PTC</strong> ($\\rho$ aumenta por mayor dispersión reticular con fonones)
+                    </td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">
+                      <strong>NTC</strong> ($\\rho$ disminuye exponencialmente por generación térmica de pares $e^--h^+$)
+                    </td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">
+                      Permanece aislante hasta la tensión de ruptura dieléctrica
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Portadores de Carga</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Únicamente electrones libres</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Electrones libres y <strong>huecos</strong> ($h^+$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Sin portadores móviles disponibles</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Semiconductores Intrínsecos y Dopaje Extrínseco</h5>
+            <p class="mb-2 text-xs sm:text-sm">
+              En un cristal de silicio puro (<strong>intrínseco</strong>), cada átomo comparte sus 4 electrones de valencia con 4 átomos vecinos mediante enlaces covalentes tetraédricos. A $0\\text{ K}$ todos los electrones están confinados (aislante ideal). A $300\\text{ K}$, la energía térmica excita electrones a la banda de conducción, dejando vacantes en la banda de valencia denominadas <strong>huecos</strong>:
+            </p>
+            $$n = p = n_i(T) = B \\cdot T^{3/2} \\exp\\left( -\\frac{E_g}{2 k T} \\right)$$
+            <p class="mb-2 text-xs sm:text-sm">
+              Mediante la técnica de <strong>dopaje</strong> (introducción controlada de impurezas en proporciones de 1 por millón a 1 por mil millones), se controla la conductividad en varios órdenes de magnitud:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2">
+              <div class="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200 text-xs">
+                <span class="font-bold uppercase tracking-wider block mb-1">🟦 Semiconductor Tipo N (Donores Pentavalentes)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Dopado con átomos del Grupo V (Fósforo $\\text{P}$, Arsénico $\\text{As}$, Antimonio $\\text{Sb}$). El quinto electrón no cabe en la red covalente y queda ligado débilmente con una energía de ionización de solo $\\sim 0.05\\text{ eV}$, donándose a la banda de conducción a temperatura ambiente.
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 mt-1 text-[11px]">
+                  <li><strong>Portadores mayoritarios:</strong> Electrones ($n_n \\approx N_D$).</li>
+                  <li><strong>Portadores minoritarios:</strong> Huecos ($p_n = n_i^2 / N_D \\ll n_n$).</li>
+                  <li>Iones fijos no móviles en la red: $N_D^+$ (positivos).</li>
+                </ul>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200 text-xs">
+                <span class="font-bold uppercase tracking-wider block mb-1">🟥 Semiconductor Tipo P (Aceptores Trivalentes)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Dopado con átomos del Grupo III (Boro $\\text{B}$, Galio $\\text{Ga}$, Indio $\\text{In}$). Al poseer solo 3 electrones de valencia, dejan un enlace incompleto o vacante que acepta fácilmente un electrón térmico de valencia, creando un hueco móvil.
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 mt-1 text-[11px]">
+                  <li><strong>Portadores mayoritarios:</strong> Huecos ($p_p \\approx N_A$).</li>
+                  <li><strong>Portadores minoritarios:</strong> Electrones ($n_p = n_i^2 / N_A \\ll p_p$).</li>
+                  <li>Iones fijos no móviles en la red: $N_A^-$ (negativos).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+              <strong>Ley de Acción de Masas:</strong> En condiciones de equilibrio térmico a temperatura $T$, el producto de portadores es rigurosamente constante independiente del nivel de dopaje:
+              $$\\mathbf{n \\cdot p = n_i^2(T)}$$
+            </div>
+          `
+        },
+        {
+          id: 'e1-u2-fisica-juntura',
+          titulo: '2.2 La Juntura PN en Equilibrio Termodinámico y Formación de la ZCE',
+          contenido: `
+            <p class="mb-3">Al unir metalúrgicamente un cristal semiconductor tipo P y uno tipo N, surge un marcado gradiente de concentración de portadores que desencadena el nacimiento de la unión o juntura PN.</p>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Dinámica de Formación de la Zona de Carga Espacial (ZCE)</h5>
+            <ol class="list-decimal pl-5 space-y-1 text-xs sm:text-sm">
+              <li><strong>Difusión inicial:</strong> Los huecos mayoritarios del lado P difunden espontáneamente hacia el lado N, y los electrones del lado N difunden hacia el lado P.</li>
+              <li><strong>Recombinación y desvelo de iones fijos:</strong> Al cruzar la interfaz, los portadores se recombinan, dejando al descubierto los iones inmóviles de la red cristalina: iones aceptores negativos $N_A^-$ en el lado P y donores positivos $N_D^+$ en el lado N.</li>
+              <li><strong>Campo eléctrico interno inducido ($\\vec{\\mathcal{E}}$):</strong> Esta separación de cargas fijas crea una región desprovista de portadores libres denominada <strong>Zona de Carga Espacial (ZCE)</strong> o región de agotamiento. El campo eléctrico $\\vec{\\mathcal{E}}$ apunta desde el lado N ($+$) hacia el lado P ($-$).</li>
+              <li><strong>Equilibrio dinámico de corrientes:</strong> El campo $\\vec{\\mathcal{E}}$ ejerce una fuerza que empuja a los huecos hacia P y a los electrones hacia N (corriente de arrastre o *drift*). En equilibrio térmico, la corriente de arrastre equilibra exactamente a la de difusión:
+                $$J_{\\text{total}} = J_{\\text{difusión}} + J_{\\text{arrastre}} = 0$$
+              </li>
+            </ol>
+
+            <div class="p-3.5 my-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200 text-xs">
+              <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                <span>⚡</span> Barrera de Potencial de Contacto Interno ($V_{bi}$ o $V_0$)
+              </h5>
+              <p>Integrando el campo eléctrico a lo largo de la ZCE se obtiene la barrera de potencial de contacto interno:</p>
+              $$\\mathbf{V_0 = V_{bi} = V_T \\ln\\left( \\frac{N_A \\cdot N_D}{n_i^2} \\right)}$$
+              <p class="mt-1 text-slate-600 dark:text-slate-400">
+                donde $V_T = \\frac{k T}{q} \\approx 25.86\\text{ mV}$ es la tensión térmica a $300\\text{ K}$. Para silicio a temperatura ambiente con dopajes típicos ($10^{16}\\text{ cm}^{-3}$), $V_0 \\approx 0.65\\text{ V} - 0.75\\text{ V}$.
+              </p>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              <strong>Ancho de la Zona de Agotamiento en Equilibrio ($W_0$):</strong>
+              $$W_0 = x_p + x_n = \\sqrt{ \\frac{2 \\varepsilon_s V_0}{q} \\left( \\frac{1}{N_A} + \\frac{1}{N_D} \\right) }$$
+              donde $\\varepsilon_s = \\varepsilon_r \\varepsilon_0 \\approx 11.7 \\times 8.85 \\times 10^{-12}\\text{ F/m}$. Nótese por neutralidad de carga ($q N_A x_p = q N_D x_n$) que la ZCE penetra mucho más profundamente en el lado menos dopado.
+            </p>
+          `
+        },
+        {
+          id: 'e1-u2-polarizacion-juntura',
+          titulo: '2.3 Polarización de la Juntura PN (Directa e Inversa) y Curva Característica I-V',
+          contenido: `
+            <p class="mb-3">La aplicación de una diferencia de potencial externa $V_D$ altera radicalmente la altura de la barrera de potencial y el ancho de la ZCE, transformando la juntura en una válvula eléctrica unidireccional.</p>
+
+            <!-- Gráfico SVG Integral de Polarización Directa vs Inversa -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📊 Gráfico Físico: Estados de Polarización de la Juntura PN
+              </h6>
+              <div class="overflow-x-auto flex justify-center">
+                <svg viewBox="0 0 720 280" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                  <!-- ESTADO 1: EQUILIBRIO (V = 0) -->
+                  <g transform="translate(15, 15)">
+                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1.2"/>
+                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#475569" font-size="11">1. EQUILIBRIO (V_D = 0)</text>
+                    <text x="107" y="36" text-anchor="middle" fill="#64748b" font-size="9">Sin polarización externa</text>
+                    
+                    <!-- Cristal PN -->
+                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="35" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
+                    <text x="35" y="103" fill="#64748b" font-size="8">Huecos (h⁺)</text>
+
+                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="165" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
+                    <text x="155" y="103" fill="#64748b" font-size="8">Electrones (e⁻)</text>
+
+                    <!-- ZCE -->
+                    <rect x="75" y="50" width="60" height="70" fill="#cbd5e1" fill-opacity="0.45" stroke="#64748b" stroke-dasharray="2,2"/>
+                    <text x="105" y="68" text-anchor="middle" fill="#334155" font-size="8" font-weight="bold">ZCE</text>
+                    <text x="88" y="90" text-anchor="middle" fill="#e11d48" font-size="11" font-weight="bold">- -</text>
+                    <text x="122" y="90" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold">+ +</text>
+
+                    <!-- Campo interno E -->
+                    <line x1="125" y1="112" x2="85" y2="112" stroke="#e11d48" stroke-width="2" marker-end="url(#arr-red)"/>
+                    <text x="105" y="108" text-anchor="middle" fill="#e11d48" font-size="8" font-weight="bold">E_int (N→P)</text>
+
+                    <!-- Perfil de Barrera -->
+                    <path d="M 25 200 L 75 200 Q 105 180 105 160 Q 105 140 185 140" fill="none" stroke="#64748b" stroke-width="2"/>
+                    <text x="105" y="180" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">Barrera V_0 ≈ 0.7V</text>
+                    <text x="107" y="232" text-anchor="middle" fill="#059669" font-size="10" font-weight="bold">I_total = 0</text>
+                  </g>
+
+                  <!-- ESTADO 2: POLARIZACIÓN DIRECTA (V_D > 0) -->
+                  <g transform="translate(250, 15)">
+                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#10b981" fill-opacity="0.06" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.5"/>
+                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">2. POLARIZACIÓN DIRECTA</text>
+                    <text x="107" y="36" text-anchor="middle" fill="#059669" font-size="9">Ánodo (+) a P · Cátodo (-) a N</text>
+                    
+                    <!-- Cristal PN -->
+                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="35" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
+
+                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="165" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
+
+                    <!-- ZCE Angosta -->
+                    <rect x="92" y="50" width="26" height="70" fill="#cbd5e1" fill-opacity="0.45" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="105" y="65" text-anchor="middle" fill="#059669" font-size="7" font-weight="bold">ZCE Estrecha</text>
+
+                    <!-- Flecha de corriente directa masiva -->
+                    <line x1="30" y1="85" x2="180" y2="85" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-green)"/>
+                    <text x="105" y="80" text-anchor="middle" fill="#047857" font-size="9" font-weight="bold">I_D Masiva ➔</text>
+
+                    <!-- Fuente Externa -->
+                    <path d="M 15 85 L 5 85 L 5 130 L 205 130 L 205 85 L 195 85" fill="none" stroke="#059669" stroke-width="1.2"/>
+                    <text x="105" y="142" text-anchor="middle" fill="#059669" font-size="9" font-weight="bold">+ [ V_D ] -</text>
+
+                    <!-- Perfil de Barrera Reducida -->
+                    <path d="M 25 195 L 85 195 Q 105 185 105 175 Q 105 165 185 165" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                    <text x="105" y="172" text-anchor="middle" fill="#059669" font-size="9" font-weight="bold">Barrera cae a (V_0 - V_D)</text>
+                    <text x="107" y="232" text-anchor="middle" fill="#059669" font-size="10" font-weight="bold">I_D ≈ I_S · e^(V_D / ηV_T)</text>
+                  </g>
+
+                  <!-- ESTADO 3: POLARIZACIÓN INVERSA (V_D < 0) -->
+                  <g transform="translate(485, 15)">
+                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.4" stroke-width="1.5"/>
+                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="11">3. POLARIZACIÓN INVERSA</text>
+                    <text x="107" y="36" text-anchor="middle" fill="#dc2626" font-size="9">Ánodo (-) a P · Cátodo (+) a N</text>
+                    
+                    <!-- Cristal PN -->
+                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="25" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
+
+                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="175" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
+
+                    <!-- ZCE Ensanchada -->
+                    <rect x="55" y="50" width="100" height="70" fill="#cbd5e1" fill-opacity="0.5" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <text x="105" y="65" text-anchor="middle" fill="#b91c1c" font-size="8" font-weight="bold">ZCE Ensanchada (W &gt; W_0)</text>
+                    <text x="75" y="90" text-anchor="middle" fill="#e11d48" font-size="11" font-weight="bold">- - -</text>
+                    <text x="135" y="90" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold">+ + +</text>
+
+                    <!-- Fuente Inversa -->
+                    <path d="M 15 85 L 5 85 L 5 130 L 205 130 L 205 85 L 195 85" fill="none" stroke="#dc2626" stroke-width="1.2"/>
+                    <text x="105" y="142" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="bold">- [ V_R ] +</text>
+
+                    <!-- Perfil de Barrera Elevada -->
+                    <path d="M 25 215 L 60 215 Q 105 160 105 150 Q 105 125 185 125" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+                    <text x="105" y="180" text-anchor="middle" fill="#b91c1c" font-size="9" font-weight="bold">Barrera sube a (V_0 + V_R)</text>
+                    <text x="107" y="232" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">I ≈ -I_S (pA a nA)</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Gráfico SVG: Curva Característica I-V del Diodo -->
+            <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
+                📈 Curva Característica I-V del Diodo de Silicio
+              </h6>
+              <div class="overflow-x-auto flex justify-center">
+                <svg viewBox="0 0 620 280" class="w-full max-w-xl h-auto font-sans text-xs select-none">
+                  <!-- Ejes coordenados -->
+                  <line x1="60" y1="160" x2="560" y2="160" stroke="#64748b" stroke-width="1.5"/>
+                  <line x1="320" y1="20" x2="320" y2="250" stroke="#64748b" stroke-width="1.5"/>
+                  
+                  <!-- Etiquetas de ejes -->
+                  <text x="565" y="164" fill="#64748b" font-weight="bold" font-size="11">V_D (V)</text>
+                  <text x="325" y="25" fill="#64748b" font-weight="bold" font-size="11">I_D (mA)</text>
+                  <text x="325" y="245" fill="#64748b" font-size="10">-I_D (μA)</text>
+                  <text x="70" y="152" fill="#64748b" font-size="10">-V_D (V)</text>
+                  <text x="312" y="174" fill="#64748b" font-size="10">0</text>
+
+                  <!-- Curva Directa -->
+                  <!-- De 320,160 sube suavemente hasta 400 (V_gamma) y luego se dispara exponencialmente hacia arriba -->
+                  <path d="M 120 162 L 320 160 Q 380 160 410 152 Q 430 135 450 40" fill="none" stroke="#10b981" stroke-width="3"/>
+                  
+                  <!-- Tensión de umbral V_gamma -->
+                  <line x1="410" y1="155" x2="410" y2="165" stroke="#f59e0b" stroke-width="2"/>
+                  <text x="410" y="180" text-anchor="middle" fill="#d97706" font-size="10" font-weight="bold">V_γ ≈ 0.7 V</text>
+                  <text x="475" y="65" fill="#047857" font-weight="bold" font-size="10">Zona Directa (Conducción)</text>
+
+                  <!-- Curva Inversa -->
+                  <!-- Línea horizontal casi pegada al eje con corriente de saturación -I_S -->
+                  <line x1="160" y1="162" x2="320" y2="160" stroke="#0ea5e9" stroke-width="2.5"/>
+                  <text x="240" y="177" text-anchor="middle" fill="#0284c7" font-size="9" font-weight="bold">-I_S (pA - nA)</text>
+
+                  <!-- Ruptura Zener / Avalancha -->
+                  <path d="M 160 162 Q 150 165 148 185 L 148 240" fill="none" stroke="#ef4444" stroke-width="3"/>
+                  <line x1="148" y1="155" x2="148" y2="165" stroke="#ef4444" stroke-width="1.5"/>
+                  <text x="148" y="148" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">-V_Z (o -V_BR)</text>
+                  <text x="110" y="210" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">Ruptura (Zener / Avalancha)</text>
+                </svg>
+              </div>
+            </div>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Mecanismos Físicos de Ruptura en Polarización Inversa</h5>
+            <p class="mb-2 text-xs sm:text-sm">Si se incrementa la tensión inversa más allá de un valor crítico $|V_D| > V_{BR}$, el diodo entra en régimen de conducción intensa y controlada (siempre que la corriente se limite externamente):</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-purple-600 dark:text-purple-400 block mb-1">Efecto Zener (Efecto Túnel Cuántico)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Ocurre en junturas con <strong>altísimo dopaje</strong> ($N_A, N_D > 10^{18}\\text{ cm}^{-3}$), donde la ZCE es extremadamente angosta ($W < 10\\text{ nm}$). El campo eléctrico interno supera los $10^6\\text{ V/cm}$, permitiendo a los electrones de la banda de valencia cruzar directamente por efecto túnel mecánico-cuántico a la banda de conducción.
+                </p>
+                <p class="text-slate-500 mt-1 font-mono text-[11px]">Predomina para $V_Z < 5\\text{ V}$ · Coeficiente térmico negativo ($-mV/^{\\circ}\\text{C}$).</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-rose-600 dark:text-rose-400 block mb-1">Efecto Avalancha (Ionización por Impacto)</span>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Ocurre en junturas con <strong>dopaje moderado o bajo</strong>. Los escasos portadores minoritarios son acelerados por el intenso campo eléctrico adquiriendo alta energía cinética; al colisionar con átomos de la red cristalina, rompen enlaces covalentes liberando nuevos pares $e^--h^+$, los cuales se aceleran y repiten el proceso en cascada exponencial.
+                </p>
+                <p class="text-slate-500 mt-1 font-mono text-[11px]">Predomina para $V_{BR} > 6\\text{ V}$ · Coeficiente térmico positivo ($+mV/^{\\circ}\\text{C}$).</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              <em>Dato de diseño:</em> Alrededor de $V_Z \\approx 5.6\\text{ V}$, el coeficiente negativo Zener se anula exactamente con el positivo de avalancha, obteniéndose diodos zener de referencia con estabilidad térmica óptima ($TC \\approx 0$).
+            </p>
           `
         },
         {
           id: 'e1-u2-ecuacion-shockley-modelos',
-          titulo: '2.2 Ecuación de Shockley y Modelos del Diodo',
+          titulo: '2.4 Ecuación de Shockley, Modelos del Diodo y Efectos Capacitivos',
           contenido: `
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Ecuación Característica de Shockley</h5>
             $$I_D = I_S \\left( e^{\\frac{V_D}{\\eta V_T}} - 1 \\right)$$
             <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
-              <li>$I_S$: Corriente inversa de saturación (típicamente $10^{-15}\\text{ A}$ a $10^{-12}\\text{ A}$).</li>
-              <li>$\\eta$: Factor de idealidad ($\ eta \\approx 1$ para conducción por difusión pura; $\\eta \\approx 2$ para corrientes bajas dominadas por recombinación).</li>
-              <li>En polarización directa ($V_D > 0.1\\text{ V}$): $e^{V_D/V_T} \\gg 1 \\implies I_D \\approx I_S e^{V_D/(\\eta V_T)}$.</li>
-              <li>En polarización inversa ($V_D < -0.1\\text{ V}$): $I_D \\approx -I_S$.</li>
+              <li>$I_S$: Corriente inversa de saturación (típicamente $10^{-15}\\text{ A}$ a $10^{-12}\\text{ A}$ en silicio). Se duplica aproximadamente cada $10^{\\circ}\\text{C}$ de incremento de temperatura.</li>
+              <li>$\\eta$: Factor de emisión o idealidad ($\\eta \\approx 1$ para silicio en corrientes medias gobernadas por difusión; $\\eta \\approx 2$ para corrientes muy bajas gobernadas por recombinación en la ZCE).</li>
+              <li>$V_T = \\frac{k T}{q} \\approx 25.86\\text{ mV}$ a $300\\text{ K}$ ($26\\text{ mV}$ en cálculos manuales de examen).</li>
+              <li><strong>Sensibilidad Térmica en Directa:</strong> Para una corriente $I_D$ fija, la tensión directa disminuye linealmente a razón de:
+                $$\\frac{d V_D}{d T} \\approx -2\\text{ mV}/^{\\circ}\\text{C}$$
+              </li>
             </ul>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Resistencia Dinámica Incremental ($r_d$)</h5>
-            <p class="mb-2">Para pequeñas variaciones de señal alrededor del punto de reposo $(V_{DQ}, I_{DQ})$:</p>
-            $$r_d = \\left( \\left. \\frac{dI_D}{dV_D} \\right|_{Q} \\right)^{-1} = \\frac{\\eta V_T}{I_{DQ} + I_S} \\approx \\mathbf{\\frac{\\eta V_T}{I_{DQ}}}$$
-            <p class="text-xs text-slate-600 dark:text-slate-400">Para $\\eta = 1$ y $I_{DQ} = 1\\text{ mA}$, $r_d \\approx 25\\,\\Omega$.</p>
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Modelos Circuitales del Diodo</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">1. Diodo Ideal (Interruptor)</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">Conduce como cortocircuito ($V_D = 0$) si $I_D > 0$; bloquea como circuito abierto ($I_D = 0$) si $V_D < 0$. Se utiliza en estimaciones preliminares y fuentes de alta tensión.</p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">2. Modelo con Tensión Constante ($V_\\gamma$)</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">En conducción se reemplaza por una fuente ideal de valor fijo $V_D = V_\\gamma \\approx 0.7\\text{ V}$ ($0.3\\text{ V}$ en Ge). Es el modelo estándar para el análisis estático en corriente continua.</p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-slate-800 dark:text-slate-200">3. Modelo Lineal por Tramos</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">Incorpora la resistencia interna del cuerpo semiconductor ($R_B$): $V_D = V_\\gamma + I_D R_B$. Modela con precisión la pendiente en régimen de fuertes corrientes.</p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-blue-600 dark:text-blue-400">4. Modelo Incremental de Pequeña Señal ($r_d$)</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">Derivando la curva en el punto de reposo $Q(V_{DQ}, I_{DQ})$:
+                  $$r_d = \\left( \\left. \\frac{dI_D}{dV_D} \\right|_Q \\right)^{-1} = \\frac{\\eta V_T}{I_{DQ} + I_S} \\approx \\mathbf{\\frac{\\eta V_T}{I_{DQ}}}$$
+                  Para $I_{DQ} = 1\\text{ mA}$ y $\\eta = 1$: $r_d \\approx 26\\,\\Omega$.
+                </p>
+              </div>
+            </div>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Efectos Capacitivos de la Juntura ($C_j$ y $C_d$)</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-cyan-600 dark:text-cyan-400">Capacitancia de Unión o Transición ($C_j$ o $C_T$)</span>
+                <p class="mt-1 text-slate-600 dark:text-slate-400">
+                  <strong>Dominante en polarización inversa ($V_D < 0$).</strong> Se debe a la variación de carga espacial de los iones fijos inmóviles con la tensión aplicada:
+                  $$C_j = \\frac{\\varepsilon_s A}{W} = \\frac{C_{j0}}{\\left( 1 + \\frac{V_R}{V_0} \\right)^m}$$
+                  donde $m = 1/2$ para junturas abruptas y $m = 1/3$ para graduales. Esta capacitancia dependiente de la tensión se aprovecha comercialmente en los <strong>diodos Varicap</strong> para sintonizadores de RF.
+                </p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">Capacitancia de Difusión ($C_d$)</span>
+                <p class="mt-1 text-slate-600 dark:text-slate-400">
+                  <strong>Dominante en polarización directa ($V_D > 0$).</strong> Se origina por la acumulación de portadores minoritarios inyectados en las zonas neutras adyacentes a la ZCE:
+                  $$C_d = \\frac{\\tau_T \\cdot I_{DQ}}{\\eta V_T}$$
+                  donde $\\tau_T$ es el tiempo de tránsito medio. Es directamente proporcional a la corriente continua $I_D$, siendo muy superior a $C_j$ y limitando la velocidad de conmutación del diodo (tiempo de recuperación inversa $t_{rr}$).
+                </p>
+              </div>
+            </div>
           `
         },
         {
           id: 'e1-u2-rectificadores-zener',
-          titulo: '2.3 Rectificadores, Filtro Capacitivo y Diodo Zener',
+          titulo: '2.5 Circuitos con Diodos: Rectificadores, Filtros y Regulador Zener',
           contenido: `
             <div class="space-y-3 my-3">
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">1. Rectificador de Onda Completa con Filtro por Capacitor</span>
-                <p class="text-xs mt-1">Tensión continua media con rizado triangular aproximado:</p>
+                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">1. Rectificador de Onda Completa con Filtro por Capacitor</span>
+                <p class="text-xs mt-1">Tensión continua media con rizado triangular aproximado en la carga $R_L$:</p>
                 $$V_{DC} \\approx V_{pico} - \\frac{V_r}{2}, \\quad V_r = \\frac{I_{DC}}{2 f C} = \\frac{V_{pico}}{2 f R_L C}$$
-                <p class="text-xs text-slate-500 mt-0.5">donde $f = 50\\text{ Hz}$ red ($2f = 100\\text{ Hz}$ en onda completa) y $V_{pico} = V_{sec,rms}\\sqrt{2} - 2 V_D$.</p>
+                <ul class="list-disc pl-5 space-y-0.5 text-xs text-slate-500 mt-1">
+                  <li>$f = 50\\text{ Hz}$ frecuencia de red ($2f = 100\\text{ Hz}$ en onda completa; $f$ en media onda).</li>
+                  <li>Puente de diodos de Graetz: $V_{pico} = V_{sec,rms}\\sqrt{2} - 2 V_D$. Tensión inversa pico sobre cada diodo: $PIV = V_{pico} + V_D$.</li>
+                  <li>Transformador con punto medio: $V_{pico} = V_{sec,rms}\\sqrt{2} - V_D$. Tensión inversa pico: $PIV = 2 V_{pico} + V_D$.</li>
+                </ul>
               </div>
 
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">2. Regulador con Diodo Zener</span>
-                <p class="text-xs mt-1">El Zener opera en ruptura inversa manteniendo $V_Z \\approx \\text{constante}$. Para garantizar regulación:</p>
-                $$I_Z = I_R - I_L \\ge I_{Z,min} \\quad (\\text{típicamente } 1 - 5\\text{ mA})$$
-                $$R_s \\le \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}, \\quad P_{Z,max} = V_Z \\cdot I_{Z,max} \\quad (\\text{con } I_L = 0)$$
+                <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">2. Regulador de Tensión con Diodo Zener</span>
+                <p class="text-xs mt-1">El diodo Zener trabaja polarizado en su zona de ruptura inversa para estabilizar la tensión sobre la carga $R_L$ en un valor $V_{out} = V_Z$.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 text-xs">
+                  <div class="p-2 rounded bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                    <strong>Resistencia limitadora serie ($R_s$):</strong>
+                    $$R_s \\le \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$$
+                    <span class="text-[11px] text-slate-500 block">Garantiza $I_Z \\ge I_{Z,min}$ bajo condiciones más desfavorables de entrada y carga.</span>
+                  </div>
+                  <div class="p-2 rounded bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                    <strong>Potencia máxima disipada en el Zener ($P_{Z,max}$):</strong>
+                    $$P_{Z,max} = V_Z \\cdot I_{Z,max} = V_Z \\left( \\frac{V_{in,max} - V_Z}{R_s} - I_{L,min} \\right)$$
+                    <span class="text-[11px] text-slate-500 block">Ocurre cuando la tensión de entrada es máxima y la carga se desconecta ($I_L = 0$).</span>
+                  </div>
+                </div>
               </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">3. Circuitos Recortadores (Clippers) y Fijadores (Clampers)</span>
+                <p class="text-xs mt-1 text-slate-600 dark:text-slate-400">
+                  <strong>Recortadores:</strong> Eliminan partes de una forma de onda que superan un nivel de referencia fijado por una fuente de continua o un diodo zener, protegiendo entradas lógicas o limitando excursiones.<br>
+                  <strong>Fijadores de nivel:</strong> Redes compuestas por diodo, capacitor y resistor que añaden una componente continua a una señal alterna sin alterar su forma pico a pico (restauración del nivel de continua).
+                </p>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'e1-u2-formulario-diodos',
+          titulo: '2.6 Formulario de Examen - Unidad 2',
+          contenido: `
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Concepto / Parámetro</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Fórmula de Cálculo</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Condición / Notas de Examen</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ley de Acción de Masas</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$n \\cdot p = n_i^2(T)$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Semiconductor en equilibrio térmico</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Barrera de Potencial Interno</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_0 = V_{bi} = V_T \\ln\\left( \\frac{N_A N_D}{n_i^2} \\right)$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$V_T = k T / q \\approx 26\\text{ mV}$ a $300\\text{ K}$</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ecuación de Shockley</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$I_D = I_S (e^{V_D / \\eta V_T} - 1)$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Directa: $I_D \\approx I_S e^{V_D/\\eta V_T}$ · Inversa: $I_D \\approx -I_S$</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia Dinámica Incremental</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$r_d = \\frac{\\eta V_T}{I_{DQ}}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Pequeña señal alrededor del punto Q ($26\\,\\Omega$ a $1\\text{ mA}$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Sensibilidad Térmica</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\Delta V_D / \\Delta T \\approx -2\\text{ mV}/^{\\circ}\\text{C}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">En directa a $I_D$ constante</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Rizado en Filtro por Capacitor</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_r = \\frac{I_{DC}}{2 f C} = \\frac{V_{pico}}{2 f R_L C}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Onda completa ($2f = 100\\text{ Hz}$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Tensión Continua Media ($V_{DC}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = V_{pico} - \\frac{V_r}{2}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Con aproximación de rizado triangular</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia Serie Regulador Zener</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_s \\le \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Condición de peor caso para mantener regulación</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="pt-2 flex justify-end">
               <button onclick="filtrarUnidad('diodos'); volverAEjercicios();" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1">
