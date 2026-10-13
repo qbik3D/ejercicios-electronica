@@ -890,44 +890,551 @@ const MANUAL_TEORIA_E1 = {
         },
         {
           id: 'e1-u2-rectificadores-zener',
-          titulo: '2.5 Circuitos con Diodos: Rectificadores, Filtros y Regulador Zener',
+          titulo: '2.5 Circuitos con Diodos: Rectificadores (Media Onda y Onda Completa), Filtros y Regulador Zener',
           contenido: `
-            <div class="space-y-3 my-3">
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">1. Rectificador de Onda Completa con Filtro por Capacitor</span>
-                <p class="text-xs mt-1">Tensión continua media con rizado triangular aproximado en la carga $R_L$:</p>
-                $$V_{DC} \\approx V_{pico} - \\frac{V_r}{2}, \\quad V_r = \\frac{I_{DC}}{2 f C} = \\frac{V_{pico}}{2 f R_L C}$$
-                <ul class="list-disc pl-5 space-y-0.5 text-xs text-slate-500 mt-1">
-                  <li>$f = 50\\text{ Hz}$ frecuencia de red ($2f = 100\\text{ Hz}$ en onda completa; $f$ en media onda).</li>
-                  <li>Puente de diodos de Graetz: $V_{pico} = V_{sec,rms}\\sqrt{2} - 2 V_D$. Tensión inversa pico sobre cada diodo: $PIV = V_{pico} + V_D$.</li>
-                  <li>Transformador con punto medio: $V_{pico} = V_{sec,rms}\\sqrt{2} - V_D$. Tensión inversa pico: $PIV = 2 V_{pico} + V_D$.</li>
-                </ul>
+            <p class="mb-3">La propiedad del diodo de conducir corriente en un solo sentido permite transformar señales alternas en continuas (rectificación) y estabilizar tensiones frente a variaciones de entrada y carga.</p>
+
+            <!-- ============================================================ -->
+            <!-- 1. RECTIFICADOR DE MEDIA ONDA (1 DIODO) -->
+            <!-- ============================================================ -->
+            <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2">
+                <span class="font-bold text-xs font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⚡</span> 1. Rectificador de Media Onda (1 Diodo)
+                </span>
+                <span class="text-[11px] font-mono text-slate-400">1 Diodo · f_rizado = f_red</span>
               </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">2. Regulador de Tensión con Diodo Zener</span>
-                <p class="text-xs mt-1">El diodo Zener trabaja polarizado en su zona de ruptura inversa para estabilizar la tensión sobre la carga $R_L$ en un valor $V_{out} = V_Z$.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 text-xs">
-                  <div class="p-2 rounded bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                    <strong>Resistencia limitadora serie ($R_s$):</strong>
-                    $$R_s \\le \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$$
-                    <span class="text-[11px] text-slate-500 block">Garantiza $I_Z \\ge I_{Z,min}$ bajo condiciones más desfavorables de entrada y carga.</span>
-                  </div>
-                  <div class="p-2 rounded bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                    <strong>Potencia máxima disipada en el Zener ($P_{Z,max}$):</strong>
-                    $$P_{Z,max} = V_Z \\cdot I_{Z,max} = V_Z \\left( \\frac{V_{in,max} - V_Z}{R_s} - I_{L,min} \\right)$$
-                    <span class="text-[11px] text-slate-500 block">Ocurre cuando la tensión de entrada es máxima y la carga se desconecta ($I_L = 0$).</span>
-                  </div>
+              <!-- Gráfico SVG: Circuito y Formas de Onda de Media Onda -->
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 200" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                  <!-- Lado Izquierdo: Circuito -->
+                  <g transform="translate(10, 15)">
+                    <rect x="0" y="0" width="280" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="140" y="18" text-anchor="middle" font-weight="bold" fill="#334155" dark:fill="#cbd5e1" font-size="10">Esquema del Circuito</text>
+
+                    <!-- Fuente AC -->
+                    <circle cx="50" cy="85" r="18" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+                    <path d="M 40 85 Q 45 77 50 85 Q 55 93 60 85" fill="none" stroke="#2563eb" stroke-width="1.6"/>
+                    <text x="50" y="120" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">v_i(t) = V_p·sen(ωt)</text>
+
+                    <!-- Cables y Diodo -->
+                    <line x1="50" y1="67" x2="110" y2="67" stroke="#64748b" stroke-width="1.5"/>
+                    
+                    <!-- Símbolo Diodo D -->
+                    <g transform="translate(110, 67)">
+                      <!-- Triángulo -->
+                      <polygon points="0,-10 16,0 0,10" fill="#10b981" stroke="#059669" stroke-width="1.2"/>
+                      <!-- Barra cátodo -->
+                      <line x1="16" y1="-10" x2="16" y2="10" stroke="#059669" stroke-width="2"/>
+                      <text x="8" y="-14" text-anchor="middle" fill="#059669" font-weight="bold" font-size="10">D</text>
+                    </g>
+                    
+                    <line x1="126" y1="67" x2="220" y2="67" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="220" y1="67" x2="220" y2="80" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Resistencia Carga R_L -->
+                    <rect x="212" y="80" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+                    <text x="240" y="104" fill="#475569" font-size="10" font-weight="bold">R_L</text>
+                    
+                    <line x1="220" y1="120" x2="220" y2="140" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="220" y1="140" x2="50" y2="140" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="50" y1="140" x2="50" y2="103" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Tensión de salida v_o -->
+                    <text x="210" y="60" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">+</text>
+                    <text x="210" y="148" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">-</text>
+                    <text x="255" y="80" fill="#dc2626" font-size="9" font-weight="bold">v_o(t)</text>
+                  </g>
+
+                  <!-- Lado Derecho: Formas de Onda -->
+                  <g transform="translate(310, 15)">
+                    <rect x="0" y="0" width="360" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="180" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Formas de Onda (Entrada vs Salida)</text>
+
+                    <!-- Eje de tiempo -->
+                    <line x1="30" y1="90" x2="330" y2="90" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="335" y="93" fill="#64748b" font-size="9">t</text>
+                    <line x1="40" y1="25" x2="40" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="35" y="30" text-anchor="end" fill="#64748b" font-size="9">v</text>
+
+                    <!-- Onda de Entrada v_i (punteada azul) -->
+                    <path d="M 40 90 Q 75 30 110 90 Q 145 150 180 90 Q 215 30 250 90 Q 285 150 320 90" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="3,3"/>
+                    <text x="120" y="42" fill="#2563eb" font-size="9">v_i (AC)</text>
+
+                    <!-- Onda de Salida v_o (verde sólida) -->
+                    <!-- Semiciclo positivo conduce (amplitud menor por V_D), negativo bloquea a 0 -->
+                    <path d="M 40 90 Q 75 40 110 90 L 180 90 Q 215 40 250 90 L 320 90" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                    <text x="80" y="32" fill="#047857" font-weight="bold" font-size="10">V_o,pico = V_p - 0.7V</text>
+
+                    <!-- Cota de tensión media V_DC -->
+                    <line x1="40" y1="74" x2="320" y2="74" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                    <text x="270" y="70" fill="#d97706" font-size="9" font-weight="bold">V_DC ≈ 0.318·V_pico</text>
+                    <text x="145" y="110" text-anchor="middle" fill="#dc2626" font-size="8">Diodo Bloqueado (0V)</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Continua Media ($V_{DC}$):</span>
+                  $$V_{DC} = \\frac{V_{o,pico}}{\\pi} \\approx 0.318 \\cdot (V_p - V_\\gamma)$$
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Inversa Pico ($PIV$):</span>
+                  $$PIV = V_p$$
+                  <span class="text-[11px] text-slate-500">Tensión máxima inversa que soporta el diodo en el semiciclo negativo.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Frecuencia de Rizado:</span>
+                  $$f_{rizado} = f_{red} = 50\\text{ Hz}$$
+                  <span class="text-[11px] text-slate-500">Un único pulso por cada período completo de la red.</span>
                 </div>
               </div>
+            </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">3. Circuitos Recortadores (Clippers) y Fijadores (Clampers)</span>
-                <p class="text-xs mt-1 text-slate-600 dark:text-slate-400">
-                  <strong>Recortadores:</strong> Eliminan partes de una forma de onda que superan un nivel de referencia fijado por una fuente de continua o un diodo zener, protegiendo entradas lógicas o limitando excursiones.<br>
-                  <strong>Fijadores de nivel:</strong> Redes compuestas por diodo, capacitor y resistor que añaden una componente continua a una señal alterna sin alterar su forma pico a pico (restauración del nivel de continua).
-                </p>
+            <!-- ============================================================ -->
+            <!-- 2. RECTIFICADOR DE ONDA COMPLETA CON TOMA CENTRAL (2 DIODOS) -->
+            <!-- ============================================================ -->
+            <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2">
+                <span class="font-bold text-xs font-mono text-blue-600 dark:text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⚡</span> 2. Rectificador con Transformador con Toma Central (2 Diodos)
+                </span>
+                <span class="text-[11px] font-mono text-slate-400">2 Diodos · f_rizado = 2·f_red · PIV = 2·V_s</span>
               </div>
+
+              <!-- Gráfico SVG: Circuito y Formas de Onda Toma Central -->
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 210" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                  <!-- Esquema Circuital -->
+                  <g transform="translate(10, 15)">
+                    <rect x="0" y="0" width="310" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Transformador con Punto Medio (2 Diodos)</text>
+
+                    <!-- Transformador: Primario y Secundario -->
+                    <g transform="translate(30, 45)">
+                      <!-- Núcleo de hierro -->
+                      <line x1="38" y1="10" x2="38" y2="100" stroke="#94a3b8" stroke-width="2"/>
+                      <line x1="42" y1="10" x2="42" y2="100" stroke="#94a3b8" stroke-width="2"/>
+
+                      <!-- Primario -->
+                      <path d="M 25 15 C 10 20, 10 30, 25 35 C 10 40, 10 50, 25 55 C 10 60, 10 70, 25 75 C 10 80, 10 90, 25 95" fill="none" stroke="#2563eb" stroke-width="2"/>
+                      <!-- Secundario -->
+                      <path d="M 55 15 C 70 20, 70 30, 55 35 C 70 40, 70 50, 55 55 C 70 60, 70 70, 55 75 C 70 80, 70 90, 55 95" fill="none" stroke="#2563eb" stroke-width="2"/>
+                      
+                      <!-- Punto Medio a Masa -->
+                      <line x1="55" y1="55" x2="110" y2="55" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="110" y1="55" x2="110" y2="120" stroke="#64748b" stroke-width="1.5"/>
+                      <!-- Símbolo de Masa -->
+                      <line x1="100" y1="120" x2="120" y2="120" stroke="#64748b" stroke-width="2"/>
+                      <line x1="104" y1="124" x2="116" y2="124" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="108" y1="128" x2="112" y2="128" stroke="#64748b" stroke-width="1"/>
+                      <text x="125" y="60" fill="#64748b" font-size="8">Toma Central (0V)</text>
+                    </g>
+
+                    <!-- Rama Superior D1 -->
+                    <line x1="85" y1="60" x2="140" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                    <g transform="translate(140, 60)">
+                      <polygon points="0,-8 14,0 0,8" fill="#10b981" stroke="#059669" stroke-width="1.2"/>
+                      <line x1="14" y1="-8" x2="14" y2="8" stroke="#059669" stroke-width="2"/>
+                      <text x="7" y="-12" text-anchor="middle" fill="#059669" font-weight="bold" font-size="9">D1</text>
+                    </g>
+                    <line x1="154" y1="60" x2="220" y2="60" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Rama Inferior D2 -->
+                    <line x1="85" y1="140" x2="140" y2="140" stroke="#64748b" stroke-width="1.5"/>
+                    <g transform="translate(140, 140)">
+                      <polygon points="0,-8 14,0 0,8" fill="#10b981" stroke="#059669" stroke-width="1.2"/>
+                      <line x1="14" y1="-8" x2="14" y2="8" stroke="#059669" stroke-width="2"/>
+                      <text x="7" y="18" text-anchor="middle" fill="#059669" font-weight="bold" font-size="9">D2</text>
+                    </g>
+                    <line x1="154" y1="140" x2="220" y2="140" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Nodo común de cátodos y carga R_L -->
+                    <line x1="220" y1="60" x2="220" y2="140" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="220" y1="100" x2="260" y2="100" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="260" y1="100" x2="260" y2="110" stroke="#64748b" stroke-width="1.5"/>
+                    <rect x="253" y="110" width="14" height="32" fill="#f1f5f9" stroke="#475569" stroke-width="1.2"/>
+                    <text x="275" y="130" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+                    
+                    <!-- Retorno a masa de R_L -->
+                    <line x1="260" y1="142" x2="260" y2="155" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="254" y1="155" x2="266" y2="155" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="257" y1="158" x2="263" y2="158" stroke="#64748b" stroke-width="1"/>
+
+                    <text x="248" y="94" fill="#dc2626" font-size="9" font-weight="bold">+</text>
+                    <text x="248" y="152" fill="#dc2626" font-size="9" font-weight="bold">-</text>
+                    <text x="280" y="95" fill="#dc2626" font-size="9" font-weight="bold">v_o</text>
+                  </g>
+
+                  <!-- Formas de Onda -->
+                  <g transform="translate(340, 15)">
+                    <rect x="0" y="0" width="330" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Forma de Onda de Salida en Onda Completa</text>
+
+                    <line x1="25" y1="105" x2="305" y2="105" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="310" y="108" fill="#64748b" font-size="9">t</text>
+                    <line x1="35" y1="30" x2="35" y2="160" stroke="#94a3b8" stroke-width="1.2"/>
+
+                    <!-- Semiciclos rectificados: ambos positivos -->
+                    <path d="M 35 105 Q 67 45 100 105 Q 132 45 165 105 Q 197 45 230 105 Q 262 45 295 105" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+                    <text x="67" y="40" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">D1 conduce</text>
+                    <text x="132" y="40" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="9">D2 conduce</text>
+                    <text x="197" y="40" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">D1 conduce</text>
+                    <text x="262" y="40" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="9">D2 conduce</text>
+
+                    <!-- Nivel DC -->
+                    <line x1="35" y1="67" x2="295" y2="67" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                    <text x="210" y="63" fill="#d97706" font-size="9" font-weight="bold">V_DC ≈ 0.636·V_pico</text>
+
+                    <text x="165" y="145" text-anchor="middle" fill="#64748b" font-size="9">Período de rizado T_r = T_red / 2 (100 Hz)</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Pico de Salida:</span>
+                  $$V_{o,pico} = V_s - V_\\gamma$$
+                  <span class="text-[11px] text-slate-500">$V_s$ es la tensión pico de cada mitad del secundario.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Continua Media ($V_{DC}$):</span>
+                  $$V_{DC} = \\frac{2 V_{o,pico}}{\\pi} \\approx 0.636 \\cdot V_{o,pico}$$
+                  <span class="text-[11px] text-slate-500">Duplica el rendimiento del rectificador de media onda.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-rose-600 dark:text-rose-400 block">Desventaja Crítica: $PIV$ Elevada</span>
+                  $$PIV = 2 V_s - V_\\gamma \\approx 2 V_s$$
+                  <span class="text-[11px] text-slate-500">Cada diodo debe soportar el doble de la tensión de salida cuando bloquea.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 3. RECTIFICADOR EN PUENTE DE GRAETZ (4 DIODOS) -->
+            <!-- ============================================================ -->
+            <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2">
+                <span class="font-bold text-xs font-mono text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⚡</span> 3. Rectificador de Onda Completa en Puente de Graetz (4 Diodos)
+                </span>
+                <span class="text-[11px] font-mono text-slate-400">4 Diodos · PIV = V_s (óptima) · Sin toma central</span>
+              </div>
+
+              <!-- Gráfico SVG: Puente de Graetz y Flujo de Corriente -->
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 220" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                  <!-- Esquema del Puente -->
+                  <g transform="translate(10, 15)">
+                    <rect x="0" y="0" width="340" height="190" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="170" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Puente de Diodos de Graetz</text>
+
+                    <!-- Entrada AC -->
+                    <circle cx="35" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+                    <path d="M 26 95 Q 30 88 35 95 Q 40 102 44 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="35" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v_s(t)</text>
+
+                    <!-- Cables de entrada al puente -->
+                    <line x1="51" y1="90" x2="105" y2="90" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="105" y1="90" x2="105" y2="95" stroke="#64748b" stroke-width="1.5"/>
+
+                    <line x1="51" y1="100" x2="80" y2="100" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="80" y1="100" x2="80" y2="165" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="80" y1="165" x2="205" y2="165" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="205" y1="165" x2="205" y2="95" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- ROMBO DEL PUENTE (Nodos: Superior (155, 45), Derecho (205, 95), Inferior (155, 145), Izquierdo (105, 95)) -->
+                    <!-- D1: Izq a Superior -->
+                    <g transform="translate(130, 70) rotate(-45)">
+                      <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
+                      <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
+                    </g>
+                    <text x="118" y="60" fill="#059669" font-weight="bold" font-size="8">D1</text>
+
+                    <!-- D3: Inferior a Izq -->
+                    <g transform="translate(130, 120) rotate(-135)">
+                      <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
+                      <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
+                    </g>
+                    <text x="118" y="145" fill="#7c3aed" font-weight="bold" font-size="8">D3</text>
+
+                    <!-- D4: Derecho a Superior -->
+                    <g transform="translate(180, 70) rotate(-135)">
+                      <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
+                      <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
+                    </g>
+                    <text x="192" y="60" fill="#7c3aed" font-weight="bold" font-size="8">D4</text>
+
+                    <!-- D2: Inferior a Derecho -->
+                    <g transform="translate(180, 120) rotate(-45)">
+                      <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
+                      <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
+                    </g>
+                    <text x="192" y="145" fill="#059669" font-weight="bold" font-size="8">D2</text>
+
+                    <!-- Líneas del rombo -->
+                    <line x1="105" y1="95" x2="155" y2="45" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="155" y1="45" x2="205" y2="95" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="205" y1="95" x2="155" y2="145" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="155" y1="145" x2="105" y2="95" stroke="#64748b" stroke-width="1.2"/>
+
+                    <!-- Salida DC a la carga R_L -->
+                    <!-- Positivo: Nodo superior (155, 45) -->
+                    <line x1="155" y1="45" x2="270" y2="45" stroke="#dc2626" stroke-width="1.5"/>
+                    <line x1="270" y1="45" x2="270" y2="75" stroke="#dc2626" stroke-width="1.5"/>
+                    
+                    <rect x="262" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
+                    <text x="290" y="98" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+
+                    <!-- Negativo: Nodo inferior (155, 145) -->
+                    <line x1="155" y1="145" x2="270" y2="145" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="270" y1="145" x2="270" y2="115" stroke="#3b82f6" stroke-width="1.5"/>
+
+                    <text x="255" y="60" fill="#dc2626" font-size="10" font-weight="bold">+</text>
+                    <text x="255" y="140" fill="#3b82f6" font-size="10" font-weight="bold">-</text>
+                    <text x="295" y="75" fill="#dc2626" font-size="9" font-weight="bold">v_o(t)</text>
+                  </g>
+
+                  <!-- Explicación de Conducción en Cuadrante Derecho -->
+                  <g transform="translate(370, 15)">
+                    <rect x="0" y="0" width="300" height="190" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="150" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Dinámica de Conducción por Semiciclos</text>
+
+                    <!-- Semiciclo 1 -->
+                    <rect x="15" y="35" width="270" height="65" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.4"/>
+                    <text x="25" y="52" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v_s &gt; 0):</text>
+                    <text x="25" y="68" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D1 y D2</strong>.</text>
+                    <text x="25" y="82" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D3 y D4</strong>.</text>
+                    <text x="25" y="94" fill="#64748b" font-size="8">Camino: Terminal superior ➔ D1 ➔ R_L ➔ D2 ➔ Terminal inferior</text>
+
+                    <!-- Semiciclo 2 -->
+                    <rect x="15" y="110" width="270" height="65" rx="6" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.4"/>
+                    <text x="25" y="127" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v_s &lt; 0):</text>
+                    <text x="25" y="143" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D3 y D4</strong>.</text>
+                    <text x="25" y="157" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D1 y D2</strong>.</text>
+                    <text x="25" y="169" fill="#64748b" font-size="8">Camino: Terminal inferior ➔ D3 ➔ R_L ➔ D4 ➔ Terminal superior</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Pico de Salida:</span>
+                  $$V_{o,pico} = V_s - 2 V_\\gamma \\approx V_s - 1.4\\text{ V}$$
+                  <span class="text-[11px] text-slate-500">Caída debida a dos diodos conduciendo en serie.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Continua Media ($V_{DC}$):</span>
+                  $$V_{DC} = \\frac{2 V_{o,pico}}{\\pi} \\approx 0.636 \\cdot V_{o,pico}$$
+                  <span class="text-[11px] text-slate-500">$f_{rizado} = 2 f_{red} = 100\\text{ Hz}$.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400 block">Gran Ventaja: $PIV$ Reducida</span>
+                  $$PIV = V_s - V_\\gamma \\approx V_s$$
+                  <span class="text-[11px] text-slate-500">Es la mitad que en el rectificador de punto medio.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 4. FILTRO CAPACITIVO Y RIZADO -->
+            <!-- ============================================================ -->
+            <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <span class="font-bold text-xs font-mono text-amber-600 dark:text-amber-400 uppercase tracking-wider block">
+                ⚡ 4. Filtro por Capacitor y Tensión de Rizado ($V_r$)
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-400">
+                Al conectar un capacitor electrolítico $C$ en paralelo con $R_L$, este se carga con rapidez hasta el pico de tensión $V_{pico}$ a través de los diodos en conducción. Cuando la tensión del secundario desciende por debajo de la tensión almacenada, los diodos se apagan y el capacitor se descarga lentamente sobre $R_L$ con constante de tiempo $\\tau = R_L C \\gg T$, reduciendo drásticamente las variaciones de tensión.
+              </p>
+
+              <!-- Gráfico SVG: Rizado Triangular del Filtro Capacitivo -->
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 620 180" class="w-full max-w-xl h-auto font-sans text-xs select-none">
+                  <rect x="0" y="0" width="620" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                  <text x="310" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Forma de Onda con Filtro Capacitivo (Rizado Triangular)</text>
+
+                  <!-- Ejes -->
+                  <line x1="40" y1="140" x2="580" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
+                  <text x="585" y="143" fill="#64748b" font-size="9">t</text>
+                  <line x1="50" y1="30" x2="50" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
+                  <text x="45" y="32" text-anchor="end" fill="#64748b" font-size="9">v_o</text>
+
+                  <!-- Pulsos de rectificación en puente (línea tenue discontinua) -->
+                  <path d="M 50 140 Q 95 40 140 140 Q 185 40 230 140 Q 275 40 320 140 Q 365 40 410 140 Q 455 40 500 140" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+                  <!-- Curva Filtrada (roja / ámbar) -->
+                  <!-- Carga rápida hasta pico y descarga lineal hasta el siguiente pulso -->
+                  <path d="M 50 85 L 95 45 L 220 85 L 230 45 L 355 85 L 365 45 L 490 85 L 500 45" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+
+                  <!-- Cotas de V_pico, V_DC y V_r -->
+                  <line x1="50" y1="45" x2="540" y2="45" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
+                  <text x="545" y="48" fill="#059669" font-weight="bold" font-size="9">V_pico</text>
+
+                  <line x1="50" y1="65" x2="540" y2="65" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                  <text x="545" y="68" fill="#d97706" font-weight="bold" font-size="9">V_DC = V_pico - V_r/2</text>
+
+                  <line x1="50" y1="85" x2="540" y2="85" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
+                  <text x="545" y="88" fill="#64748b" font-size="9">V_valle</text>
+
+                  <!-- Flecha de V_r pico a pico -->
+                  <line x1="160" y1="47" x2="160" y2="83" stroke="#dc2626" stroke-width="1.8"/>
+                  <text x="170" y="68" fill="#dc2626" font-weight="bold" font-size="10">V_r (pp)</text>
+                </svg>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <strong>Tensión de Rizado Pico a Pico ($V_r$):</strong>
+                  $$V_r = \\frac{I_{DC}}{f_{rizado} \\cdot C} = \\frac{V_{pico}}{f_{rizado} \\cdot R_L \\cdot C}$$
+                  <span class="text-[11px] text-slate-500">Para onda completa $f_{rizado} = 100\\text{ Hz}$; para media onda $f_{rizado} = 50\\text{ Hz}$.</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <strong>Tensión Continua Media ($V_{DC}$):</strong>
+                  $$V_{DC} = V_{pico} - \\frac{V_r}{2}$$
+                  <span class="text-[11px] text-slate-500">Factor de rizado: $\\gamma = \\frac{V_{r,rms}}{V_{DC}} = \\frac{V_r}{2\\sqrt{3} \\cdot V_{DC}}$.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 5. REGULADOR DE TENSIÓN CON DIODO ZENER -->
+            <!-- ============================================================ -->
+            <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2">
+                <span class="font-bold text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⚡</span> 5. Regulador de Tensión con Diodo Zener
+                </span>
+                <span class="text-[11px] font-mono text-slate-400">Operación en Ruptura Inversa (V_out = V_Z)</span>
+              </div>
+
+              <!-- Gráfico SVG: Circuito Zener y Curva de Regulación V_out vs V_in -->
+              <div class="overflow-x-auto flex justify-center py-1">
+                <svg viewBox="0 0 680 210" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+                  <!-- Lado Izquierdo: Circuito del Regulador Zener -->
+                  <g transform="translate(10, 15)">
+                    <rect x="0" y="0" width="310" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Esquema del Regulador Zener</text>
+
+                    <!-- Fuente V_in -->
+                    <circle cx="45" cy="95" r="15" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+                    <text x="45" y="92" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">+</text>
+                    <text x="45" y="103" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">-</text>
+                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">V_in (DC)</text>
+
+                    <!-- Resistencia Serie R_s -->
+                    <line x1="45" y1="80" x2="45" y2="55" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="45" y1="55" x2="85" y2="55" stroke="#64748b" stroke-width="1.5"/>
+                    <rect x="85" y="47" width="35" height="16" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+                    <text x="102" y="38" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">R_s</text>
+                    <line x1="120" y1="55" x2="180" y2="55" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Corriente I_s -->
+                    <line x1="60" y1="48" x2="80" y2="48" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+                    <text x="70" y="43" fill="#2563eb" font-size="8" font-weight="bold">I_s</text>
+
+                    <!-- Diodo Zener en Rama Vertical (cátodo arriba, ánodo abajo) -->
+                    <line x1="180" y1="55" x2="180" y2="75" stroke="#64748b" stroke-width="1.5"/>
+                    <g transform="translate(180, 85)">
+                      <!-- Cátodo con alitas Zener arriba -->
+                      <path d="M -9 -8 L -6 -8 L 6 -8 L 9 -5" fill="none" stroke="#0284c7" stroke-width="1.8"/>
+                      <!-- Triángulo apuntando hacia abajo -->
+                      <polygon points="-8,-8 8,-8 0,8" fill="#0ea5e9" stroke="#0284c7" stroke-width="1.2"/>
+                      <text x="16" y="2" fill="#0284c7" font-weight="bold" font-size="9">Zener</text>
+                      <text x="16" y="14" fill="#0284c7" font-size="8">V_Z</text>
+                    </g>
+                    <line x1="180" y1="95" x2="180" y2="145" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Corriente I_Z -->
+                    <line x1="172" y1="65" x2="172" y2="80" stroke="#0284c7" stroke-width="1.5"/>
+                    <text x="166" y="75" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I_Z</text>
+
+                    <!-- Rama de Carga R_L -->
+                    <line x1="180" y1="55" x2="260" y2="55" stroke="#64748b" stroke-width="1.5"/>
+                    
+                    <!-- Corriente I_L -->
+                    <line x1="210" y1="48" x2="230" y2="48" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="220" y="43" fill="#10b981" font-size="8" font-weight="bold">I_L</text>
+
+                    <line x1="260" y1="55" x2="260" y2="75" stroke="#64748b" stroke-width="1.5"/>
+                    <rect x="252" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
+                    <text x="278" y="98" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+                    <line x1="260" y1="115" x2="260" y2="145" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Retorno común a masa -->
+                    <line x1="260" y1="145" x2="45" y2="145" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="45" y1="145" x2="45" y2="110" stroke="#64748b" stroke-width="1.5"/>
+
+                    <text x="250" y="48" fill="#dc2626" font-size="9" font-weight="bold">+</text>
+                    <text x="250" y="152" fill="#dc2626" font-size="9" font-weight="bold">-</text>
+                    <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold">V_out</text>
+                  </g>
+
+                  <!-- Lado Derecho: Curva de Transferencia V_out vs V_in -->
+                  <g transform="translate(340, 15)">
+                    <rect x="0" y="0" width="330" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V_out vs V_in</text>
+
+                    <!-- Ejes coordenados -->
+                    <line x1="35" y1="140" x2="305" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="310" y="143" fill="#64748b" font-size="9">V_in</text>
+                    <line x1="45" y1="30" x2="45" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9">V_out</text>
+
+                    <!-- Zona No Regulada (lineal con pendiente R_L / (R_s + R_L)) -->
+                    <line x1="45" y1="140" x2="135" y2="75" stroke="#f59e0b" stroke-width="2.2"/>
+                    
+                    <!-- Zona Regulada (horizontal plana en V_Z) -->
+                    <line x1="135" y1="75" x2="295" y2="75" stroke="#059669" stroke-width="3"/>
+
+                    <!-- Puntos de referencia -->
+                    <line x1="135" y1="75" x2="135" y2="140" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="135" y="153" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">V_in,min</text>
+
+                    <line x1="45" y1="75" x2="135" y2="75" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="10">V_Z</text>
+
+                    <!-- Etiquetas en el gráfico -->
+                    <text x="90" y="115" fill="#d97706" font-size="8">Zener Apagado</text>
+                    <text x="210" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="10">Zona Regulada: V_out = V_Z = Cte</text>
+                    <text x="210" y="105" text-anchor="middle" fill="#64748b" font-size="8.5">I_s = I_Z + I_L (I_Z absorbe excesos)</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Cálculo de la Resistencia Serie Límites:</span>
+                  <div class="space-y-1">
+                    <p><strong>R_s máxima (Garantiza regulación ante mínima entrada y máxima carga):</strong></p>
+                    $$R_{s,max} = \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$$
+                    <p class="mt-2"><strong>R_s mínima (Protege al Zener de sobrecalentamiento ante máxima entrada y carga desconectada):</strong></p>
+                    $$R_{s,min} = \\frac{V_{in,max} - V_Z}{I_{L,min} + I_{Z,max}}, \\quad \\text{con } I_{Z,max} = \\frac{P_{Z,max}}{V_Z}$$
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Potencia Máxima Disipada en el Zener ($P_{Z,max}$):</span>
+                  $$P_{Z,max} = V_Z \\cdot I_{Z,max} = V_Z \\left( \\frac{V_{in,max} - V_Z}{R_s} - I_{L,min} \\right)$$
+                  <p class="text-slate-500 mt-1 text-[11px]">
+                    El caso más exigente térmicamente ocurre cuando la tensión de entrada $V_{in}$ alcanza su valor máximo y la carga se desconecta ($I_L = 0$), forzando a que toda la corriente del circuito atraviese el Zener.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 6. CIRCUITOS RECORTADORES Y FIJADORES -->
+            <!-- ============================================================ -->
+            <div class="p-3.5 my-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider block mb-1">
+                ⚡ 6. Circuitos Recortadores (Clippers) y Fijadores (Clampers)
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-400">
+                <strong>Recortadores (Clippers):</strong> Redes compuestas por diodos y fuentes DC de polarización que eliminan porciones de una forma de onda que superan o caen por debajo de un umbral predeterminado, utilizándose para protección de entradas de microcontroladores y conformación de pulsos.<br>
+                <strong>Fijadores de nivel (Clampers):</strong> Redes con diodo, capacitor y resistor que desplazan verticalmente toda la forma de onda sumándole una componente continua pura, sin distorsionar su amplitud pico a pico (restauración del nivel DC en señales de video y comunicaciones).
+              </p>
             </div>
           `
         },
@@ -939,51 +1446,51 @@ const MANUAL_TEORIA_E1 = {
               <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
                 <thead>
                   <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Concepto / Parámetro</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Circuito / Concepto</th>
                     <th class="p-2 border border-slate-200 dark:border-slate-800">Fórmula de Cálculo</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Condición / Notas de Examen</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Parámetros Clave de Examen</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
                   <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ley de Acción de Masas</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$n \\cdot p = n_i^2(T)$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Semiconductor en equilibrio térmico</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Rectificador Media Onda</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = \\frac{V_{pico}}{\\pi} \\approx 0.318 V_p$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$PIV = V_p$ · $f_{rizado} = f_{red}$ (50 Hz)</td>
                   </tr>
                   <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Barrera de Potencial Interno</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_0 = V_{bi} = V_T \\ln\\left( \\frac{N_A N_D}{n_i^2} \\right)$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$V_T = k T / q \\approx 26\\text{ mV}$ a $300\\text{ K}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Rectificador Toma Central (2 Diodos)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = \\frac{2 V_{pico}}{\\pi} \\approx 0.636 V_s$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$PIV = 2 V_s$ · $f_{rizado} = 2 f_{red}$ (100 Hz)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Puente de Graetz (4 Diodos)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = \\frac{2 (V_s - 2V_\\gamma)}{\\pi}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$PIV = V_s$ (óptima) · $f_{rizado} = 100\\text{ Hz}$</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Rizado con Filtro por Capacitor</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_r = \\frac{I_{DC}}{f_{rizado} C} = \\frac{V_{pico}}{f_{rizado} R_L C}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$V_{DC} = V_{pico} - \\frac{V_r}{2}$ (Rizado triangular)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Regulador Zener ($R_s$ Máxima)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{s,max} = \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Condición de peor caso para mantener $I_Z \\ge I_{Z,min}$</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Potencia Máxima Zener ($P_{Z,max}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$P_{Z,max} = V_Z \\cdot I_{Z,max}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ocurre con $V_{in,max}$ y sin carga ($I_L = 0$)</td>
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ecuación de Shockley</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$I_D = I_S (e^{V_D / \\eta V_T} - 1)$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Directa: $I_D \\approx I_S e^{V_D/\\eta V_T}$ · Inversa: $I_D \\approx -I_S$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$V_T \\approx 26\\text{ mV}$ · $\\Delta V_D/\\Delta T \\approx -2\\text{ mV}/^{\\circ}\\text{C}$</td>
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia Dinámica Incremental</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$r_d = \\frac{\\eta V_T}{I_{DQ}}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Pequeña señal alrededor del punto Q ($26\\,\\Omega$ a $1\\text{ mA}$)</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Sensibilidad Térmica</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\Delta V_D / \\Delta T \\approx -2\\text{ mV}/^{\\circ}\\text{C}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">En directa a $I_D$ constante</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Rizado en Filtro por Capacitor</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_r = \\frac{I_{DC}}{2 f C} = \\frac{V_{pico}}{2 f R_L C}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Onda completa ($2f = 100\\text{ Hz}$)</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Tensión Continua Media ($V_{DC}$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = V_{pico} - \\frac{V_r}{2}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Con aproximación de rizado triangular</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia Serie Regulador Zener</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_s \\le \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Condición de peor caso para mantener regulación</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$r_d \\approx 26\\,\\Omega$ a $I_{DQ} = 1\\text{ mA}$ ($\\eta = 1$)</td>
                   </tr>
                 </tbody>
               </table>
