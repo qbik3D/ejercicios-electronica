@@ -518,12 +518,112 @@ function imprimirCompendioPDF() {
   window.print();
 }
 
+// Filtrar ejercicios de una unidad específica y cambiar a la vista de ejercicios
+function filtrarUnidad(unidadId) {
+  cambiarTema(unidadId);
+  volverAEjercicios();
+}
+
 // Generar dinámicamente todo el contenido conceptual de la materia ordenado por Unidades
 function renderizarCompendioTeoria() {
   const container = document.getElementById('contenedor-compendio-articulos');
   if (!container) return;
 
   const materia = getMateriaConfig();
+  const manual = (typeof MANUALES_TEORIA !== 'undefined' && MANUALES_TEORIA[AppState.materiaSeleccionada]) 
+    ? MANUALES_TEORIA[AppState.materiaSeleccionada] 
+    : null;
+
+  // Si la materia tiene un manual teórico completo y exhaustivo
+  if (manual && manual.unidades && manual.unidades.length > 0) {
+    let htmlTotal = '';
+
+    // Barra de Navegación Rápida / Índice Temático
+    htmlTotal += `
+      <nav class="p-3 sm:p-4 rounded-xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs font-mono print:hidden shadow-xs">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span>📑</span> Índice Temático Rápido
+          </span>
+          <span class="text-[11px] text-slate-400">Clic para saltar a la unidad</span>
+        </div>
+        <div class="flex flex-wrap gap-1.5 sm:gap-2">
+    `;
+
+    manual.unidades.forEach(u => {
+      htmlTotal += `
+        <button 
+          onclick="document.getElementById('compendio-unidad-${u.id}')?.scrollIntoView({ behavior: 'smooth' })"
+          class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 text-slate-700 dark:text-slate-200 transition-colors flex items-center gap-1.5 text-xs shadow-2xs"
+        >
+          <span>${u.icono}</span>
+          <span class="font-semibold">Unidad ${u.numero}</span>
+        </button>
+      `;
+    });
+
+    htmlTotal += `
+        </div>
+      </nav>
+    `;
+
+    // Renderizado detallado de cada Unidad del Manual
+    manual.unidades.forEach(unidad => {
+      htmlTotal += `
+        <section id="compendio-unidad-${unidad.id}" class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 rounded-2xl p-5 sm:p-7 shadow-xs print-avoid-break transition-colors">
+          <!-- Encabezado de Unidad -->
+          <div class="flex items-start gap-3.5 pb-4 mb-5 border-b border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-xl shrink-0">
+              ${unidad.icono}
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Unidad ${unidad.numero}</span>
+                <span class="text-slate-300 dark:text-slate-700">·</span>
+                <span class="text-xs text-slate-500 font-mono">${unidad.secciones.length} secciones exhaustivas</span>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight mt-0.5">
+                ${unidad.titulo}
+              </h3>
+              ${unidad.introduccion ? `
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                  ${unidad.introduccion}
+                </p>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Secciones Académicas -->
+          <div class="space-y-6">
+      `;
+
+      unidad.secciones.forEach((sec, idxSec) => {
+        htmlTotal += `
+          <article id="seccion-${sec.id}" class="p-4 sm:p-5 rounded-xl bg-slate-50/80 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-avoid-break">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200/60 dark:border-slate-800/60 text-xs font-mono text-slate-500 dark:text-slate-400">
+              <h4 class="font-bold text-slate-900 dark:text-slate-100 text-sm sm:text-base font-sans tracking-tight">
+                ${sec.titulo}
+              </h4>
+            </div>
+
+            <div class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans space-y-2">
+              ${formatearTextoConLatex(sec.contenido)}
+            </div>
+          </article>
+        `;
+      });
+
+      htmlTotal += `
+          </div>
+        </section>
+      `;
+    });
+
+    container.innerHTML = htmlTotal;
+    return;
+  }
+
+  // Fallback si la materia no cuenta con manual dedicado (se genera a partir de los ejercicios)
   const banco = getBancoEjerciciosActual();
   const unidades = materia.unidades || [];
 
