@@ -22,11 +22,11 @@ const MANUAL_TEORIA_E1 = {
       titulo: 'Unidad 1: Circuitos en Corriente Continua y Teoremas Fundamentales',
       icono: '⚡',
       badgeColor: 'border-blue-500/40 bg-blue-950/40 text-blue-300',
-      introduccion: 'Esta unidad establece los pilares del análisis circuital en régimen estacionario de continua. Se desarrollan las convenciones de signos de tensión y corriente en componentes pasivos y activos, la Ley de Ohm, las asociaciones serie y paralelo, los divisores de tensión y corriente con efecto de carga, las leyes de Kirchhoff, los métodos sistemáticos de nodos y mallas, y los teoremas de Thévenin, Norton, Superposición y Máxima Transferencia de Potencia.',
+      introduccion: 'Esta unidad establece los pilares del análisis circuital en régimen estacionario de continua. Se desarrollan las convenciones de signos de tensión y corriente en componentes pasivos y activos, la Ley de Ohm, las asociaciones serie, paralelo y la transformación de Kennelly (estrella-triángulo), los divisores de tensión y corriente con efecto de carga, las leyes de Kirchhoff, los métodos sistemáticos de nodos y mallas, y los teoremas de Thévenin, Norton, Millman, Superposición y Máxima Transferencia de Potencia.',
       secciones: [
         {
           id: 'e1-u1-convencion-asociacion',
-          titulo: '1.1 Convención de Signos Pasiva, Ley de Ohm y Asociación de Resistencias',
+          titulo: '1.1 Convención de Signos Pasiva, Ley de Ohm, Asociación y Teorema de Kennelly',
           contenido: `
             <p class="mb-3">El análisis riguroso de cualquier red eléctrica requiere establecer inequívocamente el sentido de referencia de las corrientes y las polaridades de las caídas de tensión sobre cada elemento de circuito.</p>
 
@@ -101,6 +101,37 @@ const MANUAL_TEORIA_E1 = {
               </div>
             </div>
             <p class="text-xs text-slate-500 mt-1"><strong>Propiedad fundamental:</strong> $R_{eq,paralelo}$ es siempre <em>estrictamente menor</em> que la menor de las resistencias individuales ($R_{eq} < \\min(R_i)$). Si una resistencia es mucho menor que la otra ($R_1 \\ll R_2$), entonces $R_1 \\parallel R_2 \\approx R_1$.</p>
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Transformación Estrella - Triángulo (Teorema de Kennelly)</h5>
+            <p class="mb-2 text-xs sm:text-sm">
+              Cuando una red resistiva presenta estructuras en puente (como el Puente de Wheatstone desbalanceado) o configuraciones en malla cerrada, ningún par de resistores se encuentra estrictamente en serie ni en paralelo. El <strong>Teorema de Kennelly</strong> permite convertir una conexión en <strong>Triángulo ($\Delta$)</strong> formada por $R_{AB}, R_{BC}, R_{CA}$ entre tres nodos $A, B, C$ en una conexión equivalente en <strong>Estrella ($Y$)</strong> con resistores $R_A, R_B, R_C$ conectados a un nodo neutro común central (o viceversa), preservando las tensiones y corrientes vistas desde los terminales externos.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2">
+              <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs">
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">📐 Transformación Delta a Estrella ($\Delta \to Y$)</span>
+                <p class="text-slate-600 dark:text-slate-400 mb-1">Para obtener las ramas de la estrella conectadas a los terminales $A, B, C$:</p>
+                $$R_A = \\frac{R_{AB} \\cdot R_{CA}}{R_{AB} + R_{BC} + R_{CA}}$$
+                $$R_B = \\frac{R_{AB} \\cdot R_{BC}}{R_{AB} + R_{BC} + R_{CA}}$$
+                $$R_C = \\frac{R_{BC} \\cdot R_{CA}}{R_{AB} + R_{BC} + R_{CA}}$$
+                <p class="text-[11px] text-slate-500 mt-1"><strong>Regla mnemotécnica:</strong> Cada resistencia de la estrella es el <em>producto de las dos resistencias adyacentes</em> del triángulo dividido por la <em>suma de las tres resistencias</em> del triángulo.</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs">
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">🔄 Transformación Estrella a Delta ($Y \to \Delta$)</span>
+                <p class="text-slate-600 dark:text-slate-400 mb-1">Para obtener las ramas del triángulo entre pares de terminales:</p>
+                $$R_{AB} = \\frac{R_A R_B + R_B R_C + R_C R_A}{R_C}$$
+                $$R_{BC} = \\frac{R_A R_B + R_B R_C + R_C R_A}{R_A}$$
+                $$R_{CA} = \\frac{R_A R_B + R_B R_C + R_C R_A}{R_B}$$
+                <p class="text-[11px] text-slate-500 mt-1"><strong>Regla mnemotécnica:</strong> Es la <em>suma de los productos cruzados tomados de a pares</em> dividida por la resistencia de la <em>rama opuesta</em> de la estrella.</p>
+              </div>
+            </div>
+
+            <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+              <strong>Caso Particular Simétrico ($R_{AB} = R_{BC} = R_{CA} = R_\\Delta$):</strong>
+              $$\\mathbf{R_Y = \\frac{R_\\Delta}{3}} \\quad \\Longleftrightarrow \\quad \\mathbf{R_\\Delta = 3 \\cdot R_Y}$$
+              <span class="text-slate-500">La resistencia equivalente de cada rama de la estrella es exactamente un tercio del valor de cada rama del triángulo.</span>
+            </div>
           `
         },
         {
@@ -227,7 +258,7 @@ const MANUAL_TEORIA_E1 = {
         },
         {
           id: 'e1-u1-teoremas-red',
-          titulo: '1.4 Teoremas de Thévenin, Norton y Máxima Transferencia de Potencia',
+          titulo: '1.4 Teoremas de Red: Thévenin, Norton, Millman y Máxima Transferencia',
           contenido: `
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Teorema de Thévenin</h5>
             <p class="mb-2">Cualquier red lineal resistiva vista desde dos terminales $A$ y $B$ puede ser reemplazada por una fuente de tensión ideal $V_{th}$ en serie con una resistencia equivalente $R_{th}$:</p>
@@ -241,6 +272,44 @@ const MANUAL_TEORIA_E1 = {
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Teorema de Norton</h5>
             <p class="mb-2">Equivalente dual compuesto por una fuente de corriente ideal $I_N$ en paralelo con $R_N = R_{th}$:</p>
             $$I_N = I_{sc} = \\frac{V_{th}}{R_{th}}$$
+
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Teorema de Millman (Generadores en Paralelo)</h5>
+            <p class="mb-2 text-xs sm:text-sm">
+              El <strong>Teorema de Millman</strong> es un método analítico directo de resolución en un único paso para circuitos que constan de múltiples ramas en paralelo conectadas entre dos nodos esenciales comunes $A$ y $B$. Cada rama $k$ puede contener un generador de tensión ideal $E_k$ en serie con una resistencia interna $R_k$, un generador de corriente independiente $I_{sj}$, o ser una rama resistiva pasiva $R_p$.
+            </p>
+
+            <div class="p-4 my-3 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-950 dark:text-teal-200 text-xs">
+              <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5 text-teal-700 dark:text-teal-300">
+                <span>⚡</span> Fórmula Fundamental de Millman para la Tensión Nodal $V_{AB}$
+              </h5>
+              <p class="mt-1">
+                Aplicando la Ley de Corrientes de Kirchhoff (LCK) en el nodo $A$, la diferencia de potencial directa entre los dos nodos comunes ($V_{AB} = V_A - V_B$) se calcula como:
+              </p>
+              $$\\mathbf{V_{AB} = \\frac{\\sum_{k=1}^N \\pm \\frac{E_k}{R_k} + \\sum_{j=1}^M \\pm I_{sj}}{\\sum_{k=1}^N \\frac{1}{R_k} + \\sum_{p=1}^P \\frac{1}{R_p}} = \\frac{\\sum \\pm E_k G_k + \\sum \\pm I_{sj}}{\\sum G_{\\text{total}}}}$$
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 text-xs">
+                <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/80 border border-teal-200 dark:border-teal-900">
+                  <span class="font-bold text-teal-700 dark:text-teal-300">Regla de Signos en el Numerador:</span>
+                  <ul class="list-disc pl-4 space-y-1 mt-1 text-[11px] text-slate-700 dark:text-slate-300">
+                    <li>$+E_k$ si el borne positivo de la fuente apunta hacia el nodo $A$.</li>
+                    <li>$-E_k$ si el borne positivo de la fuente apunta hacia el nodo $B$.</li>
+                    <li>$+I_{sj}$ si la fuente de corriente inyecta carga hacia el nodo $A$; $-I_{sj}$ si extrae carga de $A$.</li>
+                    <li>Las ramas puramente resistivas ($E_p = 0$) aportan $0$ al numerador.</li>
+                  </ul>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/80 border border-teal-200 dark:border-teal-900">
+                  <span class="font-bold text-teal-700 dark:text-teal-300">Resistencia Equivalente de Millman:</span>
+                  $$R_{M} = R_{th} = \\frac{1}{\\sum G_{\\text{total}}} = \\frac{1}{\\sum_{k=1}^N \\frac{1}{R_k} + \\sum_{p=1}^P \\frac{1}{R_p}}$$
+                  <p class="mt-1 text-[11px] text-slate-700 dark:text-slate-300">
+                    El circuito visto desde los terminales $A$ y $B$ equivale a una fuente de Thévenin con $V_{th} = V_{AB}$ en serie con $R_{th} = R_M$.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+              <strong>Aplicaciones directas en Electrónica:</strong> Redes de polarización de transistores alimentadas desde múltiples carriles de tensión, sumadores pasivos analógicos de señales, redes de ponderación resistiva R-2R en conversores D/A y referencias estabilizadas con diodos.
+            </p>
 
             <div class="p-4 my-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200">
               <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
@@ -286,6 +355,16 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Misma tensión ($R_{eq} < \\min R_i$)</td>
                   </tr>
                   <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly ($\Delta \\to Y$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_A = \\frac{R_{AB} R_{CA}}{\\sum R_\\Delta}$ (simétrico: $R_Y = R_\\Delta / 3$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Redes en puente / no reducibles</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly ($Y \\to \\Delta$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{AB} = \\frac{\\sum R_i R_j}{R_C}$ (simétrico: $R_\\Delta = 3 R_Y$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Conversión a triángulo</td>
+                  </tr>
+                  <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Divisor de Tensión (en vacío)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{out} = V_{in} \\frac{R_2}{R_1 + R_2}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Sobre $R_2$ sin carga conectada</td>
@@ -299,6 +378,11 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Divisor de Corriente (2 ramas)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$I_1 = I_{in} \\frac{R_2}{R_1 + R_2}, \\; I_2 = I_{in} \\frac{R_1}{R_1 + R_2}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ramas en paralelo</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Millman</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{AB} = \\frac{\\sum \\pm E_k / R_k + \\sum \\pm I_s}{\\sum 1 / R_k}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$N$ ramas en paralelo entre dos nodos</td>
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Equivalente Thévenin / Norton</td>
