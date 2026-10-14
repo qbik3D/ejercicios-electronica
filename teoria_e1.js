@@ -1528,15 +1528,15 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\approx 0$ a temperatura ambiente</td>
                   </tr>
                   <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Efecto Térmico ($T \\uparrow$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-mono">Efecto con el Calor ($T \\uparrow$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">
-                      <strong>PTC</strong> ($\\rho$ aumenta por mayor dispersión reticular con fonones)
+                      <strong>PTC:</strong> A mayor calor, aumenta su resistencia (los átomos vibran más y chocan a los electrones).
                     </td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">
-                      <strong>NTC</strong> ($\\rho$ disminuye exponencialmente por generación térmica de pares $e^--h^+$)
+                      <strong>NTC:</strong> A mayor calor, <strong>baja</strong> su resistencia (el calor libera más electrones y huecos).
                     </td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">
-                      Permanece aislante hasta la tensión de ruptura dieléctrica
+                      Permanece aislante (salvo que se supere la tensión de ruptura dieléctrica).
                     </td>
                   </tr>
                   <tr>
@@ -1549,79 +1549,113 @@ const MANUAL_TEORIA_E1 = {
               </table>
             </div>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Semiconductores Intrínsecos y Dopaje Extrínseco</h5>
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Semiconductores Puros (Intrínsecos) y Dopaje</h5>
             <p class="mb-2 text-xs sm:text-sm">
-              En un cristal de silicio puro (<strong>intrínseco</strong>), cada átomo comparte sus 4 electrones de valencia con 4 átomos vecinos mediante enlaces covalentes tetraédricos. A $0\\text{ K}$ todos los electrones están confinados (aislante ideal). A $300\\text{ K}$, la energía térmica excita electrones a la banda de conducción, dejando vacantes en la banda de valencia denominadas <strong>huecos</strong>:
-            </p>
-            $$n = p = n_i(T) = B \\cdot T^{3/2} \\exp\\left( -\\frac{E_g}{2 k T} \\right)$$
-            <p class="mb-2 text-xs sm:text-sm">
-              Mediante la técnica de <strong>dopaje</strong> (introducción controlada de impurezas en proporciones de 1 por millón a 1 por mil millones), se controla la conductividad en varios órdenes de magnitud:
+              El silicio puro tiene 4 electrones en su última capa. A temperatura ambiente casi no tiene electrones libres, por lo que conduce muy poco. Para que sirva en circuitos, se le agregan pequeñísimas cantidades de impurezas en un proceso llamado <strong>dopaje</strong>. Así nacen dos tipos de materiales:
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2">
               <div class="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200 text-xs">
-                <span class="font-bold uppercase tracking-wider block mb-1">🟦 Semiconductor Tipo N (Donores Pentavalentes)</span>
+                <span class="font-bold uppercase tracking-wider block mb-1">🟦 Semiconductor Tipo N (Negativo)</span>
                 <p class="text-slate-600 dark:text-slate-400">
-                  Dopado con átomos del Grupo V (Fósforo $\\text{P}$, Arsénico $\\text{As}$, Antimonio $\\text{Sb}$). El quinto electrón no cabe en la red covalente y queda ligado débilmente con una energía de ionización de solo $\\sim 0.05\\text{ eV}$, donándose a la banda de conducción a temperatura ambiente.
+                  Se dopa con elementos como <strong>Fósforo (P)</strong> o <strong>Arsénico (As)</strong> que tienen 5 electrones. Ese quinto electrón sobra y queda libre para moverse fácilmente.
                 </p>
-                <ul class="list-disc pl-4 space-y-0.5 mt-1 text-[11px]">
-                  <li><strong>Portadores mayoritarios:</strong> Electrones ($n_n \\approx N_D$).</li>
-                  <li><strong>Portadores minoritarios:</strong> Huecos ($p_n = n_i^2 / N_D \\ll n_n$).</li>
-                  <li>Iones fijos no móviles en la red: $N_D^+$ (positivos).</li>
+                <ul class="list-disc pl-4 space-y-0.5 mt-1.5 text-[11px]">
+                  <li><strong>Portadores mayoritarios:</strong> Electrones libres (cargas negativas).</li>
+                  <li><strong>Portadores minoritarios:</strong> Huecos (casi ninguno).</li>
+                  <li>Al ceder su electrón libre, queda un átomo fijo con carga positiva en la red ($N_D^+$).</li>
                 </ul>
               </div>
 
               <div class="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200 text-xs">
-                <span class="font-bold uppercase tracking-wider block mb-1">🟥 Semiconductor Tipo P (Aceptores Trivalentes)</span>
+                <span class="font-bold uppercase tracking-wider block mb-1">🟥 Semiconductor Tipo P (Positivo)</span>
                 <p class="text-slate-600 dark:text-slate-400">
-                  Dopado con átomos del Grupo III (Boro $\\text{B}$, Galio $\\text{Ga}$, Indio $\\text{In}$). Al poseer solo 3 electrones de valencia, dejan un enlace incompleto o vacante que acepta fácilmente un electrón térmico de valencia, creando un hueco móvil.
+                  Se dopa con elementos como <strong>Boro (B)</strong> que tienen solo 3 electrones. Queda un espacio vacío o "hueco" con ganas de atrapar un electrón.
                 </p>
-                <ul class="list-disc pl-4 space-y-0.5 mt-1 text-[11px]">
-                  <li><strong>Portadores mayoritarios:</strong> Huecos ($p_p \\approx N_A$).</li>
-                  <li><strong>Portadores minoritarios:</strong> Electrones ($n_p = n_i^2 / N_A \\ll p_p$).</li>
-                  <li>Iones fijos no móviles en la red: $N_A^-$ (negativos).</li>
+                <ul class="list-disc pl-4 space-y-0.5 mt-1.5 text-[11px]">
+                  <li><strong>Portadores mayoritarios:</strong> Huecos (actúan como cargas positivas móviles).</li>
+                  <li><strong>Portadores minoritarios:</strong> Electrones libres (casi ninguno).</li>
+                  <li>Al atrapar un electrón, queda un átomo fijo con carga negativa en la red ($N_A^-$).</li>
                 </ul>
               </div>
             </div>
 
             <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
-              <strong>Ley de Acción de Masas:</strong> En condiciones de equilibrio térmico a temperatura $T$, el producto de portadores es rigurosamente constante independiente del nivel de dopaje:
-              $$\\mathbf{n \\cdot p = n_i^2(T)}$$
+              <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">⚖️ Ley de Acción de Masas (Equilibrio de portadores):</span>
+              <p class="text-slate-600 dark:text-slate-400">
+                A una temperatura dada, si aumentás la cantidad de electrones ($n$), disminuyen los huecos ($p$), y viceversa. Su producto siempre es un valor constante:
+              </p>
+              $$\\mathbf{n \\cdot p = n_i^2}$$
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                <strong>En criollo:</strong> En un material tipo N mandan los electrones y los huecos casi no existen; en el tipo P mandan los huecos y los electrones casi no existen.
+              </p>
             </div>
           `
         },
         {
           id: 'e1-u2-fisica-juntura',
-          titulo: '2.2 La Juntura PN en Equilibrio Termodinámico y Formación de la ZCE',
+          titulo: '2.2 La Juntura PN y la Barrera de Potencial (¿Cómo nace un diodo?)',
           contenido: `
-            <p class="mb-3">Al unir metalúrgicamente un cristal semiconductor tipo P y uno tipo N, surge un marcado gradiente de concentración de portadores que desencadena el nacimiento de la unión o juntura PN.</p>
+            <p class="mb-3 text-xs sm:text-sm">
+              Un diodo semiconductor se forma simplemente uniendo un cristal <strong>tipo P</strong> con uno <strong>tipo N</strong>. Al juntarlos, ocurre un proceso natural que crea la barrera interna de conducción:
+            </p>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Dinámica de Formación de la Zona de Carga Espacial (ZCE)</h5>
-            <ol class="list-decimal pl-5 space-y-1 text-xs sm:text-sm">
-              <li><strong>Difusión inicial:</strong> Los huecos mayoritarios del lado P difunden espontáneamente hacia el lado N, y los electrones del lado N difunden hacia el lado P.</li>
-              <li><strong>Recombinación y desvelo de iones fijos:</strong> Al cruzar la interfaz, los portadores se recombinan, dejando al descubierto los iones inmóviles de la red cristalina: iones aceptores negativos $N_A^-$ en el lado P y donores positivos $N_D^+$ en el lado N.</li>
-              <li><strong>Campo eléctrico interno inducido ($\\vec{\\mathcal{E}}$):</strong> Esta separación de cargas fijas crea una región desprovista de portadores libres denominada <strong>Zona de Carga Espacial (ZCE)</strong> o región de agotamiento. El campo eléctrico $\\vec{\\mathcal{E}}$ apunta desde el lado N ($+$) hacia el lado P ($-$).</li>
-              <li><strong>Equilibrio dinámico de corrientes:</strong> El campo $\\vec{\\mathcal{E}}$ ejerce una fuerza que empuja a los huecos hacia P y a los electrones hacia N (corriente de arrastre o *drift*). En equilibrio térmico, la corriente de arrastre equilibra exactamente a la de difusión:
-                $$J_{\\text{total}} = J_{\\text{difusión}} + J_{\\text{arrastre}} = 0$$
-              </li>
-            </ol>
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">¿Cómo se forma la Zona de Agotamiento? (Paso a paso para entenderlo fácil)</h5>
+            
+            <div class="space-y-2.5 text-xs sm:text-sm">
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-blue-600 dark:text-blue-400">1. Atracción inicial en la frontera:</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">
+                  En el lado N sobran electrones y en el lado P sobran huecos. En el instante en que se tocan, los electrones más cercanos al borde saltan naturalmente al lado P para llenar los huecos vecinos.
+                </p>
+              </div>
 
-            <div class="p-3.5 my-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200 text-xs">
-              <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <span>⚡</span> Barrera de Potencial de Contacto Interno ($V_{bi}$ o $V_0$)
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-blue-600 dark:text-blue-400">2. Queda una "tierra de nadie" (Zona de Agotamiento o ZCE):</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">
+                  Al saltar los electrones, en el lado N quedan átomos fijos con carga positiva, y en el lado P quedan átomos fijos con carga negativa. Justo en el medio queda una franja angosta donde <strong>ya no quedan cargas libres</strong>: quedó desierta ("agotada").
+                </p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-blue-600 dark:text-blue-400">3. Se crea un "muro eléctrico" que frena el paso (Equilibrio):</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">
+                  Esos átomos fijos cargados crean un campo eléctrico interno que empuja hacia atrás a los electrones que quieran seguir pasando. Se alcanza un equilibrio automático donde nadie más puede cruzar solo: la corriente total es <strong>cero</strong> ($I = 0$).
+                </p>
+              </div>
+            </div>
+
+            <!-- Recuadro explicativo de los 0.7V -->
+            <div class="p-3.5 my-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs">
+              <h5 class="font-bold text-xs uppercase tracking-wider mb-1.5 flex items-center gap-1.5 text-amber-800 dark:text-amber-300">
+                <span>⚡</span> ¿De dónde salen los famosos 0.7 V del diodo? (Barrera de Potencial $V_0$)
               </h5>
-              <p>Integrando el campo eléctrico a lo largo de la ZCE se obtiene la barrera de potencial de contacto interno:</p>
-              $$\\mathbf{V_0 = V_{bi} = V_T \\ln\\left( \\frac{N_A \\cdot N_D}{n_i^2} \\right)}$$
-              <p class="mt-1 text-slate-600 dark:text-slate-400">
-                donde $V_T = \\frac{k T}{q} \\approx 25.86\\text{ mV}$ es la tensión térmica a $300\\text{ K}$. Para silicio a temperatura ambiente con dopajes típicos ($10^{16}\\text{ cm}^{-3}$), $V_0 \\approx 0.65\\text{ V} - 0.75\\text{ V}$.
+              <p class="text-slate-700 dark:text-slate-300 mb-2">
+                Ese "muro eléctrico" interno equivale a una pequeña batería interna que se opone al paso de corriente. Para que el diodo empiece a conducir, una fuente externa debe vencer esta tensión:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2 font-mono">
+                <div class="p-2 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 text-center">
+                  <span class="text-slate-500 dark:text-slate-400 block text-[11px]">Diodo de Silicio (Si)</span>
+                  <span class="text-base font-bold text-amber-600 dark:text-amber-400">V₀ ≈ 0.6 V a 0.7 V</span>
+                </div>
+                <div class="p-2 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 text-center">
+                  <span class="text-slate-500 dark:text-slate-400 block text-[11px]">Diodo de Germanio (Ge)</span>
+                  <span class="text-base font-bold text-amber-600 dark:text-amber-400">V₀ ≈ 0.2 V a 0.3 V</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1.5">
+                💡 <strong>Lo que necesitás para los ejercicios:</strong> Este es el origen físico del famoso valor <strong>$V_D \approx 0.7\text{ V}$</strong> que usamos como caída de tensión en todos los análisis y ejercicios prácticos de circuitos con diodos.
               </p>
             </div>
 
-            <p class="text-xs text-slate-600 dark:text-slate-400">
-              <strong>Ancho de la Zona de Agotamiento en Equilibrio ($W_0$):</strong>
-              $$W_0 = x_p + x_n = \\sqrt{ \\frac{2 \\varepsilon_s V_0}{q} \\left( \\frac{1}{N_A} + \\frac{1}{N_D} \\right) }$$
-              donde $\\varepsilon_s = \\varepsilon_r \\varepsilon_0 \\approx 11.7 \\times 8.85 \\times 10^{-12}\\text{ F/m}$. Nótese por neutralidad de carga ($q N_A x_p = q N_D x_n$) que la ZCE penetra mucho más profundamente en el lado menos dopado.
-            </p>
+            <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+              <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">¿Qué significa esto para el funcionamiento del diodo?</span>
+              <ul class="list-disc pl-4 space-y-1 text-slate-600 dark:text-slate-400">
+                <li><strong>En reposo (sin conectar):</strong> La barrera de $0.7\text{ V}$ frena todo flujo $\to$ corriente nula ($I = 0$).</li>
+                <li><strong>En directa ($+ \to P$, $- \to N$):</strong> Si la fuente supera los $0.7\text{ V}$, achica el muro y la corriente fluye libremente (diodo conduciendo).</li>
+                <li><strong>En inversa ($+ \to N$, $- \to P$):</strong> La fuente agranda aún más el muro y no deja pasar nada (diodo bloqueado).</li>
+              </ul>
+            </div>
           `
         },
         {
