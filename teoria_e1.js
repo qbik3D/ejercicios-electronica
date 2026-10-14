@@ -2274,19 +2274,30 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="0" y="0" width="335" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
                     <text x="167" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Puente de Diodos de Graetz</text>
 
-                    <!-- Entrada AC -->
-                    <circle cx="45" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="1.8"/>
-                    <path d="M 36 95 Q 40.5 88 45 95 Q 49.5 102 54 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
-                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">s</tspan>(t)</text>
+                    <!-- Entrada AC con terminales independientes superior e inferior -->
+                    <circle cx="45" cy="95" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+                    <path d="M 37 95 Q 41 89 45 95 Q 49 101 53 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="24" y="98" text-anchor="end" fill="#2563eb" font-size="8.5" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">s</tspan>(t)</text>
 
-                    <!-- Cables de entrada al puente -->
-                    <line x1="61" y1="90" x2="110" y2="90" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="110" y1="90" x2="110" y2="95" stroke="#64748b" stroke-width="1.5"/>
+                    <!-- Terminal Superior (+) e Inferior (-) -->
+                    <circle cx="45" cy="81" r="2.2" fill="#2563eb"/>
+                    <text x="35" y="80" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="8.5">+</text>
 
-                    <line x1="61" y1="100" x2="85" y2="100" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="85" y1="100" x2="85" y2="160" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="85" y1="160" x2="200" y2="160" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="200" y1="160" x2="200" y2="95" stroke="#64748b" stroke-width="1.5"/>
+                    <circle cx="45" cy="109" r="2.2" fill="#2563eb"/>
+                    <text x="35" y="115" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">−</text>
+
+                    <!-- Conexión Superior: sale por arriba y entra TOTALMENTE RECTA y horizontal a la esquina izquierda (110, 95) -->
+                    <line x1="45" y1="81" x2="45" y2="65" stroke="#64748b" stroke-width="1.6"/>
+                    <line x1="45" y1="65" x2="80" y2="65" stroke="#64748b" stroke-width="1.6"/>
+                    <line x1="80" y1="65" x2="80" y2="95" stroke="#64748b" stroke-width="1.6"/>
+                    <line x1="80" y1="95" x2="110" y2="95" stroke="#64748b" stroke-width="1.6"/>
+                    <circle cx="110" cy="95" r="3" fill="#64748b"/>
+
+                    <!-- Conexión Inferior: sale por abajo, corre a y=160 y sube recta a la esquina derecha (200, 95) -->
+                    <line x1="45" y1="109" x2="45" y2="160" stroke="#64748b" stroke-width="1.6"/>
+                    <line x1="45" y1="160" x2="200" y2="160" stroke="#64748b" stroke-width="1.6"/>
+                    <line x1="200" y1="160" x2="200" y2="95" stroke="#64748b" stroke-width="1.6"/>
+                    <circle cx="200" cy="95" r="3" fill="#64748b"/>
 
                     <!-- ROMBO DEL PUENTE (Nodos: Superior (155, 50), Derecho (200, 95), Inferior (155, 140), Izquierdo (110, 95)) -->
                     <!-- D1: Izq a Superior -->
@@ -2294,34 +2305,38 @@ const MANUAL_TEORIA_E1 = {
                       <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
                     </g>
-                    <text x="120" y="62" fill="#059669" font-weight="bold" font-size="8">D1</text>
+                    <text x="118" y="60" fill="#059669" font-weight="bold" font-size="8.5">D1</text>
 
                     <!-- D3: Inferior a Izq -->
                     <g transform="translate(132.5, 117.5) rotate(-135)">
                       <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
                     </g>
-                    <text x="120" y="142" fill="#7c3aed" font-weight="bold" font-size="8">D3</text>
+                    <text x="118" y="142" fill="#7c3aed" font-weight="bold" font-size="8.5">D3</text>
 
                     <!-- D4: Derecho a Superior -->
                     <g transform="translate(177.5, 72.5) rotate(-135)">
                       <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
                     </g>
-                    <text x="188" y="62" fill="#7c3aed" font-weight="bold" font-size="8">D4</text>
+                    <text x="190" y="60" fill="#7c3aed" font-weight="bold" font-size="8.5">D4</text>
 
                     <!-- D2: Inferior a Derecho -->
                     <g transform="translate(177.5, 117.5) rotate(-45)">
                       <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
                     </g>
-                    <text x="188" y="142" fill="#059669" font-weight="bold" font-size="8">D2</text>
+                    <text x="190" y="142" fill="#059669" font-weight="bold" font-size="8.5">D2</text>
 
                     <!-- Líneas del rombo -->
                     <line x1="110" y1="95" x2="155" y2="50" stroke="#64748b" stroke-width="1.2"/>
                     <line x1="155" y1="50" x2="200" y2="95" stroke="#64748b" stroke-width="1.2"/>
                     <line x1="200" y1="95" x2="155" y2="140" stroke="#64748b" stroke-width="1.2"/>
                     <line x1="155" y1="140" x2="110" y2="95" stroke="#64748b" stroke-width="1.2"/>
+
+                    <!-- Nodos superior e inferior del puente -->
+                    <circle cx="155" cy="50" r="3" fill="#dc2626"/>
+                    <circle cx="155" cy="140" r="3" fill="#3b82f6"/>
 
                     <!-- Salida DC a la carga R_L -->
                     <!-- Positivo: Nodo superior (155, 50) -->
@@ -2377,6 +2392,40 @@ const MANUAL_TEORIA_E1 = {
                   <span class="font-bold text-emerald-600 dark:text-emerald-400 block">Gran Ventaja: $PIV$ Reducida</span>
                   $$PIV = V_s - V_\\gamma \\approx V_s$$
                   <span class="text-[11px] text-slate-500">Es la mitad que en el rectificador de punto medio.</span>
+                </div>
+              </div>
+
+              <!-- Deducción analítica y cálculo de la PIV -->
+              <div class="p-3.5 rounded-xl bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-500/30 text-xs text-slate-800 dark:text-slate-200">
+                <h5 class="font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                  <span>📐</span> ¿Cómo se Deduce y Analiza la PIV (Peak Inverse Voltage) en el Puente?
+                </h5>
+                <p class="mb-2">
+                  La <strong>Tensión Inversa de Pico (PIV)</strong> es la máxima diferencia de potencial en polarización inversa que debe soportar cada diodo apagado (en corte) sin sufrir ruptura por avalancha. Analicemos el circuito paso a paso:
+                </p>
+                <ol class="list-decimal pl-5 space-y-1.5 mb-2.5">
+                  <li>
+                    <strong>Durante el semiciclo positivo ($v_s(t) = +V_s$):</strong>
+                    Los diodos $D_1$ y $D_2$ entran en conducción directa ($V_{D1} = V_{D2} = V_\gamma \approx 0.7\text{ V}$), mientras que $D_3$ y $D_4$ permanecen en corte (OFF).
+                  </li>
+                  <li>
+                    <strong>Malla de Kirchhoff para el diodo bloqueado $D_3$:</strong>
+                    El cátodo de $D_3$ está conectado directamente al terminal superior del generador ($+V_s$) a través del nodo con el ánodo de $D_1$. Por su parte, el ánodo de $D_3$ se conecta al terminal negativo de la carga ($R_L$), que a su vez se conecta al terminal inferior del generador a través del diodo en conducción $D_2$ ($V_{D2} = V_\gamma$).
+                    <br>
+                    Observando la malla cerrada formada por $D_3$, $D_1$ y la carga $R_L$:
+                    $$V_{inv, D3} = V_{\text{cátodo}} - V_{\text{ánodo}} = V_{o,pico} + V_{D1}$$
+                    Sustituyendo $V_{o,pico} = V_s - 2V_\gamma$:
+                    $$V_{inv, D3} = (V_s - 2V_\gamma) + V_\gamma = \mathbf{V_s - V_\gamma \approx V_s}$$
+                  </li>
+                  <li>
+                    <strong>Malla de Kirchhoff para el diodo bloqueado $D_4$:</strong>
+                    Su cátodo se encuentra al potencial positivo de la carga ($V_{o,pico}$) y su ánodo al terminal inferior de $v_s$ (a través de $D_2$). De manera idéntica:
+                    $$V_{inv, D4} = V_{o,pico} + V_{D2} = \mathbf{V_s - V_\gamma \approx V_s}$$
+                  </li>
+                </ol>
+                <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/60 border border-emerald-500/20 text-slate-700 dark:text-slate-300">
+                  <strong>Comparativa Crucial con el Rectificador de Punto Medio:</strong>
+                  En el transformador de toma central, el diodo en corte ve la suma de <em>ambos semi-bobinados</em> en serie ($\text{PIV} = 2V_s - V_\gamma \approx \mathbf{2V_s}$). En el <strong>Puente de Graetz</strong>, en cambio, la tensión inversa se distribuye en dos ramas paralelas, por lo que <strong>cada diodo soporta únicamente el pico de una sola fuente ($\text{PIV} \approx V_s$)</strong>. Esto reduce a la mitad el requerimiento de $V_{RRM}$ de los diodos en el diseño comercial.
                 </div>
               </div>
 
