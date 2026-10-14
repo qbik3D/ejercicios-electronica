@@ -2018,8 +2018,8 @@ const MANUAL_TEORIA_E1 = {
               </div>
 
               <!-- Gráfico SVG: Circuito y Formas de Onda de Media Onda -->
-              <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 200" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+              <div class="overflow-x-auto py-1">
+                <svg viewBox="0 0 680 200" class="w-full max-w-2xl mx-auto h-auto font-sans text-xs select-none block">
                   <!-- Lado Izquierdo: Circuito -->
                   <g transform="translate(10, 15)">
                     <rect x="0" y="0" width="280" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
@@ -2124,8 +2124,8 @@ const MANUAL_TEORIA_E1 = {
               </div>
 
               <!-- Gráfico SVG: Circuito y Formas de Onda Toma Central -->
-              <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 210" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+              <div class="overflow-x-auto py-1">
+                <svg viewBox="0 0 680 210" class="w-full max-w-2xl mx-auto h-auto font-sans text-xs select-none block">
                   <!-- Esquema Circuital -->
                   <g transform="translate(10, 15)">
                     <rect x="0" y="0" width="310" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
@@ -2256,97 +2256,97 @@ const MANUAL_TEORIA_E1 = {
               </div>
 
               <!-- Gráfico SVG: Puente de Graetz y Flujo de Corriente -->
-              <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 220" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+              <div class="overflow-x-auto py-1">
+                <svg viewBox="0 0 680 215" class="w-full max-w-2xl mx-auto h-auto font-sans text-xs select-none block">
                   <!-- Esquema del Puente -->
                   <g transform="translate(10, 15)">
-                    <rect x="0" y="0" width="340" height="190" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="170" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Puente de Diodos de Graetz</text>
+                    <rect x="0" y="0" width="335" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="167" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Puente de Diodos de Graetz</text>
 
                     <!-- Entrada AC -->
-                    <circle cx="35" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="1.8"/>
-                    <path d="M 26 95 Q 30 88 35 95 Q 40 102 44 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
-                    <text x="35" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">s</tspan>(t)</text>
+                    <circle cx="45" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+                    <path d="M 36 95 Q 40.5 88 45 95 Q 49.5 102 54 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">s</tspan>(t)</text>
 
                     <!-- Cables de entrada al puente -->
-                    <line x1="51" y1="90" x2="105" y2="90" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="105" y1="90" x2="105" y2="95" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="61" y1="90" x2="110" y2="90" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="110" y1="90" x2="110" y2="95" stroke="#64748b" stroke-width="1.5"/>
 
-                    <line x1="51" y1="100" x2="80" y2="100" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="80" y1="100" x2="80" y2="165" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="80" y1="165" x2="205" y2="165" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="205" y1="165" x2="205" y2="95" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="61" y1="100" x2="85" y2="100" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="85" y1="100" x2="85" y2="160" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="85" y1="160" x2="200" y2="160" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="200" y1="160" x2="200" y2="95" stroke="#64748b" stroke-width="1.5"/>
 
-                    <!-- ROMBO DEL PUENTE (Nodos: Superior (155, 45), Derecho (205, 95), Inferior (155, 145), Izquierdo (105, 95)) -->
+                    <!-- ROMBO DEL PUENTE (Nodos: Superior (155, 50), Derecho (200, 95), Inferior (155, 140), Izquierdo (110, 95)) -->
                     <!-- D1: Izq a Superior -->
-                    <g transform="translate(130, 70) rotate(-45)">
+                    <g transform="translate(132.5, 72.5) rotate(-45)">
                       <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
                     </g>
-                    <text x="118" y="60" fill="#059669" font-weight="bold" font-size="8">D1</text>
+                    <text x="120" y="62" fill="#059669" font-weight="bold" font-size="8">D1</text>
 
                     <!-- D3: Inferior a Izq -->
-                    <g transform="translate(130, 120) rotate(-135)">
+                    <g transform="translate(132.5, 117.5) rotate(-135)">
                       <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
                     </g>
-                    <text x="118" y="145" fill="#7c3aed" font-weight="bold" font-size="8">D3</text>
+                    <text x="120" y="142" fill="#7c3aed" font-weight="bold" font-size="8">D3</text>
 
                     <!-- D4: Derecho a Superior -->
-                    <g transform="translate(180, 70) rotate(-135)">
+                    <g transform="translate(177.5, 72.5) rotate(-135)">
                       <polygon points="0,-7 12,0 0,7" fill="#8b5cf6" stroke="#7c3aed" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#7c3aed" stroke-width="1.5"/>
                     </g>
-                    <text x="192" y="60" fill="#7c3aed" font-weight="bold" font-size="8">D4</text>
+                    <text x="188" y="62" fill="#7c3aed" font-weight="bold" font-size="8">D4</text>
 
                     <!-- D2: Inferior a Derecho -->
-                    <g transform="translate(180, 120) rotate(-45)">
+                    <g transform="translate(177.5, 117.5) rotate(-45)">
                       <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
                     </g>
-                    <text x="192" y="145" fill="#059669" font-weight="bold" font-size="8">D2</text>
+                    <text x="188" y="142" fill="#059669" font-weight="bold" font-size="8">D2</text>
 
                     <!-- Líneas del rombo -->
-                    <line x1="105" y1="95" x2="155" y2="45" stroke="#64748b" stroke-width="1.2"/>
-                    <line x1="155" y1="45" x2="205" y2="95" stroke="#64748b" stroke-width="1.2"/>
-                    <line x1="205" y1="95" x2="155" y2="145" stroke="#64748b" stroke-width="1.2"/>
-                    <line x1="155" y1="145" x2="105" y2="95" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="110" y1="95" x2="155" y2="50" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="155" y1="50" x2="200" y2="95" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="200" y1="95" x2="155" y2="140" stroke="#64748b" stroke-width="1.2"/>
+                    <line x1="155" y1="140" x2="110" y2="95" stroke="#64748b" stroke-width="1.2"/>
 
                     <!-- Salida DC a la carga R_L -->
-                    <!-- Positivo: Nodo superior (155, 45) -->
-                    <line x1="155" y1="45" x2="270" y2="45" stroke="#dc2626" stroke-width="1.5"/>
-                    <line x1="270" y1="45" x2="270" y2="75" stroke="#dc2626" stroke-width="1.5"/>
+                    <!-- Positivo: Nodo superior (155, 50) -->
+                    <line x1="155" y1="50" x2="265" y2="50" stroke="#dc2626" stroke-width="1.5"/>
+                    <line x1="265" y1="50" x2="265" y2="75" stroke="#dc2626" stroke-width="1.5"/>
                     
-                    <rect x="262" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
-                    <text x="290" y="98" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                    <rect x="257" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
+                    <text x="285" y="98" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
-                    <!-- Negativo: Nodo inferior (155, 145) -->
-                    <line x1="155" y1="145" x2="270" y2="145" stroke="#3b82f6" stroke-width="1.5"/>
-                    <line x1="270" y1="145" x2="270" y2="115" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Negativo: Nodo inferior (155, 140) -->
+                    <line x1="155" y1="140" x2="265" y2="140" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="265" y1="140" x2="265" y2="115" stroke="#3b82f6" stroke-width="1.5"/>
 
-                    <text x="255" y="60" fill="#dc2626" font-size="10" font-weight="bold">+</text>
-                    <text x="255" y="140" fill="#3b82f6" font-size="10" font-weight="bold">-</text>
-                    <text x="295" y="75" fill="#dc2626" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">o</tspan>(t)</text>
+                    <text x="250" y="65" fill="#dc2626" font-size="10" font-weight="bold">+</text>
+                    <text x="250" y="135" fill="#3b82f6" font-size="10" font-weight="bold">-</text>
+                    <text x="288" y="75" fill="#dc2626" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">o</tspan>(t)</text>
                   </g>
 
                   <!-- Explicación de Conducción en Cuadrante Derecho -->
-                  <g transform="translate(370, 15)">
-                    <rect x="0" y="0" width="300" height="190" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="150" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Dinámica de Conducción por Semiciclos</text>
+                  <g transform="translate(355, 15)">
+                    <rect x="0" y="0" width="315" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="157" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Dinámica de Conducción por Semiciclos</text>
 
                     <!-- Semiciclo 1 -->
-                    <rect x="15" y="35" width="270" height="65" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.4"/>
-                    <text x="25" y="52" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &gt; 0):</text>
-                    <text x="25" y="68" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold">D1 y D2</tspan>.</text>
-                    <text x="25" y="82" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold">D3 y D4</tspan>.</text>
-                    <text x="25" y="94" fill="#64748b" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+) ➔ D1 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D2 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-)</text>
+                    <rect x="12" y="32" width="290" height="68" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.4"/>
+                    <text x="22" y="49" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &gt; 0):</text>
+                    <text x="22" y="65" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold" fill="#047857">D1 y D2</tspan></text>
+                    <text x="22" y="79" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold" fill="#64748b">D3 y D4</tspan></text>
+                    <text x="22" y="92" fill="#047857" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+) ➔ D1 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D2 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-)</text>
 
                     <!-- Semiciclo 2 -->
-                    <rect x="15" y="110" width="270" height="65" rx="6" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.4"/>
-                    <text x="25" y="127" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &lt; 0):</text>
-                    <text x="25" y="143" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold">D3 y D4</tspan>.</text>
-                    <text x="25" y="157" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold">D1 y D2</tspan>.</text>
-                    <text x="25" y="169" fill="#64748b" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-) ➔ D3 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D4 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+)</text>
+                    <rect x="12" y="106" width="290" height="68" rx="6" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.4"/>
+                    <text x="22" y="123" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &lt; 0):</text>
+                    <text x="22" y="139" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold" fill="#6d28d9">D3 y D4</tspan></text>
+                    <text x="22" y="153" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold" fill="#64748b">D1 y D2</tspan></text>
+                    <text x="22" y="166" fill="#6d28d9" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-) ➔ D3 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D4 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+)</text>
                   </g>
                 </svg>
               </div>
@@ -2367,6 +2367,17 @@ const MANUAL_TEORIA_E1 = {
                   $$PIV = V_s - V_\\gamma \\approx V_s$$
                   <span class="text-[11px] text-slate-500">Es la mitad que en el rectificador de punto medio.</span>
                 </div>
+              </div>
+
+              <!-- Ventaja económica e industrial frente a toma central -->
+              <div class="p-3 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/60 text-xs">
+                <div class="flex items-center gap-2 font-bold text-purple-700 dark:text-purple-300 mb-1">
+                  <span>💡</span>
+                  <span>Ventaja Económica y Constructiva Clave:</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  El puente de 4 diodos <strong>elimina por completo la necesidad de un transformador con toma central (punto medio)</strong>. Emplear un transformador estándar de 2 terminales y agregar únicamente <strong>2 diodos más</strong> resulta <strong>mucho más económico, liviano y compacto</strong>: los diodos adicionales son componentes discretos de silicio de bajísimo costo, mientras que un transformador con toma central requiere un bobinado secundario con el doble de espiras y cobre. Además, los diodos en puente soportan solo la mitad de tensión inversa ($PIV \\approx V_s$ frente a $2V_s$), convirtiendo a esta topología en el estándar indiscutido de la industria.
+                </p>
               </div>
             </div>
 
