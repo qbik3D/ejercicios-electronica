@@ -4111,7 +4111,7 @@ const MANUAL_TEORIA_E1 = {
             <!-- 4. RECTA DE CARGA ESTÁTICA Y PUNTO Q -->
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Recta de Carga Estática (DC) y Máxima Excursión Simétrica</h5>
             <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">
-              La recta de carga representa gráficamente todos los posibles pares $(V_{CE}, I_C)$ que permite el circuito exterior de colector y emisor:
+              La recta de carga representa gráficamente todos los posibles pares $(V_{CE}, I_C)$ que permite el circuito exterior de colector y emisor. Para garantizar que la señal no sufra distorsión no lineal al aproximarse al corte de la juntura base-emisor, se define una <strong>corriente mínima $I_{C,\text{min}}$</strong> (límite inferior de la excursión lineal, impidiendo que el BJT se adentre en la zona de codo o corte):
             </p>
 
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
@@ -4146,9 +4146,11 @@ const MANUAL_TEORIA_E1 = {
                   <text x="102" y="38" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">Saturación</text>
                   <text x="102" y="48" text-anchor="middle" fill="#d97706" font-size="8">(<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE</tspan><tspan font-size="100%" dy="-2"> &lt; 0.2 V)</tspan></text>
 
-                  <!-- Región de Corte (Franja horizontal inferior) -->
-                  <rect x="80" y="222" width="560" height="8" fill="#64748b" fill-opacity="0.25"/>
-                  <text x="450" y="227" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8.5">Región de Corte (<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> ≤ 0, </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ≈ 0)</tspan></text>
+                  <!-- Región de Corte (Franja horizontal inferior limitada por I_C,min) -->
+                  <rect x="80" y="213" width="560" height="17" fill="#64748b" fill-opacity="0.2"/>
+                  <line x1="80" y1="213" x2="505" y2="213" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3 2"/>
+                  <text x="72" y="216" text-anchor="end" font-weight="bold" fill="#64748b" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C,min</tspan></text>
+                  <text x="440" y="224" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8.5">Región de Corte (<tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ≤ </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C,min</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
                   <!-- Familia de curvas de salida I_C vs V_CE -->
                   <!-- Curva 1: I_B1 = 10 uA -->
@@ -4187,6 +4189,11 @@ const MANUAL_TEORIA_E1 = {
                   <circle cx="550" cy="230" r="4.5" fill="#ef4444"/>
                   <text x="550" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> (Corte)</tspan></text>
 
+                  <!-- Límite de Corte Práctico V_CE,corte a I_C = I_C,min -->
+                  <circle cx="505" cy="213" r="3.5" fill="#10b981"/>
+                  <line x1="505" y1="213" x2="505" y2="230" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <text x="505" y="247" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,corte</tspan></text>
+
                   <!-- Punto Q de trabajo: Intersección EXACTA de Curva 3 con Recta de Carga -->
                   <g>
                     <!-- Línea punteada a Eje Y: I_CQ -->
@@ -4204,12 +4211,12 @@ const MANUAL_TEORIA_E1 = {
                   </g>
 
                   <!-- Guías verticales verdes de límites de excursión -->
-                  <line x1="125" y1="67" x2="125" y2="218" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
-                  <line x1="505" y1="213" x2="505" y2="218" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+                  <line x1="125" y1="67" x2="125" y2="208" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+                  <line x1="505" y1="205" x2="505" y2="208" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
 
                   <!-- Flecha de máxima excursión simétrica sin distorsión -->
-                  <line x1="125" y1="210" x2="505" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#dc-arr-green-rev)" marker-end="url(#dc-arr-green)"/>
-                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5">Máxima Excursión Simétrica (Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">ce,p</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan><tspan font-size="100%" dy="-2"> − </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,sat</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                  <line x1="125" y1="202" x2="505" y2="202" stroke="#10b981" stroke-width="2" marker-start="url(#dc-arr-green-rev)" marker-end="url(#dc-arr-green)"/>
+                  <text x="315" y="196" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Máxima Excursión Simétrica: Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">ce,p</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan><tspan font-size="100%" dy="-2"> − </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,sat</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan><tspan font-size="100%" dy="-2"> − </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C,min</tspan><tspan font-size="100%" dy="-2">)·</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">dc</tspan></text>
                 </svg>
               </div>
             </div>

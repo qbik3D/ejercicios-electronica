@@ -529,8 +529,11 @@ const MANUAL_TEORIA_EA1 = {
                   <line x1="115" y1="230" x2="115" y2="25" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/>
                   <text x="115" y="246" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,sat</tspan></text>
 
-                  <!-- Zona de corte (Franja inferior) -->
-                  <rect x="80" y="224" width="560" height="6" fill="#64748b" fill-opacity="0.25"/>
+                  <!-- Zona de corte (Franja inferior limitada por I_C,min) -->
+                  <rect x="80" y="215" width="560" height="15" fill="#64748b" fill-opacity="0.2"/>
+                  <line x1="80" y1="215" x2="515" y2="215" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3 2"/>
+                  <text x="72" y="218" text-anchor="end" font-weight="bold" fill="#64748b" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C,min</tspan></text>
+                  <text x="440" y="225" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8.5">Región de Corte (<tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">C</tspan><tspan font-size="100%" dy="-1.5"> ≤ </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C,min</tspan><tspan font-size="100%" dy="-1.5">)</tspan></text>
 
                   <!-- RECTA DE CARGA ESTÁTICA DC: Pasa exactamente por (80, 47.5), Q(315, 135) y (570, 230) -->
                   <line x1="80" y1="47.5" x2="570" y2="230" stroke="#64748b" stroke-width="2" stroke-dasharray="4 3"/>
@@ -542,12 +545,13 @@ const MANUAL_TEORIA_EA1 = {
                   <circle cx="80" cy="47.5" r="4" fill="#64748b"/>
                   <text x="72" y="51" text-anchor="end" font-weight="bold" fill="#64748b" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CC</tspan> / <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan></text>
 
-                  <!-- RECTA DE CARGA DINÁMICA AC: Pasa exactamente por (95, 30.5), sat(115, 40), Q(315, 135) y corte(515, 230) -->
-                  <line x1="95" y1="30.5" x2="515" y2="230" stroke="#ef4444" stroke-width="2.5"/>
+                  <!-- RECTA DE CARGA DINÁMICA AC: Pasa exactamente por sat(115, 55), Q(315, 135) y corte(515, 215) -->
+                  <line x1="90" y1="45" x2="540" y2="225" stroke="#ef4444" stroke-width="2.5"/>
                   <text x="210" y="55" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta Dinámica AC (Pendiente −1/<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan>)</text>
-                  <!-- Corte de la recta AC con el eje X -->
-                  <circle cx="515" cy="230" r="3.5" fill="#ef4444"/>
-                  <text x="515" y="246" text-anchor="middle" font-mono font-bold fill="#ef4444" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan> + <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan></text>
+                  <!-- Límite de corte dinámico (515, 215) proyectado al eje X -->
+                  <circle cx="515" cy="215" r="4" fill="#ef4444"/>
+                  <line x1="515" y1="215" x2="515" y2="230" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
+                  <text x="515" y="246" text-anchor="middle" font-mono font-bold fill="#ef4444" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CE,corte</tspan> = <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan>+(<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan>−<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C,min</tspan>)<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan></text>
 
                   <!-- Punto Q Óptimo (Intersección Exacta de Ambas Rectas) -->
                   <g>
@@ -563,9 +567,13 @@ const MANUAL_TEORIA_EA1 = {
                     <text x="315" y="246" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ,opt</tspan></text>
                   </g>
 
+                  <!-- Guías verticales verdes de límites de excursión -->
+                  <line x1="115" y1="55" x2="115" y2="208" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+                  <line x1="515" y1="202" x2="515" y2="208" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+
                   <!-- Excursiones Simétricas: Exactamente centradas en x = 315 (Δx = 200 a izquierda y 200 a derecha) -->
-                  <line x1="115" y1="210" x2="515" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#ea1-arr-green)" marker-end="url(#ea1-arr-green)"/>
-                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9">Excursión Dinámica Simétrica Máxima (Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">o</tspan> = <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan>·<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> = <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan> − <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CE,sat</tspan>)</text>
+                  <line x1="115" y1="202" x2="515" y2="202" stroke="#10b981" stroke-width="2" marker-start="url(#ea1-arr-green)" marker-end="url(#ea1-arr-green)"/>
+                  <text x="315" y="196" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9">Excursión Dinámica Simétrica Máxima (Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">o</tspan> = (<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan> − <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C,min</tspan>)·<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> = <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan> − <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CE,sat</tspan>)</text>
                 </svg>
               </div>
             </div>
@@ -575,16 +583,16 @@ const MANUAL_TEORIA_EA1 = {
           id: 'u1-excursion-maxima',
           titulo: '1.3 Límites Físicos y Máxima Excursión Simétrica sin Recorte',
           contenido: `
-            <p class="mb-3">El rango dinámico sin recorte está limitado físicamente por los dos extremos no lineales del transistor: el <strong>corte</strong> ($i_C \\to 0$) y la <strong>saturación</strong> ($v_{CE} \\to V_{CE,sat}$).</p>
+            <p class="mb-3">El rango dinámico sin recorte está limitado físicamente por los dos extremos no lineales del transistor: el <strong>corte</strong> ($i_C \\le I_{C,\\text{min}}$) y la <strong>saturación</strong> ($v_{CE} \\le V_{CE,sat}$). Para evitar la distorsión por la no-linealidad de codo de la juntura base-emisor, se impone una <strong>corriente mínima de colector $I_{C,\\text{min}}$</strong> como cota inferior admisible.</p>
 
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Excursión Máxima hacia Cada Límite</h5>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                <span class="text-xs font-mono font-semibold text-rose-500 uppercase tracking-wide">1. Límite por Corte</span>
-                <p class="text-xs mt-1">Ocurre cuando la corriente instantánea se anula ($i_C = 0$):</p>
-                $$\\Delta i_{C,corte} = I_{CQ}$$
-                <p class="text-xs">La tensión de salida máxima antes del recorte hacia corte es:</p>
-                $$\\Delta v_{CE,corte} = \\Delta i_{C,corte} \\cdot r_{ac} = I_{CQ} \\cdot r_{ac}$$
+                <span class="text-xs font-mono font-semibold text-rose-500 uppercase tracking-wide">1. Límite por Corte ($I_{C,\\text{min}}$)</span>
+                <p class="text-xs mt-1">Ocurre cuando la corriente instantánea desciende hasta $I_{C,\\text{min}}$:</p>
+                $$\\Delta i_{C,corte} = I_{CQ} - I_{C,\\text{min}}$$
+                <p class="text-xs">La tensión de salida máxima antes de recortar por corte es:</p>
+                $$\\Delta v_{CE,corte} = \\Delta i_{C,corte} \\cdot r_{ac} = (I_{CQ} - I_{C,\\text{min}}) \\cdot r_{ac}$$
               </div>
 
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
@@ -597,23 +605,27 @@ const MANUAL_TEORIA_EA1 = {
             </div>
 
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Deducción del Punto Q Óptimo para Máxima Excursión Simétrica</h5>
-            <p class="mb-2">Para aprovechar al máximo el rango dinámico sin que la senoidal recorte prematuramente en un solo semiciclo, la excursión máxima hacia corte debe igualar exactamente a la excursión hacia saturación:</p>
-            $$\\Delta v_{CE,corte} = \\Delta v_{CE,sat} \\implies I_{CQ} \\cdot r_{ac} = V_{CEQ} - V_{CE,sat}$$
+            <p class="mb-2">Para aprovechar al máximo el rango dinámico sin que la senoidal recorte prematuramente en un solo semiciclo, la excursión máxima hacia corte debe igualar con exactitud a la excursión hacia saturación:</p>
+            $$\\Delta v_{CE,corte} = \\Delta v_{CE,sat} \\implies (I_{CQ} - I_{C,\\text{min}}) \\cdot r_{ac} = V_{CEQ} - V_{CE,sat}$$
             <p class="my-2">Por otra parte, el punto $Q$ debe pertenecer a la recta estática de continua:</p>
             $$V_{CEQ} = V_{CC} - I_{CQ} R_{dc}$$
             <p class="my-2">Sustituyendo $V_{CEQ}$ en la igualdad de excursiones:</p>
-            $$I_{CQ} \\cdot r_{ac} = (V_{CC} - I_{CQ} R_{dc}) - V_{CE,sat}$$
-            $$I_{CQ} (R_{dc} + r_{ac}) = V_{CC} - V_{CE,sat}$$
+            $$(I_{CQ} - I_{C,\\text{min}}) \\cdot r_{ac} = (V_{CC} - I_{CQ} R_{dc}) - V_{CE,sat}$$
+            $$I_{CQ} r_{ac} - I_{C,\\text{min}} r_{ac} + I_{CQ} R_{dc} = V_{CC} - V_{CE,sat}$$
+            $$I_{CQ} (R_{dc} + r_{ac}) = V_{CC} - V_{CE,sat} + I_{C,\\text{min}} r_{ac}$$
 
             <div class="p-4 my-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-200">
               <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <span>🎯</span> Fórmulas de Oro para Máxima Excursión Simétrica
+                <span>🎯</span> Fórmulas de Oro para Máxima Excursión Simétrica con $I_{C,\\text{min}}$
               </h5>
-              $$\\mathbf{I_{CQ,opt} = \\frac{V_{CC} - V_{CE,sat}}{R_{dc} + r_{ac}}}$$
-              $$\\mathbf{V_{CEQ,opt} = V_{CE,sat} + I_{CQ,opt} \\cdot r_{ac} = \\frac{V_{CC} r_{ac} + V_{CE,sat} R_{dc}}{R_{dc} + r_{ac}}}$$
+              $$\\mathbf{I_{CQ,opt} = \\frac{V_{CC} - V_{CE,sat} + I_{C,\\text{min}} \\cdot r_{ac}}{R_{dc} + r_{ac}}}$$
+              $$\\mathbf{V_{CEQ,opt} = V_{CE,sat} + (I_{CQ,opt} - I_{C,\\text{min}}) \\cdot r_{ac}}$$
               <p class="text-xs mt-2">La amplitud pico máxima simétrica de señal obtenible sin recorte es:</p>
-              $$\\mathbf{\\hat{v}_{o,max} = I_{CQ,opt} \\cdot r_{ac} = V_{CEQ,opt} - V_{CE,sat}}$$
-              $$\\mathbf{V_{opp,max} = 2 \\cdot \\hat{v}_{o,max} = 2 I_{CQ,opt} r_{ac}}$$
+              $$\\mathbf{\\hat{v}_{o,max} = (I_{CQ,opt} - I_{C,\\text{min}}) \\cdot r_{ac} = V_{CEQ,opt} - V_{CE,sat}}$$
+              $$\\mathbf{V_{opp,max} = 2 \\cdot \\hat{v}_{o,max} = 2 (I_{CQ,opt} - I_{C,\\text{min}}) \\cdot r_{ac}}$$
+              <div class="mt-2 pt-2 border-t border-emerald-500/20 text-[11px] text-emerald-800 dark:text-emerald-300">
+                💡 <em>Nota:</em> Si el enunciado o diseño desprecia la corriente mínima ($I_{C,\\text{min}} \\approx 0$), la expresión se reduce a la clásica $I_{CQ,opt} = \\frac{V_{CC} - V_{CE,sat}}{R_{dc} + r_{ac}}$.
+              </div>
             </div>
 
             <div class="p-3.5 my-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200">
@@ -621,8 +633,8 @@ const MANUAL_TEORIA_EA1 = {
                 <span>⚠️</span> Trampa Clásica de Examen: Diagnóstico de Recorte Asimétrico
               </h5>
               <ul class="list-disc pl-5 space-y-1 text-xs">
-                <li><strong>Si $I_{CQ} > I_{CQ,opt}$:</strong> El punto Q está demasiado alto. La tensión $V_{CEQ}$ es baja y queda cerca de la saturación. <em>El circuito recorta primero por saturación</em>. La excursión simétrica máxima queda limitada por $\\hat{v}_{o,max} = V_{CEQ} - V_{CE,sat} < I_{CQ} r_{ac}$.</li>
-                <li><strong>Si $I_{CQ} < I_{CQ,opt}$:</strong> El punto Q está demasiado bajo. La corriente $I_{CQ}$ es pequeña y queda cerca del corte. <em>El circuito recorta primero por corte</em>. La excursión simétrica máxima queda limitada por $\\hat{v}_{o,max} = I_{CQ} r_{ac} < V_{CEQ} - V_{CE,sat}$.</li>
+                <li><strong>Si $I_{CQ} > I_{CQ,opt}$:</strong> El punto Q está demasiado alto. La tensión $V_{CEQ}$ es baja y queda cerca de la saturación. <em>El circuito recorta primero por saturación</em>. La excursión simétrica máxima queda limitada por $\\hat{v}_{o,max} = V_{CEQ} - V_{CE,sat} < (I_{CQ} - I_{C,\\text{min}}) r_{ac}$.</li>
+                <li><strong>Si $I_{CQ} < I_{CQ,opt}$:</strong> El punto Q está demasiado bajo. La corriente $I_{CQ}$ es pequeña y queda cerca del corte. <em>El circuito recorta primero por corte</em>. La excursión simétrica máxima queda limitada por $\\hat{v}_{o,max} = (I_{CQ} - I_{C,\\text{min}}) r_{ac} < V_{CEQ} - V_{CE,sat}$.</li>
               </ul>
             </div>
           `
