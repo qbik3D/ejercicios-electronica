@@ -515,58 +515,57 @@ const MANUAL_TEORIA_EA1 = {
 
                   <!-- Ejes Cartesianos -->
                   <!-- Eje Y: i_C -->
-                  <line x1="80" y1="230" x2="80" y2="25" stroke="#475569" stroke-width="2"/>
-                  <polygon points="76,27 80,18 84,27" fill="#475569"/>
-                  <text x="75" y="16" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">i_C (mA)</text>
+                  <line x1="80" y1="230" x2="80" y2="22" stroke="#475569" stroke-width="2"/>
+                  <polygon points="76,24 80,16 84,24" fill="#475569"/>
+                  <text x="75" y="16" text-anchor="end" font-weight="bold" fill="#475569" font-size="11"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> (mA)</tspan></text>
 
                   <!-- Eje X: v_CE -->
                   <line x1="80" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="2"/>
                   <polygon points="648,226 657,230 648,234" fill="#475569"/>
-                  <text x="655" y="245" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">v_CE (V)</text>
+                  <text x="655" y="246" text-anchor="end" font-weight="bold" fill="#475569" font-size="11"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">CE</tspan><tspan font-size="100%" dy="-2"> (V)</tspan></text>
 
-                  <!-- Zona de saturación (V_CE,sat) -->
+                  <!-- Zona de saturación (V_CE,sat en x = 115) -->
                   <rect x="80" y="25" width="35" height="205" fill="#f59e0b" fill-opacity="0.12"/>
                   <line x1="115" y1="230" x2="115" y2="25" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <text x="115" y="245" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9">V_CE,sat</text>
+                  <text x="115" y="246" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,sat</tspan></text>
 
                   <!-- Zona de corte (Franja inferior) -->
-                  <rect x="80" y="222" width="560" height="8" fill="#64748b" fill-opacity="0.25"/>
+                  <rect x="80" y="224" width="560" height="6" fill="#64748b" fill-opacity="0.25"/>
 
-                  <!-- RECTA DE CARGA ESTÁTICA DC (m_dc = -1/R_dc) -->
-                  <!-- Desde (80, 80) hasta (560, 230) -->
-                  <line x1="80" y1="80" x2="560" y2="230" stroke="#64748b" stroke-width="2" stroke-dasharray="4 3"/>
-                  <text x="490" y="200" text-anchor="start" font-weight="bold" fill="#64748b" font-size="9.5">Recta DC (Pendiente -1/R_dc)</text>
-                  <!-- V_CC corte -->
-                  <circle cx="560" cy="230" r="4" fill="#64748b"/>
-                  <text x="560" y="247" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="9.5">V_CC</text>
-                  <!-- V_CC / R_dc -->
-                  <circle cx="80" cy="80" r="4" fill="#64748b"/>
-                  <text x="72" y="84" text-anchor="end" fill="#64748b" font-size="8.5">V_CC / R_dc</text>
+                  <!-- RECTA DE CARGA ESTÁTICA DC: Pasa exactamente por (80, 47.5), Q(315, 135) y (570, 230) -->
+                  <line x1="80" y1="47.5" x2="570" y2="230" stroke="#64748b" stroke-width="2" stroke-dasharray="4 3"/>
+                  <text x="500" y="196" text-anchor="start" font-weight="bold" fill="#64748b" font-size="9.5">Recta DC (Pendiente −1/<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan>)</text>
+                  <!-- V_CC corte con el eje X -->
+                  <circle cx="570" cy="230" r="4" fill="#64748b"/>
+                  <text x="570" y="246" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+                  <!-- V_CC / R_dc corte con el eje Y -->
+                  <circle cx="80" cy="47.5" r="4" fill="#64748b"/>
+                  <text x="72" y="51" text-anchor="end" font-weight="bold" fill="#64748b" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CC</tspan> / <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan></text>
 
-                  <!-- RECTA DE CARGA DINÁMICA AC (m_ac = -1/r_ac, MÁS EMPINADA) -->
-                  <!-- Pasa por Q (x=315, y=140). Extremo superior (x=160, y=30), Extremo inferior (x=470, y=230) -->
-                  <line x1="170" y1="40" x2="460" y2="230" stroke="#ef4444" stroke-width="2.5"/>
-                  <text x="210" y="55" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta Dinámica AC (Pendiente -1/r_ac)</text>
+                  <!-- RECTA DE CARGA DINÁMICA AC: Pasa exactamente por (95, 30.5), sat(115, 40), Q(315, 135) y corte(515, 230) -->
+                  <line x1="95" y1="30.5" x2="515" y2="230" stroke="#ef4444" stroke-width="2.5"/>
+                  <text x="210" y="55" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta Dinámica AC (Pendiente −1/<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan>)</text>
+                  <!-- Corte de la recta AC con el eje X -->
+                  <circle cx="515" cy="230" r="3.5" fill="#ef4444"/>
+                  <text x="515" y="246" text-anchor="middle" font-mono font-bold fill="#ef4444" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan> + <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan></text>
 
-                  <!-- Punto Q Óptimo (Intersección) -->
+                  <!-- Punto Q Óptimo (Intersección Exacta de Ambas Rectas) -->
                   <g>
                     <circle cx="315" cy="135" r="6" fill="#ef4444"/>
                     <circle cx="315" cy="135" r="2.5" fill="#ffffff"/>
-                    <text x="325" y="130" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (V_CEQ, I_CQ)</text>
+                    <text x="325" y="130" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan>, <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan>)</text>
 
-                    <!-- Proyecciones punteadas -->
+                    <!-- Proyecciones punteadas a los ejes -->
                     <line x1="315" y1="135" x2="80" y2="135" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="72" y="138" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9.5">I_CQ,opt</text>
+                    <text x="72" y="138" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ,opt</tspan></text>
 
                     <line x1="315" y1="135" x2="315" y2="230" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="315" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">V_CEQ,opt</text>
+                    <text x="315" y="246" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ,opt</tspan></text>
                   </g>
 
-                  <!-- Excursiones Simétricas -->
-                  <!-- Hacia saturación: de x=315 a x=115 (Δv = 200px) -->
-                  <!-- Hacia corte: de x=315 a x=460 (Δv = 145px) -->
-                  <line x1="115" y1="210" x2="460" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#ea1-arr-green)" marker-end="url(#ea1-arr-green)"/>
-                  <text x="287" y="204" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9">Excursión Dinámica Simétrica Máxima (Δv_o = I_CQ · r_ac = V_CEQ - V_CE,sat)</text>
+                  <!-- Excursiones Simétricas: Exactamente centradas en x = 315 (Δx = 200 a izquierda y 200 a derecha) -->
+                  <line x1="115" y1="210" x2="515" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#ea1-arr-green)" marker-end="url(#ea1-arr-green)"/>
+                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9">Excursión Dinámica Simétrica Máxima (Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">o</tspan> = <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">CQ</tspan>·<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> = <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CEQ</tspan> − <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CE,sat</tspan>)</text>
                 </svg>
               </div>
             </div>
