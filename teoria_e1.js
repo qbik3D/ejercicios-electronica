@@ -747,12 +747,23 @@ const MANUAL_TEORIA_E1 = {
                     <polygon points="245,140 253,144 245,148" fill="#4f46e5"/>
                     <text x="218" y="136" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> ➔</text>
 
-                    <!-- Cuadro fórmula mnemotécnica -->
-                    <rect x="235" y="56" width="105" height="74" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
-                    <text x="287" y="70" text-anchor="middle" fill="#3730a3" font-weight="bold" font-size="8.5">Fórmulas:</text>
-                    <text x="287" y="86" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₁ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₂/(R₁+R₂)</text>
-                    <text x="287" y="102" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₁/(R₁+R₂)</text>
-                    <text x="287" y="118" text-anchor="middle" fill="#047857" font-size="7.5">Resistencia opuesta</text>
+                    <!-- Cuadro fórmula mnemotécnica con barra de fracción horizontal -->
+                    <rect x="232" y="46" width="112" height="82" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+                    <text x="288" y="59" text-anchor="middle" fill="#3730a3" font-weight="bold" font-size="8.5">Fórmulas:</text>
+
+                    <!-- Ecuación I1 con raya de fracción -->
+                    <text x="236" y="77" fill="#1e1b4b" font-weight="bold" font-size="8.5">I₁ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> ·</text>
+                    <text x="306" y="71" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">R₂</text>
+                    <line x1="274" y1="74" x2="338" y2="74" stroke="#1e1b4b" stroke-width="1.2"/>
+                    <text x="306" y="83" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">R₁ + R₂</text>
+
+                    <!-- Ecuación I2 con raya de fracción -->
+                    <text x="236" y="101" fill="#1e1b4b" font-weight="bold" font-size="8.5">I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> ·</text>
+                    <text x="306" y="95" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">R₁</text>
+                    <line x1="274" y1="98" x2="338" y2="98" stroke="#1e1b4b" stroke-width="1.2"/>
+                    <text x="306" y="107" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">R₁ + R₂</text>
+
+                    <text x="288" y="122" text-anchor="middle" fill="#047857" font-weight="bold" font-size="7.5">Resistencia opuesta</text>
 
                     <!-- Cota de tensión común V (sentido único del nodo (-) al (+)) -->
                     <line x1="15" y1="138" x2="15" y2="63" stroke="#ef4444" stroke-width="1.2"/>
