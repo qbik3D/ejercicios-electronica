@@ -2621,9 +2621,20 @@ const MANUAL_TEORIA_E1 = {
                 </div>
                 <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Tensión Continua Media ($V_{DC}$):</span>
-                  $$V_{DC} = V_{pico} - \\frac{V_r}{2} = \\frac{V_{pico} + V_{valle}}{2}$$
-                  <div class="text-[11px] text-slate-500 mt-2">
-                    <strong>Factor de rizado:</strong> $\\gamma = \\frac{V_{r,rms}}{V_{DC}} = \\frac{V_r}{2\\sqrt{3} \\cdot V_{DC}}$ (asumiendo rizado triangular donde $V_{r,rms} = \\frac{V_r}{2\\sqrt{3}}$).
+                  $$V_{DC} = V_{pico} - \frac{V_r}{2} = \frac{V_{pico} + V_{valle}}{2}$$
+                  <div class="text-[11px] text-slate-600 dark:text-slate-400 mt-2 space-y-1">
+                    <p class="leading-relaxed">
+                      💡 <strong>¿Por qué suma ($+$) y no resta?</strong> Porque $V_{DC}$ es el <strong>promedio aritmético</strong> (punto medio del rizado). Dado que el rizado pico a pico es la diferencia $V_r = V_{pico} - V_{valle}$, al sustituir:
+                    </p>
+                    <div class="font-mono text-[10.5px] text-center bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-1.5 rounded-lg my-1">
+                      $$V_{DC} = V_{pico} - \frac{V_{pico} - V_{valle}}{2} = \frac{2V_{pico} - V_{pico} + V_{valle}}{2} = \mathbf{\frac{V_{pico} + V_{valle}}{2}}$$
+                    </div>
+                    <p class="text-[10px] text-slate-500 italic">
+                      Nota: La resta $\frac{V_{pico} - V_{valle}}{2}$ correspondería únicamente a la semiamplitud del rizado $\frac{V_r}{2}$ (oscilación alterna), no al nivel medio de continua.
+                    </p>
+                  </div>
+                  <div class="text-[11px] text-slate-500 mt-2.5 pt-2 border-t border-slate-200 dark:border-slate-700">
+                    <strong>Factor de rizado:</strong> $\gamma = \frac{V_{r,rms}}{V_{DC}} = \frac{V_r}{2\sqrt{3} \cdot V_{DC}}$ (asumiendo rizado triangular donde $V_{r,rms} = \frac{V_r}{2\sqrt{3}}$).
                   </div>
                 </div>
               </div>
