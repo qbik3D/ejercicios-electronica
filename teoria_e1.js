@@ -4395,7 +4395,7 @@ const MANUAL_TEORIA_E1 = {
                 🔌 Esquemáticos Circuitales Completos (Polarización DC + Acoplos AC)
               </span>
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 720 265" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
+                <svg viewBox="0 0 720 270" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
                   <defs>
                     <marker id="cfg-arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
                       <polygon points="0 0, 6 3, 0 6" fill="#3b82f6"/>
@@ -4412,75 +4412,76 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC rail -->
                     <line x1="50" y1="28" x2="160" y2="28" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="105" cy="28" r="3" fill="#ef4444"/>
-                    <text x="105" y="24" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V_CC</text>
+                    <text x="105" y="22" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- R1 -->
-                    <line x1="60" y1="28" x2="60" y2="38" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="53" y="38" width="14" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.2" rx="1.5"/>
-                    <text x="46" y="52" text-anchor="end" font-size="8" fill="#6366f1">R_1</text>
-                    <line x1="60" y1="62" x2="60" y2="82" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="60" y1="28" x2="60" y2="38" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="53" y="38" width="14" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.3" rx="2"/>
+                    <text x="46" y="52" text-anchor="end" font-size="8.5" font-weight="bold" fill="#6366f1"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="60" y1="62" x2="60" y2="82" stroke="#475569" stroke-width="1.3"/>
                     <circle cx="60" cy="82" r="2.5" fill="#475569"/>
 
                     <!-- Entrada vi con C1 -->
-                    <line x1="15" y1="82" x2="32" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="15" y1="82" x2="30" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
                     <!-- C1 -->
-                    <line x1="32" y1="75" x2="32" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <line x1="36" y1="75" x2="36" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <text x="34" y="70" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C_1</text>
-                    <line x1="36" y1="82" x2="60" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="30" y1="75" x2="30" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="34" y1="75" x2="34" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="32" y="70" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="34" y1="82" x2="60" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
                     <circle cx="15" cy="82" r="3" fill="#3b82f6"/>
-                    <text x="15" y="95" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v_i</text>
+                    <text x="15" y="96" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
 
                     <!-- R2 -->
-                    <rect x="53" y="82" width="14" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.2" rx="1.5"/>
-                    <text x="46" y="96" text-anchor="end" font-size="8" fill="#6366f1">R_2</text>
-                    <line x1="60" y1="106" x2="60" y2="120" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="52" y1="120" x2="68" y2="120" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="53" y="82" width="14" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.3" rx="2"/>
+                    <text x="46" y="96" text-anchor="end" font-size="8.5" font-weight="bold" fill="#6366f1"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="60" y1="106" x2="60" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="52" y1="120" x2="68" y2="120" stroke="#475569" stroke-width="1.8"/>
 
                     <!-- Base a Transistor -->
-                    <line x1="60" y1="82" x2="90" y2="82" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="82" x2="122" y2="82" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- RC y Salida -->
-                    <line x1="140" y1="28" x2="140" y2="38" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="133" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.2" rx="1.5"/>
-                    <text x="153" y="52" text-anchor="start" font-size="8" fill="#10b981">R_C</text>
-                    <line x1="140" y1="62" x2="140" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="140" cy="76" r="2.5" fill="#10b981"/>
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="130" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="122" y1="70" x2="122" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="122" y1="76" x2="140" y2="66" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="122" y1="88" x2="140" y2="98" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="139,97.5 130,93 133,88" fill="#ef4444"/>
+
+                    <!-- Rama RC y Salida vo -->
+                    <line x1="140" y1="28" x2="140" y2="38" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="133" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.3" rx="2"/>
+                    <text x="153" y="52" text-anchor="start" font-size="8.5" font-weight="bold" fill="#10b981"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="140" y1="62" x2="140" y2="66" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="140" cy="66" r="2.5" fill="#10b981"/>
 
                     <!-- Capacitor C2 y Salida vo -->
-                    <line x1="140" y1="76" x2="170" y2="76" stroke="#10b981" stroke-width="1.5"/>
+                    <line x1="140" y1="66" x2="168" y2="66" stroke="#10b981" stroke-width="1.5"/>
                     <!-- C2 -->
-                    <line x1="170" y1="69" x2="170" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <line x1="174" y1="69" x2="174" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <text x="172" y="64" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C_2</text>
-                    <line x1="174" y1="76" x2="200" y2="76" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="200" cy="76" r="3" fill="#10b981"/>
-                    <text x="200" y="90" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v_o</text>
+                    <line x1="168" y1="59" x2="168" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <line x1="172" y1="59" x2="172" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <text x="170" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="172" y1="66" x2="198" y2="66" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="198" cy="66" r="3" fill="#10b981"/>
+                    <text x="198" y="80" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
 
-                    <!-- Transistor NPN -->
-                    <line x1="90" y1="72" x2="90" y2="92" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="90" y1="75" x2="140" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="90" y1="89" x2="140" y2="102" stroke="#475569" stroke-width="1.2"/>
-                    <polygon points="128,101 140,102 135,93" fill="#ef4444"/>
-
-                    <!-- Emisor con RE y capacitor de desacoplo CE en paralelo -->
-                    <line x1="140" y1="102" x2="140" y2="114" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="140" cy="114" r="2" fill="#475569"/>
+                    <!-- Emisor a nodo RE || CE -->
+                    <line x1="140" y1="98" x2="140" y2="114" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="140" cy="114" r="2.5" fill="#475569"/>
                     
                     <!-- Rama RE -->
-                    <line x1="140" y1="114" x2="120" y2="114" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="120" y1="114" x2="120" y2="124" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="113" y="124" width="14" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.2" rx="1.5"/>
-                    <text x="107" y="137" text-anchor="end" font-size="7.5" fill="#a855f7">R_E</text>
-                    <line x1="120" y1="146" x2="120" y2="156" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="140" y1="114" x2="120" y2="114" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="120" y1="114" x2="120" y2="124" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="113" y="124" width="14" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.3" rx="2"/>
+                    <text x="107" y="137" text-anchor="end" font-size="8" font-weight="bold" fill="#a855f7"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="120" y1="146" x2="120" y2="156" stroke="#475569" stroke-width="1.3"/>
 
                     <!-- Rama CE (Desacoplo) -->
-                    <line x1="140" y1="114" x2="160" y2="114" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="160" y1="114" x2="160" y2="130" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="140" y1="114" x2="160" y2="114" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="160" y1="114" x2="160" y2="130" stroke="#475569" stroke-width="1.3"/>
                     <line x1="153" y1="130" x2="167" y2="130" stroke="#475569" stroke-width="2"/>
                     <line x1="153" y1="134" x2="167" y2="134" stroke="#475569" stroke-width="2"/>
-                    <text x="175" y="134" text-anchor="start" font-size="7.5" font-weight="bold" fill="#64748b">C_E</text>
-                    <line x1="160" y1="134" x2="160" y2="156" stroke="#475569" stroke-width="1.2"/>
+                    <text x="175" y="134" text-anchor="start" font-size="8" font-weight="bold" fill="#64748b"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="160" y1="134" x2="160" y2="156" stroke="#475569" stroke-width="1.3"/>
 
                     <!-- Unión a masa común -->
                     <line x1="120" y1="156" x2="160" y2="156" stroke="#475569" stroke-width="1.5"/>
@@ -4488,10 +4489,10 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="136" y1="163" x2="144" y2="163" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Resumen característico -->
-                    <rect x="10" y="180" width="210" height="72" rx="6" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
-                    <text x="115" y="197" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5">A_v = -g_m (R_C ∥ R_L)</text>
-                    <text x="115" y="213" text-anchor="middle" fill="#475569" font-size="8.5">R_i = R_B ∥ r_π (Media, 1-5 kΩ)</text>
-                    <text x="115" y="227" text-anchor="middle" fill="#475569" font-size="8.5">R_o = R_C ∥ r_o ≈ R_C</text>
+                    <rect x="10" y="178" width="210" height="74" rx="7" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5"><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> = −</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    <text x="115" y="211" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan><tspan font-size="100%" dy="-2"> (Media, 1–5 kΩ)</tspan></text>
+                    <text x="115" y="226" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                     <text x="115" y="242" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">⚡ Invierte fase (180°) · Ganancia Alta</text>
                   </g>
 
@@ -4503,67 +4504,69 @@ const MANUAL_TEORIA_E1 = {
                     <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">2. Colector Común (CC / Seguidor)</text>
 
                     <!-- VCC rail directo a Colector -->
-                    <line x1="60" y1="28" x2="140" y2="28" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="50" y1="28" x2="150" y2="28" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="105" cy="28" r="3" fill="#10b981"/>
-                    <text x="105" y="24" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">+V_CC (Masa de AC)</text>
+                    <text x="105" y="22" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan> (Masa AC)</text>
 
                     <!-- Divisor Base R1 y R2 -->
-                    <line x1="60" y1="28" x2="60" y2="38" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="53" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.2" rx="1.5"/>
-                    <text x="46" y="52" text-anchor="end" font-size="8" fill="#10b981">R_1</text>
-                    <line x1="60" y1="62" x2="60" y2="82" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="60" y1="28" x2="60" y2="38" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="53" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.3" rx="2"/>
+                    <text x="46" y="52" text-anchor="end" font-size="8.5" font-weight="bold" fill="#10b981"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="60" y1="62" x2="60" y2="82" stroke="#475569" stroke-width="1.3"/>
                     <circle cx="60" cy="82" r="2.5" fill="#475569"/>
 
                     <!-- Entrada vi con C1 -->
-                    <line x1="15" y1="82" x2="32" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
-                    <line x1="32" y1="75" x2="32" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <line x1="36" y1="75" x2="36" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <text x="34" y="70" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C_1</text>
-                    <line x1="36" y1="82" x2="60" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="15" y1="82" x2="30" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="30" y1="75" x2="30" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="34" y1="75" x2="34" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="32" y="70" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="34" y1="82" x2="60" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
                     <circle cx="15" cy="82" r="3" fill="#3b82f6"/>
-                    <text x="15" y="95" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v_i</text>
+                    <text x="15" y="96" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
 
-                    <rect x="53" y="82" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.2" rx="1.5"/>
-                    <text x="46" y="96" text-anchor="end" font-size="8" fill="#10b981">R_2</text>
-                    <line x1="60" y1="106" x2="60" y2="120" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="52" y1="120" x2="68" y2="120" stroke="#475569" stroke-width="1.5"/>
+                    <!-- R2 -->
+                    <rect x="53" y="82" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.3" rx="2"/>
+                    <text x="46" y="96" text-anchor="end" font-size="8.5" font-weight="bold" fill="#10b981"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="60" y1="106" x2="60" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="52" y1="120" x2="68" y2="120" stroke="#475569" stroke-width="1.8"/>
 
-                    <line x1="60" y1="82" x2="90" y2="82" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="82" x2="122" y2="82" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="130" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="122" y1="70" x2="122" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="122" y1="76" x2="140" y2="66" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="122" y1="88" x2="140" y2="98" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="139,97.5 130,93 133,88" fill="#ef4444"/>
 
                     <!-- Colector conectado directo a VCC (Sin RC!) -->
-                    <line x1="140" y1="28" x2="140" y2="76" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Transistor NPN -->
-                    <line x1="90" y1="72" x2="90" y2="92" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="90" y1="75" x2="140" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="90" y1="89" x2="140" y2="102" stroke="#475569" stroke-width="1.2"/>
-                    <polygon points="128,101 140,102 135,93" fill="#ef4444"/>
+                    <line x1="140" y1="28" x2="140" y2="66" stroke="#475569" stroke-width="1.8"/>
 
                     <!-- SALIDA TOMADA DEL EMISOR -->
-                    <line x1="140" y1="102" x2="140" y2="114" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="140" y1="98" x2="140" y2="114" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="140" cy="114" r="3" fill="#10b981"/>
 
                     <!-- Capacitor C2 y Salida vo desde Emisor -->
-                    <line x1="140" y1="114" x2="170" y2="114" stroke="#10b981" stroke-width="1.5"/>
-                    <line x1="170" y1="107" x2="170" y2="121" stroke="#10b981" stroke-width="2"/>
-                    <line x1="174" y1="107" x2="174" y2="121" stroke="#10b981" stroke-width="2"/>
-                    <text x="172" y="102" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C_2</text>
-                    <line x1="174" y1="114" x2="200" y2="114" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="200" cy="114" r="3" fill="#10b981"/>
-                    <text x="200" y="128" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v_o</text>
+                    <line x1="140" y1="114" x2="168" y2="114" stroke="#10b981" stroke-width="1.5"/>
+                    <line x1="168" y1="107" x2="168" y2="121" stroke="#10b981" stroke-width="2"/>
+                    <line x1="172" y1="107" x2="172" y2="121" stroke="#10b981" stroke-width="2"/>
+                    <text x="170" y="102" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="172" y1="114" x2="198" y2="114" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="198" cy="114" r="3" fill="#10b981"/>
+                    <text x="198" y="128" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
 
                     <!-- Resistencia RE de Emisor a GND -->
-                    <rect x="133" y="124" width="14" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.2" rx="1.5"/>
-                    <text x="153" y="138" text-anchor="start" font-size="8" fill="#a855f7">R_E</text>
-                    <line x1="140" y1="148" x2="140" y2="158" stroke="#475569" stroke-width="1.2"/>
+                    <rect x="133" y="124" width="14" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.3" rx="2"/>
+                    <text x="153" y="138" text-anchor="start" font-size="8.5" font-weight="bold" fill="#a855f7"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="140" y1="148" x2="140" y2="158" stroke="#475569" stroke-width="1.3"/>
                     <line x1="132" y1="158" x2="148" y2="158" stroke="#475569" stroke-width="2"/>
                     <line x1="136" y1="161" x2="144" y2="161" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Resumen característico -->
-                    <rect x="10" y="180" width="210" height="72" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-                    <text x="115" y="197" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5">A_v ≈ +1  (Sin inversión, 0°)</text>
-                    <text x="115" y="213" text-anchor="middle" fill="#475569" font-size="8.5">R_i = R_B ∥ [r_π + (1+β)R_L'] (Altísima)</text>
-                    <text x="115" y="227" text-anchor="middle" fill="#475569" font-size="8.5">R_o = R_E ∥ [(R_s' + r_π)/(1+β)] (Bajísima)</text>
+                    <rect x="10" y="178" width="210" height="74" rx="7" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5"><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> ≈ +1  (Sin inversión, 0°)</tspan></text>
+                    <text x="115" y="211" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> ∥ [</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan><tspan font-size="100%" dy="-2"> + (1+β)</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">'] (Altísima)</tspan></text>
+                    <text x="115" y="226" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2"> ∥ [(</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">s</tspan><tspan font-size="100%" dy="-2">' + </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan><tspan font-size="100%" dy="-2">)/(1+β)] (Bajísima)</tspan></text>
                     <text x="115" y="242" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">🛡️ Adaptador de Impedancias / Buffer</text>
                   </g>
 
@@ -4575,67 +4578,68 @@ const MANUAL_TEORIA_E1 = {
                     <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="11">3. Base Común (BC)</text>
 
                     <!-- VCC rail a RC -->
-                    <line x1="140" y1="28" x2="140" y2="38" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="140" y1="28" x2="140" y2="38" stroke="#475569" stroke-width="1.3"/>
                     <circle cx="140" cy="28" r="3" fill="#f59e0b"/>
-                    <text x="140" y="24" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="8.5">+V_CC</text>
+                    <text x="140" y="22" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="9">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- RC y Salida en Colector -->
-                    <rect x="133" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.2" rx="1.5"/>
-                    <text x="153" y="52" text-anchor="start" font-size="8" fill="#10b981">R_C</text>
-                    <line x1="140" y1="62" x2="140" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="140" cy="76" r="2.5" fill="#10b981"/>
+                    <rect x="133" y="38" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.3" rx="2"/>
+                    <text x="153" y="52" text-anchor="start" font-size="8.5" font-weight="bold" fill="#10b981"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="140" y1="62" x2="140" y2="66" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="140" cy="66" r="2.5" fill="#10b981"/>
 
                     <!-- Capacitor C2 y Salida vo -->
-                    <line x1="140" y1="76" x2="170" y2="76" stroke="#10b981" stroke-width="1.5"/>
-                    <line x1="170" y1="69" x2="170" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <line x1="174" y1="69" x2="174" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <text x="172" y="64" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C_2</text>
-                    <line x1="174" y1="76" x2="200" y2="76" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="200" cy="76" r="3" fill="#10b981"/>
-                    <text x="200" y="90" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v_o</text>
+                    <line x1="140" y1="66" x2="168" y2="66" stroke="#10b981" stroke-width="1.5"/>
+                    <line x1="168" y1="59" x2="168" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <line x1="172" y1="59" x2="172" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <text x="170" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="172" y1="66" x2="198" y2="66" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="198" cy="66" r="3" fill="#10b981"/>
+                    <text x="198" y="80" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="130" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="122" y1="70" x2="122" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="122" y1="76" x2="140" y2="66" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="122" y1="88" x2="140" y2="98" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="139,97.5 130,93 133,88" fill="#ef4444"/>
 
                     <!-- Base conectada a capacitor CB a MASA (Base Común en AC) -->
-                    <line x1="90" y1="82" x2="60" y2="82" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="122" y1="82" x2="60" y2="82" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="60" cy="82" r="2.5" fill="#6366f1"/>
-                    <line x1="60" y1="82" x2="60" y2="92" stroke="#475569" stroke-width="1.2"/>
+                    <line x1="60" y1="82" x2="60" y2="92" stroke="#475569" stroke-width="1.3"/>
                     <!-- CB -->
                     <line x1="53" y1="92" x2="67" y2="92" stroke="#6366f1" stroke-width="2"/>
                     <line x1="53" y1="96" x2="67" y2="96" stroke="#6366f1" stroke-width="2"/>
-                    <text x="46" y="96" text-anchor="end" font-size="7.5" font-weight="bold" fill="#6366f1">C_B</text>
-                    <line x1="60" y1="96" x2="60" y2="108" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="52" y1="108" x2="68" y2="108" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Transistor NPN -->
-                    <line x1="90" y1="72" x2="90" y2="92" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="90" y1="75" x2="140" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="90" y1="89" x2="140" y2="102" stroke="#475569" stroke-width="1.2"/>
-                    <polygon points="128,101 140,102 135,93" fill="#ef4444"/>
+                    <text x="46" y="96" text-anchor="end" font-size="8" font-weight="bold" fill="#6366f1"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <line x1="60" y1="96" x2="60" y2="108" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="52" y1="108" x2="68" y2="108" stroke="#475569" stroke-width="1.8"/>
 
                     <!-- ENTRADA APLICADA EN EL EMISOR -->
-                    <line x1="140" y1="102" x2="140" y2="114" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="140" y1="98" x2="140" y2="114" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="140" cy="114" r="3" fill="#3b82f6"/>
 
                     <!-- Entrada vi con C1 al Emisor -->
-                    <line x1="140" y1="114" x2="170" y2="114" stroke="#3b82f6" stroke-width="1.5"/>
-                    <line x1="170" y1="107" x2="170" y2="121" stroke="#3b82f6" stroke-width="2"/>
-                    <line x1="174" y1="107" x2="174" y2="121" stroke="#3b82f6" stroke-width="2"/>
-                    <text x="172" y="102" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C_1</text>
-                    <line x1="174" y1="114" x2="200" y2="114" stroke="#3b82f6" stroke-width="1.5"/>
-                    <circle cx="200" cy="114" r="3" fill="#3b82f6"/>
-                    <text x="200" y="128" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v_i</text>
+                    <line x1="140" y1="114" x2="168" y2="114" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="168" y1="107" x2="168" y2="121" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="172" y1="107" x2="172" y2="121" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="170" y="102" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="172" y1="114" x2="198" y2="114" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="198" cy="114" r="3" fill="#3b82f6"/>
+                    <text x="198" y="128" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
 
                     <!-- Resistencia RE de polarización -->
-                    <rect x="133" y="124" width="14" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.2" rx="1.5"/>
-                    <text x="127" y="138" text-anchor="end" font-size="8" fill="#a855f7">R_E</text>
-                    <line x1="140" y1="148" x2="140" y2="158" stroke="#475569" stroke-width="1.2"/>
+                    <rect x="133" y="124" width="14" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.3" rx="2"/>
+                    <text x="127" y="138" text-anchor="end" font-size="8.5" font-weight="bold" fill="#a855f7"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="140" y1="148" x2="140" y2="158" stroke="#475569" stroke-width="1.3"/>
                     <line x1="132" y1="158" x2="148" y2="158" stroke="#475569" stroke-width="2"/>
                     <line x1="136" y1="161" x2="144" y2="161" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Resumen característico -->
-                    <rect x="10" y="180" width="210" height="72" rx="6" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.3"/>
-                    <text x="115" y="197" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9.5">A_v = +g_m (R_C ∥ R_L) (En Fase)</text>
-                    <text x="115" y="213" text-anchor="middle" fill="#475569" font-size="8.5">R_i = R_E ∥ r_e ≈ 25 Ω (Muy baja)</text>
-                    <text x="115" y="227" text-anchor="middle" fill="#475569" font-size="8.5">R_o = R_C ∥ r_o ≈ R_C (Alta)</text>
+                    <rect x="10" y="178" width="210" height="74" rx="7" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.3"/>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9.5"><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> = +</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) (En Fase)</tspan></text>
+                    <text x="115" y="211" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">e</tspan><tspan font-size="100%" dy="-2"> ≈ 25 Ω (Muy baja)</tspan></text>
+                    <text x="115" y="226" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> (Alta)</tspan></text>
                     <text x="115" y="242" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="8.5">🚀 Radiofrecuencia (Sin Efecto Miller)</text>
                   </g>
                 </svg>
@@ -4652,37 +4656,37 @@ const MANUAL_TEORIA_E1 = {
                     <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10.5">AC: Emisor a Masa</text>
                     
                     <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
-                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9">v_i</text>
+                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
                     <line x1="20" y1="50" x2="45" y2="50" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- r_pi -->
                     <rect x="45" y="42" width="22" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="56" y="36" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">r_π</text>
+                    <text x="56" y="36" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
                     <line x1="67" y1="50" x2="90" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <line x1="90" y1="50" x2="90" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Fuente de corriente gm · vbe -->
                     <circle cx="130" cy="50" r="13" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5"/>
                     <line x1="130" y1="42" x2="130" y2="58" stroke="#10b981" stroke-width="1.5" marker-end="url(#cfg-arr-green)"/>
-                    <text x="130" y="73" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">g_m · v_i</text>
+                    <text x="130" y="73" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
                     <line x1="130" y1="63" x2="130" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Carga equivalente R_C || R_L -->
                     <line x1="130" y1="37" x2="185" y2="37" stroke="#475569" stroke-width="1.5"/>
                     <line x1="185" y1="37" x2="185" y2="48" stroke="#475569" stroke-width="1.5"/>
                     <rect x="177" y="48" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="200" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">R_C ∥ R_L</text>
+                    <text x="200" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
                     <line x1="185" y1="74" x2="185" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <circle cx="210" cy="37" r="3" fill="#10b981"/>
-                    <text x="210" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+                    <text x="210" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
                     <line x1="185" y1="37" x2="210" y2="37" stroke="#10b981" stroke-width="1.5"/>
 
                     <!-- Barra de masa -->
                     <line x1="20" y1="120" x2="210" y2="120" stroke="#475569" stroke-width="2"/>
                     <line x1="105" y1="124" x2="125" y2="124" stroke="#475569" stroke-width="2"/>
-                    <text x="110" y="145" text-anchor="middle" font-mono font-bold fill="#ef4444" font-size="8.5">v_o = -g_m (R_C ∥ R_L) v_i</text>
-                    <text x="110" y="160" text-anchor="middle" fill="#64748b" font-size="8">Signo '-' = Desfase 180°</text>
+                    <text x="110" y="145" text-anchor="middle" font-bold fill="#ef4444" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = −</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <text x="110" y="160" text-anchor="middle" fill="#64748b" font-size="8">Signo '−' = Desfase 180°</text>
                   </g>
 
                   <!-- Divisor vertical -->
@@ -4693,30 +4697,30 @@ const MANUAL_TEORIA_E1 = {
                     <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10.5">AC: Colector a Masa</text>
 
                     <circle cx="20" cy="45" r="3" fill="#3b82f6"/>
-                    <text x="10" y="49" font-weight="bold" fill="#3b82f6" font-size="9">v_i</text>
+                    <text x="10" y="49" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
                     <line x1="20" y1="45" x2="50" y2="45" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Divisor resistivo r_pi en serie con (1+beta)RL' -->
                     <rect x="50" y="37" width="22" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="61" y="31" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">r_π</text>
+                    <text x="61" y="31" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
 
                     <line x1="72" y1="45" x2="110" y2="45" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="110" cy="45" r="3" fill="#10b981"/>
                     <line x1="110" y1="45" x2="190" y2="45" stroke="#10b981" stroke-width="1.5"/>
                     <circle cx="190" cy="45" r="3" fill="#10b981"/>
-                    <text x="190" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+                    <text x="190" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
 
                     <!-- Resistencia reflejada al emisor -->
                     <line x1="110" y1="45" x2="110" y2="55" stroke="#475569" stroke-width="1.5"/>
                     <rect x="99" y="55" width="22" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="127" y="70" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">(1+β) R_L'</text>
+                    <text x="127" y="70" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">(1+β) <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">'</tspan></text>
                     <line x1="110" y1="81" x2="110" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Barra de masa -->
                     <line x1="20" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="2"/>
                     <line x1="100" y1="124" x2="120" y2="124" stroke="#475569" stroke-width="2"/>
 
-                    <text x="110" y="145" text-anchor="middle" font-mono font-bold fill="#059669" font-size="8.5">v_o ≈ v_i  (A_v ≈ +0.99)</text>
+                    <text x="110" y="145" text-anchor="middle" font-bold fill="#059669" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">  (</tspan><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> ≈ +0.99)</tspan></text>
                     <text x="110" y="160" text-anchor="middle" fill="#64748b" font-size="8">La tensión sigue a la entrada</text>
                   </g>
 
@@ -4728,37 +4732,37 @@ const MANUAL_TEORIA_E1 = {
                     <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="10.5">AC: Base a Masa</text>
 
                     <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
-                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9">v_i</text>
+                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
                     <line x1="20" y1="50" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- r_e a masa -->
                     <line x1="50" y1="50" x2="50" y2="60" stroke="#475569" stroke-width="1.5"/>
                     <rect x="42" y="60" width="16" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="35" y="76" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">r_e</text>
+                    <text x="35" y="76" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">e</tspan></text>
                     <line x1="50" y1="86" x2="50" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Fuente dependiente hacia salida -->
                     <line x1="50" y1="50" x2="110" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="110" cy="50" r="13" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-width="1.5"/>
                     <line x1="110" y1="58" x2="110" y2="42" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#cfg-arr-blue)"/>
-                    <text x="110" y="73" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8">g_m · v_i</text>
+                    <text x="110" y="73" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
 
                     <!-- Resistencia de carga -->
                     <line x1="110" y1="37" x2="170" y2="37" stroke="#475569" stroke-width="1.5"/>
                     <line x1="170" y1="37" x2="170" y2="48" stroke="#475569" stroke-width="1.5"/>
                     <rect x="162" y="48" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="184" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">R_C ∥ R_L</text>
+                    <text x="184" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
                     <line x1="170" y1="74" x2="170" y2="120" stroke="#475569" stroke-width="1.5"/>
 
                     <circle cx="200" cy="37" r="3" fill="#10b981"/>
-                    <text x="200" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+                    <text x="200" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
                     <line x1="170" y1="37" x2="200" y2="37" stroke="#10b981" stroke-width="1.5"/>
 
                     <!-- Barra de masa -->
                     <line x1="20" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="2"/>
                     <line x1="100" y1="124" x2="120" y2="124" stroke="#475569" stroke-width="2"/>
 
-                    <text x="110" y="145" text-anchor="middle" font-mono font-bold fill="#d97706" font-size="8.5">v_o = +g_m (R_C ∥ R_L) v_i</text>
+                    <text x="110" y="145" text-anchor="middle" font-bold fill="#d97706" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = +</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
                     <text x="110" y="160" text-anchor="middle" fill="#64748b" font-size="8">En Fase (0°) · Sin Miller</text>
                   </g>
                 </svg>
