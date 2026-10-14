@@ -810,37 +810,702 @@ const MANUAL_TEORIA_EA1 = {
           id: 'u2-clases-potencia',
           titulo: '2.1 Clasificación de Amplificadores por Ángulo de Conducción',
           contenido: `
-            <p class="mb-3">El <strong>ángulo de conducción ($2\\theta$)</strong> se define como la porción angular de un ciclo senoidal completo ($360^\\circ$ o $2\\pi\\text{ rad}$) durante la cual el dispositivo activo conduce corriente de salida no nula:</p>
+            <p class="mb-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              El <strong>ángulo de conducción ($2\\theta$)</strong> representa la fracción angular de un ciclo senoidal completo ($360^\\circ$ o $2\\pi\\text{ rad}$) durante la cual el elemento activo (BJT o MOSFET) conduce corriente no nula. Existe un compromiso fundamental e ineludible en el diseño analógico: <strong>a mayor ángulo de conducción, mayor linealidad (menor distorsión armónica), pero menor rendimiento energético</strong> debido a las pérdidas de potencia en reposo.
+            </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-amber-500">Clase A ($2\\theta = 360^\\circ = 2\\pi$)</span>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                  El transistor conduce ininterrumpidamente durante todo el ciclo. Punto Q centrado en la zona activa. Mínima distorsión armónica, pero consumo estático permanente y bajísimo rendimiento energético ($\le 25\\%$ con carga resistiva).
-                </p>
+            <!-- 1. DIAGRAMA COMPARATIVO DE FORMAS DE ONDA Y ÁNGULOS DE CONDUCCIÓN -->
+            <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+                📊 Formas de Onda de Corriente de Salida $i_C(\\omega t)$ según la Clase de Operación
+              </span>
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 740 165" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 620px;">
+                  <defs>
+                    <marker id="wf-arr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+                      <polygon points="0 0, 5 2.5, 0 5" fill="#64748b"/>
+                    </marker>
+                  </defs>
+
+                  <!-- Panel 1: Clase A -->
+                  <g transform="translate(10, 5)">
+                    <rect x="0" y="0" width="135" height="150" rx="8" fill="#f8fafc" class="dark:fill-slate-800/50" stroke="#f59e0b" stroke-width="1.2"/>
+                    <text x="67" y="16" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="10">Clase A</text>
+                    <text x="67" y="27" text-anchor="middle" fill="#64748b" font-size="8">2θ = 360° (2π)</text>
+                    <!-- Ejes -->
+                    <line x1="15" y1="120" x2="125" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <line x1="20" y1="125" x2="20" y2="35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <text x="16" y="38" text-anchor="end" fill="#64748b" font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-anchor="end" fill="#64748b" font-size="7.5">ωt</text>
+                    <!-- Línea de reposo I_CQ -->
+                    <line x1="20" y1="80" x2="120" y2="80" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2 2"/>
+                    <text x="18" y="82" text-anchor="end" font-weight="bold" fill="#f59e0b" font-size="7.5">I_CQ</text>
+                    <!-- Onda senoidal completa (no toca cero) -->
+                    <path d="M 20,80 Q 42,42 65,80 T 110,80" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                    <rect x="25" y="134" width="85" height="12" rx="3" fill="#fef3c7" class="dark:fill-amber-950/60"/>
+                    <text x="67" y="143" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="7.5">Ciclo completo (100%)</text>
+                  </g>
+
+                  <!-- Panel 2: Clase B -->
+                  <g transform="translate(155, 5)">
+                    <rect x="0" y="0" width="135" height="150" rx="8" fill="#f8fafc" class="dark:fill-slate-800/50" stroke="#3b82f6" stroke-width="1.2"/>
+                    <text x="67" y="16" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="10">Clase B</text>
+                    <text x="67" y="27" text-anchor="middle" fill="#64748b" font-size="8">2θ = 180° (π)</text>
+                    <!-- Ejes -->
+                    <line x1="15" y1="120" x2="125" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <line x1="20" y1="125" x2="20" y2="35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <text x="16" y="38" text-anchor="end" fill="#64748b" font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-anchor="end" fill="#64748b" font-size="7.5">ωt</text>
+                    <!-- Reposo I_CQ = 0 -->
+                    <text x="18" y="122" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="7.5">0</text>
+                    <!-- Semiciclo positivo -->
+                    <path d="M 20,120 Q 45,50 70,120 L 120,120" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                    <!-- Sombreado bajo la curva -->
+                    <path d="M 20,120 Q 45,50 70,120 Z" fill="#3b82f6" fill-opacity="0.15"/>
+                    <rect x="25" y="134" width="85" height="12" rx="3" fill="#dbeafe" class="dark:fill-blue-950/60"/>
+                    <text x="67" y="143" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="7.5">1/2 Ciclo (50%)</text>
+                  </g>
+
+                  <!-- Panel 3: Clase AB -->
+                  <g transform="translate(300, 5)">
+                    <rect x="0" y="0" width="135" height="150" rx="8" fill="#f8fafc" class="dark:fill-slate-800/50" stroke="#10b981" stroke-width="1.2"/>
+                    <text x="67" y="16" text-anchor="middle" font-weight="bold" fill="#059669" font-size="10">Clase AB</text>
+                    <text x="67" y="27" text-anchor="middle" fill="#64748b" font-size="8">180° &lt; 2θ &lt; 360°</text>
+                    <!-- Ejes -->
+                    <line x1="15" y1="120" x2="125" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <line x1="20" y1="125" x2="20" y2="35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <text x="16" y="38" text-anchor="end" fill="#64748b" font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-anchor="end" fill="#64748b" font-size="7.5">ωt</text>
+                    <!-- Pequeña corriente I_CQ de reposo -->
+                    <line x1="20" y1="112" x2="120" y2="112" stroke="#10b981" stroke-width="1" stroke-dasharray="2 2"/>
+                    <text x="18" y="114" text-anchor="end" font-weight="bold" fill="#10b981" font-size="7">I_CQ</text>
+                    <!-- Conduce > 180° -->
+                    <path d="M 20,112 L 25,112 Q 52,50 80,112 L 87,120 L 120,120" fill="none" stroke="#10b981" stroke-width="2"/>
+                    <path d="M 20,112 L 25,112 Q 52,50 80,112 L 87,120 L 20,120 Z" fill="#10b981" fill-opacity="0.15"/>
+                    <rect x="25" y="134" width="85" height="12" rx="3" fill="#d1fae5" class="dark:fill-emerald-950/60"/>
+                    <text x="67" y="143" text-anchor="middle" font-weight="bold" fill="#047857" font-size="7.5">&gt; 50% (~55%-65%)</text>
+                  </g>
+
+                  <!-- Panel 4: Clase C -->
+                  <g transform="translate(445, 5)">
+                    <rect x="0" y="0" width="135" height="150" rx="8" fill="#f8fafc" class="dark:fill-slate-800/50" stroke="#8b5cf6" stroke-width="1.2"/>
+                    <text x="67" y="16" text-anchor="middle" font-weight="bold" fill="#7c3aed" font-size="10">Clase C</text>
+                    <text x="67" y="27" text-anchor="middle" fill="#64748b" font-size="8">2θ &lt; 180° (~120°)</text>
+                    <!-- Ejes -->
+                    <line x1="15" y1="120" x2="125" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <line x1="20" y1="125" x2="20" y2="35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <text x="16" y="38" text-anchor="end" fill="#64748b" font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-anchor="end" fill="#64748b" font-size="7.5">ωt</text>
+                    <!-- Pulso angosto que sólo asoma en la cúspide -->
+                    <path d="M 20,120 L 38,120 Q 55,60 72,120 L 120,120" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+                    <path d="M 38,120 Q 55,60 72,120 Z" fill="#8b5cf6" fill-opacity="0.2"/>
+                    <rect x="25" y="134" width="85" height="12" rx="3" fill="#ede9fe" class="dark:fill-purple-950/60"/>
+                    <text x="67" y="143" text-anchor="middle" font-weight="bold" fill="#6d28d9" font-size="7.5">Pulsos breves (&lt; 40%)</text>
+                  </g>
+
+                  <!-- Panel 5: Clase D -->
+                  <g transform="translate(590, 5)">
+                    <rect x="0" y="0" width="140" height="150" rx="8" fill="#f8fafc" class="dark:fill-slate-800/50" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="70" y="16" text-anchor="middle" font-weight="bold" fill="#e11d48" font-size="10">Clase D</text>
+                    <text x="70" y="27" text-anchor="middle" fill="#64748b" font-size="8">Conmutación (PWM)</text>
+                    <!-- Ejes -->
+                    <line x1="15" y1="120" x2="130" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <line x1="20" y1="125" x2="20" y2="35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+                    <text x="16" y="38" text-anchor="end" fill="#64748b" font-size="7.5">v_DS</text>
+                    <text x="130" y="130" text-anchor="end" fill="#64748b" font-size="7.5">t</text>
+                    <!-- Tren de pulsos PWM rectangulares -->
+                    <path d="M 20,120 L 25,120 L 25,65 L 40,65 L 40,120 L 48,120 L 48,65 L 75,65 L 75,120 L 85,120 L 85,65 L 115,65 L 115,120 L 125,120" fill="none" stroke="#f43f5e" stroke-width="1.8"/>
+                    <rect x="28" y="134" width="85" height="12" rx="3" fill="#ffe4e6" class="dark:fill-rose-950/60"/>
+                    <text x="70" y="143" text-anchor="middle" font-weight="bold" fill="#be123c" font-size="7.5">Llaves ON/OFF (PWM)</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. CATÁLOGO DETALLADO CON CIRCUITOS ESQUEMÁTICOS, ANÁLISIS Y USOS -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-3">Topologías Circuitales Típicas y Aplicaciones Prácticas por Clase</h5>
+
+            <div class="space-y-4 my-3">
+
+              <!-- ================= TARJETA 1: CLASE A ================= -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-amber-500/30">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                    <h6 class="text-sm font-bold text-slate-900 dark:text-white">Clase A: Conducción Continua de Ciclo Completo</h6>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                    2θ = 360° (2π rad) · η_max = 25% (Resistivo) / 50% (Inductivo)
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                  <!-- Circuito SVG -->
+                  <div class="lg:col-span-5 flex justify-center">
+                    <svg viewBox="0 0 280 200" class="w-full max-w-[280px] text-xs font-sans select-none">
+                      <!-- Riel VCC -->
+                      <line x1="30" y1="25" x2="250" y2="25" stroke="#ef4444" stroke-width="2"/>
+                      <circle cx="150" cy="25" r="3" fill="#ef4444"/>
+                      <text x="150" y="16" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">+V_CC</text>
+
+                      <!-- Riel Masa -->
+                      <line x1="30" y1="180" x2="250" y2="180" stroke="#475569" stroke-width="2"/>
+                      <line x1="150" y1="180" x2="150" y2="192" stroke="#475569" stroke-width="2"/>
+                      <line x1="140" y1="192" x2="160" y2="192" stroke="#475569" stroke-width="2"/>
+                      <line x1="144" y1="196" x2="156" y2="196" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- Divisor R1 / R2 -->
+                      <line x1="70" y1="25" x2="70" y2="40" stroke="#64748b" stroke-width="1.6"/>
+                      <rect x="63" y="40" width="14" height="30" fill="none" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="56" y="58" text-anchor="end" fill="#64748b" font-size="9">R_1</text>
+                      <line x1="70" y1="70" x2="70" y2="130" stroke="#64748b" stroke-width="1.6"/>
+                      <circle cx="70" cy="100" r="3" fill="#64748b"/>
+                      <rect x="63" y="130" width="14" height="30" fill="none" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="56" y="148" text-anchor="end" fill="#64748b" font-size="9">R_2</text>
+                      <line x1="70" y1="160" x2="70" y2="180" stroke="#64748b" stroke-width="1.6"/>
+
+                      <!-- Entrada v_i y C_in -->
+                      <circle cx="20" cy="100" r="3" fill="#6366f1"/>
+                      <text x="16" y="94" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9">v_i</text>
+                      <line x1="20" y1="100" x2="40" y2="100" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="40" y1="92" x2="40" y2="108" stroke="#64748b" stroke-width="2"/>
+                      <line x1="46" y1="92" x2="46" y2="108" stroke="#64748b" stroke-width="2"/>
+                      <line x1="46" y1="100" x2="70" y2="100" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="43" y="86" text-anchor="middle" fill="#64748b" font-size="8">C_in</text>
+
+                      <!-- Transistor NPN -->
+                      <line x1="70" y1="100" x2="135" y2="100" stroke="#64748b" stroke-width="1.6"/>
+                      <!-- Barra base -->
+                      <line x1="135" y1="88" x2="135" y2="112" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <!-- Colector -->
+                      <line x1="135" y1="93" x2="155" y2="78" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="155" y1="78" x2="155" y2="65" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="1.8"/>
+                      <!-- Emisor con flecha -->
+                      <line x1="135" y1="107" x2="155" y2="122" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <polygon points="152,113 157,123 147,121" fill="#1e293b" class="dark:fill-slate-200"/>
+                      <line x1="155" y1="122" x2="155" y2="135" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="1.8"/>
+                      <text x="120" y="93" font-weight="bold" fill="#475569" font-size="9.5">Q_1</text>
+
+                      <!-- Rama Colector R_C -->
+                      <rect x="148" y="35" width="14" height="30" fill="none" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="155" y1="25" x2="155" y2="35" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="168" y="52" fill="#64748b" font-size="9">R_C</text>
+                      <circle cx="155" cy="74" r="3" fill="#64748b"/>
+
+                      <!-- Rama Emisor R_E // C_E -->
+                      <circle cx="155" cy="135" r="3" fill="#64748b"/>
+                      <rect x="148" y="140" width="14" height="28" fill="none" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="155" y1="168" x2="155" y2="180" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="138" y="156" fill="#64748b" font-size="9">R_E</text>
+
+                      <!-- Salida hacia R_L con C_o -->
+                      <line x1="155" y1="74" x2="190" y2="74" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="190" y1="67" x2="190" y2="81" stroke="#64748b" stroke-width="2"/>
+                      <line x1="196" y1="67" x2="196" y2="81" stroke="#64748b" stroke-width="2"/>
+                      <line x1="196" y1="74" x2="230" y2="74" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="193" y="60" text-anchor="middle" fill="#64748b" font-size="8">C_o</text>
+                      <circle cx="230" cy="74" r="3" fill="#10b981"/>
+                      <text x="245" y="72" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+
+                      <rect x="223" y="95" width="14" height="35" fill="none" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="230" y1="74" x2="230" y2="95" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="230" y1="130" x2="230" y2="180" stroke="#64748b" stroke-width="1.6"/>
+                      <text x="245" y="115" font-weight="bold" fill="#10b981" font-size="9">R_L</text>
+                    </svg>
+                  </div>
+
+                  <!-- Análisis y Usos -->
+                  <div class="lg:col-span-7 text-xs space-y-2">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      <strong>Funcionamiento:</strong> El punto $Q$ se ubica en el centro de la recta dinámica ($V_{CEQ} \approx V_{CC}/2, I_{CQ} > 0$). El transistor se mantiene permanentemente en la Región Activa Directa durante los $360^\circ$ de la onda, logrando una réplica fiel sin distorsión por corte.
+                    </p>
+                    <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-slate-700 dark:text-slate-300">
+                      <strong>🔥 Inconveniente Crítico:</strong> Disipación estática altísima en reposo ($P_{D,silencio} = V_{CC} I_{CQ}$). Consume la misma potencia continua tanto si reproduce música como si está en silencio absoluto.
+                    </div>
+                    <div>
+                      <strong class="text-slate-900 dark:text-white">🎧 Usos y Aplicaciones Reales:</strong>
+                      <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
+                        <li><strong>Preamplificadores audiófilos y etapas de estudio:</strong> Donde la pureza espectral y distorsión armónica ultra-baja ($THD < 0.01\%$) son la prioridad número uno.</li>
+                        <li><strong>Etapas de entrada y pequeña señal:</strong> En receptores de instrumentación médica y sensores donde las potencias son de pocos milivatios.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-blue-500">Clase B ($2\\theta = 180^\\circ = \\pi$)</span>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                  Cada transistor conduce exactamente durante un semiciclo. Polarizado en el umbral del corte ($I_{CQ} = 0$). Alto rendimiento teórico ($\le 78.5\\%$), pero presenta distorsión de cruce por cero (crossover).
-                </p>
+              <!-- ================= TARJETA 2: CLASE B ================= -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-blue-500/30">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                    <h6 class="text-sm font-bold text-slate-900 dark:text-white">Clase B: Push-Pull Complementario Básico</h6>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                    2θ = 180° (π rad) · η_max = π/4 ≈ 78.5%
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                  <!-- Circuito SVG -->
+                  <div class="lg:col-span-5 flex justify-center">
+                    <svg viewBox="0 0 280 200" class="w-full max-w-[280px] text-xs font-sans select-none">
+                      <!-- Rieles de alimentación dual -->
+                      <line x1="50" y1="20" x2="230" y2="20" stroke="#ef4444" stroke-width="2"/>
+                      <circle cx="160" cy="20" r="3" fill="#ef4444"/>
+                      <text x="160" y="14" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+V_CC</text>
+
+                      <line x1="50" y1="180" x2="230" y2="180" stroke="#3b82f6" stroke-width="2"/>
+                      <circle cx="160" cy="180" r="3" fill="#3b82f6"/>
+                      <text x="160" y="195" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5">−V_CC</text>
+
+                      <!-- Entrada v_i unida directamente a ambas bases -->
+                      <circle cx="40" cy="100" r="3" fill="#6366f1"/>
+                      <text x="35" y="94" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9">v_i</text>
+                      <line x1="40" y1="100" x2="80" y2="100" stroke="#64748b" stroke-width="1.6"/>
+                      <circle cx="80" cy="100" r="3" fill="#64748b"/>
+                      <line x1="80" y1="60" x2="80" y2="140" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="80" y1="60" x2="135" y2="60" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="80" y1="140" x2="135" y2="140" stroke="#64748b" stroke-width="1.6"/>
+
+                      <!-- Transistor Superior Q1 (NPN) -->
+                      <line x1="135" y1="48" x2="135" y2="72" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <line x1="135" y1="53" x2="155" y2="38" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="155" y1="38" x2="155" y2="20" stroke="#ef4444" stroke-width="1.8"/>
+                      <line x1="135" y1="67" x2="155" y2="82" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <polygon points="152,73 157,83 147,81" fill="#1e293b" class="dark:fill-slate-200"/>
+                      <text x="115" y="55" font-weight="bold" fill="#ef4444" font-size="9">Q_1 (NPN)</text>
+
+                      <!-- Transistor Inferior Q2 (PNP) -->
+                      <line x1="135" y1="128" x2="135" y2="152" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <line x1="135" y1="147" x2="155" y2="162" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="155" y1="162" x2="155" y2="180" stroke="#3b82f6" stroke-width="1.8"/>
+                      <line x1="135" y1="133" x2="155" y2="118" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <!-- Flecha PNP apuntando a la base -->
+                      <polygon points="144,129 135,133 141,123" fill="#1e293b" class="dark:fill-slate-200"/>
+                      <text x="115" y="152" font-weight="bold" fill="#3b82f6" font-size="9">Q_2 (PNP)</text>
+
+                      <!-- Conexión Emisores a la Carga R_L -->
+                      <line x1="155" y1="82" x2="155" y2="118" stroke="#64748b" stroke-width="2"/>
+                      <circle cx="155" cy="100" r="3.5" fill="#10b981"/>
+                      <line x1="155" y1="100" x2="205" y2="100" stroke="#10b981" stroke-width="2"/>
+                      <circle cx="205" cy="100" r="3" fill="#10b981"/>
+                      <text x="215" y="96" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+
+                      <rect x="198" y="115" width="14" height="35" fill="none" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="205" y1="100" x2="205" y2="115" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="205" y1="150" x2="205" y2="165" stroke="#475569" stroke-width="1.6"/>
+                      <!-- Símbolo masa carga -->
+                      <line x1="195" y1="165" x2="215" y2="165" stroke="#475569" stroke-width="1.8"/>
+                      <line x1="199" y1="168" x2="211" y2="168" stroke="#475569" stroke-width="1.4"/>
+                      <text x="220" y="135" font-weight="bold" fill="#10b981" font-size="9">R_L</text>
+                    </svg>
+                  </div>
+
+                  <!-- Análisis y Usos -->
+                  <div class="lg:col-span-7 text-xs space-y-2">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      <strong>Funcionamiento:</strong> Cada transistor conduce sólo durante medio ciclo ($180^\circ$): $Q_1$ para $v_i > 0$ y $Q_2$ para $v_i < 0$. En reposo ($v_i = 0$), ambos transistores están en corte ($I_{CQ} = 0$), por lo que no disipan potencia en reposo ($P_{D,silencio} = 0$).
+                    </p>
+                    <div class="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-slate-700 dark:text-slate-300">
+                      <strong>⚠️ Grave Problema de Cruce por Cero (Crossover):</strong> Como las bases están unidas directamente, se requiere $|v_i| \ge V_{BE} \approx 0.6\text{ V}$ para encender cada transistor. Durante la franja $[-0.6\text{ V}, +0.6\text{ V}]$, la salida es nula y la onda se aplasta severamente en los pasos por cero.
+                    </div>
+                    <div>
+                      <strong class="text-slate-900 dark:text-white">⚙️ Usos y Aplicaciones Reales:</strong>
+                      <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
+                        <li><strong>Servocontroladores analógicos y motores DC:</strong> Donde la zona muerta central evita vibraciones espurias cuando el actuador está en su posición meta.</li>
+                        <li><strong>Sirenas y bocinas de alarma:</strong> Donde la inteligibilidad sonora o musical no importa, pero sí el bajo costo y cero consumo en espera.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-emerald-500">Clase AB ($180^\\circ < 2\\theta < 360^\\circ$)</span>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                  Conduce durante algo más de medio ciclo gracias a una pequeña corriente de reposo $I_{CQ}$ que elimina la distorsión de cruce conservando rendimientos entre $65\\%$ y $75\\%$. Es el estándar absoluto en audio analógico.
-                </p>
+              <!-- ================= TARJETA 3: CLASE AB ================= -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-emerald-500/30">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                    <h6 class="text-sm font-bold text-slate-900 dark:text-white">Clase AB: Push-Pull con Compensación de Polarización</h6>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    180° &lt; 2θ &lt; 360° · η ≈ 60% − 72% · ¡Sin Distorsión de Cruce!
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                  <!-- Circuito SVG -->
+                  <div class="lg:col-span-5 flex justify-center">
+                    <svg viewBox="0 0 280 210" class="w-full max-w-[280px] text-xs font-sans select-none">
+                      <!-- Rieles -->
+                      <line x1="50" y1="18" x2="230" y2="18" stroke="#ef4444" stroke-width="2"/>
+                      <circle cx="165" cy="18" r="3" fill="#ef4444"/>
+                      <text x="165" y="12" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+V_CC</text>
+
+                      <line x1="50" y1="192" x2="230" y2="192" stroke="#3b82f6" stroke-width="2"/>
+                      <circle cx="165" cy="192" r="3" fill="#3b82f6"/>
+                      <text x="165" y="206" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5">−V_CC</text>
+
+                      <!-- Rama de polarización con diodos D1, D2 -->
+                      <line x1="95" y1="18" x2="95" y2="30" stroke="#64748b" stroke-width="1.5"/>
+                      <rect x="88" y="30" width="14" height="25" fill="none" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="80" y="46" text-anchor="end" fill="#64748b" font-size="8">R_pol1</text>
+                      <line x1="95" y1="55" x2="95" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                      <circle cx="95" cy="70" r="3" fill="#64748b"/>
+
+                      <!-- Diodo D1 -->
+                      <line x1="95" y1="70" x2="95" y2="85" stroke="#10b981" stroke-width="1.6"/>
+                      <polygon points="89,85 101,85 95,95" fill="#10b981"/>
+                      <line x1="89" y1="95" x2="101" y2="95" stroke="#10b981" stroke-width="1.8"/>
+                      <!-- Diodo D2 -->
+                      <line x1="95" y1="95" x2="95" y2="110" stroke="#10b981" stroke-width="1.6"/>
+                      <polygon points="89,110 101,110 95,120" fill="#10b981"/>
+                      <line x1="89" y1="120" x2="101" y2="120" stroke="#10b981" stroke-width="1.8"/>
+                      <line x1="95" y1="120" x2="95" y2="135" stroke="#64748b" stroke-width="1.5"/>
+                      <circle cx="95" cy="135" r="3" fill="#64748b"/>
+
+                      <rect x="88" y="150" width="14" height="25" fill="none" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="95" y1="135" x2="95" y2="150" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="95" y1="175" x2="95" y2="192" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="80" y="165" text-anchor="end" fill="#64748b" font-size="8">R_pol2</text>
+                      <text x="110" y="105" font-bold fill="#10b981" font-size="8.5">2 V_BE</text>
+
+                      <!-- Entrada v_i capacitiva -->
+                      <circle cx="35" cy="102" r="3" fill="#6366f1"/>
+                      <text x="30" y="98" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9">v_i</text>
+                      <line x1="35" y1="102" x2="55" y2="102" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="55" y1="95" x2="55" y2="110" stroke="#64748b" stroke-width="2"/>
+                      <line x1="61" y1="95" x2="61" y2="110" stroke="#64748b" stroke-width="2"/>
+                      <line x1="61" y1="102" x2="95" y2="102" stroke="#64748b" stroke-width="1.5"/>
+                      <circle cx="95" cy="102" r="2.5" fill="#64748b"/>
+
+                      <!-- Conexión a bases Q1 y Q2 -->
+                      <line x1="95" y1="70" x2="140" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="95" y1="135" x2="140" y2="135" stroke="#64748b" stroke-width="1.5"/>
+
+                      <!-- Transistor Q1 (NPN) -->
+                      <line x1="140" y1="58" x2="140" y2="82" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <line x1="140" y1="63" x2="160" y2="48" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="160" y1="48" x2="160" y2="18" stroke="#ef4444" stroke-width="1.8"/>
+                      <line x1="140" y1="77" x2="160" y2="92" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <polygon points="157,83 162,93 152,91" fill="#1e293b" class="dark:fill-slate-200"/>
+
+                      <!-- Transistor Q2 (PNP) -->
+                      <line x1="140" y1="123" x2="140" y2="147" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <line x1="140" y1="142" x2="160" y2="157" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="160" y1="157" x2="160" y2="192" stroke="#3b82f6" stroke-width="1.8"/>
+                      <line x1="140" y1="128" x2="160" y2="113" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <polygon points="149,124 140,128 146,118" fill="#1e293b" class="dark:fill-slate-200"/>
+
+                      <!-- Resistencias térmicas de emisor R_E -->
+                      <rect x="156" y="93" width="8" height="12" fill="none" stroke="#64748b" stroke-width="1.2"/>
+                      <rect x="156" y="105" width="8" height="12" fill="none" stroke="#64748b" stroke-width="1.2"/>
+                      <text x="168" y="103" fill="#64748b" font-size="7">R_E1</text>
+                      <text x="168" y="115" fill="#64748b" font-size="7">R_E2</text>
+                      <circle cx="160" cy="105" r="3" fill="#10b981"/>
+
+                      <!-- Salida a carga R_L -->
+                      <line x1="160" y1="105" x2="210" y2="105" stroke="#10b981" stroke-width="1.8"/>
+                      <circle cx="210" cy="105" r="3" fill="#10b981"/>
+                      <text x="220" y="101" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+                      <rect x="203" y="118" width="14" height="32" fill="none" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="210" y1="105" x2="210" y2="118" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="210" y1="150" x2="210" y2="165" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="200" y1="165" x2="220" y2="165" stroke="#475569" stroke-width="1.8"/>
+                      <text x="225" y="136" font-weight="bold" fill="#10b981" font-size="9">R_L</text>
+                    </svg>
+                  </div>
+
+                  <!-- Análisis y Usos -->
+                  <div class="lg:col-span-7 text-xs space-y-2">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      <strong>Funcionamiento:</strong> Los dos diodos $D_1, D_2$ (o un transistor en configuración multiplicador $V_{BE}$) mantienen una diferencia de potencial constante $\approx 2 V_{BE} \\approx 1.2 - 1.4\\text{ V}$ entre las bases. Esto fija una corriente estática de reposo controlada $I_{CQ} \\approx 15 - 50\\text{ mA}$, eliminando la zona muerta de corte sin comprometer el rendimiento general.
+                    </p>
+                    <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-slate-700 dark:text-slate-300">
+                      <strong>💡 Resistencias de Emisor $R_E$:</strong> Se colocan pequeños resistores degenerativos ($0.1\\,\\Omega - 0.47\\,\\Omega$) para asegurar estabilidad térmica frente al embalamiento (Thermal Runaway).
+                    </div>
+                    <div>
+                      <strong class="text-slate-900 dark:text-white">📻 Usos y Aplicaciones Reales:</strong>
+                      <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
+                        <li><strong>El rey del audio analógico:</strong> Etapas de salida de amplificadores de potencia para altavoces (Hi-Fi, receptores AV comerciales, monitores activos).</li>
+                        <li><strong>Etapa de salida de Amplificadores Operacionales:</strong> Casi todos los op-amps universales (LM741, TL082, NE5532, OPA2134) usan un buffer Clase AB en su etapa de salida.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="text-xs font-mono font-bold text-purple-500">Clase C ($2\\theta < 180^\\circ$) y Clase D</span>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                  <strong>Clase C:</strong> Conduce pulsos breves (< 180°), requiere circuito tanque LC sintonizado para reconstruir la senoidal (usado en transmisores de RF, $\eta > 85\\%$).<br>
-                  <strong>Clase D:</strong> Conmutación PWM pura (transistores como llaves), rendimientos $\eta > 90\\%$.
-                </p>
+              <!-- ================= TARJETA 4: CLASE C ================= -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-purple-500/30">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+                    <h6 class="text-sm font-bold text-slate-900 dark:text-white">Clase C: Amplificador de RF con Carga Resonante Sintonizada</h6>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                    2θ &lt; 180° (~120°) · η &gt; 80% − 90% · Exclusivo de Radiofrecuencia (RF)
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                  <!-- Circuito SVG -->
+                  <div class="lg:col-span-5 flex justify-center">
+                    <svg viewBox="0 0 280 200" class="w-full max-w-[280px] text-xs font-sans select-none">
+                      <!-- Riel VCC -->
+                      <line x1="30" y1="25" x2="250" y2="25" stroke="#ef4444" stroke-width="2"/>
+                      <circle cx="140" cy="25" r="3" fill="#ef4444"/>
+                      <text x="140" y="16" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">+V_CC</text>
+
+                      <!-- Riel Masa -->
+                      <line x1="30" y1="180" x2="250" y2="180" stroke="#475569" stroke-width="2"/>
+                      <line x1="140" y1="180" x2="140" y2="192" stroke="#475569" stroke-width="2"/>
+                      <line x1="130" y1="192" x2="150" y2="192" stroke="#475569" stroke-width="2"/>
+
+                      <!-- Entrada v_i con polarización negativa -V_BB -->
+                      <circle cx="25" cy="115" r="3" fill="#6366f1"/>
+                      <text x="20" y="110" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9">v_i(t)</text>
+                      <line x1="25" y1="115" x2="45" y2="115" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="45" y1="107" x2="45" y2="123" stroke="#64748b" stroke-width="2"/>
+                      <line x1="51" y1="107" x2="51" y2="123" stroke="#64748b" stroke-width="2"/>
+                      <line x1="51" y1="115" x2="80" y2="115" stroke="#64748b" stroke-width="1.6"/>
+                      <circle cx="80" cy="115" r="3" fill="#64748b"/>
+
+                      <!-- Choke RFC y tensión negativa -V_BB -->
+                      <line x1="80" y1="115" x2="80" y2="140" stroke="#64748b" stroke-width="1.6"/>
+                      <!-- Bobina choque RFC -->
+                      <path d="M 80,140 Q 75,145 80,150 Q 75,155 80,160 Q 75,165 80,170" fill="none" stroke="#8b5cf6" stroke-width="1.8"/>
+                      <line x1="80" y1="170" x2="80" y2="180" stroke="#64748b" stroke-width="1.6"/>
+                      <circle cx="80" cy="180" r="3" fill="#8b5cf6"/>
+                      <text x="75" y="195" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="8.5">−V_BB (&lt; 0)</text>
+
+                      <!-- Transistor NPN -->
+                      <line x1="80" y1="115" x2="120" y2="115" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="120" y1="103" x2="120" y2="127" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2.6"/>
+                      <line x1="120" y1="108" x2="140" y2="93" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <line x1="140" y1="93" x2="140" y2="80" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="1.8"/>
+                      <!-- Emisor a masa directa -->
+                      <line x1="120" y1="122" x2="140" y2="137" stroke="#1e293b" class="dark:stroke-slate-200" stroke-width="2"/>
+                      <polygon points="137,128 142,138 132,136" fill="#1e293b" class="dark:fill-slate-200"/>
+                      <line x1="140" y1="137" x2="140" y2="180" stroke="#475569" stroke-width="1.8"/>
+
+                      <!-- Tanque Resonante L // C en colector -->
+                      <circle cx="140" cy="80" r="3" fill="#8b5cf6"/>
+                      <line x1="140" y1="80" x2="140" y2="70" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="115" y1="70" x2="165" y2="70" stroke="#64748b" stroke-width="1.6"/>
+
+                      <!-- Rama Inductor L -->
+                      <line x1="115" y1="70" x2="115" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                      <path d="M 115,60 Q 110,55 115,50 Q 110,45 115,40 Q 110,35 115,30" fill="none" stroke="#8b5cf6" stroke-width="1.8"/>
+                      <line x1="115" y1="30" x2="115" y2="25" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="105" y="47" text-anchor="end" font-weight="bold" fill="#8b5cf6" font-size="8.5">L</text>
+
+                      <!-- Rama Capacitor C -->
+                      <line x1="165" y1="70" x2="165" y2="52" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="158" y1="52" x2="172" y2="52" stroke="#8b5cf6" stroke-width="2"/>
+                      <line x1="158" y1="46" x2="172" y2="46" stroke="#8b5cf6" stroke-width="2"/>
+                      <line x1="165" y1="46" x2="165" y2="25" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="178" y="52" font-weight="bold" fill="#8b5cf6" font-size="8.5">C</text>
+
+                      <!-- Salida de señal a antena / R_L -->
+                      <line x1="140" y1="80" x2="195" y2="80" stroke="#64748b" stroke-width="1.6"/>
+                      <line x1="195" y1="72" x2="195" y2="88" stroke="#64748b" stroke-width="2"/>
+                      <line x1="201" y1="72" x2="201" y2="88" stroke="#64748b" stroke-width="2"/>
+                      <line x1="201" y1="80" x2="235" y2="80" stroke="#64748b" stroke-width="1.6"/>
+                      <circle cx="235" cy="80" r="3" fill="#10b981"/>
+                      <text x="245" y="76" font-weight="bold" fill="#10b981" font-size="9">v_o</text>
+
+                      <!-- Antena o R_L -->
+                      <rect x="228" y="100" width="14" height="35" fill="none" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="235" y1="80" x2="235" y2="100" stroke="#10b981" stroke-width="1.6"/>
+                      <line x1="235" y1="135" x2="235" y2="180" stroke="#475569" stroke-width="1.6"/>
+                      <text x="248" y="122" font-weight="bold" fill="#10b981" font-size="8.5">Antena / R_L</text>
+                    </svg>
+                  </div>
+
+                  <!-- Análisis y Usos -->
+                  <div class="lg:col-span-7 text-xs space-y-2">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      <strong>Funcionamiento:</strong> La base se polariza negativamente ($V_{BB} < 0$), muy por debajo del corte. La corriente sólo circula en pulsos breves ($2\theta \approx 120^\circ$) cuando la cúspide de $v_i(t)$ vence la polarización inversa. Como la corriente fluye únicamente cuando la caída $v_{CE}$ es mínima, <strong>la potencia disipada por el transistor es pequeñísima y el rendimiento supera el $85\%$</strong>.
+                    </p>
+                    <div class="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-slate-700 dark:text-slate-300">
+                      <strong>📡 El rol indispensable del Tanque $LC$:</strong> Los pulsos de corriente excitan el circuito tanque paralelo $LC$, que actúa como filtro resonante pasabanda de alto factor de calidad $Q$. El tanque reconstruye una onda senoidal pura a la frecuencia de resonancia $f_0 = \frac{1}{2\pi\sqrt{LC}}$, filtrando todos los armónicos.
+                    </div>
+                    <div>
+                      <strong class="text-slate-900 dark:text-white">📻 Usos y Aplicaciones Reales:</strong>
+                      <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
+                        <li><strong>Transmisores de Radiocomunicación (RF):</strong> Etapas finales de potencia en emisoras de FM, AM, transmisores de onda corta y satelitales.</li>
+                        <li><strong>Multiplicadores de Frecuencia:</strong> Sintonizando el tanque LC al 2.° o 3.ᵉʳ armónico del pulso de corriente.</li>
+                        <li><strong>¡Inaplicable en Audio!</strong> Al depender de un circuito resonante a una frecuencia fija, no puede amplificar señales de banda ancha audible ($20\text{ Hz} - 20\text{ kHz}$) sin destruirlas.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <!-- ================= TARJETA 5: CLASE D ================= -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-rose-500/30">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                    <h6 class="text-sm font-bold text-slate-900 dark:text-white">Clase D: Amplificador por Conmutación (PWM)</h6>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
+                    Conmutación Digital PWM · η &gt; 90% − 95% · Máxima Eficiencia Energética
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                  <!-- Circuito SVG Diagrama de Bloques / Esquema -->
+                  <div class="lg:col-span-5 flex justify-center">
+                    <svg viewBox="0 0 290 190" class="w-full max-w-[290px] text-xs font-sans select-none">
+                      <!-- Bloque 1: Comparador PWM -->
+                      <polygon points="20,40 20,100 65,70" fill="none" stroke="#6366f1" stroke-width="1.8"/>
+                      <text x="26" y="55" fill="#6366f1" font-size="9">+</text>
+                      <text x="26" y="90" fill="#6366f1" font-size="9">_</text>
+                      <!-- Entradas de audio y triangular -->
+                      <line x1="5" y1="52" x2="20" y2="52" stroke="#6366f1" stroke-width="1.5"/>
+                      <text x="3" y="47" font-bold fill="#6366f1" font-size="7.5">v_audio</text>
+                      <line x1="5" y1="88" x2="20" y2="88" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="3" y="100" fill="#64748b" font-size="7.5">v_tri (PWM)</text>
+
+                      <!-- Salida comparador a Gate Driver -->
+                      <line x1="65" y1="70" x2="95" y2="70" stroke="#6366f1" stroke-width="1.6"/>
+                      <rect x="95" y="50" width="35" height="40" rx="4" fill="none" stroke="#64748b" stroke-width="1.5"/>
+                      <text x="112" y="66" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="7.5">Gate</text>
+                      <text x="112" y="78" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="7.5">Driver</text>
+
+                      <!-- Salidas driver a MOSFETs Half-Bridge -->
+                      <line x1="130" y1="60" x2="160" y2="40" stroke="#64748b" stroke-width="1.4"/>
+                      <line x1="130" y1="80" x2="160" y2="100" stroke="#64748b" stroke-width="1.4"/>
+
+                      <!-- MOSFET Superior M1 (Interruptor hacia +VDD) -->
+                      <line x1="175" y1="20" x2="175" y2="35" stroke="#ef4444" stroke-width="1.8"/>
+                      <circle cx="175" cy="20" r="3" fill="#ef4444"/>
+                      <text x="175" y="14" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V_DD</text>
+                      <rect x="165" y="35" width="20" height="20" rx="2" fill="none" stroke="#f43f5e" stroke-width="1.5"/>
+                      <text x="175" y="48" text-anchor="middle" font-weight="bold" fill="#f43f5e" font-size="7.5">M_1</text>
+                      <line x1="175" y1="55" x2="175" y2="70" stroke="#f43f5e" stroke-width="1.8"/>
+
+                      <!-- Nodo Conmutado PWM -->
+                      <circle cx="175" cy="70" r="3.5" fill="#f43f5e"/>
+
+                      <!-- MOSFET Inferior M2 (Interruptor hacia Masa) -->
+                      <line x1="175" y1="70" x2="175" y2="85" stroke="#f43f5e" stroke-width="1.8"/>
+                      <rect x="165" y="85" width="20" height="20" rx="2" fill="none" stroke="#f43f5e" stroke-width="1.5"/>
+                      <text x="175" y="98" text-anchor="middle" font-weight="bold" fill="#f43f5e" font-size="7.5">M_2</text>
+                      <line x1="175" y1="105" x2="175" y2="120" stroke="#475569" stroke-width="1.8"/>
+                      <line x1="168" y1="120" x2="182" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                      <!-- Filtro Pasabajos LC (L_f y C_f) -->
+                      <line x1="175" y1="70" x2="200" y2="70" stroke="#64748b" stroke-width="1.6"/>
+                      <!-- Inductor L_f -->
+                      <path d="M 200,70 Q 205,63 210,70 Q 215,63 220,70 Q 225,63 230,70" fill="none" stroke="#10b981" stroke-width="1.8"/>
+                      <text x="215" y="58" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">L_filtro</text>
+                      <circle cx="230" cy="70" r="3" fill="#10b981"/>
+
+                      <!-- Capacitor C_f a masa -->
+                      <line x1="230" y1="70" x2="230" y2="90" stroke="#64748b" stroke-width="1.5"/>
+                      <line x1="223" y1="90" x2="237" y2="90" stroke="#10b981" stroke-width="2"/>
+                      <line x1="223" y1="96" x2="237" y2="96" stroke="#10b981" stroke-width="2"/>
+                      <line x1="230" y1="96" x2="230" y2="115" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="225" y1="115" x2="235" y2="115" stroke="#475569" stroke-width="1.5"/>
+                      <text x="243" y="96" font-bold fill="#10b981" font-size="7.5">C_f</text>
+
+                      <!-- Parlante / Carga R_L -->
+                      <line x1="230" y1="70" x2="260" y2="70" stroke="#10b981" stroke-width="1.6"/>
+                      <circle cx="260" cy="70" r="3" fill="#10b981"/>
+                      <text x="265" y="65" font-weight="bold" fill="#10b981" font-size="8.5">v_audio(t)</text>
+                      <!-- Símbolo parlante -->
+                      <polygon points="260,70 270,60 270,80" fill="none" stroke="#10b981" stroke-width="1.6"/>
+                      <rect x="255" y="65" width="5" height="10" fill="#10b981"/>
+                      <text x="275" y="85" text-anchor="middle" font-bold fill="#10b981" font-size="8">Parlante (R_L)</text>
+                    </svg>
+                  </div>
+
+                  <!-- Análisis y Usos -->
+                  <div class="lg:col-span-7 text-xs space-y-2">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      <strong>Funcionamiento:</strong> Los transistores de potencia MOSFET no trabajan en su zona activa lineal, sino como <strong>interruptores en conmutación pura (ON/OFF)</strong> a frecuencias ultrasónicas ($250\text{ kHz} - 1\text{ MHz}$).
+                    </p>
+                    <div class="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-slate-700 dark:text-slate-300">
+                      <strong>⚡ ¿Por qué no disipa calor?:</strong> Cuando el MOSFET conduce (ON), su resistencia interna es casi nula ($R_{DS,on} \approx \text{m}\Omega \implies v_{DS} \approx 0 \implies P_D \approx 0$). Cuando está apagado (OFF), la corriente es nula ($i_D = 0 \implies P_D = 0$). El filtro pasabajos $L_f - C_f$ recupera el promedio analógico (audio continuo) entregándolo al parlante sin pérdidas.
+                    </div>
+                    <div>
+                      <strong class="text-slate-900 dark:text-white">📱 Usos y Aplicaciones Reales:</strong>
+                      <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
+                        <li><strong>Dispositivos portátiles a batería:</strong> Teléfonos inteligentes, altavoces Bluetooth portátiles (JBL, Sony, etc.), tablets y computadoras portátiles donde la autonomía de la batería manda.</li>
+                        <li><strong>Subwoofers y sistemas de sonido de gran potencia:</strong> Etapas de $500\text{ W} - 5000\text{ W}$ para recitales y autos que no cabrían físicamente con disipadores de Clase AB.</li>
+                        <li><strong>Barras de sonido y televisores ultra delgados:</strong> Donde no existe espacio para disipadores de aluminio pesados.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 3. TABLA RESUMEN COMPARATIVA -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Tabla Resumen Comparativa de Clases de Amplificación</h5>
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Clase</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ángulo (2θ)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Punto de Reposo Q</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Rendimiento (η)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Distorsión Armónica</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Disipación en Silencio</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Aplicación Principal</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-amber-600 dark:text-amber-400">Clase A</td>
+                    <td class="p-2 font-mono">360° (2π)</td>
+                    <td class="p-2">Centro de recta activa</td>
+                    <td class="p-2 font-mono font-bold">≤ 25% (50% transf.)</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-semibold">Mínima (Alta fidelidad)</td>
+                    <td class="p-2 text-rose-600 dark:text-rose-400 font-bold">Máxima ($V_{CC} I_{CQ}$)</td>
+                    <td class="p-2">Previos audiófilos, pequeña señal</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-blue-600 dark:text-blue-400">Clase B</td>
+                    <td class="p-2 font-mono">180° (π)</td>
+                    <td class="p-2">En el corte ($I_{CQ} = 0$)</td>
+                    <td class="p-2 font-mono font-bold">≤ 78.5%</td>
+                    <td class="p-2 text-rose-600 dark:text-rose-400 font-bold">Severa por cruce (Crossover)</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-semibold">Nula ($P_D = 0$)</td>
+                    <td class="p-2">Servocontrol, sirenas de alarma</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-emerald-600 dark:text-emerald-400">Clase AB</td>
+                    <td class="p-2 font-mono">180° &lt; 2θ &lt; 360°</td>
+                    <td class="p-2">Levemente sobre corte</td>
+                    <td class="p-2 font-mono font-bold">60% − 72%</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-semibold">Muy baja (Sin cruce)</td>
+                    <td class="p-2 text-amber-600 dark:text-amber-400">Pequeña ($V_{CC} I_{CQ}$)</td>
+                    <td class="p-2">Estándar en audio Hi-Fi y Op-Amps</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-purple-600 dark:text-purple-400">Clase C</td>
+                    <td class="p-2 font-mono">&lt; 180° (~120°)</td>
+                    <td class="p-2">Bajo el corte ($V_{BB} &lt; 0$)</td>
+                    <td class="p-2 font-mono font-bold">80% − 90%</td>
+                    <td class="p-2 text-slate-500">Filtrada por tanque LC</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-semibold">Nula ($P_D = 0$)</td>
+                    <td class="p-2">Transmisores de Radiofrecuencia (RF)</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-rose-600 dark:text-rose-400">Clase D</td>
+                    <td class="p-2 font-mono">Conmutación PWM</td>
+                    <td class="p-2">Conmutación ON/OFF</td>
+                    <td class="p-2 font-mono font-bold">&gt; 90% − 95%</td>
+                    <td class="p-2 text-slate-500">Baja (THD &lt; 0.1% c/ filtro)</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-semibold">Casi nula (Llaves abiertas)</td>
+                    <td class="p-2">Subwoofers, parlantes Bluetooth, móviles</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           `
         },
