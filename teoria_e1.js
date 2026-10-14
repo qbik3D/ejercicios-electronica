@@ -5061,192 +5061,206 @@ const MANUAL_TEORIA_E1 = {
 
                 <!-- Circuito Completo vs Modelo AC (Caso 1A con CE) -->
                 <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-indigo-100 dark:border-indigo-900/30 flex justify-center overflow-x-auto">
-                  <svg viewBox="0 0 720 205" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
-                    <!-- ================= PANEL IZQUIERDO: CIRCUITO INICIAL CON CE ================= -->
+                  <svg viewBox="0 0 740 220" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 600px;">
+                    <!-- ================= PANEL IZQUIERDO: CIRCUITO COMPLETO CON CE ================= -->
                     <g transform="translate(10, 0)">
-                      <rect x="0" y="5" width="310" height="195" rx="8" fill="#6366f1" fill-opacity="0.03" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
-                      <text x="155" y="19" text-anchor="middle" font-weight="bold" fill="#4338ca" font-size="9.5">1. Circuito Esquemático Completo (con C<tspan baseline-shift="sub" font-size="70%">E</tspan>)</text>
+                      <!-- Marco del panel -->
+                      <rect x="0" y="5" width="320" height="210" rx="8" fill="#6366f1" fill-opacity="0.03" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+                      
+                      <!-- Cabecera destacada -->
+                      <rect x="0" y="5" width="320" height="24" rx="8" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+                      <text x="160" y="21" text-anchor="middle" font-weight="bold" fill="#4338ca" font-size="10">1. Circuito Esquemático Completo (con C<tspan baseline-shift="sub" font-size="70%">E</tspan>)</text>
 
-                      <!-- VCC rail -->
-                      <line x1="40" y1="30" x2="160" y2="30" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="105" cy="30" r="2.5" fill="#ef4444"/>
-                      <text x="105" y="24" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                      <!-- VCC rail superior -->
+                      <line x1="45" y1="44" x2="175" y2="44" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="44" r="2.5" fill="#ef4444"/>
+                      <text x="115" y="38" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
-                      <!-- R1 IEEE zig-zag -->
-                      <line x1="50" y1="30" x2="50" y2="38" stroke="#475569" stroke-width="1.2"/>
-                      <path d="M 50,38 L 50,40 L 46,43 L 54,46 L 46,49 L 54,52 L 46,55 L 50,57 L 50,59" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="39" y="50" text-anchor="end" font-size="8" font-weight="bold" fill="#6366f1">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
-                      <line x1="50" y1="59" x2="50" y2="78" stroke="#475569" stroke-width="1.2"/>
-                      <circle cx="50" cy="78" r="2" fill="#475569"/>
+                      <!-- Divisor R1 IEEE zig-zag -->
+                      <line x1="55" y1="44" x2="55" y2="52" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 55,52 L 55,54 L 51,57 L 59,60 L 51,63 L 59,66 L 51,69 L 55,71 L 55,73" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="44" y="64" text-anchor="end" font-size="8" font-weight="bold" fill="#6366f1">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                      <line x1="55" y1="73" x2="55" y2="92" stroke="#475569" stroke-width="1.2"/>
+                      <circle cx="55" cy="92" r="2" fill="#475569"/>
 
                       <!-- Entrada vi con C1 -->
-                      <circle cx="12" cy="78" r="2.5" fill="#3b82f6"/>
-                      <text x="12" y="90" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
-                      <line x1="12" y1="78" x2="24" y2="78" stroke="#3b82f6" stroke-width="1.2"/>
+                      <circle cx="12" cy="92" r="2.5" fill="#3b82f6"/>
+                      <text x="12" y="104" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <line x1="12" y1="92" x2="24" y2="92" stroke="#3b82f6" stroke-width="1.2"/>
                       <!-- C1 -->
-                      <line x1="24" y1="71" x2="24" y2="85" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <line x1="28" y1="71" x2="28" y2="85" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <text x="26" y="67" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
-                      <line x1="28" y1="78" x2="50" y2="78" stroke="#3b82f6" stroke-width="1.2"/>
+                      <line x1="24" y1="85" x2="24" y2="99" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <line x1="28" y1="85" x2="28" y2="99" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <text x="26" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                      <line x1="28" y1="92" x2="55" y2="92" stroke="#3b82f6" stroke-width="1.2"/>
 
-                      <!-- R2 IEEE zig-zag -->
-                      <path d="M 50,78 L 50,80 L 46,83 L 54,86 L 46,89 L 54,92 L 46,95 L 50,97 L 50,99" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="39" y="91" text-anchor="end" font-size="8" font-weight="bold" fill="#6366f1">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
-                      <line x1="50" y1="99" x2="50" y2="155" stroke="#475569" stroke-width="1.2"/>
+                      <!-- Divisor R2 IEEE zig-zag -->
+                      <path d="M 55,92 L 55,94 L 51,97 L 59,100 L 51,103 L 59,106 L 51,109 L 55,111 L 55,113" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="44" y="105" text-anchor="end" font-size="8" font-weight="bold" fill="#6366f1">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                      <line x1="55" y1="113" x2="55" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Conexión a Base -->
-                      <line x1="50" y1="78" x2="92" y2="78" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="92" cy="78" r="2" fill="#6366f1"/>
-                      <text x="82" y="73" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#6366f1">B</text>
+                      <line x1="55" y1="92" x2="95" y2="92" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="95" cy="92" r="2" fill="#6366f1"/>
+                      <text x="86" y="87" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#6366f1">B</text>
 
                       <!-- Transistor NPN (IEEE 315) -->
-                      <line x1="92" y1="68" x2="92" y2="88" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
-                      <line x1="92" y1="72" x2="110" y2="62" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="92" y1="84" x2="110" y2="94" stroke="#475569" stroke-width="1.5"/>
-                      <polygon points="109,93.5 101,89 104,84" fill="#ef4444"/>
+                      <line x1="95" y1="82" x2="95" y2="102" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
+                      <line x1="95" y1="86" x2="115" y2="76" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="95" y1="98" x2="115" y2="108" stroke="#475569" stroke-width="1.5"/>
+                      <polygon points="114,107.5 106,103 109,98" fill="#ef4444"/>
 
-                      <!-- Colector RC y C2 -->
-                      <line x1="110" y1="30" x2="110" y2="38" stroke="#475569" stroke-width="1.2"/>
-                      <path d="M 110,38 L 110,40 L 106,43 L 114,46 L 106,49 L 114,52 L 106,55 L 110,57 L 110,59" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="122" y="50" text-anchor="start" font-size="8" font-weight="bold" fill="#10b981">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                      <line x1="110" y1="59" x2="110" y2="62" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="110" cy="62" r="2" fill="#10b981"/>
-                      <text x="117" y="65" text-anchor="start" font-size="7.5" font-weight="bold" fill="#10b981">C</text>
+                      <!-- Colector RC -->
+                      <line x1="115" y1="44" x2="115" y2="52" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 115,52 L 115,54 L 111,57 L 119,60 L 111,63 L 119,66 L 111,69 L 115,71 L 115,73" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="127" y="63" text-anchor="start" font-size="8" font-weight="bold" fill="#10b981">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                      <line x1="115" y1="73" x2="115" y2="76" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="76" r="2" fill="#10b981"/>
+                      <text x="106" y="73" text-anchor="end" font-size="7.5" font-weight="bold" fill="#10b981">C</text>
 
                       <!-- Salida C2 y Carga RL -->
-                      <line x1="110" y1="62" x2="135" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <line x1="135" y1="55" x2="135" y2="69" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
-                      <line x1="139" y1="55" x2="139" y2="69" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
-                      <text x="137" y="51" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
-                      <line x1="139" y1="62" x2="165" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <circle cx="165" cy="62" r="2" fill="#10b981"/>
+                      <line x1="115" y1="76" x2="142" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <line x1="142" y1="69" x2="142" y2="83" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
+                      <line x1="146" y1="69" x2="146" y2="83" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
+                      <text x="144" y="64" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                      <line x1="146" y1="76" x2="172" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <circle cx="172" cy="76" r="2" fill="#10b981"/>
 
                       <!-- RL -->
-                      <path d="M 165,62 L 165,65 L 161,68 L 169,71 L 161,74 L 169,77 L 161,80 L 165,82 L 165,85" fill="none" stroke="#059669" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="175" y="75" text-anchor="start" font-size="8" font-weight="bold" fill="#059669">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
-                      <line x1="165" y1="85" x2="165" y2="155" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 172,76 L 172,78 L 168,81 L 176,84 L 168,87 L 176,90 L 168,93 L 172,95 L 172,97" fill="none" stroke="#059669" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="183" y="88" text-anchor="start" font-size="8" font-weight="bold" fill="#059669">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                      <line x1="172" y1="97" x2="172" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Terminal vo -->
-                      <line x1="165" y1="62" x2="190" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <circle cx="190" cy="62" r="2.5" fill="#10b981"/>
-                      <text x="190" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <line x1="172" y1="76" x2="200" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <circle cx="200" cy="76" r="2.5" fill="#10b981"/>
+                      <text x="200" y="67" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
                       <!-- Emisor con RE || CE -->
-                      <line x1="110" y1="94" x2="110" y2="108" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="110" cy="108" r="2" fill="#475569"/>
-                      <text x="96" y="104" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#475569">E</text>
+                      <line x1="115" y1="108" x2="115" y2="120" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="120" r="2" fill="#475569"/>
+                      <text x="102" y="118" text-anchor="end" font-size="7.5" font-weight="bold" fill="#475569">E</text>
 
                       <!-- RE a la izquierda -->
-                      <line x1="110" y1="108" x2="95" y2="108" stroke="#475569" stroke-width="1.2"/>
-                      <path d="M 95,108 L 95,110 L 91,113 L 99,116 L 91,119 L 99,122 L 91,125 L 95,127 L 95,130" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="86" y="122" text-anchor="end" font-size="8" font-weight="bold" fill="#a855f7">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                      <line x1="95" y1="130" x2="95" y2="155" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="115" y1="120" x2="100" y2="120" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="100" y1="120" x2="100" y2="126" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 100,126 L 100,128 L 96,131 L 104,134 L 96,137 L 104,140 L 96,143 L 100,145 L 100,147" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="90" y="138" text-anchor="end" font-size="8" font-weight="bold" fill="#a855f7">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                      <line x1="100" y1="147" x2="100" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- CE a la derecha -->
-                      <line x1="110" y1="108" x2="125" y2="108" stroke="#475569" stroke-width="1.2"/>
-                      <line x1="125" y1="108" x2="125" y2="117" stroke="#475569" stroke-width="1.2"/>
-                      <line x1="118" y1="117" x2="132" y2="117" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <line x1="118" y1="121" x2="132" y2="121" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <text x="138" y="121" text-anchor="start" font-size="8" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                      <line x1="125" y1="121" x2="125" y2="155" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="115" y1="120" x2="130" y2="120" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="130" y1="120" x2="130" y2="131" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="123" y1="131" x2="137" y2="131" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <line x1="123" y1="135" x2="137" y2="135" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <text x="143" y="135" text-anchor="start" font-size="8" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                      <line x1="130" y1="135" x2="130" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Masa Común DC -->
-                      <line x1="40" y1="155" x2="175" y2="155" stroke="#475569" stroke-width="1.6"/>
-                      <line x1="100" y1="159" x2="115" y2="159" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="104" y1="162" x2="111" y2="162" stroke="#475569" stroke-width="1"/>
+                      <line x1="40" y1="168" x2="185" y2="168" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="108" y1="172" x2="122" y2="172" stroke="#475569" stroke-width="1.4"/>
+                      <line x1="111" y1="175" x2="119" y2="175" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="113" y1="178" x2="117" y2="178" stroke="#475569" stroke-width="1"/>
 
                       <!-- Nota al pie del panel -->
-                      <rect x="15" y="170" width="280" height="22" rx="4" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-opacity="0.3"/>
-                      <text x="155" y="184" text-anchor="middle" font-size="8" font-weight="bold" fill="#1d4ed8">⚡ En AC: C<tspan baseline-shift="sub" font-size="70%">E</tspan> cortocircuita a R<tspan baseline-shift="sub" font-size="70%">E</tspan> (Emisor va a GND)</text>
+                      <rect x="15" y="185" width="290" height="22" rx="4" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-opacity="0.3"/>
+                      <text x="160" y="199" text-anchor="middle" font-size="8" font-weight="bold" fill="#1d4ed8">⚡ En AC: C<tspan baseline-shift="sub" font-size="70%">E</tspan> cortocircuita a R<tspan baseline-shift="sub" font-size="70%">E</tspan> (Emisor va a GND)</text>
                     </g>
 
                     <!-- ================= FLECHA DE CONVERSIÓN CENTRAL ================= -->
-                    <g transform="translate(325, 65)">
-                      <rect x="0" y="0" width="55" height="70" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-                      <text x="27" y="13" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#475569">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 0</text>
-                      <text x="27" y="26" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan>,C<tspan baseline-shift="sub" font-size="70%">2</tspan> → cc</text>
-                      <text x="27" y="39" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#ef4444">C<tspan baseline-shift="sub" font-size="70%">E</tspan> → cc</text>
-                      <line x1="10" y1="52" x2="38" y2="52" stroke="#6366f1" stroke-width="2"/>
-                      <polygon points="38,48 47,52 38,56" fill="#6366f1"/>
-                      <text x="27" y="64" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#6366f1">MODELO AC</text>
+                    <g transform="translate(337, 70)">
+                      <rect x="0" y="0" width="60" height="72" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+                      <text x="30" y="14" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#475569">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 0</text>
+                      <text x="30" y="27" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan>,C<tspan baseline-shift="sub" font-size="70%">2</tspan> → cc</text>
+                      <text x="30" y="40" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#ef4444">C<tspan baseline-shift="sub" font-size="70%">E</tspan> → cc</text>
+                      <line x1="12" y1="52" x2="42" y2="52" stroke="#6366f1" stroke-width="2"/>
+                      <polygon points="42,48 51,52 42,56" fill="#6366f1"/>
+                      <text x="30" y="65" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#6366f1">MODELO AC</text>
                     </g>
 
                     <!-- ================= PANEL DERECHO: MODELO AC CON EMISOR A MASA ================= -->
-                    <g transform="translate(385, 0)">
-                      <rect x="0" y="5" width="325" height="195" rx="8" fill="#10b981" fill-opacity="0.03" stroke="#10b981" stroke-opacity="0.25" stroke-width="1"/>
-                      <text x="162" y="19" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9.5">2. Modelo Equivalente Dinámico AC (Emisor a Masa)</text>
+                    <g transform="translate(405, 0)">
+                      <!-- Marco del panel -->
+                      <rect x="0" y="5" width="325" height="210" rx="8" fill="#10b981" fill-opacity="0.03" stroke="#10b981" stroke-opacity="0.25" stroke-width="1"/>
+                      
+                      <!-- Cabecera destacada -->
+                      <rect x="0" y="5" width="325" height="24" rx="8" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+                      <text x="162" y="21" text-anchor="middle" font-weight="bold" fill="#047857" font-size="10">2. Modelo Equivalente Dinámico AC (Emisor a Masa)</text>
 
                       <!-- Terminal entrada vi -->
-                      <circle cx="15" cy="55" r="2.5" fill="#3b82f6"/>
-                      <text x="15" y="46" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
-                      <line x1="15" y1="55" x2="45" y2="55" stroke="#3b82f6" stroke-width="1.3"/>
-                      <polygon points="32,52 38,55 32,58" fill="#3b82f6"/>
-                      <text x="35" y="47" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">i<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <circle cx="15" cy="58" r="2.5" fill="#3b82f6"/>
+                      <text x="15" y="48" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <line x1="15" y1="58" x2="45" y2="58" stroke="#3b82f6" stroke-width="1.3"/>
+                      <polygon points="26,55 32,58 26,61" fill="#3b82f6"/>
+                      <text x="29" y="50" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">i<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
 
                       <!-- RB = R1 || R2 -->
-                      <line x1="45" y1="55" x2="45" y2="65" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="39" y="65" width="12" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.4" rx="2"/>
-                      <text x="33" y="79" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
-                      <line x1="45" y1="89" x2="45" y2="135" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="45" y1="58" x2="45" y2="68" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="39" y="68" width="12" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.4" rx="2"/>
+                      <text x="33" y="82" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                      <line x1="45" y1="92" x2="45" y2="142" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- Hacia Base -->
-                      <line x1="45" y1="55" x2="95" y2="55" stroke="#475569" stroke-width="1.3"/>
-                      <polygon points="72,52 78,55 72,58" fill="#6366f1"/>
-                      <text x="75" y="47" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#6366f1">i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
-                      <circle cx="95" cy="55" r="2.5" fill="#6366f1"/>
-                      <text x="95" y="46" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">Base (B)</text>
+                      <line x1="45" y1="58" x2="85" y2="58" stroke="#475569" stroke-width="1.3"/>
+                      <polygon points="62,55 68,58 62,61" fill="#6366f1"/>
+                      <text x="65" y="50" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#6366f1">i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+                      <circle cx="85" cy="58" r="2.5" fill="#6366f1"/>
+                      <text x="85" y="48" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">Base (B)</text>
 
                       <!-- Resistencia r_pi -->
-                      <line x1="95" y1="55" x2="95" y2="65" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="88" y="65" width="14" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.4" rx="2"/>
-                      <text x="82" y="80" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">r<tspan baseline-shift="sub" font-size="70%">π</tspan></text>
-                      <text x="108" y="80" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="7.5">+ v<tspan baseline-shift="sub" font-size="70%">be</tspan> −</text>
-                      <line x1="95" y1="91" x2="95" y2="135" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="85" y1="58" x2="85" y2="68" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="78" y="68" width="14" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.4" rx="2"/>
+                      <text x="72" y="83" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">r<tspan baseline-shift="sub" font-size="70%">π</tspan></text>
+                      <text x="96" y="83" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="7.5">+ v<tspan baseline-shift="sub" font-size="70%">be</tspan> −</text>
+                      <line x1="85" y1="94" x2="85" y2="142" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- Nodo Emisor a Masa -->
-                      <circle cx="95" cy="135" r="2" fill="#475569"/>
-                      <text x="95" y="148" text-anchor="middle" font-weight="bold" fill="#475569" font-size="7.5">Emisor E (GND)</text>
+                      <circle cx="85" cy="142" r="2" fill="#475569"/>
+                      <text x="85" y="156" text-anchor="middle" font-weight="bold" fill="#475569" font-size="7.5">Emisor E (GND)</text>
 
-                      <!-- Fuente gm · vbe en Colector -->
-                      <circle cx="190" cy="55" r="2.5" fill="#10b981"/>
-                      <text x="190" y="46" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">Colector (C)</text>
-                      <circle cx="190" cy="78" r="12" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.4"/>
-                      <line x1="190" y1="70" x2="190" y2="86" stroke="#10b981" stroke-width="1.6"/>
-                      <polygon points="187,84 190,89 193,84" fill="#10b981"/>
-                      <text x="207" y="81" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">g<tspan baseline-shift="sub" font-size="70%">m</tspan>v<tspan baseline-shift="sub" font-size="70%">be</tspan> = βi<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
-                      <line x1="190" y1="55" x2="190" y2="66" stroke="#475569" stroke-width="1.3"/>
-                      <line x1="190" y1="90" x2="190" y2="135" stroke="#475569" stroke-width="1.3"/>
+                      <!-- Colector C y Fuente dependiente (Rombo IEEE) -->
+                      <circle cx="165" cy="58" r="2.5" fill="#10b981"/>
+                      <text x="165" y="48" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">Colector (C)</text>
+                      
+                      <!-- Rombo IEEE dependiente -->
+                      <line x1="165" y1="58" x2="165" y2="70" stroke="#475569" stroke-width="1.3"/>
+                      <polygon points="165,70 176,82 165,94 154,82" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.4"/>
+                      <line x1="165" y1="74" x2="165" y2="88" stroke="#10b981" stroke-width="1.6"/>
+                      <polygon points="162,86 165,90 168,86" fill="#10b981"/>
+                      <!-- Etiqueta apilada verticalmente sin invadir RC -->
+                      <text x="181" y="79" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">g<tspan baseline-shift="sub" font-size="70%">m</tspan>v<tspan baseline-shift="sub" font-size="70%">be</tspan></text>
+                      <text x="181" y="89" text-anchor="start" font-weight="bold" fill="#10b981" font-size="7.5">(= βi<tspan baseline-shift="sub" font-size="70%">b</tspan>)</text>
+                      <line x1="165" y1="94" x2="165" y2="142" stroke="#475569" stroke-width="1.3"/>
 
-                      <!-- RC y RL en paralelo -->
-                      <line x1="190" y1="55" x2="280" y2="55" stroke="#475569" stroke-width="1.3"/>
+                      <!-- Bus superior hacia RC, RL, vo -->
+                      <line x1="165" y1="58" x2="310" y2="58" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- RC -->
-                      <line x1="240" y1="55" x2="240" y2="65" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="234" y="65" width="12" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.4" rx="2"/>
-                      <text x="228" y="79" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                      <line x1="240" y1="89" x2="240" y2="135" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="235" y1="58" x2="235" y2="68" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="229" y="68" width="12" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.4" rx="2"/>
+                      <text x="223" y="82" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                      <line x1="235" y1="92" x2="235" y2="142" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- RL -->
-                      <line x1="275" y1="55" x2="275" y2="65" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="269" y="65" width="12" height="24" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.4" rx="2"/>
-                      <text x="286" y="79" text-anchor="start" font-weight="bold" fill="#059669" font-size="8">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
-                      <line x1="275" y1="89" x2="275" y2="135" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="275" y1="58" x2="275" y2="68" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="269" y="68" width="12" height="24" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.4" rx="2"/>
+                      <text x="286" y="82" text-anchor="start" font-weight="bold" fill="#059669" font-size="8">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                      <line x1="275" y1="92" x2="275" y2="142" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- Salida vo -->
-                      <line x1="275" y1="55" x2="310" y2="55" stroke="#10b981" stroke-width="1.3"/>
-                      <circle cx="310" cy="55" r="2.5" fill="#10b981"/>
-                      <text x="310" y="46" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
-                      <polygon points="292,52 298,55 292,58" fill="#10b981"/>
-                      <text x="295" y="47" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">i<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <circle cx="310" cy="58" r="2.5" fill="#10b981"/>
+                      <text x="310" y="48" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <polygon points="293,55 299,58 293,61" fill="#10b981"/>
+                      <text x="296" y="50" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">i<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
                       <!-- Masa AC -->
-                      <line x1="25" y1="135" x2="310" y2="135" stroke="#475569" stroke-width="1.8"/>
-                      <line x1="160" y1="139" x2="180" y2="139" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="165" y1="142" x2="175" y2="142" stroke="#475569" stroke-width="1"/>
+                      <line x1="25" y1="142" x2="310" y2="142" stroke="#475569" stroke-width="1.8"/>
+                      <line x1="160" y1="146" x2="175" y2="146" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="163" y1="149" x2="172" y2="149" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="165" y1="152" x2="170" y2="152" stroke="#475569" stroke-width="1"/>
 
                       <!-- Nota al pie del panel -->
-                      <rect x="15" y="170" width="295" height="22" rx="4" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.3"/>
-                      <text x="162" y="184" text-anchor="middle" font-size="8" font-weight="bold" fill="#047857">✅ Ganancia Máxima: A<tspan baseline-shift="sub" font-size="70%">v</tspan> ≈ −g<tspan baseline-shift="sub" font-size="70%">m</tspan>(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) ≈ −(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) / r<tspan baseline-shift="sub" font-size="70%">e</tspan></text>
+                      <rect x="12" y="185" width="300" height="22" rx="4" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.3"/>
+                      <text x="162" y="199" text-anchor="middle" font-size="8" font-weight="bold" fill="#047857">✅ Ganancia Máxima: A<tspan baseline-shift="sub" font-size="70%">v</tspan> ≈ −g<tspan baseline-shift="sub" font-size="70%">m</tspan>(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) ≈ −(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) / r<tspan baseline-shift="sub" font-size="70%">e</tspan></text>
                     </g>
                   </svg>
                 </div>
@@ -5345,198 +5359,209 @@ const MANUAL_TEORIA_E1 = {
 
                 <!-- Circuito Completo vs Modelo AC (Caso 1B sin CE) -->
                 <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/30 flex justify-center overflow-x-auto">
-                  <svg viewBox="0 0 720 215" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
+                  <svg viewBox="0 0 740 220" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 600px;">
                     <!-- ================= PANEL IZQUIERDO: CIRCUITO COMPLETO SIN CE ================= -->
                     <g transform="translate(10, 0)">
-                      <rect x="0" y="5" width="310" height="205" rx="8" fill="#0284c7" fill-opacity="0.03" stroke="#0284c7" stroke-opacity="0.25" stroke-width="1"/>
-                      <text x="155" y="19" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="9.5">1. Circuito Esquemático Completo (¡SIN C<tspan baseline-shift="sub" font-size="70%">E</tspan>!)</text>
+                      <!-- Marco del panel -->
+                      <rect x="0" y="5" width="320" height="210" rx="8" fill="#0284c7" fill-opacity="0.03" stroke="#0284c7" stroke-opacity="0.25" stroke-width="1"/>
+                      
+                      <!-- Cabecera destacada -->
+                      <rect x="0" y="5" width="320" height="24" rx="8" fill="#0284c7" fill-opacity="0.08" stroke="#0284c7" stroke-opacity="0.2" stroke-width="1"/>
+                      <text x="160" y="21" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="10">1. Circuito Esquemático Completo (¡SIN C<tspan baseline-shift="sub" font-size="70%">E</tspan>!)</text>
 
-                      <!-- VCC rail -->
-                      <line x1="40" y1="30" x2="160" y2="30" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="105" cy="30" r="2.5" fill="#ef4444"/>
-                      <text x="105" y="24" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                      <!-- VCC rail superior -->
+                      <line x1="45" y1="44" x2="175" y2="44" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="44" r="2.5" fill="#ef4444"/>
+                      <text x="115" y="38" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
-                      <!-- R1 IEEE zig-zag -->
-                      <line x1="50" y1="30" x2="50" y2="38" stroke="#475569" stroke-width="1.2"/>
-                      <path d="M 50,38 L 50,40 L 46,43 L 54,46 L 46,49 L 54,52 L 46,55 L 50,57 L 50,59" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="39" y="50" text-anchor="end" font-size="8" font-weight="bold" fill="#0284c7">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
-                      <line x1="50" y1="59" x2="50" y2="78" stroke="#475569" stroke-width="1.2"/>
-                      <circle cx="50" cy="78" r="2" fill="#475569"/>
+                      <!-- Divisor R1 IEEE zig-zag -->
+                      <line x1="55" y1="44" x2="55" y2="52" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 55,52 L 55,54 L 51,57 L 59,60 L 51,63 L 59,66 L 51,69 L 55,71 L 55,73" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="44" y="64" text-anchor="end" font-size="8" font-weight="bold" fill="#0284c7">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                      <line x1="55" y1="73" x2="55" y2="92" stroke="#475569" stroke-width="1.2"/>
+                      <circle cx="55" cy="92" r="2" fill="#475569"/>
 
                       <!-- Entrada vi con C1 -->
-                      <circle cx="12" cy="78" r="2.5" fill="#3b82f6"/>
-                      <text x="12" y="90" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
-                      <line x1="12" y1="78" x2="24" y2="78" stroke="#3b82f6" stroke-width="1.2"/>
+                      <circle cx="12" cy="92" r="2.5" fill="#3b82f6"/>
+                      <text x="12" y="104" text-anchor="middle" font-size="8" font-weight="bold" fill="#3b82f6">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <line x1="12" y1="92" x2="24" y2="92" stroke="#3b82f6" stroke-width="1.2"/>
                       <!-- C1 -->
-                      <line x1="24" y1="71" x2="24" y2="85" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <line x1="28" y1="71" x2="28" y2="85" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-                      <text x="26" y="67" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
-                      <line x1="28" y1="78" x2="50" y2="78" stroke="#3b82f6" stroke-width="1.2"/>
+                      <line x1="24" y1="85" x2="24" y2="99" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <line x1="28" y1="85" x2="28" y2="99" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+                      <text x="26" y="80" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                      <line x1="28" y1="92" x2="55" y2="92" stroke="#3b82f6" stroke-width="1.2"/>
 
-                      <!-- R2 IEEE zig-zag -->
-                      <path d="M 50,78 L 50,80 L 46,83 L 54,86 L 46,89 L 54,92 L 46,95 L 50,97 L 50,99" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="39" y="91" text-anchor="end" font-size="8" font-weight="bold" fill="#0284c7">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
-                      <line x1="50" y1="99" x2="50" y2="160" stroke="#475569" stroke-width="1.2"/>
+                      <!-- Divisor R2 IEEE zig-zag -->
+                      <path d="M 55,92 L 55,94 L 51,97 L 59,100 L 51,103 L 59,106 L 51,109 L 55,111 L 55,113" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="44" y="105" text-anchor="end" font-size="8" font-weight="bold" fill="#0284c7">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                      <line x1="55" y1="113" x2="55" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Conexión a Base -->
-                      <line x1="50" y1="78" x2="92" y2="78" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="92" cy="78" r="2" fill="#0284c7"/>
-                      <text x="82" y="73" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#0284c7">B</text>
+                      <line x1="55" y1="92" x2="95" y2="92" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="95" cy="92" r="2" fill="#0284c7"/>
+                      <text x="86" y="87" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#0284c7">B</text>
 
                       <!-- Transistor NPN (IEEE 315) -->
-                      <line x1="92" y1="68" x2="92" y2="88" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
-                      <line x1="92" y1="72" x2="110" y2="62" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="92" y1="84" x2="110" y2="94" stroke="#475569" stroke-width="1.5"/>
-                      <polygon points="109,93.5 101,89 104,84" fill="#ef4444"/>
+                      <line x1="95" y1="82" x2="95" y2="102" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
+                      <line x1="95" y1="86" x2="115" y2="76" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="95" y1="98" x2="115" y2="108" stroke="#475569" stroke-width="1.5"/>
+                      <polygon points="114,107.5 106,103 109,98" fill="#ef4444"/>
 
-                      <!-- Colector RC y C2 -->
-                      <line x1="110" y1="30" x2="110" y2="38" stroke="#475569" stroke-width="1.2"/>
-                      <path d="M 110,38 L 110,40 L 106,43 L 114,46 L 106,49 L 114,52 L 106,55 L 110,57 L 110,59" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="122" y="50" text-anchor="start" font-size="8" font-weight="bold" fill="#10b981">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                      <line x1="110" y1="59" x2="110" y2="62" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="110" cy="62" r="2" fill="#10b981"/>
-                      <text x="117" y="65" text-anchor="start" font-size="7.5" font-weight="bold" fill="#10b981">C</text>
+                      <!-- Colector RC -->
+                      <line x1="115" y1="44" x2="115" y2="52" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 115,52 L 115,54 L 111,57 L 119,60 L 111,63 L 119,66 L 111,69 L 115,71 L 115,73" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="127" y="63" text-anchor="start" font-size="8" font-weight="bold" fill="#10b981">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                      <line x1="115" y1="73" x2="115" y2="76" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="76" r="2" fill="#10b981"/>
+                      <text x="106" y="73" text-anchor="end" font-size="7.5" font-weight="bold" fill="#10b981">C</text>
 
                       <!-- Salida C2 y Carga RL -->
-                      <line x1="110" y1="62" x2="135" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <line x1="135" y1="55" x2="135" y2="69" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
-                      <line x1="139" y1="55" x2="139" y2="69" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
-                      <text x="137" y="51" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
-                      <line x1="139" y1="62" x2="165" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <circle cx="165" cy="62" r="2" fill="#10b981"/>
+                      <line x1="115" y1="76" x2="142" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <line x1="142" y1="69" x2="142" y2="83" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
+                      <line x1="146" y1="69" x2="146" y2="83" stroke="#10b981" stroke-width="1.6" stroke-linecap="round"/>
+                      <text x="144" y="64" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">C<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                      <line x1="146" y1="76" x2="172" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <circle cx="172" cy="76" r="2" fill="#10b981"/>
 
                       <!-- RL -->
-                      <path d="M 165,62 L 165,65 L 161,68 L 169,71 L 161,74 L 169,77 L 161,80 L 165,82 L 165,85" fill="none" stroke="#059669" stroke-width="1.5" stroke-linejoin="round"/>
-                      <text x="175" y="75" text-anchor="start" font-size="8" font-weight="bold" fill="#059669">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
-                      <line x1="165" y1="85" x2="165" y2="160" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 172,76 L 172,78 L 168,81 L 176,84 L 168,87 L 176,90 L 168,93 L 172,95 L 172,97" fill="none" stroke="#059669" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="183" y="88" text-anchor="start" font-size="8" font-weight="bold" fill="#059669">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                      <line x1="172" y1="97" x2="172" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Terminal vo -->
-                      <line x1="165" y1="62" x2="190" y2="62" stroke="#10b981" stroke-width="1.2"/>
-                      <circle cx="190" cy="62" r="2.5" fill="#10b981"/>
-                      <text x="190" y="53" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <line x1="172" y1="76" x2="200" y2="76" stroke="#10b981" stroke-width="1.2"/>
+                      <circle cx="200" cy="76" r="2.5" fill="#10b981"/>
+                      <text x="200" y="67" text-anchor="middle" font-size="8" font-weight="bold" fill="#10b981">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
-                      <!-- Emisor ÚNICAMENTE con RE (SIN CE) -->
-                      <line x1="110" y1="94" x2="110" y2="110" stroke="#475569" stroke-width="1.4"/>
-                      <circle cx="110" cy="110" r="2" fill="#d97706"/>
-                      <text x="119" y="112" text-anchor="start" font-size="7.5" font-weight="bold" fill="#d97706">E</text>
+                      <!-- Emisor con RE activo hacia tierra (SIN CE!) -->
+                      <line x1="115" y1="108" x2="115" y2="120" stroke="#475569" stroke-width="1.4"/>
+                      <circle cx="115" cy="120" r="2" fill="#d97706"/>
+                      <text x="102" y="118" text-anchor="end" font-size="7.5" font-weight="bold" fill="#d97706">E</text>
 
-                      <!-- RE en rama única directa a masa -->
-                      <path d="M 110,110 L 110,114 L 105,118 L 115,123 L 105,128 L 115,133 L 105,138 L 110,141 L 110,145" fill="none" stroke="#d97706" stroke-width="1.8" stroke-linejoin="round"/>
-                      <text x="122" y="130" text-anchor="start" font-size="8.5" font-weight="bold" fill="#d97706">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                      <line x1="110" y1="145" x2="110" y2="160" stroke="#475569" stroke-width="1.4"/>
+                      <!-- Resistencia RE directa a tierra -->
+                      <line x1="115" y1="120" x2="115" y2="126" stroke="#475569" stroke-width="1.2"/>
+                      <path d="M 115,126 L 115,128 L 111,131 L 119,134 L 111,137 L 119,140 L 111,143 L 115,145 L 115,147" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linejoin="round"/>
+                      <text x="127" y="138" text-anchor="start" font-size="8" font-weight="bold" fill="#d97706">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                      <line x1="115" y1="147" x2="115" y2="168" stroke="#475569" stroke-width="1.2"/>
 
                       <!-- Masa Común DC -->
-                      <line x1="40" y1="160" x2="175" y2="160" stroke="#475569" stroke-width="1.6"/>
-                      <line x1="100" y1="164" x2="115" y2="164" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="104" y1="167" x2="111" y2="167" stroke="#475569" stroke-width="1"/>
+                      <line x1="40" y1="168" x2="185" y2="168" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="108" y1="172" x2="122" y2="172" stroke="#475569" stroke-width="1.4"/>
+                      <line x1="111" y1="175" x2="119" y2="175" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="113" y1="178" x2="117" y2="178" stroke="#475569" stroke-width="1"/>
 
                       <!-- Nota al pie del panel -->
-                      <rect x="15" y="177" width="280" height="23" rx="4" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-opacity="0.4"/>
-                      <text x="155" y="191" text-anchor="middle" font-size="8" font-weight="bold" fill="#b45309">⚠️ ¡Sin C<tspan baseline-shift="sub" font-size="70%">E</tspan>! R<tspan baseline-shift="sub" font-size="70%">E</tspan> queda presente en señal (Degeneración)</text>
+                      <rect x="15" y="185" width="290" height="22" rx="4" fill="#d97706" fill-opacity="0.1" stroke="#d97706" stroke-opacity="0.3"/>
+                      <text x="160" y="199" text-anchor="middle" font-size="8" font-weight="bold" fill="#b45309">⚠️ En AC: R<tspan baseline-shift="sub" font-size="70%">E</tspan> queda activa en serie (Degeneración de Emisor)</text>
                     </g>
 
                     <!-- ================= FLECHA DE CONVERSIÓN CENTRAL ================= -->
-                    <g transform="translate(325, 65)">
-                      <rect x="0" y="0" width="55" height="78" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-                      <text x="27" y="13" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#475569">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 0</text>
-                      <text x="27" y="26" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan>,C<tspan baseline-shift="sub" font-size="70%">2</tspan> → cc</text>
-                      <text x="27" y="39" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#d97706">¡NO hay C<tspan baseline-shift="sub" font-size="70%">E</tspan>!</text>
-                      <text x="27" y="50" text-anchor="middle" font-size="7" font-weight="bold" fill="#d97706">R<tspan baseline-shift="sub" font-size="70%">E</tspan> en serie</text>
-                      <line x1="10" y1="60" x2="38" y2="60" stroke="#0284c7" stroke-width="2"/>
-                      <polygon points="38,56 47,60 38,64" fill="#0284c7"/>
-                      <text x="27" y="72" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0284c7">MODELO AC</text>
+                    <g transform="translate(337, 70)">
+                      <rect x="0" y="0" width="60" height="72" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+                      <text x="30" y="14" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#475569">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 0</text>
+                      <text x="30" y="27" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">C<tspan baseline-shift="sub" font-size="70%">1</tspan>,C<tspan baseline-shift="sub" font-size="70%">2</tspan> → cc</text>
+                      <text x="30" y="40" text-anchor="middle" font-size="7" font-weight="bold" fill="#d97706">¡Sin C<tspan baseline-shift="sub" font-size="70%">E</tspan>!</text>
+                      <line x1="12" y1="52" x2="42" y2="52" stroke="#0284c7" stroke-width="2"/>
+                      <polygon points="42,48 51,52 42,56" fill="#0284c7"/>
+                      <text x="30" y="65" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0284c7">MODELO AC</text>
                     </g>
 
                     <!-- ================= PANEL DERECHO: MODELO AC CON RE DE EMISOR ================= -->
-                    <g transform="translate(385, 0)">
-                      <rect x="0" y="5" width="325" height="205" rx="8" fill="#0284c7" fill-opacity="0.03" stroke="#0284c7" stroke-opacity="0.25" stroke-width="1"/>
-                      <text x="162" y="19" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="9.5">2. Modelo Dinámico AC con Resistencia R<tspan baseline-shift="sub" font-size="70%">E</tspan> de Emisor</text>
+                    <g transform="translate(405, 0)">
+                      <!-- Marco del panel -->
+                      <rect x="0" y="5" width="325" height="210" rx="8" fill="#0284c7" fill-opacity="0.03" stroke="#0284c7" stroke-opacity="0.25" stroke-width="1"/>
+                      
+                      <!-- Cabecera destacada -->
+                      <rect x="0" y="5" width="325" height="24" rx="8" fill="#0284c7" fill-opacity="0.08" stroke="#0284c7" stroke-opacity="0.2" stroke-width="1"/>
+                      <text x="162" y="21" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="10">2. Modelo Dinámico AC con Resistencia R<tspan baseline-shift="sub" font-size="70%">E</tspan> de Emisor</text>
 
                       <!-- Terminal entrada vi -->
-                      <circle cx="15" cy="50" r="2.5" fill="#3b82f6"/>
-                      <text x="15" y="41" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
-                      <line x1="15" y1="50" x2="45" y2="50" stroke="#3b82f6" stroke-width="1.3"/>
-                      <polygon points="32,47 38,50 32,53" fill="#3b82f6"/>
-                      <text x="35" y="42" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">i<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <circle cx="15" cy="54" r="2.5" fill="#3b82f6"/>
+                      <text x="15" y="44" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+                      <line x1="15" y1="54" x2="45" y2="54" stroke="#3b82f6" stroke-width="1.3"/>
+                      <polygon points="26,51 32,54 26,57" fill="#3b82f6"/>
+                      <text x="29" y="46" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#3b82f6">i<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
 
                       <!-- RB = R1 || R2 a masa -->
-                      <line x1="45" y1="50" x2="45" y2="60" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="39" y="60" width="12" height="24" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="1.4" rx="2"/>
-                      <text x="33" y="74" text-anchor="end" font-weight="bold" fill="#0284c7" font-size="8">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
-                      <line x1="45" y1="84" x2="45" y2="150" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="45" y1="54" x2="45" y2="64" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="39" y="64" width="12" height="24" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="1.4" rx="2"/>
+                      <text x="33" y="78" text-anchor="end" font-weight="bold" fill="#0284c7" font-size="8">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                      <line x1="45" y1="88" x2="45" y2="150" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- Conexión a Base B -->
-                      <line x1="45" y1="50" x2="85" y2="50" stroke="#475569" stroke-width="1.3"/>
-                      <polygon points="68,47 74,50 68,53" fill="#0284c7"/>
-                      <text x="71" y="42" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#0284c7">i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
-                      <circle cx="85" cy="50" r="2.5" fill="#0284c7"/>
-                      <text x="85" y="41" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8">Base (B)</text>
+                      <line x1="45" y1="54" x2="85" y2="54" stroke="#475569" stroke-width="1.3"/>
+                      <polygon points="62,51 68,54 62,57" fill="#0284c7"/>
+                      <text x="65" y="46" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#0284c7">i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+                      <circle cx="85" cy="54" r="2.5" fill="#0284c7"/>
+                      <text x="85" y="44" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8">Base (B)</text>
 
                       <!-- Resistencia r_pi entre Base (B) y Emisor (E) -->
-                      <line x1="85" y1="50" x2="85" y2="60" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="78" y="60" width="14" height="24" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.4" rx="2"/>
-                      <text x="73" y="74" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">r<tspan baseline-shift="sub" font-size="70%">π</tspan></text>
-                      <text x="96" y="74" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="7">+ v<tspan baseline-shift="sub" font-size="70%">be</tspan> −</text>
-                      <line x1="85" y1="84" x2="85" y2="95" stroke="#475569" stroke-width="1.4"/>
+                      <line x1="85" y1="54" x2="85" y2="64" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="78" y="64" width="14" height="24" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.4" rx="2"/>
+                      <text x="72" y="78" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="8.5">r<tspan baseline-shift="sub" font-size="70%">π</tspan></text>
+                      <text x="96" y="78" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="7">+ v<tspan baseline-shift="sub" font-size="70%">be</tspan> −</text>
+                      <line x1="85" y1="88" x2="85" y2="96" stroke="#475569" stroke-width="1.4"/>
 
                       <!-- NODO DE EMISOR (E) ELEVADO RESPECTO A TIERRA -->
-                      <circle cx="85" cy="95" r="3" fill="#d97706"/>
-                      <text x="70" y="98" text-anchor="end" font-weight="bold" fill="#d97706" font-size="8">Emisor (E)</text>
+                      <circle cx="85" cy="96" r="3" fill="#d97706"/>
+                      <text x="68" y="99" text-anchor="end" font-weight="bold" fill="#d97706" font-size="8">Emisor (E)</text>
 
                       <!-- Resistencia RE entre Emisor (E) y Masa AC -->
-                      <line x1="85" y1="95" x2="85" y2="105" stroke="#475569" stroke-width="1.3"/>
-                      <polygon points="82,101 85,106 88,101" fill="#d97706"/>
-                      <text x="76" y="112" text-anchor="end" font-weight="bold" fill="#d97706" font-size="7.5">i<tspan baseline-shift="sub" font-size="70%">e</tspan>=(1+β)i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
-                      <rect x="78" y="106" width="14" height="24" fill="#d97706" fill-opacity="0.2" stroke="#d97706" stroke-width="1.4" rx="2"/>
-                      <text x="98" y="120" text-anchor="start" font-weight="bold" fill="#d97706" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                      <line x1="85" y1="130" x2="85" y2="150" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="85" y1="96" x2="85" y2="108" stroke="#475569" stroke-width="1.3"/>
+                      <polygon points="82,103 85,108 88,103" fill="#d97706"/>
+                      <text x="74" y="114" text-anchor="end" font-weight="bold" fill="#d97706" font-size="7.5">i<tspan baseline-shift="sub" font-size="70%">e</tspan>=(1+β)i<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+                      <rect x="78" y="108" width="14" height="24" fill="#d97706" fill-opacity="0.2" stroke="#d97706" stroke-width="1.4" rx="2"/>
+                      <text x="97" y="122" text-anchor="start" font-weight="bold" fill="#d97706" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                      <line x1="85" y1="132" x2="85" y2="150" stroke="#475569" stroke-width="1.3"/>
 
-                      <!-- Colector C y Fuente controlada -->
-                      <circle cx="180" cy="50" r="2.5" fill="#10b981"/>
-                      <text x="180" y="41" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">Colector (C)</text>
+                      <!-- Colector C y Fuente controlada (Rombo IEEE) -->
+                      <circle cx="165" cy="54" r="2.5" fill="#10b981"/>
+                      <text x="165" y="44" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">Colector (C)</text>
                       
-                      <!-- Fuente gm vbe / beta ib apuntando hacia Emisor -->
-                      <line x1="180" y1="50" x2="180" y2="60" stroke="#475569" stroke-width="1.3"/>
-                      <circle cx="180" cy="72" r="12" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.4"/>
-                      <line x1="180" y1="64" x2="180" y2="80" stroke="#10b981" stroke-width="1.6"/>
-                      <polygon points="177,78 180,83 183,78" fill="#10b981"/>
-                      <text x="197" y="75" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">g<tspan baseline-shift="sub" font-size="70%">m</tspan>v<tspan baseline-shift="sub" font-size="70%">be</tspan> = βi<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+                      <!-- Fuente dependiente rombo IEEE -->
+                      <line x1="165" y1="54" x2="165" y2="64" stroke="#475569" stroke-width="1.3"/>
+                      <polygon points="165,64 176,75 165,86 154,75" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.4"/>
+                      <line x1="165" y1="68" x2="165" y2="82" stroke="#10b981" stroke-width="1.6"/>
+                      <polygon points="162,80 165,84 168,80" fill="#10b981"/>
+                      <!-- Etiqueta apilada verticalmente sin invadir RC -->
+                      <text x="181" y="73" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8">g<tspan baseline-shift="sub" font-size="70%">m</tspan>v<tspan baseline-shift="sub" font-size="70%">be</tspan></text>
+                      <text x="181" y="83" text-anchor="start" font-weight="bold" fill="#10b981" font-size="7.5">(= βi<tspan baseline-shift="sub" font-size="70%">b</tspan>)</text>
                       
                       <!-- Retorno de la fuente dependiente al NODO DE EMISOR (E) -->
-                      <line x1="180" y1="84" x2="180" y2="95" stroke="#475569" stroke-width="1.3"/>
-                      <line x1="180" y1="95" x2="85" y2="95" stroke="#475569" stroke-width="1.4"/>
-                      <polygon points="120,92 114,95 120,98" fill="#10b981"/>
+                      <line x1="165" y1="86" x2="165" y2="96" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="165" y1="96" x2="85" y2="96" stroke="#475569" stroke-width="1.4"/>
+                      <polygon points="120,93 114,96 120,99" fill="#10b981"/>
 
                       <!-- Carga RC || RL desde Colector a Masa -->
-                      <line x1="180" y1="50" x2="280" y2="50" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="165" y1="54" x2="310" y2="54" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- RC -->
-                      <line x1="240" y1="50" x2="240" y2="62" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="234" y="62" width="12" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.4" rx="2"/>
-                      <text x="228" y="76" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                      <line x1="240" y1="86" x2="240" y2="150" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="235" y1="54" x2="235" y2="64" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="229" y="64" width="12" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.4" rx="2"/>
+                      <text x="223" y="78" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                      <line x1="235" y1="88" x2="235" y2="150" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- RL -->
-                      <line x1="275" y1="50" x2="275" y2="62" stroke="#475569" stroke-width="1.3"/>
-                      <rect x="269" y="62" width="12" height="24" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.4" rx="2"/>
-                      <text x="286" y="76" text-anchor="start" font-weight="bold" fill="#059669" font-size="8">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
-                      <line x1="275" y1="86" x2="275" y2="150" stroke="#475569" stroke-width="1.3"/>
+                      <line x1="275" y1="54" x2="275" y2="64" stroke="#475569" stroke-width="1.3"/>
+                      <rect x="269" y="64" width="12" height="24" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.4" rx="2"/>
+                      <text x="286" y="78" text-anchor="start" font-weight="bold" fill="#059669" font-size="8">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                      <line x1="275" y1="88" x2="275" y2="150" stroke="#475569" stroke-width="1.3"/>
 
                       <!-- Salida vo -->
-                      <line x1="275" y1="50" x2="310" y2="50" stroke="#10b981" stroke-width="1.3"/>
-                      <circle cx="310" cy="50" r="2.5" fill="#10b981"/>
-                      <text x="310" y="41" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
-                      <polygon points="292,47 298,50 292,53" fill="#10b981"/>
-                      <text x="295" y="42" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">i<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <circle cx="310" cy="54" r="2.5" fill="#10b981"/>
+                      <text x="310" y="44" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <polygon points="293,51 299,54 293,57" fill="#10b981"/>
+                      <text x="296" y="46" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#10b981">i<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
-                      <!-- Masa AC -->
+                      <!-- Masa AC común -->
                       <line x1="25" y1="150" x2="310" y2="150" stroke="#475569" stroke-width="1.8"/>
-                      <line x1="160" y1="154" x2="180" y2="154" stroke="#475569" stroke-width="1.5"/>
-                      <line x1="165" y1="157" x2="175" y2="157" stroke="#475569" stroke-width="1"/>
+                      <line x1="160" y1="154" x2="175" y2="154" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="163" y1="157" x2="172" y2="157" stroke="#475569" stroke-width="1.2"/>
+                      <line x1="165" y1="160" x2="170" y2="160" stroke="#475569" stroke-width="1"/>
 
                       <!-- Nota al pie del panel -->
-                      <rect x="15" y="177" width="295" height="23" rx="4" fill="#0284c7" fill-opacity="0.1" stroke="#0284c7" stroke-opacity="0.3"/>
-                      <text x="162" y="191" text-anchor="middle" font-size="8" font-weight="bold" fill="#0369a1">🛡️ Ganancia Estable: A<tspan baseline-shift="sub" font-size="70%">v</tspan> ≈ −(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) / R<tspan baseline-shift="sub" font-size="70%">E</tspan> (Inmune a β y Temp.)</text>
+                      <rect x="12" y="185" width="300" height="22" rx="4" fill="#0284c7" fill-opacity="0.1" stroke="#0284c7" stroke-opacity="0.3"/>
+                      <text x="162" y="199" text-anchor="middle" font-size="8" font-weight="bold" fill="#0369a1">🛡️ Ganancia Estable: A<tspan baseline-shift="sub" font-size="70%">v</tspan> ≈ −(R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>) / R<tspan baseline-shift="sub" font-size="70%">E</tspan> · R<tspan baseline-shift="sub" font-size="70%">i</tspan> ≈ R<tspan baseline-shift="sub" font-size="70%">B</tspan> ∥ [r<tspan baseline-shift="sub" font-size="70%">π</tspan> + (1+β)R<tspan baseline-shift="sub" font-size="70%">E</tspan>]</text>
                     </g>
                   </svg>
                 </div>
