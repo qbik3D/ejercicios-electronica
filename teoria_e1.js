@@ -2991,7 +2991,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="129" y="70" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">Base</text>
                     <text x="129" y="85" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">(P)</text>
                     <text x="129" y="105" text-anchor="middle" fill="#94a3b8" font-size="8">Fina</text>
-                    <text x="129" y="117" text-anchor="middle" fill="#94a3b8" font-size="8">W_B≪L_n</text>
+                    <text x="129" y="117" text-anchor="middle" fill="#94a3b8" font-size="8">W<tspan baseline-shift="sub" font-size="70%">B</tspan> ≪ L<tspan baseline-shift="sub" font-size="70%">n</tspan></text>
                     <text x="129" y="145" text-anchor="middle" font-weight="bold" fill="#db2777" font-size="10">h⁺ (~1%)</text>
 
                     <!-- Colector N -->
@@ -3005,25 +3005,31 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="85" y1="115" x2="195" y2="115" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 2" marker-end="url(#bjt-arr-amber)"/>
                     <text x="140" y="132" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">Difusión ~99% de e⁻</text>
 
-                    <!-- Terminales de conexión -->
+                    <!-- Terminales de conexión y corrientes -->
                     <!-- E -->
                     <line x1="72" y1="165" x2="72" y2="200" stroke="#3b82f6" stroke-width="2.5"/>
                     <circle cx="72" cy="200" r="4" fill="#3b82f6"/>
                     <text x="72" y="215" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">E</text>
+                    <line x1="86" y1="174" x2="86" y2="194" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#bjt-arr-blue)"/>
+                    <text x="92" y="188" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">E</tspan> ↓</text>
 
                     <!-- B -->
                     <line x1="129" y1="45" x2="129" y2="18" stroke="#ec4899" stroke-width="2"/>
                     <circle cx="129" cy="18" r="4" fill="#ec4899"/>
                     <text x="129" y="10" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">B</text>
+                    <line x1="140" y1="20" x2="140" y2="40" stroke="#ef4444" stroke-width="1.6" marker-end="url(#bjt-arr-red)"/>
+                    <text x="146" y="33" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> ↓</text>
 
                     <!-- C -->
                     <line x1="214" y1="165" x2="214" y2="200" stroke="#10b981" stroke-width="2.5"/>
                     <circle cx="214" cy="200" r="4" fill="#10b981"/>
                     <text x="214" y="215" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">C</text>
+                    <line x1="228" y1="194" x2="228" y2="174" stroke="#10b981" stroke-width="1.6" marker-end="url(#bjt-arr-green)"/>
+                    <text x="234" y="188" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↑</text>
 
                     <!-- Junturas indicadas -->
-                    <text x="110" y="40" text-anchor="middle" fill="#64748b" font-size="8">J_BE (Dir)</text>
-                    <text x="148" y="40" text-anchor="middle" fill="#64748b" font-size="8">J_BC (Inv)</text>
+                    <text x="110" y="40" text-anchor="middle" fill="#64748b" font-size="8">J<tspan baseline-shift="sub" font-size="70%">BE</tspan> (Dir)</text>
+                    <text x="148" y="40" text-anchor="middle" fill="#64748b" font-size="8">J<tspan baseline-shift="sub" font-size="70%">BC</tspan> (Inv)</text>
                   </g>
 
                   <!-- Divisor vertical -->
@@ -3059,19 +3065,27 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Corrientes (Flechas con marcador) -->
                     <!-- I_B entrando a base -->
                     <line x1="88" y1="100" x2="125" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#bjt-arr-red)"/>
-                    <text x="105" y="93" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">I_B →</text>
+                    <text x="105" y="93" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> →</text>
 
                     <!-- I_C bajando a colector -->
                     <line x1="210" y1="45" x2="210" y2="75" stroke="#10b981" stroke-width="2" marker-end="url(#bjt-arr-green)"/>
-                    <text x="226" y="62" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10">I_C ↓</text>
+                    <text x="226" y="62" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓</text>
 
                     <!-- I_E saliendo de emisor -->
                     <line x1="210" y1="160" x2="210" y2="185" stroke="#3b82f6" stroke-width="2" marker-end="url(#bjt-arr-blue)"/>
-                    <text x="226" y="175" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="10">I_E ↓</text>
+                    <text x="226" y="175" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">E</tspan> ↓</text>
 
                     <!-- Tensiones indicadas -->
-                    <text x="115" y="150" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10">V_BE ≈ 0.7 V</text>
-                    <text x="245" y="120" text-anchor="start" font-weight="bold" fill="#64748b" font-size="10">V_CE</text>
+                    <!-- Tensión V_BE -->
+                    <text x="115" y="150" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10.5">V<tspan baseline-shift="sub" font-size="70%">BE</tspan> ≈ 0.7 V</text>
+
+                    <!-- Cota V_CE entre Colector y Emisor -->
+                    <line x1="242" y1="42" x2="242" y2="180" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2,2"/>
+                    <polygon points="240,48 242,40 244,48" fill="#64748b"/>
+                    <polygon points="240,174 242,182 244,174" fill="#64748b"/>
+                    <text x="250" y="114" text-anchor="start" font-weight="bold" fill="#475569" font-size="10.5">V<tspan baseline-shift="sub" font-size="70%">CE</tspan></text>
+                    <text x="250" y="46" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">(+)</text>
+                    <text x="250" y="184" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="8.5">(−)</text>
                   </g>
                 </svg>
               </div>
@@ -3215,19 +3229,19 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC rail -->
                     <line x1="40" y1="35" x2="180" y2="35" stroke="#475569" stroke-width="2"/>
                     <circle cx="110" cy="35" r="3" fill="#ef4444"/>
-                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9">+V_CC</text>
+                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
                     <!-- Rama Base RB -->
                     <line x1="60" y1="35" x2="60" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="50" width="16" height="30" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="68" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R_B</text>
+                    <text x="44" y="68" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
                     <line x1="60" y1="80" x2="60" y2="105" stroke="#475569" stroke-width="1.5"/>
                     <line x1="60" y1="105" x2="95" y2="105" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Rama Colector RC -->
                     <line x1="150" y1="35" x2="150" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="50" width="16" height="30" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="68" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R_C</text>
+                    <text x="166" y="68" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
                     <line x1="150" y1="80" x2="150" y2="92" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Transistor NPN -->
@@ -3245,8 +3259,8 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Ecuaciones y advertencia -->
                     <rect x="15" y="172" width="190" height="60" rx="6" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.3"/>
-                    <text x="110" y="187" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">I_B = (V_CC - 0.7) / R_B</text>
-                    <text x="110" y="201" text-anchor="middle" fill="#475569" font-size="9">I_C = β · I_B  (Sin feedback)</text>
+                    <text x="110" y="187" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> = (V<tspan baseline-shift="sub" font-size="70%">CC</tspan> − 0.7) / R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                    <text x="110" y="201" text-anchor="middle" fill="#475569" font-size="9">I<tspan baseline-shift="sub" font-size="70%">C</tspan> = β · I<tspan baseline-shift="sub" font-size="70%">B</tspan>  (Sin feedback)</text>
                     <text x="110" y="217" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">⚠️ Inestable: Δβ mueve Q a saturación</text>
                   </g>
 
@@ -3260,11 +3274,11 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC rail -->
                     <line x1="150" y1="26" x2="150" y2="35" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="150" cy="26" r="3" fill="#3b82f6"/>
-                    <text x="150" y="20" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9">+V_CC</text>
+                    <text x="150" y="20" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
                     <!-- RC -->
                     <rect x="142" y="35" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R_C</text>
+                    <text x="166" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
                     <line x1="150" y1="63" x2="150" y2="72" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="150" cy="72" r="3" fill="#475569"/>
 
@@ -3272,7 +3286,7 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="150" y1="72" x2="55" y2="72" stroke="#475569" stroke-width="1.5"/>
                     <line x1="55" y1="72" x2="55" y2="82" stroke="#475569" stroke-width="1.5"/>
                     <rect x="47" y="82" width="16" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="40" y="98" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R_B</text>
+                    <text x="40" y="98" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
                     <line x1="55" y1="108" x2="55" y2="118" stroke="#475569" stroke-width="1.5"/>
                     <line x1="55" y1="118" x2="95" y2="118" stroke="#475569" stroke-width="1.5"/>
 
@@ -3288,15 +3302,15 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Emisor RE y tierra -->
                     <line x1="150" y1="138" x2="150" y2="145" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="145" width="16" height="20" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="158" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R_E</text>
+                    <text x="166" y="158" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <line x1="150" y1="165" x2="150" y2="173" stroke="#475569" stroke-width="1.5"/>
                     <line x1="142" y1="173" x2="158" y2="173" stroke="#475569" stroke-width="2"/>
                     <line x1="146" y1="176" x2="154" y2="176" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Ecuaciones y badge -->
                     <rect x="15" y="180" width="200" height="52" rx="6" fill="#3b82f6" fill-opacity="0.08" stroke="#3b82f6" stroke-opacity="0.3"/>
-                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="9">I_B = (V_CC - 0.7) / [R_B + β(R_C+R_E)]</text>
-                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si I_C ↑ ⇒ V_C ↓ ⇒ I_B ↓ ⇒ I_C ↓</text>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="9">I<tspan baseline-shift="sub" font-size="70%">B</tspan> = (V<tspan baseline-shift="sub" font-size="70%">CC</tspan> − 0.7) / [R<tspan baseline-shift="sub" font-size="70%">B</tspan> + β(R<tspan baseline-shift="sub" font-size="70%">C</tspan>+R<tspan baseline-shift="sub" font-size="70%">E</tspan>)]</text>
+                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↑ ⇒ V<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓ ⇒ I<tspan baseline-shift="sub" font-size="70%">B</tspan> ↓ ⇒ I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓</text>
                     <text x="115" y="223" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="8.5">🛡️ Realimentación Negativa de Tensión</text>
                   </g>
 
@@ -3310,18 +3324,18 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC rail -->
                     <line x1="50" y1="35" x2="170" y2="35" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="110" cy="35" r="3" fill="#10b981"/>
-                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">+V_CC</text>
+                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
                     <!-- Divisor R1 -->
                     <line x1="60" y1="35" x2="60" y2="45" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="45" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="61" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R_1</text>
+                    <text x="44" y="61" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
                     <line x1="60" y1="71" x2="60" y2="85" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="60" cy="85" r="3" fill="#475569"/>
 
                     <!-- Divisor R2 -->
                     <rect x="52" y="85" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="101" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R_2</text>
+                    <text x="44" y="101" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
                     <line x1="60" y1="111" x2="60" y2="125" stroke="#475569" stroke-width="1.5"/>
                     <line x1="52" y1="125" x2="68" y2="125" stroke="#475569" stroke-width="2"/>
                     <line x1="56" y1="128" x2="64" y2="128" stroke="#475569" stroke-width="1.5"/>
@@ -3332,7 +3346,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Rama RC -->
                     <line x1="150" y1="35" x2="150" y2="45" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="45" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="61" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R_C</text>
+                    <text x="166" y="61" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
                     <line x1="150" y1="71" x2="150" y2="80" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Transistor NPN -->
@@ -3344,15 +3358,15 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Rama RE y GND -->
                     <line x1="150" y1="108" x2="150" y2="118" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="118" width="16" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="133" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R_E</text>
+                    <text x="166" y="133" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <line x1="150" y1="142" x2="150" y2="152" stroke="#475569" stroke-width="1.5"/>
                     <line x1="142" y1="152" x2="158" y2="152" stroke="#475569" stroke-width="2"/>
                     <line x1="146" y1="155" x2="154" y2="155" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Ecuaciones y badge -->
                     <rect x="15" y="180" width="200" height="52" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">I_CQ ≈ (V_BB - 0.7) / R_E</text>
-                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si R_B ≤ 0.1·(1+β)R_E</text>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">I<tspan baseline-shift="sub" font-size="70%">CQ</tspan> ≈ (V<tspan baseline-shift="sub" font-size="70%">BB</tspan> − 0.7) / R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si R<tspan baseline-shift="sub" font-size="70%">B</tspan> ≤ 0.1·(1+β)R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <text x="115" y="223" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">⭐ Inmune a β (Estándar de Diseño)</text>
                   </g>
                 </svg>
@@ -3368,11 +3382,11 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(10, 0)">
                     <text x="90" y="20" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="10">Circuito Original con Divisor</text>
                     <line x1="40" y1="35" x2="140" y2="35" stroke="#475569" stroke-width="1.5"/>
-                    <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+V_CC</text>
+                    <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
                     
                     <line x1="50" y1="35" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="42" y="50" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="67" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R_1</text>
+                    <text x="34" y="67" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
                     
                     <line x1="50" y1="78" x2="50" y2="92" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="50" cy="92" r="3" fill="#6366f1"/>
@@ -3380,7 +3394,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="105" y="95" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9.5">a Base (B)</text>
                     
                     <rect x="42" y="92" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="110" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R_2</text>
+                    <text x="34" y="110" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
                     
                     <line x1="50" y1="120" x2="50" y2="135" stroke="#475569" stroke-width="1.5"/>
                     <line x1="42" y1="135" x2="58" y2="135" stroke="#475569" stroke-width="2"/>
@@ -3391,8 +3405,8 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(190, 25)">
                     <rect x="10" y="10" width="180" height="95" rx="8" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-width="1.5"/>
                     <text x="100" y="32" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="10.5">Teorema de Thévenin</text>
-                    <text x="100" y="55" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="10">V_BB = V_CC · R_2 / (R_1 + R_2)</text>
-                    <text x="100" y="75" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="10">R_B = R_1 ∥ R_2</text>
+                    <text x="100" y="55" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">BB</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan> · R<tspan baseline-shift="sub" font-size="70%">2</tspan> / (R<tspan baseline-shift="sub" font-size="70%">1</tspan> + R<tspan baseline-shift="sub" font-size="70%">2</tspan>)</text>
+                    <text x="100" y="75" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">B</tspan> = R<tspan baseline-shift="sub" font-size="70%">1</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
                     <text x="100" y="93" text-anchor="middle" fill="#64748b" font-size="8.5">Visto desde el terminal de Base</text>
                   </g>
 
@@ -3402,15 +3416,15 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC a RC -->
                     <line x1="160" y1="26" x2="160" y2="38" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="160" cy="26" r="3" fill="#ef4444"/>
-                    <text x="160" y="20" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="8.5">+V_CC</text>
+                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
                     <rect x="152" y="38" width="16" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">R_C</text>
+                    <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
                     <line x1="160" y1="62" x2="160" y2="72" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Malla de Base Thévenin -->
                     <!-- Fuente V_BB -->
                     <circle cx="20" cy="92" r="12" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
-                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">V_BB</text>
+                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">V<tspan baseline-shift="sub" font-size="70%">BB</tspan></text>
                     <line x1="20" y1="104" x2="20" y2="120" stroke="#475569" stroke-width="1.5"/>
                     <line x1="14" y1="120" x2="26" y2="120" stroke="#475569" stroke-width="2"/>
                     <line x1="17" y1="123" x2="23" y2="123" stroke="#475569" stroke-width="1.5"/>
@@ -3418,7 +3432,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Resistor R_B -->
                     <line x1="32" y1="92" x2="52" y2="92" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="84" width="24" height="16" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
-                    <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">R_B</text>
+                    <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
                     <line x1="76" y1="92" x2="105" y2="92" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Transistor NPN -->
@@ -3430,7 +3444,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- RE y GND -->
                     <line x1="160" y1="112" x2="160" y2="122" stroke="#475569" stroke-width="1.5"/>
                     <rect x="152" y="122" width="16" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5">R_E</text>
+                    <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <line x1="160" y1="144" x2="160" y2="152" stroke="#475569" stroke-width="1.5"/>
                     <line x1="152" y1="152" x2="168" y2="152" stroke="#475569" stroke-width="2"/>
                     <line x1="156" y1="155" x2="164" y2="155" stroke="#475569" stroke-width="1.5"/>
@@ -3479,38 +3493,38 @@ const MANUAL_TEORIA_E1 = {
                   <!-- Eje Y: I_C -->
                   <line x1="80" y1="230" x2="80" y2="25" stroke="#475569" stroke-width="2"/>
                   <polygon points="76,27 80,18 84,27" fill="#475569"/>
-                  <text x="75" y="16" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">I_C (mA)</text>
+                  <text x="75" y="16" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">I<tspan baseline-shift="sub" font-size="70%">C</tspan> (mA)</text>
 
                   <!-- Eje X: V_CE -->
                   <line x1="80" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="2"/>
                   <polygon points="648,226 657,230 648,234" fill="#475569"/>
-                  <text x="655" y="245" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">V_CE (V)</text>
+                  <text x="655" y="245" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> (V)</text>
 
                   <!-- Región de Saturación (Franja vertical izquierda) -->
                   <rect x="80" y="25" width="40" height="205" fill="#f59e0b" fill-opacity="0.12"/>
                   <text x="100" y="38" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">Saturación</text>
-                  <text x="100" y="48" text-anchor="middle" fill="#d97706" font-size="7.5">(V_CE &lt; 0.2V)</text>
+                  <text x="100" y="48" text-anchor="middle" fill="#d97706" font-size="7.5">(V<tspan baseline-shift="sub" font-size="70%">CE</tspan> &lt; 0.2V)</text>
 
                   <!-- Región de Corte (Franja horizontal inferior) -->
                   <rect x="80" y="222" width="560" height="8" fill="#64748b" fill-opacity="0.25"/>
-                  <text x="450" y="228" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8">Región de Corte (I_B ≤ 0, I_C ≈ 0)</text>
+                  <text x="450" y="228" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8">Región de Corte (I<tspan baseline-shift="sub" font-size="70%">B</tspan> ≤ 0, I<tspan baseline-shift="sub" font-size="70%">C</tspan> ≈ 0)</text>
 
                   <!-- Familia de curvas de salida I_C vs V_CE -->
                   <!-- Curva 1: I_B1 = 10 uA -->
                   <path d="M 80,230 Q 110,215 130,205 L 610,198" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="200" text-anchor="start" fill="#94a3b8" font-size="8.5">I_B1 = 10 µA</text>
+                  <text x="615" y="200" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B1</tspan> = 10 µA</text>
 
                   <!-- Curva 2: I_B2 = 20 uA -->
                   <path d="M 80,230 Q 110,185 130,165 L 610,155" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="157" text-anchor="start" fill="#94a3b8" font-size="8.5">I_B2 = 20 µA</text>
+                  <text x="615" y="157" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B2</tspan> = 20 µA</text>
 
                   <!-- Curva 3: I_B3 = 30 uA (Punto Q) -->
                   <path d="M 80,230 Q 110,150 130,125 L 610,115" fill="none" stroke="#6366f1" stroke-width="2"/>
-                  <text x="615" y="117" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9">I_BQ = 30 µA</text>
+                  <text x="615" y="117" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9">I<tspan baseline-shift="sub" font-size="70%">BQ</tspan> = 30 µA</text>
 
                   <!-- Curva 4: I_B4 = 40 uA -->
                   <path d="M 80,230 Q 110,110 130,85 L 610,72" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="74" text-anchor="start" fill="#94a3b8" font-size="8.5">I_B4 = 40 µA</text>
+                  <text x="615" y="74" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B4</tspan> = 40 µA</text>
 
                   <!-- Recta de Carga Estática (DC Load Line) -->
                   <line x1="80" y1="50" x2="550" y2="230" stroke="#ef4444" stroke-width="2.5"/>
@@ -3519,11 +3533,11 @@ const MANUAL_TEORIA_E1 = {
                   <!-- Extremos de la Recta de Carga -->
                   <!-- Saturación extrema (0, V_CC / (R_C + R_E)) -->
                   <circle cx="80" cy="50" r="4.5" fill="#ef4444"/>
-                  <text x="72" y="54" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9.5">I_C,sat = V_CC / (R_C + R_E)</text>
+                  <text x="72" y="54" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">C,sat</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan> / (R<tspan baseline-shift="sub" font-size="70%">C</tspan> + R<tspan baseline-shift="sub" font-size="70%">E</tspan>)</text>
 
                   <!-- Corte extremo (V_CC, 0) -->
                   <circle cx="550" cy="230" r="4.5" fill="#ef4444"/>
-                  <text x="550" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V_CE = V_CC</text>
+                  <text x="550" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
                   <!-- Punto Q de trabajo -->
                   <g>
@@ -3531,20 +3545,20 @@ const MANUAL_TEORIA_E1 = {
                          x=315, y=140 aprox -->
                     <circle cx="315" cy="140" r="6" fill="#ef4444"/>
                     <circle cx="315" cy="140" r="2" fill="#ffffff"/>
-                    <text x="325" y="135" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (V_CEQ, I_CQ)</text>
+                    <text x="325" y="135" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan>, I<tspan baseline-shift="sub" font-size="70%">CQ</tspan>)</text>
 
                     <!-- Línea punteada a Eje Y: I_CQ -->
                     <line x1="315" y1="140" x2="80" y2="140" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="72" y="143" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="10">I_CQ</text>
+                    <text x="72" y="143" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="10">I<tspan baseline-shift="sub" font-size="70%">CQ</tspan></text>
 
                     <!-- Línea punteada a Eje X: V_CEQ -->
                     <line x1="315" y1="140" x2="315" y2="230" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="315" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V_CEQ ≈ V_CC / 2</text>
+                    <text x="315" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan> ≈ V<tspan baseline-shift="sub" font-size="70%">CC</tspan> / 2</text>
                   </g>
 
                   <!-- Flecha de máxima excursión simétrica sin distorsión -->
                   <line x1="130" y1="210" x2="500" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#bjt-arr-green)" marker-end="url(#bjt-arr-green)"/>
-                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Excursión Dinámica Simétrica Máxima (Δv_ce = ± V_CEQ)</text>
+                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Excursión Dinámica Simétrica Máxima (Δv<tspan baseline-shift="sub" font-size="70%">ce</tspan> = ± V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan>)</text>
                 </svg>
               </div>
             </div>
