@@ -4564,7 +4564,7 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Resumen característico -->
                     <rect x="10" y="178" width="210" height="74" rx="7" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5"><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> ≈ +1  (Sin inversión, 0°)</tspan></text>
+                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5"><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> &lt; 1  (≈ +0.99, Sin inversión 0°)</tspan></text>
                     <text x="115" y="211" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> ∥ [</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan><tspan font-size="100%" dy="-2"> + (1+β)</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">'] (Altísima)</tspan></text>
                     <text x="115" y="226" text-anchor="middle" fill="#475569" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2"> ∥ [(</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">s</tspan><tspan font-size="100%" dy="-2">' + </tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan><tspan font-size="100%" dy="-2">)/(1+β)] (Bajísima)</tspan></text>
                     <text x="115" y="242" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">🛡️ Adaptador de Impedancias / Buffer</text>
@@ -4805,12 +4805,12 @@ const MANUAL_TEORIA_E1 = {
                   </tr>
                   <tr class="bg-emerald-500/5">
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-emerald-600 dark:text-emerald-400">Colector Común (CC)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\frac{(1+\\beta)R_L'}{r_\\pi + (1+\\beta)R_L'} \\approx +1$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx 1 + \\beta$ (Muy alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_\\pi + (1+\\beta)R_L']$ (Muy alta, $50-500\\text{ k}\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel \\left( \\frac{R_s' + r_\\pi}{1+\\beta} \\right)$ (Muy baja, $\\sim 5-25\\,\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer / Seguidor de tensión; adaptación entre fuente de alta $Z$ y carga de baja $Z$.</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800"><span class="font-bold text-emerald-600 dark:text-emerald-400">$A_v < 1$</span> (Siempre $< 1$, $\approx 0.98 \sim 0.99$)<br>$\frac{R_L'}{r_e + R_L'} = \frac{(1+\beta)R_L'}{r_\pi + (1+\beta)R_L'}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\approx 1 + \beta$ (Muy alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \parallel [r_\pi + (1+\beta)R_L']$ (Muy alta, $50-500\text{ k}\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \parallel \left( \frac{R_s' + r_\pi}{1+\beta} \right)$ (Muy baja, $\sim 5-25\,\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\circ}$ (En Fase)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer / Seguidor de tensión ($A_v < 1$ pero $A_i \gg 1$); adaptación entre fuente de alta $Z$ y carga de baja $Z$.</td>
                   </tr>
                   <tr class="bg-amber-500/5">
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-amber-600 dark:text-amber-400">Base Común (BC)</td>
