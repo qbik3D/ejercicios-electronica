@@ -5037,14 +5037,261 @@ const MANUAL_TEORIA_E1 = {
               </div>
             </div>
 
-            <!-- ================= ESTUDIO DETALLADO: EMISOR COMÚN (CON Y SIN CE) ================= -->
-            <div class="my-6 space-y-5">
-              <div class="border-l-4 border-indigo-500 pl-3">
-                <h5 class="text-sm font-bold text-slate-900 dark:text-white">Estudio Detallado: Emisor Común (EC) — Con y Sin Desacoplo de Emisor</h5>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                  Análisis comparativo riguroso de la degeneración de emisor: esquemáticos completos con polarización, paso dinámico al modelo AC de pequeña señal, y deducción de parámetros dinámicos ($R_i$, $A_v$, $A_i$, $R_o$).
-                </p>
+            <!-- 3. MODELOS EQUIVALENTES AC COMPARATIVOS -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Circuitos Equivalentes de Pequeña Señal en AC</h5>
+            <div class="my-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 720 185" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
+                  <!-- ================= AC EC ================= -->
+                  <g transform="translate(10, 0)">
+                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10.5">AC: Emisor a Masa</text>
+                    
+                    <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
+                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="20" y1="50" x2="40" y2="50" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- r_pi (IEEE zig-zag horizontal) -->
+                    <path d="M 40,50 L 42,50 L 45.5,45.5 L 49,54.5 L 52.5,45.5 L 56,54.5 L 59.5,45.5 L 63,54.5 L 66.5,50 L 72,50" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="56" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
+                    <line x1="72" y1="50" x2="90" y2="50" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="90" y1="50" x2="90" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="90" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Fuente dependiente de corriente gm · vbe (IEEE Rombo / Diamond) -->
+                    <polygon points="130,37 143,50 130,63 117,50" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round"/>
+                    <line x1="130" y1="43" x2="130" y2="57" stroke="#10b981" stroke-width="1.6"/>
+                    <polygon points="130,59 126,53 134,53" fill="#10b981"/>
+                    <text x="130" y="75" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="130" y1="63" x2="130" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="130" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Carga equivalente R_C || R_L (IEEE zig-zag vertical) -->
+                    <line x1="130" y1="37" x2="185" y2="37" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="185" cy="37" r="2.5" fill="#10b981"/>
+                    <line x1="185" y1="37" x2="185" y2="46" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 185,46 L 185,48 L 180.5,51.5 L 189.5,55 L 180.5,58.5 L 189.5,62 L 180.5,65.5 L 189.5,69 L 185,72 L 185,76" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="198" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                    <line x1="185" y1="76" x2="185" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="185" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Terminal de salida vo -->
+                    <circle cx="210" cy="37" r="3" fill="#10b981"/>
+                    <text x="210" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                    <line x1="185" y1="37" x2="210" y2="37" stroke="#10b981" stroke-width="1.5"/>
+
+                    <!-- Bus de masa IEEE -->
+                    <line x1="20" y1="118" x2="210" y2="118" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
+
+                    <text x="110" y="146" text-anchor="middle" font-bold fill="#ef4444" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = −</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">Signo '−' = Desfase 180°</text>
+                  </g>
+
+                  <!-- Divisor vertical -->
+                  <line x1="240" y1="15" x2="240" y2="175" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+
+                  <!-- ================= AC CC ================= -->
+                  <g transform="translate(250, 0)">
+                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10.5">AC: Colector a Masa</text>
+
+                    <circle cx="20" cy="45" r="3" fill="#3b82f6"/>
+                    <text x="10" y="49" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="20" y1="45" x2="46" y2="45" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Divisor resistivo r_pi (IEEE zig-zag horizontal) -->
+                    <path d="M 46,45 L 48,45 L 51.5,40.5 L 55,49.5 L 58.5,40.5 L 62,49.5 L 65.5,40.5 L 69,49.5 L 72.5,45 L 78,45" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="62" y="33" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
+
+                    <line x1="78" y1="45" x2="110" y2="45" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="110" cy="45" r="3" fill="#10b981"/>
+                    <line x1="110" y1="45" x2="190" y2="45" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="190" cy="45" r="3" fill="#10b981"/>
+                    <text x="190" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+
+                    <!-- Resistencia reflejada al emisor (IEEE zig-zag vertical) -->
+                    <line x1="110" y1="45" x2="110" y2="52" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 110,52 L 110,54 L 105.5,57.5 L 114.5,61 L 105.5,64.5 L 114.5,68 L 105.5,71.5 L 114.5,75 L 110,78 L 110,82" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="122" y="69" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">(1+β) <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">'</tspan></text>
+                    <line x1="110" y1="82" x2="110" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="110" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Bus de masa IEEE -->
+                    <line x1="20" y1="118" x2="200" y2="118" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
+
+                    <text x="110" y="146" text-anchor="middle" font-bold fill="#059669" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">  (</tspan><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> ≈ +0.99)</tspan></text>
+                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">La tensión sigue a la entrada</text>
+                  </g>
+
+                  <!-- Divisor vertical -->
+                  <line x1="480" y1="15" x2="480" y2="175" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+
+                  <!-- ================= AC BC ================= -->
+                  <g transform="translate(490, 0)">
+                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="10.5">AC: Base a Masa</text>
+
+                    <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
+                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="20" y1="50" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="2.8" fill="#3b82f6"/>
+
+                    <!-- r_e a masa (IEEE zig-zag vertical) -->
+                    <line x1="50" y1="50" x2="50" y2="56" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 50,56 L 50,58 L 45.5,61.5 L 54.5,65 L 45.5,68.5 L 54.5,72 L 45.5,75.5 L 54.5,79 L 50,82 L 50,86" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="37" y="73" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">e</tspan></text>
+                    <line x1="50" y1="86" x2="50" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="50" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Conexión a fuente dependiente -->
+                    <line x1="50" y1="50" x2="110" y2="50" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="110" y1="50" x2="110" y2="63" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Fuente dependiente hacia salida (IEEE Rombo / Diamond) -->
+                    <polygon points="110,37 123,50 110,63 97,50" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
+                    <line x1="110" y1="57" x2="110" y2="43" stroke="#f59e0b" stroke-width="1.6"/>
+                    <polygon points="110,41 106,47 114,47" fill="#f59e0b"/>
+                    <text x="110" y="75" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+
+                    <!-- Resistencia de carga (IEEE zig-zag vertical) -->
+                    <line x1="110" y1="37" x2="170" y2="37" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="170" cy="37" r="2.5" fill="#10b981"/>
+                    <line x1="170" y1="37" x2="170" y2="46" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 170,46 L 170,48 L 165.5,51.5 L 174.5,55 L 165.5,58.5 L 174.5,62 L 165.5,65.5 L 174.5,69 L 170,72 L 170,76" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="183" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                    <line x1="170" y1="76" x2="170" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="170" cy="118" r="2.5" fill="#475569"/>
+
+                    <!-- Terminal de salida vo -->
+                    <circle cx="200" cy="37" r="3" fill="#10b981"/>
+                    <text x="200" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                    <line x1="170" y1="37" x2="200" y2="37" stroke="#10b981" stroke-width="1.5"/>
+
+                    <!-- Bus de masa IEEE -->
+                    <line x1="20" y1="118" x2="200" y2="118" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
+
+                    <text x="110" y="146" text-anchor="middle" font-bold fill="#d97706" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = +</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">En Fase (0°) · Sin Miller</text>
+                  </g>
+                </svg>
               </div>
+            </div>
+
+            <!-- 4. TABLA COMPARATIVA MAESTRA -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Tabla Comparativa Maestra de Parámetros Dinámicos</h5>
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Configuración</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ganancia Tensión $A_v$</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ganancia Corriente $A_i$</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Impedancia Entrada $R_i$</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Impedancia Salida $R_o$</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Desfase</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Aplicación Predominante</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono text-[11px]">
+                  <tr class="bg-indigo-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) con $C_E$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$-g_m (R_C \\parallel R_L)$ (Alta, $50-500$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$ (Alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel r_{\\pi}$ (Media, $1-5\\text{ k}\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C \\parallel r_o \\approx R_C$ (Media)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$ (Invierte)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Etapa amplificadora de tensión y potencia principal de propósito general.</td>
+                  </tr>
+                  <tr class="bg-indigo-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) sin $C_E$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$-\\frac{R_C \\parallel R_L}{R_E + r_e} \\approx -\\frac{R_C}{R_E}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_E]$ (Alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ganancia linealizada inmune a variaciones térmicas y dispersión de transistores.</td>
+                  </tr>
+                  <tr class="bg-emerald-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-emerald-600 dark:text-emerald-400">Colector Común (CC)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800"><span class="font-bold text-emerald-600 dark:text-emerald-400">$A_v < 1$</span> (Siempre $< 1$, $\\approx 0.98 \\sim 0.99$)<br>$\\frac{R_L'}{r_e + R_L'} = \\frac{(1+\\beta)R_L'}{r_{\\pi} + (1+\\beta)R_L'}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx 1 + \\beta$ (Muy alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_L']$ (Muy alta, $50-500\\text{ k}\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel \\left( \\frac{R_s' + r_{\\pi}}{1+\\beta} \\right)$ (Muy baja, $\\sim 5-25\\,\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer / Seguidor de tensión ($A_v < 1$ pero $A_i \\gg 1$); adaptación entre fuente de alta $Z$ y carga de baja $Z$.</td>
+                  </tr>
+                  <tr class="bg-amber-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-amber-600 dark:text-amber-400">Base Común (BC)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$+g_m (R_C \\parallel R_L)$ (Alta, idéntica a EC)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\alpha \\approx -0.99$ ($< 1$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel r_e \\approx r_e$ (Muy baja, $\\sim 20-50\\,\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C$ (Alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Preamplificador de RF, sintonizadores UHF/VHF y circuitos cascode (sin efecto Miller).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 5. GUÍA PRÁCTICA DE CÁLCULO: DEDUCCIÓN PASO A PASO DE PARÁMETROS DINÁMICOS -->
+            <div class="mt-6 mb-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="text-xl">📐</span>
+                <div>
+                  <h5 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Guía de Cálculo: Deducción Rigurosa de $A_v$, $A_i$, $R_i$ y $R_o$ en cada Configuración
+                  </h5>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                    Procedimiento analítico con circuitos equivalentes de pequeña señal en corriente alterna (AC).
+                  </p>
+                </div>
+              </div>
+
+              <!-- METODOLOGÍA GENERAL DE DOS PUERTOS -->
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-xs">
+                <strong class="text-slate-800 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+                  Metodología Universal de Pequeña Señal (Modelo de Cuadripolo)
+                </strong>
+                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                  Para obtener las ecuaciones dinámicas: <strong>1)</strong> Cortocircuitar condensadores de acoplo y desacoplo ($X_C \\approx 0$). <strong>2)</strong> Pasivar fuentes DC ($V_{CC} \\to \\text{GND}$). <strong>3)</strong> Sustituir el BJT por su modelo lineal ($r_{\\pi} = \\beta r_e$, $g_m = I_{CQ}/V_T \\approx 40 \\cdot I_{CQ}$, $r_e = V_T/I_{EQ} \\approx 25\\,\\text{mV}/I_E$).
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[11px]">
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-indigo-600 dark:text-indigo-400 font-bold block">1. Impedancia Entrada</span>
+                    $$R_i = \\left.\\frac{v_i}{i_i}\\right|_{\\text{con } R_L}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-emerald-600 dark:text-emerald-400 font-bold block">2. Ganancia Tensión</span>
+                    $$A_v = \\frac{v_o}{v_i}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-blue-600 dark:text-blue-400 font-bold block">3. Ganancia Corriente</span>
+                    $$A_i = \\frac{i_o}{i_i} = A_v \\frac{R_i}{R_L}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-purple-600 dark:text-purple-400 font-bold block">4. Impedancia Salida</span>
+                    $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0,\\, R_L \\to \\infty}$$
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= 1. EMISOR COMÚN (EC): CON Y SIN DESACOPLO ================= -->
+              <div class="space-y-4">
+                <div class="p-3.5 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between flex-wrap gap-2">
+                  <h6 class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-mono text-[10px] font-bold">CASO 1</span>
+                    Emisor Común (EC) — Estudio Completo: Con Desacoplo ($C_E$) y Sin Desacoplo ($R_E$ en Serie)
+                  </h6>
+                  <span class="text-[11px] font-mono text-indigo-700 dark:text-indigo-300 font-semibold">Inversor de Fase (180°) · Esquemáticos Completos, Modelos AC y Deducción de Parámetros</span>
+                </div>
+
               <!-- ================= 1A. EMISOR COMÚN CON CE (DESACOPLADO) ================= -->
               <div class="p-4 rounded-xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900/40 space-y-3">
                 <div class="flex items-center justify-between flex-wrap gap-2">
@@ -5704,417 +5951,6 @@ const MANUAL_TEORIA_E1 = {
                   </table>
                 </div>
               </div>
-            </div>
-
-            <!-- 3. MODELOS EQUIVALENTES AC COMPARATIVOS -->
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Circuitos Equivalentes de Pequeña Señal en AC</h5>
-            <div class="my-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 720 185" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 600px;">
-                  <!-- ================= AC EC ================= -->
-                  <g transform="translate(10, 0)">
-                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10.5">AC: Emisor a Masa</text>
-                    
-                    <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
-                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <line x1="20" y1="50" x2="40" y2="50" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- r_pi (IEEE zig-zag horizontal) -->
-                    <path d="M 40,50 L 42,50 L 45.5,45.5 L 49,54.5 L 52.5,45.5 L 56,54.5 L 59.5,45.5 L 63,54.5 L 66.5,50 L 72,50" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="56" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
-                    <line x1="72" y1="50" x2="90" y2="50" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="90" y1="50" x2="90" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="90" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Fuente dependiente de corriente gm · vbe (IEEE Rombo / Diamond) -->
-                    <polygon points="130,37 143,50 130,63 117,50" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round"/>
-                    <line x1="130" y1="43" x2="130" y2="57" stroke="#10b981" stroke-width="1.6"/>
-                    <polygon points="130,59 126,53 134,53" fill="#10b981"/>
-                    <text x="130" y="75" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <line x1="130" y1="63" x2="130" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="130" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Carga equivalente R_C || R_L (IEEE zig-zag vertical) -->
-                    <line x1="130" y1="37" x2="185" y2="37" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="185" cy="37" r="2.5" fill="#10b981"/>
-                    <line x1="185" y1="37" x2="185" y2="46" stroke="#475569" stroke-width="1.5"/>
-                    <path d="M 185,46 L 185,48 L 180.5,51.5 L 189.5,55 L 180.5,58.5 L 189.5,62 L 180.5,65.5 L 189.5,69 L 185,72 L 185,76" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="198" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
-                    <line x1="185" y1="76" x2="185" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="185" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Terminal de salida vo -->
-                    <circle cx="210" cy="37" r="3" fill="#10b981"/>
-                    <text x="210" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
-                    <line x1="185" y1="37" x2="210" y2="37" stroke="#10b981" stroke-width="1.5"/>
-
-                    <!-- Bus de masa IEEE -->
-                    <line x1="20" y1="118" x2="210" y2="118" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
-                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
-
-                    <text x="110" y="146" text-anchor="middle" font-bold fill="#ef4444" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = −</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">Signo '−' = Desfase 180°</text>
-                  </g>
-
-                  <!-- Divisor vertical -->
-                  <line x1="240" y1="15" x2="240" y2="175" stroke="#cbd5e1" stroke-dasharray="3 3"/>
-
-                  <!-- ================= AC CC ================= -->
-                  <g transform="translate(250, 0)">
-                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10.5">AC: Colector a Masa</text>
-
-                    <circle cx="20" cy="45" r="3" fill="#3b82f6"/>
-                    <text x="10" y="49" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <line x1="20" y1="45" x2="46" y2="45" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Divisor resistivo r_pi (IEEE zig-zag horizontal) -->
-                    <path d="M 46,45 L 48,45 L 51.5,40.5 L 55,49.5 L 58.5,40.5 L 62,49.5 L 65.5,40.5 L 69,49.5 L 72.5,45 L 78,45" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="62" y="33" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
-
-                    <line x1="78" y1="45" x2="110" y2="45" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="110" cy="45" r="3" fill="#10b981"/>
-                    <line x1="110" y1="45" x2="190" y2="45" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="190" cy="45" r="3" fill="#10b981"/>
-                    <text x="190" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
-
-                    <!-- Resistencia reflejada al emisor (IEEE zig-zag vertical) -->
-                    <line x1="110" y1="45" x2="110" y2="52" stroke="#475569" stroke-width="1.5"/>
-                    <path d="M 110,52 L 110,54 L 105.5,57.5 L 114.5,61 L 105.5,64.5 L 114.5,68 L 105.5,71.5 L 114.5,75 L 110,78 L 110,82" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="122" y="69" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">(1+β) <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">'</tspan></text>
-                    <line x1="110" y1="82" x2="110" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="110" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Bus de masa IEEE -->
-                    <line x1="20" y1="118" x2="200" y2="118" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
-                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
-
-                    <text x="110" y="146" text-anchor="middle" font-bold fill="#059669" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">  (</tspan><tspan font-style="italic">A</tspan><tspan font-size="75%" dy="2">v</tspan><tspan font-size="100%" dy="-2"> ≈ +0.99)</tspan></text>
-                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">La tensión sigue a la entrada</text>
-                  </g>
-
-                  <!-- Divisor vertical -->
-                  <line x1="480" y1="15" x2="480" y2="175" stroke="#cbd5e1" stroke-dasharray="3 3"/>
-
-                  <!-- ================= AC BC ================= -->
-                  <g transform="translate(490, 0)">
-                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="10.5">AC: Base a Masa</text>
-
-                    <circle cx="20" cy="50" r="3" fill="#3b82f6"/>
-                    <text x="10" y="54" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <line x1="20" y1="50" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="50" cy="50" r="2.8" fill="#3b82f6"/>
-
-                    <!-- r_e a masa (IEEE zig-zag vertical) -->
-                    <line x1="50" y1="50" x2="50" y2="56" stroke="#475569" stroke-width="1.5"/>
-                    <path d="M 50,56 L 50,58 L 45.5,61.5 L 54.5,65 L 45.5,68.5 L 54.5,72 L 45.5,75.5 L 54.5,79 L 50,82 L 50,86" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="37" y="73" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">e</tspan></text>
-                    <line x1="50" y1="86" x2="50" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="50" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Conexión a fuente dependiente -->
-                    <line x1="50" y1="50" x2="110" y2="50" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="110" y1="50" x2="110" y2="63" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Fuente dependiente hacia salida (IEEE Rombo / Diamond) -->
-                    <polygon points="110,37 123,50 110,63 97,50" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
-                    <line x1="110" y1="57" x2="110" y2="43" stroke="#f59e0b" stroke-width="1.6"/>
-                    <polygon points="110,41 106,47 114,47" fill="#f59e0b"/>
-                    <text x="110" y="75" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-
-                    <!-- Resistencia de carga (IEEE zig-zag vertical) -->
-                    <line x1="110" y1="37" x2="170" y2="37" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="170" cy="37" r="2.5" fill="#10b981"/>
-                    <line x1="170" y1="37" x2="170" y2="46" stroke="#475569" stroke-width="1.5"/>
-                    <path d="M 170,46 L 170,48 L 165.5,51.5 L 174.5,55 L 165.5,58.5 L 174.5,62 L 165.5,65.5 L 174.5,69 L 170,72 L 170,76" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-                    <text x="183" y="64" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
-                    <line x1="170" y1="76" x2="170" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="170" cy="118" r="2.5" fill="#475569"/>
-
-                    <!-- Terminal de salida vo -->
-                    <circle cx="200" cy="37" r="3" fill="#10b981"/>
-                    <text x="200" y="28" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
-                    <line x1="170" y1="37" x2="200" y2="37" stroke="#10b981" stroke-width="1.5"/>
-
-                    <!-- Bus de masa IEEE -->
-                    <line x1="20" y1="118" x2="200" y2="118" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="102" y1="122" x2="118" y2="122" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="106" y1="125.5" x2="114" y2="125.5" stroke="#475569" stroke-width="1.3"/>
-                    <line x1="108.5" y1="129" x2="111.5" y2="129" stroke="#475569" stroke-width="1"/>
-
-                    <text x="110" y="146" text-anchor="middle" font-bold fill="#d97706" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> = +</tspan><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">) </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <text x="110" y="161" text-anchor="middle" fill="#64748b" font-size="8">En Fase (0°) · Sin Miller</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
-
-            <!-- 4. TABLA COMPARATIVA MAESTRA -->
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Tabla Comparativa Maestra de Parámetros Dinámicos</h5>
-            <div class="overflow-x-auto my-3">
-              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
-                <thead>
-                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Configuración</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ganancia Tensión $A_v$</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ganancia Corriente $A_i$</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Impedancia Entrada $R_i$</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Impedancia Salida $R_o$</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Desfase</th>
-                    <th class="p-2 border border-slate-200 dark:border-slate-800">Aplicación Predominante</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono text-[11px]">
-                  <tr class="bg-indigo-500/5">
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) con $C_E$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$-g_m (R_C \\parallel R_L)$ (Alta, $50-500$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$ (Alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel r_{\\pi}$ (Media, $1-5\\text{ k}\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C \\parallel r_o \\approx R_C$ (Media)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$ (Invierte)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Etapa amplificadora de tensión y potencia principal de propósito general.</td>
-                  </tr>
-                  <tr class="bg-indigo-500/5">
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) sin $C_E$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$-\\frac{R_C \\parallel R_L}{R_E + r_e} \\approx -\\frac{R_C}{R_E}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_E]$ (Alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ganancia linealizada inmune a variaciones térmicas y dispersión de transistores.</td>
-                  </tr>
-                  <tr class="bg-emerald-500/5">
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-emerald-600 dark:text-emerald-400">Colector Común (CC)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800"><span class="font-bold text-emerald-600 dark:text-emerald-400">$A_v < 1$</span> (Siempre $< 1$, $\\approx 0.98 \\sim 0.99$)<br>$\\frac{R_L'}{r_e + R_L'} = \\frac{(1+\\beta)R_L'}{r_{\\pi} + (1+\\beta)R_L'}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx 1 + \\beta$ (Muy alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_L']$ (Muy alta, $50-500\\text{ k}\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel \\left( \\frac{R_s' + r_{\\pi}}{1+\\beta} \\right)$ (Muy baja, $\\sim 5-25\\,\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer / Seguidor de tensión ($A_v < 1$ pero $A_i \\gg 1$); adaptación entre fuente de alta $Z$ y carga de baja $Z$.</td>
-                  </tr>
-                  <tr class="bg-amber-500/5">
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-amber-600 dark:text-amber-400">Base Común (BC)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$+g_m (R_C \\parallel R_L)$ (Alta, idéntica a EC)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\alpha \\approx -0.99$ ($< 1$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel r_e \\approx r_e$ (Muy baja, $\\sim 20-50\\,\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C$ (Alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Preamplificador de RF, sintonizadores UHF/VHF y circuitos cascode (sin efecto Miller).</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- 5. GUÍA PRÁCTICA DE CÁLCULO: DEDUCCIÓN PASO A PASO DE PARÁMETROS DINÁMICOS -->
-            <div class="mt-6 mb-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-              <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span class="text-xl">📐</span>
-                <div>
-                  <h5 class="text-sm font-bold text-slate-900 dark:text-white">
-                    Guía de Cálculo: Deducción Rigurosa de $A_v$, $A_i$, $R_i$ y $R_o$ en cada Configuración
-                  </h5>
-                  <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                    Procedimiento analítico con circuitos equivalentes de pequeña señal en corriente alterna (AC).
-                  </p>
-                </div>
-              </div>
-
-              <!-- METODOLOGÍA GENERAL DE DOS PUERTOS -->
-              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-xs">
-                <strong class="text-slate-800 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
-                  Metodología Universal de Pequeña Señal (Modelo de Cuadripolo)
-                </strong>
-                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
-                  Para obtener las ecuaciones dinámicas: <strong>1)</strong> Cortocircuitar condensadores de acoplo y desacoplo ($X_C \\approx 0$). <strong>2)</strong> Pasivar fuentes DC ($V_{CC} \\to \\text{GND}$). <strong>3)</strong> Sustituir el BJT por su modelo lineal ($r_{\\pi} = \\beta r_e$, $g_m = I_{CQ}/V_T \\approx 40 \\cdot I_{CQ}$, $r_e = V_T/I_{EQ} \\approx 25\\,\\text{mV}/I_E$).
-                </p>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[11px]">
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <span class="text-indigo-600 dark:text-indigo-400 font-bold block">1. Impedancia Entrada</span>
-                    $$R_i = \\left.\\frac{v_i}{i_i}\\right|_{\\text{con } R_L}$$
-                  </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <span class="text-emerald-600 dark:text-emerald-400 font-bold block">2. Ganancia Tensión</span>
-                    $$A_v = \\frac{v_o}{v_i}$$
-                  </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <span class="text-blue-600 dark:text-blue-400 font-bold block">3. Ganancia Corriente</span>
-                    $$A_i = \\frac{i_o}{i_i} = A_v \\frac{R_i}{R_L}$$
-                  </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <span class="text-purple-600 dark:text-purple-400 font-bold block">4. Impedancia Salida</span>
-                    $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0,\\, R_L \\to \\infty}$$
-                  </div>
-                </div>
-              </div>
-
-              <!-- ================= 1. EMISOR COMÚN (EC) ================= -->
-              <div class="p-4 rounded-xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900/40 space-y-3">
-                <div class="flex items-center justify-between">
-                  <h6 class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-2">
-                    <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-mono text-[10px]">CASO 1</span>
-                    Emisor Común (EC) — Circuito y Deducción de Parámetros
-                  </h6>
-                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">Inversor de Fase (180°) · Alta Ganancia</span>
-                </div>
-
-                <!-- Circuito AC de EC -->
-                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-indigo-100 dark:border-indigo-900/30 flex justify-center overflow-x-auto">
-                  <svg viewBox="0 0 640 165" class="w-full max-w-[640px] text-xs font-sans select-none" style="min-width: 540px;">
-                    <!-- Terminal entrada vi -->
-                    <circle cx="25" cy="45" r="3" fill="#3b82f6"/>
-                    <text x="15" y="49" font-weight="bold" fill="#3b82f6" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
-                    <line x1="25" y1="45" x2="60" y2="45" stroke="#3b82f6" stroke-width="1.5"/>
-                    <polygon points="48,42 56,45 48,48" fill="#3b82f6"/>
-                    <text x="50" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">i</tspan></text>
-
-                    <!-- Resistencia RB a masa -->
-                    <line x1="60" y1="45" x2="60" y2="55" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="52" y="55" width="16" height="26" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="72" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
-                    <line x1="60" y1="81" x2="60" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Conexión hacia la base -->
-                    <line x1="60" y1="45" x2="130" y2="45" stroke="#475569" stroke-width="1.5"/>
-                    <polygon points="100,42 108,45 100,48" fill="#6366f1"/>
-                    <text x="104" y="38" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
-                    <circle cx="130" cy="45" r="3" fill="#6366f1"/>
-                    <text x="130" y="35" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9">Base (B)</text>
-
-                    <!-- Resistencia r_pi a Emisor (Masa) -->
-                    <line x1="130" y1="45" x2="130" y2="55" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="121" y="55" width="18" height="28" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="112" y="73" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
-                    <text x="145" y="73" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="8.5">+ <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">be</tspan> −</text>
-                    <line x1="130" y1="83" x2="130" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Nodo de Emisor a masa -->
-                    <circle cx="130" cy="120" r="2.5" fill="#475569"/>
-                    <text x="130" y="138" text-anchor="middle" font-weight="bold" fill="#475569" font-size="8.5">Emisor (E = Masa AC con <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">E</tspan>)</text>
-
-                    <!-- Fuente dependiente gm · vbe en Colector -->
-                    <circle cx="280" cy="45" r="3" fill="#10b981"/>
-                    <text x="280" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">Colector (C)</text>
-                    <circle cx="280" cy="72" r="14" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.5"/>
-                    <line x1="280" y1="63" x2="280" y2="81" stroke="#10b981" stroke-width="1.8"/>
-                    <polygon points="276,79 280,85 284,79" fill="#10b981"/>
-                    <text x="302" y="76" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="1.5">m</tspan> <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">be</tspan> = β <tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
-                    <line x1="280" y1="45" x2="280" y2="58" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="280" y1="86" x2="280" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Carga RC en paralelo con RL -->
-                    <line x1="280" y1="45" x2="440" y2="45" stroke="#475569" stroke-width="1.5"/>
-                    <!-- RC -->
-                    <line x1="390" y1="45" x2="390" y2="55" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="382" y="55" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="374" y="73" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
-                    <line x1="390" y1="83" x2="390" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- RL -->
-                    <line x1="450" y1="45" x2="450" y2="55" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="442" y="55" width="16" height="28" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.5" rx="2"/>
-                    <text x="466" y="73" text-anchor="start" font-weight="bold" fill="#059669" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
-                    <line x1="450" y1="83" x2="450" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Terminal vo -->
-                    <line x1="450" y1="45" x2="520" y2="45" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="520" cy="45" r="3" fill="#10b981"/>
-                    <text x="532" y="49" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
-                    <polygon points="480,42 488,45 480,48" fill="#10b981"/>
-                    <text x="484" y="38" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">o</tspan></text>
-
-                    <!-- Línea de Masa Común AC -->
-                    <line x1="30" y1="120" x2="520" y2="120" stroke="#475569" stroke-width="2"/>
-                    <line x1="260" y1="124" x2="290" y2="124" stroke="#475569" stroke-width="2"/>
-                    <line x1="268" y1="127" x2="282" y2="127" stroke="#475569" stroke-width="1.5"/>
-                  </svg>
-                </div>
-
-                <!-- 4 Parámetros Dinámicos EC -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                  <!-- 1. Ri -->
-                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                    <span class="font-bold text-indigo-700 dark:text-indigo-400 block">📥 1. Impedancia de Entrada ($R_i$)</span>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      La tensión $v_i$ cae íntegramente sobre la resistencia interna de base $r_{\\pi} = \\beta r_e$:
-                    </p>
-                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$v_i = v_{be} = i_b r_{\\pi} \\implies R_{ib} = \\frac{v_i}{i_b} = r_{\\pi}$$
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Incluyendo el divisor de polarización $R_B = R_1 \\parallel R_2$:
-                    </p>
-                    <div class="p-1 rounded bg-indigo-50 dark:bg-indigo-950/40 text-center font-bold text-indigo-900 dark:text-indigo-200 font-mono text-[11px]">
-                      $$R_i = R_B \\parallel r_{\\pi} \\qquad \\text{(Con } C_E\\text{, media: } 1\\sim 5\\text{ k}\\Omega\\text{)}$$
-                    </div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      <em>Variante sin $C_E$:</em> $R_i = R_B \\parallel [r_{\\pi} + (1+\\beta)R_E] \\approx R_B \\parallel [\\beta(r_e + R_E)]$.
-                    </p>
-                  </div>
-
-                  <!-- 2. Av -->
-                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                    <span class="font-bold text-emerald-700 dark:text-emerald-400 block">⚡ 2. Ganancia de Tensión ($A_v$)</span>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      La corriente de colector $g_m v_{be}$ fluye hacia masa, drenando corriente de la carga $R_L' = R_C \\parallel R_L$:
-                    </p>
-                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$v_o = -i_c (R_C \\parallel R_L) = -g_m v_{be} (R_C \\parallel R_L)$$
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Como $v_{be} = v_i$, dividiendo directamente:
-                    </p>
-                    <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
-                      $$A_v = \\frac{v_o}{v_i} = -g_m (R_C \\parallel R_L) = -\\frac{\\beta (R_C \\parallel R_L)}{r_{\\pi}} \\approx -\\frac{R_C \\parallel R_L}{r_e}$$
-                    </div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      <em>El signo '−' indica desfase de $180^{\\circ}$. Sin $C_E$: $A_v \\approx -\\frac{R_C \\parallel R_L}{R_E}$.</em>
-                    </p>
-                  </div>
-
-                  <!-- 3. Ai -->
-                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                    <span class="font-bold text-blue-700 dark:text-blue-400 block">🔄 3. Ganancia de Corriente ($A_i$)</span>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      A través de la relación fundamental entre ganancias y resistencias de puerto:
-                    </p>
-                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$A_i = \\frac{i_o}{i_i} = \\frac{v_o / R_L}{v_i / R_i} = A_v \\cdot \\frac{R_i}{R_L}$$
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Analizando los divisores de corriente en base ($i_b$) y colector ($i_o$):
-                    </p>
-                    <div class="p-1 rounded bg-blue-50 dark:bg-blue-950/40 text-center font-bold text-blue-900 dark:text-blue-200 font-mono text-[11px]">
-                      $$A_i = -\\beta \\cdot \\left(\\frac{R_B}{R_B + r_{\\pi}}\\right) \\cdot \\left(\\frac{R_C}{R_C + R_L}\\right) \\approx -\\beta$$
-                    </div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      Elevada ganancia de corriente (orden de magnitud $\\beta \\approx 100\\sim 300$).
-                    </p>
-                  </div>
-
-                  <!-- 4. Ro -->
-                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                    <span class="font-bold text-purple-700 dark:text-purple-400 block">📤 4. Impedancia de Salida ($R_o$)</span>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Se anula la fuente de entrada ($v_s = 0$). Como no hay señal en base:
-                    </p>
-                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$v_i = 0 \\implies v_{be} = 0 \\implies g_m v_{be} = 0 \\quad \\text{(Fuente abierta)}$$
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Aplicando una fuente de prueba $v_x$ en colector (sin carga $R_L$):
-                    </p>
-                    <div class="p-1 rounded bg-purple-50 dark:bg-purple-950/40 text-center font-bold text-purple-900 dark:text-purple-200 font-mono text-[11px]">
-                      $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0} = R_C \\parallel r_o \\approx R_C \\qquad \\text{(Moderada, } 1\\sim 10\\text{ k}\\Omega\\text{)}$$
-                    </div>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      Determinada casi exclusivamente por la resistencia de colector $R_C$.
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <!-- ================= 2. COLECTOR COMÚN (CC) ================= -->
