@@ -3890,76 +3890,96 @@ const MANUAL_TEORIA_E1 = {
               </span>
               <div class="flex justify-center overflow-x-auto">
                 <svg viewBox="0 0 680 270" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 520px;">
+                  <defs>
+                    <marker id="dc-arr-green" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0,1 6,3 0,5" fill="#10b981"/>
+                    </marker>
+                    <marker id="dc-arr-green-rev" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
+                      <polygon points="6,1 0,3 6,5" fill="#10b981"/>
+                    </marker>
+                  </defs>
+
                   <!-- Ejes Cartesiano -->
                   <!-- Eje Y: I_C -->
                   <line x1="80" y1="230" x2="80" y2="25" stroke="#475569" stroke-width="2"/>
                   <polygon points="76,27 80,18 84,27" fill="#475569"/>
-                  <text x="75" y="16" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">I<tspan baseline-shift="sub" font-size="70%">C</tspan> (mA)</text>
+                  <text x="75" y="18" text-anchor="end" font-weight="bold" fill="#475569" font-size="11"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2.5" font-style="normal">C</tspan><tspan font-size="100%" dy="-2.5" font-style="normal"> (mA)</tspan></text>
 
                   <!-- Eje X: V_CE -->
                   <line x1="80" y1="230" x2="650" y2="230" stroke="#475569" stroke-width="2"/>
                   <polygon points="648,226 657,230 648,234" fill="#475569"/>
-                  <text x="655" y="245" text-anchor="end" font-weight="bold" fill="#475569" font-size="11">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> (V)</text>
+                  <text x="655" y="247" text-anchor="end" font-weight="bold" fill="#475569" font-size="11"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2.5" font-style="normal">CE</tspan><tspan font-size="100%" dy="-2.5" font-style="normal"> (V)</tspan></text>
 
                   <!-- Región de Saturación (Franja vertical izquierda) -->
-                  <rect x="80" y="25" width="40" height="205" fill="#f59e0b" fill-opacity="0.12"/>
-                  <text x="100" y="38" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">Saturación</text>
-                  <text x="100" y="48" text-anchor="middle" fill="#d97706" font-size="7.5">(V<tspan baseline-shift="sub" font-size="70%">CE</tspan> &lt; 0.2V)</text>
+                  <rect x="80" y="25" width="45" height="205" fill="#f59e0b" fill-opacity="0.12"/>
+                  <line x1="125" y1="25" x2="125" y2="230" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2 2" stroke-opacity="0.5"/>
+                  <text x="102" y="38" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">Saturación</text>
+                  <text x="102" y="48" text-anchor="middle" fill="#d97706" font-size="8">(<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE</tspan><tspan font-size="100%" dy="-2"> &lt; 0.2 V)</tspan></text>
 
                   <!-- Región de Corte (Franja horizontal inferior) -->
                   <rect x="80" y="222" width="560" height="8" fill="#64748b" fill-opacity="0.25"/>
-                  <text x="450" y="228" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8">Región de Corte (I<tspan baseline-shift="sub" font-size="70%">B</tspan> ≤ 0, I<tspan baseline-shift="sub" font-size="70%">C</tspan> ≈ 0)</text>
+                  <text x="450" y="227" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="8.5">Región de Corte (<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> ≤ 0, </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> ≈ 0)</tspan></text>
 
                   <!-- Familia de curvas de salida I_C vs V_CE -->
                   <!-- Curva 1: I_B1 = 10 uA -->
-                  <path d="M 80,230 Q 110,215 130,205 L 610,198" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="200" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B1</tspan> = 10 µA</text>
+                  <path d="M 80,230 C 86,218 102,203 125,203 L 315,200 L 610,195" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                  <text x="615" y="197" text-anchor="start" fill="#94a3b8" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B1</tspan><tspan font-size="100%" dy="-2"> = 10 µA</tspan></text>
 
                   <!-- Curva 2: I_B2 = 20 uA -->
-                  <path d="M 80,230 Q 110,185 130,165 L 610,155" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="157" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B2</tspan> = 20 µA</text>
+                  <path d="M 80,230 C 86,195 102,173 125,173 L 315,170 L 610,165" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                  <text x="615" y="167" text-anchor="start" fill="#94a3b8" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B2</tspan><tspan font-size="100%" dy="-2"> = 20 µA</tspan></text>
 
                   <!-- Curva 3: I_B3 = 30 uA (Punto Q) -->
-                  <path d="M 80,230 Q 110,150 130,125 L 610,115" fill="none" stroke="#6366f1" stroke-width="2"/>
-                  <text x="615" y="117" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9">I<tspan baseline-shift="sub" font-size="70%">BQ</tspan> = 30 µA</text>
+                  <path d="M 80,230 C 86,165 102,143 125,143 L 315,140 L 610,135" fill="none" stroke="#6366f1" stroke-width="2.2"/>
+                  <text x="615" y="137" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">BQ</tspan><tspan font-size="100%" dy="-2"> = 30 µA</tspan></text>
 
                   <!-- Curva 4: I_B4 = 40 uA -->
-                  <path d="M 80,230 Q 110,110 130,85 L 610,72" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                  <text x="615" y="74" text-anchor="start" fill="#94a3b8" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B4</tspan> = 40 µA</text>
+                  <path d="M 80,230 C 86,135 102,113 125,113 L 315,110 L 610,105" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                  <text x="615" y="107" text-anchor="start" fill="#94a3b8" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B4</tspan><tspan font-size="100%" dy="-2"> = 40 µA</tspan></text>
+
+                  <!-- Curva 5: I_B5 = 50 uA -->
+                  <path d="M 80,230 C 86,105 102,83 125,83 L 315,80 L 610,75" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                  <text x="615" y="77" text-anchor="start" fill="#94a3b8" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B5</tspan><tspan font-size="100%" dy="-2"> = 50 µA</tspan></text>
 
                   <!-- Recta de Carga Estática (DC Load Line) -->
                   <line x1="80" y1="50" x2="550" y2="230" stroke="#ef4444" stroke-width="2.5"/>
-                  <text x="380" y="90" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta de Carga Estática</text>
+                  <text x="390" y="88" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta de Carga Estática (DC)</text>
+
+                  <!-- Tramo de Excursión Simétrica sobre la Recta de Carga -->
+                  <line x1="125" y1="67" x2="505" y2="213" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-opacity="0.65"/>
 
                   <!-- Extremos de la Recta de Carga -->
                   <!-- Saturación extrema (0, V_CC / (R_C + R_E)) -->
                   <circle cx="80" cy="50" r="4.5" fill="#ef4444"/>
-                  <text x="72" y="54" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">C,sat</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan> / (R<tspan baseline-shift="sub" font-size="70%">C</tspan> + R<tspan baseline-shift="sub" font-size="70%">E</tspan>)</text>
+                  <text x="72" y="54" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C,sat</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
                   <!-- Corte extremo (V_CC, 0) -->
                   <circle cx="550" cy="230" r="4.5" fill="#ef4444"/>
-                  <text x="550" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                  <text x="550" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> (Corte)</tspan></text>
 
-                  <!-- Punto Q de trabajo -->
+                  <!-- Punto Q de trabajo: Intersección EXACTA de Curva 3 con Recta de Carga -->
                   <g>
-                    <!-- Coordenadas intersección curva 3 con recta de carga:
-                         x=315, y=140 aprox -->
-                    <circle cx="315" cy="140" r="6" fill="#ef4444"/>
-                    <circle cx="315" cy="140" r="2" fill="#ffffff"/>
-                    <text x="325" y="135" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan>, I<tspan baseline-shift="sub" font-size="70%">CQ</tspan>)</text>
-
                     <!-- Línea punteada a Eje Y: I_CQ -->
                     <line x1="315" y1="140" x2="80" y2="140" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="72" y="143" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="10">I<tspan baseline-shift="sub" font-size="70%">CQ</tspan></text>
+                    <text x="72" y="144" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="10"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan></text>
 
                     <!-- Línea punteada a Eje X: V_CEQ -->
                     <line x1="315" y1="140" x2="315" y2="230" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
-                    <text x="315" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan> ≈ V<tspan baseline-shift="sub" font-size="70%">CC</tspan> / 2</text>
+                    <text x="315" y="247" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan><tspan font-size="100%" dy="-2"> ≈ </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> / 2</tspan></text>
+
+                    <!-- Círculo Punto Q -->
+                    <circle cx="315" cy="140" r="5.5" fill="#ef4444"/>
+                    <circle cx="315" cy="140" r="2" fill="#ffffff"/>
+                    <text x="328" y="133" font-weight="bold" fill="#ef4444" font-size="11">Punto Q (<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan><tspan font-size="100%" dy="-2">, </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                   </g>
 
+                  <!-- Guías verticales verdes de límites de excursión -->
+                  <line x1="125" y1="67" x2="125" y2="218" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+                  <line x1="505" y1="213" x2="505" y2="218" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+
                   <!-- Flecha de máxima excursión simétrica sin distorsión -->
-                  <line x1="130" y1="210" x2="500" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#bjt-arr-green)" marker-end="url(#bjt-arr-green)"/>
-                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Excursión Dinámica Simétrica Máxima (Δv<tspan baseline-shift="sub" font-size="70%">ce</tspan> = ± V<tspan baseline-shift="sub" font-size="70%">CEQ</tspan>)</text>
+                  <line x1="125" y1="210" x2="505" y2="210" stroke="#10b981" stroke-width="2" marker-start="url(#dc-arr-green-rev)" marker-end="url(#dc-arr-green)"/>
+                  <text x="315" y="204" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9.5">Máxima Excursión Simétrica (Δ<tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">ce,p</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CEQ</tspan><tspan font-size="100%" dy="-2"> − </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE,sat</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                 </svg>
               </div>
             </div>
