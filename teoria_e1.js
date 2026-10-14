@@ -3723,12 +3723,159 @@ const MANUAL_TEORIA_E1 = {
               </div>
             </div>
 
-            <div class="p-3.5 my-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs">
-              <strong>⭐ Criterio de Diseño para Inmunidad Térmica y a $\\beta$:</strong>
-              <p class="mt-1">
-                Para que el punto de reposo $I_{CQ}$ no cambie aunque se reemplace el transistor por otro de distinto $\\beta$, se exige que el término $(1+\\beta)R_E$ domine completamente sobre $R_B$:
+            <!-- Criterio de Diseño para Inmunidad Térmica y a beta -->
+            <div class="my-4 p-4 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-purple-50/50 to-pink-50/30 dark:from-indigo-950/20 dark:via-purple-950/20 dark:to-pink-950/10 border border-indigo-200 dark:border-indigo-800/60 shadow-sm text-xs text-slate-700 dark:text-slate-300 space-y-3.5">
+              
+              <div class="flex items-center gap-2 border-b border-indigo-200 dark:border-indigo-800/60 pb-2">
+                <span class="text-base">⭐</span>
+                <h5 class="text-sm font-bold text-indigo-950 dark:text-indigo-200">
+                  Criterio de Diseño: Inmunidad frente a Dispersión de $\\beta$ y Deriva Térmica
+                </h5>
+              </div>
+
+              <!-- 1. El problema físico -->
+              <p>
+                En la práctica, un circuito de polarización debe resolver dos problemas críticos inherentes al transistor BJT:
               </p>
-              $$\\text{Regla empírica del 10\\%: } \\mathbf{R_B \\le 0.1 \\cdot \\beta R_E} \\implies I_{CQ} \\approx \\frac{V_{BB} - V_{BE}}{R_E} \\quad (\\text{independiente de } \\beta)$$
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
+                  <div class="font-bold text-slate-800 dark:text-slate-200 mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
+                    1. Dispersión de Fabricación de $\\beta$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400">
+                    Transistores con la misma referencia comercial (ej. <em>2N2222</em>) presentan valores de $\\beta$ que oscilan entre <strong>100 y 300</strong> (hasta un 200% de tolerancia). El punto $Q$ no puede depender de qué transistor aleatorio se monte en la placa.
+                  </p>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
+                  <div class="font-bold text-slate-800 dark:text-slate-200 mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
+                    2. Sensibilidad a la Temperatura ($T$)
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400">
+                    Al calentarse el transistor: $\\beta$ aumenta ($\approx +0.5\\%/^\\circ\\text{C}$), $V_{BE}$ decrece ($\approx -2\\,\\text{mV}/^\\circ\\text{C}$) y la corriente de fuga $I_{CBO}$ se duplica cada $10^\\circ\\text{C}$. Sin compensación, esto desvía $I_C$ hacia la saturación o embalamiento térmico.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 2. Deducción matemática: ¿Cómo se elimina beta? -->
+              <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-indigo-100 dark:border-indigo-900/50">
+                <span class="font-bold text-indigo-700 dark:text-indigo-300 block mb-1">
+                  📐 Deducción Matemática: ¿Cómo logramos que $I_C$ no dependa de $\\beta$?
+                </span>
+                <p class="mb-2 text-slate-600 dark:text-slate-400">
+                  Partiendo de la ecuación de malla de entrada Thévenin ($I_B = \\frac{V_{BB} - V_{BE}}{R_B + (1+\\beta)R_E}$) y calculando la corriente de colector $I_C = \\beta I_B$:
+                </p>
+                <div class="bg-indigo-50/50 dark:bg-indigo-950/30 p-2.5 rounded-lg font-mono text-center my-2 border border-indigo-200/50 dark:border-indigo-800/40">
+                  $$I_{CQ} = \\beta \\cdot \\frac{V_{BB} - V_{BE}}{R_B + (1+\\beta)R_E} = \\frac{V_{BB} - V_{BE}}{\\frac{R_B}{\\beta} + \\left(\\frac{1+\\beta}{\\beta}\\right) R_E} \\approx \\frac{V_{BB} - V_{BE}}{\\mathbf{\\frac{R_B}{\\beta}} + R_E}$$
+                </div>
+                <p class="mt-2 text-slate-600 dark:text-slate-400">
+                  Observa el denominador: contiene dos términos resistivos, $\\frac{R_B}{\\beta}$ y $R_E$. Si forzamos a que el término que contiene a $\\beta$ sea <strong>completamente despreciable</strong> frente a $R_E$:
+                </p>
+                <div class="flex items-center justify-center gap-2 my-2 text-sm font-bold text-indigo-600 dark:text-indigo-400">
+                  $$\\frac{R_B}{\\beta} \\ll R_E \\iff \\mathbf{R_B \\le 0.1 \\cdot \\beta R_E} \\quad \\text{(Regla del 10\\%)}$$
+                </div>
+                <p class="text-slate-600 dark:text-slate-400">
+                  Bajo esta condición, $\\frac{R_B}{\\beta} \\approx 0$, por lo que la fórmula se simplifica:
+                </p>
+                <div class="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-700/60 text-center font-bold text-emerald-800 dark:text-emerald-300 my-1">
+                  $$\\mathbf{I_{CQ} \\approx \\frac{V_{BB} - V_{BE}}{R_E}} \\qquad \\text{¡Totalmente independiente de } \\beta\\text{!}$$
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 text-[11px] mt-1">
+                  Dado que $V_{BB}$ y $R_E$ se fijan mediante resistencias comerciales de alta precisión (1% o 5%), el punto de reposo $I_{CQ}$ permanece inalterado aunque cambiemos el transistor o varíe su $\\beta$.
+                </p>
+              </div>
+
+              <!-- 3. Mecanismo Físico: Inmunidad Térmica (Lazo de Realimentación Negativa) -->
+              <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-purple-100 dark:border-purple-900/50">
+                <span class="font-bold text-purple-700 dark:text-purple-300 block mb-1">
+                  🛡️ Mecanismo Físico: ¿Por qué es Inmune a la Temperatura? (Realimentación Negativa DC)
+                </span>
+                <p class="mb-2 text-slate-600 dark:text-slate-400">
+                  Gracias a la resistencia de emisor $R_E$ y a que el divisor fija rígidamente la tensión de base $V_B \\approx V_{BB}$, el circuito forma un <strong>lazo cerrado de autorregulación</strong>:
+                </p>
+
+                <!-- Flujograma -->
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 text-center my-3 font-mono text-[11px]">
+                  <div class="p-2 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 flex flex-col justify-center items-center">
+                    <span class="text-rose-600 dark:text-rose-400 font-bold">1. Perturbación</span>
+                    <span class="mt-1 font-bold text-rose-700 dark:text-rose-300">$T \\uparrow$</span>
+                    <span class="text-[10px] text-slate-500">Tiende a subir $I_C$</span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex flex-col justify-center items-center">
+                    <span class="text-amber-600 dark:text-amber-400 font-bold">2. Sube $V_E$</span>
+                    <span class="mt-1 font-bold text-amber-700 dark:text-amber-300">$V_E = I_E R_E \\uparrow$</span>
+                    <span class="text-[10px] text-slate-500">Emisor sube de potencial</span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex flex-col justify-center items-center">
+                    <span class="text-indigo-600 dark:text-indigo-400 font-bold">3. Cae $V_{BE}$</span>
+                    <span class="mt-1 font-bold text-indigo-700 dark:text-indigo-300">$V_{BE} = V_B - V_E \\downarrow$</span>
+                    <span class="text-[10px] text-slate-500">Porque $V_B$ está anclado</span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 flex flex-col justify-center items-center">
+                    <span class="text-blue-600 dark:text-blue-400 font-bold">4. Freno en Base</span>
+                    <span class="mt-1 font-bold text-blue-700 dark:text-blue-300">$I_B \\downarrow$</span>
+                    <span class="text-[10px] text-slate-500">Cae exponencialmente</span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex flex-col justify-center items-center">
+                    <span class="text-emerald-600 dark:text-emerald-400 font-bold">5. Resultado</span>
+                    <span class="mt-1 font-bold text-emerald-700 dark:text-emerald-300">$I_C \\downarrow \\approx \\text{Cte}$</span>
+                    <span class="text-[10px] text-slate-500">Punto Q estabilizado</span>
+                  </div>
+                </div>
+
+                <p class="text-slate-600 dark:text-slate-400 text-xs">
+                  Cualquier intento térmico de elevar $I_C$ provoca que el emisor "se levante" en tensión ($V_E \\uparrow$), lo que estrangula la tensión neta base-emisor ($V_{BE} = V_B - V_E$), reduciendo la inyección de portadores y restaurando $I_C$ a su valor nominal.
+                </p>
+              </div>
+
+              <!-- 4. Las 2 Reglas Prácticas de Diseño -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                  <div class="font-bold text-indigo-700 dark:text-indigo-400 mb-1">
+                    📌 Regla 1: Rigidez del Divisor (Corriente de Sangrado)
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 mb-1">
+                    Para que la base actúe como una fuente de tensión casi ideal y la corriente $I_B$ no altere el divisor:
+                  </p>
+                  <div class="font-mono text-center p-1.5 rounded bg-slate-50 dark:bg-slate-800 font-bold text-indigo-600 dark:text-indigo-300">
+                    $$I_{\\text{divisor}} \\ge 10 \\cdot I_B \\iff R_B \\le 0.1 \\cdot \\beta R_E$$
+                  </div>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                    La corriente que fluye por $R_1$ y $R_2$ debe ser al menos 10 veces mayor que la corriente que se desvía hacia la base ($I_B$).
+                  </p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                  <div class="font-bold text-emerald-700 dark:text-emerald-400 mb-1">
+                    📌 Regla 2: Amplitud de $V_E$ frente a Deriva de $V_{BE}$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 mb-1">
+                    La juntura $V_{BE}$ varía térmicamente unos $-2\\,\\text{mV}/^\\circ\\text{C}$ (apenas $\\sim 0.1\\,\\text{V}$ en todo el rango). Para que esa variación sea imperceptible:
+                  </p>
+                  <div class="font-mono text-center p-1.5 rounded bg-slate-50 dark:bg-slate-800 font-bold text-emerald-600 dark:text-emerald-300">
+                    $$V_E \\ge 1\\,\\text{V} \\quad \\text{o} \\quad V_E \\approx (0.1 \\sim 0.2) \\cdot V_{CC}$$
+                  </div>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                    Si $V_E \\ge 1\\,\\text{V}$, una variación térmica $\\Delta V_{BE} = 0.1\\,\\text{V}$ solo provocará un cambio menor al $10\\%$ en $I_{CQ} = \\frac{V_E}{R_E}$.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 5. ¿Por qué no hacer R_B arbitrariamente pequeña? (Trade-off) -->
+              <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs">
+                <strong>⚖️ El Compromiso del Diseñador (¿Por qué exactamente el 10%?):</strong>
+                <p class="mt-1">
+                  Si quisiéramos "inmunidad infinita", podríamos hacer $R_1$ y $R_2$ extremadamente pequeños ($R_B \\to 0$). Sin embargo, esto causaría dos graves problemas:
+                  <br>
+                  1. <strong>Desperdicio de potencia:</strong> El divisor consumiría una corriente estática enorme de la fuente $V_{CC}$.
+                  <br>
+                  2. <strong>Degradación de impedancia de entrada:</strong> En pequeña señal (AC), la impedancia de entrada del amplificador es $Z_{\\text{in}} = R_1 \\parallel R_2 \\parallel Z_{\\text{base}}$. Si $R_1 \\parallel R_2$ es minúsculo, $Z_{\\text{in}}$ se desplomaría y atenuaría drásticamente la señal del generador.
+                  <br>
+                  Por ello, <strong>la regla del 10% ($R_B \\approx 0.1 \\cdot \\beta R_E$)</strong> es el estándar de la industria que brinda perfecta estabilidad sin castigar la señal ni el consumo.
+                </p>
+              </div>
+
             </div>
 
             <!-- 4. RECTA DE CARGA ESTÁTICA Y PUNTO Q -->
