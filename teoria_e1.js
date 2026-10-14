@@ -2452,6 +2452,16 @@ const MANUAL_TEORIA_E1 = {
                 Al conectar un capacitor electrolítico $C$ en paralelo con $R_L$, este se carga con rapidez hasta el pico de tensión $V_{pico}$ a través de los diodos en conducción. Cuando la tensión del secundario desciende por debajo de la tensión almacenada, los diodos se apagan y el capacitor se descarga lentamente sobre $R_L$ con constante de tiempo $\\tau = R_L C \\gg T$, reduciendo drásticamente las variaciones de tensión.
               </p>
 
+              <!-- Aclaración de la dinámica física del rizado -->
+              <div class="p-3 my-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-xs text-blue-950 dark:text-blue-200">
+                <span class="font-bold flex items-center gap-1.5 text-blue-700 dark:text-blue-300 mb-1">
+                  <span>💡</span> Dinámica Física del Rizado y Ángulo de Conducción:
+                </span>
+                <p>
+                  Mientras la tensión rectificada senoidal cae por debajo de la tensión del capacitor, los diodos se apagan (en corte) y el capacitor se descarga lentamente hacia la carga $R_L$. En el <strong>instante exacto en que la onda rectificada creciente intercepta la tensión del capacitor</strong> ($v_{rect}(t) = v_C(t)$), los diodos vuelven a polarizarse en directa y comienzan a conducir. Ese punto de coincidencia es exactamente la <strong>tensión valle ($V_{valle}$)</strong>: a partir de ese milisegundo el capacitor <em>no puede seguir bajando</em>, sino que es recargado de inmediato siguiendo la subida de la onda senoidal hasta la cresta $V_{pico}$.
+                </p>
+              </div>
+
               <!-- Comparativa Gráfica: Media Onda vs Onda Completa con Filtro -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 py-1">
                 <!-- Gráfico 1: Media Onda con Filtro -->
@@ -2484,8 +2494,11 @@ const MANUAL_TEORIA_E1 = {
                       <!-- Pulsos rectificados en Media Onda (solo 1 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 L 150 145 Q 179 -65 207.5 145 L 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-                      <!-- Curva de descarga del capacitor (rojo continuo, descarga lenta de 20 ms) -->
-                      <path d="M 35 110 L 64 40 L 170 110 L 179 40 L 265 92" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                      <!-- Curva física de descarga y recarga del capacitor:
+                           - Inicia subiendo en la cresta inicial hasta (64, 40)
+                           - Se descarga durante 20 ms hasta la intersección exacta con el pulso 2 en (155, 110)
+                           - En (155, 110) el diodo entra en conducción y recarga siguiendo la senoidal hasta (179, 40) -->
+                      <path d="M 40 110 Q 52 65 64 40 L 155 110 Q 167 65 179 40 L 265 80" fill="none" stroke="#ef4444" stroke-width="2.2"/>
 
                       <!-- Cota de V_r (2x mayor) -->
                       <line x1="115" y1="42" x2="115" y2="108" stroke="#dc2626" stroke-width="1.6"/>
@@ -2532,8 +2545,10 @@ const MANUAL_TEORIA_E1 = {
                       <!-- Pulsos rectificados en Onda Completa (2 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 Q 121 -65 150 145 Q 179 -65 207.5 145 Q 236 -65 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-                      <!-- Curva de descarga del capacitor (rojo continuo, descarga de 10 ms) -->
-                      <path d="M 35 75 L 64 40 L 113 75 L 121 40 L 171 75 L 179 40 L 228 75 L 236 40 L 265 58" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                      <!-- Curva física de descarga y recarga del capacitor:
+                           - Las líneas de descarga intersectan con precisión matemática cada pulso en V_valle (y=75)
+                           - Al alcanzar V_valle en el punto de coincidencia, el diodo entra en conducción y recarga sobre la onda hasta V_pico -->
+                      <path d="M 47 75 Q 56 50 64 40 L 105 75 Q 113 50 121 40 L 162 75 Q 170 50 179 40 L 220 75 Q 228 50 236 40 L 265 64" fill="none" stroke="#ef4444" stroke-width="2.2"/>
 
                       <!-- Cota de V_r (mitad que en media onda) -->
                       <line x1="145" y1="42" x2="145" y2="73" stroke="#dc2626" stroke-width="1.6"/>
