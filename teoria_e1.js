@@ -2471,8 +2471,8 @@ const MANUAL_TEORIA_E1 = {
                     <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 20 ms · Rizado 2× mayor</span>
                   </div>
                   <div class="overflow-x-auto py-1">
-                    <svg viewBox="0 0 350 185" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
-                      <rect x="0" y="0" width="350" height="185" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
+                    <svg viewBox="0 0 350 190" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
+                      <rect x="0" y="0" width="350" height="190" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
 
                       <!-- Ejes -->
                       <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
@@ -2494,11 +2494,10 @@ const MANUAL_TEORIA_E1 = {
                       <!-- Pulsos rectificados en Media Onda (solo 1 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 L 150 145 Q 179 -65 207.5 145 L 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-                      <!-- Curva física de descarga y recarga del capacitor:
-                           - Inicia subiendo en la cresta inicial hasta (64, 40)
-                           - Se descarga durante 20 ms hasta la intersección exacta con el pulso 2 en (155, 110)
-                           - En (155, 110) el diodo entra en conducción y recarga siguiendo la senoidal hasta (179, 40) -->
-                      <path d="M 40 110 Q 52 65 64 40 L 155 110 Q 167 65 179 40 L 265 80" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                      <!-- Curva de tensión del capacitor:
+                           - Subida: coincide idéntica con la forma redondeada senoidal (Q 52 40 64 40 y Q 167 40 179 40)
+                           - Caída: recta pura desde V_pico hasta V_valle (L 155 110) en la próxima onda -->
+                      <path d="M 40 110 Q 52 40 64 40 L 155 110 Q 167 40 179 40 L 265 80" fill="none" stroke="#ef4444" stroke-width="2.2"/>
 
                       <!-- Cota de V_r (2x mayor) -->
                       <line x1="115" y1="42" x2="115" y2="108" stroke="#dc2626" stroke-width="1.6"/>
@@ -2506,11 +2505,14 @@ const MANUAL_TEORIA_E1 = {
                       <polygon points="112,104 115,110 118,104" fill="#dc2626"/>
                       <text x="120" y="78" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan> (2× mayor)</text>
 
-                      <!-- Período de rizado Tr = 20 ms -->
-                      <line x1="64" y1="155" x2="179" y2="155" stroke="#059669" stroke-width="1"/>
-                      <line x1="64" y1="152" x2="64" y2="158" stroke="#059669" stroke-width="1"/>
-                      <line x1="179" y1="152" x2="179" y2="158" stroke="#059669" stroke-width="1"/>
-                      <text x="121" y="167" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8">T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T<tspan baseline-shift="sub" font-size="70%">red</tspan> (20 ms · 50 Hz)</text>
+                      <!-- Período de rizado Tr = 20 ms (Distancia exacta entre picos) -->
+                      <line x1="64" y1="40" x2="64" y2="158" stroke="#059669" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                      <line x1="179" y1="40" x2="179" y2="158" stroke="#059669" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                      <line x1="64" y1="155" x2="179" y2="155" stroke="#059669" stroke-width="1.4"/>
+                      <polygon points="68,153 64,155 68,157" fill="#059669"/>
+                      <polygon points="175,153 179,155 175,157" fill="#059669"/>
+                      <text x="121" y="168" text-anchor="middle" fill="#047857" font-weight="bold" font-size="8.5">T_r = T_red = 1 / 50 Hz = 20 ms</text>
+                      <text x="121" y="180" text-anchor="middle" fill="#64748b" font-size="7.5">Distancia entre picos (1 ciclo de descarga completo)</text>
                     </svg>
                   </div>
                 </div>
@@ -2522,8 +2524,8 @@ const MANUAL_TEORIA_E1 = {
                     <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 10 ms · Rizado mitad (50%)</span>
                   </div>
                   <div class="overflow-x-auto py-1">
-                    <svg viewBox="0 0 350 185" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
-                      <rect x="0" y="0" width="350" height="185" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
+                    <svg viewBox="0 0 350 190" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
+                      <rect x="0" y="0" width="350" height="190" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
 
                       <!-- Ejes -->
                       <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
@@ -2545,10 +2547,10 @@ const MANUAL_TEORIA_E1 = {
                       <!-- Pulsos rectificados en Onda Completa (2 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 Q 121 -65 150 145 Q 179 -65 207.5 145 Q 236 -65 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-                      <!-- Curva física de descarga y recarga del capacitor:
-                           - Las líneas de descarga intersectan con precisión matemática cada pulso en V_valle (y=75)
-                           - Al alcanzar V_valle en el punto de coincidencia, el diodo entra en conducción y recarga sobre la onda hasta V_pico -->
-                      <path d="M 47 75 Q 56 50 64 40 L 105 75 Q 113 50 121 40 L 162 75 Q 170 50 179 40 L 220 75 Q 228 50 236 40 L 265 64" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                      <!-- Curva de tensión del capacitor:
+                           - Subida: coincide idéntica con la forma redondeada senoidal (Q ... 40)
+                           - Caída: rectas puras desde cada cresta hasta el valle en la siguiente onda -->
+                      <path d="M 47 75 Q 56 40 64 40 L 105 75 Q 113 40 121 40 L 162 75 Q 170 40 179 40 L 220 75 Q 228 40 236 40 L 265 64" fill="none" stroke="#ef4444" stroke-width="2.2"/>
 
                       <!-- Cota de V_r (mitad que en media onda) -->
                       <line x1="145" y1="42" x2="145" y2="73" stroke="#dc2626" stroke-width="1.6"/>
@@ -2556,13 +2558,55 @@ const MANUAL_TEORIA_E1 = {
                       <polygon points="142,69 145,75 148,69" fill="#dc2626"/>
                       <text x="150" y="60" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan></text>
 
-                      <!-- Período de rizado Tr = 10 ms -->
-                      <line x1="121" y1="155" x2="179" y2="155" stroke="#2563eb" stroke-width="1"/>
-                      <line x1="121" y1="152" x2="121" y2="158" stroke="#2563eb" stroke-width="1"/>
-                      <line x1="179" y1="152" x2="179" y2="158" stroke="#2563eb" stroke-width="1"/>
-                      <text x="150" y="167" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T/2 (10 ms · 100 Hz)</text>
+                      <!-- Período de rizado Tr = 10 ms (Distancia exacta entre picos) -->
+                      <line x1="121" y1="40" x2="121" y2="158" stroke="#2563eb" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                      <line x1="179" y1="40" x2="179" y2="158" stroke="#2563eb" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                      <line x1="121" y1="155" x2="179" y2="155" stroke="#2563eb" stroke-width="1.4"/>
+                      <polygon points="125,153 121,155 125,157" fill="#2563eb"/>
+                      <polygon points="175,153 179,155 175,157" fill="#2563eb"/>
+                      <text x="150" y="168" text-anchor="middle" fill="#1d4ed8" font-weight="bold" font-size="8.5">T_r = T_red / 2 = 1 / 100 Hz = 10 ms</text>
+                      <text x="150" y="180" text-anchor="middle" fill="#64748b" font-size="7.5">Distancia entre picos (medio ciclo, 2 crestas por ciclo)</text>
                     </svg>
                   </div>
+                </div>
+              </div>
+
+              <!-- Explicación pedagógica detallada del Período de Rizado Tr -->
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-200">
+                <h5 class="font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5 text-indigo-700 dark:text-indigo-400">
+                  <span>⏱️</span> ¿Cómo se Deduce y Calcula el Período de Rizado ($T_r$)?
+                </h5>
+                <p class="mb-2 text-slate-600 dark:text-slate-400">
+                  El <strong>período de rizado ($T_r$)</strong> es el <strong>tiempo que transcurre entre dos recargas consecutivas del capacitor</strong> (la distancia temporal entre dos crestas sucesivas en los gráficos superiores). Durante ese intervalo, los diodos están apagados y el capacitor debe alimentar solo a la carga $R_L$, descargándose en línea recta:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 my-2">
+                  <div class="p-2.5 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800">
+                    <span class="font-bold text-emerald-800 dark:text-emerald-300 block mb-1">1. En Rectificador de Media Onda:</span>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                      Hay únicamente <strong>1 cresta por cada ciclo completo de red</strong> ($f_{red} = 50\\text{ Hz}$):
+                    </p>
+                    $$T_r = T_{red} = \\frac{1}{f_{red}} = \\frac{1}{50\\text{ Hz}} = \\mathbf{20\\text{ ms}} \\implies f_r = 50\\text{ Hz}$$
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                      El capacitor tiene que esperar $20\\text{ ms}$ completos antes de volver a recargarse $\\implies$ <strong>sufre una descarga y rizado $V_r$ el doble de grande</strong>.
+                    </p>
+                  </div>
+
+                  <div class="p-2.5 rounded-lg bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
+                    <span class="font-bold text-blue-800 dark:text-blue-300 block mb-1">2. En Rectificador de Onda Completa:</span>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                      Al rectificarse ambos semiciclos, aparecen <strong>2 crestas por cada ciclo de red</strong>:
+                    </p>
+                    $$T_r = \\frac{T_{red}}{2} = \\frac{1}{2 \\cdot f_{red}} = \\frac{1}{100\\text{ Hz}} = \\mathbf{10\\text{ ms}} \\implies f_r = 100\\text{ Hz}$$
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                      El capacitor solo se descarga durante $10\\text{ ms}$ antes de que llegue la siguiente cresta $\\implies$ <strong>el rizado $V_r$ se reduce al 50%</strong>.
+                    </p>
+                  </div>
+                </div>
+                <div class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-950 dark:text-amber-200 mt-2">
+                  <strong>Ecuación Fundamental que une $T_r$ con $V_r$:</strong>
+                  Por conservación de carga $\\Delta Q = I_{DC} \\cdot T_r = C \\cdot V_r$, despejando el rizado pico a pico obtenemos:
+                  $$\\mathbf{V_r = \\frac{I_{DC} \\cdot T_r}{C} = \\frac{I_{DC}}{f_r \\cdot C}}$$
+                  Demuestra con total claridad matemática por qué al reducir a la mitad el período de descarga $T_r$ (onda completa), el rizado $V_r$ cae a la mitad.
                 </div>
               </div>
 
