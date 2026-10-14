@@ -4074,12 +4074,12 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="15" cy="60" r="3.5" fill="#3b82f6"/>
                     <!-- Corriente i1 -->
                     <line x1="22" y1="52" x2="45" y2="52" stroke="#3b82f6" stroke-width="1.8" marker-end="url(#ac-arr-blue)"/>
-                    <text x="33" y="46" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9">i_1</text>
+                    <text x="33" y="46" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">1</tspan></text>
                     
                     <!-- Terminal 1' Inferior -->
                     <line x1="15" y1="120" x2="55" y2="120" stroke="#475569" stroke-width="2"/>
                     <circle cx="15" cy="120" r="3.5" fill="#3b82f6"/>
-                    <text x="8" y="94" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="10">v_1</text>
+                    <text x="8" y="94" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="10.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">1</tspan></text>
                     <text x="15" y="74" text-anchor="middle" fill="#3b82f6" font-size="9">+</text>
                     <text x="15" y="112" text-anchor="middle" fill="#3b82f6" font-size="9">-</text>
 
@@ -4089,18 +4089,18 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="205" cy="60" r="3.5" fill="#10b981"/>
                     <!-- Corriente i2 -->
                     <line x1="198" y1="52" x2="175" y2="52" stroke="#10b981" stroke-width="1.8" marker-end="url(#ac-arr-green)"/>
-                    <text x="186" y="46" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">i_2</text>
+                    <text x="186" y="46" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">2</tspan></text>
 
                     <!-- Terminal 2' Inferior -->
                     <line x1="165" y1="120" x2="205" y2="120" stroke="#475569" stroke-width="2"/>
                     <circle cx="205" cy="120" r="3.5" fill="#10b981"/>
-                    <text x="213" y="94" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10">v_2</text>
+                    <text x="213" y="94" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                     <text x="205" y="74" text-anchor="middle" fill="#10b981" font-size="9">+</text>
                     <text x="205" y="112" text-anchor="middle" fill="#10b981" font-size="9">-</text>
 
                     <!-- Ecuaciones bajo caja -->
-                    <text x="110" y="155" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="8.5">v_1 = h_i · i_1 + h_r · v_2</text>
-                    <text x="110" y="170" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="8.5">i_2 = h_f · i_1 + h_o · v_2</text>
+                    <text x="110" y="155" text-anchor="middle" font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <text x="110" y="171" text-anchor="middle" font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">f</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                   </g>
 
                   <!-- Divisor vertical -->
@@ -4116,14 +4116,14 @@ const MANUAL_TEORIA_E1 = {
                     
                     <!-- Resistencia h_i -->
                     <rect x="45" y="47" width="28" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="59" y="40" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9">h_ie (h_i)</text>
+                    <text x="59" y="40" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">ie</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                     <line x1="73" y1="55" x2="95" y2="55" stroke="#475569" stroke-width="1.8"/>
 
-                    <!-- Fuente de tensión controlada h_r · v_2 -->
+                    <!-- Fuente de tensión controlada h_re · v_2 -->
                     <circle cx="112" cy="55" r="14" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
                     <text x="112" y="49" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">-</text>
                     <text x="112" y="65" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">+</text>
-                    <text x="112" y="80" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">h_re · v_2</text>
+                    <text x="112" y="81" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">re</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                     <line x1="126" y1="55" x2="155" y2="55" stroke="#475569" stroke-width="1.8"/>
                     <line x1="155" y1="55" x2="155" y2="125" stroke="#475569" stroke-width="1.8"/>
 
@@ -4131,7 +4131,7 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="20" y1="125" x2="380" y2="125" stroke="#475569" stroke-width="2"/>
                     <circle cx="20" cy="125" r="3" fill="#3b82f6"/>
                     <circle cx="380" cy="125" r="3" fill="#10b981"/>
-                    <text x="200" y="140" text-anchor="middle" font-weight="bold" fill="#475569" font-size="9.5">Terminal Común (Emisor E)</text>
+                    <text x="200" y="142" text-anchor="middle" font-weight="bold" fill="#475569" font-size="9.5">Terminal Común (Emisor E)</text>
 
                     <!-- Malla de Salida -->
                     <line x1="240" y1="125" x2="240" y2="55" stroke="#475569" stroke-width="1.8"/>
@@ -4142,15 +4142,15 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Rombo -->
                     <polygon points="240,43 252,55 240,67 228,55" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5"/>
                     <line x1="240" y1="48" x2="240" y2="62" stroke="#10b981" stroke-width="1.5" marker-end="url(#ac-arr-green)"/>
-                    <text x="240" y="80" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">h_fe · i_b</text>
+                    <text x="240" y="81" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">fe</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan></text>
 
                     <!-- Resistencia de salida 1 / h_oe en paralelo -->
                     <line x1="315" y1="55" x2="315" y2="65" stroke="#475569" stroke-width="1.8"/>
                     <rect x="307" y="65" width="16" height="30" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="332" y="82" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">1/h_oe (r_o)</text>
+                    <text x="332" y="82" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">1/<tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">oe</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                     <line x1="315" y1="95" x2="315" y2="125" stroke="#475569" stroke-width="1.8"/>
 
-                    <text x="200" y="170" text-anchor="middle" fill="#64748b" font-size="9">En baja frecuencia: h_re ≈ 0 (aislación inversa total)</text>
+                    <text x="200" y="170" text-anchor="middle" fill="#64748b" font-size="9">En baja frecuencia: <tspan font-style="italic" font-weight="bold">h</tspan><tspan font-size="75%" dy="2" font-weight="bold">re</tspan><tspan font-size="100%" dy="-2"> ≈ 0 (aislación inversa total)</tspan></text>
                   </g>
                 </svg>
               </div>
@@ -4169,18 +4169,18 @@ const MANUAL_TEORIA_E1 = {
                   
                   <!-- Corriente i_b -->
                   <line x1="60" y1="46" x2="105" y2="46" stroke="#ef4444" stroke-width="2" marker-end="url(#bjt-arr-red)"/>
-                  <text x="82" y="38" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">i_b</text>
+                  <text x="82" y="38" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan></text>
                   <line x1="50" y1="55" x2="140" y2="55" stroke="#475569" stroke-width="2"/>
 
                   <!-- Resistencia r_pi -->
                   <line x1="140" y1="55" x2="140" y2="68" stroke="#475569" stroke-width="1.8"/>
                   <rect x="131" y="68" width="18" height="34" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.8" rx="2"/>
-                  <text x="118" y="87" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="10.5">r_π</text>
+                  <text x="118" y="87" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="11"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
                   <line x1="140" y1="102" x2="140" y2="145" stroke="#475569" stroke-width="1.8"/>
 
                   <!-- Tensión de control v_be -->
                   <text x="165" y="70" font-weight="bold" fill="#6366f1" font-size="10">+</text>
-                  <text x="163" y="90" font-weight="bold" fill="#6366f1" font-size="9.5">v_be</text>
+                  <text x="163" y="90" font-weight="bold" fill="#6366f1" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">be</tspan></text>
                   <text x="166" y="105" font-weight="bold" fill="#6366f1" font-size="10">-</text>
 
                   <!-- Barra de Emisor (E) -->
@@ -4192,16 +4192,16 @@ const MANUAL_TEORIA_E1 = {
                   <line x1="400" y1="55" x2="400" y2="70" stroke="#475569" stroke-width="1.8"/>
                   <circle cx="400" cy="85" r="15" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.8"/>
                   <line x1="400" y1="76" x2="400" y2="94" stroke="#10b981" stroke-width="2" marker-end="url(#ac-arr-green)"/>
-                  <text x="400" y="112" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5">g_m · v_be</text>
-                  <text x="400" y="123" text-anchor="middle" fill="#64748b" font-size="8">(= β · i_b)</text>
+                  <text x="400" y="113" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="2">m</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">be</tspan></text>
+                  <text x="400" y="124" text-anchor="middle" fill="#64748b" font-size="8.5">(= β · <tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                   <line x1="400" y1="100" x2="400" y2="145" stroke="#475569" stroke-width="1.8"/>
 
                   <!-- Resistencia dinámica de salida r_o (Efecto Early) -->
                   <line x1="400" y1="55" x2="520" y2="55" stroke="#475569" stroke-width="1.8"/>
                   <line x1="520" y1="55" x2="520" y2="68" stroke="#475569" stroke-width="1.8"/>
                   <rect x="511" y="68" width="18" height="34" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.8" rx="2"/>
-                  <text x="540" y="87" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10.5">r_o</text>
-                  <text x="540" y="99" text-anchor="start" fill="#64748b" font-size="8">(V_A / I_CQ)</text>
+                  <text x="540" y="87" text-anchor="start" font-weight="bold" fill="#10b981" font-size="11"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                  <text x="540" y="100" text-anchor="start" fill="#64748b" font-size="8.5">(<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">A</tspan><tspan font-size="100%" dy="-2"> / </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
                   <line x1="520" y1="102" x2="520" y2="145" stroke="#475569" stroke-width="1.8"/>
 
                   <!-- Terminal Colector C -->
@@ -4211,7 +4211,7 @@ const MANUAL_TEORIA_E1 = {
 
                   <!-- Corriente i_c -->
                   <line x1="615" y1="46" x2="570" y2="46" stroke="#10b981" stroke-width="2" marker-end="url(#ac-arr-green)"/>
-                  <text x="592" y="38" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5">i_c</text>
+                  <text x="592" y="38" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">c</tspan></text>
                 </svg>
               </div>
             </div>
