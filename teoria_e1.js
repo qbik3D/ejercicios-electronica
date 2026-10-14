@@ -2811,33 +2811,260 @@ const MANUAL_TEORIA_E1 = {
       secciones: [
         {
           id: 'e1-u3-fisica-regiones-bjt',
-          titulo: '3.1 Principio de Operación y Relaciones de Corriente',
+          titulo: '3.1 Principio de Operación, Estructura Física y Regiones de Trabajo',
           contenido: `
-            <p class="mb-3">El BJT consiste en dos junturas PN acopladas con una base física muy estrecha ($W_B \\ll L_n$). En <strong>Zona Activa Directa (ZAD)</strong>, la juntura Base-Emisor está en polarización directa ($V_{BE} \\approx 0.7\\text{ V}$) y la juntura Colector-Base en polarización inversa ($V_{CB} > 0$).</p>
+            <!-- 1. PRINCIPIO FÍSICO DE OPERACIÓN -->
+            <div class="p-3.5 mb-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-slate-800 dark:text-slate-200">
+              <span class="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider block mb-1">
+                🔬 Estructura Interna y Mecanismo de Transporte
+              </span>
+              <p class="text-xs leading-relaxed mb-2">
+                El <strong>Transistor Bipolar de Juntura (BJT)</strong> está formado por tres capas semiconductoras alternadas ($N$-$P$-$N$ o $P$-$N$-$P$) con un diseño fuertemente asimétrico que hace posible la acción transistorizada:
+              </p>
+              <ul class="text-xs space-y-1.5 list-disc list-inside text-slate-700 dark:text-slate-300">
+                <li><strong>Emisor ($N^+$):</strong> Región fuertemente dopada. Su único objetivo es inyectar una avalancha masiva de electrones mayoritarios hacia la base.</li>
+                <li><strong>Base ($P$):</strong> Región <em>extremadamente delgada</em> ($W_B \\ll L_n$, ancho mucho menor que la longitud de difusión) y muy poco dopada. Al tener tan pocos huecos y un espesor microscópico, más del <strong>98% a 99%</strong> de los electrones inyectados la cruzan por difusión sin recombinarse.</li>
+                <li><strong>Colector ($N$):</strong> Región de dopado moderado y <em>gran área física</em> (para disipar calor). Su función es recolectar todos los electrones que logran atravesar la base.</li>
+              </ul>
+            </div>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Relaciones de Corriente en ZAD</h5>
-            $$I_E = I_C + I_B$$
-            $$I_C = \\beta I_B = h_{FE} I_B$$
-            $$I_C = \\alpha I_E \\implies \\alpha = \\frac{\\beta}{1 + \\beta}, \\quad \\beta = \\frac{\\alpha}{1 - \\alpha}$$
-            $$I_E = (1 + \\beta) I_B$$
+            <!-- PARADOJA DE LA JUNTURA BC EN INVERSA -->
+            <div class="p-3 mb-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-950 dark:text-amber-200 text-xs">
+              <strong>💡 La paradoja del Colector en Zona Activa: ¿Por qué conduce si $J_{BC}$ está en polarización inversa?</strong>
+              <p class="mt-1 leading-relaxed text-slate-700 dark:text-slate-300">
+                Una juntura PN polarizada en inversa bloquea por completo a sus portadores mayoritarios, pero <strong>acelera violentamente a los portadores minoritarios</strong> que alcanzan su zona de carga espacial. Los electrones inyectados por el emisor entran a la base como <em>minoritarios</em>. Debido a que la base es casi nula ($W_B \\ll L_n$), llegan al borde de la juntura $J_{BC}$ donde el intenso campo eléctrico inverso los "succiona" y catapulta hacia el colector. Así, la corriente $I_C$ queda comandada casi al 100% por el emisor ($I_C = \\alpha I_E$), mientras que la corriente de base $I_B$ es solo el minúsculo residuo recombinado (~1%).
+              </p>
+            </div>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Condiciones de Borde entre Regiones</h5>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs">
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Corte:</strong><br>
-                $V_{BE} < 0.5\\text{ V}$<br>
-                $I_B \\approx 0, \\; I_C \\approx 0$
+            <!-- 2. DIAGRAMA SVG DUAL: ESTRUCTURA FÍSICA vs SÍMBOLO ESQUEMÁTICO -->
+            <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+                📊 Estructura Física NPN vs. Símbolo Circuital y Convenios de Corriente
+              </span>
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 680 230" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 520px;">
+                  <defs>
+                    <marker id="bjt-arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#3b82f6"/>
+                    </marker>
+                    <marker id="bjt-arr-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#ef4444"/>
+                    </marker>
+                    <marker id="bjt-arr-green" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#10b981"/>
+                    </marker>
+                    <marker id="bjt-arr-amber" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#f59e0b"/>
+                    </marker>
+                  </defs>
+
+                  <!-- ================= PARTE IZQUIERDA: FÍSICA NPN ================= -->
+                  <g>
+                    <!-- Título Física -->
+                    <text x="160" y="22" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Física del Semiconductor (NPN en ZAD)</text>
+
+                    <!-- Emisor N+ -->
+                    <rect x="35" y="45" width="75" height="120" rx="3" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="72" y="70" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="12">Emisor (N⁺)</text>
+                    <text x="72" y="86" text-anchor="middle" fill="#64748b" font-size="9">Dopado Alto</text>
+                    <text x="72" y="100" text-anchor="middle" fill="#64748b" font-size="9">Inyección masiva</text>
+                    <text x="72" y="135" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="14">e⁻ e⁻ e⁻</text>
+
+                    <!-- Base P (Estrecha) -->
+                    <rect x="110" y="45" width="38" height="120" rx="2" fill="#ec4899" fill-opacity="0.18" stroke="#ec4899" stroke-width="2"/>
+                    <text x="129" y="70" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">Base</text>
+                    <text x="129" y="85" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">(P)</text>
+                    <text x="129" y="105" text-anchor="middle" fill="#94a3b8" font-size="8">Fina</text>
+                    <text x="129" y="117" text-anchor="middle" fill="#94a3b8" font-size="8">W_B≪L_n</text>
+                    <text x="129" y="145" text-anchor="middle" font-weight="bold" fill="#db2777" font-size="10">h⁺ (~1%)</text>
+
+                    <!-- Colector N -->
+                    <rect x="148" y="45" width="132" height="120" rx="3" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="2"/>
+                    <text x="214" y="70" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="12">Colector (N)</text>
+                    <text x="214" y="86" text-anchor="middle" fill="#64748b" font-size="9">Dopado Moderado</text>
+                    <text x="214" y="100" text-anchor="middle" fill="#64748b" font-size="9">Gran Área (disipación)</text>
+                    <text x="214" y="135" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Recolección de e⁻</text>
+
+                    <!-- Flujo principal de electrones (Flecha ámbar) -->
+                    <line x1="85" y1="115" x2="195" y2="115" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 2" marker-end="url(#bjt-arr-amber)"/>
+                    <text x="140" y="132" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">Difusión ~99% de e⁻</text>
+
+                    <!-- Terminales de conexión -->
+                    <!-- E -->
+                    <line x1="72" y1="165" x2="72" y2="200" stroke="#3b82f6" stroke-width="2.5"/>
+                    <circle cx="72" cy="200" r="4" fill="#3b82f6"/>
+                    <text x="72" y="215" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">E</text>
+
+                    <!-- B -->
+                    <line x1="129" y1="45" x2="129" y2="18" stroke="#ec4899" stroke-width="2"/>
+                    <circle cx="129" cy="18" r="4" fill="#ec4899"/>
+                    <text x="129" y="10" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">B</text>
+
+                    <!-- C -->
+                    <line x1="214" y1="165" x2="214" y2="200" stroke="#10b981" stroke-width="2.5"/>
+                    <circle cx="214" cy="200" r="4" fill="#10b981"/>
+                    <text x="214" y="215" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">C</text>
+
+                    <!-- Junturas indicadas -->
+                    <text x="110" y="40" text-anchor="middle" fill="#64748b" font-size="8">J_BE (Dir)</text>
+                    <text x="148" y="40" text-anchor="middle" fill="#64748b" font-size="8">J_BC (Inv)</text>
+                  </g>
+
+                  <!-- Divisor vertical -->
+                  <line x1="320" y1="20" x2="320" y2="215" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1"/>
+
+                  <!-- ================= PARTE DERECHA: SÍMBOLO NPN ================= -->
+                  <g transform="translate(340, 0)">
+                    <!-- Título Símbolo -->
+                    <text x="160" y="22" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Símbolo Esquemático NPN (IEEE)</text>
+
+                    <!-- Transistor NPN Línea Base -->
+                    <line x1="140" y1="80" x2="140" y2="140" stroke="#475569" stroke-width="3.5" stroke-linecap="round"/>
+
+                    <!-- Terminal Base -->
+                    <line x1="80" y1="110" x2="140" y2="110" stroke="#475569" stroke-width="2"/>
+                    <circle cx="80" cy="110" r="4" fill="#ec4899"/>
+                    <text x="68" y="114" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="12">B</text>
+
+                    <!-- Colector (Rama superior) -->
+                    <line x1="140" y1="92" x2="195" y2="60" stroke="#475569" stroke-width="2"/>
+                    <line x1="195" y1="60" x2="195" y2="30" stroke="#475569" stroke-width="2"/>
+                    <circle cx="195" cy="30" r="4" fill="#10b981"/>
+                    <text x="208" y="34" text-anchor="start" font-weight="bold" fill="#10b981" font-size="12">C</text>
+
+                    <!-- Emisor (Rama inferior con flecha hacia afuera) -->
+                    <line x1="140" y1="128" x2="195" y2="160" stroke="#475569" stroke-width="2"/>
+                    <!-- Flecha saliente NPN -->
+                    <polygon points="180,157 195,160 188,145" fill="#ef4444"/>
+                    <line x1="195" y1="160" x2="195" y2="190" stroke="#475569" stroke-width="2"/>
+                    <circle cx="195" cy="190" r="4" fill="#3b82f6"/>
+                    <text x="208" y="194" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="12">E</text>
+
+                    <!-- Corrientes (Flechas con marcador) -->
+                    <!-- I_B entrando a base -->
+                    <line x1="88" y1="100" x2="125" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#bjt-arr-red)"/>
+                    <text x="105" y="93" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">I_B →</text>
+
+                    <!-- I_C bajando a colector -->
+                    <line x1="210" y1="45" x2="210" y2="75" stroke="#10b981" stroke-width="2" marker-end="url(#bjt-arr-green)"/>
+                    <text x="226" y="62" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10">I_C ↓</text>
+
+                    <!-- I_E saliendo de emisor -->
+                    <line x1="210" y1="160" x2="210" y2="185" stroke="#3b82f6" stroke-width="2" marker-end="url(#bjt-arr-blue)"/>
+                    <text x="226" y="175" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="10">I_E ↓</text>
+
+                    <!-- Tensiones indicadas -->
+                    <text x="115" y="150" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10">V_BE ≈ 0.7 V</text>
+                    <text x="245" y="120" text-anchor="start" font-weight="bold" fill="#64748b" font-size="10">V_CE</text>
+                  </g>
+                </svg>
               </div>
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Zona Activa:</strong><br>
-                $V_{BE} \\approx 0.7\\text{ V}$<br>
-                $v_{CE} > V_{CE,sat}$ ($I_C = \\beta I_B$)
+            </div>
+
+            <!-- 3. RELACIONES FUNDAMENTALES DE CORRIENTE -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Relaciones Cuantitativas Fundamentales (ZAD)</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Ley de Kirchhoff de Corrientes (KCL)</span>
+                $$I_E = I_C + I_B$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  La corriente de emisor es siempre la suma de la corriente de colector y de base, aplicable en <em>todas</em> las regiones.
+                </p>
               </div>
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Saturación:</strong><br>
-                $v_{CE} = V_{CE,sat} \\approx 0.2\\text{ V}$<br>
-                $I_{C,sat} < \\beta I_B$
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Ganancia de Corriente ($\beta$ o $h_{FE}$)</span>
+                $$I_C = \\beta I_B \\implies I_E = (1 + \\beta) I_B$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  En Activa Directa, una pequeña $I_B$ modula una gran $I_C$. Típicamente $\\beta \\in [50, 300]$ y posee gran dispersión térmica.
+                </p>
               </div>
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 sm:col-span-2">
+                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Factor Alfa ($\alpha$) y Conversión $\\alpha \\leftrightarrow \\beta$</span>
+                $$\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{1 + \\beta} \\approx 0.980 \\sim 0.998, \\qquad \\beta = \\frac{\\alpha}{1 - \\alpha}$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  $\\alpha$ representa la fracción de portadores inyectados por el emisor que llegan efectivamente al colector sin recombinarse en la base.
+                </p>
+              </div>
+            </div>
+
+            <!-- 4. TABLA COMPARATIVA DE LAS 4 REGIONES DE OPERACIÓN -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Las 4 Regiones de Operación del BJT</h5>
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Región</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Juntura BE</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Juntura BC</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Condición Eléctrica</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Modelo Circuital</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Aplicación Práctica</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                  <tr class="bg-red-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold text-red-600 dark:text-red-400">Corte</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa ($V_{BE} < 0.5\\text{ V}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa ($V_{BC} \\le 0$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_B = 0, \\; I_C = 0$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Circuito Abierto (C-E abierto)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Llave abierta en conmutación digital ('0' lógico).</td>
+                  </tr>
+                  <tr class="bg-emerald-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold text-emerald-600 dark:text-emerald-400">Activa Directa (ZAD)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa ($V_{BE} \\approx 0.7\\text{ V}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa ($V_{BC} \\le 0$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_C = \\beta I_B$, $V_{CE} > 0.2\\text{ V}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Fuente de corriente controlada ($I_C = \\beta I_B$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Amplificación lineal de audio, RF e instrumentación.</td>
+                  </tr>
+                  <tr class="bg-amber-500/5">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold text-amber-600 dark:text-amber-400">Saturación</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa ($V_{BE} \\approx 0.7\\text{ V}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa ($V_{BC} > 0.4\\text{ V}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$V_{CE} = V_{CE,sat} \\approx 0.2\\text{ V}$, $I_C < \\beta I_B$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Batería fija $V_{CE,sat} \\approx 0.2\\text{ V}$ (casi cortocircuito)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Llave cerrada en conmutación ('1' lógico, relés).</td>
+                  </tr>
+                  <tr class="bg-slate-500/5 opacity-80">
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold text-slate-500">Activa Inversa (ZAI)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\beta_R \\ll 1$ (muy baja ganancia)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Fuente controlada invertida ineficiente</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Compuertas TTL clásicas integradas; no se usa en discreto.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 5. ALGORITMO DE RESOLUCIÓN EN EXÁMENES -->
+            <div class="p-3.5 my-3 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-slate-800 dark:text-slate-200">
+              <span class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block mb-2">
+                🎯 Algoritmo de Examen: ¿Cómo determinar la Región de Operación en DC?
+              </span>
+              <ol class="text-xs space-y-2 list-decimal list-inside text-slate-700 dark:text-slate-300 leading-relaxed">
+                <li>
+                  <strong>Paso 1 (Hipótesis ZAD):</strong> Suponer que el transistor opera en <em>Zona Activa Directa</em>. Asignar $V_{BE} = 0.7\\text{ V}$ y $I_C = \\beta I_B$.
+                </li>
+                <li>
+                  <strong>Paso 2 (Malla de Entrada B-E):</strong> Escribir la ecuación de la malla de entrada y despejar $I_B$:
+                  <br>
+                  <span class="font-mono text-purple-600 dark:text-purple-300 pl-4">▸ Si $I_B \\le 0$</span> $\\implies$ <strong>¡Suposición falsa!</strong> El BJT está en <strong>CORTE</strong> ($I_B = 0, \\, I_C = 0, \\, V_{BE} < 0.7\\text{ V}$).
+                  <br>
+                  <span class="font-mono text-emerald-600 dark:text-emerald-400 pl-4">▸ Si $I_B > 0$</span> $\\implies$ Avanzar al Paso 3.
+                </li>
+                <li>
+                  <strong>Paso 3 (Malla de Salida C-E):</strong> Con $I_C = \\beta I_B$, resolver la malla del colector para hallar $V_{CE}$:
+                  <br>
+                  <span class="font-mono text-emerald-600 dark:text-emerald-400 pl-4">▸ Si $V_{CE} > V_{CE,sat}$ ($> 0.2\\text{ V}$)</span> $\\implies$ <strong>¡Confirmado ZAD!</strong> El punto $Q(I_C, V_{CE})$ es correcto.
+                  <br>
+                  <span class="font-mono text-amber-600 dark:text-amber-400 pl-4">▸ Si $V_{CE} \\le V_{CE,sat}$ ($< 0.2\\text{ V}$)</span> $\\implies$ <strong>¡Suposición falsa!</strong> El BJT está en <strong>SATURACIÓN</strong>.
+                </li>
+                <li>
+                  <strong>Paso 4 (Recalcular en Saturación si corresponde):</strong> Fijar $V_{CE} = V_{CE,sat} = 0.2\\text{ V}$. Recalcular la corriente real de colector $I_{C,sat}$ a partir de la malla de salida. Verificar que la ganancia forzada cumpla $\\beta_{forzado} = \\frac{I_{C,sat}}{I_B} < \\beta$.
+                </li>
+              </ol>
             </div>
           `
         },
