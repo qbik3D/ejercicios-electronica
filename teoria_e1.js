@@ -904,21 +904,21 @@ const MANUAL_TEORIA_E1 = {
                     <text x="102" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de tensión en serie con R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Fuente de tensión V_th -->
-                    <circle cx="35" cy="85" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
-                    <text x="35" y="81" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
-                    <text x="35" y="94" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
-                    <text x="35" y="117" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
+                    <circle cx="42" cy="85" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+                    <text x="42" y="81" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
+                    <text x="42" y="94" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
+                    <text x="18" y="88" text-anchor="end" fill="#2563eb" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Cable y Resistor R_th en serie -->
-                    <line x1="35" y1="69" x2="35" y2="55" stroke="#64748b" stroke-width="2"/>
-                    <line x1="35" y1="55" x2="75" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <line x1="42" y1="69" x2="42" y2="55" stroke="#64748b" stroke-width="2"/>
+                    <line x1="42" y1="55" x2="75" y2="55" stroke="#64748b" stroke-width="2"/>
                     <path d="M 75 55 L 80 47 L 88 63 L 96 47 L 104 63 L 112 47 L 117 55" stroke="#334155" stroke-width="2" fill="none"/>
                     <line x1="117" y1="55" x2="185" y2="55" stroke="#64748b" stroke-width="2"/>
                     <text x="96" y="40" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Cable inferior a B -->
-                    <line x1="35" y1="101" x2="35" y2="125" stroke="#64748b" stroke-width="2"/>
-                    <line x1="35" y1="125" x2="185" y2="125" stroke="#64748b" stroke-width="2"/>
+                    <line x1="42" y1="101" x2="42" y2="125" stroke="#64748b" stroke-width="2"/>
+                    <line x1="42" y1="125" x2="185" y2="125" stroke="#64748b" stroke-width="2"/>
 
                     <!-- Terminales A y B -->
                     <circle cx="185" cy="55" r="4" fill="#ef4444"/>
