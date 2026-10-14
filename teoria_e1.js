@@ -2467,8 +2467,8 @@ const MANUAL_TEORIA_E1 = {
                 <!-- Gráfico 1: Media Onda con Filtro -->
                 <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
                   <div class="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-1.5 flex items-center justify-between">
-                    <span>1. Filtro en Media Onda (f<tspan class="text-[9px]">r</tspan> = 50 Hz)</span>
-                    <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 20 ms · Rizado 2× mayor</span>
+                    <span>1. Filtro en Media Onda ($f_r = 50\text{ Hz}$)</span>
+                    <span class="text-[10px] font-mono text-slate-500">$T_r = 20\text{ ms}$ · Rizado 2× mayor</span>
                   </div>
                   <div class="overflow-x-auto py-1">
                     <svg viewBox="0 0 350 190" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
@@ -2476,20 +2476,20 @@ const MANUAL_TEORIA_E1 = {
 
                       <!-- Ejes -->
                       <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
-                      <text x="320" y="148" fill="#64748b" font-size="8.5">t</text>
+                      <text x="320" y="148" fill="#64748b" font-size="8.5"><tspan font-style="italic">t</tspan></text>
                       <line x1="35" y1="20" x2="35" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
-                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
                       <text x="30" y="148" text-anchor="end" fill="#64748b" font-size="7.5">0</text>
 
                       <!-- Cotas horizontales -->
                       <line x1="35" y1="40" x2="275" y2="40" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">pico</tspan></text>
 
                       <line x1="35" y1="75" x2="275" y2="75" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4,2"/>
-                      <text x="278" y="77" fill="#d97706" font-weight="bold" font-size="7.5">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> − (V<tspan baseline-shift="sub" font-size="70%">r</tspan> / 2)</text>
+                      <text x="278" y="77" fill="#d97706" font-weight="bold" font-size="7.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">DC</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">pico</tspan><tspan font-size="100%" dy="-2"> − (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> / 2)</tspan></text>
 
                       <line x1="35" y1="110" x2="275" y2="110" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="278" y="113" fill="#64748b" font-size="8">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
+                      <text x="278" y="113" fill="#64748b" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">valle</tspan></text>
 
                       <!-- Pulsos rectificados en Media Onda (solo 1 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 L 150 145 Q 179 -65 207.5 145 L 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
@@ -2503,7 +2503,7 @@ const MANUAL_TEORIA_E1 = {
                       <line x1="115" y1="42" x2="115" y2="108" stroke="#dc2626" stroke-width="1.6"/>
                       <polygon points="112,46 115,40 118,46" fill="#dc2626"/>
                       <polygon points="112,104 115,110 118,104" fill="#dc2626"/>
-                      <text x="120" y="78" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan> (2× mayor)</text>
+                      <text x="120" y="78" fill="#dc2626" font-weight="bold" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> (2× mayor)</tspan></text>
 
                       <!-- Período de rizado Tr = 20 ms (Distancia exacta entre picos) -->
                       <line x1="64" y1="40" x2="64" y2="158" stroke="#059669" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
@@ -2511,7 +2511,7 @@ const MANUAL_TEORIA_E1 = {
                       <line x1="64" y1="155" x2="179" y2="155" stroke="#059669" stroke-width="1.4"/>
                       <polygon points="68,153 64,155 68,157" fill="#059669"/>
                       <polygon points="175,153 179,155 175,157" fill="#059669"/>
-                      <text x="121" y="168" text-anchor="middle" fill="#047857" font-weight="bold" font-size="8.5">T_r = T_red = 1 / 50 Hz = 20 ms</text>
+                      <text x="121" y="168" text-anchor="middle" fill="#047857" font-weight="bold" font-size="8.5"><tspan font-style="italic">T</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">T</tspan><tspan font-size="75%" dy="2">red</tspan><tspan font-size="100%" dy="-2"> = 1 / 50 Hz = 20 ms</tspan></text>
                       <text x="121" y="180" text-anchor="middle" fill="#64748b" font-size="7.5">Distancia entre picos (1 ciclo de descarga completo)</text>
                     </svg>
                   </div>
@@ -2520,8 +2520,8 @@ const MANUAL_TEORIA_E1 = {
                 <!-- Gráfico 2: Onda Completa con Filtro -->
                 <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
                   <div class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1.5 flex items-center justify-between">
-                    <span>2. Filtro en Onda Completa (f<tspan class="text-[9px]">r</tspan> = 100 Hz)</span>
-                    <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 10 ms · Rizado mitad (50%)</span>
+                    <span>2. Filtro en Onda Completa ($f_r = 100\text{ Hz}$)</span>
+                    <span class="text-[10px] font-mono text-slate-500">$T_r = 10\text{ ms}$ · Rizado mitad (50%)</span>
                   </div>
                   <div class="overflow-x-auto py-1">
                     <svg viewBox="0 0 350 190" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
@@ -2529,20 +2529,20 @@ const MANUAL_TEORIA_E1 = {
 
                       <!-- Ejes -->
                       <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
-                      <text x="320" y="148" fill="#64748b" font-size="8.5">t</text>
+                      <text x="320" y="148" fill="#64748b" font-size="8.5"><tspan font-style="italic">t</tspan></text>
                       <line x1="35" y1="20" x2="35" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
-                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
                       <text x="30" y="148" text-anchor="end" fill="#64748b" font-size="7.5">0</text>
 
                       <!-- Cotas horizontales -->
                       <line x1="35" y1="40" x2="275" y2="40" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">pico</tspan></text>
 
                       <line x1="35" y1="57" x2="275" y2="57" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4,2"/>
-                      <text x="278" y="60" fill="#d97706" font-weight="bold" font-size="7.5">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> − (V<tspan baseline-shift="sub" font-size="70%">r</tspan> / 2)</text>
+                      <text x="278" y="60" fill="#d97706" font-weight="bold" font-size="7.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">DC</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">pico</tspan><tspan font-size="100%" dy="-2"> − (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> / 2)</tspan></text>
 
                       <line x1="35" y1="75" x2="275" y2="75" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="278" y="78" fill="#64748b" font-size="8">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
+                      <text x="278" y="78" fill="#64748b" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">valle</tspan></text>
 
                       <!-- Pulsos rectificados en Onda Completa (2 por ciclo, punteado gris) -->
                       <path d="M 35 145 Q 64 -65 92.5 145 Q 121 -65 150 145 Q 179 -65 207.5 145 Q 236 -65 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
@@ -2556,7 +2556,7 @@ const MANUAL_TEORIA_E1 = {
                       <line x1="145" y1="42" x2="145" y2="73" stroke="#dc2626" stroke-width="1.6"/>
                       <polygon points="142,46 145,40 148,46" fill="#dc2626"/>
                       <polygon points="142,69 145,75 148,69" fill="#dc2626"/>
-                      <text x="150" y="60" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan></text>
+                      <text x="150" y="60" fill="#dc2626" font-weight="bold" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">r</tspan></text>
 
                       <!-- Período de rizado Tr = 10 ms (Distancia exacta entre picos) -->
                       <line x1="121" y1="40" x2="121" y2="158" stroke="#2563eb" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
@@ -2564,7 +2564,7 @@ const MANUAL_TEORIA_E1 = {
                       <line x1="121" y1="155" x2="179" y2="155" stroke="#2563eb" stroke-width="1.4"/>
                       <polygon points="125,153 121,155 125,157" fill="#2563eb"/>
                       <polygon points="175,153 179,155 175,157" fill="#2563eb"/>
-                      <text x="150" y="168" text-anchor="middle" fill="#1d4ed8" font-weight="bold" font-size="8.5">T_r = T_red / 2 = 1 / 100 Hz = 10 ms</text>
+                      <text x="150" y="168" text-anchor="middle" fill="#1d4ed8" font-weight="bold" font-size="8.5"><tspan font-style="italic">T</tspan><tspan font-size="75%" dy="2">r</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">T</tspan><tspan font-size="75%" dy="2">red</tspan><tspan font-size="100%" dy="-2"> / 2 = 1 / 100 Hz = 10 ms</tspan></text>
                       <text x="150" y="180" text-anchor="middle" fill="#64748b" font-size="7.5">Distancia entre picos (medio ciclo, 2 crestas por ciclo)</text>
                     </svg>
                   </div>
@@ -2637,7 +2637,7 @@ const MANUAL_TEORIA_E1 = {
                 <span class="font-bold text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                   <span>⚡</span> 5. Regulador de Tensión en Derivación con Diodo Zener
                 </span>
-                <span class="text-[11px] font-mono text-slate-400">Ruptura Inversa · V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan> · I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan></span>
+                <span class="text-[11px] font-mono text-slate-400">Ruptura Inversa · $V_{out} = V_Z$ · $I_s = I_Z + I_L$</span>
               </div>
 
               <!-- Fundamento Teórico -->
