@@ -3119,6 +3119,256 @@ const MANUAL_TEORIA_E1 = {
 
             <!-- 4. TABLA COMPARATIVA DE LAS 4 REGIONES DE OPERACIÓN -->
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Las 4 Regiones de Operación del BJT</h5>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
+              El transistor BJT contiene dos junturas PN ($J_{BE}$ y $J_{BC}$). Dependiendo de si cada una se polariza en directa o en inversa, el dispositivo adopta <strong>cuatro modelos circuitales equivalentes totalmente distintos</strong>:
+            </p>
+
+            <!-- TARJETAS CON CIRCUITOS EQUIVALENTES DE LAS 4 REGIONES -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 my-3">
+              <!-- REGION 1: CORTE -->
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-red-500/30 flex flex-col justify-between shadow-2xs">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="font-bold text-xs text-red-600 dark:text-red-400">1. Región de Corte</span>
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">Llave OFF</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 mb-2 space-y-0.5">
+                    <div>• Juntura BE: <strong class="text-slate-700 dark:text-slate-200">Inversa</strong> ($V_{BE} < 0.5\\text{ V}$)</div>
+                    <div>• Juntura BC: <strong class="text-slate-700 dark:text-slate-200">Inversa</strong> ($V_{BC} \\le 0$)</div>
+                  </div>
+                  <!-- SVG Circuito Corte -->
+                  <div class="py-1">
+                    <svg viewBox="0 0 220 155" class="w-full h-auto text-xs font-sans select-none block">
+                      <rect x="0" y="0" width="220" height="155" rx="8" fill="#ef4444" fill-opacity="0.04" stroke="#ef4444" stroke-opacity="0.25" stroke-width="1"/>
+                      
+                      <!-- Terminal B (Izquierda) -->
+                      <line x1="25" y1="95" x2="60" y2="95" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="25" cy="95" r="3.5" fill="#ec4899"/>
+                      <text x="18" y="98" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="10">B</text>
+                      
+                      <!-- Circuito abierto B -->
+                      <circle cx="60" cy="95" r="2.5" fill="#ef4444"/>
+                      <circle cx="75" cy="95" r="2.5" fill="#ef4444"/>
+                      <text x="50" y="85" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> = 0</text>
+
+                      <!-- Terminal C (Arriba) -->
+                      <line x1="155" y1="18" x2="155" y2="48" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="18" r="3.5" fill="#10b981"/>
+                      <text x="155" y="11" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10">C</text>
+                      <text x="165" y="38" font-weight="bold" fill="#ef4444" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> = 0</text>
+
+                      <!-- Interruptor C-E Abierto -->
+                      <circle cx="155" cy="48" r="2.5" fill="#475569"/>
+                      <!-- Cuchilla de interruptor abierta -->
+                      <line x1="155" y1="88" x2="138" y2="52" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+                      <circle cx="155" cy="88" r="2.5" fill="#475569"/>
+
+                      <!-- Terminal E (Abajo) -->
+                      <line x1="155" y1="88" x2="155" y2="138" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="138" r="3.5" fill="#3b82f6"/>
+                      <text x="155" y="151" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="10">E</text>
+                      <text x="165" y="125" font-weight="bold" fill="#ef4444" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">E</tspan> = 0</text>
+
+                      <!-- Badge Central -->
+                      <rect x="58" y="55" width="72" height="20" rx="4" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-width="1"/>
+                      <text x="94" y="68" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8">C-E ABIERTO</text>
+
+                      <!-- Cota V_CE exterior -->
+                      <text x="210" y="72" text-anchor="end" font-weight="bold" fill="#64748b" font-size="8">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[10.5px] text-slate-600 dark:text-slate-400">
+                  <strong class="text-red-600 dark:text-red-400">Comportamiento:</strong> Llave abierta sin conducción. Tensión $V_{CE}$ máxima fijada por la fuente externa.
+                </div>
+              </div>
+
+              <!-- REGION 2: ACTIVA DIRECTA (ZAD) -->
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 flex flex-col justify-between shadow-2xs">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="font-bold text-xs text-emerald-600 dark:text-emerald-400">2. Activa Directa (ZAD)</span>
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Lineal</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 mb-2 space-y-0.5">
+                    <div>• Juntura BE: <strong class="text-emerald-600 dark:text-emerald-400">Directa</strong> ($V_{BE} \\approx 0.7\\text{ V}$)</div>
+                    <div>• Juntura BC: <strong class="text-slate-700 dark:text-slate-200">Inversa</strong> ($V_{BC} \\le 0$)</div>
+                  </div>
+                  <!-- SVG Circuito ZAD -->
+                  <div class="py-1">
+                    <svg viewBox="0 0 220 155" class="w-full h-auto text-xs font-sans select-none block">
+                      <rect x="0" y="0" width="220" height="155" rx="8" fill="#10b981" fill-opacity="0.04" stroke="#10b981" stroke-opacity="0.25" stroke-width="1"/>
+
+                      <!-- Terminal B (Izquierda) -->
+                      <line x1="25" y1="95" x2="60" y2="95" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="25" cy="95" r="3.5" fill="#ec4899"/>
+                      <text x="18" y="98" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="10">B</text>
+                      <!-- Flecha I_B -->
+                      <line x1="32" y1="88" x2="52" y2="88" stroke="#ef4444" stroke-width="1.6"/>
+                      <polygon points="50,85 55,88 50,91" fill="#ef4444"/>
+                      <text x="42" y="81" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">I<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+
+                      <!-- Diodo B-E en Directa (0.7V) -->
+                      <line x1="60" y1="95" x2="60" y2="105" stroke="#475569" stroke-width="1.6"/>
+                      <polygon points="53,105 67,105 60,116" fill="#6366f1"/>
+                      <line x1="53" y1="116" x2="67" y2="116" stroke="#6366f1" stroke-width="1.8"/>
+                      <line x1="60" y1="116" x2="60" y2="138" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="60" y1="138" x2="155" y2="138" stroke="#475569" stroke-width="1.6"/>
+                      <text x="73" y="114" font-weight="bold" fill="#6366f1" font-size="8">0.7 V</text>
+
+                      <!-- Terminal C (Arriba) -->
+                      <line x1="155" y1="18" x2="155" y2="48" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="18" r="3.5" fill="#10b981"/>
+                      <text x="155" y="11" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10">C</text>
+                      <!-- Flecha I_C -->
+                      <line x1="168" y1="24" x2="168" y2="42" stroke="#10b981" stroke-width="1.6"/>
+                      <polygon points="165,40 168,45 171,40" fill="#10b981"/>
+                      <text x="175" y="36" font-weight="bold" fill="#10b981" font-size="8">I<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+
+                      <!-- Fuente de Corriente Controlada (Rombo) -->
+                      <polygon points="155,52 172,68 155,84 138,68" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.8"/>
+                      <!-- Flecha interior hacia abajo -->
+                      <line x1="155" y1="59" x2="155" y2="76" stroke="#10b981" stroke-width="1.8"/>
+                      <polygon points="152,74 155,79 158,74" fill="#10b981"/>
+                      <text x="132" y="70" text-anchor="end" font-weight="bold" fill="#047857" font-size="8.5">β · I<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+
+                      <!-- Conexión a Emitter -->
+                      <line x1="155" y1="84" x2="155" y2="138" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="138" r="2.5" fill="#475569"/>
+                      <line x1="155" y1="138" x2="155" y2="148" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="148" r="3.5" fill="#3b82f6"/>
+                      <text x="165" y="151" font-weight="bold" fill="#3b82f6" font-size="10">E</text>
+
+                      <text x="210" y="72" text-anchor="end" font-weight="bold" fill="#64748b" font-size="7.5">V<tspan baseline-shift="sub" font-size="70%">CE</tspan> &gt; 0.2V</text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[10.5px] text-slate-600 dark:text-slate-400">
+                  <strong class="text-emerald-600 dark:text-emerald-400">Comportamiento:</strong> Fuente de corriente comandada por base ($I_C = \\beta I_B$). Base para amplificadores analógicos lineales.
+                </div>
+              </div>
+
+              <!-- REGION 3: SATURACIÓN -->
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-500/30 flex flex-col justify-between shadow-2xs">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="font-bold text-xs text-amber-600 dark:text-amber-400">3. Saturación</span>
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Llave ON</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 mb-2 space-y-0.5">
+                    <div>• Juntura BE: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BE} \\approx 0.7 - 0.8\\text{ V}$)</div>
+                    <div>• Juntura BC: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BC} &gt; 0.4\\text{ V}$)</div>
+                  </div>
+                  <!-- SVG Circuito Saturación -->
+                  <div class="py-1">
+                    <svg viewBox="0 0 220 155" class="w-full h-auto text-xs font-sans select-none block">
+                      <rect x="0" y="0" width="220" height="155" rx="8" fill="#f59e0b" fill-opacity="0.04" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+
+                      <!-- Terminal B (Izquierda) -->
+                      <line x1="25" y1="95" x2="60" y2="95" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="25" cy="95" r="3.5" fill="#ec4899"/>
+                      <text x="18" y="98" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="10">B</text>
+                      <text x="42" y="85" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">I<tspan baseline-shift="sub" font-size="70%">B</tspan> (alta)</text>
+
+                      <!-- Batería V_BE,sat -->
+                      <line x1="60" y1="95" x2="60" y2="105" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="51" y1="105" x2="69" y2="105" stroke="#d97706" stroke-width="2"/>
+                      <line x1="55" y1="111" x2="65" y2="111" stroke="#d97706" stroke-width="1.5"/>
+                      <line x1="60" y1="111" x2="60" y2="138" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="60" y1="138" x2="155" y2="138" stroke="#475569" stroke-width="1.6"/>
+                      <text x="73" y="110" font-weight="bold" fill="#d97706" font-size="7.5">0.7 V</text>
+
+                      <!-- Terminal C (Arriba) -->
+                      <line x1="155" y1="18" x2="155" y2="52" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="18" r="3.5" fill="#10b981"/>
+                      <text x="155" y="11" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10">C</text>
+                      <text x="165" y="34" font-weight="bold" fill="#d97706" font-size="8">I<tspan baseline-shift="sub" font-size="70%">C,sat</tspan></text>
+
+                      <!-- Batería fija V_CE,sat = 0.2V (Casi cortocircuito) -->
+                      <line x1="145" y1="58" x2="165" y2="58" stroke="#d97706" stroke-width="2.5"/>
+                      <line x1="149" y1="65" x2="161" y2="65" stroke="#d97706" stroke-width="1.8"/>
+                      <line x1="155" y1="52" x2="155" y2="58" stroke="#475569" stroke-width="1.8"/>
+                      <line x1="155" y1="65" x2="155" y2="138" stroke="#475569" stroke-width="1.8"/>
+
+                      <rect x="75" y="52" width="64" height="20" rx="4" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-width="1"/>
+                      <text x="107" y="65" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="8">V<tspan baseline-shift="sub" font-size="70%">CE,sat</tspan> ≈ 0.2V</text>
+
+                      <!-- Terminal E (Abajo) -->
+                      <circle cx="155" cy="138" r="2.5" fill="#475569"/>
+                      <line x1="155" y1="138" x2="155" y2="148" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="148" r="3.5" fill="#3b82f6"/>
+                      <text x="165" y="151" font-weight="bold" fill="#3b82f6" font-size="10">E</text>
+
+                      <text x="110" y="86" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="7.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> &lt; β · I<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                      <text x="110" y="96" text-anchor="middle" fill="#64748b" font-size="7">(β<tspan baseline-shift="sub" font-size="70%">forzado</tspan> &lt; β)</text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[10.5px] text-slate-600 dark:text-slate-400">
+                  <strong class="text-amber-600 dark:text-amber-400">Comportamiento:</strong> Llave cerrada ($V_{CE} \\approx 0.2\\text{ V}$). La corriente de colector queda acotada únicamente por la carga externa.
+                </div>
+              </div>
+
+              <!-- REGION 4: ACTIVA INVERSA (ZAI) -->
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-purple-500/30 flex flex-col justify-between shadow-2xs">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="font-bold text-xs text-purple-600 dark:text-purple-400">4. Activa Inversa (ZAI)</span>
+                    <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Degradada</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-400 mb-2 space-y-0.5">
+                    <div>• Juntura BE: <strong class="text-slate-700 dark:text-slate-200">Inversa</strong> ($V_{BE} \\le 0$)</div>
+                    <div>• Juntura BC: <strong class="text-purple-600 dark:text-purple-400">Directa</strong> ($V_{BC} \\approx 0.7\\text{ V}$)</div>
+                  </div>
+                  <!-- SVG Circuito ZAI -->
+                  <div class="py-1">
+                    <svg viewBox="0 0 220 155" class="w-full h-auto text-xs font-sans select-none block">
+                      <rect x="0" y="0" width="220" height="155" rx="8" fill="#8b5cf6" fill-opacity="0.04" stroke="#8b5cf6" stroke-opacity="0.25" stroke-width="1"/>
+
+                      <!-- Terminal B (Izquierda) -->
+                      <line x1="25" y1="65" x2="60" y2="65" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="25" cy="65" r="3.5" fill="#ec4899"/>
+                      <text x="18" y="68" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="10">B</text>
+                      <text x="42" y="55" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">I<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+
+                      <!-- Diodo B-C en Directa (hacia arriba a Colector) -->
+                      <line x1="60" y1="65" x2="60" y2="40" stroke="#475569" stroke-width="1.6"/>
+                      <polygon points="53,40 67,40 60,28" fill="#8b5cf6"/>
+                      <line x1="53" y1="28" x2="67" y2="28" stroke="#8b5cf6" stroke-width="1.8"/>
+                      <line x1="60" y1="28" x2="60" y2="18" stroke="#475569" stroke-width="1.6"/>
+                      <line x1="60" y1="18" x2="155" y2="18" stroke="#475569" stroke-width="1.6"/>
+                      <text x="73" y="38" font-weight="bold" fill="#8b5cf6" font-size="7.5">0.7 V</text>
+
+                      <!-- Terminal C (Arriba, emisor invertido) -->
+                      <circle cx="155" cy="18" r="3.5" fill="#10b981"/>
+                      <text x="165" y="16" font-weight="bold" fill="#10b981" font-size="8.5">C (Inyector)</text>
+
+                      <!-- Fuente de Corriente Controlada Inversa -->
+                      <line x1="155" y1="18" x2="155" y2="52" stroke="#475569" stroke-width="1.8"/>
+                      <polygon points="155,52 172,68 155,84 138,68" fill="#8b5cf6" fill-opacity="0.18" stroke="#8b5cf6" stroke-width="1.8"/>
+                      <!-- Flecha hacia abajo -->
+                      <line x1="155" y1="59" x2="155" y2="76" stroke="#8b5cf6" stroke-width="1.8"/>
+                      <polygon points="152,74 155,79 158,74" fill="#8b5cf6"/>
+                      <text x="132" y="70" text-anchor="end" font-weight="bold" fill="#7c3aed" font-size="8">β<tspan baseline-shift="sub" font-size="70%">R</tspan> · I<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+
+                      <!-- Terminal E (Abajo, recolector invertido) -->
+                      <line x1="155" y1="84" x2="155" y2="138" stroke="#475569" stroke-width="1.8"/>
+                      <circle cx="155" cy="138" r="3.5" fill="#3b82f6"/>
+                      <text x="165" y="142" font-weight="bold" fill="#3b82f6" font-size="8.5">E (Recolector)</text>
+
+                      <!-- Badge Ganancia Pobre -->
+                      <rect x="25" y="110" width="100" height="26" rx="4" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-width="1"/>
+                      <text x="75" y="122" text-anchor="middle" font-weight="bold" fill="#6d28d9" font-size="7.5">Ganancia Degradada:</text>
+                      <text x="75" y="131" text-anchor="middle" font-bold fill="#6d28d9" font-size="7.5">β<tspan baseline-shift="sub" font-size="70%">R</tspan> ≈ 0.05 ~ 0.5</text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[10.5px] text-slate-600 dark:text-slate-400">
+                  <strong class="text-purple-600 dark:text-purple-400">Comportamiento:</strong> Los terminales C y E intercambian funciones, pero con pésima ganancia por asimetría de dopado y área.
+                </div>
+              </div>
+            </div>
+
             <div class="overflow-x-auto my-3">
               <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
                 <thead>
