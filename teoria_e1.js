@@ -343,14 +343,14 @@ const MANUAL_TEORIA_E1 = {
                 📊 Gráfico: Teorema de Kennelly — Equivalencia Triángulo (Δ) y Estrella (Y)
               </h6>
               <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                <svg viewBox="0 0 760 235" class="w-full max-w-4xl h-auto font-sans text-xs select-none">
                   <!-- Lado Izquierdo: Configuración Triángulo (Delta) -->
-                  <g transform="translate(15, 8)">
-                    <rect x="0" y="0" width="265" height="214" rx="10" fill="#a855f7" fill-opacity="0.04" stroke="#a855f7" stroke-opacity="0.35" stroke-width="1.2"/>
-                    <text x="132" y="18" text-anchor="middle" font-weight="bold" fill="#7e22ce" font-size="11">Conexión Triángulo (Δ)</text>
-                    <text x="132" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas externas entre nodos A, B y C</text>
+                  <g transform="translate(10, 8)">
+                    <rect x="0" y="0" width="255" height="218" rx="10" fill="#a855f7" fill-opacity="0.04" stroke="#a855f7" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="127" y="18" text-anchor="middle" font-weight="bold" fill="#7e22ce" font-size="11">Conexión Triángulo (Δ)</text>
+                    <text x="127" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas externas entre nodos A, B y C</text>
 
-                    <!-- Lado A-B: R_AB (Rotado exactamente a 128.8° a lo largo de la rama) -->
+                    <!-- Lado A-B: R_AB (Rotado a 128.8° a lo largo de la rama) -->
                     <g transform="translate(87, 110) rotate(128.8)">
                       <line x1="-71.8" y1="0" x2="-26" y2="0" stroke="#64748b" stroke-width="2"/>
                       <path d="M -26 0 L -21 -7 L -13 7 L -5 -7 L 3 7 L 11 -7 L 19 7 L 26 0" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
@@ -359,7 +359,7 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="34" y="99" width="38" height="20" rx="4" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
                     <text x="53" y="113" text-anchor="middle" fill="#6b21a8" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">AB</tspan></text>
 
-                    <!-- Lado A-C: R_CA (Rotado exactamente a 51.2° a lo largo de la rama) -->
+                    <!-- Lado A-C: R_CA (Rotado a 51.2° a lo largo de la rama) -->
                     <g transform="translate(177, 110) rotate(51.2)">
                       <line x1="-71.8" y1="0" x2="-26" y2="0" stroke="#64748b" stroke-width="2"/>
                       <path d="M -26 0 L -21 -7 L -13 7 L -5 -7 L 3 7 L 11 -7 L 19 7 L 26 0" stroke="#7e22ce" stroke-width="2.2" fill="none"/>
@@ -388,35 +388,47 @@ const MANUAL_TEORIA_E1 = {
                     <text x="222" y="184" text-anchor="middle" fill="#10b981" font-weight="bold" font-size="10.5">Nodo C</text>
                   </g>
 
-                  <!-- Panel Central: Conversión Bidireccional -->
-                  <g transform="translate(285, 8)">
-                    <rect x="0" y="0" width="110" height="214" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+                  <!-- Panel Central: Conversión Bidireccional con Fórmulas Claras -->
+                  <g transform="translate(272, 8)">
+                    <rect x="0" y="0" width="216" height="218" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+                    <text x="108" y="16" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10.5">Fórmulas de Transformación</text>
 
-                    <!-- Flecha Delta -> Estrella -->
-                    <line x1="15" y1="62" x2="90" y2="62" stroke="#7e22ce" stroke-width="2.2"/>
-                    <polygon points="90,57 98,62 90,67" fill="#7e22ce"/>
-                    <text x="55" y="52" text-anchor="middle" fill="#7e22ce" font-weight="bold" font-size="9.5">Δ ➔ Y</text>
-                    <text x="55" y="74" text-anchor="middle" fill="#64748b" font-size="8">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = Prod<tspan baseline-shift="sub" font-size="70%">ady</tspan></text>
-                    <text x="55" y="85" text-anchor="middle" fill="#64748b" font-size="8">/ Σ R<tspan baseline-shift="sub" font-size="70%">Δ</tspan></text>
+                    <!-- Cuadro 1: Delta a Estrella (Δ -> Y) -->
+                    <rect x="6" y="22" width="204" height="66" rx="6" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+                    <text x="108" y="34" text-anchor="middle" font-weight="bold" fill="#6b21a8" font-size="9.5">Δ ➔ Y  (Ejemplo: Rama R<tspan baseline-shift="sub" font-size="70%">A</tspan>)</text>
+                    <text x="14" y="55" text-anchor="start" font-weight="bold" fill="#581c87" font-size="10">R<tspan baseline-shift="sub" font-size="70%">A</tspan> =</text>
+                    <!-- Numerador -->
+                    <text x="115" y="48" text-anchor="middle" font-weight="bold" fill="#6b21a8" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">AB</tspan> · R<tspan baseline-shift="sub" font-size="70%">CA</tspan></text>
+                    <!-- Barra de fracción -->
+                    <line x1="42" y1="52" x2="194" y2="52" stroke="#7e22ce" stroke-width="1.3"/>
+                    <!-- Denominador -->
+                    <text x="115" y="64" text-anchor="middle" font-weight="bold" fill="#6b21a8" font-size="9">R<tspan baseline-shift="sub" font-size="70%">AB</tspan> + R<tspan baseline-shift="sub" font-size="70%">BC</tspan> + R<tspan baseline-shift="sub" font-size="70%">CA</tspan></text>
+                    <text x="108" y="79" text-anchor="middle" fill="#7e22ce" font-size="7.5" font-style="italic">Producto adyacentes / Suma de las 3</text>
 
-                    <!-- Flecha Estrella -> Delta -->
-                    <line x1="95" y1="124" x2="20" y2="124" stroke="#2563eb" stroke-width="2.2"/>
-                    <polygon points="20,119 12,124 20,129" fill="#2563eb"/>
-                    <text x="55" y="114" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9.5">Y ➔ Δ</text>
-                    <text x="55" y="136" text-anchor="middle" fill="#64748b" font-size="8">R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> = Σ(R<tspan baseline-shift="sub" font-size="70%">i</tspan>·R<tspan baseline-shift="sub" font-size="70%">j</tspan>)</text>
-                    <text x="55" y="147" text-anchor="middle" fill="#64748b" font-size="8">/ R<tspan baseline-shift="sub" font-size="70%">opuesta</tspan></text>
+                    <!-- Cuadro 2: Estrella a Delta (Y -> Δ) -->
+                    <rect x="6" y="93" width="204" height="66" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="108" y="105" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="9.5">Y ➔ Δ  (Ejemplo: Lado R<tspan baseline-shift="sub" font-size="70%">AB</tspan>)</text>
+                    <text x="14" y="126" text-anchor="start" font-weight="bold" fill="#1e3a8a" font-size="10">R<tspan baseline-shift="sub" font-size="70%">AB</tspan> =</text>
+                    <!-- Numerador -->
+                    <text x="122" y="119" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="8">R<tspan baseline-shift="sub" font-size="70%">A</tspan>R<tspan baseline-shift="sub" font-size="70%">B</tspan> + R<tspan baseline-shift="sub" font-size="70%">B</tspan>R<tspan baseline-shift="sub" font-size="70%">C</tspan> + R<tspan baseline-shift="sub" font-size="70%">C</tspan>R<tspan baseline-shift="sub" font-size="70%">A</tspan></text>
+                    <!-- Barra de fracción -->
+                    <line x1="46" y1="123" x2="198" y2="123" stroke="#2563eb" stroke-width="1.3"/>
+                    <!-- Denominador -->
+                    <text x="122" y="135" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">C</tspan>  (rama opuesta a AB)</text>
+                    <text x="108" y="150" text-anchor="middle" fill="#2563eb" font-size="7.5" font-style="italic">Suma prod. pares / Rama opuesta</text>
 
-                    <!-- Simetría -->
-                    <rect x="6" y="165" width="98" height="37" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="55" y="178" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="8">Simétrico:</text>
-                    <text x="55" y="193" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="9">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> / 3</text>
+                    <!-- Cuadro 3: Caso Simétrico -->
+                    <rect x="6" y="164" width="204" height="46" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="108" y="177" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="9">Caso Simétrico (Ramas Iguales)</text>
+                    <text x="108" y="192" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="10">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> / 3  ⟺  R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> = 3 · R<tspan baseline-shift="sub" font-size="70%">Y</tspan></text>
+                    <text x="108" y="203" text-anchor="middle" fill="#78350f" font-size="7.5">Cada rama de estrella vale 1/3 del triángulo</text>
                   </g>
 
                   <!-- Lado Derecho: Configuración Estrella (Wye) -->
-                  <g transform="translate(400, 8)">
-                    <rect x="0" y="0" width="265" height="214" rx="10" fill="#2563eb" fill-opacity="0.04" stroke="#2563eb" stroke-opacity="0.35" stroke-width="1.2"/>
-                    <text x="132" y="18" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="11">Conexión Estrella (Y)</text>
-                    <text x="132" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas unidas al nodo neutro central N</text>
+                  <g transform="translate(495, 8)">
+                    <rect x="0" y="0" width="255" height="218" rx="10" fill="#2563eb" fill-opacity="0.04" stroke="#2563eb" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <text x="127" y="18" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="11">Conexión Estrella (Y)</text>
+                    <text x="127" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Ramas unidas al nodo neutro central N</text>
 
                     <!-- Rama A a N: R_A (Vertical) -->
                     <line x1="132" y1="54" x2="132" y2="70" stroke="#64748b" stroke-width="2"/>
@@ -425,7 +437,7 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="144" y="81" width="30" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
                     <text x="159" y="95" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">A</tspan></text>
 
-                    <!-- Rama B a N: R_B (Rotada exactamente a 156.0° a lo largo de la rama) -->
+                    <!-- Rama B a N: R_B (Rotada a 156.0° a lo largo de la rama) -->
                     <g transform="translate(87, 146) rotate(156.0)">
                       <line x1="-49.2" y1="0" x2="-22" y2="0" stroke="#64748b" stroke-width="2"/>
                       <path d="M -22 0 L -17 -6 L -10 6 L -3 -6 L 4 6 L 11 -6 L 17 6 L 22 0" stroke="#2563eb" stroke-width="2.2" fill="none"/>
@@ -434,7 +446,7 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="72" y="159" width="30" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
                     <text x="87" y="173" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
 
-                    <!-- Rama C a N: R_C (Rotada exactamente a 24.0° a lo largo de la rama) -->
+                    <!-- Rama C a N: R_C (Rotada a 24.0° a lo largo de la rama) -->
                     <g transform="translate(177, 146) rotate(24.0)">
                       <line x1="-49.2" y1="0" x2="-22" y2="0" stroke="#64748b" stroke-width="2"/>
                       <path d="M -22 0 L -17 -6 L -10 6 L -3 -6 L 4 6 L 11 -6 L 17 6 L 22 0" stroke="#2563eb" stroke-width="2.2" fill="none"/>
