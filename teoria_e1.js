@@ -2519,18 +2519,23 @@ const MANUAL_TEORIA_E1 = {
             <div class="p-4 my-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
               <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2">
                 <span class="font-bold text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>⚡</span> 5. Regulador de Tensión con Diodo Zener
+                  <span>⚡</span> 5. Regulador de Tensión en Derivación con Diodo Zener
                 </span>
-                <span class="text-[11px] font-mono text-slate-400">Operación en Ruptura Inversa (V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan>)</span>
+                <span class="text-[11px] font-mono text-slate-400">Ruptura Inversa · V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan> · I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan></span>
               </div>
 
-              <!-- Gráfico SVG: Circuito Zener y Curva de Regulación V_out vs V_in -->
-              <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 210" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
+              <!-- Fundamento Teórico -->
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                El diodo Zener se conecta <strong>en paralelo (shunt)</strong> con la carga $R_L$ y polarizado en <strong>inversa</strong> (cátodo al terminal positivo y ánodo a masa). Al operar en su zona de ruptura ($V \ge V_Z$), la tensión entre sus terminales permanece prácticamente constante ante amplias variaciones de corriente. La corriente entregada por la fuente se reparte según la LKC: <strong>$I_s = I_Z + I_L$</strong>. El Zener actúa como un amortiguador de corriente: absorbe los excesos de energía para estabilizar la tensión de salida exactamente en $V_{out} = V_Z$.
+              </p>
+
+              <!-- Gráfico SVG: Circuito Zener (Símbolo IEEE Correcto) y Curva V_out vs V_in -->
+              <div class="overflow-x-auto py-1">
+                <svg viewBox="0 0 680 215" class="w-full max-w-2xl mx-auto h-auto font-sans text-xs select-none block">
                   <!-- Lado Izquierdo: Circuito del Regulador Zener -->
                   <g transform="translate(10, 15)">
-                    <rect x="0" y="0" width="310" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Esquema del Regulador Zener</text>
+                    <rect x="0" y="0" width="315" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="157" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Esquema del Regulador Zener Shunt</text>
 
                     <!-- Fuente V_in -->
                     <circle cx="45" cy="95" r="15" fill="none" stroke="#2563eb" stroke-width="1.8"/>
@@ -2546,31 +2551,38 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="120" y1="55" x2="180" y2="55" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Corriente I_s -->
-                    <line x1="60" y1="48" x2="80" y2="48" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-blue)"/>
-                    <text x="70" y="43" fill="#2563eb" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+                    <line x1="58" y1="47" x2="78" y2="47" stroke="#2563eb" stroke-width="1.5"/>
+                    <polygon points="76,44 81,47 76,50" fill="#2563eb"/>
+                    <text x="68" y="42" fill="#2563eb" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
 
-                    <!-- Diodo Zener en Rama Vertical (cátodo arriba, ánodo abajo) -->
-                    <line x1="180" y1="55" x2="180" y2="75" stroke="#64748b" stroke-width="1.5"/>
-                    <g transform="translate(180, 85)">
-                      <!-- Cátodo con alitas Zener arriba -->
-                      <path d="M -9 -8 L -6 -8 L 6 -8 L 9 -5" fill="none" stroke="#0284c7" stroke-width="1.8"/>
-                      <!-- Triángulo apuntando hacia abajo -->
-                      <polygon points="-8,-8 8,-8 0,8" fill="#0ea5e9" stroke="#0284c7" stroke-width="1.2"/>
-                      <text x="16" y="2" fill="#0284c7" font-weight="bold" font-size="9">Zener</text>
-                      <text x="16" y="14" fill="#0284c7" font-size="8">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <!-- Diodo Zener en Rama Vertical (Símbolo IEEE Correcto: Cátodo arriba con alas en Z, Ánodo abajo) -->
+                    <line x1="180" y1="55" x2="180" y2="78" stroke="#64748b" stroke-width="1.5"/>
+                    
+                    <!-- Símbolo Zener centrado en (180, 92) -->
+                    <g transform="translate(180, 92)">
+                      <!-- Cátodo con alas Zener en Z en la parte superior -->
+                      <path d="M -9 -4 L -6 -8 L 6 -8 L 9 -12" fill="none" stroke="#0284c7" stroke-width="2"/>
+                      <!-- Triángulo apuntando hacia el cátodo (arriba) -->
+                      <polygon points="0,-8 -7,5 7,5" fill="#0ea5e9" stroke="#0284c7" stroke-width="1.3"/>
+                      
+                      <text x="15" y="-1" fill="#0284c7" font-weight="bold" font-size="9">Zener</text>
+                      <text x="15" y="11" fill="#0284c7" font-size="8">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
                     </g>
-                    <line x1="180" y1="95" x2="180" y2="145" stroke="#64748b" stroke-width="1.5"/>
 
-                    <!-- Corriente I_Z -->
-                    <line x1="172" y1="65" x2="172" y2="80" stroke="#0284c7" stroke-width="1.5"/>
-                    <text x="166" y="75" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <line x1="180" y1="97" x2="180" y2="145" stroke="#64748b" stroke-width="1.5"/>
+
+                    <!-- Flecha Corriente inversa I_Z (hacia abajo, entrando al cátodo) -->
+                    <line x1="168" y1="67" x2="168" y2="82" stroke="#0284c7" stroke-width="1.5"/>
+                    <polygon points="165,80 168,85 171,80" fill="#0284c7"/>
+                    <text x="162" y="76" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
 
                     <!-- Rama de Carga R_L -->
                     <line x1="180" y1="55" x2="260" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     
                     <!-- Corriente I_L -->
-                    <line x1="210" y1="48" x2="230" y2="48" stroke="#10b981" stroke-width="1.5"/>
-                    <text x="220" y="43" fill="#10b981" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                    <line x1="210" y1="47" x2="230" y2="47" stroke="#10b981" stroke-width="1.5"/>
+                    <polygon points="228,44 233,47 228,50" fill="#10b981"/>
+                    <text x="220" y="42" fill="#10b981" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
                     <line x1="260" y1="55" x2="260" y2="75" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="252" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
@@ -2586,55 +2598,120 @@ const MANUAL_TEORIA_E1 = {
                     <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
                   </g>
 
-                  <!-- Lado Derecho: Curva de Transferencia V_out vs V_in -->
-                  <g transform="translate(340, 15)">
-                    <rect x="0" y="0" width="330" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V<tspan baseline-shift="sub" font-size="70%">out</tspan> vs V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
+                  <!-- Lado Derecho: Curva de Transferencia V_out vs V_in y Rangos Operativos -->
+                  <g transform="translate(345, 15)">
+                    <rect x="0" y="0" width="325" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+                    <text x="162" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V<tspan baseline-shift="sub" font-size="70%">out</tspan> vs V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
 
                     <!-- Ejes coordenados -->
-                    <line x1="35" y1="140" x2="305" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="310" y="143" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
+                    <line x1="35" y1="140" x2="300" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="305" y="143" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
                     <line x1="45" y1="30" x2="45" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
                     <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
 
                     <!-- Zona No Regulada (lineal con pendiente R_L / (R_s + R_L)) -->
-                    <line x1="45" y1="140" x2="135" y2="75" stroke="#f59e0b" stroke-width="2.2"/>
+                    <line x1="45" y1="140" x2="130" y2="75" stroke="#f59e0b" stroke-width="2.2"/>
                     
                     <!-- Zona Regulada (horizontal plana en V_Z) -->
-                    <line x1="135" y1="75" x2="295" y2="75" stroke="#059669" stroke-width="3"/>
+                    <line x1="130" y1="75" x2="270" y2="75" stroke="#059669" stroke-width="3"/>
+
+                    <!-- Zona de Destrucción Térmica (más allá de V_in,max) -->
+                    <line x1="270" y1="75" x2="295" y2="75" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,2"/>
 
                     <!-- Puntos de referencia -->
-                    <line x1="135" y1="75" x2="135" y2="140" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="135" y="153" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,min</tspan></text>
+                    <line x1="130" y1="75" x2="130" y2="140" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="130" y="153" text-anchor="middle" fill="#d97706" font-size="8" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,min</tspan></text>
 
-                    <line x1="45" y1="75" x2="135" y2="75" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <line x1="270" y1="75" x2="270" y2="140" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="270" y="153" text-anchor="middle" fill="#dc2626" font-size="8" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,max</tspan></text>
 
-                    <!-- Etiquetas en el gráfico -->
-                    <text x="90" y="115" fill="#d97706" font-size="8">Zener Apagado</text>
-                    <text x="210" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="10">Zona Regulada: V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan> = Cte</text>
-                    <text x="210" y="105" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan> (I<tspan baseline-shift="sub" font-size="70%">Z</tspan> absorbe excesos)</text>
+                    <line x1="45" y1="75" x2="130" y2="75" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+
+                    <!-- Etiquetas descriptivas -->
+                    <text x="85" y="112" fill="#d97706" font-size="7.5" font-weight="bold">Zener Apagado</text>
+                    <text x="85" y="122" fill="#64748b" font-size="7">V<tspan baseline-shift="sub" font-size="70%">out</tspan> &lt; V<tspan baseline-shift="sub" font-size="70%">Z</tspan> (Divisor)</text>
+
+                    <text x="200" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="9.5">Zona Regulada: V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <text x="200" y="95" text-anchor="middle" fill="#64748b" font-size="8">I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan> (Zener absorbe excesos)</text>
+
+                    <text x="282" y="68" fill="#dc2626" font-size="7" font-weight="bold">¡Peligro P<tspan baseline-shift="sub" font-size="70%">Z,max</tspan>!</text>
                   </g>
                 </svg>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <!-- ANÁLISIS DE SENSIBILIDAD DINÁMICA: CÓMO AFECTA CADA CAMBIO -->
+              <div class="mt-2 space-y-2.5">
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block">
+                  🔍 Dinámica del Circuito: ¿Cómo afecta la variación de cada parámetro?
+                </span>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+                  <!-- Caso 1: Variación de V_in -->
+                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
+                    <div class="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                      <span>1.</span> Variación de la Fuente ($V_{in}$)
+                    </div>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                      Con $R_s$ y $R_L$ fijas, $I_L = V_Z / R_L$ permanece <strong>constante</strong>.
+                    </p>
+                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
+                      <li><strong>Si $V_{in} ↑$:</strong> $I_s = \\frac{V_{in} - V_Z}{R_s}$ sube. Como $I_L$ es fija, <strong>todo el aumento va al Zener</strong> ($I_Z ↑$). <em>Riesgo:</em> Si $I_Z > I_{Z,max}$, el Zener se quema por disipación térmica.</li>
+                      <li><strong>Si $V_{in} ↓$:</strong> $I_s$ baja y el Zener cede corriente ($I_Z ↓$). <em>Riesgo:</em> Si $V_{in} &lt; V_{in,min}$, $I_Z &lt; I_{ZK}$ y el Zener <strong>se apaga</strong>; la salida deja de regular y cae como simple divisor resistivo.</li>
+                    </ul>
+                  </div>
+
+                  <!-- Caso 2: Variación de R_L -->
+                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
+                    <div class="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                      <span>2.</span> Variación de la Carga ($R_L$)
+                    </div>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                      Con $V_{in}$ fija, la corriente total de entrada $I_s$ es <strong>constante</strong>.
+                    </p>
+                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
+                      <li><strong>Si $R_L ↓$ (más demanda $I_L ↑$):</strong> La carga le "quita" corriente al Zener ($I_Z = I_s - I_L ↓$). <em>Riesgo:</em> Si $R_L &lt; R_{L,min}$, el Zener se apaga por falta de corriente y $V_{out}$ colapsa.</li>
+                      <li><strong>Si $R_L → ∞$ (carga desconectada / $I_L = 0$):</strong> Toda la corriente $I_s$ fluye por el Zener ($I_Z = I_s$). <em>Riesgo:</em> <strong>Peor caso de potencia máxima</strong> ($P_Z = V_Z · I_s$).</li>
+                    </ul>
+                  </div>
+
+                  <!-- Caso 3: Variación de R_s -->
+                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
+                    <div class="font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1">
+                      <span>3.</span> Variación de Resistencia Serie ($R_s$)
+                    </div>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                      Fija el balance operativo entre regulación y protección del diodo:
+                    </p>
+                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
+                      <li><strong>Si $R_s$ es muy grande:</strong> Limita en exceso la corriente. Ante una caída de $V_{in}$ o aumento de $I_L$, no alcanza corriente para mantener al Zener en ruptura ($R_s > R_{s,max}$).</li>
+                      <li><strong>Si $R_s$ es muy pequeña:</strong> Deja pasar demasiada corriente. Ante máxima entrada y carga desconectada ($I_L = 0$), el Zener supera $I_{Z,max}$ y se quema ($R_s < R_{s,min}$).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FÓRMULAS DE DISEÑO DE EXAMEN -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
                 <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Cálculo de la Resistencia Serie Límites:</span>
-                  <div class="space-y-1">
-                    <p><strong>R_s máxima (Garantiza regulación ante mínima entrada y máxima carga):</strong></p>
-                    $$R_{s,max} = \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{Z,min}}$$
-                    <p class="mt-2"><strong>R_s mínima (Protege al Zener de sobrecalentamiento ante máxima entrada y carga desconectada):</strong></p>
-                    $$R_{s,min} = \\frac{V_{in,max} - V_Z}{I_{L,min} + I_{Z,max}}, \\quad \\text{con } I_{Z,max} = \\frac{P_{Z,max}}{V_Z}$$
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Cálculo de los Límites de $R_s$:</span>
+                  <div class="space-y-1.5">
+                    <p><strong>1. $R_s$ máxima (Garantiza regulación ante mínima entrada y máxima carga):</strong></p>
+                    $$R_{s,max} = \\frac{V_{in,min} - V_Z}{I_{L,max} + I_{ZK}}$$
+                    <p class="mt-2"><strong>2. $R_s$ mínima (Protege al Zener de sobrecalentamiento con máxima entrada y sin carga):</strong></p>
+                    $$R_{s,min} = \\frac{V_{in,max} - V_Z}{I_{Z,max}} = \\frac{V_{in,max} - V_Z}{P_{Z,max} / V_Z}$$
                   </div>
                 </div>
 
                 <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Potencia Máxima Disipada en el Zener ($P_{Z,max}$):</span>
-                  $$P_{Z,max} = V_Z \\cdot I_{Z,max} = V_Z \\left( \\frac{V_{in,max} - V_Z}{R_s} - I_{L,min} \\right)$$
-                  <p class="text-slate-500 mt-1 text-[11px]">
-                    El caso más exigente térmicamente ocurre cuando la tensión de entrada $V_{in}$ alcanza su valor máximo y la carga se desconecta ($I_L = 0$), forzando a que toda la corriente del circuito atraviese el Zener.
-                  </p>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Resistencia de Carga Mínima y Potencia:</span>
+                  <div class="space-y-1.5">
+                    <p><strong>Carga mínima admisible ($R_{L,min}$ antes de perder regulación):</strong></p>
+                    $$R_{L,min} = \\frac{V_Z}{I_{s} - I_{ZK}} = \\frac{V_Z}{\\frac{V_{in} - V_Z}{R_s} - I_{ZK}}$$
+                    <p class="mt-2"><strong>Potencia máxima disipada en el Zener ($P_{Z,max}$):</strong></p>
+                    $$P_{Z,disipada} = V_Z \\cdot I_Z = V_Z \\left( \\frac{V_{in,max} - V_Z}{R_s} - I_{L,min} \\right) \\le P_{Z,max}$$
+                    <span class="text-[11px] text-slate-500 block">El peor caso térmico siempre ocurre a circuito abierto ($I_L = 0$) y máxima entrada $V_{in,max}$.</span>
+                  </div>
                 </div>
               </div>
             </div>
