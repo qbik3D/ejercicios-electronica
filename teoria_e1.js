@@ -42,7 +42,7 @@ const MANUAL_TEORIA_E1 = {
                   <span class="font-bold text-blue-600 dark:text-blue-400">Ley de Ohm con Convención Pasiva:</span>
                   $$V_{AB} = V_A - V_B = + I \\cdot R$$
                   <p class="text-slate-600 dark:text-slate-400 mt-1">
-                    Donde $I$ fluye de $A$ hacia $B$. Si arbitrariamente se define $I$ en sentido opuesto (entrando por el borne $-$), la relación matemática adquiere signo negativo: $V_{AB} = - I \\cdot R$.
+                    Donde la corriente $I$ fluye desde el nodo $A$ ($+$) hacia el nodo $B$ ($-$). La tensión $V_{AB}$ representa la caída de potencial positiva en el sentido del flujo de corriente.
                   </p>
                 </div>
                 <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/80 border border-blue-200 dark:border-blue-900">
@@ -55,88 +55,61 @@ const MANUAL_TEORIA_E1 = {
               </div>
             </div>
 
-            <!-- Gráfico SVG: Convención de Signos y Sentido de Corriente sobre una Resistencia -->
+            <!-- Gráfico SVG: Convención de Signos Pasiva sobre una Resistencia -->
             <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
               <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
-                📊 Gráfico: Sentido de Corriente y Polaridad de Tensión sobre una Resistencia (R)
+                📊 Gráfico: Convención de Signos Pasiva — Sentido de Corriente y Caída de Tensión (R)
               </h6>
               <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 640 195" class="w-full max-w-2xl h-auto font-sans text-xs select-none">
-                  <!-- Caso 1: Convención Pasiva Estándar -->
-                  <g transform="translate(15, 8)">
-                    <rect x="0" y="0" width="295" height="175" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Caso Estándar: Convención Pasiva</text>
-                    <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (+)</text>
+                <svg viewBox="0 0 580 185" class="w-full max-w-xl h-auto font-sans text-xs select-none">
+                  <!-- Tarjeta Principal Contenedora -->
+                  <rect x="10" y="8" width="560" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.35" stroke-width="1.2"/>
+                  <text x="290" y="23" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Convención de Signos Pasiva Estándar (Receptores)</text>
+                  <text x="290" y="35" text-anchor="middle" fill="#64748b" font-size="8.5">La corriente I entra siempre por el terminal de mayor potencial (+) y sale por el (-)</text>
 
-                    <!-- Flecha de Caída de Tensión V_R (sentido único, opuesto a la corriente) -->
-                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> &gt; 0 (Caída de tensión)</text>
-                    <line x1="60" y1="58" x2="210" y2="58" stroke="#ef4444" stroke-width="1.8"/>
-                    <polygon points="60,54 50,58 60,62" fill="#ef4444"/>
+                  <!-- SECCIÓN IZQUIERDA: Componente Resistencia y Bornes -->
+                  <!-- Caída de Tensión V_AB (Flecha de sentido único opuesta a la corriente) -->
+                  <text x="160" y="52" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> &gt; 0 (Caída de tensión)</text>
+                  <line x1="80" y1="58" x2="240" y2="58" stroke="#ef4444" stroke-width="1.8"/>
+                  <polygon points="80,54 70,58 80,62" fill="#ef4444"/>
 
-                    <!-- Terminal A (+) -->
-                    <text x="35" y="74" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">A (+)</text>
-                    <circle cx="35" cy="86" r="4" fill="#ef4444"/>
+                  <!-- Terminal A (+) -->
+                  <text x="50" y="78" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">A (+)</text>
+                  <circle cx="50" cy="90" r="4.5" fill="#ef4444"/>
 
-                    <!-- Cable conductor -->
-                    <line x1="35" y1="86" x2="85" y2="86" stroke="#64748b" stroke-width="2"/>
+                  <!-- Cable conductor hacia R -->
+                  <line x1="50" y1="90" x2="105" y2="90" stroke="#64748b" stroke-width="2"/>
 
-                    <!-- Símbolo de Resistencia R (Zigzag) -->
-                    <text x="125" y="70" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
-                    <path d="M 85 86 L 92 76 L 105 96 L 118 76 L 131 96 L 144 76 L 157 96 L 164 86" fill="none" stroke="#334155" stroke-width="2.2"/>
+                  <!-- Símbolo de Resistencia R (Zigzag) -->
+                  <text x="160" y="75" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                  <path d="M 105 90 L 113 80 L 129 100 L 145 80 L 161 100 L 177 80 L 193 100 L 207 80 L 215 90" fill="none" stroke="#334155" stroke-width="2.4"/>
 
-                    <!-- Cable conductor a Terminal B (-) -->
-                    <line x1="164" y1="86" x2="220" y2="86" stroke="#64748b" stroke-width="2"/>
-                    <circle cx="220" cy="86" r="4" fill="#3b82f6"/>
-                    <text x="220" y="74" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
+                  <!-- Cable conductor a Terminal B (-) -->
+                  <line x1="215" y1="90" x2="270" y2="90" stroke="#64748b" stroke-width="2"/>
+                  <circle cx="270" cy="90" r="4.5" fill="#3b82f6"/>
+                  <text x="270" y="78" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">B (-)</text>
 
-                    <!-- Flecha de Corriente I (hacia la derecha) -->
-                    <line x1="50" y1="104" x2="95" y2="104" stroke="#2563eb" stroke-width="2.2"/>
-                    <polygon points="95,100 103,104 95,108" fill="#2563eb"/>
-                    <text x="74" y="118" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔</text>
+                  <!-- Flecha de Corriente I (hacia la derecha, entrando por +) -->
+                  <line x1="60" y1="112" x2="120" y2="112" stroke="#2563eb" stroke-width="2.2"/>
+                  <polygon points="120,108 128,112 120,116" fill="#2563eb"/>
+                  <text x="90" y="127" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔ (Entra por +)</text>
 
-                    <!-- Fórmulas -->
-                    <rect x="25" y="130" width="245" height="34" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="147" y="143" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="10.5">V = + I · R</text>
-                    <text x="147" y="156" text-anchor="middle" fill="#047857" font-size="8.5">P = V·I = I²·R &gt; 0 (Absorbe potencia)</text>
-                  </g>
+                  <!-- SECCIÓN DERECHA: Fórmulas y Principios -->
+                  <!-- Cuadro 1: Ley de Ohm -->
+                  <rect x="310" y="48" width="245" height="44" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                  <text x="322" y="63" font-weight="bold" fill="#1e40af" font-size="9.5">Ley de Ohm (Convención Pasiva):</text>
+                  <text x="322" y="77" font-weight="bold" fill="#2563eb" font-size="11">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = + I · R</text>
+                  <text x="322" y="87" fill="#64748b" font-size="7.5">Signo (+): la corriente entra por el borne (+)</text>
 
-                  <!-- Caso 2: Referencia Invertida -->
-                  <g transform="translate(330, 8)">
-                    <rect x="0" y="0" width="295" height="175" rx="10" fill="#f59e0b" fill-opacity="0.04" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="147" y="18" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="11">Referencia Invertida de Corriente</text>
-                    <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (-)</text>
+                  <!-- Cuadro 2: Potencia disipada -->
+                  <rect x="310" y="98" width="245" height="44" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                  <text x="322" y="113" font-weight="bold" fill="#166534" font-size="9.5">Potencia Disipada (Efecto Joule):</text>
+                  <text x="322" y="127" font-weight="bold" fill="#059669" font-size="11">P = V · I = I² · R &gt; 0</text>
+                  <text x="322" y="137" fill="#15803d" font-size="7.5">El componente siempre absorbe energía.</text>
 
-                    <!-- Flecha de Caída de Tensión (sentido único, opuesto a la corriente I) -->
-                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> (Ref. A-B)</text>
-                    <line x1="50" y1="58" x2="200" y2="58" stroke="#b45309" stroke-width="1.8"/>
-                    <polygon points="200,54 210,58 200,62" fill="#b45309"/>
-
-                    <!-- Terminal A (+) -->
-                    <text x="35" y="74" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10.5">A (+)</text>
-                    <circle cx="35" cy="86" r="4" fill="#ef4444"/>
-
-                    <!-- Cable conductor -->
-                    <line x1="35" y1="86" x2="85" y2="86" stroke="#64748b" stroke-width="2"/>
-
-                    <!-- Símbolo de Resistencia R (Zigzag) -->
-                    <text x="125" y="70" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
-                    <path d="M 85 86 L 92 76 L 105 96 L 118 76 L 131 96 L 144 76 L 157 96 L 164 86" fill="none" stroke="#334155" stroke-width="2.2"/>
-
-                    <!-- Cable conductor a Terminal B (-) -->
-                    <line x1="164" y1="86" x2="220" y2="86" stroke="#64748b" stroke-width="2"/>
-                    <circle cx="220" cy="86" r="4" fill="#3b82f6"/>
-                    <text x="220" y="74" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
-
-                    <!-- Flecha de Corriente I Invertida (de derecha a izquierda) -->
-                    <line x1="205" y1="104" x2="160" y2="104" stroke="#b45309" stroke-width="2.2"/>
-                    <polygon points="160,100 152,104 160,108" fill="#b45309"/>
-                    <text x="182" y="118" text-anchor="middle" fill="#b45309" font-weight="bold" font-size="10">⬅ I</text>
-
-                    <!-- Fórmulas -->
-                    <rect x="25" y="130" width="245" height="34" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="147" y="143" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="10.5">V = - I · R</text>
-                    <text x="147" y="156" text-anchor="middle" fill="#64748b" font-size="8.5">Signo (-) por referencia opuesta a la caída</text>
-                  </g>
+                  <!-- Banner Inferior Mnemotécnico -->
+                  <rect x="25" y="149" width="530" height="20" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                  <text x="290" y="163" text-anchor="middle" fill="#334155" font-weight="600" font-size="8.5">⚡ Regla estándar: La corriente ingresa siempre por el polo positivo (+) y egresa por el negativo (-)</text>
                 </svg>
               </div>
             </div>
