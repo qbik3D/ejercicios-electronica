@@ -3822,7 +3822,7 @@ const MANUAL_TEORIA_E1 = {
                       <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">🛡️ Auto-estabilizante</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
-                      <strong>¿Cómo mejora con feedback?</strong> La resistencia $R_B$ se conecta al <em>colector</em> ($V_C$) en lugar de $V_{CC}$, cerrando un lazo de <strong>realimentación negativa de tensión</strong>:
+                      <strong>¿Cómo mejora con feedback?</strong> La resistencia $R_B$ se conecta al <em>colector</em> ($V_C$) en lugar de a la fuente fija $V_{BB}$, cerrando un lazo de <strong>realimentación negativa de tensión</strong>:
                     </p>
                     <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-blue-100 dark:border-blue-900/30 text-center font-mono my-1.5">
                       $$I_B = \\frac{V_C - V_{BE}}{R_B} = \\frac{V_{CC} - (I_C + I_B) R_C - V_{BE}}{R_B}$$
