@@ -1019,10 +1019,10 @@ const MANUAL_TEORIA_E1 = {
                 📊 Gráfico: Teorema de Millman — Reducción de Múltiples Generadores en Paralelo
               </h6>
               <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 680 230" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
+                <svg viewBox="0 0 680 248" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
                   <!-- Panel Izquierdo: Circuito Multirrama entre A y B -->
                   <g transform="translate(10, 10)">
-                    <rect x="0" y="0" width="375" height="210" rx="10" fill="#0d9488" fill-opacity="0.04" stroke="#0d9488" stroke-opacity="0.35" stroke-width="1.2"/>
+                    <rect x="0" y="0" width="375" height="232" rx="10" fill="#0d9488" fill-opacity="0.04" stroke="#0d9488" stroke-opacity="0.35" stroke-width="1.2"/>
                     <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="11">Circuito Multirrama en Paralelo (Nodos A y B)</text>
                     <text x="187" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Fuentes de tensión serie, fuentes de corriente y ramas pasivas</text>
 
@@ -1081,13 +1081,65 @@ const MANUAL_TEORIA_E1 = {
                     <path d="M 295 80 L 289 86 L 301 94 L 289 102 L 301 110 L 289 118 L 295 124" stroke="#334155" stroke-width="2" fill="none"/>
                     <line x1="295" y1="124" x2="295" y2="150" stroke="#64748b" stroke-width="1.8"/>
                     <circle cx="295" cy="150" r="2.5" fill="#334155"/>
-                    <text x="308" y="105" text-anchor="start" fill="#334155" font-weight="bold" font-size="8.5">Rp</text>
-                    <text x="280" y="105" text-anchor="end" fill="#64748b" font-size="7.5">aporte 0</text>
+                    <text x="308" y="99" text-anchor="start" fill="#334155" font-weight="bold" font-size="8.5">Rp</text>
+                    <text x="308" y="112" text-anchor="start" fill="#64748b" font-size="7.5">(sin fuente)</text>
 
-                    <!-- Cuadro resumen de fórmula Millman -->
-                    <rect x="15" y="160" width="345" height="44" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                    <text x="187" y="176" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = [ (E<tspan baseline-shift="sub" font-size="70%">1</tspan>/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) - (E<tspan baseline-shift="sub" font-size="70%">2</tspan>/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + I<tspan baseline-shift="sub" font-size="70%">s3</tspan> ] / [ (1/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">p</tspan>) ]</text>
-                    <text x="187" y="194" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): apunta al nodo A | Signo (-): apunta al nodo B</text>
+                    <!-- Cuadro resumen de fórmula Millman en formato fraccionario elegante -->
+                    <rect x="10" y="152" width="355" height="72" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                    
+                    <!-- Miembro izquierdo -->
+                    <text x="18" y="183" text-anchor="start" fill="#166534" font-weight="bold" font-size="10.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> =</text>
+
+                    <!-- Barra principal de fracción -->
+                    <line x1="60" y1="180" x2="272" y2="180" stroke="#166534" stroke-width="1.5"/>
+
+                    <!-- Numerador: Términos de corrientes -->
+                    <!-- + E1/R1 -->
+                    <text x="76" y="173" text-anchor="middle" fill="#059669" font-weight="bold" font-size="9.5">+</text>
+                    <text x="102" y="167" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">E<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                    <line x1="90" y1="170" x2="114" y2="170" stroke="#166534" stroke-width="1"/>
+                    <text x="102" y="177" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+
+                    <!-- - E2/R2 -->
+                    <text x="136" y="173" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="10.5">−</text>
+                    <text x="164" y="167" text-anchor="middle" fill="#dc2626" font-weight="bold" font-size="8.5">E<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                    <line x1="152" y1="170" x2="176" y2="170" stroke="#166534" stroke-width="1"/>
+                    <text x="164" y="177" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+
+                    <!-- + Is3 -->
+                    <text x="198" y="173" text-anchor="middle" fill="#059669" font-weight="bold" font-size="9.5">+</text>
+                    <text x="228" y="173" text-anchor="middle" fill="#059669" font-weight="bold" font-size="9">I<tspan baseline-shift="sub" font-size="70%">s3</tspan></text>
+
+                    <!-- Denominador: Suma de conductancias 1/R -->
+                    <!-- 1/R1 -->
+                    <text x="102" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="90" y1="192" x2="114" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="102" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+
+                    <!-- + -->
+                    <text x="136" y="195" text-anchor="middle" fill="#166534" font-weight="bold" font-size="9.5">+</text>
+
+                    <!-- 1/R2 -->
+                    <text x="164" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="152" y1="192" x2="176" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="164" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+
+                    <!-- + -->
+                    <text x="198" y="195" text-anchor="middle" fill="#166534" font-weight="bold" font-size="9.5">+</text>
+
+                    <!-- 1/Rp -->
+                    <text x="228" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="216" y1="192" x2="240" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="228" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">p</tspan></text>
+
+                    <!-- Equivalencia compacta con sumatorias = Σ I / Σ G -->
+                    <text x="288" y="183" text-anchor="middle" fill="#166534" font-weight="bold" font-size="10">=</text>
+                    <text x="322" y="173" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="8.5">Σ ±I<tspan baseline-shift="sub" font-size="70%">k</tspan></text>
+                    <line x1="300" y1="180" x2="344" y2="180" stroke="#0f766e" stroke-width="1.3"/>
+                    <text x="322" y="195" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="8.5">Σ G<tspan baseline-shift="sub" font-size="70%">k</tspan></text>
+
+                    <!-- Aclaración mnemotécnica de signos -->
+                    <text x="187" y="216" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): la corriente/fuente apunta a A  |  Signo (-): apunta a B</text>
                   </g>
 
                   <!-- Flecha de conversión de Millman -->
@@ -1098,7 +1150,7 @@ const MANUAL_TEORIA_E1 = {
 
                   <!-- Panel Derecho: Equivalente Thévenin Único de Millman -->
                   <g transform="translate(420, 10)">
-                    <rect x="0" y="0" width="250" height="210" rx="10" fill="#0d9488" fill-opacity="0.05" stroke="#0d9488" stroke-opacity="0.4" stroke-width="1.2"/>
+                    <rect x="0" y="0" width="250" height="232" rx="10" fill="#0d9488" fill-opacity="0.05" stroke="#0d9488" stroke-opacity="0.4" stroke-width="1.2"/>
                     <text x="125" y="18" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="11">Equivalente Thévenin (Millman)</text>
                     <text x="125" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Rama serie única entre A y B</text>
 
@@ -1131,10 +1183,41 @@ const MANUAL_TEORIA_E1 = {
                     <polygon points="202,71 205,65 208,71" fill="#0f766e"/>
                     <text x="195" y="103" text-anchor="end" fill="#0f766e" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan></text>
 
-                    <!-- Fórmulas equivalentes -->
-                    <rect x="15" y="156" width="220" height="45" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                    <text x="125" y="171" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">M</tspan> = 1 / Σ(1/R<tspan baseline-shift="sub" font-size="70%">k</tspan>)</text>
-                    <text x="125" y="187" text-anchor="middle" fill="#059669" font-size="8">Resistencia equivalente de Thévenin</text>
+                    <!-- Cuadro Thévenin equivalente sin slashes -->
+                    <rect x="12" y="152" width="226" height="72" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                    
+                    <text x="18" y="183" text-anchor="start" fill="#166534" font-weight="bold" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">M</tspan> = R<tspan baseline-shift="sub" font-size="70%">th</tspan> =</text>
+
+                    <!-- Barra de fracción principal de RM -->
+                    <line x1="82" y1="180" x2="228" y2="180" stroke="#166534" stroke-width="1.5"/>
+
+                    <!-- Numerador 1 -->
+                    <text x="155" y="173" text-anchor="middle" fill="#166534" font-weight="bold" font-size="10">1</text>
+
+                    <!-- Denominador con fracciones 1/R1 + 1/R2 + 1/Rp -->
+                    <!-- 1/R1 -->
+                    <text x="106" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="96" y1="192" x2="116" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="106" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+
+                    <!-- + -->
+                    <text x="131" y="195" text-anchor="middle" fill="#166534" font-weight="bold" font-size="9">+</text>
+
+                    <!-- 1/R2 -->
+                    <text x="155" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="145" y1="192" x2="165" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="155" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+
+                    <!-- + -->
+                    <text x="179" y="195" text-anchor="middle" fill="#166534" font-weight="bold" font-size="9">+</text>
+
+                    <!-- 1/Rp -->
+                    <text x="203" y="189" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8">1</text>
+                    <line x1="193" y1="192" x2="213" y2="192" stroke="#166534" stroke-width="1"/>
+                    <text x="203" y="200" text-anchor="middle" fill="#334155" font-weight="bold" font-size="8">R<tspan baseline-shift="sub" font-size="70%">p</tspan></text>
+
+                    <!-- Resumen equivalente -->
+                    <text x="125" y="216" text-anchor="middle" fill="#059669" font-size="7.5">Resistencia equivalente Thévenin: R<tspan baseline-shift="sub" font-size="70%">M</tspan> = 1 / Σ G<tspan baseline-shift="sub" font-size="70%">k</tspan></text>
                   </g>
                 </svg>
               </div>
