@@ -2392,51 +2392,123 @@ const MANUAL_TEORIA_E1 = {
                 Al conectar un capacitor electrolítico $C$ en paralelo con $R_L$, este se carga con rapidez hasta el pico de tensión $V_{pico}$ a través de los diodos en conducción. Cuando la tensión del secundario desciende por debajo de la tensión almacenada, los diodos se apagan y el capacitor se descarga lentamente sobre $R_L$ con constante de tiempo $\\tau = R_L C \\gg T$, reduciendo drásticamente las variaciones de tensión.
               </p>
 
-              <!-- Gráfico SVG: Rizado Triangular del Filtro Capacitivo -->
-              <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 620 180" class="w-full max-w-xl h-auto font-sans text-xs select-none">
-                  <rect x="0" y="0" width="620" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                  <text x="310" y="20" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Forma de Onda con Filtro Capacitivo (Rizado Triangular)</text>
+              <!-- Comparativa Gráfica: Media Onda vs Onda Completa con Filtro -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 py-1">
+                <!-- Gráfico 1: Media Onda con Filtro -->
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-1.5 flex items-center justify-between">
+                    <span>1. Filtro en Media Onda (f<tspan class="text-[9px]">r</tspan> = 50 Hz)</span>
+                    <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 20 ms · Rizado 2× mayor</span>
+                  </div>
+                  <div class="overflow-x-auto py-1">
+                    <svg viewBox="0 0 350 185" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
+                      <rect x="0" y="0" width="350" height="185" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
 
-                  <!-- Ejes -->
-                  <line x1="40" y1="140" x2="580" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
-                  <text x="585" y="143" fill="#64748b" font-size="9">t</text>
-                  <line x1="50" y1="30" x2="50" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
-                  <text x="45" y="32" text-anchor="end" fill="#64748b" font-size="9">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <!-- Ejes -->
+                      <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
+                      <text x="320" y="148" fill="#64748b" font-size="8.5">t</text>
+                      <line x1="35" y1="20" x2="35" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
+                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <text x="30" y="148" text-anchor="end" fill="#64748b" font-size="7.5">0</text>
 
-                  <!-- Pulsos de rectificación en puente (línea tenue discontinua) -->
-                  <path d="M 50 140 Q 95 40 140 140 Q 185 40 230 140 Q 275 40 320 140 Q 365 40 410 140 Q 455 40 500 140" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+                      <!-- Cotas horizontales -->
+                      <line x1="35" y1="40" x2="275" y2="40" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
+                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
 
-                  <!-- Curva Filtrada (roja / ámbar) -->
-                  <!-- Carga rápida hasta pico y descarga lineal hasta el siguiente pulso -->
-                  <path d="M 50 85 L 95 45 L 220 85 L 230 45 L 355 85 L 365 45 L 490 85 L 500 45" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+                      <line x1="35" y1="75" x2="275" y2="75" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4,2"/>
+                      <text x="278" y="77" fill="#d97706" font-weight="bold" font-size="7.5">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> − (V<tspan baseline-shift="sub" font-size="70%">r</tspan> / 2)</text>
 
-                  <!-- Cotas de V_pico, V_DC y V_r -->
-                  <line x1="50" y1="45" x2="540" y2="45" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                  <text x="545" y="48" fill="#059669" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+                      <line x1="35" y1="110" x2="275" y2="110" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
+                      <text x="278" y="113" fill="#64748b" font-size="8">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
 
-                  <line x1="50" y1="65" x2="540" y2="65" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                  <text x="545" y="68" fill="#d97706" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> - V<tspan baseline-shift="sub" font-size="70%">r</tspan>/2</text>
+                      <!-- Pulsos rectificados en Media Onda (solo 1 por ciclo, punteado gris) -->
+                      <path d="M 35 145 Q 64 -65 92.5 145 L 150 145 Q 179 -65 207.5 145 L 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-                  <line x1="50" y1="85" x2="540" y2="85" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
-                  <text x="545" y="88" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
+                      <!-- Curva de descarga del capacitor (rojo continuo, descarga lenta de 20 ms) -->
+                      <path d="M 35 110 L 64 40 L 170 110 L 179 40 L 265 92" fill="none" stroke="#ef4444" stroke-width="2.2"/>
 
-                  <!-- Flecha de V_r pico a pico -->
-                  <line x1="160" y1="47" x2="160" y2="83" stroke="#dc2626" stroke-width="1.8"/>
-                  <text x="170" y="68" fill="#dc2626" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">r</tspan> (pp)</text>
-                </svg>
+                      <!-- Cota de V_r (2x mayor) -->
+                      <line x1="115" y1="42" x2="115" y2="108" stroke="#dc2626" stroke-width="1.6"/>
+                      <polygon points="112,46 115,40 118,46" fill="#dc2626"/>
+                      <polygon points="112,104 115,110 118,104" fill="#dc2626"/>
+                      <text x="120" y="78" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan> (2× mayor)</text>
+
+                      <!-- Período de rizado Tr = 20 ms -->
+                      <line x1="64" y1="155" x2="179" y2="155" stroke="#059669" stroke-width="1"/>
+                      <line x1="64" y1="152" x2="64" y2="158" stroke="#059669" stroke-width="1"/>
+                      <line x1="179" y1="152" x2="179" y2="158" stroke="#059669" stroke-width="1"/>
+                      <text x="121" y="167" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8">T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T<tspan baseline-shift="sub" font-size="70%">red</tspan> (20 ms · 50 Hz)</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Gráfico 2: Onda Completa con Filtro -->
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <div class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1.5 flex items-center justify-between">
+                    <span>2. Filtro en Onda Completa (f<tspan class="text-[9px]">r</tspan> = 100 Hz)</span>
+                    <span class="text-[10px] font-mono text-slate-500">T<tspan class="text-[9px]">r</tspan> = 10 ms · Rizado mitad (50%)</span>
+                  </div>
+                  <div class="overflow-x-auto py-1">
+                    <svg viewBox="0 0 350 185" class="w-full max-w-md mx-auto h-auto font-sans text-xs select-none block">
+                      <rect x="0" y="0" width="350" height="185" rx="8" fill="#3b82f6" fill-opacity="0.03" stroke="#64748b" stroke-opacity="0.25" stroke-width="1"/>
+
+                      <!-- Ejes -->
+                      <line x1="25" y1="145" x2="315" y2="145" stroke="#94a3b8" stroke-width="1.2"/>
+                      <text x="320" y="148" fill="#64748b" font-size="8.5">t</text>
+                      <line x1="35" y1="20" x2="35" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
+                      <text x="35" y="15" text-anchor="middle" fill="#64748b" font-size="8.5">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+                      <text x="30" y="148" text-anchor="end" fill="#64748b" font-size="7.5">0</text>
+
+                      <!-- Cotas horizontales -->
+                      <line x1="35" y1="40" x2="275" y2="40" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
+                      <text x="278" y="43" fill="#059669" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+
+                      <line x1="35" y1="57" x2="275" y2="57" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4,2"/>
+                      <text x="278" y="60" fill="#d97706" font-weight="bold" font-size="7.5">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> − (V<tspan baseline-shift="sub" font-size="70%">r</tspan> / 2)</text>
+
+                      <line x1="35" y1="75" x2="275" y2="75" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
+                      <text x="278" y="78" fill="#64748b" font-size="8">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
+
+                      <!-- Pulsos rectificados en Onda Completa (2 por ciclo, punteado gris) -->
+                      <path d="M 35 145 Q 64 -65 92.5 145 Q 121 -65 150 145 Q 179 -65 207.5 145 Q 236 -65 265 145" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+                      <!-- Curva de descarga del capacitor (rojo continuo, descarga de 10 ms) -->
+                      <path d="M 35 75 L 64 40 L 113 75 L 121 40 L 171 75 L 179 40 L 228 75 L 236 40 L 265 58" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+
+                      <!-- Cota de V_r (mitad que en media onda) -->
+                      <line x1="145" y1="42" x2="145" y2="73" stroke="#dc2626" stroke-width="1.6"/>
+                      <polygon points="142,46 145,40 148,46" fill="#dc2626"/>
+                      <polygon points="142,69 145,75 148,69" fill="#dc2626"/>
+                      <text x="150" y="60" fill="#dc2626" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">r</tspan></text>
+
+                      <!-- Período de rizado Tr = 10 ms -->
+                      <line x1="121" y1="155" x2="179" y2="155" stroke="#2563eb" stroke-width="1"/>
+                      <line x1="121" y1="152" x2="121" y2="158" stroke="#2563eb" stroke-width="1"/>
+                      <line x1="179" y1="152" x2="179" y2="158" stroke="#2563eb" stroke-width="1"/>
+                      <text x="150" y="167" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T/2 (10 ms · 100 Hz)</text>
+                    </svg>
+                  </div>
+                </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                  <strong>Tensión de Rizado Pico a Pico ($V_r$):</strong>
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Tensión de Rizado Pico a Pico ($V_r$):</span>
                   $$V_r = \\frac{I_{DC}}{f_{rizado} \\cdot C} = \\frac{V_{pico}}{f_{rizado} \\cdot R_L \\cdot C}$$
-                  <span class="text-[11px] text-slate-500">Para onda completa $f_{rizado} = 100\\text{ Hz}$; para media onda $f_{rizado} = 50\\text{ Hz}$.</span>
+                  <ul class="list-disc pl-4 space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400 mt-2">
+                    <li><strong>Media Onda ($f_{rizado} = 50\\text{ Hz}$):</strong> $V_r^{(MO)} = \\frac{I_{DC}}{50 \\cdot C}$. El capacitor se descarga durante casi el período completo ($20\\text{ ms}$).</li>
+                    <li><strong>Onda Completa ($f_{rizado} = 100\\text{ Hz}$):</strong> $V_r^{(OC)} = \\frac{I_{DC}}{100 \\cdot C} = \\frac{V_r^{(MO)}}{2}$. Al recargarse el doble de veces por segundo ($10\\text{ ms}$), el rizado se reduce a la <strong>mitad</strong>.</li>
+                  </ul>
                 </div>
-                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                  <strong>Tensión Continua Media ($V_{DC}$):</strong>
-                  $$V_{DC} = V_{pico} - \\frac{V_r}{2}$$
-                  <span class="text-[11px] text-slate-500">Factor de rizado: $\\gamma = \\frac{V_{r,rms}}{V_{DC}} = \\frac{V_r}{2\\sqrt{3} \\cdot V_{DC}}$.</span>
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Tensión Continua Media ($V_{DC}$):</span>
+                  $$V_{DC} = V_{pico} - \\frac{V_r}{2} = \\frac{V_{pico} + V_{valle}}{2}$$
+                  <div class="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-[11px] text-amber-900 dark:text-amber-200 my-2">
+                    <strong>⚠️ Aclaración clave de fórmula:</strong> La ecuación es estrictamente $V_{pico} - \\left( \\frac{V_r}{2} \\right)$, <u>no</u> $\\frac{V_{pico} - V_r}{2}$. Representa el valor promedio exacto entre la cresta máxima y el valle mínimo ($V_{valle} = V_{pico} - V_r$), restándole a la cresta solo la semiamplitud del rizado.
+                  </div>
+                  <div class="text-[11px] text-slate-500">
+                    <strong>Factor de rizado:</strong> $\\gamma = \\frac{V_{r,rms}}{V_{DC}} = \\frac{V_r}{2\\sqrt{3} \\cdot V_{DC}}$ (asumiendo rizado triangular donde $V_{r,rms} = \\frac{V_r}{2\\sqrt{3}}$).
+                  </div>
                 </div>
               </div>
             </div>
