@@ -3501,7 +3501,7 @@ const MANUAL_TEORIA_E1 = {
                   </div>
                 </div>
                 <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800 text-[10.5px] text-slate-600 dark:text-slate-400">
-                  <strong class="text-purple-600 dark:text-purple-400">Comportamiento:</strong> Los terminales C y E intercambian funciones, pero con pésima ganancia por asimetría de dopado y área.
+                  <strong class="text-purple-600 dark:text-purple-400">Comportamiento:</strong> <strong>Sin uso práctico:</strong> los terminales C y E intercambian funciones, pero con pésima ganancia ($\beta_R \approx 0.05 \sim 0.5$) por la asimetría de dopado y área.
                 </div>
               </div>
             </div>
@@ -3545,11 +3545,11 @@ const MANUAL_TEORIA_E1 = {
                   </tr>
                   <tr class="bg-slate-500/5 opacity-80">
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold text-slate-500">Activa Inversa (ZAI)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\\beta_R \\ll 1$ (muy baja ganancia)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Inversa ($V_{BE} \le 0$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">Directa ($V_{BC} \approx 0.7\text{ V}$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$\beta_R \ll 1$ (muy baja ganancia)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">Fuente controlada invertida ineficiente</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">Compuertas TTL clásicas integradas; no se usa en discreto.</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans"><strong class="text-rose-500 dark:text-rose-400">Sin uso práctico</strong> en circuitos discretos (desaconsejada; $\beta_R < 1$ por asimetría física de dopado y área). Solo de interés histórico en compuertas TTL integradas.</td>
                   </tr>
                 </tbody>
               </table>
