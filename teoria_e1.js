@@ -3485,8 +3485,8 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="60" y1="35" x2="60" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="50" width="16" height="30" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
                     <text x="44" y="68" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
-                    <line x1="60" y1="80" x2="60" y2="105" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="60" y1="105" x2="95" y2="105" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="80" x2="60" y2="108" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="108" x2="132" y2="108" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Rama Colector RC -->
                     <line x1="150" y1="35" x2="150" y2="50" stroke="#475569" stroke-width="1.5"/>
@@ -3494,14 +3494,15 @@ const MANUAL_TEORIA_E1 = {
                     <text x="166" y="68" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
                     <line x1="150" y1="80" x2="150" y2="92" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN -->
-                    <line x1="95" y1="95" x2="95" y2="120" stroke="#334155" stroke-width="3"/>
-                    <line x1="95" y1="99" x2="150" y2="87" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="95" y1="116" x2="150" y2="128" stroke="#475569" stroke-width="1.5"/>
-                    <polygon points="138,127 150,128 144,118" fill="#ef4444"/>
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="140" cy="108" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="132" y1="96" x2="132" y2="120" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="132" y1="102" x2="150" y2="92" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="132" y1="114" x2="150" y2="124" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="149,123.5 140,119 143,114" fill="#ef4444"/>
 
                     <!-- Emisor a tierra -->
-                    <line x1="150" y1="128" x2="150" y2="155" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="124" x2="150" y2="155" stroke="#475569" stroke-width="1.5"/>
                     <!-- Tierra GND -->
                     <line x1="140" y1="155" x2="160" y2="155" stroke="#475569" stroke-width="2"/>
                     <line x1="144" y1="159" x2="156" y2="159" stroke="#475569" stroke-width="1.5"/>
@@ -3538,19 +3539,20 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="47" y="82" width="16" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
                     <text x="40" y="98" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
                     <line x1="55" y1="108" x2="55" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="55" y1="118" x2="95" y2="118" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="55" y1="118" x2="132" y2="118" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Conexión a Colector -->
-                    <line x1="150" y1="72" x2="150" y2="105" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="72" x2="150" y2="102" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN -->
-                    <line x1="95" y1="108" x2="95" y2="132" stroke="#334155" stroke-width="3"/>
-                    <line x1="95" y1="112" x2="150" y2="105" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="95" y1="128" x2="150" y2="138" stroke="#475569" stroke-width="1.5"/>
-                    <polygon points="138,137 150,138 144,128" fill="#ef4444"/>
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="140" cy="118" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="132" y1="106" x2="132" y2="130" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="132" y1="112" x2="150" y2="102" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="132" y1="124" x2="150" y2="134" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="149,133.5 140,129 143,124" fill="#ef4444"/>
 
                     <!-- Emisor RE y tierra -->
-                    <line x1="150" y1="138" x2="150" y2="145" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="134" x2="150" y2="145" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="145" width="16" height="20" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
                     <text x="166" y="158" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <line x1="150" y1="165" x2="150" y2="173" stroke="#475569" stroke-width="1.5"/>
@@ -3577,10 +3579,10 @@ const MANUAL_TEORIA_E1 = {
                     <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
 
                     <!-- Divisor R1 -->
-                    <line x1="60" y1="35" x2="60" y2="45" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="52" y="45" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="61" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
-                    <line x1="60" y1="71" x2="60" y2="85" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="35" x2="60" y2="42" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="52" y="42" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                    <text x="44" y="58" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                    <line x1="60" y1="68" x2="60" y2="85" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="60" cy="85" r="3" fill="#475569"/>
 
                     <!-- Divisor R2 -->
@@ -3591,27 +3593,28 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="56" y1="128" x2="64" y2="128" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Conexión de Base -->
-                    <line x1="60" y1="85" x2="95" y2="85" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="60" y1="85" x2="132" y2="85" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Rama RC -->
-                    <line x1="150" y1="35" x2="150" y2="45" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="142" y="45" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="61" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                    <line x1="150" y1="71" x2="150" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="35" x2="150" y2="42" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="142" y="42" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                    <text x="166" y="58" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                    <line x1="150" y1="68" x2="150" y2="69" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN -->
-                    <line x1="95" y1="75" x2="95" y2="98" stroke="#334155" stroke-width="3"/>
-                    <line x1="95" y1="79" x2="150" y2="80" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="95" y1="94" x2="150" y2="108" stroke="#475569" stroke-width="1.5"/>
-                    <polygon points="138,107 150,108 144,98" fill="#ef4444"/>
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="140" cy="85" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="132" y1="73" x2="132" y2="97" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="132" y1="79" x2="150" y2="69" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="132" y1="91" x2="150" y2="101" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="149,100.5 140,96 143,91" fill="#ef4444"/>
 
                     <!-- Rama RE y GND -->
-                    <line x1="150" y1="108" x2="150" y2="118" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="142" y="118" width="16" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="133" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                    <line x1="150" y1="142" x2="150" y2="152" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="142" y1="152" x2="158" y2="152" stroke="#475569" stroke-width="2"/>
-                    <line x1="146" y1="155" x2="154" y2="155" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="101" x2="150" y2="114" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="142" y="114" width="16" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
+                    <text x="166" y="129" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                    <line x1="150" y1="138" x2="150" y2="148" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="142" y1="148" x2="158" y2="148" stroke="#475569" stroke-width="2"/>
+                    <line x1="146" y1="151" x2="154" y2="151" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Ecuaciones y badge -->
                     <rect x="15" y="180" width="200" height="52" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
@@ -3669,7 +3672,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
                     <rect x="152" y="38" width="16" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
                     <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
-                    <line x1="160" y1="62" x2="160" y2="72" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="160" y1="62" x2="160" y2="76" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Malla de Base Thévenin -->
                     <!-- Fuente V_BB -->
@@ -3683,16 +3686,17 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="32" y1="92" x2="52" y2="92" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="84" width="24" height="16" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
                     <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
-                    <line x1="76" y1="92" x2="105" y2="92" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="76" y1="92" x2="142" y2="92" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN -->
-                    <line x1="105" y1="80" x2="105" y2="104" stroke="#334155" stroke-width="3"/>
-                    <line x1="105" y1="84" x2="160" y2="72" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="105" y1="100" x2="160" y2="112" stroke="#475569" stroke-width="1.5"/>
-                    <polygon points="148,111 160,112 154,102" fill="#ef4444"/>
+                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <circle cx="150" cy="92" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="142" y1="80" x2="142" y2="104" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="142" y1="86" x2="160" y2="76" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="142" y1="98" x2="160" y2="108" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="159,107.5 150,103 153,98" fill="#ef4444"/>
 
                     <!-- RE y GND -->
-                    <line x1="160" y1="112" x2="160" y2="122" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="160" y1="108" x2="160" y2="122" stroke="#475569" stroke-width="1.5"/>
                     <rect x="152" y="122" width="16" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
                     <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
                     <line x1="160" y1="144" x2="160" y2="152" stroke="#475569" stroke-width="1.5"/>
