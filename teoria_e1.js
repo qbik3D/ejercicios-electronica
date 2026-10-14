@@ -3555,10 +3555,10 @@ const MANUAL_TEORIA_E1 = {
               </table>
             </div>
 
-            <!-- 5. ALGORITMO DE RESOLUCIÓN EN EXÁMENES -->
+            <!-- 5. ALGORITMO PARA DETERMINAR LA REGIÓN DE OPERACIÓN EN DC -->
             <div class="p-3.5 my-3 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-slate-800 dark:text-slate-200">
               <span class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block mb-2">
-                🎯 Algoritmo de Examen: ¿Cómo determinar la Región de Operación en DC?
+                🎯 Algoritmo para determinar la Región de Operación en DC
               </span>
               <ol class="text-xs space-y-2 list-decimal list-inside text-slate-700 dark:text-slate-300 leading-relaxed">
                 <li>
