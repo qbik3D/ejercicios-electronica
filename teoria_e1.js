@@ -2642,7 +2642,7 @@ const MANUAL_TEORIA_E1 = {
 
               <!-- Fundamento Teórico -->
               <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                El diodo Zener se conecta <strong>en paralelo (shunt)</strong> con la carga $R_L$ y polarizado en <strong>inversa</strong> (cátodo al terminal positivo y ánodo a masa). Al operar en su zona de ruptura ($V \ge V_Z$), la tensión entre sus terminales permanece prácticamente constante ante amplias variaciones de corriente. La corriente entregada por la fuente se reparte según la LKC: <strong>$I_s = I_Z + I_L$</strong>. El Zener actúa como un amortiguador de corriente: absorbe los excesos de energía para estabilizar la tensión de salida exactamente en $V_{out} = V_Z$.
+                El diodo Zener se conecta <strong>en paralelo (shunt)</strong> con la carga $R_L$ y polarizado en <strong>inversa</strong> (cátodo al terminal positivo y ánodo a masa). Al operar en su zona de ruptura ($V \\ge V_Z$), la tensión entre sus terminales permanece prácticamente constante ante amplias variaciones de corriente. La corriente entregada por la fuente se reparte según la LKC: <strong>$I_s = I_Z + I_L$</strong>. El Zener actúa como un amortiguador de corriente: absorbe los excesos de energía para estabilizar la tensión de salida exactamente en $V_{out} = V_Z$.
               </p>
 
               <!-- Gráfico SVG: Circuito Zener (Símbolo IEEE Correcto) y Curva V_out vs V_in -->
@@ -3102,14 +3102,14 @@ const MANUAL_TEORIA_E1 = {
                 </p>
               </div>
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Ganancia de Corriente ($\beta$ o $h_{FE}$)</span>
+                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Ganancia de Corriente ($\\beta$ o $h_{FE}$)</span>
                 $$I_C = \\beta I_B \\implies I_E = (1 + \\beta) I_B$$
                 <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
                   En Activa Directa, una pequeña $I_B$ modula una gran $I_C$. Típicamente $\\beta \\in [50, 300]$ y posee gran dispersión térmica.
                 </p>
               </div>
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 sm:col-span-2">
-                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Factor Alfa ($\alpha$) y Conversión $\\alpha \\leftrightarrow \\beta$</span>
+                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Factor Alfa ($\\alpha$) y Conversión $\\alpha \\leftrightarrow \\beta$</span>
                 $$\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{1 + \\beta} \\approx 0.980 \\sim 0.998, \\qquad \\beta = \\frac{\\alpha}{1 - \\alpha}$$
                 <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
                   $\\alpha$ representa la fracción de portadores inyectados por el emisor que llegan efectivamente al colector sin recombinarse en la base.

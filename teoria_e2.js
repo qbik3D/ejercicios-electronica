@@ -482,14 +482,14 @@ const MANUAL_TEORIA_E2 = {
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs">
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="font-bold text-sky-600 dark:text-sky-400 block mb-1">Corte Superior (Contracción $\omega_H$):</span>
-                $$\mathbf{\omega_{H,total} = \omega_H \sqrt{2^{1/n} - 1}}$$
-                <p class="text-[11px] text-slate-500 mt-1">Para $n=2$: $\omega_{H,tot} \approx 0.64 \omega_H$. El ancho de banda cae un $36\%$.</p>
+                <span class="font-bold text-sky-600 dark:text-sky-400 block mb-1">Corte Superior (Contracción $\\omega_H$):</span>
+                $$\\mathbf{\\omega_{H,total} = \\omega_H \\sqrt{2^{1/n} - 1}}$$
+                <p class="text-[11px] text-slate-500 mt-1">Para $n=2$: $\\omega_{H,tot} \\approx 0.64 \\omega_H$. El ancho de banda cae un $36\\%$.</p>
               </div>
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1">Corte Inferior (Elevación $\omega_L$):</span>
-                $$\mathbf{\omega_{L,total} = \frac{\omega_L}{\sqrt{2^{1/n} - 1}}}$$
-                <p class="text-[11px] text-slate-500 mt-1">Para $n=2$: $\omega_{L,tot} \approx 1.56 \omega_L$. La respuesta en graves empeora.</p>
+                <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1">Corte Inferior (Elevación $\\omega_L$):</span>
+                $$\\mathbf{\\omega_{L,total} = \\frac{\\omega_L}{\\sqrt{2^{1/n} - 1}}}$$
+                <p class="text-[11px] text-slate-500 mt-1">Para $n=2$: $\\omega_{L,tot} \\approx 1.56 \\omega_L$. La respuesta en graves empeora.</p>
               </div>
             </div>
 
@@ -951,7 +951,7 @@ const MANUAL_TEORIA_E2 = {
               <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
                 <span>🎯</span> Ecuación de Ganancia del Amplificador de Instrumentación
               </h5>
-              $$\mathbf{V_o = \left( 1 + \frac{2 R_1}{R_G} \right) \frac{R_4}{R_3} (V_2 - V_1)}$$
+              $$\\mathbf{V_o = \\left( 1 + \\frac{2 R_1}{R_G} \\right) \\frac{R_4}{R_3} (V_2 - V_1)}$$
               <p class="text-xs mt-1">La ganancia diferencial se programa finamente modificando <em>únicamente la resistencia de ajuste $R_G$</em>, sin descompensar el apareamiento del restador de salida ni degradar el CMRR.</p>
             </div>
             <div class="pt-2 flex justify-end">
