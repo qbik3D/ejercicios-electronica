@@ -24,364 +24,928 @@ const MANUAL_TEORIA_E2 = {
       badgeColor: 'border-teal-500/40 bg-teal-950/40 text-teal-300',
       introduccion: 'Esta unidad analiza la física de los transistores unipolares de efecto de campo, donde la conducción se debe a un único tipo de portadores y se modula mediante un campo eléctrico transversal. Se estudian el JFET, los MOSFET de enriquecimiento y deplexión, los métodos de polarización DC y el modelado incremental.',
       secciones: [
+        // ====================================================================
+        // SECCIÓN 1.1: FÍSICA, SÍMBOLOS, CANALES N/P Y ECUACIONES
+        // ====================================================================
         {
           id: 'e2-u1-fisica-jfet-mosfet',
-          titulo: '1.1 Física, Símbolos y Ecuaciones Características de JFET y MOSFET',
+          titulo: '1.1 Física, Símbolos y Ecuaciones: JFET, D-MOSFET y E-MOSFET (Canales N y P)',
           contenido: `
             <p class="mb-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-              A diferencia del BJT (dispositivo controlado por corriente en base), los <strong>transistores de efecto de campo (FET)</strong> son dispositivos unipolarmente conducidos por un solo tipo de portador (electrones en canal N o huecos en canal P) y <strong>controlados por tensión</strong> aplicada a la compuerta (Gate). La compuerta aislada presenta una corriente estática prácticamente nula ($I_G \\approx 0$) y una impedancia de entrada casi infinita ($R_{in} \\ge 10^{9}\\,\\Omega$ en JFET, $R_{in} \\ge 10^{12}\\,\\Omega$ en MOSFET).
+              A diferencia del transistor bipolar (BJT), que es un dispositivo de inyección de portadores minoritarios controlado por corriente de base ($i_B$), los <strong>transistores de efecto de campo (FET)</strong> son unipolares (la corriente se debe a un único tipo de portador: electrones en canal N o huecos en canal P) y están <strong>controlados por campo eléctrico transversal inducido por tensión</strong> aplicada a la compuerta (Gate). Su compuerta aislada (por juntura PN inversa en JFET o por una capa dieléctrica de $SiO_2$ en MOSFET) absorbe corriente continua prácticamente nula:
             </p>
+            $$\\mathbf{I_G \\approx 0 \\implies R_{in} \\ge 10^{9}\\,\\Omega \\text{ (JFET)}, \\quad R_{in} \\ge 10^{12} - 10^{14}\\,\\Omega \\text{ (MOSFET)}}$$
 
-            <!-- DIAGRAMA SVG 1: SÍMBOLOS IEEE Y CURVAS DE TRANSFERENCIA -->
+            <!-- 1. LOS TRES GRANDES GRUPOS DE TRANSISTORES FET -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Clasificación Familiar y Principio Físico</h5>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
+              <!-- Tarjeta JFET -->
+              <div class="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/30 text-slate-700 dark:text-slate-300">
+                <span class="font-bold text-teal-800 dark:text-teal-300 text-xs uppercase tracking-wider block mb-1">
+                  1. JFET (Junction FET)
+                </span>
+                <p class="text-[11px] leading-relaxed mb-1.5">
+                  El canal semiconductor conductor está estrangulado lateralmente por la zona de carga espacial (ZCE) de dos junturas PN polarizadas en inversa.
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 text-[11px]">
+                  <li><strong>Normally-ON:</strong> Conduce corriente máxima $I_{DSS}$ cuando $V_{GS} = 0$.</li>
+                  <li><strong>Canal N:</strong> Portadores electrones. Requiere $V_P < 0$ y $V_P \\le V_{GS} \\le 0$.</li>
+                  <li><strong>Canal P:</strong> Portadores huecos. Requiere $V_P > 0$ y $0 \\le V_{GS} \\le V_P$.</li>
+                </ul>
+              </div>
+
+              <!-- Tarjeta D-MOSFET -->
+              <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-slate-700 dark:text-slate-300">
+                <span class="font-bold text-blue-800 dark:text-blue-300 text-xs uppercase tracking-wider block mb-1">
+                  2. D-MOSFET (Depletion / Agotamiento)
+                </span>
+                <p class="text-[11px] leading-relaxed mb-1.5">
+                  Posee un <strong>canal físico semiconductor preexistente</strong> implantado durante la fabricación. Compuerta aislada por capa vítrea de dióxido de silicio ($SiO_2$).
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 text-[11px]">
+                  <li><strong>Normally-ON:</strong> Conduce a $V_{GS} = 0$ ($I_D = I_{DSS}$).</li>
+                  <li><strong>Modo Deplexión:</strong> Tensión de signo opuesto agota el canal ($I_D < I_{DSS}$).</li>
+                  <li><strong>Modo Enriquecimiento:</strong> Tensión del mismo signo inyecta más portadores ($I_D > I_{DSS}$) sin corriente de compuerta ($I_G = 0$).</li>
+                </ul>
+              </div>
+
+              <!-- Tarjeta E-MOSFET -->
+              <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-slate-700 dark:text-slate-300">
+                <span class="font-bold text-indigo-800 dark:text-indigo-300 text-xs uppercase tracking-wider block mb-1">
+                  3. E-MOSFET (Enhancement / Enriquecimiento)
+                </span>
+                <p class="text-[11px] leading-relaxed mb-1.5">
+                  <strong>No posee canal físico</strong> a $V_{GS} = 0$ ($I_{DSS} \\approx 0$). Requiere una tensión umbral ($V_{th}$) para inducir una capa de inversión superficial.
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 text-[11px]">
+                  <li><strong>Normally-OFF:</strong> Totalmente bloqueado en reposo ($I_D = 0$).</li>
+                  <li><strong>Canal N:</strong> Requiere $V_{GS} > V_{th} > 0$ para atraer electrones.</li>
+                  <li><strong>Canal P:</strong> Requiere $V_{GS} < V_{th} < 0$ (o $V_{SG} > |V_{th}|$).</li>
+                  <li>Pilar absoluto de la microelectrónica digital (CMOS) y conmutación de potencia.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- DIAGRAMA SVG 1: LOS 6 SÍMBOLOS IEEE Y SUS CURVAS DE TRANSFERENCIA -->
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-                📊 Símbolos IEEE y Curvas Características (JFET vs. MOSFET Enriquecimiento Canal N)
+                📐 Símbolos Normalizados IEEE y Curvas de Transferencia $I_D$ vs $V_{GS}$
               </span>
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 700 240" class="w-full max-w-[700px] text-xs font-sans select-none" style="min-width: 560px;">
-                  <!-- ================= (a) JFET CANAL N ================= -->
-                  <g transform="translate(15, 0)">
-                    <text x="95" y="18" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="11">JFET Canal N</text>
+                <svg viewBox="0 0 740 310" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 640px;">
+                  <!-- Encabezados de Columna -->
+                  <text x="125" y="16" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="11">JFET (Junction FET)</text>
+                  <text x="370" y="16" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">D-MOSFET (Deplexión / Agotamiento)</text>
+                  <text x="615" y="16" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="11">E-MOSFET (Enriquecimiento)</text>
 
-                    <!-- Símbolo JFET -->
-                    <!-- Barra de canal -->
-                    <line x1="85" y1="50" x2="85" y2="110" stroke="#334155" stroke-width="3"/>
-                    <!-- Terminal Drenaje (D) -->
-                    <line x1="85" y1="60" x2="135" y2="60" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="135" y1="60" x2="135" y2="35" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="135" cy="35" r="3" fill="#10b981"/>
-                    <text x="145" y="38" font-weight="bold" fill="#10b981" font-size="10">D</text>
+                  <!-- Líneas divisorias verticales -->
+                  <line x1="245" y1="10" x2="245" y2="300" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-dasharray="3 3"/>
+                  <line x1="495" y1="10" x2="495" y2="300" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-dasharray="3 3"/>
 
-                    <!-- Terminal Fuente (S) -->
-                    <line x1="85" y1="100" x2="135" y2="100" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="135" y1="100" x2="135" y2="125" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="135" cy="125" r="3" fill="#3b82f6"/>
-                    <text x="145" y="129" font-weight="bold" fill="#3b82f6" font-size="10">S</text>
-
-                    <!-- Terminal Compuerta (G) con flecha hacia adentro -->
-                    <line x1="35" y1="95" x2="85" y2="95" stroke="#475569" stroke-width="1.8"/>
-                    <polygon points="70,95 60,90 60,100" fill="#0d9488"/>
-                    <circle cx="35" cy="95" r="3" fill="#0d9488"/>
-                    <text x="25" y="99" text-anchor="end" font-weight="bold" fill="#0d9488" font-size="10">G</text>
-
-                    <!-- Curva de transferencia Shockley JFET -->
-                    <g transform="translate(10, 140)">
-                      <!-- Ejes -->
-                      <line x1="20" y1="75" x2="160" y2="75" stroke="#475569" stroke-width="1.2"/>
-                      <line x1="110" y1="75" x2="110" y2="10" stroke="#475569" stroke-width="1.2"/>
-                      <text x="110" y="5" text-anchor="middle" font-size="8" fill="#475569" font-weight="bold">I_D</text>
-                      <text x="160" y="85" text-anchor="end" font-size="8" fill="#475569">V_GS</text>
-                      <!-- Curva parabólica Shockley -->
-                      <path d="M 40,75 Q 70,70 110,20" fill="none" stroke="#0d9488" stroke-width="2"/>
-                      <circle cx="40" cy="75" r="2.5" fill="#0d9488"/>
-                      <text x="40" y="86" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#0d9488">V_P (&lt;0)</text>
-                      <circle cx="110" cy="20" r="2.5" fill="#0d9488"/>
-                      <text x="122" y="23" text-anchor="start" font-size="7.5" font-weight="bold" fill="#0d9488">I_DSS</text>
-                    </g>
+                  <!-- ================= COLUMNA 1: JFETs ================= -->
+                  <!-- (1.1) JFET Canal N -->
+                  <g transform="translate(10, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#0d9488" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="8.5">Canal N (V_P &lt; 0)</text>
+                    <!-- Símbolo JFET Canal N -->
+                    <line x1="55" y1="30" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="3"/>
+                    <line x1="55" y1="40" x2="80" y2="40" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="40" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">D</text>
+                    <line x1="55" y1="75" x2="80" y2="75" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="75" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">S</text>
+                    <!-- Compuerta N: flecha ENTRA -->
+                    <line x1="20" y1="65" x2="55" y2="65" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="46,65 37,60 37,70" fill="#0d9488"/>
+                    <text x="16" y="68" text-anchor="end" font-bold fill="#0d9488" font-size="8">G</text>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Flecha ENTRA</text>
                   </g>
 
-                  <!-- Divisor vertical -->
-                  <line x1="225" y1="15" x2="225" y2="230" stroke="#cbd5e1" stroke-dasharray="3 3"/>
-
-                  <!-- ================= (b) MOSFET ENRIQUECIMIENTO CANAL N ================= -->
-                  <g transform="translate(240, 0)">
-                    <text x="105" y="18" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="11">MOSFET Enriquecimiento (N)</text>
-
-                    <!-- Símbolo MOSFET: Compuerta aislada -->
-                    <line x1="75" y1="50" x2="75" y2="110" stroke="#6366f1" stroke-width="2.5"/>
-                    <line x1="35" y1="80" x2="75" y2="80" stroke="#6366f1" stroke-width="1.8"/>
-                    <circle cx="35" cy="80" r="3" fill="#6366f1"/>
-                    <text x="25" y="84" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="10">G</text>
-
-                    <!-- Canal discontinuo (3 segmentos) -->
-                    <line x1="85" y1="50" x2="85" y2="64" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="85" y1="73" x2="85" y2="87" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="85" y1="96" x2="85" y2="110" stroke="#334155" stroke-width="2.5"/>
-
-                    <!-- Drenaje (D) -->
-                    <line x1="85" y1="57" x2="140" y2="57" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="140" y1="57" x2="140" y2="35" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="140" cy="35" r="3" fill="#10b981"/>
-                    <text x="150" y="38" font-weight="bold" fill="#10b981" font-size="10">D</text>
-
-                    <!-- Sustrato Bulk (B) con flecha entrando a canal -->
-                    <line x1="85" y1="80" x2="115" y2="80" stroke="#475569" stroke-width="1.8"/>
-                    <polygon points="88,80 98,75 98,85" fill="#3b82f6"/>
-                    <line x1="115" y1="80" x2="115" y2="103" stroke="#475569" stroke-width="1.8"/>
-
-                    <!-- Fuente (S) unida a Bulk internamente -->
-                    <line x1="85" y1="103" x2="140" y2="103" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="140" y1="103" x2="140" y2="125" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="140" cy="125" r="3" fill="#3b82f6"/>
-                    <text x="150" y="129" font-weight="bold" fill="#3b82f6" font-size="10">S</text>
-
-                    <!-- Curva de transferencia MOSFET Enriquecimiento -->
-                    <g transform="translate(10, 140)">
-                      <line x1="10" y1="75" x2="170" y2="75" stroke="#475569" stroke-width="1.2"/>
-                      <line x1="30" y1="75" x2="30" y2="10" stroke="#475569" stroke-width="1.2"/>
-                      <text x="30" y="5" text-anchor="middle" font-size="8" fill="#475569" font-weight="bold">I_D</text>
-                      <text x="170" y="85" text-anchor="end" font-size="8" fill="#475569">V_GS</text>
-                      <!-- Curva cuadrática nula hasta V_th -->
-                      <line x1="10" y1="75" x2="70" y2="75" stroke="#6366f1" stroke-width="2.5"/>
-                      <path d="M 70,75 Q 100,70 150,15" fill="none" stroke="#6366f1" stroke-width="2"/>
-                      <circle cx="70" cy="75" r="2.5" fill="#6366f1"/>
-                      <text x="70" y="86" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#6366f1">V_th (&gt;0)</text>
-                      <text x="120" y="30" font-size="7" fill="#6366f1">I_D = k_n(V_GS - V_th)²</text>
-                    </g>
+                  <!-- (1.2) JFET Canal P -->
+                  <g transform="translate(125, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#0d9488" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="8.5">Canal P (V_P &gt; 0)</text>
+                    <!-- Símbolo JFET Canal P -->
+                    <line x1="55" y1="30" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="3"/>
+                    <line x1="55" y1="40" x2="80" y2="40" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="40" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">S</text>
+                    <line x1="55" y1="75" x2="80" y2="75" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="75" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">D</text>
+                    <!-- Compuerta P: flecha SALE -->
+                    <line x1="20" y1="65" x2="55" y2="65" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="35,65 44,60 44,70" fill="#0d9488"/>
+                    <text x="16" y="68" text-anchor="end" font-bold fill="#0d9488" font-size="8">G</text>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Flecha SALE</text>
                   </g>
 
-                  <!-- Divisor vertical -->
-                  <line x1="465" y1="15" x2="465" y2="230" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+                  <!-- Curvas de Transferencia JFET (Inferior) -->
+                  <g transform="translate(15, 150)">
+                    <rect x="0" y="0" width="215" height="145" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+                    <text x="107" y="14" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="8.5">Curvas de Shockley (JFET)</text>
+                    <!-- Ejes Cartesiano centrado en VGS = 0 -->
+                    <line x1="107" y1="130" x2="107" y2="25" stroke="#475569" stroke-width="1.2"/>
+                    <text x="107" y="22" text-anchor="middle" font-bold fill="#475569" font-size="7.5">I_D</text>
+                    <line x1="15" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="1.2"/>
+                    <text x="200" y="130" text-anchor="end" font-bold fill="#475569" font-size="7.5">V_GS</text>
+                    <!-- Curva Canal N: en el 2do cuadrante (VGS < 0) -->
+                    <path d="M 30,120 Q 60,115 107,45" fill="none" stroke="#0d9488" stroke-width="2"/>
+                    <circle cx="30" cy="120" r="2.5" fill="#0d9488"/>
+                    <text x="30" y="131" text-anchor="middle" font-bold fill="#0d9488" font-size="7">V_P(N)</text>
+                    <circle cx="107" cy="45" r="2.5" fill="#0d9488"/>
+                    <text x="112" y="47" text-anchor="start" font-bold fill="#0d9488" font-size="7">I_DSS</text>
+                    <!-- Curva Canal P: en el 1er cuadrante (VGS > 0) -->
+                    <path d="M 185,120 Q 155,115 107,45" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-dasharray="3 2"/>
+                    <circle cx="185" cy="120" r="2.5" fill="#0f766e"/>
+                    <text x="185" y="131" text-anchor="middle" font-bold fill="#0f766e" font-size="7">V_P(P)</text>
+                    <text x="50" y="70" font-size="7" fill="#0d9488">Canal N</text>
+                    <text x="145" y="70" font-size="7" fill="#0f766e">Canal P</text>
+                  </g>
 
-                  <!-- ================= (c) CURVAS DE SALIDA ID vs VDS ================= -->
-                  <g transform="translate(480, 0)">
-                    <text x="105" y="18" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="11">Curvas de Salida (Tríodo vs Sat)</text>
-                    
-                    <g transform="translate(10, 30)">
-                      <!-- Eje Y: ID -->
-                      <line x1="25" y1="170" x2="25" y2="10" stroke="#475569" stroke-width="1.5"/>
-                      <text x="20" y="8" text-anchor="end" font-size="8.5" font-weight="bold" fill="#475569">I_D</text>
+                  <!-- ================= COLUMNA 2: D-MOSFETs ================= -->
+                  <!-- (2.1) D-MOSFET Canal N -->
+                  <g transform="translate(255, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#2563eb" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="8.5">Canal N (V_P &lt; 0)</text>
+                    <!-- Símbolo: Barra CONTINUA -->
+                    <line x1="45" y1="35" x2="45" y2="85" stroke="#2563eb" stroke-width="2.5"/>
+                    <line x1="20" y1="60" x2="45" y2="60" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="16" y="64" text-anchor="end" font-bold fill="#2563eb" font-size="8">G</text>
+                    <!-- Barra de canal continua -->
+                    <line x1="55" y1="35" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="40" x2="80" y2="40" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="40" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">D</text>
+                    <line x1="55" y1="80" x2="80" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="80" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">S</text>
+                    <!-- Sustrato/Bulk con flecha ENTRA -->
+                    <line x1="55" y1="60" x2="80" y2="60" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="57,60 66,55 66,65" fill="#2563eb"/>
+                    <line x1="80" y1="60" x2="80" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Barra Sólida Continua</text>
+                  </g>
 
-                      <!-- Eje X: VDS -->
-                      <line x1="25" y1="170" x2="200" y2="170" stroke="#475569" stroke-width="1.5"/>
-                      <text x="200" y="183" text-anchor="end" font-size="8.5" font-weight="bold" fill="#475569">V_DS</text>
+                  <!-- (2.2) D-MOSFET Canal P -->
+                  <g transform="translate(370, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#2563eb" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="8.5">Canal P (V_P &gt; 0)</text>
+                    <line x1="45" y1="35" x2="45" y2="85" stroke="#2563eb" stroke-width="2.5"/>
+                    <line x1="20" y1="60" x2="45" y2="60" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="16" y="64" text-anchor="end" font-bold fill="#2563eb" font-size="8">G</text>
+                    <line x1="55" y1="35" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="40" x2="80" y2="40" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="40" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">S</text>
+                    <line x1="55" y1="80" x2="80" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="80" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">D</text>
+                    <!-- Sustrato/Bulk con flecha SALE -->
+                    <line x1="55" y1="60" x2="80" y2="60" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="76,60 67,55 67,65" fill="#2563eb"/>
+                    <line x1="80" y1="60" x2="80" y2="40" stroke="#475569" stroke-width="1.5"/>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Flecha Sustrato SALE</text>
+                  </g>
 
-                      <!-- Parábola límite de pinch-off / saturación -->
-                      <path d="M 25,170 Q 55,140 85,25" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3 2"/>
-                      <text x="45" y="55" font-size="7" fill="#ef4444" font-weight="bold" transform="rotate(-65 45,55)">V_DS = V_GS - V_th</text>
+                  <!-- Curva Transferencia D-MOSFET Canal N (Modo Dual) -->
+                  <g transform="translate(260, 150)">
+                    <rect x="0" y="0" width="215" height="145" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+                    <text x="107" y="14" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="8.5">D-MOSFET Canal N: Modo Dual</text>
+                    <line x1="90" y1="130" x2="90" y2="25" stroke="#475569" stroke-width="1.2"/>
+                    <text x="90" y="22" text-anchor="middle" font-bold fill="#475569" font-size="7.5">I_D</text>
+                    <line x1="15" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="1.2"/>
+                    <text x="200" y="130" text-anchor="end" font-bold fill="#475569" font-size="7.5">V_GS</text>
+                    <!-- Curva extendida: cruza eje Y y sigue subiendo para VGS > 0 -->
+                    <path d="M 30,120 Q 60,110 90,65 Q 120,20 155,10" fill="none" stroke="#2563eb" stroke-width="2"/>
+                    <circle cx="30" cy="120" r="2.5" fill="#2563eb"/>
+                    <text x="30" y="131" text-anchor="middle" font-bold fill="#2563eb" font-size="7">V_P (&lt;0)</text>
+                    <circle cx="90" cy="65" r="2.5" fill="#2563eb"/>
+                    <text x="95" y="70" text-anchor="start" font-bold fill="#2563eb" font-size="7">I_DSS</text>
+                    <!-- Etiquetas de modo -->
+                    <rect x="25" y="45" width="55" height="13" rx="2" fill="#dbeafe" class="dark:fill-blue-950/60"/>
+                    <text x="52" y="54" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="6.5">Deplexión (V_GS &lt; 0)</text>
+                    <rect x="110" y="45" width="70" height="13" rx="2" fill="#dbeafe" class="dark:fill-blue-950/60"/>
+                    <text x="145" y="54" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="6.5">Enriquecimiento (V_GS &gt; 0)</text>
+                  </g>
 
-                      <!-- Zona Tríodo / Óhmica -->
-                      <text x="42" y="150" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8">Zona Óhmica</text>
-                      <text x="42" y="160" text-anchor="middle" fill="#64748b" font-size="7">(Resistor controlado)</text>
+                  <!-- ================= COLUMNA 3: E-MOSFETs ================= -->
+                  <!-- (3.1) E-MOSFET Canal N -->
+                  <g transform="translate(505, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#6366f1" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">Canal N (V_th &gt; 0)</text>
+                    <line x1="45" y1="35" x2="45" y2="85" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="20" y1="60" x2="45" y2="60" stroke="#6366f1" stroke-width="1.5"/>
+                    <text x="16" y="64" text-anchor="end" font-bold fill="#6366f1" font-size="8">G</text>
+                    <!-- Canal SEGMENTADO en 3 partes -->
+                    <line x1="55" y1="35" x2="55" y2="48" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="54" x2="55" y2="66" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="72" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="42" x2="80" y2="42" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="42" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">D</text>
+                    <line x1="55" y1="78" x2="80" y2="78" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="78" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">S</text>
+                    <line x1="55" y1="60" x2="80" y2="60" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="57,60 66,55 66,65" fill="#6366f1"/>
+                    <line x1="80" y1="60" x2="80" y2="78" stroke="#475569" stroke-width="1.5"/>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Canal Segmentado (3 partes)</text>
+                  </g>
 
-                      <!-- Zona Saturación / Activa -->
-                      <text x="140" y="50" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8">Zona de Saturación</text>
-                      <text x="140" y="60" text-anchor="middle" fill="#64748b" font-size="7">(Fuente de corriente I_D)</text>
+                  <!-- (3.2) E-MOSFET Canal P -->
+                  <g transform="translate(620, 25)">
+                    <rect x="0" y="0" width="105" height="115" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#6366f1" stroke-width="1"/>
+                    <text x="52" y="14" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">Canal P (V_th &lt; 0)</text>
+                    <line x1="45" y1="35" x2="45" y2="85" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="20" y1="60" x2="45" y2="60" stroke="#6366f1" stroke-width="1.5"/>
+                    <text x="16" y="64" text-anchor="end" font-bold fill="#6366f1" font-size="8">G</text>
+                    <!-- Canal Segmentado P -->
+                    <line x1="55" y1="35" x2="55" y2="48" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="54" x2="55" y2="66" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="72" x2="55" y2="85" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.8"/>
+                    <line x1="55" y1="42" x2="80" y2="42" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="42" x2="80" y2="25" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="27" font-bold fill="#10b981" font-size="8">S</text>
+                    <line x1="55" y1="78" x2="80" y2="78" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="80" y1="78" x2="80" y2="90" stroke="#475569" stroke-width="1.5"/>
+                    <text x="85" y="93" font-bold fill="#3b82f6" font-size="8">D</text>
+                    <line x1="55" y1="60" x2="80" y2="60" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="76,60 67,55 67,65" fill="#6366f1"/>
+                    <line x1="80" y1="60" x2="80" y2="42" stroke="#475569" stroke-width="1.5"/>
+                    <text x="52" y="107" text-anchor="middle" font-size="7.5" fill="#64748b">Flecha Sustrato SALE</text>
+                  </g>
 
-                      <!-- Curvas de VGS creciente -->
-                      <path d="M 25,170 Q 50,150 70,140 L 190,135" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                      <text x="192" y="138" font-size="7" fill="#94a3b8">V_GS1</text>
-
-                      <path d="M 25,170 Q 60,110 80,95 L 190,88" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                      <text x="192" y="91" font-size="7" fill="#94a3b8">V_GS2</text>
-
-                      <path d="M 25,170 Q 70,60 90,45 L 190,38" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-                      <text x="192" y="41" font-size="7" font-weight="bold" fill="#f59e0b">V_GS3</text>
-                    </g>
+                  <!-- Curva Transferencia E-MOSFETs (Canal N vs P) -->
+                  <g transform="translate(510, 150)">
+                    <rect x="0" y="0" width="215" height="145" rx="6" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+                    <text x="107" y="14" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">E-MOSFET: Curvas Cuadráticas</text>
+                    <line x1="107" y1="130" x2="107" y2="25" stroke="#475569" stroke-width="1.2"/>
+                    <text x="107" y="22" text-anchor="middle" font-bold fill="#475569" font-size="7.5">I_D</text>
+                    <line x1="15" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="1.2"/>
+                    <text x="200" y="130" text-anchor="end" font-bold fill="#475569" font-size="7.5">V_GS</text>
+                    <!-- E-MOSFET Canal N: inactiva hasta V_th > 0 -->
+                    <line x1="107" y1="120" x2="145" y2="120" stroke="#6366f1" stroke-width="2.5"/>
+                    <path d="M 145,120 Q 165,115 195,45" fill="none" stroke="#6366f1" stroke-width="2"/>
+                    <circle cx="145" cy="120" r="2.5" fill="#6366f1"/>
+                    <text x="145" y="131" text-anchor="middle" font-bold fill="#6366f1" font-size="7">V_th(N)</text>
+                    <text x="175" y="70" font-size="7" font-weight="bold" fill="#6366f1">Canal N</text>
+                    <!-- E-MOSFET Canal P: inactiva hasta V_th < 0 -->
+                    <line x1="69" y1="120" x2="107" y2="120" stroke="#4f46e5" stroke-width="2.5"/>
+                    <path d="M 69,120 Q 49,115 19,45" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="3 2"/>
+                    <circle cx="69" cy="120" r="2.5" fill="#4f46e5"/>
+                    <text x="69" y="131" text-anchor="middle" font-bold fill="#4f46e5" font-size="7">V_th(P)</text>
+                    <text x="40" y="70" font-size="7" font-weight="bold" fill="#4f46e5">Canal P</text>
                   </g>
                 </svg>
               </div>
             </div>
 
-            <!-- TABLA DE ECUACIONES DE DISPOSITIVOS -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs">
-              <div class="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-950 dark:text-teal-200">
-                <span class="font-bold text-xs uppercase tracking-wider block mb-1">⚡ JFET en Saturación ($V_{DS} \\ge V_{GS} - V_P$)</span>
-                $$\\mathbf{I_D = I_{DSS} \\left( 1 - \\frac{V_{GS}}{V_P} \\right)^2}$$
-                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
-                  Requiere compuerta polarizada en inversa ($V_P \\le V_{GS} \\le 0$). Si $V_{GS} = V_P$, el canal se estrangula ($I_D = 0$).
-                </p>
-              </div>
-              <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-950 dark:text-indigo-200">
-                <span class="font-bold text-xs uppercase tracking-wider block mb-1">🔲 MOSFET Enriquecimiento en Saturación</span>
-                $$\\mathbf{I_D = k_n (V_{GS} - V_{th})^2 (1 + \\lambda V_{DS})}$$
-                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
-                  Requiere superar el umbral ($V_{GS} > V_{th}$). El parámetro $\\lambda = 1/V_A$ cuantifica la modulación de longitud de canal (Efecto Early).
-                </p>
-              </div>
+            <!-- TABLA COMPARATIVA MAESTRA DE LOS 6 DISPOSITIVOS FET -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Tabla Maestra de Ecuaciones y Regiones en Saturación</h5>
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Dispositivo</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Canal</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Parámetros Clave</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Condición Saturación</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ecuación de Corriente $I_D$</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono text-[11px]">
+                  <!-- JFET N -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-teal-600 dark:text-teal-400 font-sans">JFET</td>
+                    <td class="p-2 font-bold">Canal N</td>
+                    <td class="p-2">$I_{DSS} > 0, \\; V_P < 0$</td>
+                    <td class="p-2">$V_{DS} \\ge V_{GS} - V_P$</td>
+                    <td class="p-2 font-bold">$I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_P}\\right)^2$</td>
+                  </tr>
+                  <!-- JFET P -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-teal-600 dark:text-teal-400 font-sans">JFET</td>
+                    <td class="p-2 font-bold">Canal P</td>
+                    <td class="p-2">$I_{DSS} > 0, \\; V_P > 0$</td>
+                    <td class="p-2">$|V_{DS}| \\ge V_{GS} - V_P$ ($V_{SD} \\ge V_{SG} - V_P$)</td>
+                    <td class="p-2 font-bold">$I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_P}\\right)^2$</td>
+                  </tr>
+                  <!-- D-MOSFET N -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-blue-600 dark:text-blue-400 font-sans">D-MOSFET</td>
+                    <td class="p-2 font-bold">Canal N</td>
+                    <td class="p-2">$I_{DSS} > 0, \\; V_P < 0$</td>
+                    <td class="p-2">$V_{DS} \\ge V_{GS} - V_P$</td>
+                    <td class="p-2 font-bold">$I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_P}\\right)^2$ (para $V_{GS} \\ge V_P$)</td>
+                  </tr>
+                  <!-- D-MOSFET P -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-blue-600 dark:text-blue-400 font-sans">D-MOSFET</td>
+                    <td class="p-2 font-bold">Canal P</td>
+                    <td class="p-2">$I_{DSS} > 0, \\; V_P > 0$</td>
+                    <td class="p-2">$|V_{DS}| \\ge V_{GS} - V_P$</td>
+                    <td class="p-2 font-bold">$I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_P}\\right)^2$</td>
+                  </tr>
+                  <!-- E-MOSFET N -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-indigo-600 dark:text-indigo-400 font-sans">E-MOSFET</td>
+                    <td class="p-2 font-bold">Canal N</td>
+                    <td class="p-2">$V_{th} > 0, \\; k_n = \\frac{1}{2}\\mu_n C_{ox}\\frac{W}{L}$</td>
+                    <td class="p-2">$V_{DS} \\ge V_{GS} - V_{th}$</td>
+                    <td class="p-2 font-bold">$I_D = k_n (V_{GS} - V_{th})^2 (1 + \\lambda V_{DS})$</td>
+                  </tr>
+                  <!-- E-MOSFET P -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-indigo-600 dark:text-indigo-400 font-sans">E-MOSFET</td>
+                    <td class="p-2 font-bold">Canal P</td>
+                    <td class="p-2">$V_{th} < 0, \\; k_p = \\frac{1}{2}\\mu_p C_{ox}\\frac{W}{L}$</td>
+                    <td class="p-2">$V_{SD} \\ge V_{SG} - |V_{th}|$</td>
+                    <td class="p-2 font-bold">$I_D = k_p (V_{SG} - |V_{th}|)^2 (1 + \\lambda V_{SD})$</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="p-3 my-3 rounded-xl bg-teal-500/10 dark:bg-teal-950/40 border border-teal-500/30 text-xs flex items-start gap-2.5">
-              <span class="text-base shrink-0">🔗</span>
-              <div class="flex-1 min-w-0">
-                <div class="font-semibold text-teal-900 dark:text-teal-300">
-                  Concepto Previo de Electrónica I:
-                </div>
-                <p class="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                  Para recordar la física de portadores en silicio, dopaje y la barrera de potencial de la juntura PN que gobierna el estrangulamiento del JFET:
-                </p>
-                <button 
-                  onclick="navegarASeccionTeorica('electronica-1', 'e1-u2-fisica-juntura')"
-                  class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-mono text-[11px] font-medium transition-colors shadow-2xs"
-                >
-                  <span>📖 Ver Electrónica I · Unidad 2 (Física de la Juntura PN)</span>
-                  <span>→</span>
-                </button>
+            <!-- CURVAS DE SALIDA ID vs VDS Y REGIONES DE OPERACIÓN -->
+            <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+                📈 Curvas Características de Salida ($I_D$ vs $V_{DS}$) y Frontera de Saturación
+              </span>
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 680 220" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 540px;">
+                  <!-- Ejes -->
+                  <line x1="70" y1="180" x2="70" y2="20" stroke="#475569" stroke-width="2"/>
+                  <polygon points="66,23 70,14 74,23" fill="#475569"/>
+                  <text x="63" y="18" text-anchor="end" font-bold fill="#475569" font-size="11">I_D (mA)</text>
+
+                  <line x1="70" y1="180" x2="640" y2="180" stroke="#475569" stroke-width="2"/>
+                  <polygon points="638,176 647,180 638,184" fill="#475569"/>
+                  <text x="645" y="196" text-anchor="end" font-bold fill="#475569" font-size="11">V_DS (V)</text>
+
+                  <!-- Zona Óhmica / Tríodo sombreada -->
+                  <path d="M 70,180 Q 150,165 240,40 L 70,40 Z" fill="#3b82f6" fill-opacity="0.08"/>
+                  <text x="120" y="70" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="10">Zona Óhmica / Tríodo</text>
+                  <text x="120" y="83" text-anchor="middle" fill="#64748b" font-size="8.5">(Resistencia controlada R_DS)</text>
+                  <text x="120" y="95" text-anchor="middle" fill="#64748b" font-size="8">V_DS &lt; V_GS − V_th</text>
+
+                  <!-- Zona de Saturación / Activa -->
+                  <text x="440" y="55" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Zona de Saturación / Pinch-Off</text>
+                  <text x="440" y="68" text-anchor="middle" fill="#64748b" font-size="9">(Fuente de corriente controlada por V_GS)</text>
+                  <text x="440" y="80" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8.5">V_DS ≥ V_GS − V_th</text>
+
+                  <!-- Parábola límite de pinch-off -->
+                  <path d="M 70,180 Q 150,165 240,40" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
+                  <text x="250" y="45" font-weight="bold" fill="#ef4444" font-size="9">V_DS,sat = V_GS − V_th</text>
+
+                  <!-- Curva 1: V_GS = V_th (Corte) -->
+                  <line x1="70" y1="180" x2="620" y2="180" stroke="#64748b" stroke-width="3"/>
+                  <text x="625" y="177" font-bold fill="#64748b" font-size="8.5">V_GS ≤ V_th (Corte, I_D = 0)</text>
+
+                  <!-- Curva 2: V_GS1 -->
+                  <path d="M 70,180 Q 100,160 120,150 L 610,146" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+                  <text x="615" y="148" fill="#64748b" font-size="8.5">V_GS1</text>
+
+                  <!-- Curva 3: V_GS2 -->
+                  <path d="M 70,180 Q 120,135 155,115 L 610,108" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+                  <text x="615" y="110" fill="#64748b" font-size="8.5">V_GS2</text>
+
+                  <!-- Curva 4: V_GS3 -->
+                  <path d="M 70,180 Q 145,100 195,75 L 610,66" fill="none" stroke="#6366f1" stroke-width="2"/>
+                  <text x="615" y="68" font-bold fill="#6366f1" font-size="9">V_GS3 (Punto Q)</text>
+
+                  <!-- Curva 5: V_GS4 -->
+                  <path d="M 70,180 Q 170,60 235,38 L 610,27" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+                  <text x="615" y="29" fill="#64748b" font-size="8.5">V_GS4</text>
+
+                  <!-- Pendiente de Efecto Early (λ) -->
+                  <line x1="380" y1="70" x2="520" y2="67.5" stroke="#f59e0b" stroke-width="1.3" stroke-dasharray="2 2"/>
+                  <text x="460" y="96" text-anchor="middle" font-mono font-bold fill="#d97706" font-size="8">Pendiente = 1/r_o = λ·I_DQ</text>
+                </svg>
               </div>
             </div>
           `
         },
+
+        // ====================================================================
+        // SECCIÓN 1.2: MÉTODOS DE POLARIZACIÓN DC Y ANÁLISIS DE CIRCUITOS
+        // ====================================================================
         {
-          id: 'e2-u1-polarizacion-pequena-senal',
-          titulo: '1.2 Polarización DC y Modelo de Pequeña Señal FET',
+          id: 'e2-u1-polarizacion-dc',
+          titulo: '1.2 Métodos de Polarización DC y Algoritmo de Análisis de Circuitos FET',
           contenido: `
             <p class="mb-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-              Al ser $I_G = 0$, la polarización de compuerta es extremadamente limpia: el divisor resistivo $R_1-R_2$ no sufre caída de carga. La resistencia de fuente $R_S$ provee una potente realimentación negativa de continua para estabilizar el punto $Q$.
+              Dado que la compuerta no absorbe corriente en continua (<strong>$I_G = 0$</strong>), <strong>la polarización de compuerta está totalmente desacoplada de la corriente de drenaje</strong>: las resistencias de compuerta ($R_G, R_1, R_2$) no sufren ninguna caída producida por el transistor. A continuación se analizan analíticamente las cuatro topologías clásicas de polarización y el algoritmo para resolver cualquier circuito en exámenes.
             </p>
 
-            <!-- DIAGRAMA SVG 2: ESQUEMA DE POLARIZACIÓN Y MODELO AC -->
+            <!-- DIAGRAMA SVG DE LAS 4 TOPOLOGÍAS DE POLARIZACIÓN -->
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-                🔌 Polarización Fuente Común (DC) vs. Modelo Incremental de Pequeña Señal (AC)
+                🔌 Topologías Clásicas de Polarización en Continua (DC)
               </span>
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 680 230" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 520px;">
-                  <defs>
-                    <marker id="fet-arr-green" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                      <polygon points="0 0, 6 3, 0 6" fill="#10b981"/>
-                    </marker>
-                  </defs>
+                <svg viewBox="0 0 740 230" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 640px;">
+                  <!-- ================= (a) AUTOPOLARIZACIÓN (JFET) ================= -->
+                  <g transform="translate(10, 5)">
+                    <rect x="0" y="0" width="165" height="215" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#0d9488" stroke-width="1.2"/>
+                    <text x="82" y="16" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="9.5">(a) Autopolarización</text>
+                    <text x="82" y="27" text-anchor="middle" fill="#64748b" font-size="7.5">JFET y D-MOSFET</text>
 
-                  <!-- ================= CIRCUITO COMPLETO DC ================= -->
-                  <g transform="translate(10, 0)">
-                    <text x="135" y="18" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="11">Circuito Fuente Común (DC + AC)</text>
+                    <!-- VDD -->
+                    <line x1="30" y1="38" x2="140" y2="38" stroke="#ef4444" stroke-width="1.8"/>
+                    <circle cx="105" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="105" y="32" text-anchor="middle" font-bold fill="#ef4444" font-size="8">+V_DD</text>
 
-                    <!-- VDD rail -->
-                    <line x1="60" y1="32" x2="190" y2="32" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="130" cy="32" r="3" fill="#ef4444"/>
-                    <text x="130" y="26" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V_DD</text>
+                    <!-- RD -->
+                    <line x1="105" y1="38" x2="105" y2="48" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="98" y="48" width="14" height="22" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <text x="117" y="62" fill="#10b981" font-size="8">R_D</text>
+                    <line x1="105" y1="70" x2="105" y2="80" stroke="#64748b" stroke-width="1.3"/>
 
-                    <!-- Divisor R1 y R2 -->
-                    <line x1="75" y1="32" x2="75" y2="42" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="68" y="42" width="14" height="24" fill="#0d9488" fill-opacity="0.2" stroke="#0d9488" stroke-width="1.2" rx="1.5"/>
-                    <text x="60" y="56" text-anchor="end" font-size="8" fill="#0d9488">R_1</text>
-                    <line x1="75" y1="66" x2="75" y2="82" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="75" cy="82" r="2.5" fill="#475569"/>
+                    <!-- JFET Canal N -->
+                    <line x1="85" y1="80" x2="85" y2="115" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.5"/>
+                    <line x1="85" y1="86" x2="105" y2="86" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="105" y1="80" x2="105" y2="86" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="85" y1="108" x2="105" y2="108" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="105" y1="108" x2="105" y2="116" stroke="#475569" stroke-width="1.3"/>
+                    <!-- Compuerta RG a masa -->
+                    <line x1="55" y1="100" x2="85" y2="100" stroke="#475569" stroke-width="1.3"/>
+                    <polygon points="76,100 68,96 68,104" fill="#0d9488"/>
+                    <line x1="55" y1="100" x2="55" y2="120" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="48" y="120" width="14" height="22" fill="none" stroke="#0d9488" stroke-width="1.4"/>
+                    <text x="42" y="133" text-anchor="end" fill="#0d9488" font-size="8">R_G</text>
+                    <line x1="55" y1="142" x2="55" y2="155" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="48" y1="155" x2="62" y2="155" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Entrada vi con C1 -->
-                    <line x1="20" y1="82" x2="45" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
-                    <line x1="45" y1="75" x2="45" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <line x1="49" y1="75" x2="49" y2="89" stroke="#3b82f6" stroke-width="2"/>
-                    <line x1="49" y1="82" x2="75" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
-                    <circle cx="20" cy="82" r="3" fill="#3b82f6"/>
-                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5">v_i</text>
+                    <!-- RS a masa -->
+                    <line x1="105" y1="116" x2="105" y2="122" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="98" y="122" width="14" height="22" fill="none" stroke="#a855f7" stroke-width="1.4"/>
+                    <text x="117" y="135" fill="#a855f7" font-size="8">R_S</text>
+                    <line x1="105" y1="144" x2="105" y2="155" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="98" y1="155" x2="112" y2="155" stroke="#475569" stroke-width="1.5"/>
 
-                    <rect x="68" y="82" width="14" height="24" fill="#0d9488" fill-opacity="0.2" stroke="#0d9488" stroke-width="1.2" rx="1.5"/>
-                    <text x="60" y="96" text-anchor="end" font-size="8" fill="#0d9488">R_2</text>
-                    <line x1="75" y1="106" x2="75" y2="120" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="68" y1="120" x2="82" y2="120" stroke="#475569" stroke-width="1.5"/>
-
-                    <line x1="75" y1="82" x2="110" y2="82" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- MOSFET N -->
-                    <line x1="110" y1="70" x2="110" y2="94" stroke="#6366f1" stroke-width="2.5"/>
-                    <line x1="117" y1="70" x2="117" y2="94" stroke="#334155" stroke-width="2" stroke-dasharray="4 2"/>
-
-                    <!-- Drenaje RD -->
-                    <line x1="165" y1="32" x2="165" y2="42" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="158" y="42" width="14" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.2" rx="1.5"/>
-                    <text x="178" y="56" text-anchor="start" font-size="8" fill="#10b981">R_D</text>
-                    <line x1="165" y1="66" x2="165" y2="76" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="165" cy="76" r="2.5" fill="#10b981"/>
-                    <line x1="117" y1="76" x2="165" y2="76" stroke="#475569" stroke-width="1.2"/>
-
-                    <!-- Salida vo con C2 -->
-                    <line x1="165" y1="76" x2="195" y2="76" stroke="#10b981" stroke-width="1.5"/>
-                    <line x1="195" y1="69" x2="195" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <line x1="199" y1="69" x2="199" y2="83" stroke="#10b981" stroke-width="2"/>
-                    <line x1="199" y1="76" x2="225" y2="76" stroke="#10b981" stroke-width="1.5"/>
-                    <circle cx="225" cy="76" r="3" fill="#10b981"/>
-                    <text x="225" y="90" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">v_o</text>
-
-                    <!-- Fuente RS y CS -->
-                    <line x1="117" y1="88" x2="165" y2="88" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="165" y1="88" x2="165" y2="98" stroke="#475569" stroke-width="1.2"/>
-                    <circle cx="165" cy="98" r="2" fill="#475569"/>
-
-                    <!-- RS -->
-                    <line x1="165" y1="98" x2="145" y2="98" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="145" y1="98" x2="145" y2="108" stroke="#475569" stroke-width="1.2"/>
-                    <rect x="138" y="108" width="14" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.2" rx="1.5"/>
-                    <text x="132" y="121" text-anchor="end" font-size="7.5" fill="#a855f7">R_S</text>
-                    <line x1="145" y1="130" x2="145" y2="140" stroke="#475569" stroke-width="1.2"/>
-
-                    <!-- CS (Desacoplo) -->
-                    <line x1="165" y1="98" x2="185" y2="98" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="185" y1="98" x2="185" y2="114" stroke="#475569" stroke-width="1.2"/>
-                    <line x1="178" y1="114" x2="192" y2="114" stroke="#475569" stroke-width="2"/>
-                    <line x1="178" y1="118" x2="192" y2="118" stroke="#475569" stroke-width="2"/>
-                    <text x="198" y="118" text-anchor="start" font-size="7.5" fill="#64748b">C_S</text>
-                    <line x1="185" y1="118" x2="185" y2="140" stroke="#475569" stroke-width="1.2"/>
-
-                    <line x1="145" y1="140" x2="185" y2="140" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="157" y1="144" x2="173" y2="144" stroke="#475569" stroke-width="2"/>
-
-                    <!-- Ecuaciones DC -->
-                    <rect x="15" y="160" width="230" height="60" rx="6" fill="#0d9488" fill-opacity="0.08" stroke="#0d9488" stroke-opacity="0.3"/>
-                    <text x="130" y="176" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="9">V_G = V_DD · R_2 / (R_1 + R_2)</text>
-                    <text x="130" y="192" text-anchor="middle" font-weight="bold" fill="#0f766e" font-size="9">V_GS = V_G - I_D · R_S</text>
-                    <text x="130" y="208" text-anchor="middle" fill="#475569" font-size="8.5">Resuelto con: I_D = k_n (V_GS - V_th)²</text>
+                    <!-- Ecuaciones clave -->
+                    <rect x="8" y="165" width="149" height="42" rx="4" fill="#0d9488" fill-opacity="0.08" stroke="#0d9488" stroke-opacity="0.3"/>
+                    <text x="82" y="178" text-anchor="middle" font-bold fill="#0f766e" font-size="8">V_G = 0 (I_G = 0)</text>
+                    <text x="82" y="190" text-anchor="middle" font-bold fill="#0f766e" font-size="8.5">V_GS = −I_D · R_S</text>
+                    <text x="82" y="202" text-anchor="middle" fill="#64748b" font-size="7.5">I_D = I_DSS (1 − V_GS/V_P)²</text>
                   </g>
 
-                  <!-- Divisor vertical -->
-                  <line x1="285" y1="15" x2="285" y2="225" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+                  <!-- ================= (b) DIVISOR RESISTIVO (UNIVERSAL) ================= -->
+                  <g transform="translate(190, 5)">
+                    <rect x="0" y="0" width="175" height="215" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#3b82f6" stroke-width="1.2"/>
+                    <text x="87" y="16" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="9.5">(b) Divisor Resistivo</text>
+                    <text x="87" y="27" text-anchor="middle" fill="#64748b" font-size="7.5">Universal (E-MOSFET, D-MOS, JFET)</text>
 
-                  <!-- ================= MODELO PEQUEÑA SEÑAL AC ================= -->
-                  <g transform="translate(305, 0)">
-                    <text x="180" y="18" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="11">Modelo Incremental de Pequeña Señal (AC)</text>
+                    <!-- VDD -->
+                    <line x1="25" y1="38" x2="155" y2="38" stroke="#ef4444" stroke-width="1.8"/>
+                    <circle cx="120" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="120" y="32" text-anchor="middle" font-bold fill="#ef4444" font-size="8">+V_DD</text>
 
-                    <!-- Terminal Compuerta G (Circuito Abierto!) -->
-                    <circle cx="20" cy="55" r="3.5" fill="#6366f1"/>
-                    <text x="10" y="59" font-weight="bold" fill="#6366f1" font-size="10">G</text>
-                    <line x1="20" y1="55" x2="65" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="65" cy="55" r="3" fill="#6366f1"/>
+                    <!-- Divisor R1 / R2 -->
+                    <line x1="45" y1="38" x2="45" y2="48" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="38" y="48" width="14" height="20" fill="none" stroke="#2563eb" stroke-width="1.4"/>
+                    <text x="32" y="60" text-anchor="end" fill="#2563eb" font-size="7.5">R_1</text>
+                    <line x1="45" y1="68" x2="45" y2="95" stroke="#64748b" stroke-width="1.3"/>
+                    <circle cx="45" cy="95" r="2.5" fill="#2563eb"/>
 
-                    <!-- Tensión vgs -->
-                    <text x="75" y="70" font-weight="bold" fill="#6366f1" font-size="10">+</text>
-                    <text x="73" y="90" font-weight="bold" fill="#6366f1" font-size="9.5">v_gs</text>
-                    <text x="75" y="105" font-weight="bold" fill="#6366f1" font-size="10">-</text>
+                    <rect x="38" y="105" width="14" height="20" fill="none" stroke="#2563eb" stroke-width="1.4"/>
+                    <line x1="45" y1="95" x2="45" y2="105" stroke="#64748b" stroke-width="1.3"/>
+                    <text x="32" y="117" text-anchor="end" fill="#2563eb" font-size="7.5">R_2</text>
+                    <line x1="45" y1="125" x2="45" y2="155" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="38" y1="155" x2="52" y2="155" stroke="#475569" stroke-width="1.5"/>
 
-                    <circle cx="65" cy="120" r="3" fill="#3b82f6"/>
-                    <text x="78" y="138" font-size="8" fill="#64748b">I_g = 0 (R_in = ∞)</text>
+                    <!-- MOSFET E-MOS N -->
+                    <line x1="45" y1="95" x2="85" y2="95" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="85" y1="80" x2="85" y2="110" stroke="#6366f1" stroke-width="2"/>
+                    <line x1="92" y1="80" x2="92" y2="110" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2" stroke-dasharray="3 2"/>
 
-                    <!-- Barra de Fuente (S) -->
-                    <line x1="20" y1="120" x2="340" y2="120" stroke="#475569" stroke-width="2"/>
-                    <circle cx="180" cy="120" r="3.5" fill="#3b82f6"/>
-                    <text x="180" y="140" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="10">S (Fuente)</text>
+                    <!-- RD y RS -->
+                    <rect x="113" y="48" width="14" height="22" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <line x1="120" y1="38" x2="120" y2="48" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="120" y1="70" x2="120" y2="85" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="92" y1="85" x2="120" y2="85" stroke="#64748b" stroke-width="1.3"/>
+                    <text x="132" y="62" fill="#10b981" font-size="8">R_D</text>
 
-                    <!-- Fuente de Corriente controlada gm · vgs -->
-                    <line x1="180" y1="55" x2="180" y2="70" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="180" cy="85" r="14" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.8"/>
-                    <line x1="180" y1="76" x2="180" y2="94" stroke="#10b981" stroke-width="2" marker-end="url(#fet-arr-green)"/>
-                    <text x="180" y="112" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">g_m · v_gs</text>
-                    <line x1="180" y1="99" x2="180" y2="120" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="92" y1="105" x2="120" y2="105" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="120" y1="105" x2="120" y2="118" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="113" y="118" width="14" height="22" fill="none" stroke="#a855f7" stroke-width="1.4"/>
+                    <text x="132" y="132" fill="#a855f7" font-size="8">R_S</text>
+                    <line x1="120" y1="140" x2="120" y2="155" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="113" y1="155" x2="127" y2="155" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Resistencia dinámica rd / ro -->
-                    <line x1="180" y1="55" x2="270" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="270" y1="55" x2="270" y2="70" stroke="#475569" stroke-width="1.8"/>
-                    <rect x="261" y="70" width="18" height="30" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.8" rx="2"/>
-                    <text x="286" y="88" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9.5">r_d (r_o)</text>
-                    <line x1="270" y1="100" x2="270" y2="120" stroke="#475569" stroke-width="1.8"/>
+                    <!-- Ecuaciones -->
+                    <rect x="8" y="165" width="159" height="42" rx="4" fill="#3b82f6" fill-opacity="0.08" stroke="#3b82f6" stroke-opacity="0.3"/>
+                    <text x="87" y="178" text-anchor="middle" font-bold fill="#1d4ed8" font-size="8">V_G = V_DD · R_2 / (R_1 + R_2)</text>
+                    <text x="87" y="190" text-anchor="middle" font-bold fill="#1d4ed8" font-size="8.5">V_GS = V_G − I_D · R_S</text>
+                    <text x="87" y="202" text-anchor="middle" fill="#64748b" font-size="7.5">I_D = k_n (V_GS − V_th)²</text>
+                  </g>
 
-                    <!-- Terminal Drenaje D -->
-                    <line x1="270" y1="55" x2="340" y2="55" stroke="#475569" stroke-width="2"/>
-                    <circle cx="340" cy="55" r="3.5" fill="#10b981"/>
-                    <text x="350" y="59" font-weight="bold" fill="#10b981" font-size="10">D</text>
+                  <!-- ================= (c) REALIMENTACIÓN DE DRENAJE ================= -->
+                  <g transform="translate(380, 5)">
+                    <rect x="0" y="0" width="170" height="215" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#6366f1" stroke-width="1.2"/>
+                    <text x="85" y="16" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5">(c) Realim. Drenaje</text>
+                    <text x="85" y="27" text-anchor="middle" fill="#64748b" font-size="7.5">Exclusivo E-MOSFET (V_th &gt; 0)</text>
 
-                    <!-- Fórmulas AC bajo el modelo -->
-                    <rect x="15" y="160" width="340" height="60" rx="6" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
-                    <text x="185" y="176" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5">g_m = 2 k_n (V_GSQ - V_th) = 2 √(k_n · I_DQ)</text>
-                    <text x="185" y="192" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5">r_d = r_o = 1 / (λ · I_DQ) = V_A / I_DQ</text>
-                    <text x="185" y="208" text-anchor="middle" fill="#475569" font-size="8.5">Fuente Común: A_v = -g_m (R_D ∥ R_L ∥ r_o) · R_in = R_1 ∥ R_2</text>
+                    <!-- VDD -->
+                    <line x1="30" y1="38" x2="140" y2="38" stroke="#ef4444" stroke-width="1.8"/>
+                    <circle cx="115" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="115" y="32" text-anchor="middle" font-bold fill="#ef4444" font-size="8">+V_DD</text>
+
+                    <!-- RD -->
+                    <line x1="115" y1="38" x2="115" y2="48" stroke="#64748b" stroke-width="1.3"/>
+                    <rect x="108" y="48" width="14" height="22" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <text x="127" y="62" fill="#10b981" font-size="8">R_D</text>
+                    <line x1="115" y1="70" x2="115" y2="82" stroke="#64748b" stroke-width="1.3"/>
+                    <circle cx="115" cy="82" r="3" fill="#10b981"/>
+
+                    <!-- Lazo de RG entre Drenaje y Compuerta -->
+                    <line x1="115" y1="82" x2="50" y2="82" stroke="#6366f1" stroke-width="1.3"/>
+                    <line x1="50" y1="82" x2="50" y2="92" stroke="#6366f1" stroke-width="1.3"/>
+                    <rect x="43" y="92" width="14" height="24" fill="none" stroke="#6366f1" stroke-width="1.4"/>
+                    <text x="36" y="106" text-anchor="end" fill="#6366f1" font-size="8">R_G</text>
+                    <line x1="50" y1="116" x2="50" y2="128" stroke="#6366f1" stroke-width="1.3"/>
+                    <line x1="50" y1="128" x2="80" y2="128" stroke="#6366f1" stroke-width="1.3"/>
+
+                    <!-- MOSFET -->
+                    <line x1="80" y1="115" x2="80" y2="140" stroke="#6366f1" stroke-width="2"/>
+                    <line x1="87" y1="115" x2="87" y2="140" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2" stroke-dasharray="3 2"/>
+                    <line x1="87" y1="120" x2="115" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="115" y1="82" x2="115" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <!-- Fuente S directa a masa -->
+                    <line x1="87" y1="135" x2="115" y2="135" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="115" y1="135" x2="115" y2="155" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="108" y1="155" x2="122" y2="155" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Ecuaciones -->
+                    <rect x="8" y="165" width="154" height="42" rx="4" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
+                    <text x="85" y="177" text-anchor="middle" font-bold fill="#4f46e5" font-size="8">I_G = 0 ⇒ V_GS = V_DS</text>
+                    <text x="85" y="189" text-anchor="middle" font-bold fill="#059669" font-size="8">¡Saturación Garantizada!</text>
+                    <text x="85" y="201" text-anchor="middle" fill="#64748b" font-size="7.5">V_GS = V_DD − I_D · R_D</text>
+                  </g>
+
+                  <!-- ================= (d) POLARIZACIÓN FIJA ================= -->
+                  <g transform="translate(565, 5)">
+                    <rect x="0" y="0" width="165" height="215" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#f59e0b" stroke-width="1.2"/>
+                    <text x="82" y="16" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9.5">(d) Polarización Fija</text>
+                    <text x="82" y="27" text-anchor="middle" fill="#64748b" font-size="7.5">JFET con Fuente Auxiliar</text>
+
+                    <!-- VDD -->
+                    <line x1="30" y1="38" x2="140" y2="38" stroke="#ef4444" stroke-width="1.8"/>
+                    <circle cx="105" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="105" y="32" text-anchor="middle" font-bold fill="#ef4444" font-size="8">+V_DD</text>
+
+                    <rect x="98" y="48" width="14" height="22" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <line x1="105" y1="38" x2="105" y2="48" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="105" y1="70" x2="105" y2="85" stroke="#64748b" stroke-width="1.3"/>
+                    <text x="117" y="62" fill="#10b981" font-size="8">R_D</text>
+
+                    <line x1="85" y1="80" x2="85" y2="115" stroke="#334155" class="dark:stroke-slate-300" stroke-width="2.5"/>
+                    <line x1="85" y1="86" x2="105" y2="86" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="105" y1="85" x2="105" y2="86" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="85" y1="108" x2="105" y2="108" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="105" y1="108" x2="105" y2="155" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="98" y1="155" x2="112" y2="155" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Rama VGG negativa -->
+                    <line x1="55" y1="100" x2="85" y2="100" stroke="#475569" stroke-width="1.3"/>
+                    <polygon points="76,100 68,96 68,104" fill="#0d9488"/>
+                    <rect x="48" y="115" width="14" height="20" fill="none" stroke="#d97706" stroke-width="1.4"/>
+                    <line x1="55" y1="100" x2="55" y2="115" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="55" y1="135" x2="55" y2="145" stroke="#64748b" stroke-width="1.3"/>
+                    <text x="42" y="127" text-anchor="end" fill="#d97706" font-size="7.5">R_G</text>
+                    <!-- Batería VGG invertida -->
+                    <line x1="48" y1="145" x2="62" y2="145" stroke="#475569" stroke-width="2"/>
+                    <line x1="51" y1="149" x2="59" y2="149" stroke="#475569" stroke-width="2"/>
+                    <line x1="55" y1="149" x2="55" y2="155" stroke="#64748b" stroke-width="1.3"/>
+                    <line x1="48" y1="155" x2="62" y2="155" stroke="#475569" stroke-width="1.5"/>
+                    <text x="68" y="150" font-bold fill="#d97706" font-size="7.5">−V_GG</text>
+
+                    <!-- Ecuaciones -->
+                    <rect x="8" y="165" width="149" height="42" rx="4" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.3"/>
+                    <text x="82" y="178" text-anchor="middle" font-bold fill="#b45309" font-size="8">V_GS = −V_GG (Fijo)</text>
+                    <text x="82" y="190" text-anchor="middle" font-bold fill="#b45309" font-size="8.5">I_D = I_DSS (1 + V_GG/|V_P|)²</text>
+                    <text x="82" y="202" text-anchor="middle" fill="#64748b" font-size="7.5">Inestable frente a dispersión</text>
                   </g>
                 </svg>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs">
-              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="font-bold text-teal-600 dark:text-teal-400">Fuente Común (FC):</span><br>
-                $A_v = -g_m (R_D \\parallel R_L \\parallel r_o)$ (Invierte $180^{\\circ}$)<br>
-                $R_{in} = R_1 \\parallel R_2$ (Muy alta, $1-10\\text{ M}\\Omega$)<br>
-                $R_o = R_D \\parallel r_o \\approx R_D$
+            <!-- DETALLE MATEMÁTICO RIGUROSO DE RESOLUCIÓN POR TOPOLOGÍA -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-3">Deducción Analítica y Resolución de Mallas</h5>
+
+            <div class="space-y-4 text-xs">
+              <!-- Bloque 1: Autopolarización -->
+              <div class="p-3.5 rounded-xl bg-teal-50 dark:bg-teal-950/20 border border-teal-200 dark:border-teal-800">
+                <span class="font-bold text-teal-900 dark:text-teal-300 block mb-1 text-xs uppercase tracking-wide">
+                  1. Autopolarización (Self-Bias) en JFET Canal N: Resolución Cuadrática
+                </span>
+                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                  Al estar la compuerta conectada a masa mediante $R_G$ sin corriente ($I_G = 0$), $V_G = 0\\text{ V}$. La corriente de drenaje atraviesa la resistencia de fuente $R_S$, elevando el potencial de la fuente a $V_S = I_D R_S$. Por tanto:
+                </p>
+                $$V_{GS} = V_G - V_S = 0 - I_D R_S = -I_D R_S$$
+                <p class="my-2">Sustituyendo $V_{GS}$ en la ley cuadrática de Shockley ($I_D = I_{DSS}(1 - V_{GS}/V_P)^2$):</p>
+                $$I_D = I_{DSS} \\left( 1 - \\frac{-I_D R_S}{V_P} \\right)^2 = I_{DSS} \\left( 1 + \\frac{R_S}{|V_P|} I_D \\right)^2$$
+                <p class="my-2">Desarrollando el binomio al cuadrado y reagrupando en la forma canónica $a I_D^2 + b I_D + c = 0$:</p>
+                $$\\mathbf{\\left( \\frac{R_S^2}{V_P^2} \\right) I_D^2 + \\left( \\frac{2 R_S}{|V_P|} - \\frac{1}{I_{DSS}} \\right) I_D + 1 = 0}$$
+                <div class="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-teal-300 dark:border-teal-700 my-2">
+                  <strong class="text-teal-800 dark:text-teal-300 block mb-0.5">🎯 Criterio de Selección de la Raíz Física:</strong>
+                  La ecuación cuadrática arroja dos raíces matemáticas $I_{D1}$ e $I_{D2}$. <strong>La única raíz físicamente válida es aquella que cumple:</strong>
+                  $$0 \\le I_D \\le I_{DSS} \\quad \\Longleftrightarrow \\quad V_P \\le V_{GS} \\le 0$$
+                  La segunda raíz siempre da $V_{GS} < V_P$ (más allá del corte) y debe descartarse.
+                </div>
+                <p class="mt-2 text-slate-600 dark:text-slate-400">
+                  Una vez hallado $I_{DQ}$, se calcula la malla de salida y se <strong>verifica la condición de saturación</strong>:
+                </p>
+                $$V_{DSQ} = V_{DD} - I_{DQ} (R_D + R_S) \\ge V_{GSQ} - V_P$$
               </div>
-              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="font-bold text-blue-600 dark:text-blue-400">Drenaje Común / Seguidor (DC):</span><br>
-                $A_v = \\frac{g_m (R_S \\parallel R_L)}{1 + g_m (R_S \\parallel R_L)} \\approx 1$ (En fase, $0^{\\circ}$)<br>
-                $R_{in} = R_1 \\parallel R_2$ (Casi infinita)<br>
-                $R_o = R_S \\parallel \\frac{1}{g_m}$ (Baja impedancia de salida)
+
+              <!-- Bloque 2: Divisor Resistivo -->
+              <div class="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800">
+                <span class="font-bold text-blue-900 dark:text-blue-300 block mb-1 text-xs uppercase tracking-wide">
+                  2. Polarización por Divisor de Tensión en E-MOSFET: Deducción Analítica
+                </span>
+                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                  El divisor $R_1-R_2$ fija la tensión de compuerta Thevenin de manera exacta (al no haber corriente $I_G = 0$):
+                </p>
+                $$V_G = V_{DD} \\cdot \\frac{R_2}{R_1 + R_2}$$
+                <p class="my-2">La tensión compuerta-fuente es: $V_{GS} = V_G - I_D R_S$. En saturación, la corriente del E-MOSFET cumple:</p>
+                $$I_D = k_n (V_{GS} - V_{th})^2 = k_n \\left[ (V_G - V_{th}) - I_D R_S \\right]^2$$
+                <p class="my-2">Desarrollando la ecuación de segundo grado en $I_D$:</p>
+                $$\\mathbf{(k_n R_S^2) I_D^2 - \\left[ 2 k_n R_S (V_G - V_{th}) + 1 \\right] I_D + k_n (V_G - V_{th})^2 = 0}$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  Se escoge la raíz que satisface $V_{GS} > V_{th}$. Luego se verifica la saturación: $V_{DSQ} = V_{DD} - I_{DQ}(R_D + R_S) \\ge V_{GSQ} - V_{th}$.
+                </p>
+              </div>
+
+              <!-- Bloque 3: Realimentación de Drenaje -->
+              <div class="p-3.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800">
+                <span class="font-bold text-indigo-900 dark:text-indigo-300 block mb-1 text-xs uppercase tracking-wide">
+                  3. Polarización por Realimentación de Drenaje (Drain-Feedback) en E-MOSFET
+                </span>
+                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                  Se conecta un resistor de gran valor $R_G$ ($1\\text{ M}\\Omega - 10\\text{ M}\\Omega$) entre drenaje y compuerta. Como $I_G = 0$, la caída de tensión en $R_G$ es estrictamente cero:
+                </p>
+                $$\\mathbf{V_{GS} = V_{DS}}$$
+                <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 my-2 text-emerald-950 dark:text-emerald-300">
+                  <strong class="block mb-0.5">🌟 Teorema de Saturación Garantizada:</strong>
+                  Para que un E-MOSFET canal N opere en saturación se exige $V_{DS} \\ge V_{GS} - V_{th}$. Dado que $V_{DS} = V_{GS}$ y por definición física de un E-MOSFET canal N la tensión umbral es positiva ($V_{th} > 0$):
+                  $$V_{DS} = V_{GS} > V_{GS} - V_{th} \\quad \\text{¡Se cumple SIEMPRE de forma incondicional!}$$
+                  <em>El transistor jamás puede caer en la región óhmica/tríodo en esta topología.</em>
+                </div>
+                <p class="my-2">La malla de drenaje con $V_S = 0$ resulta: $V_{GS} = V_{DS} = V_{DD} - I_D R_D$. Sustituyendo $I_D = k_n (V_{GS} - V_{th})^2$:</p>
+                $$\\mathbf{(k_n R_D) V_{GS}^2 + (1 - 2 k_n R_D V_{th}) V_{GS} + (k_n R_D V_{th}^2 - V_{DD}) = 0}$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  Se resuelve directamente para $V_{GS}$ y se toma la raíz $V_{GS} > V_{th}$.
+                </p>
               </div>
             </div>
+
+            <!-- 4. ALGORITMO SISTEMÁTICO DE EXAMEN -->
+            <div class="p-4 my-4 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs">
+              <h5 class="font-bold text-xs uppercase tracking-wider mb-2 text-slate-900 dark:text-white flex items-center gap-2">
+                <span>📋</span> Algoritmo de Examen: Protocolo en 6 Pasos para Resolver Circuitos FET en DC
+              </h5>
+              <ol class="list-decimal pl-5 space-y-1.5 text-slate-700 dark:text-slate-300">
+                <li><strong>Identificar tipo y canal:</strong> ¿JFET ($I_{DSS}, V_P$), D-MOSFET ($I_{DSS}, V_P$) o E-MOSFET ($k, V_{th}$)? ¿Canal N o Canal P?</li>
+                <li><strong>Plantear $I_G = 0$:</strong> Calcular la tensión de compuerta $V_G$ con el divisor resistivo ($V_G = V_{DD} \\frac{R_2}{R_1 + R_2}$) o $V_G = 0$ si va a masa por $R_G$.</li>
+                <li><strong>Plantear la malla compuerta-fuente:</strong> Expresar $V_{GS} = V_G - I_D R_S$.</li>
+                <li><strong>Plantear la ecuación del dispositivo:</strong>
+                  <ul class="list-disc pl-4 mt-0.5 space-y-0.5 text-[11px]">
+                    <li>JFET / D-MOS: $I_D = I_{DSS}(1 - V_{GS}/V_P)^2$</li>
+                    <li>E-MOSFET: $I_D = k_n (V_{GS} - V_{th})^2$</li>
+                  </ul>
+                </li>
+                <li><strong>Resolver la ecuación de 2° grado y seleccionar la raíz física:</strong> Descartar la raíz matemáticamente espuria que ubica al transistor en corte ($V_{GS} < V_P$ o $V_{GS} < V_{th}$).</li>
+                <li><strong>Calcular tensiones de nodo y verificar saturación:</strong>
+                  $$V_S = I_D R_S, \\quad V_D = V_{DD} - I_D R_D, \\quad V_{DS} = V_D - V_S$$
+                  $$\\text{Verificar: } V_{DS} \\ge V_{GS} - V_P \\text{ (JFET/D-MOS)} \\quad \\text{o} \\quad V_{DS} \\ge V_{GS} - V_{th} \\text{ (E-MOS)}$$
+                  Si se cumple $\\implies$ Punto $Q$ validado. Si no se cumple $\\implies$ El FET opera en <strong>zona óhmica (tríodo)</strong> y debe recalcularse con $I_D = k_n [2(V_{GS}-V_{th})V_{DS} - V_{DS}^2]$.
+                </li>
+              </ol>
+            </div>
+          `
+        },
+
+        // ====================================================================
+        // SECCIÓN 1.3: MODELOS INCREMENTALES Y CONFIGURACIONES AC
+        // ====================================================================
+        {
+          id: 'e2-u1-polarizacion-pequena-senal',
+          titulo: '1.3 Modelos Incrementales de Pequeña Señal (AC) y Configuraciones Básicas',
+          contenido: `
+            <p class="mb-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              En régimen dinámico de pequeña señal, las variaciones alrededor del punto de reposo $Q$ se modelan linealmente mediante el <strong>circuito equivalente híbrido $\\pi$</strong>. Dado que $I_G = 0$, la entrada de compuerta es un <strong>circuito abierto perfecto</strong> en bajas y medias frecuencias.
+            </p>
+
+            <!-- 1. DEDUCCIÓN ANALÍTICA DE PARÁMETROS INCREMENTALES -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs">
+              <!-- gm -->
+              <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-200">
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">
+                  1. Transconductancia Dinámica ($g_m$)
+                </span>
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-1">
+                  Derivada de la curva de transferencia evaluada en el punto $Q$:
+                </p>
+                $$g_m = \\left. \\frac{\\partial i_D}{\\partial v_{GS}} \\right|_Q$$
+                <div class="mt-1.5 space-y-1 text-[11px] font-mono">
+                  <div><strong>JFET / D-MOS:</strong> $g_m = \\frac{2 I_{DSS}}{|V_P|} \\left(1 - \\frac{V_{GSQ}}{V_P}\\right) = \\frac{2}{|V_P|} \\sqrt{I_{DSS} I_{DQ}}$</div>
+                  <div><strong>E-MOSFET:</strong> $g_m = 2 k_n (V_{GSQ} - V_{th}) = 2 \\sqrt{k_n I_{DQ}}$</div>
+                </div>
+              </div>
+
+              <!-- ro / rd -->
+              <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200">
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">
+                  2. Resistencia de Salida ($r_o$ o $r_d$)
+                </span>
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-1">
+                  Modulada por el Efecto Early ($\lambda = 1/V_A$):
+                </p>
+                $$r_o = \\left( \\left. \\frac{\\partial i_D}{\\partial v_{DS}} \\right|_Q \\right)^{-1} \\approx \\frac{1}{\\lambda I_{DQ}} = \\frac{V_A}{I_{DQ}}$$
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                  Típicamente $r_o \\approx 20\\text{ k}\\Omega - 100\\text{ k}\\Omega$. Si en el enunciado no se especifica $\\lambda$ o $V_A$, se considera $r_o \\to \\infty$ (abierta).
+                </p>
+              </div>
+            </div>
+
+            <!-- DIAGRAMA SVG MODELO AC Y CONFIGURACIONES -->
+            <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+                📊 Modelo Equivalente de Pequeña Señal (AC) y Configuración Fuente Común
+              </span>
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 700 210" class="w-full max-w-[700px] text-xs font-sans select-none" style="min-width: 560px;">
+                  <defs>
+                    <marker id="ac-arr-green" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#10b981"/>
+                    </marker>
+                  </defs>
+
+                  <!-- ================= (a) MODELO HÍBRIDO PI GENÉRICO ================= -->
+                  <g transform="translate(10, 5)">
+                    <rect x="0" y="0" width="310" height="195" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#6366f1" stroke-width="1.2"/>
+                    <text x="155" y="18" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="10.5">Modelo Incremental Híbrido π</text>
+
+                    <!-- Terminal G -->
+                    <circle cx="25" cy="55" r="3.5" fill="#6366f1"/>
+                    <text x="15" y="59" font-weight="bold" fill="#6366f1" font-size="10">G</text>
+                    <line x1="25" y1="55" x2="65" y2="55" stroke="#475569" stroke-width="1.8"/>
+                    <circle cx="65" cy="55" r="3" fill="#6366f1"/>
+
+                    <!-- Tensión v_gs -->
+                    <text x="75" y="72" font-weight="bold" fill="#6366f1" font-size="10">+</text>
+                    <text x="72" y="92" font-weight="bold" fill="#6366f1" font-size="9.5">v_gs</text>
+                    <text x="75" y="108" font-weight="bold" fill="#6366f1" font-size="10">_</text>
+
+                    <!-- Compuerta Abierta -->
+                    <circle cx="65" cy="120" r="3" fill="#3b82f6"/>
+                    <text x="78" y="136" font-size="8" fill="#64748b">I_g = 0 (R_in = ∞)</text>
+
+                    <!-- Barra de Fuente S -->
+                    <line x1="25" y1="120" x2="285" y2="120" stroke="#475569" stroke-width="2"/>
+                    <circle cx="150" cy="120" r="3.5" fill="#3b82f6"/>
+                    <text x="150" y="138" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="10">S (Fuente)</text>
+
+                    <!-- Fuente de Corriente gm · vgs -->
+                    <line x1="150" y1="55" x2="150" y2="68" stroke="#475569" stroke-width="1.8"/>
+                    <circle cx="150" cy="85" r="14" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.8"/>
+                    <line x1="150" y1="76" x2="150" y2="94" stroke="#10b981" stroke-width="2" marker-end="url(#ac-arr-green)"/>
+                    <text x="150" y="112" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">g_m · v_gs</text>
+                    <line x1="150" y1="99" x2="150" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                    <!-- Resistencia ro -->
+                    <line x1="150" y1="55" x2="235" y2="55" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="235" y1="55" x2="235" y2="68" stroke="#475569" stroke-width="1.8"/>
+                    <rect x="226" y="68" width="18" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.6" rx="2"/>
+                    <text x="250" y="85" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">r_o</text>
+                    <line x1="235" y1="96" x2="235" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                    <!-- Terminal D -->
+                    <line x1="235" y1="55" x2="285" y2="55" stroke="#475569" stroke-width="2"/>
+                    <circle cx="285" cy="55" r="3.5" fill="#10b981"/>
+                    <text x="295" y="59" font-weight="bold" fill="#10b981" font-size="10">D</text>
+
+                    <!-- Nota -->
+                    <rect x="15" y="152" width="280" height="32" rx="4" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
+                    <text x="155" y="166" text-anchor="middle" font-bold fill="#4f46e5" font-size="8.5">g_m = 2 √(k_n · I_DQ) = 2 I_DSS / |V_P| · (1 − V_GSQ/V_P)</text>
+                    <text x="155" y="178" text-anchor="middle" fill="#64748b" font-size="8">r_o = 1 / (λ · I_DQ) = V_A / I_DQ</text>
+                  </g>
+
+                  <!-- ================= (b) FUENTE COMÚN CON CARGA ================= -->
+                  <g transform="translate(340, 5)">
+                    <rect x="0" y="0" width="350" height="195" rx="8" fill="#f8fafc" class="dark:fill-slate-800/40" stroke="#0d9488" stroke-width="1.2"/>
+                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="10.5">Etapa Fuente Común en Pequeña Señal (AC)</text>
+
+                    <!-- vi y RG -->
+                    <circle cx="25" cy="80" r="3" fill="#3b82f6"/>
+                    <text x="15" y="84" font-weight="bold" fill="#3b82f6" font-size="9.5">v_i</text>
+                    <line x1="25" y1="80" x2="55" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="55" cy="80" r="2.5" fill="#475569"/>
+
+                    <!-- RG (R1 // R2) -->
+                    <line x1="55" y1="80" x2="55" y2="95" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="48" y="95" width="14" height="25" fill="#0d9488" fill-opacity="0.2" stroke="#0d9488" stroke-width="1.4"/>
+                    <text x="40" y="110" text-anchor="end" font-bold fill="#0d9488" font-size="8">R_in</text>
+                    <line x1="55" y1="120" x2="55" y2="135" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="48" y1="135" x2="62" y2="135" stroke="#475569" stroke-width="1.5"/>
+
+                    <line x1="55" y1="80" x2="100" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Transistor Bloque Fuente Común -->
+                    <rect x="100" y="60" width="90" height="70" rx="4" fill="#0d9488" fill-opacity="0.1" stroke="#0d9488" stroke-width="1.5"/>
+                    <text x="145" y="80" text-anchor="middle" font-weight="bold" fill="#0d9488" font-size="9">FET (FC)</text>
+                    <text x="145" y="94" text-anchor="middle" font-mono fill="#0f766e" font-size="8">g_m, r_o</text>
+                    <text x="145" y="108" text-anchor="middle" fill="#64748b" font-size="7.5">S a masa AC</text>
+
+                    <!-- Salida Drenaje -->
+                    <line x1="190" y1="80" x2="225" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="225" cy="80" r="2.5" fill="#475569"/>
+
+                    <!-- RD en paralelo con RL -->
+                    <line x1="225" y1="80" x2="225" y2="95" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="218" y="95" width="14" height="25" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <text x="210" y="110" text-anchor="end" fill="#10b981" font-size="8">R_D</text>
+                    <line x1="225" y1="120" x2="225" y2="135" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="218" y1="135" x2="232" y2="135" stroke="#475569" stroke-width="1.5"/>
+
+                    <line x1="225" y1="80" x2="275" y2="80" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="275" cy="80" r="2.5" fill="#475569"/>
+                    <rect x="268" y="95" width="14" height="25" fill="none" stroke="#10b981" stroke-width="1.4"/>
+                    <text x="290" y="110" font-bold fill="#10b981" font-size="8">R_L</text>
+                    <line x1="275" y1="80" x2="275" y2="95" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="275" y1="120" x2="275" y2="135" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="268" y1="135" x2="282" y2="135" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- vo -->
+                    <line x1="275" y1="80" x2="315" y2="80" stroke="#10b981" stroke-width="2"/>
+                    <circle cx="315" cy="80" r="3.5" fill="#10b981"/>
+                    <text x="325" y="84" font-weight="bold" fill="#10b981" font-size="10">v_o</text>
+
+                    <!-- Fórmulas FC -->
+                    <rect x="15" y="148" width="320" height="38" rx="4" fill="#0d9488" fill-opacity="0.08" stroke="#0d9488" stroke-opacity="0.3"/>
+                    <text x="175" y="162" text-anchor="middle" font-bold fill="#0f766e" font-size="9">A_v = −g_m · (R_D ∥ R_L ∥ r_o)  (Invierte 180°)</text>
+                    <text x="175" y="176" text-anchor="middle" fill="#64748b" font-size="8">R_in = R_1 ∥ R_2 (≈ 1 a 10 MΩ)  ·  R_o = R_D ∥ r_o ≈ R_D</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- TABLA COMPARATIVA DE LAS 3 CONFIGURACIONES BÁSICAS -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Tabla Comparativa de Configuraciones Básicas con FET</h5>
+            <div class="overflow-x-auto my-3">
+              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Configuración</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Ganancia de Tensión ($A_v$)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Fase</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Resistencia Entrada ($R_{in}$)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Resistencia Salida ($R_o$)</th>
+                    <th class="p-2 border border-slate-200 dark:border-slate-800">Uso Típico</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono text-[11px]">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-teal-600 dark:text-teal-400 font-sans">Fuente Común (FC)</td>
+                    <td class="p-2 font-bold">$-g_m (R_D \\parallel R_L \\parallel r_o)$</td>
+                    <td class="p-2 text-rose-600 dark:text-rose-400 font-bold">$180^{\\circ}$</td>
+                    <td class="p-2 font-bold text-emerald-600 dark:text-emerald-400">Muy Alta ($R_1 \\parallel R_2$)</td>
+                    <td class="p-2">Media ($R_D \\parallel r_o$)</td>
+                    <td class="p-2 font-sans">Amplificación de tensión con alta $R_{in}$</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-blue-600 dark:text-blue-400 font-sans">Drenaje Común / Seguidor (DC)</td>
+                    <td class="p-2 font-bold">$\\frac{g_m(R_S \\parallel R_L)}{1 + g_m(R_S \\parallel R_L)} \\approx 1$</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-bold">$0^{\\circ}$</td>
+                    <td class="p-2 font-bold text-emerald-600 dark:text-emerald-400">Casi Infinita ($R_1 \\parallel R_2$)</td>
+                    <td class="p-2 font-bold text-emerald-600 dark:text-emerald-400">Baja ($R_S \\parallel 1/g_m$)</td>
+                    <td class="p-2 font-sans">Buffer / Adaptador de impedancias</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-2 font-bold text-indigo-600 dark:text-indigo-400 font-sans">Compuerta Común (CC)</td>
+                    <td class="p-2 font-bold">$+g_m (R_D \\parallel R_L)$</td>
+                    <td class="p-2 text-emerald-600 dark:text-emerald-400 font-bold">$0^{\\circ}$</td>
+                    <td class="p-2 font-bold text-amber-600 dark:text-amber-400">Baja ($1/g_m$)</td>
+                    <td class="p-2">Media ($R_D$)</td>
+                    <td class="p-2 font-sans">Etapas de RF y Cascode (sin efecto Miller)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Caso de examen: Resistencia RS sin desacoplar -->
+            <div class="p-3.5 my-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-xs">
+              <span class="font-bold text-purple-900 dark:text-purple-300 block mb-1">
+                ⚡ Pregunta de Examen: Resistencia de Fuente Parcial o No Desacoplada ($R_S$)
+              </span>
+              <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
+                Si la resistencia de fuente no tiene capacitor de desacoplo $C_S$ (o sólo una parte $R_{S1}$ queda sin desacoplar), introduce <strong>realimentación negativa de corriente</strong> en alterna, reduciendo la ganancia pero linealizando la respuesta:
+              </p>
+              $$A_v = \\frac{-g_m (R_D \\parallel R_L)}{1 + g_m R_S} \\approx -\\frac{R_D \\parallel R_L}{R_S} \\quad (\\text{si } g_m R_S \\gg 1)$$
+            </div>
+
             <div class="pt-2 flex justify-end">
               <button onclick="filtrarUnidad('e2-u1'); volverAEjercicios();" class="text-xs font-mono text-teal-600 dark:text-teal-400 hover:underline flex items-center gap-1">
                 <span>Practicar ejercicios guiados de la Unidad 1</span>
