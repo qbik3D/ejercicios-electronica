@@ -53,7 +53,7 @@
 
   <!-- Barra de navegación superior limpia y espaciosa -->
   <header class="border-b border-slate-200 dark:border-slate-800/80 sticky top-0 z-30 bg-white/95 dark:bg-slate-950/95 backdrop-blur-sm transition-colors">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <div class="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3 min-w-0">
         <!-- Logo Qbik -->
         <a 
@@ -142,7 +142,7 @@
   </header>
 
   <!-- VISTA 1: PORTAL DE SELECCIÓN DE MATERIAS (RECUADROS MINIMALISTAS) -->
-  <section id="vista-seleccion-materias" class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full animate-fade-in">
+  <section id="vista-seleccion-materias" class="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full animate-fade-in">
     <div class="mb-6">
       <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
         Asignaturas
@@ -153,7 +153,7 @@
     </div>
 
     <!-- Grilla de recuadros de materias -->
-    <div id="grid-materias-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+    <div id="grid-materias-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       <!-- Se inyecta dinámicamente con app.js -->
     </div>
   </section>
@@ -161,7 +161,7 @@
   <!-- VISTA 2: ENTORNO DE RESOLUCIÓN DE LA MATERIA SELECCIONADA -->
   <div id="vista-materia-ejercicios" class="hidden flex-1 flex flex-col w-full animate-fade-in">
     <!-- Contenedor principal de ejercicios centrado en modo enfoque -->
-    <main class="max-w-3xl mx-auto px-4 py-5 flex-1 w-full">
+    <main class="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
       <!-- Barra de navegación rápida de ejercicios (Sutil y sin cajas) -->
       <div class="mb-5 flex items-center justify-between gap-3 text-xs font-mono border-b border-slate-200 dark:border-slate-800/80 pb-3">
         <button 
@@ -253,7 +253,7 @@
   </div>
 
   <!-- VISTA 3: COMPENDIO TEÓRICO COMPLETO (REPASO INTEGRAL E IMPRESIÓN PDF) -->
-  <section id="vista-compendio-teoria" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+  <section id="vista-compendio-teoria" class="hidden flex-1 w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
     <!-- Barra superior de acciones del compendio -->
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
       <div>
@@ -300,7 +300,7 @@
 
   <!-- Pie de página limpio y proporcionado con logo -->
   <footer class="border-t border-slate-200 dark:border-slate-800/80 py-5 sm:py-6 mt-auto text-xs font-mono text-slate-500 bg-white dark:bg-slate-950 transition-colors">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-3">
         <a href="https://qbik.com.ar" target="_blank" rel="noopener noreferrer" class="hover:opacity-85 transition-opacity" title="Qbik (qbik.com.ar)">
           <img id="footer-logo-img" src="logo-hz-dark.png" alt="Qbik" class="h-6 sm:h-7 w-auto">
