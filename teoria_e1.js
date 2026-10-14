@@ -332,8 +332,8 @@ const MANUAL_TEORIA_E1 = {
             </div>
 
             <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
-              <strong>Caso Particular Simétrico ($R_{AB} = R_{BC} = R_{CA} = R_\\Delta$):</strong>
-              $$\\mathbf{R_Y = \\frac{R_\\Delta}{3}} \\quad \\Longleftrightarrow \\quad \\mathbf{R_\\Delta = 3 \\cdot R_Y}$$
+              <strong>Caso Particular Simétrico ($R_{AB} = R_{BC} = R_{CA} = R_{\\Delta}$):</strong>
+              $$\\mathbf{R_Y = \\frac{R_{\\Delta}}{3}} \\quad \\Longleftrightarrow \\quad \\mathbf{R_{\\Delta} = 3 \\cdot R_Y}$$
               <span class="text-slate-500">La resistencia equivalente de cada rama de la estrella es exactamente un tercio del valor de cada rama del triángulo.</span>
             </div>
 
@@ -1402,12 +1402,12 @@ const MANUAL_TEORIA_E1 = {
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly (Δ ➔ Y)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_A = \\frac{R_{AB} R_{CA}}{\\sum R_\\Delta}$ (simétrico: $R_Y = R_\\Delta / 3$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_A = \\frac{R_{AB} R_{CA}}{\\sum R_{\\Delta}}$ (simétrico: $R_Y = R_{\\Delta} / 3$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Redes en puente / no reducibles</td>
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly (Y ➔ Δ)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{AB} = \\frac{\\sum R_i R_j}{R_C}$ (simétrico: $R_\\Delta = 3 R_Y$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{AB} = \\frac{\\sum R_i R_j}{R_C}$ (simétrico: $R_{\\Delta} = 3 R_Y$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Conversión a triángulo</td>
                   </tr>
                   <tr>
@@ -1971,13 +1971,13 @@ const MANUAL_TEORIA_E1 = {
               </div>
 
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <span class="font-bold text-slate-800 dark:text-slate-200">2. Modelo con Tensión Constante ($V_\\gamma$)</span>
-                <p class="text-slate-600 dark:text-slate-400 mt-1">En conducción se reemplaza por una fuente ideal de valor fijo $V_D = V_\\gamma \\approx 0.7\\text{ V}$ ($0.3\\text{ V}$ en Ge). Es el modelo estándar para el análisis estático en corriente continua.</p>
+                <span class="font-bold text-slate-800 dark:text-slate-200">2. Modelo con Tensión Constante ($V_{\\gamma}$)</span>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">En conducción se reemplaza por una fuente ideal de valor fijo $V_D = V_{\\gamma} \\approx 0.7\\text{ V}$ ($0.3\\text{ V}$ en Ge). Es el modelo estándar para el análisis estático en corriente continua.</p>
               </div>
 
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <span class="font-bold text-slate-800 dark:text-slate-200">3. Modelo Lineal por Tramos</span>
-                <p class="text-slate-600 dark:text-slate-400 mt-1">Incorpora la resistencia interna del cuerpo semiconductor ($R_B$): $V_D = V_\\gamma + I_D R_B$. Modela con precisión la pendiente en régimen de fuertes corrientes.</p>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">Incorpora la resistencia interna del cuerpo semiconductor ($R_B$): $V_D = V_{\\gamma} + I_D R_B$. Modela con precisión la pendiente en régimen de fuertes corrientes.</p>
               </div>
 
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
@@ -2108,7 +2108,7 @@ const MANUAL_TEORIA_E1 = {
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Continua Media ($V_{DC}$):</span>
-                  $$V_{DC} = \\frac{V_{o,pico}}{\\pi} \\approx 0.318 \\cdot (V_p - V_\\gamma)$$
+                  $$V_{DC} = \\frac{V_{o,pico}}{\\pi} \\approx 0.318 \\cdot (V_p - V_{\\gamma})$$
                 </div>
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Inversa Pico ($PIV$):</span>
@@ -2239,7 +2239,7 @@ const MANUAL_TEORIA_E1 = {
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Pico de Salida:</span>
-                  $$V_{o,pico} = V_s - V_\\gamma$$
+                  $$V_{o,pico} = V_s - V_{\\gamma}$$
                   <span class="text-[11px] text-slate-500">$V_s$ es la tensión pico de cada mitad del secundario.</span>
                 </div>
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
@@ -2249,7 +2249,7 @@ const MANUAL_TEORIA_E1 = {
                 </div>
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-rose-600 dark:text-rose-400 block">Desventaja Crítica: $PIV$ Elevada</span>
-                  $$PIV = 2 V_s - V_\\gamma \\approx 2 V_s$$
+                  $$PIV = 2 V_s - V_{\\gamma} \\approx 2 V_s$$
                   <span class="text-[11px] text-slate-500">Cada diodo debe soportar el doble de la tensión de salida cuando bloquea.</span>
                 </div>
               </div>
@@ -2380,7 +2380,7 @@ const MANUAL_TEORIA_E1 = {
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-700 dark:text-slate-300 block">Tensión Pico de Salida:</span>
-                  $$V_{o,pico} = V_s - 2 V_\\gamma \\approx V_s - 1.4\\text{ V}$$
+                  $$V_{o,pico} = V_s - 2 V_{\\gamma} \\approx V_s - 1.4\\text{ V}$$
                   <span class="text-[11px] text-slate-500">Caída debida a dos diodos conduciendo en serie.</span>
                 </div>
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
@@ -2390,7 +2390,7 @@ const MANUAL_TEORIA_E1 = {
                 </div>
                 <div class="p-2.5 rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-emerald-600 dark:text-emerald-400 block">Gran Ventaja: $PIV$ Reducida</span>
-                  $$PIV = V_s - V_\\gamma \\approx V_s$$
+                  $$PIV = V_s - V_{\\gamma} \\approx V_s$$
                   <span class="text-[11px] text-slate-500">Es la mitad que en el rectificador de punto medio.</span>
                 </div>
               </div>
@@ -2406,26 +2406,26 @@ const MANUAL_TEORIA_E1 = {
                 <ol class="list-decimal pl-5 space-y-1.5 mb-2.5">
                   <li>
                     <strong>Durante el semiciclo positivo ($v_s(t) = +V_s$):</strong>
-                    Los diodos $D_1$ y $D_2$ entran en conducción directa ($V_{D1} = V_{D2} = V_\\gamma \\approx 0.7\\text{ V}$), mientras que $D_3$ y $D_4$ permanecen en corte (OFF).
+                    Los diodos $D_1$ y $D_2$ entran en conducción directa ($V_{D1} = V_{D2} = V_{\\gamma} \\approx 0.7\\text{ V}$), mientras que $D_3$ y $D_4$ permanecen en corte (OFF).
                   </li>
                   <li>
                     <strong>Malla de Kirchhoff para el diodo bloqueado $D_3$:</strong>
-                    El cátodo de $D_3$ está conectado directamente al terminal superior del generador ($+V_s$) a través del nodo con el ánodo de $D_1$. Por su parte, el ánodo de $D_3$ se conecta al terminal negativo de la carga ($R_L$), que a su vez se conecta al terminal inferior del generador a través del diodo en conducción $D_2$ ($V_{D2} = V_\\gamma$).
+                    El cátodo de $D_3$ está conectado directamente al terminal superior del generador ($+V_s$) a través del nodo con el ánodo de $D_1$. Por su parte, el ánodo de $D_3$ se conecta al terminal negativo de la carga ($R_L$), que a su vez se conecta al terminal inferior del generador a través del diodo en conducción $D_2$ ($V_{D2} = V_{\\gamma}$).
                     <br>
                     Observando la malla cerrada formada por $D_3$, $D_1$ y la carga $R_L$:
                     $$V_{inv, D3} = V_{\\text{cátodo}} - V_{\\text{ánodo}} = V_{o,pico} + V_{D1}$$
-                    Sustituyendo $V_{o,pico} = V_s - 2V_\\gamma$:
-                    $$V_{inv, D3} = (V_s - 2V_\\gamma) + V_\\gamma = \\mathbf{V_s - V_\\gamma \\approx V_s}$$
+                    Sustituyendo $V_{o,pico} = V_s - 2V_{\\gamma}$:
+                    $$V_{inv, D3} = (V_s - 2V_{\\gamma}) + V_{\\gamma} = \\mathbf{V_s - V_{\\gamma} \\approx V_s}$$
                   </li>
                   <li>
                     <strong>Malla de Kirchhoff para el diodo bloqueado $D_4$:</strong>
                     Su cátodo se encuentra al potencial positivo de la carga ($V_{o,pico}$) y su ánodo al terminal inferior de $v_s$ (a través de $D_2$). De manera idéntica:
-                    $$V_{inv, D4} = V_{o,pico} + V_{D2} = \\mathbf{V_s - V_\\gamma \\approx V_s}$$
+                    $$V_{inv, D4} = V_{o,pico} + V_{D2} = \\mathbf{V_s - V_{\\gamma} \\approx V_s}$$
                   </li>
                 </ol>
                 <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/60 border border-emerald-500/20 text-slate-700 dark:text-slate-300">
                   <strong>Comparativa Crucial con el Rectificador de Punto Medio:</strong>
-                  En el transformador de toma central, el diodo en corte ve la suma de <em>ambos semi-bobinados</em> en serie ($\\text{PIV} = 2V_s - V_\\gamma \\approx \\mathbf{2V_s}$). En el <strong>Puente de Graetz</strong>, en cambio, la tensión inversa se distribuye en dos ramas paralelas, por lo que <strong>cada diodo soporta únicamente el pico de una sola fuente ($\\text{PIV} \\approx V_s$)</strong>. Esto reduce a la mitad el requerimiento de $V_{RRM}$ de los diodos en el diseño comercial.
+                  En el transformador de toma central, el diodo en corte ve la suma de <em>ambos semi-bobinados</em> en serie ($\\text{PIV} = 2V_s - V_{\\gamma} \\approx \\mathbf{2V_s}$). En el <strong>Puente de Graetz</strong>, en cambio, la tensión inversa se distribuye en dos ramas paralelas, por lo que <strong>cada diodo soporta únicamente el pico de una sola fuente ($\\text{PIV} \\approx V_s$)</strong>. Esto reduce a la mitad el requerimiento de $V_{RRM}$ de los diodos en el diseño comercial.
                 </div>
               </div>
 
@@ -3005,7 +3005,7 @@ const MANUAL_TEORIA_E1 = {
                   </tr>
                   <tr>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Puente de Graetz (4 Diodos)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = \\frac{2 (V_s - 2V_\\gamma)}{\\pi}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{DC} = \\frac{2 (V_s - 2V_{\\gamma})}{\\pi}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$PIV = V_s$ (óptima) · $f_{rizado} = 100\\text{ Hz}$</td>
                   </tr>
                   <tr>
@@ -3807,7 +3807,7 @@ const MANUAL_TEORIA_E1 = {
                     </div>
                   </div>
                   <div class="mt-2.5 p-2 rounded-lg bg-rose-100/70 dark:bg-rose-900/40 text-[11px] text-rose-900 dark:text-rose-200">
-                    <strong>Consecuencia:</strong> La dispersión de $\\beta$ entre componentes del mismo modelo (ej. 100 a 300, $+200\\%$) o el aumento térmico ($\\approx +0.5\\%/^\\circ\\text{C}$) duplican o triplican $I_C$, colapsando $V_{CE} = V_{CC} - I_C R_C$ hasta la <strong>saturación</strong> o causando embalamiento térmico.
+                    <strong>Consecuencia:</strong> La dispersión de $\\beta$ entre componentes del mismo modelo (ej. 100 a 300, $+200\\%$) o el aumento térmico ($\\approx +0.5\\%/^{\\circ}\\text{C}$) duplican o triplican $I_C$, colapsando $V_{CE} = V_{CC} - I_C R_C$ hasta la <strong>saturación</strong> o causando embalamiento térmico.
                   </div>
                 </div>
 
@@ -3987,7 +3987,7 @@ const MANUAL_TEORIA_E1 = {
                     2. Sensibilidad a la Temperatura ($T$)
                   </div>
                   <p class="text-slate-600 dark:text-slate-400">
-                    Al calentarse el transistor: $\\beta$ aumenta ($\\approx +0.5\\%/^\\circ\\text{C}$), $V_{BE}$ decrece ($\\approx -2\\,\\text{mV}/^\\circ\\text{C}$) y la corriente de fuga $I_{CBO}$ se duplica cada $10^\\circ\\text{C}$. Sin compensación, esto desvía $I_C$ hacia la saturación o embalamiento térmico.
+                    Al calentarse el transistor: $\\beta$ aumenta ($\\approx +0.5\\%/^{\\circ}\\text{C}$), $V_{BE}$ decrece ($\\approx -2\\,\\text{mV}/^{\\circ}\\text{C}$) y la corriente de fuga $I_{CBO}$ se duplica cada $10^{\\circ}\\text{C}$. Sin compensación, esto desvía $I_C$ hacia la saturación o embalamiento térmico.
                   </p>
                 </div>
               </div>
@@ -4007,7 +4007,7 @@ const MANUAL_TEORIA_E1 = {
                   Observa el denominador: contiene dos términos resistivos, $\\frac{R_B}{\\beta}$ y $R_E$. Si forzamos a que el término que contiene a $\\beta$ sea <strong>completamente despreciable</strong> frente a $R_E$:
                 </p>
                 <div class="flex items-center justify-center gap-2 my-2 text-sm font-bold text-indigo-600 dark:text-indigo-400">
-                  $$\\frac{R_B}{\\beta} \\ll R_E \\iff \\mathbf{R_B \\le 0.1 \\cdot \\beta R_E} \\quad \\text{(Regla del 10\\%)}$$
+                  $$\\frac{R_B}{\\beta} \\ll R_E \\iff \\mathbf{R_B \\le 0.1 \\cdot \\beta R_E} \\quad \\text{(Regla del } 10\\% \\text{)}$$
                 </div>
                 <p class="text-slate-600 dark:text-slate-400">
                   Bajo esta condición, $\\frac{R_B}{\\beta} \\approx 0$, por lo que la fórmula se simplifica:
@@ -4085,7 +4085,7 @@ const MANUAL_TEORIA_E1 = {
                     📌 Regla 2: Amplitud de $V_E$ frente a Deriva de $V_{BE}$
                   </div>
                   <p class="text-slate-600 dark:text-slate-400 mb-1">
-                    La juntura $V_{BE}$ varía térmicamente unos $-2\\,\\text{mV}/^\\circ\\text{C}$ (apenas $\\sim 0.1\\,\\text{V}$ en todo el rango). Para que esa variación sea imperceptible:
+                    La juntura $V_{BE}$ varía térmicamente unos $-2\\,\\text{mV}/^{\\circ}\\text{C}$ (apenas $\\sim 0.1\\,\\text{V}$ en todo el rango). Para que esa variación sea imperceptible:
                   </p>
                   <div class="font-mono text-center p-1.5 rounded bg-slate-50 dark:bg-slate-800 font-bold text-emerald-600 dark:text-emerald-300">
                     $$V_E \\ge 1\\,\\text{V} \\quad \\text{o} \\quad V_E \\approx (0.1 \\sim 0.2) \\cdot V_{CC}$$
@@ -4445,7 +4445,7 @@ const MANUAL_TEORIA_E1 = {
                     <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold">[$\\Omega$]</span>
                   </div>
                   <div class="my-1.5 text-center font-mono text-xs">
-                    $$h_{ie} = \\left. \\frac{v_{be}}{i_b} \\right|_{v_{ce} = 0} = (1+\\beta) r_e \\equiv r_\\pi$$
+                    $$h_{ie} = \\left. \\frac{v_{be}}{i_b} \\right|_{v_{ce} = 0} = (1+\\beta) r_e \\equiv r_{\\pi}$$
                   </div>
                   <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
                     Resistencia dinámica que presenta la juntura Base-Emisor en directa vista desde la base cuando el colector está cortocircuitado en AC ($v_{ce} = 0$).
@@ -4511,10 +4511,10 @@ const MANUAL_TEORIA_E1 = {
                 </strong>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono font-bold mt-1 text-slate-800 dark:text-slate-200">
                   <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    $h_{ie} \\equiv r_\\pi$
+                    $h_{ie} \\equiv r_{\\pi}$
                   </div>
                   <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    $h_{fe} \\equiv \\beta = g_m r_\\pi$
+                    $h_{fe} \\equiv \\beta = g_m r_{\\pi}$
                   </div>
                   <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                     $h_{re} \\approx 0$
@@ -4598,10 +4598,10 @@ const MANUAL_TEORIA_E1 = {
                 </p>
               </div>
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Resistencia de Entrada de Base ($r_\\pi$ o $h_{ie}$):</span>
-                $$r_\\pi = \\frac{\\beta}{g_m} = \\frac{\\beta V_T}{I_{CQ}} = (1+\\beta) r_e$$
+                <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Resistencia de Entrada de Base ($r_{\\pi}$ o $h_{ie}$):</span>
+                $$r_{\\pi} = \\frac{\\beta}{g_m} = \\frac{\\beta V_T}{I_{CQ}} = (1+\\beta) r_e$$
                 <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
-                  Resistencia dinámica que presenta la juntura Base-Emisor vista desde la base. Con $\\beta=100$ y $I_C=1\\text{ mA}$, $r_\\pi \\approx 2.6\\text{ k}\\Omega$.
+                  Resistencia dinámica que presenta la juntura Base-Emisor vista desde la base. Con $\\beta=100$ y $I_C=1\\text{ mA}$, $r_{\\pi} \\approx 2.6\\text{ k}\\Omega$.
                 </p>
               </div>
               <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
@@ -5052,7 +5052,7 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) con $C_E$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$-g_m (R_C \\parallel R_L)$ (Alta, $50-500$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$ (Alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel r_\\pi$ (Media, $1-5\\text{ k}\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel r_{\\pi}$ (Media, $1-5\\text{ k}\\Omega$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C \\parallel r_o \\approx R_C$ (Media)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$ (Invierte)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Etapa amplificadora de tensión y potencia principal de propósito general.</td>
@@ -5061,17 +5061,17 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-indigo-600 dark:text-indigo-400">Emisor Común (EC) sin $C_E$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$-\\frac{R_C \\parallel R_L}{R_E + r_e} \\approx -\\frac{R_C}{R_E}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx -\\beta$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_\\pi + (1+\\beta)R_E]$ (Alta)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_E]$ (Alta)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$R_C$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-red-500 font-bold">$180^{\\circ}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ganancia linealizada inmune a variaciones térmicas y dispersión de transistores.</td>
                   </tr>
                   <tr class="bg-emerald-500/5">
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-bold text-emerald-600 dark:text-emerald-400">Colector Común (CC)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800"><span class="font-bold text-emerald-600 dark:text-emerald-400">$A_v < 1$</span> (Siempre $< 1$, $\\approx 0.98 \\sim 0.99$)<br>$\\frac{R_L'}{r_e + R_L'} = \\frac{(1+\\beta)R_L'}{r_\\pi + (1+\\beta)R_L'}$</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800"><span class="font-bold text-emerald-600 dark:text-emerald-400">$A_v < 1$</span> (Siempre $< 1$, $\\approx 0.98 \\sim 0.99$)<br>$\\frac{R_L'}{r_e + R_L'} = \\frac{(1+\\beta)R_L'}{r_{\\pi} + (1+\\beta)R_L'}$</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$\\approx 1 + \\beta$ (Muy alta)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_\\pi + (1+\\beta)R_L']$ (Muy alta, $50-500\\text{ k}\\Omega$)</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel \\left( \\frac{R_s' + r_\\pi}{1+\\beta} \\right)$ (Muy baja, $\\sim 5-25\\,\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_B \\parallel [r_{\\pi} + (1+\\beta)R_L']$ (Muy alta, $50-500\\text{ k}\\Omega$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E \\parallel \\left( \\frac{R_s' + r_{\\pi}}{1+\\beta} \\right)$ (Muy baja, $\\sim 5-25\\,\\Omega$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans text-emerald-500 font-bold">$0^{\\circ}$ (En Fase)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer / Seguidor de tensión ($A_v < 1$ pero $A_i \\gg 1$); adaptación entre fuente de alta $Z$ y carga de baja $Z$.</td>
                   </tr>
@@ -5109,7 +5109,7 @@ const MANUAL_TEORIA_E1 = {
                   Metodología Universal de Pequeña Señal (Modelo de Cuadripolo)
                 </strong>
                 <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
-                  Para obtener las ecuaciones dinámicas: <strong>1)</strong> Cortocircuitar condensadores de acoplo y desacoplo ($X_C \\approx 0$). <strong>2)</strong> Pasivar fuentes DC ($V_{CC} \\to \\text{GND}$). <strong>3)</strong> Sustituir el BJT por su modelo lineal ($r_\\pi = \\beta r_e$, $g_m = I_{CQ}/V_T \\approx 40 \\cdot I_{CQ}$, $r_e = V_T/I_{EQ} \\approx 25\\,\\text{mV}/I_E$).
+                  Para obtener las ecuaciones dinámicas: <strong>1)</strong> Cortocircuitar condensadores de acoplo y desacoplo ($X_C \\approx 0$). <strong>2)</strong> Pasivar fuentes DC ($V_{CC} \\to \\text{GND}$). <strong>3)</strong> Sustituir el BJT por su modelo lineal ($r_{\\pi} = \\beta r_e$, $g_m = I_{CQ}/V_T \\approx 40 \\cdot I_{CQ}$, $r_e = V_T/I_{EQ} \\approx 25\\,\\text{mV}/I_E$).
                 </p>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[11px]">
                   <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
@@ -5219,19 +5219,19 @@ const MANUAL_TEORIA_E1 = {
                   <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
                     <span class="font-bold text-indigo-700 dark:text-indigo-400 block">📥 1. Impedancia de Entrada ($R_i$)</span>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      La tensión $v_i$ cae íntegramente sobre la resistencia interna de base $r_\\pi = \\beta r_e$:
+                      La tensión $v_i$ cae íntegramente sobre la resistencia interna de base $r_{\\pi} = \\beta r_e$:
                     </p>
                     <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$v_i = v_{be} = i_b r_\\pi \\implies R_{ib} = \\frac{v_i}{i_b} = r_\\pi$$
+                      $$v_i = v_{be} = i_b r_{\\pi} \\implies R_{ib} = \\frac{v_i}{i_b} = r_{\\pi}$$
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       Incluyendo el divisor de polarización $R_B = R_1 \\parallel R_2$:
                     </p>
                     <div class="p-1 rounded bg-indigo-50 dark:bg-indigo-950/40 text-center font-bold text-indigo-900 dark:text-indigo-200 font-mono text-[11px]">
-                      $$R_i = R_B \\parallel r_\\pi \\qquad \\text{(Con } C_E\\text{, media: } 1\\sim 5\\text{ k}\\Omega\\text{)}$$
+                      $$R_i = R_B \\parallel r_{\\pi} \\qquad \\text{(Con } C_E\\text{, media: } 1\\sim 5\\text{ k}\\Omega\\text{)}$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      <em>Variante sin $C_E$:</em> $R_i = R_B \\parallel [r_\\pi + (1+\\beta)R_E] \\approx R_B \\parallel [\\beta(r_e + R_E)]$.
+                      <em>Variante sin $C_E$:</em> $R_i = R_B \\parallel [r_{\\pi} + (1+\\beta)R_E] \\approx R_B \\parallel [\\beta(r_e + R_E)]$.
                     </p>
                   </div>
 
@@ -5248,10 +5248,10 @@ const MANUAL_TEORIA_E1 = {
                       Como $v_{be} = v_i$, dividiendo directamente:
                     </p>
                     <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
-                      $$A_v = \\frac{v_o}{v_i} = -g_m (R_C \\parallel R_L) = -\\frac{\\beta (R_C \\parallel R_L)}{r_\\pi} \\approx -\\frac{R_C \\parallel R_L}{r_e}$$
+                      $$A_v = \\frac{v_o}{v_i} = -g_m (R_C \\parallel R_L) = -\\frac{\\beta (R_C \\parallel R_L)}{r_{\\pi}} \\approx -\\frac{R_C \\parallel R_L}{r_e}$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                      <em>El signo '−' indica desfase de $180^\\circ$. Sin $C_E$: $A_v \\approx -\\frac{R_C \\parallel R_L}{R_E}$.</em>
+                      <em>El signo '−' indica desfase de $180^{\\circ}$. Sin $C_E$: $A_v \\approx -\\frac{R_C \\parallel R_L}{R_E}$.</em>
                     </p>
                   </div>
 
@@ -5268,7 +5268,7 @@ const MANUAL_TEORIA_E1 = {
                       Analizando los divisores de corriente en base ($i_b$) y colector ($i_o$):
                     </p>
                     <div class="p-1 rounded bg-blue-50 dark:bg-blue-950/40 text-center font-bold text-blue-900 dark:text-blue-200 font-mono text-[11px]">
-                      $$A_i = -\\beta \\cdot \\left(\\frac{R_B}{R_B + r_\\pi}\\right) \\cdot \\left(\\frac{R_C}{R_C + R_L}\\right) \\approx -\\beta$$
+                      $$A_i = -\\beta \\cdot \\left(\\frac{R_B}{R_B + r_{\\pi}}\\right) \\cdot \\left(\\frac{R_C}{R_C + R_L}\\right) \\approx -\\beta$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
                       Elevada ganancia de corriente (orden de magnitud $\\beta \\approx 100\\sim 300$).
@@ -5405,13 +5405,13 @@ const MANUAL_TEORIA_E1 = {
                       Escribiendo la ecuación de malla entre base y masa pasando por el emisor ($i_e = (1+\\beta)i_b$):
                     </p>
                     <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$v_i = i_b r_\\pi + i_e R_L' = i_b [r_\\pi + (1+\\beta)R_L']$$
+                      $$v_i = i_b r_{\\pi} + i_e R_L' = i_b [r_{\\pi} + (1+\\beta)R_L']$$
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       La carga del emisor se multiplica por $(1+\\beta)$ vista desde la base:
                     </p>
                     <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
-                      $$R_i = R_B \\parallel [r_\\pi + (1+\\beta)(R_E \\parallel R_L)] \\qquad \\text{(Altísima: } 50\\sim 500\\text{ k}\\Omega\\text{)}$$
+                      $$R_i = R_B \\parallel [r_{\\pi} + (1+\\beta)(R_E \\parallel R_L)] \\qquad \\text{(Altísima: } 50\\sim 500\\text{ k}\\Omega\\text{)}$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
                       <em>Efecto Buffer:</em> No carga a la etapa previa (evita caída de tensión en $R_s$).
@@ -5425,13 +5425,13 @@ const MANUAL_TEORIA_E1 = {
                       La tensión de salida es la tensión de emisor $v_o = (1+\\beta) i_b R_L'$:
                     </p>
                     <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$A_v = \\frac{v_o}{v_i} = \\frac{(1+\\beta) R_L'}{r_\\pi + (1+\\beta) R_L'} = \\frac{R_L'}{\\frac{r_\\pi}{1+\\beta} + R_L'} = \\frac{R_L'}{r_e + R_L'}$$
+                      $$A_v = \\frac{v_o}{v_i} = \\frac{(1+\\beta) R_L'}{r_{\\pi} + (1+\\beta) R_L'} = \\frac{R_L'}{\\frac{r_{\\pi}}{1+\\beta} + R_L'} = \\frac{R_L'}{r_e + R_L'}$$
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       Como habitualmente $R_L' = R_E \\parallel R_L \\gg r_e$ (ej. $1\\text{ k}\\Omega \\gg 25\\,\\Omega$):
                     </p>
                     <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
-                      $$A_v < 1 \\qquad (A_v \\approx +0.98 \\sim +0.99 \\approx 1, \\quad \\text{Fase } 0^\\circ)$$
+                      $$A_v < 1 \\qquad (A_v \\approx +0.98 \\sim +0.99 \\approx 1, \\quad \\text{Fase } 0^{\\circ})$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
                       La salida copia fielmente a la entrada en amplitud y fase (sin inversión).
@@ -5462,16 +5462,16 @@ const MANUAL_TEORIA_E1 = {
                   <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
                     <span class="font-bold text-purple-700 dark:text-purple-400 block">📤 4. Impedancia de Salida ($R_o$) — Reflexión a Emisor</span>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Con $v_s = 0$, la base ve $R_s' = R_s \\parallel R_B$. Inyectando $v_x$ en emisor, la corriente de base es $i_b = -v_x / (R_s' + r_\\pi)$. Por LCK:
+                      Con $v_s = 0$, la base ve $R_s' = R_s \\parallel R_B$. Inyectando $v_x$ en emisor, la corriente de base es $i_b = -v_x / (R_s' + r_{\\pi})$. Por LCK:
                     </p>
                     <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
-                      $$i_x = \\frac{v_x}{R_E} - (1+\\beta)i_b = v_x \\left[ \\frac{1}{R_E} + \\frac{1+\\beta}{R_s' + r_\\pi} \\right]$$
+                      $$i_x = \\frac{v_x}{R_E} - (1+\\beta)i_b = v_x \\left[ \\frac{1}{R_E} + \\frac{1+\\beta}{R_s' + r_{\\pi}} \\right]$$
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       Toda impedancia conectada en la base se ve <strong>dividida entre $(1+\\beta)$</strong>:
                     </p>
                     <div class="p-1 rounded bg-purple-50 dark:bg-purple-950/40 text-center font-bold text-purple-900 dark:text-purple-200 font-mono text-[11px]">
-                      $$R_o = R_E \\parallel \\left( \\frac{R_s' + r_\\pi}{1+\\beta} \\right) = R_E \\parallel \\left( r_e + \\frac{R_s'}{1+\\beta} \\right) \\quad (\\text{Bajísima: } 5\\sim 25\\,\\Omega)$$
+                      $$R_o = R_E \\parallel \\left( \\frac{R_s' + r_{\\pi}}{1+\\beta} \\right) = R_E \\parallel \\left( r_e + \\frac{R_s'}{1+\\beta} \\right) \\quad (\\text{Bajísima: } 5\\sim 25\\,\\Omega)$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
                       Ideal como etapa de salida para manejar altavoces o cables coaxiales.
@@ -5582,7 +5582,7 @@ const MANUAL_TEORIA_E1 = {
 
                   <!-- 2. Av -->
                   <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                    <span class="font-bold text-amber-700 dark:text-amber-400 block">⚡ 2. Ganancia de Tensión ($A_v$) — En Fase ($0^\\circ$)</span>
+                    <span class="font-bold text-amber-700 dark:text-amber-400 block">⚡ 2. Ganancia de Tensión ($A_v$) — En Fase ($0^{\\circ}$)</span>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       La corriente de colector $\\alpha i_e$ entra hacia el nodo de salida, desarrollando tensión positiva sobre $R_L' = R_C \\parallel R_L$:
                     </p>
@@ -5593,7 +5593,7 @@ const MANUAL_TEORIA_E1 = {
                       Dividiendo entre $v_i$, con $\\alpha \\approx 1$ y $g_m = \\alpha / r_e$:
                     </p>
                     <div class="p-1 rounded bg-amber-50 dark:bg-amber-950/40 text-center font-bold text-amber-900 dark:text-amber-200 font-mono text-[11px]">
-                      $$A_v = \\frac{v_o}{v_i} = +\\frac{\\alpha (R_C \\parallel R_L)}{r_e} \\approx +g_m (R_C \\parallel R_L) \\quad (\\text{Fase } 0^\\circ)$$
+                      $$A_v = \\frac{v_o}{v_i} = +\\frac{\\alpha (R_C \\parallel R_L)}{r_e} \\approx +g_m (R_C \\parallel R_L) \\quad (\\text{Fase } 0^{\\circ})$$
                     </div>
                     <p class="text-[11px] text-slate-500 dark:text-slate-400">
                       <strong>Misma magnitud elevada que el EC</strong>, pero con fase directa (no invierte).
