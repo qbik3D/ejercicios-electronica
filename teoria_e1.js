@@ -2578,10 +2578,7 @@ const MANUAL_TEORIA_E1 = {
                 <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Tensión Continua Media ($V_{DC}$):</span>
                   $$V_{DC} = V_{pico} - \\frac{V_r}{2} = \\frac{V_{pico} + V_{valle}}{2}$$
-                  <div class="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-[11px] text-amber-900 dark:text-amber-200 my-2">
-                    <strong>⚠️ Aclaración clave de fórmula:</strong> La ecuación es estrictamente $V_{pico} - \\left( \\frac{V_r}{2} \\right)$, <u>no</u> $\\frac{V_{pico} - V_r}{2}$. Representa el valor promedio exacto entre la cresta máxima y el valle mínimo ($V_{valle} = V_{pico} - V_r$), restándole a la cresta solo la semiamplitud del rizado.
-                  </div>
-                  <div class="text-[11px] text-slate-500">
+                  <div class="text-[11px] text-slate-500 mt-2">
                     <strong>Factor de rizado:</strong> $\\gamma = \\frac{V_{r,rms}}{V_{DC}} = \\frac{V_r}{2\\sqrt{3} \\cdot V_{DC}}$ (asumiendo rizado triangular donde $V_{r,rms} = \\frac{V_r}{2\\sqrt{3}}$).
                   </div>
                 </div>
