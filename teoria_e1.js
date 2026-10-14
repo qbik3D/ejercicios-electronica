@@ -308,12 +308,12 @@ const MANUAL_TEORIA_E1 = {
 
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">Transformación Estrella - Triángulo (Teorema de Kennelly)</h5>
             <p class="mb-2 text-xs sm:text-sm">
-              Cuando una red resistiva presenta estructuras en puente (como el Puente de Wheatstone desbalanceado) o configuraciones en malla cerrada, ningún par de resistores se encuentra estrictamente en serie ni en paralelo. El <strong>Teorema de Kennelly</strong> permite convertir una conexión en <strong>Triángulo ($\Delta$)</strong> formada por $R_{AB}, R_{BC}, R_{CA}$ entre tres nodos $A, B, C$ en una conexión equivalente en <strong>Estrella ($Y$)</strong> con resistores $R_A, R_B, R_C$ conectados a un nodo neutro común central (o viceversa), preservando las tensiones y corrientes vistas desde los terminales externos.
+              Cuando una red resistiva presenta estructuras en puente (como el Puente de Wheatstone desbalanceado) o configuraciones en malla cerrada, ningún par de resistores se encuentra estrictamente en serie ni en paralelo. El <strong>Teorema de Kennelly</strong> permite convertir una conexión en <strong>Triángulo (Δ)</strong> formada por $R_{AB}, R_{BC}, R_{CA}$ entre tres nodos $A, B, C$ en una conexión equivalente en <strong>Estrella (Y)</strong> con resistores $R_A, R_B, R_C$ conectados a un nodo neutro común central (o viceversa), preservando las tensiones y corrientes vistas desde los terminales externos.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2">
               <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs">
-                <span class="font-bold text-xs uppercase tracking-wider block mb-1">📐 Transformación Delta a Estrella ($\Delta \to Y$)</span>
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">📐 Transformación Delta a Estrella (Δ ➔ Y)</span>
                 <p class="text-slate-600 dark:text-slate-400 mb-1">Para obtener las ramas de la estrella conectadas a los terminales $A, B, C$:</p>
                 $$R_A = \\frac{R_{AB} \\cdot R_{CA}}{R_{AB} + R_{BC} + R_{CA}}$$
                 $$R_B = \\frac{R_{AB} \\cdot R_{BC}}{R_{AB} + R_{BC} + R_{CA}}$$
@@ -322,7 +322,7 @@ const MANUAL_TEORIA_E1 = {
               </div>
 
               <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs">
-                <span class="font-bold text-xs uppercase tracking-wider block mb-1">🔄 Transformación Estrella a Delta ($Y \to \Delta$)</span>
+                <span class="font-bold text-xs uppercase tracking-wider block mb-1">🔄 Transformación Estrella a Delta (Y ➔ Δ)</span>
                 <p class="text-slate-600 dark:text-slate-400 mb-1">Para obtener las ramas del triángulo entre pares de terminales:</p>
                 $$R_{AB} = \\frac{R_A R_B + R_B R_C + R_C R_A}{R_C}$$
                 $$R_{BC} = \\frac{R_A R_B + R_B R_C + R_C R_A}{R_A}$$
@@ -1390,12 +1390,12 @@ const MANUAL_TEORIA_E1 = {
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Misma tensión ($R_{eq} < \\min R_i$)</td>
                   </tr>
                   <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly ($\Delta \\to Y$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly (Δ ➔ Y)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$R_A = \\frac{R_{AB} R_{CA}}{\\sum R_\\Delta}$ (simétrico: $R_Y = R_\\Delta / 3$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Redes en puente / no reducibles</td>
                   </tr>
                   <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly ($Y \\to \\Delta$)</td>
+                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Teorema de Kennelly (Y ➔ Δ)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{AB} = \\frac{\\sum R_i R_j}{R_C}$ (simétrico: $R_\\Delta = 3 R_Y$)</td>
                     <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Conversión a triángulo</td>
                   </tr>
@@ -1692,7 +1692,7 @@ const MANUAL_TEORIA_E1 = {
             <!-- Recuadro explicativo de los 0.7V -->
             <div class="p-3.5 my-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs">
               <h5 class="font-bold text-xs uppercase tracking-wider mb-1.5 flex items-center gap-1.5 text-amber-800 dark:text-amber-300">
-                <span>⚡</span> ¿De dónde salen los famosos 0.7 V del diodo? (Barrera de Potencial $V_0$)
+                <span>⚡</span> ¿De dónde salen los famosos 0.7 V del diodo? (Barrera de Potencial V₀)
               </h5>
               <p class="text-slate-700 dark:text-slate-300 mb-2">
                 Ese "muro eléctrico" interno equivale a una pequeña batería interna que se opone al paso de corriente. Para que el diodo empiece a conducir, una fuente externa debe vencer esta tensión:
@@ -1708,16 +1708,16 @@ const MANUAL_TEORIA_E1 = {
                 </div>
               </div>
               <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1.5">
-                💡 <strong>Lo que necesitás para los ejercicios:</strong> Este es el origen físico del famoso valor <strong>$V_D \approx 0.7\text{ V}$</strong> que usamos como caída de tensión en todos los análisis y ejercicios prácticos de circuitos con diodos.
+                💡 <strong>Lo que necesitás para los ejercicios:</strong> Este es el origen físico del famoso valor <strong>V<sub>D</sub> ≈ 0.7 V</strong> que usamos como caída de tensión en todos los análisis y ejercicios prácticos de circuitos con diodos.
               </p>
             </div>
 
             <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
               <span class="font-bold text-slate-800 dark:text-slate-200 block mb-1">¿Qué significa esto para el funcionamiento del diodo?</span>
               <ul class="list-disc pl-4 space-y-1 text-slate-600 dark:text-slate-400">
-                <li><strong>En reposo (sin conectar):</strong> La barrera de $0.7\text{ V}$ frena todo flujo $\to$ corriente nula ($I = 0$).</li>
-                <li><strong>En directa ($+ \to P$, $- \to N$):</strong> Si la fuente supera los $0.7\text{ V}$, achica el muro y la corriente fluye libremente (diodo conduciendo).</li>
-                <li><strong>En inversa ($+ \to N$, $- \to P$):</strong> La fuente agranda aún más el muro y no deja pasar nada (diodo bloqueado).</li>
+                <li><strong>En reposo (sin conectar):</strong> La barrera de <strong>0.7 V</strong> frena todo flujo → corriente nula (I = 0).</li>
+                <li><strong>En directa (+ a P, − a N):</strong> Si la fuente supera los <strong>0.7 V</strong>, vence el muro y la corriente fluye libremente (diodo conduciendo).</li>
+                <li><strong>En inversa (+ a N, − a P):</strong> La fuente refuerza el muro e impide el paso de corriente (diodo bloqueado).</li>
               </ul>
             </div>
           `
