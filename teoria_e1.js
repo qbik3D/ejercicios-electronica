@@ -2139,18 +2139,20 @@ const MANUAL_TEORIA_E1 = {
 
                       <!-- Primario -->
                       <path d="M 25 15 C 10 20, 10 30, 25 35 C 10 40, 10 50, 25 55 C 10 60, 10 70, 25 75 C 10 80, 10 90, 25 95" fill="none" stroke="#2563eb" stroke-width="2"/>
-                      <!-- Secundario -->
+                      <!-- Secundario (4 espiras con punto medio en y=55) -->
                       <path d="M 55 15 C 70 20, 70 30, 55 35 C 70 40, 70 50, 55 55 C 70 60, 70 70, 55 75 C 70 80, 70 90, 55 95" fill="none" stroke="#2563eb" stroke-width="2"/>
-                      
-                      <!-- Punto Medio a Masa -->
-                      <line x1="55" y1="55" x2="110" y2="55" stroke="#64748b" stroke-width="1.5"/>
-                      <line x1="110" y1="55" x2="110" y2="120" stroke="#64748b" stroke-width="1.5"/>
-                      <!-- Símbolo de Masa -->
-                      <line x1="100" y1="120" x2="120" y2="120" stroke="#64748b" stroke-width="2"/>
-                      <line x1="104" y1="124" x2="116" y2="124" stroke="#64748b" stroke-width="1.5"/>
-                      <line x1="108" y1="128" x2="112" y2="128" stroke="#64748b" stroke-width="1"/>
-                      <text x="125" y="60" fill="#64748b" font-size="8">Toma Central (0V)</text>
                     </g>
+
+                    <!-- Conexión de Toma Central a Masa (Ubicada en x=115, y=100, sin interferir con D2) -->
+                    <circle cx="85" cy="100" r="2.5" fill="#334155"/>
+                    <line x1="85" y1="100" x2="115" y2="100" stroke="#64748b" stroke-width="1.8"/>
+                    <line x1="115" y1="100" x2="115" y2="108" stroke="#64748b" stroke-width="1.5"/>
+                    <!-- Símbolo de Masa de la Toma Central -->
+                    <line x1="107" y1="108" x2="123" y2="108" stroke="#64748b" stroke-width="2"/>
+                    <line x1="110" y1="111" x2="120" y2="111" stroke="#64748b" stroke-width="1.5"/>
+                    <line x1="113" y1="114" x2="117" y2="114" stroke="#64748b" stroke-width="1"/>
+                    <text x="128" y="103" text-anchor="start" fill="#2563eb" font-weight="bold" font-size="8.5">Toma Central (0V)</text>
+                    <text x="128" y="114" text-anchor="start" fill="#64748b" font-size="7.5">Referencia de Masa</text>
 
                     <!-- Rama Superior D1 -->
                     <line x1="85" y1="60" x2="140" y2="60" stroke="#64748b" stroke-width="1.5"/>
@@ -2161,7 +2163,7 @@ const MANUAL_TEORIA_E1 = {
                     </g>
                     <line x1="154" y1="60" x2="220" y2="60" stroke="#64748b" stroke-width="1.5"/>
 
-                    <!-- Rama Inferior D2 -->
+                    <!-- Rama Inferior D2 (Completamente despejada, sin cables de masa cruzando) -->
                     <line x1="85" y1="140" x2="140" y2="140" stroke="#64748b" stroke-width="1.5"/>
                     <g transform="translate(140, 140)">
                       <polygon points="0,-8 14,0 0,8" fill="#10b981" stroke="#059669" stroke-width="1.2"/>
