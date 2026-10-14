@@ -4147,9 +4147,79 @@ const MANUAL_TEORIA_E1 = {
 
             <!-- 4. RECTA DE CARGA ESTÁTICA Y PUNTO Q -->
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Recta de Carga Estática (DC) y Máxima Excursión Simétrica</h5>
-            <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">
-              La recta de carga representa gráficamente todos los posibles pares $(V_{CE}, I_C)$ que permite el circuito exterior de colector y emisor. Para garantizar que la señal no sufra distorsión no lineal al aproximarse al corte de la juntura base-emisor, se define una <strong>corriente mínima $I_{C,\\text{min}}$</strong> (límite inferior de la excursión lineal, impidiendo que el BJT se adentre en la zona de codo o corte):
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
+              La <strong>Recta de Carga Estática (DC)</strong> representa geométricamente la restricción lineal que la malla de salida impone sobre el transistor. Permite determinar gráficamente el <strong>Punto de Reposo $Q(V_{CEQ}, I_{CQ})$</strong> sobre la familia de curvas características y evaluar la excursión libre de distorsión.
             </p>
+
+            <!-- 1. Deducción y Pendiente, y 2. Método de los 2 Puntos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 my-3 text-xs">
+              <!-- Card 1: Ecuación y Pendiente -->
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 mb-2 font-bold text-slate-800 dark:text-slate-200 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-mono text-[11px]">1</span>
+                    <span>Deducción de la Ecuación y Pendiente ($m_{dc}$)</span>
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Aplicando la Ley de Kirchhoff a la malla de colector-emisor en corriente continua (con $I_E \\approx I_C$ y definiendo la resistencia estática total $\\mathbf{R_{dc} = R_C + R_E}$):
+                  </p>
+                  <div class="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 font-mono text-center my-2">
+                    $$V_{CC} = V_{CE} + I_C (R_C + R_E) = V_{CE} + I_C R_{dc}$$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Despejando la corriente de colector $I_C$ en función de $V_{CE}$ para llevarla a la forma explícita cartesiana $y = m x + b$:
+                  </p>
+                  <div class="p-2 rounded-lg bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900/40 font-mono text-center my-2 text-indigo-900 dark:text-indigo-200">
+                    $$\\mathbf{I_C = -\\frac{1}{R_{dc}} \\cdot V_{CE} + \\frac{V_{CC}}{R_{dc}}}$$
+                  </div>
+                </div>
+                <div class="mt-2 p-2.5 rounded-lg bg-indigo-100/60 dark:bg-indigo-900/30 text-[11px] text-indigo-950 dark:text-indigo-200 leading-relaxed">
+                  <strong>📐 ¿Cómo se obtiene la pendiente?</strong><br>
+                  Derivando o comparando con la ecuación lineal explícita:
+                  <div class="text-center font-mono font-bold my-1 text-xs">
+                    $$m_{dc} = \\frac{\\Delta I_C}{\\Delta V_{CE}} = -\\frac{1}{R_{dc}} = -\\frac{1}{R_C + R_E}$$
+                  </div>
+                  El signo <strong>negativo</strong> indica que a mayor $V_{CE}$, menor $I_C$. Su inclinación depende <em>únicamente</em> de la resistencia externa ($R_C + R_E$), no del transistor: a mayor $R_{dc}$ la recta es más plana/horizontal, y a menor $R_{dc}$ es más empinada/vertical.
+                </div>
+              </div>
+
+              <!-- Card 2: Método de Trazado de los 2 Puntos Notables -->
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 mb-2 font-bold text-slate-800 dark:text-slate-200 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-mono text-[11px]">2</span>
+                    <span>¿Cómo se Traza la Recta? (Método de los 2 Puntos)</span>
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Para trazar con regla sobre el plano $(V_{CE}, I_C)$ solo se requieren <strong>dos puntos notables (intersecciones con los ejes)</strong>:
+                  </p>
+                  <div class="space-y-2 my-2">
+                    <div class="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                      <div class="flex items-center justify-between text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-0.5">
+                        <span>Punto 1: Eje Horizontal $V_{CE}$ (Corte)</span>
+                        <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-300">$(V_{CC}, 0)$</span>
+                      </div>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                        Se impone <strong>$I_C = 0$</strong> (transistor apagado / circuito abierto). Sin caída en $R_{dc}$, toda la fuente cae entre colector y emisor: $V_{CE} = V_{CC}$.
+                      </p>
+                    </div>
+                    <div class="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                      <div class="flex items-center justify-between text-[11px] font-bold text-rose-700 dark:text-rose-400 mb-0.5">
+                        <span>Punto 2: Eje Vertical $I_C$ (Saturación Ideal)</span>
+                        <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-300">$(0, V_{CC}/R_{dc})$</span>
+                      </div>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                        Se impone <strong>$V_{CE} = 0\\,\\text{V}$</strong> (transistor en cortocircuito). La corriente queda limitada solo por la resistencia de carga: $I_{C,\\text{sat(ext)}} = \\frac{V_{CC}}{R_C + R_E}$.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2 p-2.5 rounded-lg bg-emerald-100/60 dark:bg-emerald-900/30 text-[11px] text-emerald-950 dark:text-emerald-200 leading-relaxed">
+                  <strong>📍 Trazado y Determinación de $Q(V_{CEQ}, I_{CQ})$:</strong><br>
+                  Se unen ambos puntos con una recta. El <strong>Punto $Q$</strong> es la intersección exacta de esta recta con la curva de salida correspondiente a la corriente de base inyectada por la entrada ($I_B = I_{BQ}$).
+                </div>
+              </div>
+            </div>
 
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
@@ -4212,7 +4282,8 @@ const MANUAL_TEORIA_E1 = {
 
                   <!-- Recta de Carga Estática (DC Load Line) -->
                   <line x1="80" y1="50" x2="550" y2="230" stroke="#ef4444" stroke-width="2.5"/>
-                  <text x="390" y="88" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta de Carga Estática (DC)</text>
+                  <text x="390" y="86" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="10">Recta de Carga Estática (DC)</text>
+                  <text x="390" y="99" text-anchor="start" font-weight="bold" fill="#dc2626" font-size="8.5">Pendiente: <tspan font-style="italic">m</tspan><tspan font-size="75%" dy="2">dc</tspan><tspan font-size="100%" dy="-2"> = −1 / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">dc</tspan><tspan font-size="100%" dy="-2"> = −1 / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
                   <!-- Tramo de Excursión Simétrica sobre la Recta de Carga -->
                   <line x1="125" y1="67" x2="505" y2="213" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-opacity="0.65"/>
@@ -4257,6 +4328,39 @@ const MANUAL_TEORIA_E1 = {
                 </svg>
               </div>
             </div>
+
+            <!-- 3. MÁXIMA EXCURSIÓN SIMÉTRICA (MES) -->
+            <div class="my-3 p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 text-xs">
+              <div class="flex items-center gap-2 mb-2 font-bold text-emerald-800 dark:text-emerald-300">
+                <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-mono text-[11px]">3</span>
+                <span>Condición de Máxima Excursión Simétrica (MES) sin Recorte</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                Para que el amplificador permita la mayor señal senoidal posible sin recortar ni distorsionar por no linealidad, el punto $Q$ debe posicionarse en el <strong>centro exacto del tramo activo útil</strong>, acotado por dos fronteras físicas:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-2">
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-emerald-100 dark:border-emerald-900/30">
+                  <strong class="text-amber-700 dark:text-amber-400 block mb-0.5 text-[11px]">Límite por Saturación (Frontera Izquierda):</strong>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                    Ocurre cuando la excursión de tensión cae por debajo de la saturación de las junturas:
+                    <span class="block text-center font-mono font-bold my-1 text-slate-800 dark:text-slate-200">$V_{CE,\\text{sat}} \\approx 0.2\\,\\text{V}$</span>
+                  </p>
+                </div>
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-emerald-100 dark:border-emerald-900/30">
+                  <strong class="text-slate-700 dark:text-slate-300 block mb-0.5 text-[11px]">Límite por Corte Práctico (Frontera Derecha):</strong>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">
+                    Para evitar la distorsión del codo exponencial, se fija una corriente mínima $I_{C,\\text{min}}$ ($0.1 \\sim 0.5\\,\\text{mA}$):
+                    <span class="block text-center font-mono font-bold my-1 text-slate-800 dark:text-slate-200">$V_{CE,\\text{corte}} = V_{CC} - I_{C,\\text{min}} R_{dc}$</span>
+                  </p>
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-emerald-100/70 dark:bg-emerald-900/40 text-[11px] text-emerald-950 dark:text-emerald-200 leading-relaxed">
+                <strong>🎯 Excursión Máxima de Pico ($\\Delta v_{ce,p}$) y Ubicación Óptima de $V_{CEQ}$:</strong>
+                $$\\Delta v_{ce,p} = V_{CEQ} - V_{CE,\\text{sat}} = V_{CE,\\text{corte}} - V_{CEQ} \\implies V_{CEQ} = \\frac{V_{CC} + V_{CE,\\text{sat}} - I_{C,\\text{min}}R_{dc}}{2} \\approx \\frac{V_{CC}}{2}$$
+                Si $V_{CEQ} < V_{CC}/2$, la señal recortará antes por saturación; si $V_{CEQ} > V_{CC}/2$, recortará antes por corte.
+              </div>
+            </div>
+
 
             <div class="p-3 my-3 rounded-xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-500/30 text-xs flex items-start gap-2.5">
               <span class="text-base shrink-0">🔗</span>
