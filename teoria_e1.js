@@ -2657,6 +2657,7 @@ const MANUAL_TEORIA_E1 = {
               </p>
 
               <!-- Gráfico SVG: Circuito Zener (Símbolo IEEE Correcto) y Curva V_out vs V_in -->
+              <!-- Gráfico SVG: Circuito Zener (Símbolo IEEE Correcto) y Curva V_out vs V_in -->
               <div class="overflow-x-auto py-1">
                 <svg viewBox="0 0 680 215" class="w-full max-w-2xl mx-auto h-auto font-sans text-xs select-none block">
                   <!-- Lado Izquierdo: Circuito del Regulador Zener -->
@@ -2668,19 +2669,19 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="45" cy="95" r="15" fill="none" stroke="#2563eb" stroke-width="1.8"/>
                     <text x="45" y="92" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">+</text>
                     <text x="45" y="103" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">-</text>
-                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in</tspan> (DC)</text>
+                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">in</tspan><tspan font-size="100%" dy="-2"> (DC)</tspan></text>
 
                     <!-- Resistencia Serie R_s -->
                     <line x1="45" y1="80" x2="45" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     <line x1="45" y1="55" x2="85" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="85" y="47" width="35" height="16" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
-                    <text x="102" y="38" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+                    <text x="102" y="38" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">s</tspan></text>
                     <line x1="120" y1="55" x2="180" y2="55" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Corriente I_s -->
                     <line x1="58" y1="47" x2="78" y2="47" stroke="#2563eb" stroke-width="1.5"/>
                     <polygon points="76,44 81,47 76,50" fill="#2563eb"/>
-                    <text x="68" y="42" fill="#2563eb" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+                    <text x="68" y="42" fill="#2563eb" font-size="8" font-weight="bold"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">s</tspan></text>
 
                     <!-- Diodo Zener en Rama Vertical (Símbolo IEEE Correcto: Cátodo arriba con alas en Z, Ánodo abajo) -->
                     <line x1="180" y1="55" x2="180" y2="78" stroke="#64748b" stroke-width="1.5"/>
@@ -2693,7 +2694,7 @@ const MANUAL_TEORIA_E1 = {
                       <polygon points="0,-8 -7,5 7,5" fill="#0ea5e9" stroke="#0284c7" stroke-width="1.3"/>
                       
                       <text x="15" y="-1" fill="#0284c7" font-weight="bold" font-size="9">Zener</text>
-                      <text x="15" y="11" fill="#0284c7" font-size="8">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                      <text x="15" y="11" fill="#0284c7" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">Z</tspan></text>
                     </g>
 
                     <line x1="180" y1="97" x2="180" y2="145" stroke="#64748b" stroke-width="1.5"/>
@@ -2701,7 +2702,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Flecha Corriente inversa I_Z (hacia abajo, entrando al cátodo) -->
                     <line x1="168" y1="67" x2="168" y2="82" stroke="#0284c7" stroke-width="1.5"/>
                     <polygon points="165,80 168,85 171,80" fill="#0284c7"/>
-                    <text x="162" y="76" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <text x="162" y="76" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">Z</tspan></text>
 
                     <!-- Rama de Carga R_L -->
                     <line x1="180" y1="55" x2="260" y2="55" stroke="#64748b" stroke-width="1.5"/>
@@ -2709,11 +2710,11 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Corriente I_L -->
                     <line x1="210" y1="47" x2="230" y2="47" stroke="#10b981" stroke-width="1.5"/>
                     <polygon points="228,44 233,47 228,50" fill="#10b981"/>
-                    <text x="220" y="42" fill="#10b981" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                    <text x="220" y="42" fill="#10b981" font-size="8" font-weight="bold"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">L</tspan></text>
 
                     <line x1="260" y1="55" x2="260" y2="75" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="252" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
-                    <text x="278" y="98" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                    <text x="278" y="98" fill="#475569" font-size="9" font-weight="bold"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
                     <line x1="260" y1="115" x2="260" y2="145" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Retorno común a masa -->
@@ -2722,19 +2723,19 @@ const MANUAL_TEORIA_E1 = {
 
                     <text x="250" y="48" fill="#dc2626" font-size="9" font-weight="bold">+</text>
                     <text x="250" y="152" fill="#dc2626" font-size="9" font-weight="bold">-</text>
-                    <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
+                    <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">out</tspan></text>
                   </g>
 
                   <!-- Lado Derecho: Curva de Transferencia V_out vs V_in y Rangos Operativos -->
                   <g transform="translate(345, 15)">
                     <rect x="0" y="0" width="325" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="162" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V<tspan baseline-shift="sub" font-size="70%">out</tspan> vs V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
+                    <text x="162" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">out</tspan><tspan font-size="100%" dy="-2"> vs </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">in</tspan></text>
 
                     <!-- Ejes coordenados -->
                     <line x1="35" y1="140" x2="300" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="305" y="143" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
+                    <text x="305" y="143" fill="#64748b" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">in</tspan></text>
                     <line x1="45" y1="30" x2="45" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
+                    <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">out</tspan></text>
 
                     <!-- Zona No Regulada (lineal con pendiente R_L / (R_s + R_L)) -->
                     <line x1="45" y1="140" x2="130" y2="75" stroke="#f59e0b" stroke-width="2.2"/>
@@ -2747,73 +2748,194 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Puntos de referencia -->
                     <line x1="130" y1="75" x2="130" y2="140" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="130" y="153" text-anchor="middle" fill="#d97706" font-size="8" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,min</tspan></text>
+                    <text x="130" y="152" text-anchor="middle" fill="#d97706" font-size="8" font-weight="bold"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">in,min</tspan></text>
+                    <text x="130" y="162" text-anchor="middle" fill="#b45309" font-size="7">(<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">Z</tspan><tspan font-size="100%" dy="-1.5"> = </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">ZK</tspan>)</text>
 
                     <line x1="270" y1="75" x2="270" y2="140" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="270" y="153" text-anchor="middle" fill="#dc2626" font-size="8" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,max</tspan></text>
+                    <text x="270" y="152" text-anchor="middle" fill="#dc2626" font-size="8" font-weight="bold"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">in,max</tspan></text>
+                    <text x="270" y="162" text-anchor="middle" fill="#b91c1c" font-size="7">(<tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">Z</tspan><tspan font-size="100%" dy="-1.5"> = </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">Z,max</tspan>)</text>
 
                     <line x1="45" y1="75" x2="130" y2="75" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
+                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">Z</tspan></text>
 
                     <!-- Etiquetas descriptivas -->
                     <text x="85" y="112" fill="#d97706" font-size="7.5" font-weight="bold">Zener Apagado</text>
-                    <text x="85" y="122" fill="#64748b" font-size="7">V<tspan baseline-shift="sub" font-size="70%">out</tspan> &lt; V<tspan baseline-shift="sub" font-size="70%">Z</tspan> (Divisor)</text>
+                    <text x="85" y="122" fill="#64748b" font-size="7"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">out</tspan><tspan font-size="100%" dy="-1.5"> &lt; </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">Z</tspan><tspan font-size="100%" dy="-1.5"> (Divisor)</tspan></text>
 
-                    <text x="200" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="9.5">Zona Regulada: V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
-                    <text x="200" y="95" text-anchor="middle" fill="#64748b" font-size="8">I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan> (Zener absorbe excesos)</text>
+                    <text x="200" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="9.5">Zona Regulada: <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">out</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">Z</tspan></text>
+                    <text x="200" y="95" text-anchor="middle" fill="#64748b" font-size="8"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">s</tspan><tspan font-size="100%" dy="-1.5"> = </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">Z</tspan><tspan font-size="100%" dy="-1.5"> + </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">L</tspan><tspan font-size="100%" dy="-1.5"> (Zener absorbe excesos)</tspan></text>
 
-                    <text x="282" y="68" fill="#dc2626" font-size="7" font-weight="bold">¡Peligro P<tspan baseline-shift="sub" font-size="70%">Z,max</tspan>!</text>
+                    <text x="282" y="68" fill="#dc2626" font-size="7" font-weight="bold">¡Peligro <tspan font-style="italic">P</tspan><tspan font-size="75%" dy="1.5">Z,max</tspan>!</text>
                   </g>
                 </svg>
               </div>
 
+              <!-- CUADRO CONCEPTUAL: PARÁMETROS CRÍTICOS DEL ZENER (IZK, IZT, IZ,max) -->
+              <div class="p-3.5 rounded-2xl bg-cyan-500/10 dark:bg-cyan-950/40 border border-cyan-500/30 text-xs space-y-2.5">
+                <div class="flex items-center gap-2 font-bold text-cyan-800 dark:text-cyan-300 text-xs uppercase tracking-wider">
+                  <span>📌</span> Parámetros Críticos del Diodo Zener en Catálogos ($I_{ZK}$, $I_{ZT}$, $I_{Z,max}$):
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[11px]">
+                  <!-- IZK -->
+                  <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-800/90 border border-amber-300 dark:border-amber-700/60 space-y-1.5 shadow-sm">
+                    <span class="font-bold text-amber-700 dark:text-amber-400 block font-mono text-xs">
+                      $I_{ZK}$ (Knee Current / Corriente de Codo):
+                    </span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Es la <strong>corriente inversa mínima imprescindible</strong> que debe atravesar al diodo para entrar y mantenerse dentro de la zona de ruptura ("rodilla" de la curva).
+                    </p>
+                    <div class="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[10.5px] font-semibold text-amber-900 dark:text-amber-300">
+                      🛑 <strong>Condición de Regulación:</strong> Si $I_Z < I_{ZK}$, el Zener se <em>apaga</em>, sale de ruptura y deja de regular: $V_{out}$ se desploma.
+                    </div>
+                    <span class="text-[10px] text-slate-500 block">Valor típico: $0.25\text{ mA} \sim 1\text{ mA}$ (o 5-10% de $I_{ZT}$).</span>
+                  </div>
+
+                  <!-- IZT -->
+                  <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-800/90 border border-blue-300 dark:border-blue-700/60 space-y-1.5 shadow-sm">
+                    <span class="font-bold text-blue-700 dark:text-blue-400 block font-mono text-xs">
+                      $I_{ZT}$ (Test Current / Corriente Nominal):
+                    </span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Punto de trabajo nominal fijado por el fabricante en la hoja de datos para certificar la tensión $V_Z$ especificada.
+                    </p>
+                    <div class="p-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-[10.5px] text-blue-900 dark:text-blue-300">
+                      🎯 Se ubica en la zona más vertical de la curva, donde la resistencia dinámica $Z_{ZT}$ es mínima y la regulación es óptima.
+                    </div>
+                    <span class="text-[10px] text-slate-500 block">Valor típico: $5\text{ mA} \sim 25\text{ mA}$.</span>
+                  </div>
+
+                  <!-- IZ,max -->
+                  <div class="p-3 rounded-xl bg-white/90 dark:bg-slate-800/90 border border-red-300 dark:border-red-700/60 space-y-1.5 shadow-sm">
+                    <span class="font-bold text-red-600 dark:text-red-400 block font-mono text-xs">
+                      $I_{Z,max}$ (Corriente Máxima Térmica):
+                    </span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Límite superior absoluto de corriente fijado por la potencia máxima de disipación admisible del encapsulado:
+                    </p>
+                    <div class="text-center font-mono font-bold text-red-600 dark:text-red-400 my-0.5">
+                      $$I_{Z,max} = \frac{P_{Z,max}}{V_Z}$$
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-red-500/10 border border-red-500/30 text-[10.5px] font-semibold text-red-900 dark:text-red-300">
+                      🔥 <strong>Límite de Destrucción:</strong> Si $I_Z > I_{Z,max}$, la juntura se quema irreversiblemente por sobrecalentamiento.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- ANÁLISIS DE SENSIBILIDAD DINÁMICA: CÓMO AFECTA CADA CAMBIO -->
-              <div class="mt-2 space-y-2.5">
+              <div class="mt-3 space-y-3">
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block">
                   🔍 Dinámica del Circuito: ¿Cómo afecta la variación de cada parámetro?
                 </span>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
-                  <!-- Caso 1: Variación de V_in -->
-                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
-                    <div class="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
-                      <span>1.</span> Variación de la Fuente ($V_{in}$)
+                <!-- 1. Variación de Vin -->
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1 border-b border-slate-100 dark:border-slate-700/60 pb-1.5">
+                    <div class="font-bold text-blue-700 dark:text-blue-400 flex items-center gap-1.5 text-xs">
+                      <span class="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 font-mono text-[10px]">CASO 1</span>
+                      Variación de la Tensión de Entrada ($V_{in}$) — Regulación de Línea
                     </div>
-                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
-                      Con $R_s$ y $R_L$ fijas, $I_L = \\frac{V_Z}{R_L}$ permanece <strong>constante</strong>.
-                    </p>
-                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
-                      <li><strong>Si $V_{in} ↑$:</strong> $I_s = \\frac{V_{in} - V_Z}{R_s}$ sube. Como $I_L$ es fija, <strong>todo el aumento va al Zener</strong> ($I_Z ↑$). <em>Riesgo:</em> Si $I_Z > I_{Z,max}$, el Zener se quema por disipación térmica.</li>
-                      <li><strong>Si $V_{in} ↓$:</strong> $I_s$ baja y el Zener cede corriente ($I_Z ↓$). <em>Riesgo:</em> Si $V_{in} < V_{in,min}$, $I_Z < I_{ZK}$ y el Zener <strong>se apaga</strong>; la salida deja de regular y cae como simple divisor resistivo.</li>
-                    </ul>
+                    <span class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-700/50 px-2 py-0.5 rounded">
+                      Carga fija: $I_L = \frac{V_Z}{R_L} = \text{cte}$
+                    </span>
                   </div>
 
-                  <!-- Caso 2: Variación de R_L -->
-                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
-                    <div class="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                      <span>2.</span> Variación de la Carga ($R_L$)
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs pt-1">
+                    <div class="p-2.5 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200/80 dark:border-blue-900/50 space-y-1">
+                      <span class="font-bold text-blue-800 dark:text-blue-300 block text-[11px]">
+                        🔺 Si $V_{in}$ sube (↑, Aumento de tensión en la fuente):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        La corriente de entrada $I_s = \frac{V_{in} - V_Z}{R_s}$ sube. Como la carga $I_L$ es fija, <strong>todo el exceso de corriente entra forzosamente al Zener</strong> ($I_Z$ sube).
+                      </p>
+                      <div class="text-[10.5px] text-amber-800 dark:text-amber-300 font-medium bg-amber-500/10 p-1 rounded mt-1">
+                        ⚠️ <em>Riesgo:</em> Si $V_{in} > V_{in,max}$, se supera $I_{Z,max}$ y el Zener se quema por sobrepotencia térmica ($P_Z > P_{Z,max}$).
+                      </div>
                     </div>
-                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
-                      Con $V_{in}$ fija, la corriente total de entrada $I_s$ es <strong>constante</strong>.
-                    </p>
-                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
-                      <li><strong>Si $R_L ↓$ (más demanda $I_L ↑$):</strong> La carga le "quita" corriente al Zener ($I_Z = I_s - I_L ↓$). <em>Riesgo:</em> Si $R_L < R_{L,min}$, el Zener se apaga por falta de corriente y $V_{out}$ colapsa.</li>
-                      <li><strong>Si $R_L → ∞$ (carga desconectada / $I_L = 0$):</strong> Toda la corriente $I_s$ fluye por el Zener ($I_Z = I_s$). <em>Riesgo:</em> <strong>Peor caso de potencia máxima</strong> ($P_Z = V_Z \\cdot I_s$).</li>
-                    </ul>
+
+                    <div class="p-2.5 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200/80 dark:border-blue-900/50 space-y-1">
+                      <span class="font-bold text-blue-800 dark:text-blue-300 block text-[11px]">
+                        🔻 Si $V_{in}$ baja (↓, Descenso de tensión en la fuente):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        La corriente $I_s$ cae y el Zener reduce su absorción ($I_Z$ baja) para cederle la corriente a la carga.
+                      </p>
+                      <div class="text-[10.5px] text-rose-800 dark:text-rose-300 font-medium bg-rose-500/10 p-1 rounded mt-1">
+                        🛑 <em>Riesgo:</em> Si $V_{in} < V_{in,min}$, la corriente cae por debajo del codo ($I_Z < I_{ZK}$); el Zener <strong>se apaga</strong> y $V_{out}$ se desploma.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Variación de RL -->
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1 border-b border-slate-100 dark:border-slate-700/60 pb-1.5">
+                    <div class="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5 text-xs">
+                      <span class="px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 font-mono text-[10px]">CASO 2</span>
+                      Variación de la Resistencia de Carga ($R_L$) — Regulación de Carga
+                    </div>
+                    <span class="text-[10px] font-mono text-slate-500 bg-slate-100 dark:bg-slate-700/50 px-2 py-0.5 rounded">
+                      Fuente fija: $I_s = \frac{V_{in} - V_Z}{R_s} = \text{cte}$
+                    </span>
                   </div>
 
-                  <!-- Caso 3: Variación de R_s -->
-                  <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
-                    <div class="font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1">
-                      <span>3.</span> Variación de Resistencia Serie ($R_s$)
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs pt-1">
+                    <div class="p-2.5 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-900/50 space-y-1">
+                      <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px]">
+                        🔺 Si $R_L$ sube (↑, Menor consumo de la carga, $I_L$ baja):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Al requerir la carga menos corriente, el excedente se deriva automáticamente al Zener ($I_Z = I_s - I_L$ sube).
+                      </p>
+                      <div class="text-[10.5px] text-amber-800 dark:text-amber-300 font-medium bg-amber-500/10 p-1 rounded mt-1">
+                        ⚠️ <em>Peor caso de potencia:</em> Si $R_L \to \infty$ (carga desconectada, $I_L = 0$), toda la corriente entra al Zener ($I_Z = I_s$). Debe verificarse que $I_s \le I_{Z,max}$.
+                      </div>
                     </div>
-                    <p class="text-[11px] text-slate-600 dark:text-slate-400">
-                      Fija el balance operativo entre regulación y protección del diodo:
-                    </p>
-                    <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
-                      <li><strong>Si $R_s$ es muy grande:</strong> Limita en exceso la corriente. Ante una caída de $V_{in}$ o aumento de $I_L$, no alcanza corriente para mantener al Zener en ruptura ($R_s > R_{s,max}$).</li>
-                      <li><strong>Si $R_s$ es muy pequeña:</strong> Deja pasar demasiada corriente. Ante máxima entrada y carga desconectada ($I_L = 0$), el Zener supera $I_{Z,max}$ y se quema ($R_s < R_{s,min}$).</li>
-                    </ul>
+
+                    <div class="p-2.5 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-900/50 space-y-1">
+                      <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px]">
+                        🔻 Si $R_L$ baja (↓, Mayor consumo de la carga, $I_L$ sube):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        La carga "drena" más corriente del nodo, quitándosela al Zener ($I_Z = I_s - I_L$ baja).
+                      </p>
+                      <div class="text-[10.5px] text-rose-800 dark:text-rose-300 font-medium bg-rose-500/10 p-1 rounded mt-1">
+                        🛑 <em>Riesgo:</em> Si $R_L < R_{L,min}$, el Zener se queda sin su corriente mínima ($I_Z < I_{ZK}$), sale de ruptura y la salida colapsa.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3. Selección de Rs -->
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1 border-b border-slate-100 dark:border-slate-700/60 pb-1.5">
+                    <div class="font-bold text-purple-700 dark:text-purple-400 flex items-center gap-1.5 text-xs">
+                      <span class="px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 font-mono text-[10px]">CASO 3</span>
+                      Criterio de Selección de la Resistencia Serie ($R_s$) — Margen Seguro
+                    </div>
+                    <span class="text-[10px] font-mono text-purple-600 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/50 px-2 py-0.5 rounded font-bold">
+                      Ventana admisible: $R_{s,min} \le R_s \le R_{s,max}$
+                    </span>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs pt-1">
+                    <div class="p-2.5 rounded-lg bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/80 dark:border-purple-900/50 space-y-1">
+                      <span class="font-bold text-purple-800 dark:text-purple-300 block text-[11px]">
+                        🔴 Si $R_s < R_{s,min}$ (Resistencia demasiado pequeña):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Permite el paso de una corriente total excesiva desde la fuente. Ante máxima entrada $V_{in,max}$ y carga desconectada ($I_L = 0$), el Zener absorberá toda la corriente y superará $I_{Z,max}$, <strong>quemándose por sobrecalentamiento</strong>.
+                      </p>
+                    </div>
+
+                    <div class="p-2.5 rounded-lg bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/80 dark:border-purple-900/50 space-y-1">
+                      <span class="font-bold text-purple-800 dark:text-purple-300 block text-[11px]">
+                        🟠 Si $R_s > R_{s,max}$ (Resistencia demasiado grande):
+                      </span>
+                      <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Estrangula y limita la corriente en exceso. Ante mínima entrada $V_{in,min}$ y máxima demanda de carga $I_{L,max}$, no queda suficiente corriente para polarizar al Zener ($I_Z < I_{ZK}$), <strong>perdiéndose la regulación</strong>.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
