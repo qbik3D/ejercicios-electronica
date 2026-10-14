@@ -61,55 +61,55 @@ const MANUAL_TEORIA_E1 = {
                 📊 Gráfico: Convención de Signos Pasiva — Sentido de Corriente y Caída de Tensión (R)
               </h6>
               <div class="overflow-x-auto flex justify-center py-1">
-                <svg viewBox="0 0 580 185" class="w-full max-w-xl h-auto font-sans text-xs select-none">
+                <svg viewBox="0 0 580 215" class="w-full max-w-xl h-auto font-sans text-xs select-none">
                   <!-- Tarjeta Principal Contenedora -->
-                  <rect x="10" y="8" width="560" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.35" stroke-width="1.2"/>
-                  <text x="290" y="23" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Convención de Signos Pasiva Estándar (Receptores)</text>
-                  <text x="290" y="35" text-anchor="middle" fill="#64748b" font-size="8.5">La corriente I entra siempre por el terminal de mayor potencial (+) y sale por el (-)</text>
+                  <rect x="10" y="8" width="560" height="200" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.35" stroke-width="1.2"/>
+                  <text x="290" y="24" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Convención de Signos Pasiva Estándar (Receptores)</text>
+                  <text x="290" y="38" text-anchor="middle" fill="#64748b" font-size="8.5">La corriente I entra siempre por el terminal de mayor potencial (+) y sale por el (-)</text>
 
                   <!-- SECCIÓN IZQUIERDA: Componente Resistencia y Bornes -->
                   <!-- Caída de Tensión V_AB (Flecha de sentido único opuesta a la corriente) -->
-                  <text x="160" y="52" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> &gt; 0 (Caída de tensión)</text>
-                  <line x1="80" y1="58" x2="240" y2="58" stroke="#ef4444" stroke-width="1.8"/>
-                  <polygon points="80,54 70,58 80,62" fill="#ef4444"/>
+                  <text x="160" y="53" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> &gt; 0 (Caída de tensión)</text>
+                  <line x1="75" y1="62" x2="245" y2="62" stroke="#ef4444" stroke-width="1.8"/>
+                  <polygon points="75,58 65,62 75,66" fill="#ef4444"/>
 
                   <!-- Terminal A (+) -->
-                  <text x="50" y="78" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">A (+)</text>
-                  <circle cx="50" cy="90" r="4.5" fill="#ef4444"/>
+                  <text x="50" y="86" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">A (+)</text>
+                  <circle cx="50" cy="100" r="4.5" fill="#ef4444"/>
 
                   <!-- Cable conductor hacia R -->
-                  <line x1="50" y1="90" x2="105" y2="90" stroke="#64748b" stroke-width="2"/>
+                  <line x1="50" y1="100" x2="105" y2="100" stroke="#64748b" stroke-width="2"/>
 
                   <!-- Símbolo de Resistencia R (Zigzag) -->
-                  <text x="160" y="75" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
-                  <path d="M 105 90 L 113 80 L 129 100 L 145 80 L 161 100 L 177 80 L 193 100 L 207 80 L 215 90" fill="none" stroke="#334155" stroke-width="2.4"/>
+                  <text x="160" y="80" text-anchor="middle" fill="#334155" font-weight="bold" font-size="12">R</text>
+                  <path d="M 105 100 L 113 90 L 129 110 L 145 90 L 161 110 L 177 90 L 193 110 L 207 90 L 215 100" fill="none" stroke="#334155" stroke-width="2.4"/>
 
                   <!-- Cable conductor a Terminal B (-) -->
-                  <line x1="215" y1="90" x2="270" y2="90" stroke="#64748b" stroke-width="2"/>
-                  <circle cx="270" cy="90" r="4.5" fill="#3b82f6"/>
-                  <text x="270" y="78" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">B (-)</text>
+                  <line x1="215" y1="100" x2="270" y2="100" stroke="#64748b" stroke-width="2"/>
+                  <circle cx="270" cy="100" r="4.5" fill="#3b82f6"/>
+                  <text x="270" y="86" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="11">B (-)</text>
 
                   <!-- Flecha de Corriente I (hacia la derecha, entrando por +) -->
-                  <line x1="60" y1="112" x2="120" y2="112" stroke="#2563eb" stroke-width="2.2"/>
-                  <polygon points="120,108 128,112 120,116" fill="#2563eb"/>
-                  <text x="90" y="127" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔ (Entra por +)</text>
+                  <line x1="60" y1="124" x2="120" y2="124" stroke="#2563eb" stroke-width="2.2"/>
+                  <polygon points="120,120 128,124 120,128" fill="#2563eb"/>
+                  <text x="90" y="139" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="10">I ➔ (Entra por +)</text>
 
                   <!-- SECCIÓN DERECHA: Fórmulas y Principios -->
-                  <!-- Cuadro 1: Ley de Ohm -->
-                  <rect x="310" y="48" width="245" height="44" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                  <!-- Cuadro 1: Ley de Ohm con espaciado amplio -->
+                  <rect x="310" y="48" width="245" height="52" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
                   <text x="322" y="63" font-weight="bold" fill="#1e40af" font-size="9.5">Ley de Ohm (Convención Pasiva):</text>
-                  <text x="322" y="77" font-weight="bold" fill="#2563eb" font-size="11">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = + I · R</text>
-                  <text x="322" y="87" fill="#64748b" font-size="7.5">Signo (+): la corriente entra por el borne (+)</text>
+                  <text x="322" y="78" font-weight="bold" fill="#2563eb" font-size="11">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = + I · R</text>
+                  <text x="322" y="94" fill="#64748b" font-size="8">Signo (+): la corriente entra por el borne (+)</text>
 
-                  <!-- Cuadro 2: Potencia disipada -->
-                  <rect x="310" y="98" width="245" height="44" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                  <text x="322" y="113" font-weight="bold" fill="#166534" font-size="9.5">Potencia Disipada (Efecto Joule):</text>
-                  <text x="322" y="127" font-weight="bold" fill="#059669" font-size="11">P = V · I = I² · R &gt; 0</text>
-                  <text x="322" y="137" fill="#15803d" font-size="7.5">El componente siempre absorbe energía.</text>
+                  <!-- Cuadro 2: Potencia disipada con espaciado amplio -->
+                  <rect x="310" y="106" width="245" height="52" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                  <text x="322" y="121" font-weight="bold" fill="#166534" font-size="9.5">Potencia Disipada (Efecto Joule):</text>
+                  <text x="322" y="136" font-weight="bold" fill="#059669" font-size="11">P = V · I = I² · R &gt; 0</text>
+                  <text x="322" y="151" fill="#15803d" font-size="8">El componente siempre absorbe energía.</text>
 
                   <!-- Banner Inferior Mnemotécnico -->
-                  <rect x="25" y="149" width="530" height="20" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-                  <text x="290" y="163" text-anchor="middle" fill="#334155" font-weight="600" font-size="8.5">⚡ Regla estándar: La corriente ingresa siempre por el polo positivo (+) y egresa por el negativo (-)</text>
+                  <rect x="25" y="170" width="530" height="24" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                  <text x="290" y="186" text-anchor="middle" fill="#334155" font-weight="600" font-size="8.5">⚡ Regla estándar: La corriente ingresa siempre por el polo positivo (+) y egresa por el negativo (-)</text>
                 </svg>
               </div>
             </div>
@@ -297,10 +297,10 @@ const MANUAL_TEORIA_E1 = {
                     <text x="260" y="92" text-anchor="start" fill="#334155" font-weight="bold" font-size="10.5">R₃</text>
 
                     <!-- Regla de 2 ramas y equivalente -->
-                    <rect x="15" y="152" width="285" height="52" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
-                    <text x="157" y="167" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="9.5">1/R<tspan baseline-shift="sub" font-size="70%">eq</tspan> = 1/R₁ + 1/R₂ + ... + 1/Rₙ</text>
-                    <text x="157" y="181" text-anchor="middle" fill="#047857" font-size="8.5">2 Ramas: R<tspan baseline-shift="sub" font-size="70%">eq</tspan> = (R₁ · R₂) / (R₁ + R₂) ("producto / suma")</text>
-                    <text x="157" y="195" text-anchor="middle" fill="#065f46" font-size="8">Propiedad: R<tspan baseline-shift="sub" font-size="70%">eq</tspan> &lt; min(Rᵢ) — La resistencia neta disminuye</text>
+                    <rect x="15" y="148" width="285" height="58" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="157" y="165" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="9.5">1/R<tspan baseline-shift="sub" font-size="70%">eq</tspan> = 1/R₁ + 1/R₂ + ... + 1/Rₙ</text>
+                    <text x="157" y="182" text-anchor="middle" fill="#047857" font-size="8.5">2 Ramas: R<tspan baseline-shift="sub" font-size="70%">eq</tspan> = (R₁ · R₂) / (R₁ + R₂) ("producto / suma")</text>
+                    <text x="157" y="198" text-anchor="middle" fill="#065f46" font-size="8">Propiedad: R<tspan baseline-shift="sub" font-size="70%">eq</tspan> &lt; min(Rᵢ) — La resistencia neta disminuye</text>
                   </g>
                 </svg>
               </div>
@@ -418,10 +418,10 @@ const MANUAL_TEORIA_E1 = {
                     <text x="108" y="150" text-anchor="middle" fill="#2563eb" font-size="7.5" font-style="italic">Suma prod. pares / Rama opuesta</text>
 
                     <!-- Cuadro 3: Caso Simétrico -->
-                    <rect x="6" y="164" width="204" height="46" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="108" y="177" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="9">Caso Simétrico (Ramas Iguales)</text>
-                    <text x="108" y="192" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="10">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> / 3  ⟺  R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> = 3 · R<tspan baseline-shift="sub" font-size="70%">Y</tspan></text>
-                    <text x="108" y="203" text-anchor="middle" fill="#78350f" font-size="7.5">Cada rama de estrella vale 1/3 del triángulo</text>
+                    <rect x="6" y="163" width="204" height="50" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="108" y="176" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="9">Caso Simétrico (Ramas Iguales)</text>
+                    <text x="108" y="191" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="10">R<tspan baseline-shift="sub" font-size="70%">Y</tspan> = R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> / 3  ⟺  R<tspan baseline-shift="sub" font-size="70%">Δ</tspan> = 3 · R<tspan baseline-shift="sub" font-size="70%">Y</tspan></text>
+                    <text x="108" y="206" text-anchor="middle" fill="#78350f" font-size="7.5">Cada rama de estrella vale 1/3 del triángulo</text>
                   </g>
 
                   <!-- Lado Derecho: Configuración Estrella (Wye) -->
@@ -578,9 +578,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="205" y="132" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">out,vacío</tspan></text>
 
                     <!-- Cuadro fórmula -->
-                    <rect x="15" y="168" width="280" height="40" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="155" y="182" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₂ / (R₁ + R₂)</text>
-                    <text x="155" y="196" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">vacío</tspan> = V<tspan baseline-shift="sub" font-size="70%">in</tspan> / (R₁ + R₂)</text>
+                    <rect x="15" y="164" width="280" height="44" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="155" y="179" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₂ / (R₁ + R₂)</text>
+                    <text x="155" y="197" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">vacío</tspan> = V<tspan baseline-shift="sub" font-size="70%">in</tspan> / (R₁ + R₂)</text>
                   </g>
 
                   <!-- Panel Derecho: Divisor con Carga (Efecto de Carga) -->
@@ -650,9 +650,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="244" y="132" text-anchor="start" fill="#b45309" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">out,carg</tspan></text>
 
                     <!-- Cuadro resumen de carga -->
-                    <rect x="15" y="168" width="285" height="40" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="157" y="182" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">out,carg</tspan> &lt; V<tspan baseline-shift="sub" font-size="70%">out,vacío</tspan> (Caída por carga)</text>
-                    <text x="157" y="196" text-anchor="middle" fill="#b45309" font-size="8.5">Criterio: R<tspan baseline-shift="sub" font-size="70%">L</tspan> ≥ 10 · R₂ ⟹ caída &lt; 10%</text>
+                    <rect x="15" y="164" width="285" height="44" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+                    <text x="157" y="179" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">out,carg</tspan> &lt; V<tspan baseline-shift="sub" font-size="70%">out,vacío</tspan> (Caída por carga)</text>
+                    <text x="157" y="197" text-anchor="middle" fill="#b45309" font-size="8.5">Criterio: R<tspan baseline-shift="sub" font-size="70%">L</tspan> ≥ 10 · R₂ ⟹ caída &lt; 10%</text>
                   </g>
                 </svg>
               </div>
@@ -769,22 +769,22 @@ const MANUAL_TEORIA_E1 = {
                     <text x="142" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10.5">Casos Particulares Clave</text>
 
                     <!-- Caso 1: R1 = R2 -->
-                    <rect x="12" y="30" width="260" height="46" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="22" y="45" font-weight="bold" fill="#1e40af" font-size="9">1. Ramas Iguales (R₁ = R₂):</text>
-                    <text x="22" y="59" fill="#2563eb" font-weight="bold" font-size="9">I₁ = I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> / 2</text>
+                    <rect x="12" y="27" width="260" height="49" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="22" y="41" font-weight="bold" fill="#1e40af" font-size="9">1. Ramas Iguales (R₁ = R₂):</text>
+                    <text x="22" y="56" fill="#2563eb" font-weight="bold" font-size="9">I₁ = I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> / 2</text>
                     <text x="22" y="70" fill="#64748b" font-size="7.5">Reparto perfectamente simétrico y equitativo.</text>
 
                     <!-- Caso 2: R1 << R2 -->
-                    <rect x="12" y="84" width="260" height="46" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
-                    <text x="22" y="99" font-weight="bold" fill="#065f46" font-size="9">2. Disparidad Severa (R₁ &lt;&lt; R₂):</text>
-                    <text x="22" y="113" fill="#059669" font-weight="bold" font-size="9">I₁ ≈ I<tspan baseline-shift="sub" font-size="70%">in</tspan>  |  I₂ ≈ 0</text>
-                    <text x="22" y="124" fill="#64748b" font-size="7.5">Casi la totalidad de corriente fluye por R₁.</text>
+                    <rect x="12" y="83" width="260" height="49" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="22" y="97" font-weight="bold" fill="#065f46" font-size="9">2. Disparidad Severa (R₁ &lt;&lt; R₂):</text>
+                    <text x="22" y="112" fill="#059669" font-weight="bold" font-size="9">I₁ ≈ I<tspan baseline-shift="sub" font-size="70%">in</tspan>  |  I₂ ≈ 0</text>
+                    <text x="22" y="126" fill="#64748b" font-size="7.5">Casi la totalidad de corriente fluye por R₁.</text>
 
                     <!-- Caso 3: Cortocircuito R1 = 0 -->
-                    <rect x="12" y="138" width="260" height="48" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+                    <rect x="12" y="139" width="260" height="49" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
                     <text x="22" y="153" font-weight="bold" fill="#991b1b" font-size="9">3. Cortocircuito (R₁ = 0):</text>
-                    <text x="22" y="167" fill="#dc2626" font-weight="bold" font-size="9">I₁ = I<tspan baseline-shift="sub" font-size="70%">in</tspan>  |  I₂ = 0</text>
-                    <text x="22" y="179" fill="#64748b" font-size="7.5">Todo el flujo elude la rama con resistencia R₂.</text>
+                    <text x="22" y="168" fill="#dc2626" font-weight="bold" font-size="9">I₁ = I<tspan baseline-shift="sub" font-size="70%">in</tspan>  |  I₂ ≈ 0</text>
+                    <text x="22" y="182" fill="#64748b" font-size="7.5">Todo el flujo elude la rama con resistencia R₂.</text>
                   </g>
                 </svg>
               </div>
@@ -874,10 +874,10 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="195" cy="105" r="4" fill="#3b82f6"/>
                     <text x="195" y="120" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
 
-                    <rect x="15" y="132" width="150" height="42" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="90" y="146" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">Parámetros:</text>
+                    <rect x="15" y="130" width="150" height="46" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="90" y="144" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">Parámetros:</text>
                     <text x="90" y="158" text-anchor="middle" fill="#2563eb" font-size="8">V<tspan baseline-shift="sub" font-size="70%">oc</tspan> = V<tspan baseline-shift="sub" font-size="70%">AB</tspan> (ca)</text>
-                    <text x="90" y="169" text-anchor="middle" fill="#2563eb" font-size="8">I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = I<tspan baseline-shift="sub" font-size="70%">AB</tspan> (cc)</text>
+                    <text x="90" y="171" text-anchor="middle" fill="#2563eb" font-size="8">I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = I<tspan baseline-shift="sub" font-size="70%">AB</tspan> (cc)</text>
                   </g>
 
                   <!-- Flecha de simplificación -->
@@ -917,9 +917,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="195" y="128" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
 
                     <!-- Fórmulas -->
-                    <rect x="15" y="138" width="175" height="36" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="102" y="151" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">AB,ca</tspan>  (Vacío)</text>
-                    <text x="102" y="164" text-anchor="middle" fill="#2563eb" font-size="8">R<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">oc</tspan> / I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = R<tspan baseline-shift="sub" font-size="70%">in,pasiva</tspan></text>
+                    <rect x="15" y="134" width="175" height="42" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+                    <text x="102" y="149" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">AB,ca</tspan>  (Vacío)</text>
+                    <text x="102" y="166" text-anchor="middle" fill="#2563eb" font-size="8">R<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">oc</tspan> / I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = R<tspan baseline-shift="sub" font-size="70%">in,pasiva</tspan></text>
                   </g>
 
                   <!-- Flecha de conversión Thévenin <-> Norton -->
@@ -967,9 +967,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="185" y="128" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
 
                     <!-- Fórmulas -->
-                    <rect x="15" y="138" width="165" height="36" rx="5" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
-                    <text x="97" y="151" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">N</tspan> = I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan> / R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
-                    <text x="97" y="164" text-anchor="middle" fill="#047857" font-size="8">R<tspan baseline-shift="sub" font-size="70%">N</tspan> = R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
+                    <rect x="15" y="134" width="165" height="42" rx="5" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+                    <text x="97" y="149" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">N</tspan> = I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan> / R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
+                    <text x="97" y="166" text-anchor="middle" fill="#047857" font-size="8">R<tspan baseline-shift="sub" font-size="70%">N</tspan> = R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
                   </g>
                 </svg>
               </div>
@@ -1085,9 +1085,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="280" y="105" text-anchor="end" fill="#64748b" font-size="7.5">aporte 0</text>
 
                     <!-- Cuadro resumen de fórmula Millman -->
-                    <rect x="15" y="165" width="345" height="36" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                    <text x="187" y="179" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = [ (E<tspan baseline-shift="sub" font-size="70%">1</tspan>/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) - (E<tspan baseline-shift="sub" font-size="70%">2</tspan>/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + I<tspan baseline-shift="sub" font-size="70%">s3</tspan> ] / [ (1/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">p</tspan>) ]</text>
-                    <text x="187" y="193" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): apunta al nodo A | Signo (-): apunta al nodo B</text>
+                    <rect x="15" y="160" width="345" height="44" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+                    <text x="187" y="176" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = [ (E<tspan baseline-shift="sub" font-size="70%">1</tspan>/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) - (E<tspan baseline-shift="sub" font-size="70%">2</tspan>/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + I<tspan baseline-shift="sub" font-size="70%">s3</tspan> ] / [ (1/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">p</tspan>) ]</text>
+                    <text x="187" y="194" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): apunta al nodo A | Signo (-): apunta al nodo B</text>
                   </g>
 
                   <!-- Flecha de conversión de Millman -->
