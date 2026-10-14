@@ -2326,7 +2326,7 @@ const MANUAL_TEORIA_E1 = {
                       <polygon points="0,-7 12,0 0,7" fill="#10b981" stroke="#059669" stroke-width="1"/>
                       <line x1="12" y1="-7" x2="12" y2="7" stroke="#059669" stroke-width="1.5"/>
                     </g>
-                    <text x="190" y="142" fill="#059669" font-weight="bold" font-size="8.5">D2</text>
+                    <text x="182" y="128" fill="#059669" font-weight="bold" font-size="8.5">D2</text>
 
                     <!-- Líneas del rombo -->
                     <line x1="110" y1="95" x2="155" y2="50" stroke="#64748b" stroke-width="1.2"/>
