@@ -91,34 +91,415 @@ const MANUAL_TEORIA_EA1 = {
           id: 'u1-rectas-carga',
           titulo: '1.2 Rectas de Carga Estática (DC) y Dinámica (AC)',
           contenido: `
-            <p class="mb-3">El comportamiento dinámico del amplificador frente a una carga acoplada reactivamente ($R_L$ mediante capacitor $C_c$, y emisor desacoplado mediante $C_E$) se modela separando el régimen estático del incremental.</p>
+            <!-- 1. IDENTIFICACIÓN DE LA TOPOLOGÍA DE ESTUDIO -->
+            <p class="mb-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              Para analizar con rigor las rectas de carga estática y dinámica en Electrónica Aplicada I, se toma como <strong>topología canónica de referencia</strong> el <strong>Amplificador en Emisor Común (EC) con Polarización por Divisor Resistivo y Carga Acoplada por Capacidad</strong>.
+            </p>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Recta de Carga Estática (DC)</h5>
-            <p class="mb-2">En continua, todos los capacitores se comportan como circuitos abiertos ideales ($X_C \\to \\infty$). La malla colector-emisor satisface:</p>
-            $$V_{CC} = v_{CE} + i_C R_C + i_E R_E \\approx v_{CE} + i_C (R_C + R_E)$$
-            <p class="my-1">Definiendo la <strong>resistencia estática de continua</strong>:</p>
-            $$R_{dc} = R_C + R_E$$
-            $$i_C = -\\frac{1}{R_{dc}} v_{CE} + \\frac{V_{CC}}{R_{dc}}$$
-            <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm my-2">
-              <li>Punto de corte con eje de abscisas ($i_C = 0$): $v_{CE} = V_{CC}$.</li>
-              <li>Punto de corte con eje de ordenadas ($v_{CE} = 0$): $i_C = \\frac{V_{CC}}{R_{dc}}$.</li>
-              <li>Pendiente estática: $m_{dc} = -\\frac{1}{R_{dc}}$.</li>
+            <div class="p-3.5 my-3 rounded-xl bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-2">
+              <strong class="text-slate-800 dark:text-slate-200 block font-semibold flex items-center gap-1.5">
+                <span>🔌</span> Componentes de la Topología y Doble Comportamiento (DC vs. AC):
+              </strong>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                  <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-0.5">1. Red de Polarización (DC)</span>
+                  El divisor $R_1 - R_2$ fija el potencial de base $V_B$, mientras que $R_C$ y $R_E$ fijan el punto de reposo $Q(V_{CEQ}, I_{CQ})$ en la zona activa.
+                </div>
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">2. Capacitores de Acoplo ($C_1, C_2$)</span>
+                  Aíslan la continua entre etapas ($X_C \to \infty$ en DC) pero transfieren íntegramente la señal alterna hacia la carga $R_L$ ($X_C \approx 0$ en AC).
+                </div>
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                  <span class="font-bold text-amber-600 dark:text-amber-400 block mb-0.5">3. Capacitor de Emisor ($C_E$)</span>
+                  Mantiene la estabilidad térmica en DC mediante $R_E$, pero cortocircuita el emisor a masa en AC para maximizar la ganancia de tensión ($A_v$).
+                </div>
+              </div>
+            </div>
+
+            <!-- DIAGRAMA SVG TRÍPTICO: CIRCUITO COMPLETO, EQUIVALENTE DC Y EQUIVALENTE AC -->
+            <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+                📐 Topología de Estudio: Decomposición Circuital en Continua (DC) y Alterna (AC)
+              </span>
+              <div class="flex justify-center overflow-x-auto">
+                <svg viewBox="0 0 760 265" class="w-full max-w-[760px] text-xs font-sans select-none" style="min-width: 620px;">
+                  <!-- ================= (a) CIRCUITO COMPLETO DE EMISOR COMÚN ================= -->
+                  <g transform="translate(10, 0)">
+                    <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="11">(a) Circuito Completo (EC)</text>
+
+                    <!-- Rail VCC -->
+                    <line x1="40" y1="28" x2="155" y2="28" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="95" cy="28" r="3" fill="#ef4444"/>
+                    <text x="95" y="21" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+
+                    <!-- R1 -->
+                    <line x1="55" y1="28" x2="55" y2="40" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="47" y="40" width="16" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.3" rx="2"/>
+                    <text x="40" y="54" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="55" y1="64" x2="55" y2="82" stroke="#475569" stroke-width="1.3"/>
+                    <circle cx="55" cy="82" r="2.5" fill="#475569"/>
+
+                    <!-- Entrada vs con C1 -->
+                    <circle cx="15" cy="82" r="3" fill="#3b82f6"/>
+                    <text x="15" y="96" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">s</tspan></text>
+                    <line x1="15" y1="82" x2="28" y2="82" stroke="#3b82f6" stroke-width="1.3"/>
+                    <!-- C1 -->
+                    <line x1="28" y1="75" x2="28" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="32" y1="75" x2="32" y2="89" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="30" y="70" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="7.5"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="32" y1="82" x2="55" y2="82" stroke="#3b82f6" stroke-width="1.3"/>
+
+                    <!-- R2 -->
+                    <rect x="47" y="82" width="16" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.3" rx="2"/>
+                    <text x="40" y="96" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="55" y1="106" x2="55" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="47" y1="120" x2="63" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                    <!-- Base a Transistor -->
+                    <line x1="55" y1="82" x2="115" y2="82" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Transistor NPN -->
+                    <circle cx="123" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="115" y1="70" x2="115" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="115" y1="76" x2="133" y2="66" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="115" y1="88" x2="133" y2="98" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="132,97.5 123,93 126,88" fill="#ef4444"/>
+
+                    <!-- Colector: RC y Acoplo C2 a RL -->
+                    <line x1="133" y1="28" x2="133" y2="38" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="125" y="38" width="16" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.3" rx="2"/>
+                    <text x="145" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="133" y1="62" x2="133" y2="66" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="133" cy="66" r="2.5" fill="#10b981"/>
+
+                    <!-- Capacitor C2 y Carga RL -->
+                    <line x1="133" y1="66" x2="160" y2="66" stroke="#10b981" stroke-width="1.3"/>
+                    <line x1="160" y1="59" x2="160" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <line x1="164" y1="59" x2="164" y2="73" stroke="#10b981" stroke-width="2"/>
+                    <text x="162" y="54" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="7.5"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="164" y1="66" x2="190" y2="66" stroke="#10b981" stroke-width="1.3"/>
+                    <circle cx="190" cy="66" r="2.5" fill="#10b981"/>
+                    <text x="202" y="66" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+
+                    <!-- Resistor RL a masa -->
+                    <line x1="190" y1="66" x2="190" y2="76" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="182" y="76" width="16" height="24" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.3" rx="2"/>
+                    <text x="202" y="90" text-anchor="start" font-weight="bold" fill="#059669" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                    <line x1="190" y1="100" x2="190" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="182" y1="120" x2="198" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                    <!-- Emisor: RE || CE -->
+                    <line x1="133" y1="98" x2="133" y2="112" stroke="#475569" stroke-width="1.3"/>
+                    <circle cx="133" cy="112" r="2.5" fill="#475569"/>
+                    
+                    <!-- Rama RE -->
+                    <line x1="133" y1="112" x2="115" y2="112" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="115" y1="112" x2="115" y2="122" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="107" y="122" width="16" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.3" rx="2"/>
+                    <text x="101" y="135" text-anchor="end" font-weight="bold" fill="#a855f7" font-size="8"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="115" y1="144" x2="115" y2="154" stroke="#475569" stroke-width="1.3"/>
+
+                    <!-- Rama CE -->
+                    <line x1="133" y1="112" x2="150" y2="112" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="150" y1="112" x2="150" y2="126" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="144" y1="126" x2="156" y2="126" stroke="#475569" stroke-width="2"/>
+                    <line x1="144" y1="130" x2="156" y2="130" stroke="#475569" stroke-width="2"/>
+                    <text x="162" y="130" text-anchor="start" font-weight="bold" fill="#64748b" font-size="8"><tspan font-style="italic">C</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="150" y1="130" x2="150" y2="154" stroke="#475569" stroke-width="1.3"/>
+
+                    <!-- Masa de emisor -->
+                    <line x1="115" y1="154" x2="150" y2="154" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="125" y1="158" x2="140" y2="158" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Badge inferior -->
+                    <rect x="10" y="174" width="210" height="78" rx="6" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.3"/>
+                    <text x="115" y="191" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5">Topología Emisor Común (EC)</text>
+                    <text x="115" y="206" text-anchor="middle" fill="#475569" font-size="8.5">• <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">1</tspan>, <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">2</tspan>: Bloqueo DC / Acoplo AC</text>
+                    <text x="115" y="220" text-anchor="middle" fill="#475569" font-size="8.5">• <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">E</tspan>: Desacopla <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan> a masa en AC</text>
+                    <text x="115" y="238" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">Circuito físico original</text>
+                  </g>
+
+                  <!-- Divisor vertical -->
+                  <line x1="245" y1="15" x2="245" y2="255" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+
+                  <!-- ================= (b) CIRCUITO EQUIVALENTE EN CONTINUA (DC) ================= -->
+                  <g transform="translate(255, 0)">
+                    <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="11">(b) Malla Colector-Emisor (DC)</text>
+
+                    <!-- Resaltado de la Malla C-E en DC con fondo suave -->
+                    <path d="M 133 28 L 133 162 L 105 162" fill="none" stroke="#ef4444" stroke-width="6" stroke-opacity="0.12" stroke-linecap="round"/>
+
+                    <!-- Rail VCC -->
+                    <line x1="40" y1="28" x2="155" y2="28" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="95" cy="28" r="3" fill="#ef4444"/>
+                    <text x="95" y="21" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+
+                    <!-- R1 -->
+                    <line x1="55" y1="28" x2="55" y2="40" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="47" y="40" width="16" height="24" fill="#64748b" fill-opacity="0.2" stroke="#64748b" stroke-width="1.3" rx="2"/>
+                    <text x="40" y="54" text-anchor="end" font-weight="bold" fill="#64748b" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="55" y1="64" x2="55" y2="82" stroke="#475569" stroke-width="1.3"/>
+                    <circle cx="55" cy="82" r="2.5" fill="#475569"/>
+
+                    <!-- C1 ABIERTO (Sin conexión a vs) -->
+                    <text x="22" y="80" text-anchor="middle" font-bold fill="#94a3b8" font-size="8">C<tspan font-size="75%" dy="1.5">1</tspan> Abierto</text>
+                    <line x1="22" y1="84" x2="35" y2="84" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 2"/>
+
+                    <!-- R2 -->
+                    <rect x="47" y="82" width="16" height="24" fill="#64748b" fill-opacity="0.2" stroke="#64748b" stroke-width="1.3" rx="2"/>
+                    <text x="40" y="96" text-anchor="end" font-weight="bold" fill="#64748b" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="55" y1="106" x2="55" y2="120" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="47" y1="120" x2="63" y2="120" stroke="#475569" stroke-width="1.8"/>
+
+                    <!-- Base a Transistor -->
+                    <line x1="55" y1="82" x2="115" y2="82" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Transistor NPN -->
+                    <circle cx="123" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="115" y1="70" x2="115" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="115" y1="76" x2="133" y2="66" stroke="#ef4444" stroke-width="2"/>
+                    <line x1="115" y1="88" x2="133" y2="98" stroke="#ef4444" stroke-width="2"/>
+                    <polygon points="132,97.5 123,93 126,88" fill="#ef4444"/>
+
+                    <!-- Tensión VCE -->
+                    <text x="145" y="84" font-weight="bold" fill="#ef4444" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE</tspan></text>
+
+                    <!-- Colector: RC y MALLA DC -->
+                    <line x1="133" y1="28" x2="133" y2="38" stroke="#ef4444" stroke-width="2"/>
+                    <!-- Flecha corriente IC -->
+                    <polygon points="130,34 133,39 136,34" fill="#ef4444"/>
+                    <text x="122" y="36" text-anchor="end" font-weight="bold" fill="#ef4444" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
+
+                    <rect x="125" y="38" width="16" height="24" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1.8" rx="2"/>
+                    <text x="145" y="52" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="133" y1="62" x2="133" y2="66" stroke="#ef4444" stroke-width="2"/>
+                    <circle cx="133" cy="66" r="2.5" fill="#ef4444"/>
+
+                    <!-- C2 ABIERTO: RL desconectada -->
+                    <line x1="133" y1="66" x2="155" y2="66" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="2 2"/>
+                    <text x="162" y="62" text-anchor="start" font-bold fill="#94a3b8" font-size="7.5">C<tspan font-size="75%" dy="1.5">2</tspan> Abierto</text>
+                    <text x="162" y="73" text-anchor="start" fill="#94a3b8" font-size="7.5">(R<tspan font-size="75%" dy="1.5">L</tspan> aislada)</text>
+
+                    <!-- Emisor DC: CE ABIERTO, Toda la corriente fluye por RE -->
+                    <line x1="133" y1="98" x2="133" y2="114" stroke="#ef4444" stroke-width="2"/>
+                    <polygon points="130,107 133,112 136,107" fill="#ef4444"/>
+                    <text x="145" y="110" font-weight="bold" fill="#ef4444" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">E</tspan> ≈ <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
+
+                    <rect x="125" y="114" width="16" height="26" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1.8" rx="2"/>
+                    <text x="145" y="130" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="133" y1="140" x2="133" y2="152" stroke="#ef4444" stroke-width="2"/>
+                    <line x1="123" y1="152" x2="143" y2="152" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Badge inferior DC -->
+                    <rect x="10" y="174" width="210" height="78" rx="6" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.3"/>
+                    <text x="115" y="191" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="9.5">Malla Colector-Emisor en DC</text>
+                    <text x="115" y="206" text-anchor="middle" font-mono font-bold fill="#ef4444" font-size="9"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CC</tspan> = <tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CE</tspan> + <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan>(<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan> + <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan>)</text>
+                    <text x="115" y="221" text-anchor="middle" font-mono font-bold fill="#0f172a" dark:fill="#f8fafc" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan> = <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan> + <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan></text>
+                    <text x="115" y="238" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">Pendiente DC: −1/<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan></text>
+                  </g>
+
+                  <!-- Divisor vertical -->
+                  <line x1="500" y1="15" x2="500" y2="255" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+
+                  <!-- ================= (c) CIRCUITO EQUIVALENTE EN ALTERNA (AC) ================= -->
+                  <g transform="translate(510, 0)">
+                    <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">(c) Malla Dinámica de Salida (AC)</text>
+
+                    <!-- VCC es Masa AC -->
+                    <line x1="85" y1="28" x2="145" y2="28" stroke="#10b981" stroke-width="2"/>
+                    <line x1="105" y1="24" x2="125" y2="24" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="115" y="16" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">CC</tspan> → Masa AC (0 V)</text>
+
+                    <!-- Entrada vi a Base -->
+                    <circle cx="20" cy="82" r="3" fill="#3b82f6"/>
+                    <text x="10" y="86" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="20" y1="82" x2="55" y2="82" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="55" cy="82" r="2.5" fill="#3b82f6"/>
+
+                    <!-- RB = R1 || R2 a masa AC -->
+                    <line x1="55" y1="82" x2="55" y2="92" stroke="#475569" stroke-width="1.3"/>
+                    <rect x="47" y="92" width="16" height="24" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.3" rx="2"/>
+                    <text x="40" y="106" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
+                    <line x1="55" y1="116" x2="55" y2="128" stroke="#475569" stroke-width="1.3"/>
+                    <line x1="47" y1="128" x2="63" y2="128" stroke="#475569" stroke-width="1.8"/>
+
+                    <line x1="55" y1="82" x2="105" y2="82" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Transistor NPN en AC -->
+                    <circle cx="113" cy="82" r="15" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
+                    <line x1="105" y1="70" x2="105" y2="94" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="105" y1="76" x2="123" y2="66" stroke="#10b981" stroke-width="2"/>
+                    <line x1="105" y1="88" x2="123" y2="98" stroke="#10b981" stroke-width="2"/>
+                    <polygon points="122,97.5 113,93 116,88" fill="#ef4444"/>
+
+                    <!-- Emisor conectado directo a masa por CE (RE cortocircuitada) -->
+                    <line x1="123" y1="98" x2="123" y2="128" stroke="#10b981" stroke-width="2"/>
+                    <circle cx="123" cy="128" r="2.5" fill="#10b981"/>
+                    <line x1="113" y1="128" x2="133" y2="128" stroke="#475569" stroke-width="2"/>
+                    <text x="123" y="142" text-anchor="middle" font-bold fill="#10b981" font-size="8">Emisor a Masa (<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">E</tspan> = 0)</text>
+
+                    <!-- Colector AC: RC y RL en PARALELO a Masa AC -->
+                    <circle cx="123" cy="66" r="2.5" fill="#10b981"/>
+                    <line x1="123" y1="66" x2="175" y2="66" stroke="#10b981" stroke-width="2"/>
+                    
+                    <!-- Rama 1: RC a masa AC (arriba) -->
+                    <line x1="140" y1="66" x2="140" y2="52" stroke="#10b981" stroke-width="1.8"/>
+                    <rect x="132" y="32" width="16" height="20" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                    <text x="124" y="45" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
+                    <line x1="140" y1="32" x2="140" y2="28" stroke="#10b981" stroke-width="1.8"/>
+
+                    <!-- Rama 2: RL a masa AC (a través de C2 cortocircuitado) -->
+                    <line x1="175" y1="66" x2="175" y2="52" stroke="#059669" stroke-width="1.8"/>
+                    <rect x="167" y="32" width="16" height="20" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.5" rx="2"/>
+                    <text x="191" y="45" text-anchor="start" font-weight="bold" fill="#059669" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">L</tspan></text>
+                    <line x1="175" y1="32" x2="175" y2="28" stroke="#059669" stroke-width="1.8"/>
+
+                    <!-- Salida vo -->
+                    <line x1="175" y1="66" x2="205" y2="66" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="205" cy="66" r="3" fill="#10b981"/>
+                    <text x="216" y="70" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                    <text x="160" y="80" text-anchor="middle" font-bold fill="#047857" font-size="8.5"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> = <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan> ∥ <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">L</tspan></text>
+
+                    <!-- Flecha corriente ic -->
+                    <polygon points="120,56 123,50 126,56" fill="#10b981"/>
+                    <text x="114" y="55" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">c</tspan></text>
+
+                    <!-- Badge inferior AC -->
+                    <rect x="10" y="174" width="210" height="78" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
+                    <text x="115" y="191" text-anchor="middle" font-weight="bold" fill="#047857" font-size="9.5">Malla de Señal en AC</text>
+                    <text x="115" y="206" text-anchor="middle" font-mono font-bold fill="#10b981" font-size="9"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">ce</tspan> = −<tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">c</tspan> · (<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan> ∥ <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">L</tspan>)</text>
+                    <text x="115" y="221" text-anchor="middle" font-mono font-bold fill="#0f172a" dark:fill="#f8fafc" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> = <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">C</tspan> ∥ <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">L</tspan> &lt; <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">dc</tspan></text>
+                    <text x="115" y="238" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">Pendiente AC: −1/<tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">ac</tspan> (Más empinada)</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. ANÁLISIS DE LA RECTA ESTÁTICA DC -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Recta de Carga Estática (DC)</h5>
+            <p class="mb-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              En régimen de corriente continua (DC), todos los capacitores se encuentran en estado estacionario y operan como <strong>circuitos abiertos ideales</strong> ($X_C = \frac{1}{\omega C} \to \infty$). Como consecuencia directa (ver figura b):
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400 mb-2">
+              <li>El generador de señal $v_s$ queda desacoplado por $C_1$.</li>
+              <li>La resistencia de carga externa $R_L$ queda aislada por $C_2$, por lo que <em>no drena corriente estática de la fuente</em> ($I_{RL,dc} = 0$).</li>
+              <li>El capacitor $C_E$ está abierto, forzando a que toda la corriente estática de emisor atraviese $R_E$.</li>
             </ul>
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Recta de Carga Dinámica (AC)</h5>
-            <p class="mb-2">En la banda de paso (frecuencias medias), los capacitores de acoplamiento y desacoplo se comportan como cortocircuitos ideales ($X_C \\approx 0$). Además, la fuente $V_{CC}$ se comporta como masa de alterna.</p>
-            <p class="mb-2">Por lo tanto:</p>
-            <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-2">
-              <li>El emisor queda conectado directamente a masa a través de $C_E$ (resistencia de emisor en alterna nula: $r_E = 0$).</li>
-              <li>En el colector, la resistencia $R_C$ queda en paralelo con la carga acoplada $R_L$.</li>
+            <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
+              Aplicando la <strong>Ley de Tensiones de Kirchhoff (KVL)</strong> a lo largo de la <strong>malla Colector-Emisor en continua</strong> (desde $+V_{CC}$ pasando por $R_C$, la juntura C-E del BJT y $R_E$ hasta masa):
+            </p>
+            $$V_{CC} - I_C R_C - V_{CE} - I_E R_E = 0 \implies V_{CC} = V_{CE} + I_C R_C + I_E R_E$$
+            <p class="my-1 text-xs text-slate-700 dark:text-slate-300">
+              Dado que $I_E = \frac{\beta + 1}{\beta} I_C \approx I_C$, agrupamos los términos resistivos definiendo la <strong>resistencia estática total de continua ($R_{dc}$)</strong>:
+            </p>
+            $$\mathbf{R_{dc} = R_C + R_E}$$
+            $$V_{CC} \approx V_{CE} + I_C (R_C + R_E) = V_{CE} + I_C R_{dc}$$
+            <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
+              Despejando la corriente de colector $i_C$ en función de la tensión $v_{CE}$ para graficar en el plano $(v_{CE}, i_C)$:
+            </p>
+            $$\mathbf{i_C = -\frac{1}{R_{dc}} v_{CE} + \frac{V_{CC}}{R_{dc}}}$$
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs my-2 font-mono">
+              <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-slate-500 font-sans block text-[10px]">Corte eje de abscisas ($i_C = 0$):</span>
+                <strong>$v_{CE} = V_{CC}$</strong>
+                <span class="text-[10px] text-slate-500 font-sans block mt-0.5">Tensión a circuito abierto</span>
+              </div>
+              <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-slate-500 font-sans block text-[10px]">Corte eje de ordenadas ($v_{CE} = 0$):</span>
+                <strong>$i_C = \frac{V_{CC}}{R_{dc}}$</strong>
+                <span class="text-[10px] text-slate-500 font-sans block mt-0.5">Corriente de cortocircuito DC</span>
+              </div>
+              <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-slate-500 font-sans block text-[10px]">Pendiente de la recta:</span>
+                <strong>$m_{dc} = -\frac{1}{R_{dc}}$</strong>
+                <span class="text-[10px] text-slate-500 font-sans block mt-0.5">Inclinación estática</span>
+              </div>
+            </div>
+
+            <!-- 3. ANÁLISIS DE LA RECTA DINÁMICA AC -->
+            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Recta de Carga Dinámica (AC) y Cálculo Riguroso de $r_{ac}$</h5>
+            <p class="mb-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              En la banda de paso de media frecuencia del amplificador, los capacitores presentan reactancias despreciables y se comportan como <strong>cortocircuitos ideales</strong> ($X_C \approx 0$). Asimismo, la fuente ideal de continua $V_{CC}$ no tiene variación temporal, por lo que actúa como <strong>masa dinámica (AC Ground)</strong>. Analizando el circuito equivalente en alterna (ver figura c):
+            </p>
+            <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-2">
+              <li>
+                <strong>En el colector:</strong> La resistencia de polarización $R_C$ está conectada entre colector y masa AC. A su vez, la resistencia de carga $R_L$ queda conectada a través de $C_2$ (cortocircuito) entre colector y masa AC. Por tanto, <strong>$R_C$ y $R_L$ quedan en estricto paralelo dinámico</strong>:
+                $$R_C \parallel R_L = \frac{R_C \cdot R_L}{R_C + R_L}$$
+              </li>
+              <li>
+                <strong>En el emisor:</strong> El capacitor $C_E$ deriva toda la corriente alternada directamente a masa, cortocircuitando la resistencia $R_E$. La resistencia incremental de emisor es nula ($r_E = 0$).
+              </li>
             </ul>
-            <p class="my-1">La <strong>resistencia dinámica de alterna</strong> vista por el colector es:</p>
-            $$r_{ac} = R_C \\parallel R_L = \\frac{R_C \\cdot R_L}{R_C + R_L}$$
-            <p class="text-xs text-slate-500 italic mb-2">(Si la resistencia de emisor estuviera sólo parcialmente desacoplada con $R_{E1}$, entonces $r_{ac} = (R_C \\parallel R_L) + R_{E1}$).</p>
-            <p class="mb-2">La variación incremental de corriente y tensión respecto del punto de reposo $Q(V_{CEQ}, I_{CQ})$ cumple la ley de Ohm en alterna:</p>
-            $$i_c = -\\frac{v_{ce}}{r_{ac}} \\implies (i_C - I_{CQ}) = -\\frac{1}{r_{ac}} (v_{CE} - V_{CEQ})$$
-            <p class="my-2">Reordenando en forma explícita de recta en el plano $(v_{CE}, i_C)$:</p>
-            $$i_C = -\\frac{1}{r_{ac}} v_{CE} + \\left( I_{CQ} + \\frac{V_{CEQ}}{r_{ac}} \\right)$$
+
+            <div class="p-3 my-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-xs">
+              <strong class="text-emerald-800 dark:text-emerald-300 block mb-1">
+                Fórmula Fundamental de la Resistencia Dinámica de Alterna ($r_{ac}$):
+              </strong>
+              $$\mathbf{r_{ac} = R_C \parallel R_L = \frac{R_C \cdot R_L}{R_C + R_L}}$$
+              <p class="text-slate-600 dark:text-slate-400 text-[11px] mt-1 leading-relaxed">
+                Esta es la resistencia total que "siente" la corriente incremental de colector $i_c$ al circular por la malla de salida en alterna.
+              </p>
+            </div>
+
+            <!-- Caso especial de examen: Desacoplo parcial -->
+            <div class="p-3 my-3 rounded-xl bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 text-xs space-y-1.5">
+              <strong class="text-purple-800 dark:text-purple-300 flex items-center gap-1.5 font-bold">
+                <span>⚡</span> Caso Típico de Examen: Resistencia de Emisor Parcialmente Desacoplada ($R_{E1} + R_{E2}$)
+              </strong>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+                En muchas aplicaciones prácticas de cátedra, para linealizar la etapa y reducir la distorsión armónica sin perder excesiva ganancia, la resistencia de emisor se divide en dos: $R_E = R_{E1} + R_{E2}$, donde <strong>únicamente $R_{E2}$ está en paralelo con $C_E$</strong>, mientras que $R_{E1}$ permanece en serie con el emisor en AC:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-center font-mono my-1 text-[11px]">
+                <div class="p-1.5 rounded bg-white dark:bg-slate-900 border border-purple-100 dark:border-purple-900">
+                  <span class="text-slate-500 font-sans block text-[10px]">En Continua (DC):</span>
+                  $$R_{dc} = R_C + R_{E1} + R_{E2}$$
+                </div>
+                <div class="p-1.5 rounded bg-white dark:bg-slate-900 border border-purple-100 dark:border-purple-900">
+                  <span class="text-slate-500 font-sans block text-[10px]">En Alterna (AC):</span>
+                  $$\mathbf{r_{ac} = (R_C \parallel R_L) + R_{E1}}$$
+                </div>
+              </div>
+            </div>
+
+            <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
+              La relación de Ohm incremental para la malla de salida de alterna establece que la variación de tensión $v_{ce}$ responde a la corriente incremental $i_c$:
+            </p>
+            $$v_{ce} = -i_c \cdot r_{ac} \implies i_c = -\frac{1}{r_{ac}} v_{ce}$$
+            <p class="text-xs text-slate-500 dark:text-slate-400 italic">
+              (El signo negativo proviene de que un aumento de corriente $i_c$ incrementa la caída en $r_{ac}$, haciendo caer el potencial instantáneo de colector $v_{ce}$).
+            </p>
+            <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
+              Como las variables totales son la superposición del punto de reposo y la señal incremental ($i_C = I_{CQ} + i_c$ y $v_{CE} = V_{CEQ} + v_{ce}$):
+            </p>
+            $$(i_C - I_{CQ}) = -\frac{1}{r_{ac}} (v_{CE} - V_{CEQ})$$
+            <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
+              Reordenando en la forma explícita de recta $i_C = m_{ac} v_{CE} + b$:
+            </p>
+            $$\mathbf{i_C = -\frac{1}{r_{ac}} v_{CE} + \left( I_{CQ} + \frac{V_{CEQ}}{r_{ac}} \right)}$$
+
+            <!-- 4. COMPARACIÓN DE PENDIENTES -->
+            <div class="p-3 my-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-xs space-y-1.5">
+              <strong class="text-amber-800 dark:text-amber-300 flex items-center gap-1.5 font-bold">
+                <span>🔍</span> ¿Por qué la Recta Dinámica es SIEMPRE más empinada que la Estática?
+              </strong>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+                Dado que el paralelo de dos resistencias es siempre menor que cualquiera de ellas ($R_C \parallel R_L < R_C$), y en DC se suma $R_E$:
+              </p>
+              <div class="text-center font-mono my-1 font-bold text-amber-900 dark:text-amber-200 text-xs">
+                $$r_{ac} = R_C \parallel R_L < R_C < R_C + R_E = R_{dc} \implies \mathbf{r_{ac} < R_{dc}}$$
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+                Al invertir las resistencias para obtener las pendientes de las rectas:
+              </p>
+              <div class="text-center font-mono my-1 font-bold text-rose-600 dark:text-rose-400 text-xs">
+                $$\left| -\frac{1}{r_{ac}} \right| > \left| -\frac{1}{R_{dc}} \right| \implies \mathbf{|m_{ac}| > |m_{dc}|}$$
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-[11px]">
+                <strong>Conclusión física:</strong> La recta dinámica es más vertical (empinada). Por ello, cuando la señal oscila alrededor del punto de reposo $Q$, la tensión instantánea $v_{CE}$ alcanza el corte o la saturación mucho antes de lo que sugeriría la recta estática de continua, como se aprecia claramente en el plano $(v_{CE}, i_C)$ a continuación:
+              </p>
+            </div>
             <!-- DIAGRAMA SVG RECTAS DE CARGA ESTÁTICA Y DINÁMICA -->
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
