@@ -2406,26 +2406,26 @@ const MANUAL_TEORIA_E1 = {
                 <ol class="list-decimal pl-5 space-y-1.5 mb-2.5">
                   <li>
                     <strong>Durante el semiciclo positivo ($v_s(t) = +V_s$):</strong>
-                    Los diodos $D_1$ y $D_2$ entran en conducción directa ($V_{D1} = V_{D2} = V_\gamma \approx 0.7\text{ V}$), mientras que $D_3$ y $D_4$ permanecen en corte (OFF).
+                    Los diodos $D_1$ y $D_2$ entran en conducción directa ($V_{D1} = V_{D2} = V_\\gamma \\approx 0.7\\text{ V}$), mientras que $D_3$ y $D_4$ permanecen en corte (OFF).
                   </li>
                   <li>
                     <strong>Malla de Kirchhoff para el diodo bloqueado $D_3$:</strong>
-                    El cátodo de $D_3$ está conectado directamente al terminal superior del generador ($+V_s$) a través del nodo con el ánodo de $D_1$. Por su parte, el ánodo de $D_3$ se conecta al terminal negativo de la carga ($R_L$), que a su vez se conecta al terminal inferior del generador a través del diodo en conducción $D_2$ ($V_{D2} = V_\gamma$).
+                    El cátodo de $D_3$ está conectado directamente al terminal superior del generador ($+V_s$) a través del nodo con el ánodo de $D_1$. Por su parte, el ánodo de $D_3$ se conecta al terminal negativo de la carga ($R_L$), que a su vez se conecta al terminal inferior del generador a través del diodo en conducción $D_2$ ($V_{D2} = V_\\gamma$).
                     <br>
                     Observando la malla cerrada formada por $D_3$, $D_1$ y la carga $R_L$:
-                    $$V_{inv, D3} = V_{\text{cátodo}} - V_{\text{ánodo}} = V_{o,pico} + V_{D1}$$
-                    Sustituyendo $V_{o,pico} = V_s - 2V_\gamma$:
-                    $$V_{inv, D3} = (V_s - 2V_\gamma) + V_\gamma = \mathbf{V_s - V_\gamma \approx V_s}$$
+                    $$V_{inv, D3} = V_{\\text{cátodo}} - V_{\\text{ánodo}} = V_{o,pico} + V_{D1}$$
+                    Sustituyendo $V_{o,pico} = V_s - 2V_\\gamma$:
+                    $$V_{inv, D3} = (V_s - 2V_\\gamma) + V_\\gamma = \\mathbf{V_s - V_\\gamma \\approx V_s}$$
                   </li>
                   <li>
                     <strong>Malla de Kirchhoff para el diodo bloqueado $D_4$:</strong>
                     Su cátodo se encuentra al potencial positivo de la carga ($V_{o,pico}$) y su ánodo al terminal inferior de $v_s$ (a través de $D_2$). De manera idéntica:
-                    $$V_{inv, D4} = V_{o,pico} + V_{D2} = \mathbf{V_s - V_\gamma \approx V_s}$$
+                    $$V_{inv, D4} = V_{o,pico} + V_{D2} = \\mathbf{V_s - V_\\gamma \\approx V_s}$$
                   </li>
                 </ol>
                 <div class="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/60 border border-emerald-500/20 text-slate-700 dark:text-slate-300">
                   <strong>Comparativa Crucial con el Rectificador de Punto Medio:</strong>
-                  En el transformador de toma central, el diodo en corte ve la suma de <em>ambos semi-bobinados</em> en serie ($\text{PIV} = 2V_s - V_\gamma \approx \mathbf{2V_s}$). En el <strong>Puente de Graetz</strong>, en cambio, la tensión inversa se distribuye en dos ramas paralelas, por lo que <strong>cada diodo soporta únicamente el pico de una sola fuente ($\text{PIV} \approx V_s$)</strong>. Esto reduce a la mitad el requerimiento de $V_{RRM}$ de los diodos en el diseño comercial.
+                  En el transformador de toma central, el diodo en corte ve la suma de <em>ambos semi-bobinados</em> en serie ($\\text{PIV} = 2V_s - V_\\gamma \\approx \\mathbf{2V_s}$). En el <strong>Puente de Graetz</strong>, en cambio, la tensión inversa se distribuye en dos ramas paralelas, por lo que <strong>cada diodo soporta únicamente el pico de una sola fuente ($\\text{PIV} \\approx V_s$)</strong>. Esto reduce a la mitad el requerimiento de $V_{RRM}$ de los diodos en el diseño comercial.
                 </div>
               </div>
 
