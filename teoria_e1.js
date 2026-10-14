@@ -2194,22 +2194,33 @@ const MANUAL_TEORIA_E1 = {
                     <rect x="0" y="0" width="330" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
                     <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Forma de Onda de Salida en Onda Completa</text>
 
-                    <line x1="25" y1="105" x2="305" y2="105" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="310" y="108" fill="#64748b" font-size="9">t</text>
-                    <line x1="35" y1="30" x2="35" y2="160" stroke="#94a3b8" stroke-width="1.2"/>
+                    <!-- Ejes coordenados -->
+                    <line x1="25" y1="110" x2="305" y2="110" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="310" y="113" fill="#64748b" font-size="9">t</text>
+                    <line x1="35" y1="28" x2="35" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
+                    <text x="35" y="24" text-anchor="middle" fill="#64748b" font-size="9">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
-                    <!-- Semiciclos rectificados: ambos positivos -->
-                    <path d="M 35 105 Q 67 45 100 105 Q 132 45 165 105 Q 197 45 230 105 Q 262 45 295 105" fill="none" stroke="#2563eb" stroke-width="2.5"/>
-                    <text x="67" y="40" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">D1 conduce</text>
-                    <text x="132" y="40" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="9">D2 conduce</text>
-                    <text x="197" y="40" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">D1 conduce</text>
-                    <text x="262" y="40" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="9">D2 conduce</text>
+                    <!-- Cotas en el eje vertical -->
+                    <line x1="31" y1="60" x2="35" y2="60" stroke="#2563eb" stroke-width="1.2"/>
+                    <text x="29" y="63" text-anchor="end" fill="#2563eb" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">o,p</tspan></text>
 
-                    <!-- Nivel DC -->
-                    <line x1="35" y1="67" x2="295" y2="67" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                    <text x="210" y="63" fill="#d97706" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.636·V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+                    <line x1="31" y1="78" x2="35" y2="78" stroke="#f59e0b" stroke-width="1.2"/>
+                    <text x="29" y="81" text-anchor="end" fill="#d97706" font-weight="bold" font-size="8">V<tspan baseline-shift="sub" font-size="70%">DC</tspan></text>
 
-                    <text x="165" y="145" text-anchor="middle" fill="#64748b" font-size="9">Período de rizado T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T<tspan baseline-shift="sub" font-size="70%">red</tspan> / 2 (100 Hz)</text>
+                    <text x="29" y="113" text-anchor="end" fill="#64748b" font-size="8">0</text>
+
+                    <!-- Semiciclos rectificados: ambos positivos (amplitud 50 px, pico en y=60) -->
+                    <path d="M 35 110 Q 67.5 10 100 110 Q 132.5 10 165 110 Q 197.5 10 230 110 Q 262.5 10 295 110" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+                    <text x="67.5" y="48" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8.5">D<tspan baseline-shift="sub" font-size="70%">1</tspan> conduce</text>
+                    <text x="132.5" y="48" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="8.5">D<tspan baseline-shift="sub" font-size="70%">2</tspan> conduce</text>
+                    <text x="197.5" y="48" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8.5">D<tspan baseline-shift="sub" font-size="70%">1</tspan> conduce</text>
+                    <text x="262.5" y="48" text-anchor="middle" fill="#0891b2" font-weight="bold" font-size="8.5">D<tspan baseline-shift="sub" font-size="70%">2</tspan> conduce</text>
+
+                    <!-- Nivel DC: V_DC = (2/pi) * V_pico ≈ 0.636 * 50 = 31.8 px -> y = 110 - 32 = 78 -->
+                    <line x1="35" y1="78" x2="295" y2="78" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                    <text x="295" y="73" text-anchor="end" fill="#d97706" font-size="8.5" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.636 · V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
+
+                    <text x="165" y="148" text-anchor="middle" fill="#64748b" font-size="9">Período de rizado T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T<tspan baseline-shift="sub" font-size="70%">red</tspan> / 2 (100 Hz)</text>
                   </g>
                 </svg>
               </div>
@@ -2326,16 +2337,16 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Semiciclo 1 -->
                     <rect x="15" y="35" width="270" height="65" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.4"/>
                     <text x="25" y="52" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &gt; 0):</text>
-                    <text x="25" y="68" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D1 y D2</strong>.</text>
-                    <text x="25" y="82" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D3 y D4</strong>.</text>
-                    <text x="25" y="94" fill="#64748b" font-size="8">Camino: Terminal superior ➔ D1 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D2 ➔ Terminal inferior</text>
+                    <text x="25" y="68" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold">D1 y D2</tspan>.</text>
+                    <text x="25" y="82" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold">D3 y D4</tspan>.</text>
+                    <text x="25" y="94" fill="#64748b" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+) ➔ D1 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D2 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-)</text>
 
                     <!-- Semiciclo 2 -->
                     <rect x="15" y="110" width="270" height="65" rx="6" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.4"/>
                     <text x="25" y="127" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &lt; 0):</text>
-                    <text x="25" y="143" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D3 y D4</strong>.</text>
-                    <text x="25" y="157" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D1 y D2</strong>.</text>
-                    <text x="25" y="169" fill="#64748b" font-size="8">Camino: Terminal inferior ➔ D3 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D4 ➔ Terminal superior</text>
+                    <text x="25" y="143" fill="#334155" font-size="8.5">• Conducen en serie: <tspan font-weight="bold">D3 y D4</tspan>.</text>
+                    <text x="25" y="157" fill="#334155" font-size="8.5">• Bloquean en inversa: <tspan font-weight="bold">D1 y D2</tspan>.</text>
+                    <text x="25" y="169" fill="#64748b" font-size="8">Malla: V<tspan baseline-shift="sub" font-size="70%">s</tspan>(-) ➔ D3 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D4 ➔ V<tspan baseline-shift="sub" font-size="70%">s</tspan>(+)</text>
                   </g>
                 </svg>
               </div>
