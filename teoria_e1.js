@@ -5055,7 +5055,560 @@ const MANUAL_TEORIA_E1 = {
               </table>
             </div>
 
-            <div class="p-3 my-3 rounded-xl bg-teal-500/10 dark:bg-teal-950/40 border border-teal-500/30 text-xs flex items-start gap-2.5">
+            <!-- 5. GUÍA PRÁCTICA DE CÁLCULO: DEDUCCIÓN PASO A PASO DE PARÁMETROS DINÁMICOS -->
+            <div class="mt-6 mb-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="text-xl">📐</span>
+                <div>
+                  <h5 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Guía de Cálculo: Deducción Rigurosa de $A_v$, $A_i$, $R_i$ y $R_o$ en cada Configuración
+                  </h5>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                    Procedimiento analítico con circuitos equivalentes de pequeña señal en corriente alterna (AC).
+                  </p>
+                </div>
+              </div>
+
+              <!-- METODOLOGÍA GENERAL DE DOS PUERTOS -->
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-xs">
+                <strong class="text-slate-800 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+                  Metodología Universal de Pequeña Señal (Modelo de Cuadripolo)
+                </strong>
+                <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                  Para obtener las ecuaciones dinámicas: <strong>1)</strong> Cortocircuitar condensadores de acoplo y desacoplo ($X_C \approx 0$). <strong>2)</strong> Pasivar fuentes DC ($V_{CC} \to \text{GND}$). <strong>3)</strong> Sustituir el BJT por su modelo lineal ($r_\pi = \beta r_e$, $g_m = I_{CQ}/V_T \approx 40 \cdot I_{CQ}$, $r_e = V_T/I_{EQ} \approx 25\,\text{mV}/I_E$).
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono text-[11px]">
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-indigo-600 dark:text-indigo-400 font-bold block">1. Impedancia Entrada</span>
+                    $$R_i = \\left.\\frac{v_i}{i_i}\\right|_{\\text{con } R_L}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-emerald-600 dark:text-emerald-400 font-bold block">2. Ganancia Tensión</span>
+                    $$A_v = \\frac{v_o}{v_i}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-blue-600 dark:text-blue-400 font-bold block">3. Ganancia Corriente</span>
+                    $$A_i = \\frac{i_o}{i_i} = A_v \\frac{R_i}{R_L}$$
+                  </div>
+                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <span class="text-purple-600 dark:text-purple-400 font-bold block">4. Impedancia Salida</span>
+                    $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0,\\, R_L \\to \\infty}$$
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= 1. EMISOR COMÚN (EC) ================= -->
+              <div class="p-4 rounded-xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900/40 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h6 class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-mono text-[10px]">CASO 1</span>
+                    Emisor Común (EC) — Circuito y Deducción de Parámetros
+                  </h6>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">Inversor de Fase (180°) · Alta Ganancia</span>
+                </div>
+
+                <!-- Circuito AC de EC -->
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-indigo-100 dark:border-indigo-900/30 flex justify-center overflow-x-auto">
+                  <svg viewBox="0 0 640 165" class="w-full max-w-[640px] text-xs font-sans select-none" style="min-width: 540px;">
+                    <!-- Terminal entrada vi -->
+                    <circle cx="25" cy="45" r="3" fill="#3b82f6"/>
+                    <text x="15" y="49" font-weight="bold" fill="#3b82f6" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="25" y1="45" x2="60" y2="45" stroke="#3b82f6" stroke-width="1.5"/>
+                    <polygon points="48,42 56,45 48,48" fill="#3b82f6"/>
+                    <text x="50" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">i</tspan></text>
+
+                    <!-- Resistencia RB a masa -->
+                    <line x1="60" y1="45" x2="60" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="52" y="55" width="16" height="26" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
+                    <text x="44" y="72" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <line x1="60" y1="81" x2="60" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Conexión hacia la base -->
+                    <line x1="60" y1="45" x2="130" y2="45" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="100,42 108,45 100,48" fill="#6366f1"/>
+                    <text x="104" y="38" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
+                    <circle cx="130" cy="45" r="3" fill="#6366f1"/>
+                    <text x="130" y="35" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9">Base (B)</text>
+
+                    <!-- Resistencia r_pi a Emisor (Masa) -->
+                    <line x1="130" y1="45" x2="130" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="121" y="55" width="18" height="28" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+                    <text x="112" y="73" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
+                    <text x="145" y="73" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="8.5">+ <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">be</tspan> −</text>
+                    <line x1="130" y1="83" x2="130" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Nodo de Emisor a masa -->
+                    <circle cx="130" cy="120" r="2.5" fill="#475569"/>
+                    <text x="130" y="138" text-anchor="middle" font-weight="bold" fill="#475569" font-size="8.5">Emisor (E = Masa AC con <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">E</tspan>)</text>
+
+                    <!-- Fuente dependiente gm · vbe en Colector -->
+                    <circle cx="280" cy="45" r="3" fill="#10b981"/>
+                    <text x="280" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">Colector (C)</text>
+                    <circle cx="280" cy="72" r="14" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.5"/>
+                    <line x1="280" y1="63" x2="280" y2="81" stroke="#10b981" stroke-width="1.8"/>
+                    <polygon points="276,79 280,85 284,79" fill="#10b981"/>
+                    <text x="302" y="76" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">g</tspan><tspan font-size="75%" dy="1.5">m</tspan> <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">be</tspan> = β <tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
+                    <line x1="280" y1="45" x2="280" y2="58" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="280" y1="86" x2="280" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Carga RC en paralelo con RL -->
+                    <line x1="280" y1="45" x2="440" y2="45" stroke="#475569" stroke-width="1.5"/>
+                    <!-- RC -->
+                    <line x1="390" y1="45" x2="390" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="382" y="55" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                    <text x="374" y="73" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="390" y1="83" x2="390" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- RL -->
+                    <line x1="450" y1="45" x2="450" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="442" y="55" width="16" height="28" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.5" rx="2"/>
+                    <text x="466" y="73" text-anchor="start" font-weight="bold" fill="#059669" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                    <line x1="450" y1="83" x2="450" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Terminal vo -->
+                    <line x1="450" y1="45" x2="520" y2="45" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="520" cy="45" r="3" fill="#10b981"/>
+                    <text x="532" y="49" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                    <polygon points="480,42 488,45 480,48" fill="#10b981"/>
+                    <text x="484" y="38" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">o</tspan></text>
+
+                    <!-- Línea de Masa Común AC -->
+                    <line x1="30" y1="120" x2="520" y2="120" stroke="#475569" stroke-width="2"/>
+                    <line x1="260" y1="124" x2="290" y2="124" stroke="#475569" stroke-width="2"/>
+                    <line x1="268" y1="127" x2="282" y2="127" stroke="#475569" stroke-width="1.5"/>
+                  </svg>
+                </div>
+
+                <!-- 4 Parámetros Dinámicos EC -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <!-- 1. Ri -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-indigo-700 dark:text-indigo-400 block">📥 1. Impedancia de Entrada ($R_i$)</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      La tensión $v_i$ cae íntegramente sobre la resistencia interna de base $r_\pi = \beta r_e$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$v_i = v_{be} = i_b r_\\pi \\implies R_{ib} = \\frac{v_i}{i_b} = r_\\pi$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Incluyendo el divisor de polarización $R_B = R_1 \\parallel R_2$:
+                    </p>
+                    <div class="p-1 rounded bg-indigo-50 dark:bg-indigo-950/40 text-center font-bold text-indigo-900 dark:text-indigo-200 font-mono text-[11px]">
+                      $$R_i = R_B \\parallel r_\\pi \\qquad \\text{(Con } C_E\\text{, media: } 1\\sim 5\\text{ k}\\Omega\\text{)}$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      <em>Variante sin $C_E$:</em> $R_i = R_B \\parallel [r_\\pi + (1+\\beta)R_E] \\approx R_B \\parallel [\\beta(r_e + R_E)]$.
+                    </p>
+                  </div>
+
+                  <!-- 2. Av -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-emerald-700 dark:text-emerald-400 block">⚡ 2. Ganancia de Tensión ($A_v$)</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      La corriente de colector $g_m v_{be}$ fluye hacia masa, drenando corriente de la carga $R_L' = R_C \\parallel R_L$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$v_o = -i_c (R_C \\parallel R_L) = -g_m v_{be} (R_C \\parallel R_L)$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Como $v_{be} = v_i$, dividiendo directamente:
+                    </p>
+                    <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
+                      $$A_v = \\frac{v_o}{v_i} = -g_m (R_C \\parallel R_L) = -\\frac{\\beta (R_C \\parallel R_L)}{r_\\pi} \\approx -\\frac{R_C \\parallel R_L}{r_e}$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      <em>El signo '−' indica desfase de $180^\\circ$. Sin $C_E$: $A_v \\approx -\\frac{R_C \\parallel R_L}{R_E}$.</em>
+                    </p>
+                  </div>
+
+                  <!-- 3. Ai -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-blue-700 dark:text-blue-400 block">🔄 3. Ganancia de Corriente ($A_i$)</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      A través de la relación fundamental entre ganancias y resistencias de puerto:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$A_i = \\frac{i_o}{i_i} = \\frac{v_o / R_L}{v_i / R_i} = A_v \\cdot \\frac{R_i}{R_L}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Analizando los divisores de corriente en base ($i_b$) y colector ($i_o$):
+                    </p>
+                    <div class="p-1 rounded bg-blue-50 dark:bg-blue-950/40 text-center font-bold text-blue-900 dark:text-blue-200 font-mono text-[11px]">
+                      $$A_i = -\\beta \\cdot \\left(\\frac{R_B}{R_B + r_\\pi}\\right) \\cdot \\left(\\frac{R_C}{R_C + R_L}\\right) \\approx -\\beta$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Elevada ganancia de corriente (orden de magnitud $\\beta \\approx 100\\sim 300$).
+                    </p>
+                  </div>
+
+                  <!-- 4. Ro -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-purple-700 dark:text-purple-400 block">📤 4. Impedancia de Salida ($R_o$)</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Se anula la fuente de entrada ($v_s = 0$). Como no hay señal en base:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$v_i = 0 \\implies v_{be} = 0 \\implies g_m v_{be} = 0 \\quad \\text{(Fuente abierta)}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Aplicando una fuente de prueba $v_x$ en colector (sin carga $R_L$):
+                    </p>
+                    <div class="p-1 rounded bg-purple-50 dark:bg-purple-950/40 text-center font-bold text-purple-900 dark:text-purple-200 font-mono text-[11px]">
+                      $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0} = R_C \\parallel r_o \\approx R_C \\qquad \\text{(Moderada, } 1\\sim 10\\text{ k}\\Omega\\text{)}$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Determinada casi exclusivamente por la resistencia de colector $R_C$.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= 2. COLECTOR COMÚN (CC) ================= -->
+              <div class="p-4 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h6 class="text-xs font-bold text-emerald-900 dark:text-emerald-300 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-mono text-[10px]">CASO 2</span>
+                    Colector Común (CC / Seguidor de Emisor) — Circuito y Deducción
+                  </h6>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Buffer · $A_v < 1$ (Sin desfase) · $R_i$ Alta, $R_o$ Baja</span>
+                </div>
+
+                <!-- Circuito AC de CC con fuente de prueba Ro -->
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/30 flex justify-center overflow-x-auto">
+                  <svg viewBox="0 0 640 170" class="w-full max-w-[640px] text-xs font-sans select-none" style="min-width: 540px;">
+                    <!-- Lado Izquierdo: Circuito normal de señal -->
+                    <g transform="translate(0, 0)">
+                      <text x="140" y="16" text-anchor="middle" font-weight="bold" fill="#059669" font-size="10">Cálculo de <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">i</tspan> y <tspan font-style="italic">A</tspan><tspan font-size="75%" dy="1.5">v</tspan> (Entrada en Base, Salida en Emisor)</text>
+                      
+                      <!-- Entrada vi -->
+                      <circle cx="25" cy="45" r="3" fill="#3b82f6"/>
+                      <text x="15" y="49" font-weight="bold" fill="#3b82f6" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                      <line x1="25" y1="45" x2="65" y2="45" stroke="#3b82f6" stroke-width="1.5"/>
+                      
+                      <!-- r_pi -->
+                      <rect x="65" y="37" width="22" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+                      <text x="76" y="30" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
+                      <polygon points="50,42 58,45 50,48" fill="#3b82f6"/>
+                      <text x="54" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
+
+                      <!-- Nodo de Emisor -->
+                      <line x1="87" y1="45" x2="135" y2="45" stroke="#475569" stroke-width="1.5"/>
+                      <circle cx="135" cy="45" r="3" fill="#10b981"/>
+                      <text x="135" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">Emisor</text>
+
+                      <!-- Corriente de emisor hacia abajo -->
+                      <line x1="135" y1="45" x2="135" y2="60" stroke="#475569" stroke-width="1.5"/>
+                      <polygon points="132,54 135,62 138,54" fill="#10b981"/>
+                      <text x="145" y="58" font-weight="bold" fill="#10b981" font-size="8"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">e</tspan> = (1+β)<tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan></text>
+
+                      <!-- Carga equivalente RL' = RE || RL -->
+                      <rect x="124" y="62" width="22" height="32" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                      <text x="154" y="80" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan><tspan font-size="100%" dy="-2">' = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                      <line x1="135" y1="94" x2="135" y2="125" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- Salida vo tomada en emisor -->
+                      <line x1="135" y1="45" x2="220" y2="45" stroke="#10b981" stroke-width="1.5"/>
+                      <circle cx="220" cy="45" r="3" fill="#10b981"/>
+                      <text x="232" y="49" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                      <text x="180" y="38" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">o</tspan> = (1+β)<tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">b</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">L</tspan>'</text>
+
+                      <!-- Masa AC -->
+                      <line x1="20" y1="125" x2="240" y2="125" stroke="#475569" stroke-width="2"/>
+                      <line x1="120" y1="129" x2="150" y2="129" stroke="#475569" stroke-width="2"/>
+                    </g>
+
+                    <!-- Divisor central -->
+                    <line x1="270" y1="15" x2="270" y2="150" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+
+                    <!-- Lado Derecho: Test de Impedancia de Salida Ro -->
+                    <g transform="translate(285, 0)">
+                      <text x="170" y="16" text-anchor="middle" font-weight="bold" fill="#7c3aed" font-size="10">Cálculo de <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">o</tspan> (Generador de Prueba <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">x</tspan> en Emisor)</text>
+
+                      <!-- Resistencia de fuente Rs' en base a masa (vs = 0) -->
+                      <line x1="25" y1="125" x2="25" y2="85" stroke="#475569" stroke-width="1.5"/>
+                      <rect x="17" y="55" width="16" height="30" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
+                      <text x="9" y="73" text-anchor="end" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">s</tspan>' = <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">s</tspan>∥<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
+                      <line x1="25" y1="55" x2="25" y2="45" stroke="#475569" stroke-width="1.5"/>
+                      <line x1="25" y1="45" x2="65" y2="45" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- r_pi -->
+                      <rect x="65" y="37" width="22" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+                      <text x="76" y="30" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">π</tspan></text>
+                      <line x1="87" y1="45" x2="140" y2="45" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- Nodo Emisor con fuente de prueba vx -->
+                      <circle cx="140" cy="45" r="3" fill="#7c3aed"/>
+                      <text x="140" y="35" text-anchor="middle" font-weight="bold" fill="#7c3aed" font-size="9">Emisor</text>
+
+                      <!-- Resistencia RE de polarización a masa -->
+                      <line x1="140" y1="45" x2="140" y2="60" stroke="#475569" stroke-width="1.5"/>
+                      <rect x="132" y="60" width="16" height="30" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
+                      <text x="124" y="77" text-anchor="end" font-weight="bold" fill="#a855f7" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan></text>
+                      <line x1="140" y1="90" x2="140" y2="125" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- Fuente vx conectada inyectando ix -->
+                      <line x1="140" y1="45" x2="220" y2="45" stroke="#7c3aed" stroke-width="1.5"/>
+                      <circle cx="240" cy="45" r="14" fill="#7c3aed" fill-opacity="0.15" stroke="#7c3aed" stroke-width="1.5"/>
+                      <text x="240" y="49" text-anchor="middle" font-weight="bold" fill="#7c3aed" font-size="9.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">x</tspan></text>
+                      <polygon points="185,42 175,45 185,48" fill="#7c3aed"/>
+                      <text x="180" y="38" text-anchor="middle" font-weight="bold" fill="#7c3aed" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">x</tspan></text>
+                      <line x1="240" y1="59" x2="240" y2="125" stroke="#475569" stroke-width="1.5"/>
+
+                      <!-- Masa AC -->
+                      <line x1="10" y1="125" x2="310" y2="125" stroke="#475569" stroke-width="2"/>
+                      <line x1="140" y1="129" x2="170" y2="129" stroke="#475569" stroke-width="2"/>
+                      <text x="170" y="148" text-anchor="middle" font-mono font-bold fill="#7c3aed" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">o</tspan> = <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan> ∥ [(<tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">s</tspan>' + <tspan font-style="italic">r</tspan><tspan font-size="75%" dy="1.5">π</tspan>)/(1+β)]</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- 4 Parámetros Dinámicos CC -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <!-- 1. Ri -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-emerald-700 dark:text-emerald-400 block">📥 1. Impedancia de Entrada ($R_i$) — Reflexión a Base</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Escribiendo la ecuación de malla entre base y masa pasando por el emisor ($i_e = (1+\beta)i_b$):
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$v_i = i_b r_\\pi + i_e R_L' = i_b [r_\\pi + (1+\\beta)R_L']$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      La carga del emisor se multiplica por $(1+\beta)$ vista desde la base:
+                    </p>
+                    <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
+                      $$R_i = R_B \\parallel [r_\\pi + (1+\\beta)(R_E \\parallel R_L)] \\qquad \\text{(Altísima: } 50\\sim 500\\text{ k}\\Omega\\text{)}$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      <em>Efecto Buffer:</em> No carga a la etapa previa (evita caída de tensión en $R_s$).
+                    </p>
+                  </div>
+
+                  <!-- 2. Av -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-emerald-700 dark:text-emerald-400 block">⚡ 2. Ganancia de Tensión ($A_v$) — Seguidor</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      La tensión de salida es la tensión de emisor $v_o = (1+\beta) i_b R_L'$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$A_v = \\frac{v_o}{v_i} = \\frac{(1+\\beta) R_L'}{r_\\pi + (1+\\beta) R_L'} = \\frac{R_L'}{\\frac{r_\\pi}{1+\\beta} + R_L'} = \\frac{R_L'}{r_e + R_L'}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Como habitualmente $R_L' = R_E \\parallel R_L \\gg r_e$ (ej. $1\\text{ k}\\Omega \\gg 25\\,\\Omega$):
+                    </p>
+                    <div class="p-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-center font-bold text-emerald-900 dark:text-emerald-200 font-mono text-[11px]">
+                      $$A_v < 1 \\qquad (A_v \\approx +0.98 \\sim +0.99 \\approx 1, \\quad \\text{Fase } 0^\\circ)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      La salida copia fielmente a la entrada en amplitud y fase (sin inversión).
+                    </p>
+                  </div>
+
+                  <!-- 3. Ai -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-blue-700 dark:text-blue-400 block">🔄 3. Ganancia de Corriente ($A_i$) — Gran Amplificación</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Aunque no amplifica tensión ($A_v < 1$), amplifica enormemente la corriente:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$A_i = \\frac{i_o}{i_i} = A_v \\cdot \\frac{R_i}{R_L} \\approx 1 \\cdot \\frac{R_i}{R_L} \\gg 1$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      A nivel de transistor intrínseco, la corriente de emisor es $(1+\beta)i_b$:
+                    </p>
+                    <div class="p-1 rounded bg-blue-50 dark:bg-blue-950/40 text-center font-bold text-blue-900 dark:text-blue-200 font-mono text-[11px]">
+                      $$A_i \\approx +(1+\\beta) \\qquad (\\text{Típicamente } 50\\sim 200)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Capaz de suministrar gran corriente a cargas de baja impedancia sin distorsión.
+                    </p>
+                  </div>
+
+                  <!-- 4. Ro -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-purple-700 dark:text-purple-400 block">📤 4. Impedancia de Salida ($R_o$) — Reflexión a Emisor</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Con $v_s = 0$, la base ve $R_s' = R_s \\parallel R_B$. Inyectando $v_x$ en emisor, la corriente de base es $i_b = -v_x / (R_s' + r_\\pi)$. Por LCK:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$i_x = \\frac{v_x}{R_E} - (1+\\beta)i_b = v_x \\left[ \\frac{1}{R_E} + \\frac{1+\\beta}{R_s' + r_\\pi} \\right]$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Toda impedancia conectada en la base se ve <strong>dividida entre $(1+\beta)$</strong>:
+                    </p>
+                    <div class="p-1 rounded bg-purple-50 dark:bg-purple-950/40 text-center font-bold text-purple-900 dark:text-purple-200 font-mono text-[11px]">
+                      $$R_o = R_E \\parallel \\left( \\frac{R_s' + r_\\pi}{1+\\beta} \\right) = R_E \\parallel \\left( r_e + \\frac{R_s'}{1+\\beta} \\right) \\quad (\\text{Bajísima: } 5\\sim 25\\,\\Omega)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Ideal como etapa de salida para manejar altavoces o cables coaxiales.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= 3. BASE COMÚN (BC) ================= -->
+              <div class="p-4 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h6 class="text-xs font-bold text-amber-900 dark:text-amber-300 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-mono text-[10px]">CASO 3</span>
+                    Base Común (BC) — Circuito y Deducción de Parámetros
+                  </h6>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">Radiofrecuencia (Sin Miller) · $R_i$ Muy Baja · $A_v$ Alta (No invierte)</span>
+                </div>
+
+                <!-- Circuito AC de BC (Modelo en T) -->
+                <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-amber-100 dark:border-amber-900/30 flex justify-center overflow-x-auto">
+                  <svg viewBox="0 0 640 165" class="w-full max-w-[640px] text-xs font-sans select-none" style="min-width: 540px;">
+                    <!-- Entrada en Emisor vi -->
+                    <circle cx="25" cy="45" r="3" fill="#3b82f6"/>
+                    <text x="15" y="49" font-weight="bold" fill="#3b82f6" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">i</tspan></text>
+                    <line x1="25" y1="45" x2="60" y2="45" stroke="#3b82f6" stroke-width="1.5"/>
+                    <polygon points="48,42 56,45 48,48" fill="#3b82f6"/>
+                    <text x="52" y="38" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">e</tspan></text>
+
+                    <!-- RE de polarización a masa -->
+                    <line x1="60" y1="45" x2="60" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="52" y="55" width="16" height="26" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
+                    <text x="44" y="72" text-anchor="end" font-weight="bold" fill="#a855f7" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="60" y1="81" x2="60" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Nodo de Emisor -->
+                    <line x1="60" y1="45" x2="130" y2="45" stroke="#475569" stroke-width="1.5"/>
+                    <circle cx="130" cy="45" r="3" fill="#f59e0b"/>
+                    <text x="130" y="35" text-anchor="middle" font-weight="bold" fill="#f59e0b" font-size="9">Emisor</text>
+
+                    <!-- Resistencia interna re hacia Base (Masa) -->
+                    <line x1="130" y1="45" x2="130" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="122" y="55" width="16" height="28" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+                    <text x="114" y="73" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">e</tspan></text>
+                    <line x1="130" y1="83" x2="130" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Nodo Base a Masa AC (con CB) -->
+                    <circle cx="130" cy="120" r="3" fill="#6366f1"/>
+                    <text x="130" y="138" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">Base (Masa AC con <tspan font-style="italic">C</tspan><tspan font-size="75%" dy="1.5">B</tspan>)</text>
+
+                    <!-- Fuente dependiente de Colector alpha · ie hacia arriba -->
+                    <circle cx="280" cy="45" r="3" fill="#10b981"/>
+                    <text x="280" y="35" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">Colector</text>
+                    <circle cx="280" cy="72" r="14" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+                    <line x1="280" y1="81" x2="280" y2="63" stroke="#f59e0b" stroke-width="1.8"/>
+                    <polygon points="276,65 280,59 284,65" fill="#f59e0b"/>
+                    <text x="302" y="76" text-anchor="start" font-weight="bold" fill="#d97706" font-size="9">α <tspan font-style="italic">i</tspan><tspan font-size="75%" dy="1.5">e</tspan> = <tspan font-style="italic">g</tspan><tspan font-size="75%" dy="1.5">m</tspan> <tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">i</tspan></text>
+                    <line x1="280" y1="45" x2="280" y2="58" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="280" y1="86" x2="280" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Carga RC en paralelo con RL -->
+                    <line x1="280" y1="45" x2="440" y2="45" stroke="#475569" stroke-width="1.5"/>
+                    <!-- RC -->
+                    <line x1="390" y1="45" x2="390" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="382" y="55" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
+                    <text x="374" y="73" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="390" y1="83" x2="390" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- RL -->
+                    <line x1="450" y1="45" x2="450" y2="55" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="442" y="55" width="16" height="28" fill="#059669" fill-opacity="0.2" stroke="#059669" stroke-width="1.5" rx="2"/>
+                    <text x="466" y="73" text-anchor="start" font-weight="bold" fill="#059669" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">L</tspan></text>
+                    <line x1="450" y1="83" x2="450" y2="120" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Salida vo -->
+                    <line x1="450" y1="45" x2="520" y2="45" stroke="#10b981" stroke-width="1.5"/>
+                    <circle cx="520" cy="45" r="3" fill="#10b981"/>
+                    <text x="532" y="49" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">o</tspan></text>
+                    <text x="485" y="38" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5"><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="1.5">o</tspan> &gt; 0 (En fase)</text>
+
+                    <!-- Masa Común -->
+                    <line x1="30" y1="120" x2="520" y2="120" stroke="#475569" stroke-width="2"/>
+                    <line x1="260" y1="124" x2="290" y2="124" stroke="#475569" stroke-width="2"/>
+                    <line x1="268" y1="127" x2="282" y2="127" stroke="#475569" stroke-width="1.5"/>
+                  </svg>
+                </div>
+
+                <!-- 4 Parámetros Dinámicos BC -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <!-- 1. Ri -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-amber-700 dark:text-amber-400 block">📥 1. Impedancia de Entrada ($R_i$) — Muy Baja</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Con la base a masa ($v_b = 0$), la señal de entrada se aplica al emisor ($v_e = v_i$). Por tanto, $v_{be} = -v_i$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$i_e = \\frac{-v_{be}}{r_e} = \\frac{v_i}{r_e} \\implies R_{ie} = \\frac{v_i}{i_e} = r_e = \\frac{V_T}{I_{EQ}}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      En paralelo con la resistencia de polarización $R_E$:
+                    </p>
+                    <div class="p-1 rounded bg-amber-50 dark:bg-amber-950/40 text-center font-bold text-amber-900 dark:text-amber-200 font-mono text-[11px]">
+                      $$R_i = R_E \\parallel r_e \\approx r_e \\qquad (\\text{Muy baja: } 15\\sim 50\\,\\Omega)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Excelente adaptación a fuentes de baja impedancia (antenas de RF de 50 o 75 $\Omega$).
+                    </p>
+                  </div>
+
+                  <!-- 2. Av -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-amber-700 dark:text-amber-400 block">⚡ 2. Ganancia de Tensión ($A_v$) — En Fase ($0^\circ$)</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      La corriente de colector $\alpha i_e$ entra hacia el nodo de salida, desarrollando tensión positiva sobre $R_L' = R_C \\parallel R_L$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$v_o = +\\alpha i_e (R_C \\parallel R_L) = +\\alpha \\left(\\frac{v_i}{r_e}\\right)(R_C \\parallel R_L)$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Dividiendo entre $v_i$, con $\alpha \approx 1$ y $g_m = \alpha / r_e$:
+                    </p>
+                    <div class="p-1 rounded bg-amber-50 dark:bg-amber-950/40 text-center font-bold text-amber-900 dark:text-amber-200 font-mono text-[11px]">
+                      $$A_v = \\frac{v_o}{v_i} = +\\frac{\\alpha (R_C \\parallel R_L)}{r_e} \\approx +g_m (R_C \\parallel R_L) \\quad (\\text{Fase } 0^\\circ)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      <strong>Misma magnitud elevada que el EC</strong>, pero con fase directa (no invierte).
+                    </p>
+                  </div>
+
+                  <!-- 3. Ai -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-blue-700 dark:text-blue-400 block">🔄 3. Ganancia de Corriente ($A_i$) — Sin Amplificación</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Casi toda la corriente inyectada por el emisor es recolectada por el colector:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$i_c = \\alpha i_e = \\frac{\\beta}{\\beta + 1} i_e \\approx 0.99 \\cdot i_e$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Teniendo en cuenta el sentido de salida hacia la carga:
+                    </p>
+                    <div class="p-1 rounded bg-blue-50 dark:bg-blue-950/40 text-center font-bold text-blue-900 dark:text-blue-200 font-mono text-[11px]">
+                      $$A_i = \\frac{i_o}{i_i} \\approx -\\alpha \\approx -0.99 \\approx -1 \\qquad (|A_i| \\le 1)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      No amplifica corriente; funciona como un <strong>buffer de corriente</strong> ideal.
+                    </p>
+                  </div>
+
+                  <!-- 4. Ro -->
+                  <div class="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <span class="font-bold text-purple-700 dark:text-purple-400 block">📤 4. Impedancia de Salida ($R_o$) — Alta</span>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Apagando la fuente de entrada ($v_s = 0$), $v_i = 0 \implies i_e = 0 \implies \alpha i_e = 0$:
+                    </p>
+                    <div class="p-1.5 rounded bg-slate-50 dark:bg-slate-800 text-center font-mono text-[11px]">
+                      $$i_e = 0 \\implies \\alpha i_e = 0 \\quad \\text{(Fuente dependiente abierta)}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Mirando desde el terminal de colector hacia el circuito:
+                    </p>
+                    <div class="p-1 rounded bg-purple-50 dark:bg-purple-950/40 text-center font-bold text-purple-900 dark:text-purple-200 font-mono text-[11px]">
+                      $$R_o = \\left.\\frac{v_x}{i_x}\\right|_{v_s=0} = R_C \\parallel r_o \\approx R_C \\qquad (\\text{Alta: } 1\\sim 10\\text{ k}\\Omega)$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                      Excelente fuente de corriente para acoplar con etapas en cascada (Cascode).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
               <span class="text-base shrink-0">🔗</span>
               <div class="flex-1 min-w-0">
                 <div class="font-semibold text-teal-900 dark:text-teal-300">
