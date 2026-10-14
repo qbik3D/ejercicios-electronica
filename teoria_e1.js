@@ -4156,6 +4156,136 @@ const MANUAL_TEORIA_E1 = {
               </div>
             </div>
 
+            <!-- EXPLICACIÓN DETALLADA DE LOS PARÁMETROS HÍBRIDOS EN EMISOR COMÚN -->
+            <div class="my-4 p-4 rounded-2xl bg-gradient-to-br from-slate-50 via-indigo-50/40 to-slate-50 dark:from-slate-900 dark:via-indigo-950/20 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/60 shadow-sm text-xs text-slate-700 dark:text-slate-300 space-y-3.5">
+              
+              <div class="flex items-center gap-2 border-b border-indigo-200 dark:border-indigo-800/60 pb-2">
+                <span class="text-base">🔍</span>
+                <h5 class="text-sm font-bold text-indigo-950 dark:text-indigo-200">
+                  Significado Físico de los Parámetros Híbridos $[h]$ en Configuración Emisor Común (EC)
+                </h5>
+              </div>
+
+              <!-- ¿Por qué híbridos y por qué la "e"? -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <strong class="text-indigo-600 dark:text-indigo-400 block mb-1">
+                    1. ¿Por qué se denominan «Híbridos»?
+                  </strong>
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Porque <strong>combinan unidades dimensionales distintas</strong> (uno es resistencia en $\\Omega$, otro admitancia en $\\text{S}$, y dos son relaciones adimensionales) y porque se miden bajo <strong>condiciones duales mixtas</strong>: cortocircuito en salida ($v_2 = 0$) y circuito abierto en entrada ($i_1 = 0$), las condiciones más estables y fáciles de implementar en laboratorio para transistores.
+                  </p>
+                </div>
+
+                <div class="p-2.5 rounded-lg bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                  <strong class="text-purple-600 dark:text-purple-400 block mb-1">
+                    2. Nomenclatura del Subíndice: ¿Qué significa la letra «e»?
+                  </strong>
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    El <strong>primer subíndice</strong> indica la función del parámetro: <strong>i</strong> (<em>input</em>), <strong>r</strong> (<em>reverse</em>), <strong>f</strong> (<em>forward</em>), <strong>o</strong> (<em>output</em>).
+                    <br>
+                    El <strong>segundo subíndice</strong> identifica el terminal común puesto a masa de alterna:
+                    la <strong>«e»</strong> corresponde a <strong>Emisor Común (EC)</strong>:
+                    $$v_1 = v_{be}, \\quad i_1 = i_b, \\quad v_2 = v_{ce}, \\quad i_2 = i_c$$
+                    <span class="text-[11px] text-slate-500">
+                      (Si el terminal común fuera la Base se usaría «b»: $h_{ib}, h_{fb}$; y si fuera el Colector, «c»: $h_{ic}, h_{fc}$).
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Las 4 Ecuaciones y tarjetas explicativas -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                
+                <!-- h_ie -->
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/90 border border-blue-200 dark:border-blue-900/60 shadow-2xs">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-blue-700 dark:text-blue-400 text-xs">$h_{ie}$ · Impedancia de Entrada</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold">[$\\Omega$]</span>
+                  </div>
+                  <div class="my-1.5 text-center font-mono text-xs">
+                    $$h_{ie} = \\left. \\frac{v_{be}}{i_b} \\right|_{v_{ce} = 0} = (1+\\beta) r_e \\equiv r_\\pi$$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
+                    Resistencia dinámica que presenta la juntura Base-Emisor en directa vista desde la base cuando el colector está cortocircuitado en AC ($v_{ce} = 0$).
+                    <br>
+                    <strong>Valor típico:</strong> $1\\text{ k}\\Omega \\sim 5\\text{ k}\\Omega$ (ej. $2.6\\text{ k}\\Omega$ a $I_C = 1\\text{ mA}$, $\\beta=100$).
+                  </p>
+                </div>
+
+                <!-- h_re -->
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/90 border border-indigo-200 dark:border-indigo-900/60 shadow-2xs">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-indigo-700 dark:text-indigo-400 text-xs">$h_{re}$ · Transferencia Inversa de Tensión</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold">[V/V]</span>
+                  </div>
+                  <div class="my-1.5 text-center font-mono text-xs">
+                    $$h_{re} = \\left. \\frac{v_{be}}{v_{ce}} \\right|_{i_b = 0} \\quad (\\text{adimensional})$$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
+                    Representa la realimentación interna: cuánta tensión de colector ($v_{ce}$) se refleja hacia la base debido a la modulación de ancho de base (Efecto Early) con la base abierta en AC ($i_b=0$).
+                    <br>
+                    <strong>Valor típico:</strong> Muy pequeño ($10^{-4} \\sim 10^{-5}$). En baja frecuencia <strong>se desprecia ($h_{re} \\approx 0$)</strong>.
+                  </p>
+                </div>
+
+                <!-- h_fe -->
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/90 border border-emerald-200 dark:border-emerald-900/60 shadow-2xs">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-emerald-700 dark:text-emerald-400 text-xs">$h_{fe}$ · Ganancia Directa de Corriente</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold">[A/A]</span>
+                  </div>
+                  <div class="my-1.5 text-center font-mono text-xs">
+                    $$h_{fe} = \\left. \\frac{i_c}{i_b} \\right|_{v_{ce} = 0} = \\beta_{ac} \\quad (\\text{adimensional})$$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
+                    Es el factor de amplificación de corriente en pequeña señal. En las hojas de datos de los fabricantes (<em>datasheets</em>) se reporta exactamente como <strong>$h_{fe}$</strong> (minúsculas para AC, y $h_{FE}$ para DC).
+                    <br>
+                    <strong>Valor típico:</strong> $50 \\sim 400$ (típicamente $100-200$).
+                  </p>
+                </div>
+
+                <!-- h_oe -->
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800/90 border border-amber-200 dark:border-amber-900/60 shadow-2xs">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-amber-700 dark:text-amber-400 text-xs">$h_{oe}$ · Admitancia de Salida</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-bold">[$\\text{S} = \\Omega^{-1}$]</span>
+                  </div>
+                  <div class="my-1.5 text-center font-mono text-xs">
+                    $$h_{oe} = \\left. \\frac{i_c}{v_{ce}} \\right|_{i_b = 0} \\implies r_o = \\frac{1}{h_{oe}} \\approx \\frac{V_A}{I_{CQ}}$$
+                  </div>
+                  <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
+                    Conductancia dinámica entre colector y emisor con la base en circuito abierto AC. Su inversa ($1/h_{oe}$) es la resistencia de salida $r_o$ debida a la tensión Early ($V_A$).
+                    <br>
+                    <strong>Valor típico:</strong> $10 \\sim 50\\ \\mu\\text{S}$ ($r_o \\approx 20\\text{ k}\\Omega \\sim 100\\text{ k}\\Omega$). Suele despreciarse ($h_{oe} \\approx 0$).
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- Tabla de equivalencias rápidas con Híbrido pi -->
+              <div class="p-2.5 rounded-lg bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/50 text-[11px]">
+                <strong class="text-indigo-900 dark:text-indigo-200 block mb-1">
+                  🔄 Puente Directo: Parámetros $[h]$ de Fabricante $\\longleftrightarrow$ Modelo Híbrido $\\pi$:
+                </strong>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono font-bold mt-1 text-slate-800 dark:text-slate-200">
+                  <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    $h_{ie} \\equiv r_\\pi$
+                  </div>
+                  <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    $h_{fe} \\equiv \\beta = g_m r_\\pi$
+                  </div>
+                  <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    $h_{re} \\approx 0$
+                  </div>
+                  <div class="p-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    $\\frac{1}{h_{oe}} \\equiv r_o$
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
             <!-- 3. DIAGRAMA SVG MODELO HÍBRIDO PI DEL BJT -->
             <div class="my-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
