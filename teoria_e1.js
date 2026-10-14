@@ -4489,44 +4489,57 @@ const MANUAL_TEORIA_E1 = {
                     <text x="200" y="20" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">Circuito Equivalente de Parámetros [h]</text>
 
                     <!-- Malla de Entrada -->
-                    <circle cx="20" cy="55" r="3" fill="#3b82f6"/>
-                    <line x1="20" y1="55" x2="45" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    
-                    <!-- Resistencia h_i -->
-                    <rect x="45" y="47" width="28" height="16" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="59" y="40" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">ie</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
-                    <line x1="73" y1="55" x2="95" y2="55" stroke="#475569" stroke-width="1.8"/>
+                    <!-- Terminal Base (B) -->
+                    <circle cx="20" cy="58" r="3" fill="#3b82f6"/>
+                    <line x1="20" y1="58" x2="48" y2="58" stroke="#475569" stroke-width="1.6"/>
+                    <!-- Flecha de corriente ib -->
+                    <line x1="22" y1="50" x2="42" y2="50" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#ac-arr-blue)"/>
+                    <text x="32" y="44" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
-                    <!-- Fuente de tensión controlada h_re · v_2 -->
-                    <circle cx="112" cy="55" r="14" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
-                    <text x="112" y="49" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">-</text>
-                    <text x="112" y="65" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">+</text>
-                    <text x="112" y="81" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">re</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan></text>
-                    <line x1="126" y1="55" x2="155" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="155" y1="55" x2="155" y2="125" stroke="#475569" stroke-width="1.8"/>
+                    <!-- Resistencia h_ie (IEEE zig-zag) -->
+                    <path d="M 48 58 L 51 58 L 55 53 L 60 63 L 65 53 L 70 63 L 75 53 L 80 63 L 84 58 L 88 58" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="68" y="44" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">ie</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">i</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    <line x1="88" y1="58" x2="115" y2="58" stroke="#475569" stroke-width="1.6"/>
+
+                    <!-- Fuente de tensión controlada h_re · v_2 (Rombo IEEE con polaridad horizontal) -->
+                    <polygon points="115,58 130,43 145,58 130,73" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.8"/>
+                    <text x="123" y="61.5" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10">+</text>
+                    <text x="137" y="61.5" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10">−</text>
+                    <text x="130" y="87" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">re</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">v</tspan><tspan font-size="75%" dy="2">ce</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    <line x1="145" y1="58" x2="165" y2="58" stroke="#475569" stroke-width="1.6"/>
+                    <line x1="165" y1="58" x2="165" y2="125" stroke="#475569" stroke-width="1.6"/>
+                    <circle cx="165" cy="125" r="2.8" fill="#475569"/>
 
                     <!-- Barra de referencia común (Emisor E) -->
                     <line x1="20" y1="125" x2="380" y2="125" stroke="#475569" stroke-width="2"/>
                     <circle cx="20" cy="125" r="3" fill="#3b82f6"/>
                     <circle cx="380" cy="125" r="3" fill="#10b981"/>
-                    <text x="200" y="142" text-anchor="middle" font-weight="bold" fill="#475569" font-size="9.5">Terminal Común (Emisor E)</text>
+                    <text x="200" y="143" text-anchor="middle" font-weight="bold" fill="#475569" font-size="9.5">Terminal Común (Emisor E)</text>
 
                     <!-- Malla de Salida -->
-                    <line x1="240" y1="125" x2="240" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="240" y1="55" x2="380" y2="55" stroke="#475569" stroke-width="1.8"/>
-                    <circle cx="380" cy="55" r="3" fill="#10b981"/>
+                    <!-- Riel superior de Colector -->
+                    <line x1="245" y1="58" x2="380" y2="58" stroke="#475569" stroke-width="1.8"/>
+                    <circle cx="380" cy="58" r="3" fill="#10b981"/>
+                    <!-- Flecha de corriente ic -->
+                    <line x1="375" y1="50" x2="355" y2="50" stroke="#10b981" stroke-width="1.6" marker-end="url(#ac-arr-green)"/>
+                    <text x="365" y="44" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">c</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
-                    <!-- Fuente de corriente controlada h_fe · i_b -->
-                    <!-- Rombo -->
-                    <polygon points="240,43 252,55 240,67 228,55" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5"/>
-                    <line x1="240" y1="48" x2="240" y2="62" stroke="#10b981" stroke-width="1.5" marker-end="url(#ac-arr-green)"/>
-                    <text x="240" y="81" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">fe</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan></text>
+                    <!-- Rama 1: Fuente de corriente controlada h_fe · i_b (Rombo vertical IEEE) -->
+                    <line x1="245" y1="58" x2="245" y2="78" stroke="#475569" stroke-width="1.6"/>
+                    <circle cx="245" cy="58" r="2.8" fill="#475569"/>
+                    <polygon points="245,78 259,92 245,106 231,92" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.8"/>
+                    <line x1="245" y1="84" x2="245" y2="99" stroke="#10b981" stroke-width="1.8" marker-end="url(#ac-arr-green)"/>
+                    <line x1="245" y1="106" x2="245" y2="125" stroke="#475569" stroke-width="1.6"/>
+                    <circle cx="245" cy="125" r="2.8" fill="#475569"/>
+                    <text x="225" y="96" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">fe</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">i</tspan><tspan font-size="75%" dy="2">b</tspan></text>
 
-                    <!-- Resistencia de salida 1 / h_oe en paralelo -->
-                    <line x1="315" y1="55" x2="315" y2="65" stroke="#475569" stroke-width="1.8"/>
-                    <rect x="307" y="65" width="16" height="30" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="332" y="82" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">1/<tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">oe</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
-                    <line x1="315" y1="95" x2="315" y2="125" stroke="#475569" stroke-width="1.8"/>
+                    <!-- Rama 2: Resistencia de salida 1 / h_oe en paralelo (IEEE zig-zag) -->
+                    <line x1="325" y1="58" x2="325" y2="70" stroke="#475569" stroke-width="1.6"/>
+                    <circle cx="325" cy="58" r="2.8" fill="#475569"/>
+                    <path d="M 325 70 L 325 72.5 L 320 76 L 330 80 L 320 84 L 330 88 L 320 92 L 330 96 L 325 99.5 L 325 102" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <line x1="325" y1="102" x2="325" y2="125" stroke="#475569" stroke-width="1.6"/>
+                    <circle cx="325" cy="125" r="2.8" fill="#475569"/>
+                    <text x="337" y="88" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">1/<tspan font-style="italic">h</tspan><tspan font-size="75%" dy="2">oe</tspan><tspan font-size="100%" dy="-2"> (</tspan><tspan font-style="italic">r</tspan><tspan font-size="75%" dy="2">o</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
 
                     <text x="200" y="170" text-anchor="middle" fill="#64748b" font-size="9">En baja frecuencia: <tspan font-style="italic" font-weight="bold">h</tspan><tspan font-size="75%" dy="2" font-weight="bold">re</tspan><tspan font-size="100%" dy="-2"> ≈ 0 (aislación inversa total)</tspan></text>
                   </g>
