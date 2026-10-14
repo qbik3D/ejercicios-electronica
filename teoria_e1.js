@@ -199,20 +199,22 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="285" cy="72" r="4" fill="#3b82f6"/>
                     <text x="285" y="60" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10.5">B (-)</text>
 
-                    <!-- Cotas de tensiones parciales V1, V2, V3 -->
+                    <!-- Cotas de tensiones parciales V1, V2, V3 (sentido único del borne - al +) -->
                     <path d="M 52 44 L 94 44" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <polygon points="56,41 50,44 56,47" fill="#059669"/>
                     <text x="73" y="40" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8.5">V₁ = I·R₁</text>
 
                     <path d="M 122 44 L 164 44" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <polygon points="126,41 120,44 126,47" fill="#059669"/>
                     <text x="143" y="40" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8.5">V₂ = I·R₂</text>
 
                     <path d="M 192 44 L 234 44" stroke="#059669" stroke-width="1.2" fill="none"/>
+                    <polygon points="196,41 190,44 196,47" fill="#059669"/>
                     <text x="213" y="40" text-anchor="middle" fill="#059669" font-weight="bold" font-size="8.5">V₃ = I·R₃</text>
 
-                    <!-- Cota total de tensión V_total -->
+                    <!-- Cota total de tensión V_total (sentido único de B(-) hacia A(+)) -->
                     <path d="M 27 106 L 283 106" stroke="#ef4444" stroke-width="1.3" fill="none"/>
                     <polygon points="32,103 26,106 32,109" fill="#ef4444"/>
-                    <polygon points="278,103 284,106 278,109" fill="#ef4444"/>
                     <text x="155" y="102" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">total</tspan> = V₁ + V₂ + V₃</text>
 
                     <!-- Circuito equivalente simplificado -->
@@ -250,10 +252,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="14" y="142" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">B(-)</text>
                     <line x1="25" y1="136" x2="280" y2="136" stroke="#64748b" stroke-width="2"/>
 
-                    <!-- Cota de Tensión Común V -->
+                    <!-- Cota de Tensión Común V (sentido único de B(-) hacia A(+)) -->
                     <line x1="36" y1="60" x2="36" y2="128" stroke="#ef4444" stroke-width="1.3"/>
                     <polygon points="33,65 36,59 39,65" fill="#ef4444"/>
-                    <polygon points="33,123 36,129 39,123" fill="#ef4444"/>
                     <text x="46" y="96" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V</text>
 
                     <!-- Rama 1: R1 -->
@@ -559,10 +560,9 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="255" cy="152" r="4" fill="#3b82f6"/>
                     <text x="267" y="156" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="10">B (-)</text>
 
-                    <!-- Cota Vout vacío -->
+                    <!-- Cota Vout vacío (sentido único de B(-) hacia A(+)) -->
                     <line x1="215" y1="110" x2="215" y2="146" stroke="#059669" stroke-width="1.4"/>
                     <polygon points="212,115 215,109 218,115" fill="#059669"/>
-                    <polygon points="212,141 215,147 218,141" fill="#059669"/>
                     <text x="205" y="132" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">out,vacío</tspan></text>
 
                     <!-- Cuadro fórmula -->
@@ -632,10 +632,9 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="270" cy="152" r="4" fill="#3b82f6"/>
                     <text x="281" y="156" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="10">B</text>
 
-                    <!-- Cota Vout cargado (a la derecha de RL, bien separada) -->
+                    <!-- Cota Vout cargado (sentido único de B(-) hacia A(+)) -->
                     <line x1="235" y1="110" x2="235" y2="146" stroke="#b45309" stroke-width="1.4"/>
                     <polygon points="232,115 235,109 238,115" fill="#b45309"/>
-                    <polygon points="232,141 235,147 238,141" fill="#b45309"/>
                     <text x="244" y="132" text-anchor="start" fill="#b45309" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">out,carg</tspan></text>
 
                     <!-- Cuadro resumen de carga -->
@@ -744,10 +743,9 @@ const MANUAL_TEORIA_E1 = {
                     <text x="287" y="103" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₁/(R₁+R₂)</text>
                     <text x="287" y="120" text-anchor="middle" fill="#047857" font-size="7.5">Resistencia opuesta</text>
 
-                    <!-- Cota de tensión común V -->
+                    <!-- Cota de tensión común V (sentido único del nodo (-) al (+)) -->
                     <line x1="15" y1="56" x2="15" y2="134" stroke="#ef4444" stroke-width="1.2"/>
                     <polygon points="12,61 15,55 18,61" fill="#ef4444"/>
-                    <polygon points="12,129 15,135 18,129" fill="#ef4444"/>
                     <text x="22" y="98" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="8.5">V</text>
 
                     <rect x="15" y="165" width="320" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
@@ -1117,10 +1115,9 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="225" cy="140" r="4" fill="#3b82f6"/>
                     <text x="237" y="143" text-anchor="start" fill="#3b82f6" font-weight="bold" font-size="9.5">B</text>
 
-                    <!-- Cota de tensión V_AB -->
+                    <!-- Cota de tensión V_AB (sentido único de B(-) hacia A(+)) -->
                     <line x1="205" y1="66" x2="205" y2="134" stroke="#0f766e" stroke-width="1.3"/>
                     <polygon points="202,71 205,65 208,71" fill="#0f766e"/>
-                    <polygon points="202,129 205,135 208,129" fill="#0f766e"/>
                     <text x="195" y="103" text-anchor="end" fill="#0f766e" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan></text>
 
                     <!-- Fórmulas equivalentes -->
