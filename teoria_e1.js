@@ -3867,78 +3867,108 @@ const MANUAL_TEORIA_E1 = {
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Resolución Analítica: Teorema de Thévenin en la Base</h5>
             <div class="my-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 660 170" class="w-full max-w-[660px] text-xs font-sans select-none" style="min-width: 500px;">
-                  <!-- Lado Izquierdo: Divisor R1-R2 -->
-                  <g transform="translate(10, 0)">
-                    <text x="90" y="20" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="10">Circuito Original con Divisor</text>
-                    <line x1="40" y1="35" x2="140" y2="35" stroke="#475569" stroke-width="1.5"/>
-                    <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+                <svg viewBox="0 0 740 215" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 600px;">
+                  <!-- ================= LADO IZQUIERDO: DIVISOR ORIGINAL ================= -->
+                  <g transform="translate(15, 0)">
+                    <text x="105" y="18" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="11">Circuito Original con Divisor</text>
                     
-                    <line x1="50" y1="35" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="42" y="50" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="67" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
-                    
-                    <line x1="50" y1="78" x2="50" y2="92" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="50" cy="92" r="3" fill="#6366f1"/>
-                    <line x1="50" y1="92" x2="95" y2="92" stroke="#6366f1" stroke-width="2" marker-end="url(#bjt-arr-blue)"/>
-                    <text x="105" y="95" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9.5">a Base (B)</text>
-                    
-                    <rect x="42" y="92" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="110" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
-                    
-                    <line x1="50" y1="120" x2="50" y2="135" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="42" y1="135" x2="58" y2="135" stroke="#475569" stroke-width="2"/>
-                    <line x1="46" y1="138" x2="54" y2="138" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Terminal +VCC -->
+                    <circle cx="70" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="70" y="29" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+                    <line x1="70" y1="38" x2="70" y2="48" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- R1 (IEEE zig-zag) -->
+                    <path d="M 70 48 L 70 50.5 L 65 54 L 75 58 L 65 62 L 75 66 L 65 70 L 75 74 L 70 77.5 L 70 80" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="58" y="66" text-anchor="end" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
+                    <line x1="70" y1="80" x2="70" y2="110" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- Nodo a Base -->
+                    <circle cx="70" cy="110" r="3" fill="#6366f1"/>
+                    <line x1="70" y1="110" x2="138" y2="110" stroke="#6366f1" stroke-width="1.8"/>
+                    <polygon points="144,110 136,106 136,114" fill="#6366f1"/>
+                    <text x="148" y="113.5" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9.5">a Base (B)</text>
+
+                    <!-- R2 (IEEE zig-zag) -->
+                    <line x1="70" y1="110" x2="70" y2="122" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 70 122 L 70 124.5 L 65 128 L 75 132 L 65 136 L 75 140 L 65 144 L 75 148 L 70 151.5 L 70 154" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="58" y="140" text-anchor="end" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
+                    <line x1="70" y1="154" x2="70" y2="170" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- GND (IEEE Std 315) -->
+                    <line x1="60" y1="170" x2="80" y2="170" stroke="#475569" stroke-width="2"/>
+                    <line x1="64" y1="174" x2="76" y2="174" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="68" y1="178" x2="72" y2="178" stroke="#475569" stroke-width="1"/>
                   </g>
 
-                  <!-- Flecha central con fórmulas de Thévenin -->
-                  <g transform="translate(190, 25)">
-                    <rect x="10" y="10" width="180" height="95" rx="8" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-width="1.5"/>
-                    <text x="100" y="32" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="10.5">Teorema de Thévenin</text>
-                    <text x="100" y="55" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
-                    <text x="100" y="75" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
-                    <text x="100" y="93" text-anchor="middle" fill="#64748b" font-size="8.5">Visto desde el terminal de Base</text>
+                  <!-- ================= CENTRO: TEOREMA DE THÉVENIN ================= -->
+                  <g transform="translate(235, 0)">
+                    <rect x="0" y="34" width="220" height="146" rx="8" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.35" stroke-width="1.4"/>
+                    <text x="110" y="56" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="11">Teorema de Thévenin</text>
+                    <line x1="30" y1="64" x2="190" y2="64" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+                    
+                    <!-- VBB / VTH -->
+                    <text x="110" y="85" text-anchor="middle" font-weight="bold" fill="#1e293b" class="dark:fill-slate-100" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    
+                    <!-- RB / RTH -->
+                    <text x="110" y="112" text-anchor="middle" font-weight="bold" fill="#1e293b" class="dark:fill-slate-100" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">) / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    
+                    <text x="110" y="137" text-anchor="middle" fill="#64748b" font-size="8.5">Visto desde el terminal de Base a masa</text>
+                    
+                    <rect x="25" y="150" width="170" height="20" rx="4" fill="#6366f1" fill-opacity="0.15"/>
+                    <text x="110" y="163.5" text-anchor="middle" font-weight="bold" fill="#4338ca" class="dark:fill-indigo-300" font-size="8.5">Circuito Equivalente Monomalla ➔</text>
                   </g>
 
-                  <!-- Lado Derecho: Equivalente Thévenin completo -->
-                  <g transform="translate(410, 0)">
-                    <text x="120" y="20" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="10">Circuito Equivalente Thévenin</text>
-                    <!-- VCC a RC -->
-                    <line x1="160" y1="26" x2="160" y2="38" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="160" cy="26" r="3" fill="#ef4444"/>
-                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
-                    <rect x="152" y="38" width="16" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
-                    <line x1="160" y1="62" x2="160" y2="76" stroke="#475569" stroke-width="1.5"/>
+                  <!-- ================= LADO DERECHO: CIRCUITO EQUIVALENTE THÉVENIN ================= -->
+                  <g transform="translate(480, 0)">
+                    <text x="125" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">Circuito Equivalente Thévenin</text>
+                    
+                    <!-- Terminal +VCC -->
+                    <circle cx="185" cy="38" r="2.5" fill="#ef4444"/>
+                    <text x="185" y="29" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+                    <line x1="185" y1="38" x2="185" y2="48" stroke="#475569" stroke-width="1.5"/>
+
+                    <!-- RC (IEEE zig-zag) -->
+                    <path d="M 185 48 L 185 50.5 L 180 54 L 190 58 L 180 62 L 190 66 L 180 70 L 190 74 L 185 77.5 L 185 80" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="197" y="66" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <line x1="185" y1="80" x2="185" y2="93" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Flecha corriente IC -->
+                    <polygon points="182,83 185,89 188,83" fill="#10b981"/>
+                    <text x="195" y="87" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
+
+                    <!-- Transistor NPN (Símbolo IEEE 315) -->
+                    <line x1="167" y1="96" x2="167" y2="124" stroke="#334155" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="167" y1="103" x2="185" y2="93" stroke="#475569" stroke-width="1.8"/>
+                    <line x1="167" y1="117" x2="185" y2="127" stroke="#475569" stroke-width="1.8"/>
+                    <polygon points="184,126 174,122 178,116" fill="#ef4444"/>
+
+                    <!-- RE (IEEE zig-zag) y GND -->
+                    <line x1="185" y1="127" x2="185" y2="134" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 185 134 L 185 136 L 180 139.5 L 190 143.5 L 180 147.5 L 190 151.5 L 185 154 L 185 156" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="197" y="147" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="185" y1="156" x2="185" y2="170" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="175" y1="170" x2="195" y2="170" stroke="#475569" stroke-width="2"/>
+                    <line x1="179" y1="174" x2="191" y2="174" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="183" y1="178" x2="187" y2="178" stroke="#475569" stroke-width="1"/>
 
                     <!-- Malla de Base Thévenin -->
-                    <!-- Fuente V_BB -->
-                    <circle cx="20" cy="92" r="12" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
-                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan></text>
-                    <line x1="20" y1="104" x2="20" y2="120" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="14" y1="120" x2="26" y2="120" stroke="#475569" stroke-width="2"/>
-                    <line x1="17" y1="123" x2="23" y2="123" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Fuente VBB (IEEE independent voltage source) -->
+                    <circle cx="50" cy="110" r="13" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-width="1.8"/>
+                    <text x="56" y="113" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9">+</text>
+                    <text x="44" y="113" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9">−</text>
+                    <text x="50" y="91" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan></text>
+                    <line x1="50" y1="123" x2="50" y2="170" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="40" y1="170" x2="60" y2="170" stroke="#475569" stroke-width="2"/>
+                    <line x1="44" y1="174" x2="56" y2="174" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="48" y1="178" x2="52" y2="178" stroke="#475569" stroke-width="1"/>
 
-                    <!-- Resistor R_B -->
-                    <line x1="32" y1="92" x2="52" y2="92" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="52" y="84" width="24" height="16" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
-                    <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
-                    <line x1="76" y1="92" x2="142" y2="92" stroke="#475569" stroke-width="1.5"/>
-
-                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
-                    <circle cx="150" cy="92" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
-                    <line x1="142" y1="80" x2="142" y2="104" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="142" y1="86" x2="160" y2="76" stroke="#475569" stroke-width="1.8"/>
-                    <line x1="142" y1="98" x2="160" y2="108" stroke="#475569" stroke-width="1.8"/>
-                    <polygon points="159,107.5 150,103 153,98" fill="#ef4444"/>
-
-                    <!-- RE y GND -->
-                    <line x1="160" y1="108" x2="160" y2="122" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="152" y="122" width="16" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
-                    <line x1="160" y1="144" x2="160" y2="152" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="152" y1="152" x2="168" y2="152" stroke="#475569" stroke-width="2"/>
-                    <line x1="156" y1="155" x2="164" y2="155" stroke="#475569" stroke-width="1.5"/>
+                    <!-- RB horizontal (IEEE zig-zag) -->
+                    <line x1="50" y1="110" x2="95" y2="110" stroke="#475569" stroke-width="1.5"/>
+                    <path d="M 95 110 L 98 110 L 102 105 L 107 115 L 112 105 L 117 115 L 122 105 L 127 115 L 131 110 L 135 110" fill="none" stroke="#6366f1" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                    <text x="115" y="99" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <line x1="135" y1="110" x2="167" y2="110" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Flecha corriente IB -->
+                    <polygon points="152,107 160,110 152,113" fill="#6366f1"/>
+                    <text x="156" y="103" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
                   </g>
                 </svg>
               </div>
