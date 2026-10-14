@@ -2062,7 +2062,7 @@ const MANUAL_TEORIA_E1 = {
                   <!-- Lado Derecho: Formas de Onda -->
                   <g transform="translate(310, 15)">
                     <rect x="0" y="0" width="360" height="170" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="180" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Formas de Onda (Entrada vs Salida)</text>
+                    <text x="180" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Formas de Onda (Entrada vs Salida con Umbral V<tspan baseline-shift="sub" font-size="70%">γ</tspan> = 0.7V)</text>
 
                     <!-- Eje de tiempo -->
                     <line x1="30" y1="90" x2="330" y2="90" stroke="#94a3b8" stroke-width="1.2"/>
@@ -2070,19 +2070,26 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="40" y1="25" x2="40" y2="155" stroke="#94a3b8" stroke-width="1.2"/>
                     <text x="35" y="30" text-anchor="end" fill="#64748b" font-size="9">v</text>
 
+                    <!-- Línea de cota umbral 0.7V -->
+                    <line x1="40" y1="83" x2="320" y2="83" stroke="#cbd5e1" stroke-width="0.9" stroke-dasharray="2,2"/>
+                    <text x="36" y="85" text-anchor="end" fill="#64748b" font-size="7">0.7V</text>
+
                     <!-- Onda de Entrada v_i (punteada azul) -->
-                    <path d="M 40 90 Q 75 30 110 90 Q 145 150 180 90 Q 215 30 250 90 Q 285 150 320 90" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="3,3"/>
-                    <text x="120" y="42" fill="#2563eb" font-size="9">v<tspan baseline-shift="sub" font-size="70%">i</tspan> (AC)</text>
+                    <path d="M 40 90 Q 75 22 110 90 Q 145 158 180 90 Q 215 22 250 90 Q 285 158 320 90" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="3,3"/>
+                    <text x="122" y="34" text-anchor="start" fill="#2563eb" font-weight="bold" font-size="9">v<tspan baseline-shift="sub" font-size="70%">i</tspan> (Entrada AC)</text>
 
-                    <!-- Onda de Salida v_o (verde sólida) -->
-                    <!-- Semiciclo positivo conduce (amplitud menor por V_D), negativo bloquea a 0 -->
-                    <path d="M 40 90 Q 75 40 110 90 L 180 90 Q 215 40 250 90 L 320 90" fill="none" stroke="#10b981" stroke-width="2.5"/>
-                    <text x="80" y="32" fill="#047857" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">o,pico</tspan> = V<tspan baseline-shift="sub" font-size="70%">p</tspan> - 0.7V</text>
+                    <!-- Onda de Salida v_o (verde sólida): No cruza en 0, enciende con retraso en 0.7V y apaga antes -->
+                    <path d="M 40 90 L 48 90 Q 75 36 102 90 L 188 90 Q 215 36 242 90 L 320 90" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                    <text x="75" y="47" text-anchor="middle" fill="#047857" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">o,pico</tspan> = V<tspan baseline-shift="sub" font-size="70%">p</tspan> - 0.7 V</text>
 
-                    <!-- Cota de tensión media V_DC -->
-                    <line x1="40" y1="74" x2="320" y2="74" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                    <text x="270" y="70" fill="#d97706" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.318·V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
-                    <text x="145" y="110" text-anchor="middle" fill="#dc2626" font-size="8">Diodo Bloqueado (0V)</text>
+                    <!-- Cota de tensión media V_DC (etiqueta sobre la línea, sin interferencia) -->
+                    <line x1="40" y1="74" x2="320" y2="74" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4,2"/>
+                    <text x="325" y="68" text-anchor="end" fill="#d97706" font-size="8.5" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.318 · V<tspan baseline-shift="sub" font-size="70%">o,pico</tspan></text>
+                    <text x="145" y="112" text-anchor="middle" fill="#dc2626" font-size="8">Diodo Bloqueado (v<tspan baseline-shift="sub" font-size="70%">o</tspan> = 0 V)</text>
+
+                    <!-- Banner explicativo del desfase de cruce por cero -->
+                    <rect x="20" y="146" width="320" height="18" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+                    <text x="180" y="158" text-anchor="middle" fill="#334155" font-size="7.5">⚡ Conduce solo si v<tspan baseline-shift="sub" font-size="70%">i</tspan> &gt; 0.7 V: arranca con retraso y corta antes del cruce por cero</text>
                   </g>
                 </svg>
               </div>
