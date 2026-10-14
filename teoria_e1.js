@@ -2725,11 +2725,11 @@ const MANUAL_TEORIA_E1 = {
                       <span>1.</span> Variación de la Fuente ($V_{in}$)
                     </div>
                     <p class="text-[11px] text-slate-600 dark:text-slate-400">
-                      Con $R_s$ y $R_L$ fijas, $I_L = V_Z / R_L$ permanece <strong>constante</strong>.
+                      Con $R_s$ y $R_L$ fijas, $I_L = \\frac{V_Z}{R_L}$ permanece <strong>constante</strong>.
                     </p>
                     <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
                       <li><strong>Si $V_{in} ↑$:</strong> $I_s = \\frac{V_{in} - V_Z}{R_s}$ sube. Como $I_L$ es fija, <strong>todo el aumento va al Zener</strong> ($I_Z ↑$). <em>Riesgo:</em> Si $I_Z > I_{Z,max}$, el Zener se quema por disipación térmica.</li>
-                      <li><strong>Si $V_{in} ↓$:</strong> $I_s$ baja y el Zener cede corriente ($I_Z ↓$). <em>Riesgo:</em> Si $V_{in} &lt; V_{in,min}$, $I_Z &lt; I_{ZK}$ y el Zener <strong>se apaga</strong>; la salida deja de regular y cae como simple divisor resistivo.</li>
+                      <li><strong>Si $V_{in} ↓$:</strong> $I_s$ baja y el Zener cede corriente ($I_Z ↓$). <em>Riesgo:</em> Si $V_{in} < V_{in,min}$, $I_Z < I_{ZK}$ y el Zener <strong>se apaga</strong>; la salida deja de regular y cae como simple divisor resistivo.</li>
                     </ul>
                   </div>
 
@@ -2742,8 +2742,8 @@ const MANUAL_TEORIA_E1 = {
                       Con $V_{in}$ fija, la corriente total de entrada $I_s$ es <strong>constante</strong>.
                     </p>
                     <ul class="text-[11px] space-y-1 text-slate-600 dark:text-slate-400 pl-3 list-disc">
-                      <li><strong>Si $R_L ↓$ (más demanda $I_L ↑$):</strong> La carga le "quita" corriente al Zener ($I_Z = I_s - I_L ↓$). <em>Riesgo:</em> Si $R_L &lt; R_{L,min}$, el Zener se apaga por falta de corriente y $V_{out}$ colapsa.</li>
-                      <li><strong>Si $R_L → ∞$ (carga desconectada / $I_L = 0$):</strong> Toda la corriente $I_s$ fluye por el Zener ($I_Z = I_s$). <em>Riesgo:</em> <strong>Peor caso de potencia máxima</strong> ($P_Z = V_Z · I_s$).</li>
+                      <li><strong>Si $R_L ↓$ (más demanda $I_L ↑$):</strong> La carga le "quita" corriente al Zener ($I_Z = I_s - I_L ↓$). <em>Riesgo:</em> Si $R_L < R_{L,min}$, el Zener se apaga por falta de corriente y $V_{out}$ colapsa.</li>
+                      <li><strong>Si $R_L → ∞$ (carga desconectada / $I_L = 0$):</strong> Toda la corriente $I_s$ fluye por el Zener ($I_Z = I_s$). <em>Riesgo:</em> <strong>Peor caso de potencia máxima</strong> ($P_Z = V_Z \\cdot I_s$).</li>
                     </ul>
                   </div>
 
