@@ -3608,80 +3608,87 @@ const MANUAL_TEORIA_E1 = {
                 🔌 Topologías Clásicas de Polarización de Base y Colector
               </span>
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 720 245" class="w-full max-w-[720px] text-xs font-sans select-none" style="min-width: 580px;">
+                <svg viewBox="0 0 740 250" class="w-full max-w-[740px] text-xs font-sans select-none" style="min-width: 600px;">
                   <!-- ================= (a) POLARIZACIÓN FIJA ================= -->
                   <g transform="translate(10, 0)">
-                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="11">(a) Polarización Fija</text>
+                    <text x="110" y="18" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="11.5">(a) Polarización Fija</text>
                     
                     <!-- VCC rail -->
                     <line x1="40" y1="35" x2="180" y2="35" stroke="#475569" stroke-width="2"/>
                     <circle cx="110" cy="35" r="3" fill="#ef4444"/>
-                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    <text x="110" y="27" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- Rama Base RB -->
                     <line x1="60" y1="35" x2="60" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="50" width="16" height="30" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="68" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                    <text x="44" y="68" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
                     <line x1="60" y1="80" x2="60" y2="108" stroke="#475569" stroke-width="1.5"/>
                     <line x1="60" y1="108" x2="132" y2="108" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Flecha corriente IB -->
+                    <polygon points="98,105 106,108 98,111" fill="#3b82f6"/>
+                    <text x="102" y="103" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
 
                     <!-- Rama Colector RC -->
                     <line x1="150" y1="35" x2="150" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="50" width="16" height="30" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="68" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                    <text x="166" y="68" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                     <line x1="150" y1="80" x2="150" y2="92" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Flecha corriente IC -->
+                    <polygon points="147,85 150,91 153,85" fill="#10b981"/>
+                    <text x="162" y="88" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
 
-                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <!-- Transistor NPN (Símbolo Normalizado) -->
                     <circle cx="140" cy="108" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
                     <line x1="132" y1="96" x2="132" y2="120" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
                     <line x1="132" y1="102" x2="150" y2="92" stroke="#475569" stroke-width="1.8"/>
                     <line x1="132" y1="114" x2="150" y2="124" stroke="#475569" stroke-width="1.8"/>
                     <polygon points="149,123.5 140,119 143,114" fill="#ef4444"/>
 
-                    <!-- Emisor a tierra -->
-                    <line x1="150" y1="124" x2="150" y2="155" stroke="#475569" stroke-width="1.5"/>
-                    <!-- Tierra GND -->
-                    <line x1="140" y1="155" x2="160" y2="155" stroke="#475569" stroke-width="2"/>
-                    <line x1="144" y1="159" x2="156" y2="159" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="148" y1="163" x2="152" y2="163" stroke="#475569" stroke-width="1"/>
+                    <!-- Emisor a tierra directa -->
+                    <line x1="150" y1="124" x2="150" y2="156" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="140" y1="156" x2="160" y2="156" stroke="#475569" stroke-width="2"/>
+                    <line x1="144" y1="160" x2="156" y2="160" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="148" y1="164" x2="152" y2="164" stroke="#475569" stroke-width="1"/>
 
                     <!-- Ecuaciones y advertencia -->
-                    <rect x="15" y="172" width="190" height="60" rx="6" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.3"/>
-                    <text x="110" y="187" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> = (V<tspan baseline-shift="sub" font-size="70%">CC</tspan> − 0.7) / R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
-                    <text x="110" y="201" text-anchor="middle" fill="#475569" font-size="9">I<tspan baseline-shift="sub" font-size="70%">C</tspan> = β · I<tspan baseline-shift="sub" font-size="70%">B</tspan>  (Sin feedback)</text>
-                    <text x="110" y="217" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">⚠️ Inestable: Δβ mueve Q a saturación</text>
+                    <rect x="15" y="174" width="195" height="66" rx="6" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.3"/>
+                    <text x="112" y="191" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> − 0.7) / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <text x="112" y="206" text-anchor="middle" fill="#475569" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> = β · </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2">  (Sin lazo de control)</tspan></text>
+                    <text x="112" y="224" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">⚠️ Inestable: Δβ mueve Q a saturación</text>
                   </g>
 
                   <!-- Divisor vertical -->
-                  <line x1="230" y1="15" x2="230" y2="235" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+                  <line x1="235" y1="15" x2="235" y2="242" stroke="#cbd5e1" stroke-dasharray="3 3"/>
 
                   <!-- ================= (b) REALIMENTACIÓN DE COLECTOR ================= -->
-                  <g transform="translate(240, 0)">
-                    <text x="115" y="18" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">(b) Feedback de Colector</text>
+                  <g transform="translate(245, 0)">
+                    <text x="115" y="18" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11.5">(b) Feedback de Colector</text>
 
                     <!-- VCC rail -->
                     <line x1="150" y1="26" x2="150" y2="35" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="150" cy="26" r="3" fill="#3b82f6"/>
-                    <text x="150" y="20" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    <text x="150" y="19" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- RC -->
                     <rect x="142" y="35" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                    <text x="166" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                     <line x1="150" y1="63" x2="150" y2="72" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="150" cy="72" r="3" fill="#475569"/>
+                    <circle cx="150" cy="72" r="3" fill="#3b82f6"/>
+                    <text x="162" y="75" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">C</tspan></text>
 
                     <!-- Realimentación de base hacia la izquierda -->
                     <line x1="150" y1="72" x2="55" y2="72" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="105,75 97,72 105,69" fill="#3b82f6"/>
                     <line x1="55" y1="72" x2="55" y2="82" stroke="#475569" stroke-width="1.5"/>
                     <rect x="47" y="82" width="16" height="26" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-                    <text x="40" y="98" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                    <text x="40" y="98" text-anchor="end" font-weight="bold" fill="#3b82f6" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
                     <line x1="55" y1="108" x2="55" y2="118" stroke="#475569" stroke-width="1.5"/>
                     <line x1="55" y1="118" x2="132" y2="118" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Conexión a Colector -->
                     <line x1="150" y1="72" x2="150" y2="102" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <!-- Transistor NPN (Símbolo Normalizado) -->
                     <circle cx="140" cy="118" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
                     <line x1="132" y1="106" x2="132" y2="130" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
                     <line x1="132" y1="112" x2="150" y2="102" stroke="#475569" stroke-width="1.8"/>
@@ -3689,56 +3696,58 @@ const MANUAL_TEORIA_E1 = {
                     <polygon points="149,133.5 140,129 143,124" fill="#ef4444"/>
 
                     <!-- Emisor RE y tierra -->
-                    <line x1="150" y1="134" x2="150" y2="145" stroke="#475569" stroke-width="1.5"/>
-                    <rect x="142" y="145" width="16" height="20" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="158" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                    <line x1="150" y1="165" x2="150" y2="173" stroke="#475569" stroke-width="1.5"/>
-                    <line x1="142" y1="173" x2="158" y2="173" stroke="#475569" stroke-width="2"/>
-                    <line x1="146" y1="176" x2="154" y2="176" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="150" y1="134" x2="150" y2="144" stroke="#475569" stroke-width="1.5"/>
+                    <rect x="142" y="144" width="16" height="18" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
+                    <text x="166" y="156" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <line x1="150" y1="162" x2="150" y2="168" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="142" y1="168" x2="158" y2="168" stroke="#475569" stroke-width="2"/>
+                    <line x1="146" y1="171" x2="154" y2="171" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Ecuaciones y badge -->
-                    <rect x="15" y="180" width="200" height="52" rx="6" fill="#3b82f6" fill-opacity="0.08" stroke="#3b82f6" stroke-opacity="0.3"/>
-                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="9">I<tspan baseline-shift="sub" font-size="70%">B</tspan> = (V<tspan baseline-shift="sub" font-size="70%">CC</tspan> − 0.7) / [R<tspan baseline-shift="sub" font-size="70%">B</tspan> + β(R<tspan baseline-shift="sub" font-size="70%">C</tspan>+R<tspan baseline-shift="sub" font-size="70%">E</tspan>)]</text>
-                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↑ ⇒ V<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓ ⇒ I<tspan baseline-shift="sub" font-size="70%">B</tspan> ↓ ⇒ I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓</text>
-                    <text x="115" y="223" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="8.5">🛡️ Realimentación Negativa de Tensión</text>
+                    <rect x="15" y="174" width="200" height="66" rx="6" fill="#3b82f6" fill-opacity="0.08" stroke="#3b82f6" stroke-opacity="0.3"/>
+                    <text x="115" y="191" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> − 0.7) / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <text x="115" y="206" text-anchor="middle" fill="#475569" font-size="8.5">Si <tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan><tspan font-size="100%" dy="-1.5"> ↑ ⇒ </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">C</tspan><tspan font-size="100%" dy="-1.5"> ↓ ⇒ </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">B</tspan><tspan font-size="100%" dy="-1.5"> ↓ ⇒ </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">C</tspan><tspan font-size="100%" dy="-1.5"> ↓</tspan></text>
+                    <text x="115" y="224" text-anchor="middle" font-weight="bold" fill="#1d4ed8" font-size="8.5">🛡️ Realimentación Negativa de Tensión</text>
                   </g>
 
                   <!-- Divisor vertical -->
-                  <line x1="470" y1="15" x2="470" y2="235" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+                  <line x1="480" y1="15" x2="480" y2="242" stroke="#cbd5e1" stroke-dasharray="3 3"/>
 
                   <!-- ================= (c) DIVISOR RESISTIVO UNIVERSAL ================= -->
-                  <g transform="translate(480, 0)">
-                    <text x="115" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">(c) Divisor Universal (Thévenin)</text>
+                  <g transform="translate(490, 0)">
+                    <text x="115" y="18" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11.5">(c) Divisor Universal (Thévenin)</text>
 
                     <!-- VCC rail -->
                     <line x1="50" y1="35" x2="170" y2="35" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="110" cy="35" r="3" fill="#10b981"/>
-                    <text x="110" y="29" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    <text x="110" y="27" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- Divisor R1 -->
                     <line x1="60" y1="35" x2="60" y2="42" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="42" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="58" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                    <text x="44" y="58" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
                     <line x1="60" y1="68" x2="60" y2="85" stroke="#475569" stroke-width="1.5"/>
-                    <circle cx="60" cy="85" r="3" fill="#475569"/>
+                    <circle cx="60" cy="85" r="3" fill="#10b981"/>
+                    <text x="50" y="88" text-anchor="end" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
 
                     <!-- Divisor R2 -->
                     <rect x="52" y="85" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="44" y="101" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                    <text x="44" y="101" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                     <line x1="60" y1="111" x2="60" y2="125" stroke="#475569" stroke-width="1.5"/>
                     <line x1="52" y1="125" x2="68" y2="125" stroke="#475569" stroke-width="2"/>
                     <line x1="56" y1="128" x2="64" y2="128" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Conexión de Base -->
                     <line x1="60" y1="85" x2="132" y2="85" stroke="#475569" stroke-width="1.5"/>
+                    <polygon points="98,82 106,85 98,88" fill="#10b981"/>
 
                     <!-- Rama RC -->
                     <line x1="150" y1="35" x2="150" y2="42" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="42" width="16" height="26" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="58" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                    <text x="166" y="58" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                     <line x1="150" y1="68" x2="150" y2="69" stroke="#475569" stroke-width="1.5"/>
 
-                    <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
+                    <!-- Transistor NPN (Símbolo Normalizado) -->
                     <circle cx="140" cy="85" r="16" fill="none" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.5"/>
                     <line x1="132" y1="73" x2="132" y2="97" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
                     <line x1="132" y1="79" x2="150" y2="69" stroke="#475569" stroke-width="1.8"/>
@@ -3748,18 +3757,102 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Rama RE y GND -->
                     <line x1="150" y1="101" x2="150" y2="114" stroke="#475569" stroke-width="1.5"/>
                     <rect x="142" y="114" width="16" height="24" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="166" y="129" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                    <text x="166" y="129" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
                     <line x1="150" y1="138" x2="150" y2="148" stroke="#475569" stroke-width="1.5"/>
                     <line x1="142" y1="148" x2="158" y2="148" stroke="#475569" stroke-width="2"/>
                     <line x1="146" y1="151" x2="154" y2="151" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Ecuaciones y badge -->
-                    <rect x="15" y="180" width="200" height="52" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-                    <text x="115" y="195" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">I<tspan baseline-shift="sub" font-size="70%">CQ</tspan> ≈ (V<tspan baseline-shift="sub" font-size="70%">BB</tspan> − 0.7) / R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                    <text x="115" y="210" text-anchor="middle" fill="#475569" font-size="8.5">Si R<tspan baseline-shift="sub" font-size="70%">B</tspan> ≤ 0.1·(1+β)R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
-                    <text x="115" y="223" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">⭐ Inmune a β (Estándar de Diseño)</text>
+                    <rect x="15" y="174" width="200" height="66" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
+                    <text x="115" y="191" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">CQ</tspan><tspan font-size="100%" dy="-2"> ≈ (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan><tspan font-size="100%" dy="-2"> − 0.7) / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
+                    <text x="115" y="206" text-anchor="middle" fill="#475569" font-size="8.5">Si <tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">B</tspan><tspan font-size="100%" dy="-1.5"> ≤ 0.1·(1+β)</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="1.5">E</tspan></text>
+                    <text x="115" y="224" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">⭐ Inmune a β (Estándar de Diseño)</text>
                   </g>
                 </svg>
+              </div>
+            </div>
+
+            <!-- EXPLICACIÓN COMPARATIVA DE LAS 3 TOPOLOGÍAS -->
+            <div class="my-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2.5">
+                <span class="text-base">⚖️</span>
+                <h5 class="text-sm font-bold text-slate-900 dark:text-white">
+                  Comparativa Crítica: Estabilidad del Punto $Q$ frente a Dispersión de $\\beta$ y Temperatura
+                </h5>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs">
+                <!-- 1. Polarización Fija -->
+                <div class="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/40 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-1 mb-2">
+                      <span class="font-bold text-rose-700 dark:text-rose-400 text-xs">1. Polarización Fija</span>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 dark:bg-rose-900/60 text-rose-700 dark:text-rose-300">❌ Inestable</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                      <strong>¿Por qué es inestable?</strong> La corriente de base queda rígidamente fijada por la malla de entrada sin importar qué ocurra en el transistor:
+                    </p>
+                    <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-rose-100 dark:border-rose-900/30 text-center font-mono my-1.5">
+                      $$I_B = \\frac{V_{CC} - V_{BE}}{R_B} = \\text{cte}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Al no haber resistencia en emisor ni realimentación, $I_C$ depende directamente del factor $\\beta$:
+                    </p>
+                    <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-rose-100 dark:border-rose-900/30 text-center font-mono my-1.5">
+                      $$I_C = \\beta \\cdot I_B \\implies \\frac{\\Delta I_C}{I_C} = \\frac{\\Delta \\beta}{\\beta}$$
+                    </div>
+                  </div>
+                  <div class="mt-2.5 p-2 rounded-lg bg-rose-100/70 dark:bg-rose-900/40 text-[11px] text-rose-900 dark:text-rose-200">
+                    <strong>Consecuencia:</strong> La dispersión de $\\beta$ entre componentes del mismo modelo (ej. 100 a 300, $+200\\%$) o el aumento térmico ($\\approx +0.5\\%/^\\circ\\text{C}$) duplican o triplican $I_C$, colapsando $V_{CE} = V_{CC} - I_C R_C$ hasta la <strong>saturación</strong> o causando embalamiento térmico.
+                  </div>
+                </div>
+
+                <!-- 2. Realimentación de Colector -->
+                <div class="p-3.5 rounded-xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-1 mb-2">
+                      <span class="font-bold text-blue-700 dark:text-blue-400 text-xs">2. Feedback de Colector</span>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">🛡️ Auto-estabilizante</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                      <strong>¿Cómo mejora con feedback?</strong> La resistencia $R_B$ se conecta al <em>colector</em> ($V_C$) en lugar de $V_{CC}$, cerrando un lazo de <strong>realimentación negativa de tensión</strong>:
+                    </p>
+                    <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-blue-100 dark:border-blue-900/30 text-center font-mono my-1.5">
+                      $$I_B = \\frac{V_C - V_{BE}}{R_B} = \\frac{V_{CC} - (I_C + I_B) R_C - V_{BE}}{R_B}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Si $\\beta$ o la temperatura intentan subir $I_C$, la caída en $R_C$ hace caer $V_C$, estrangulando la corriente inyectada a la base:
+                    </p>
+                    <div class="p-1.5 rounded bg-blue-100/50 dark:bg-blue-900/30 text-center font-bold text-blue-800 dark:text-blue-300 my-1.5 text-[11px]">
+                      $\\beta \\uparrow \\;\\implies\\; I_C \\uparrow \\;\\implies\\; V_C \\downarrow \\;\\implies\\; I_B \\downarrow \\;\\implies\\; I_C \\downarrow$
+                    </div>
+                  </div>
+                  <div class="mt-2.5 p-2 rounded-lg bg-blue-100/70 dark:bg-blue-900/40 text-[11px] text-blue-900 dark:text-blue-200">
+                    <strong>Balance:</strong> El circuito se autorregula dinámicamente frente a perturbaciones térmicas y dispersión de $\\beta$. Sin embargo, la realimentación también actúa en señal alterna (CA), reduciendo la ganancia $A_v$ a menos que se use desacoplo.
+                  </div>
+                </div>
+
+                <!-- 3. Divisor Universal con RE -->
+                <div class="p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-1 mb-2">
+                      <span class="font-bold text-emerald-700 dark:text-emerald-400 text-xs">3. Divisor Universal con $R_E$</span>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300">⭐ Estándar de Oro</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
+                      <strong>¿Por qué es la más utilizada?</strong> El divisor $R_1 - R_2$ fija un potencial de base constante ($V_B \\approx V_{CC}\\frac{R_2}{R_1+R_2}$), mientras que $R_E$ absorbe las variaciones térmicas:
+                    </p>
+                    <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-emerald-100 dark:border-emerald-900/30 text-center font-mono my-1.5">
+                      $$I_{CQ} = \\frac{V_{BB} - V_{BE}}{\\frac{R_{TH}}{\\beta+1} + R_E} \\xrightarrow{R_{TH} \\ll \\beta R_E} \\mathbf{\\frac{V_{BB} - V_{BE}}{R_E}}$$
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Al cumplirse el criterio de divisor rígido ($R_{TH} \\le 0.1\\beta R_E$), el término dependiente de $\\beta$ se vuelve <strong>despreciable</strong> frente a $R_E$.
+                    </p>
+                  </div>
+                  <div class="mt-2.5 p-2 rounded-lg bg-emerald-100/70 dark:bg-emerald-900/40 text-[11px] text-emerald-900 dark:text-emerald-200">
+                    <strong>Ventajas definitivas:</strong> El punto $Q$ depende únicamente de componentes pasivos estables ($R_1, R_2, R_E$). Permite intercambiar cualquier BJT en fabricación en masa sin desajustes y desacoplar $R_E$ con un capacitor $C_E$ para máxima ganancia en CA.
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -3772,11 +3865,11 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(10, 0)">
                     <text x="90" y="20" text-anchor="middle" font-weight="bold" fill="#64748b" font-size="10">Circuito Original con Divisor</text>
                     <line x1="40" y1="35" x2="140" y2="35" stroke="#475569" stroke-width="1.5"/>
-                    <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
                     
                     <line x1="50" y1="35" x2="50" y2="50" stroke="#475569" stroke-width="1.5"/>
                     <rect x="42" y="50" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="67" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+                    <text x="34" y="67" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan></text>
                     
                     <line x1="50" y1="78" x2="50" y2="92" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="50" cy="92" r="3" fill="#6366f1"/>
@@ -3784,7 +3877,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="105" y="95" text-anchor="start" font-weight="bold" fill="#6366f1" font-size="9.5">a Base (B)</text>
                     
                     <rect x="42" y="92" width="16" height="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="34" y="110" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9">R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                    <text x="34" y="110" text-anchor="end" font-weight="bold" fill="#10b981" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                     
                     <line x1="50" y1="120" x2="50" y2="135" stroke="#475569" stroke-width="1.5"/>
                     <line x1="42" y1="135" x2="58" y2="135" stroke="#475569" stroke-width="2"/>
@@ -3795,8 +3888,8 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(190, 25)">
                     <rect x="10" y="10" width="180" height="95" rx="8" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-width="1.5"/>
                     <text x="100" y="32" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="10.5">Teorema de Thévenin</text>
-                    <text x="100" y="55" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">BB</tspan> = V<tspan baseline-shift="sub" font-size="70%">CC</tspan> · R<tspan baseline-shift="sub" font-size="70%">2</tspan> / (R<tspan baseline-shift="sub" font-size="70%">1</tspan> + R<tspan baseline-shift="sub" font-size="70%">2</tspan>)</text>
-                    <text x="100" y="75" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">B</tspan> = R<tspan baseline-shift="sub" font-size="70%">1</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+                    <text x="100" y="55" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> · </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2"> / (</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> + </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan><tspan font-size="100%" dy="-2">)</tspan></text>
+                    <text x="100" y="75" text-anchor="middle" font-mono font-bold fill="#334155" dark:fill="#cbd5e1" font-size="9.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">1</tspan><tspan font-size="100%" dy="-2"> ∥ </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">2</tspan></text>
                     <text x="100" y="93" text-anchor="middle" fill="#64748b" font-size="8.5">Visto desde el terminal de Base</text>
                   </g>
 
@@ -3806,15 +3899,15 @@ const MANUAL_TEORIA_E1 = {
                     <!-- VCC a RC -->
                     <line x1="160" y1="26" x2="160" y2="38" stroke="#475569" stroke-width="1.5"/>
                     <circle cx="160" cy="26" r="3" fill="#ef4444"/>
-                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
                     <rect x="152" y="38" width="16" height="24" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+                    <text x="174" y="52" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                     <line x1="160" y1="62" x2="160" y2="76" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Malla de Base Thévenin -->
                     <!-- Fuente V_BB -->
                     <circle cx="20" cy="92" r="12" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
-                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8">V<tspan baseline-shift="sub" font-size="70%">BB</tspan></text>
+                    <text x="20" y="95" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan></text>
                     <line x1="20" y1="104" x2="20" y2="120" stroke="#475569" stroke-width="1.5"/>
                     <line x1="14" y1="120" x2="26" y2="120" stroke="#475569" stroke-width="2"/>
                     <line x1="17" y1="123" x2="23" y2="123" stroke="#475569" stroke-width="1.5"/>
@@ -3822,7 +3915,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Resistor R_B -->
                     <line x1="32" y1="92" x2="52" y2="92" stroke="#475569" stroke-width="1.5"/>
                     <rect x="52" y="84" width="24" height="16" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1.5" rx="2"/>
-                    <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+                    <text x="64" y="78" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
                     <line x1="76" y1="92" x2="142" y2="92" stroke="#475569" stroke-width="1.5"/>
 
                     <!-- Transistor NPN (Símbolo IEEE Normalizado) -->
@@ -3835,7 +3928,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- RE y GND -->
                     <line x1="160" y1="108" x2="160" y2="122" stroke="#475569" stroke-width="1.5"/>
                     <rect x="152" y="122" width="16" height="22" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5" rx="2"/>
-                    <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">E</tspan></text>
+                    <text x="174" y="135" text-anchor="start" font-weight="bold" fill="#a855f7" font-size="8.5"><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">E</tspan></text>
                     <line x1="160" y1="144" x2="160" y2="152" stroke="#475569" stroke-width="1.5"/>
                     <line x1="152" y1="152" x2="168" y2="152" stroke="#475569" stroke-width="2"/>
                     <line x1="156" y1="155" x2="164" y2="155" stroke="#475569" stroke-width="1.5"/>
