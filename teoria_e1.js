@@ -69,7 +69,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (+)</text>
 
                     <!-- Flecha de Caída de Tensión V_R (sentido único, opuesto a la corriente) -->
-                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B &gt; 0 (Caída de tensión)</text>
+                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> &gt; 0 (Caída de tensión)</text>
                     <line x1="60" y1="58" x2="210" y2="58" stroke="#ef4444" stroke-width="1.8"/>
                     <polygon points="60,54 50,58 60,62" fill="#ef4444"/>
 
@@ -107,7 +107,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="147" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Corriente I entra por el terminal (-)</text>
 
                     <!-- Flecha de Caída de Tensión (sentido único, opuesto a la corriente I) -->
-                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V_AB = V_A - V_B (Ref. A-B)</text>
+                    <text x="147" y="49" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">A</tspan> - V<tspan baseline-shift="sub" font-size="70%">B</tspan> (Ref. A-B)</text>
                     <line x1="50" y1="58" x2="200" y2="58" stroke="#b45309" stroke-width="1.8"/>
                     <polygon points="200,54 210,58 200,62" fill="#b45309"/>
 
@@ -894,8 +894,8 @@ const MANUAL_TEORIA_E1 = {
 
                     <rect x="15" y="132" width="150" height="42" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
                     <text x="90" y="146" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">Parámetros:</text>
-                    <text x="90" y="158" text-anchor="middle" fill="#2563eb" font-size="8">Voc = V_AB (ca)</text>
-                    <text x="90" y="169" text-anchor="middle" fill="#2563eb" font-size="8">Isc = I_AB (cc)</text>
+                    <text x="90" y="158" text-anchor="middle" fill="#2563eb" font-size="8">V<tspan baseline-shift="sub" font-size="70%">oc</tspan> = V<tspan baseline-shift="sub" font-size="70%">AB</tspan> (ca)</text>
+                    <text x="90" y="169" text-anchor="middle" fill="#2563eb" font-size="8">I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = I<tspan baseline-shift="sub" font-size="70%">AB</tspan> (cc)</text>
                   </g>
 
                   <!-- Flecha de simplificación -->
@@ -908,20 +908,20 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(235, 10)">
                     <rect x="0" y="0" width="205" height="185" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
                     <text x="102" y="20" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Equivalente de Thévenin</text>
-                    <text x="102" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de tensión en serie con R_th</text>
+                    <text x="102" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de tensión en serie con R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Fuente de tensión V_th -->
                     <circle cx="35" cy="85" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
                     <text x="35" y="81" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
                     <text x="35" y="94" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
-                    <text x="35" y="117" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">V_th</text>
+                    <text x="35" y="117" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Cable y Resistor R_th en serie -->
                     <line x1="35" y1="69" x2="35" y2="55" stroke="#64748b" stroke-width="2"/>
                     <line x1="35" y1="55" x2="75" y2="55" stroke="#64748b" stroke-width="2"/>
                     <path d="M 75 55 L 80 47 L 88 63 L 96 47 L 104 63 L 112 47 L 117 55" stroke="#334155" stroke-width="2" fill="none"/>
                     <line x1="117" y1="55" x2="185" y2="55" stroke="#64748b" stroke-width="2"/>
-                    <text x="96" y="40" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R_th</text>
+                    <text x="96" y="40" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Cable inferior a B -->
                     <line x1="35" y1="101" x2="35" y2="125" stroke="#64748b" stroke-width="2"/>
@@ -936,8 +936,8 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Fórmulas -->
                     <rect x="15" y="138" width="175" height="36" rx="5" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="102" y="151" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">V_th = V_AB,ca  (Vacío)</text>
-                    <text x="102" y="164" text-anchor="middle" fill="#2563eb" font-size="8">R_th = Voc / Isc = R_in,pasiva</text>
+                    <text x="102" y="151" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">AB,ca</tspan>  (Vacío)</text>
+                    <text x="102" y="164" text-anchor="middle" fill="#2563eb" font-size="8">R<tspan baseline-shift="sub" font-size="70%">th</tspan> = V<tspan baseline-shift="sub" font-size="70%">oc</tspan> / I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = R<tspan baseline-shift="sub" font-size="70%">in,pasiva</tspan></text>
                   </g>
 
                   <!-- Flecha de conversión Thévenin <-> Norton -->
@@ -953,13 +953,13 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(475, 10)">
                     <rect x="0" y="0" width="195" height="185" rx="10" fill="#059669" fill-opacity="0.04" stroke="#059669" stroke-opacity="0.4" stroke-width="1.2"/>
                     <text x="97" y="20" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Equivalente de Norton</text>
-                    <text x="97" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de corriente || R_N</text>
+                    <text x="97" y="32" text-anchor="middle" fill="#64748b" font-size="8.5">Fuente de corriente || R<tspan baseline-shift="sub" font-size="70%">N</tspan></text>
 
                     <!-- Fuente de corriente I_N -->
                     <circle cx="40" cy="90" r="16" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
                     <line x1="40" y1="99" x2="40" y2="81" stroke="#059669" stroke-width="2"/>
                     <polygon points="36,83 40,76 44,83" fill="#059669"/>
-                    <text x="18" y="93" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">I_N</text>
+                    <text x="18" y="93" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">I<tspan baseline-shift="sub" font-size="70%">N</tspan></text>
 
                     <!-- Riel superior -->
                     <line x1="40" y1="74" x2="40" y2="55" stroke="#64748b" stroke-width="2"/>
@@ -971,7 +971,7 @@ const MANUAL_TEORIA_E1 = {
                     <path d="M 110 67 L 104 73 L 116 81 L 104 89 L 116 97 L 104 105 L 110 111" stroke="#334155" stroke-width="2" fill="none"/>
                     <line x1="110" y1="111" x2="110" y2="125" stroke="#64748b" stroke-width="2"/>
                     <circle cx="110" cy="125" r="3" fill="#334155"/>
-                    <text x="126" y="93" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R_N</text>
+                    <text x="126" y="93" text-anchor="start" fill="#334155" font-weight="bold" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">N</tspan></text>
 
                     <!-- Riel inferior a B -->
                     <line x1="40" y1="106" x2="40" y2="125" stroke="#64748b" stroke-width="2"/>
@@ -986,8 +986,8 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Fórmulas -->
                     <rect x="15" y="138" width="165" height="36" rx="5" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
-                    <text x="97" y="151" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="8.5">I_N = I_sc = V_th / R_th</text>
-                    <text x="97" y="164" text-anchor="middle" fill="#047857" font-size="8">R_N = R_th</text>
+                    <text x="97" y="151" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">N</tspan> = I<tspan baseline-shift="sub" font-size="70%">sc</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan> / R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
+                    <text x="97" y="164" text-anchor="middle" fill="#047857" font-size="8">R<tspan baseline-shift="sub" font-size="70%">N</tspan> = R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
                   </g>
                 </svg>
               </div>
@@ -1104,7 +1104,7 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Cuadro resumen de fórmula Millman -->
                     <rect x="15" y="165" width="345" height="36" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                    <text x="187" y="179" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V_AB = [ (E1/R1) - (E2/R2) + Is3 ] / [ (1/R1) + (1/R2) + (1/Rp) ]</text>
+                    <text x="187" y="179" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = [ (E<tspan baseline-shift="sub" font-size="70%">1</tspan>/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) - (E<tspan baseline-shift="sub" font-size="70%">2</tspan>/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + I<tspan baseline-shift="sub" font-size="70%">s3</tspan> ] / [ (1/R<tspan baseline-shift="sub" font-size="70%">1</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">2</tspan>) + (1/R<tspan baseline-shift="sub" font-size="70%">p</tspan>) ]</text>
                     <text x="187" y="193" text-anchor="middle" fill="#059669" font-size="7.5">Signo (+): apunta al nodo A | Signo (-): apunta al nodo B</text>
                   </g>
 
@@ -1124,14 +1124,14 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="45" cy="100" r="16" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
                     <text x="45" y="96" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="10">+</text>
                     <text x="45" y="109" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="10">-</text>
-                    <text x="45" y="132" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="9">V_AB = V_th</text>
+                    <text x="45" y="132" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">AB</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Conexión superior y Resistor R_M -->
                     <line x1="45" y1="84" x2="45" y2="60" stroke="#64748b" stroke-width="2"/>
                     <line x1="45" y1="60" x2="90" y2="60" stroke="#64748b" stroke-width="2"/>
                     <path d="M 90 60 L 96 52 L 106 68 L 116 52 L 126 68 L 136 52 L 142 60" stroke="#0f766e" stroke-width="2.2" fill="none"/>
                     <line x1="142" y1="60" x2="225" y2="60" stroke="#64748b" stroke-width="2"/>
-                    <text x="116" y="44" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="10">R_M (R_th)</text>
+                    <text x="116" y="44" text-anchor="middle" fill="#0f766e" font-weight="bold" font-size="10">R<tspan baseline-shift="sub" font-size="70%">M</tspan> (R<tspan baseline-shift="sub" font-size="70%">th</tspan>)</text>
 
                     <!-- Conexión inferior a B -->
                     <line x1="45" y1="116" x2="45" y2="140" stroke="#64748b" stroke-width="2"/>
@@ -1148,11 +1148,11 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="205" y1="66" x2="205" y2="134" stroke="#0f766e" stroke-width="1.3"/>
                     <polygon points="202,71 205,65 208,71" fill="#0f766e"/>
                     <polygon points="202,129 205,135 208,129" fill="#0f766e"/>
-                    <text x="195" y="103" text-anchor="end" fill="#0f766e" font-weight="bold" font-size="8.5">V_AB</text>
+                    <text x="195" y="103" text-anchor="end" fill="#0f766e" font-weight="bold" font-size="8.5">V<tspan baseline-shift="sub" font-size="70%">AB</tspan></text>
 
                     <!-- Fórmulas equivalentes -->
                     <rect x="15" y="156" width="220" height="45" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-                    <text x="125" y="171" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">R_M = 1 / Σ(1/Rk)</text>
+                    <text x="125" y="171" text-anchor="middle" fill="#166534" font-weight="bold" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">M</tspan> = 1 / Σ(1/R<tspan baseline-shift="sub" font-size="70%">k</tspan>)</text>
                     <text x="125" y="187" text-anchor="middle" fill="#059669" font-size="8">Resistencia equivalente de Thévenin</text>
                   </g>
                 </svg>
@@ -1182,14 +1182,14 @@ const MANUAL_TEORIA_E1 = {
                   <!-- Panel Izquierdo: Circuito Adaptador Thévenin - Carga R_L -->
                   <g transform="translate(15, 10)">
                     <rect x="0" y="0" width="285" height="210" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="142" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Circuito: Generador y Carga R_L</text>
-                    <text x="142" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Generador Thévenin (V_th, R_th) + Carga Variable R_L</text>
+                    <text x="142" y="18" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="11">Circuito: Generador y Carga R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+                    <text x="142" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Generador Thévenin (V<tspan baseline-shift="sub" font-size="70%">th</tspan>, R<tspan baseline-shift="sub" font-size="70%">th</tspan>) + Carga Variable R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
                     <!-- Fuente V_th -->
                     <circle cx="40" cy="100" r="15" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
                     <text x="40" y="96" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="9">+</text>
                     <text x="40" y="108" text-anchor="middle" fill="#3b82f6" font-weight="bold" font-size="9">-</text>
-                    <text x="18" y="104" text-anchor="end" fill="#2563eb" font-weight="bold" font-size="9.5">V_th</text>
+                    <text x="18" y="104" text-anchor="end" fill="#2563eb" font-weight="bold" font-size="9.5">V<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Conexión a R_th -->
                     <line x1="40" y1="85" x2="40" y2="60" stroke="#64748b" stroke-width="2"/>
@@ -1198,12 +1198,12 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Resistor R_th -->
                     <path d="M 80 60 L 86 52 L 96 68 L 106 52 L 116 68 L 126 52 L 132 60" stroke="#334155" stroke-width="2" fill="none"/>
                     <line x1="132" y1="60" x2="195" y2="60" stroke="#64748b" stroke-width="2"/>
-                    <text x="106" y="44" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R_th</text>
+                    <text x="106" y="44" text-anchor="middle" fill="#334155" font-weight="bold" font-size="9.5">R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Flecha de corriente de carga I_L -->
                     <line x1="145" y1="52" x2="175" y2="52" stroke="#2563eb" stroke-width="1.8"/>
                     <polygon points="175,49 181,52 175,55" fill="#2563eb"/>
-                    <text x="160" y="44" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">I_L ➔</text>
+                    <text x="160" y="44" text-anchor="middle" fill="#2563eb" font-weight="bold" font-size="8">I<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔</text>
 
                     <!-- Conexión inferior -->
                     <line x1="40" y1="115" x2="40" y2="140" stroke="#64748b" stroke-width="2"/>
@@ -1226,48 +1226,48 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Flecha de reóstato / carga variable -->
                     <line x1="215" y1="120" x2="255" y2="68" stroke="#d97706" stroke-width="1.8"/>
                     <polygon points="250,67 257,65 255,73" fill="#d97706"/>
-                    <text x="256" y="98" text-anchor="start" fill="#d97706" font-weight="bold" font-size="10.5">R_L</text>
+                    <text x="256" y="98" text-anchor="start" fill="#d97706" font-weight="bold" font-size="10.5">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
                     <!-- Cuadro fórmula óptima -->
                     <rect x="15" y="158" width="255" height="42" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="142" y="172" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">Condición Óptima: R_L = R_th</text>
-                    <text x="142" y="188" text-anchor="middle" fill="#047857" font-size="8.5">P_L,max = V_th² / (4 · R_th)  |  η = 50%</text>
+                    <text x="142" y="172" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="9.5">Condición Óptima: R<tspan baseline-shift="sub" font-size="70%">L</tspan> = R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
+                    <text x="142" y="188" text-anchor="middle" fill="#047857" font-size="8.5">P<tspan baseline-shift="sub" font-size="70%">L,max</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan>² / (4 · R<tspan baseline-shift="sub" font-size="70%">th</tspan>)  |  η = 50%</text>
                   </g>
 
                   <!-- Panel Derecho: Curva Gráfica P_L(R_L) y Rendimiento η -->
                   <g transform="translate(315, 10)">
                     <rect x="0" y="0" width="350" height="210" rx="10" fill="#f8fafc" dark:fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
-                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="11">Curva Característica P_L vs R_L</text>
+                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="11">Curva Característica P<tspan baseline-shift="sub" font-size="70%">L</tspan> vs R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
                     <text x="175" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">Pico de potencia transferida vs Rendimiento energético η</text>
 
                     <!-- Ejes Cartesianos -->
                     <!-- Eje Y (Potencia P_L) -->
                     <line x1="45" y1="165" x2="45" y2="45" stroke="#64748b" stroke-width="1.5"/>
                     <polygon points="42,48 45,40 48,48" fill="#64748b"/>
-                    <text x="35" y="46" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8.5">P_L (W)</text>
+                    <text x="35" y="46" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8.5">P<tspan baseline-shift="sub" font-size="70%">L</tspan> (W)</text>
 
                     <!-- Eje X (Resistencia R_L) -->
                     <line x1="45" y1="165" x2="330" y2="165" stroke="#64748b" stroke-width="1.5"/>
                     <polygon points="325,162 333,165 325,168" fill="#64748b"/>
-                    <text x="325" y="180" text-anchor="end" fill="#64748b" font-weight="bold" font-size="8.5">R_L (Ω) ➔</text>
+                    <text x="325" y="180" text-anchor="end" fill="#64748b" font-weight="bold" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">L</tspan> (Ω) ➔</text>
 
                     <!-- Marcas en Eje X -->
                     <text x="45" y="177" text-anchor="middle" fill="#64748b" font-size="8">0 (cc)</text>
 
                     <!-- Marca R_L = R_th -->
                     <line x1="140" y1="163" x2="140" y2="167" stroke="#64748b" stroke-width="1.5"/>
-                    <text x="140" y="178" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">R_th</text>
+                    <text x="140" y="178" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8.5">R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Marca 2·R_th y 3·R_th -->
                     <line x1="215" y1="163" x2="215" y2="167" stroke="#64748b" stroke-width="1.5"/>
-                    <text x="215" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">2·R_th</text>
+                    <text x="215" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">2·R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <line x1="285" y1="163" x2="285" y2="167" stroke="#64748b" stroke-width="1.5"/>
-                    <text x="285" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">3·R_th</text>
+                    <text x="285" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">3·R<tspan baseline-shift="sub" font-size="70%">th</tspan></text>
 
                     <!-- Marca P_L,max en Eje Y -->
                     <line x1="43" y1="65" x2="47" y2="65" stroke="#1e40af" stroke-width="1.5"/>
-                    <text x="40" y="68" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8">P_L,max</text>
+                    <text x="40" y="68" text-anchor="end" fill="#1e40af" font-weight="bold" font-size="8">P<tspan baseline-shift="sub" font-size="70%">L,max</tspan></text>
 
                     <!-- Líneas Guía al Pico -->
                     <line x1="45" y1="65" x2="140" y2="65" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 3"/>
@@ -1285,11 +1285,11 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Etiqueta del Pico Máximo -->
                     <rect x="110" y="42" width="135" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-                    <text x="177" y="55" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8">P_max = V_th² / 4·R_th</text>
+                    <text x="177" y="55" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="8">P<tspan baseline-shift="sub" font-size="70%">max</tspan> = V<tspan baseline-shift="sub" font-size="70%">th</tspan>² / (4·R<tspan baseline-shift="sub" font-size="70%">th</tspan>)</text>
 
                     <!-- Leyenda inferior -->
                     <rect x="25" y="186" width="300" height="18" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
-                    <text x="175" y="198" text-anchor="middle" fill="#475569" font-size="7.5">Azul: Potencia P_L (pico en R_th) | Ámbar: Rendimiento η = R_L / (R_th + R_L)</text>
+                    <text x="175" y="198" text-anchor="middle" fill="#475569" font-size="7.5">Azul: Potencia P<tspan baseline-shift="sub" font-size="70%">L</tspan> (pico en R<tspan baseline-shift="sub" font-size="70%">th</tspan>) | Ámbar: Rendimiento η = R<tspan baseline-shift="sub" font-size="70%">L</tspan> / (R<tspan baseline-shift="sub" font-size="70%">th</tspan> + R<tspan baseline-shift="sub" font-size="70%">L</tspan>)</text>
                   </g>
                 </svg>
               </div>
@@ -1448,7 +1448,7 @@ const MANUAL_TEORIA_E1 = {
                     <text x="90" y="145" text-anchor="middle" fill="#2563eb" font-size="11" font-weight="600">Banda Valencia</text>
 
                     <!-- Etiqueta Gap -->
-                    <text x="90" y="185" text-anchor="middle" fill="#059669" font-size="11" font-weight="bold">E_g ≈ 0 eV</text>
+                    <text x="90" y="185" text-anchor="middle" fill="#059669" font-size="11" font-weight="bold">E<tspan baseline-shift="sub" font-size="70%">g</tspan> ≈ 0 eV</text>
                   </g>
 
                   <!-- Columna 2: Semiconductor -->
@@ -1464,7 +1464,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Gap Intermedio -->
                     <line x1="90" y1="97" x2="90" y2="128" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
                     <rect x="40" y="103" width="100" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-                    <text x="90" y="117" text-anchor="middle" fill="#b45309" font-size="10" font-weight="bold">E_g ≈ 1.12 eV (Si)</text>
+                    <text x="90" y="117" text-anchor="middle" fill="#b45309" font-size="10" font-weight="bold">E<tspan baseline-shift="sub" font-size="70%">g</tspan> ≈ 1.12 eV (Si)</text>
                     
                     <!-- Banda Valencia -->
                     <rect x="25" y="128" width="130" height="42" rx="6" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
@@ -1485,7 +1485,7 @@ const MANUAL_TEORIA_E1 = {
                     
                     <!-- Gap Enorme -->
                     <rect x="35" y="97" width="110" height="22" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
-                    <text x="90" y="112" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="bold">E_g &gt; 5 a 9 eV</text>
+                    <text x="90" y="112" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="bold">E<tspan baseline-shift="sub" font-size="70%">g</tspan> &gt; 5 a 9 eV</text>
                     
                     <!-- Banda Valencia Llena -->
                     <rect x="25" y="135" width="130" height="35" rx="6" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
@@ -1667,99 +1667,143 @@ const MANUAL_TEORIA_E1 = {
             <!-- Gráfico SVG Integral de Polarización Directa vs Inversa -->
             <div class="my-4 p-4 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
               <h6 class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 text-center">
-                📊 Gráfico Físico: Estados de Polarización de la Juntura PN
+                📊 Gráfico Físico: Estados de Polarización de la Juntura PN y Comportamiento del Muro
               </h6>
               <div class="overflow-x-auto flex justify-center">
                 <svg viewBox="0 0 720 280" class="w-full max-w-3xl h-auto font-sans text-xs select-none">
-                  <!-- ESTADO 1: EQUILIBRIO (V = 0) -->
-                  <g transform="translate(15, 15)">
-                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1.2"/>
-                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#475569" font-size="11">1. EQUILIBRIO (V_D = 0)</text>
-                    <text x="107" y="36" text-anchor="middle" fill="#64748b" font-size="9">Sin polarización externa</text>
+                  <defs>
+                    <marker id="arr-red-p" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                      <path d="M 0 0 L 6 3 L 0 6 z" fill="#ef4444"/>
+                    </marker>
+                    <marker id="arr-green-p" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                      <path d="M 0 0 L 6 3 L 0 6 z" fill="#10b981"/>
+                    </marker>
+                  </defs>
+
+                  <!-- ESTADO 1: EQUILIBRIO (V_D = 0) -->
+                  <g transform="translate(15, 12)">
+                    <rect x="0" y="0" width="215" height="256" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1.2"/>
+                    <text x="107" y="20" text-anchor="middle" font-weight="bold" fill="#475569" font-size="10.5">1. EQUILIBRIO (V<tspan baseline-shift="sub" font-size="70%">D</tspan> = 0)</text>
+                    <text x="107" y="33" text-anchor="middle" fill="#64748b" font-size="8.5">Sin polarización externa</text>
                     
                     <!-- Cristal PN -->
-                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
-                    <text x="35" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
-                    <text x="35" y="103" fill="#64748b" font-size="8">Huecos (h⁺)</text>
+                    <rect x="15" y="44" width="90" height="64" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="35" y="68" fill="#e11d48" font-weight="bold" font-size="13">P</text>
+                    <text x="35" y="82" fill="#64748b" font-size="7.5">Huecos (h⁺)</text>
 
-                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
-                    <text x="165" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
-                    <text x="155" y="103" fill="#64748b" font-size="8">Electrones (e⁻)</text>
+                    <rect x="105" y="44" width="90" height="64" fill="#06b6d4" fill-opacity="0.22" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="165" y="68" fill="#0891b2" font-weight="bold" font-size="13">N</text>
+                    <text x="165" y="82" fill="#64748b" font-size="7.5">Electrones (e⁻)</text>
 
                     <!-- ZCE -->
-                    <rect x="75" y="50" width="60" height="70" fill="#cbd5e1" fill-opacity="0.45" stroke="#64748b" stroke-dasharray="2,2"/>
-                    <text x="105" y="68" text-anchor="middle" fill="#334155" font-size="8" font-weight="bold">ZCE</text>
-                    <text x="88" y="90" text-anchor="middle" fill="#e11d48" font-size="11" font-weight="bold">- -</text>
-                    <text x="122" y="90" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold">+ +</text>
+                    <rect x="75" y="44" width="60" height="64" fill="#cbd5e1" fill-opacity="0.5" stroke="#64748b" stroke-dasharray="2,2"/>
+                    <text x="105" y="58" text-anchor="middle" fill="#334155" font-size="7.5" font-weight="bold">ZCE</text>
+                    <text x="88" y="76" text-anchor="middle" fill="#e11d48" font-size="10" font-weight="bold">- -</text>
+                    <text x="122" y="76" text-anchor="middle" fill="#0891b2" font-size="10" font-weight="bold">+ +</text>
 
                     <!-- Campo interno E -->
-                    <line x1="125" y1="112" x2="85" y2="112" stroke="#e11d48" stroke-width="2" marker-end="url(#arr-red)"/>
-                    <text x="105" y="108" text-anchor="middle" fill="#e11d48" font-size="8" font-weight="bold">E<tspan baseline-shift="sub" font-size="70%">int</tspan> (N→P)</text>
+                    <line x1="122" y1="94" x2="88" y2="94" stroke="#e11d48" stroke-width="1.6" marker-end="url(#arr-red-p)"/>
+                    <text x="105" y="91" text-anchor="middle" fill="#e11d48" font-size="7" font-weight="bold">E<tspan baseline-shift="sub" font-size="70%">int</tspan> (N→P)</text>
 
-                    <!-- Perfil de Barrera -->
-                    <path d="M 25 200 L 75 200 Q 105 180 105 160 Q 105 140 185 140" fill="none" stroke="#64748b" stroke-width="2"/>
-                    <text x="105" y="180" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">Barrera V₀ ≈ 0.7 V</text>
-                    <text x="107" y="232" text-anchor="middle" fill="#059669" font-size="10" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">total</tspan> = 0</text>
+                    <!-- Divisoria hacia sección muro -->
+                    <line x1="15" y1="120" x2="200" y2="120" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Perfil de Barrera / Muro -->
+                    <text x="107" y="135" text-anchor="middle" font-weight="bold" fill="#334155" font-size="9">Muro de Potencial (Barrera)</text>
+                    <path d="M 25 190 L 75 190 Q 105 175 105 160 Q 105 148 185 148" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+                    <path d="M 25 198 L 25 190 L 75 190 Q 105 175 105 160 Q 105 148 185 148 L 185 198 Z" fill="#3b82f6" fill-opacity="0.08"/>
+
+                    <!-- Cota de altura del muro -->
+                    <line x1="105" y1="150" x2="105" y2="188" stroke="#ef4444" stroke-width="1.3" marker-start="url(#arr-red-p)" marker-end="url(#arr-red-p)"/>
+                    <rect x="42" y="162" width="126" height="16" rx="4" fill="#ffffff" fill-opacity="0.92" stroke="#bfdbfe" stroke-width="0.8"/>
+                    <text x="105" y="173" text-anchor="middle" fill="#1e40af" font-size="8" font-weight="bold">Altura = V<tspan baseline-shift="sub" font-size="70%">0</tspan> ≈ 0.7 V</text>
+
+                    <text x="107" y="218" text-anchor="middle" fill="#64748b" font-size="8">Frena el paso libre de cargas</text>
+                    <text x="107" y="238" text-anchor="middle" fill="#059669" font-size="9.5" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">total</tspan> = 0 (Equilibrio)</text>
                   </g>
 
                   <!-- ESTADO 2: POLARIZACIÓN DIRECTA (V_D > 0) -->
-                  <g transform="translate(250, 15)">
-                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#10b981" fill-opacity="0.06" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.5"/>
-                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">2. POLARIZACIÓN DIRECTA</text>
-                    <text x="107" y="36" text-anchor="middle" fill="#059669" font-size="9">Ánodo (+) a P · Cátodo (-) a N</text>
+                  <g transform="translate(250, 12)">
+                    <rect x="0" y="0" width="215" height="256" rx="10" fill="#10b981" fill-opacity="0.06" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.4"/>
+                    <text x="107" y="20" text-anchor="middle" font-weight="bold" fill="#059669" font-size="10.5">2. POLARIZACIÓN DIRECTA (V<tspan baseline-shift="sub" font-size="70%">D</tspan> &gt; 0)</text>
+                    <text x="107" y="33" text-anchor="middle" fill="#059669" font-size="8.5">Ánodo (+) a P · Cátodo (-) a N</text>
                     
                     <!-- Cristal PN -->
-                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
-                    <text x="35" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
+                    <rect x="15" y="44" width="90" height="64" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="35" y="65" fill="#e11d48" font-weight="bold" font-size="13">P</text>
 
-                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
-                    <text x="165" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
+                    <rect x="105" y="44" width="90" height="64" fill="#06b6d4" fill-opacity="0.22" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="170" y="65" fill="#0891b2" font-weight="bold" font-size="13">N</text>
 
                     <!-- ZCE Angosta -->
-                    <rect x="92" y="50" width="26" height="70" fill="#cbd5e1" fill-opacity="0.45" stroke="#10b981" stroke-width="1.5"/>
-                    <text x="105" y="65" text-anchor="middle" fill="#059669" font-size="7" font-weight="bold">ZCE Estrecha</text>
+                    <rect x="94" y="44" width="22" height="64" fill="#cbd5e1" fill-opacity="0.5" stroke="#10b981" stroke-width="1.4"/>
+                    <text x="105" y="56" text-anchor="middle" fill="#059669" font-size="7" font-weight="bold">ZCE Estrecha</text>
 
                     <!-- Flecha de corriente directa masiva -->
-                    <line x1="30" y1="85" x2="180" y2="85" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-green)"/>
-                    <text x="105" y="80" text-anchor="middle" fill="#047857" font-size="9" font-weight="bold">I_D Masiva ➔</text>
+                    <line x1="22" y1="80" x2="185" y2="80" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-p)"/>
+                    <text x="105" y="93" text-anchor="middle" fill="#047857" font-size="8.5" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">D</tspan> Masiva ➔</text>
 
                     <!-- Fuente Externa -->
-                    <path d="M 15 85 L 5 85 L 5 130 L 205 130 L 205 85 L 195 85" fill="none" stroke="#059669" stroke-width="1.2"/>
-                    <text x="105" y="142" text-anchor="middle" fill="#059669" font-size="9" font-weight="bold">+ [ V_D ] -</text>
+                    <path d="M 15 76 L 6 76 L 6 114 L 204 114 L 204 76 L 195 76" fill="none" stroke="#059669" stroke-width="1.2"/>
+                    <rect x="75" y="106" width="60" height="15" rx="3" fill="#ffffff" fill-opacity="0.95" stroke="#86efac" stroke-width="0.8"/>
+                    <text x="105" y="117" text-anchor="middle" fill="#047857" font-size="8.5" font-weight="bold">+ [ V<tspan baseline-shift="sub" font-size="70%">D</tspan> ] -</text>
 
-                    <!-- Perfil de Barrera Reducida -->
-                    <path d="M 25 195 L 85 195 Q 105 185 105 175 Q 105 165 185 165" fill="none" stroke="#10b981" stroke-width="2.5"/>
-                    <text x="105" y="172" text-anchor="middle" fill="#059669" font-size="9" font-weight="bold">Barrera cae a (V_0 - V_D)</text>
-                    <text x="107" y="232" text-anchor="middle" fill="#059669" font-size="10" font-weight="bold">I_D ≈ I_S · e^(V_D / ηV_T)</text>
+                    <!-- Divisoria hacia sección muro -->
+                    <line x1="15" y1="126" x2="200" y2="126" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Perfil de Barrera / Muro Reducido -->
+                    <text x="107" y="139" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Muro Aplanado (Superado)</text>
+                    <path d="M 25 178 L 75 178 Q 105 172 105 168 Q 105 164 185 164" fill="none" stroke="#10b981" stroke-width="2.2"/>
+                    <path d="M 25 198 L 25 178 L 75 178 Q 105 172 105 168 Q 105 164 185 164 L 185 198 Z" fill="#10b981" fill-opacity="0.08"/>
+
+                    <!-- Indicación de paso libre -->
+                    <line x1="45" y1="154" x2="165" y2="154" stroke="#10b981" stroke-width="1.8" marker-end="url(#arr-green-p)"/>
+                    <rect x="36" y="166" width="138" height="16" rx="4" fill="#ffffff" fill-opacity="0.92" stroke="#86efac" stroke-width="0.8"/>
+                    <text x="105" y="177" text-anchor="middle" fill="#047857" font-size="8" font-weight="bold">Muro cae: (V<tspan baseline-shift="sub" font-size="70%">0</tspan> - V<tspan baseline-shift="sub" font-size="70%">D</tspan>) ≈ 0 V</text>
+
+                    <text x="107" y="218" text-anchor="middle" fill="#059669" font-size="8">Paso libre para portadores</text>
+                    <text x="107" y="238" text-anchor="middle" fill="#047857" font-size="9.5" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">D</tspan> fluye intensamente</text>
                   </g>
 
                   <!-- ESTADO 3: POLARIZACIÓN INVERSA (V_D < 0) -->
-                  <g transform="translate(485, 15)">
-                    <rect x="0" y="0" width="215" height="250" rx="10" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.4" stroke-width="1.5"/>
-                    <text x="107" y="22" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="11">3. POLARIZACIÓN INVERSA</text>
-                    <text x="107" y="36" text-anchor="middle" fill="#dc2626" font-size="9">Ánodo (-) a P · Cátodo (+) a N</text>
+                  <g transform="translate(485, 12)">
+                    <rect x="0" y="0" width="215" height="256" rx="10" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.4" stroke-width="1.4"/>
+                    <text x="107" y="20" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="10.5">3. POLARIZACIÓN INVERSA (V<tspan baseline-shift="sub" font-size="70%">D</tspan> &lt; 0)</text>
+                    <text x="107" y="33" text-anchor="middle" fill="#dc2626" font-size="8.5">Ánodo (-) a P · Cátodo (+) a N</text>
                     
                     <!-- Cristal PN -->
-                    <rect x="15" y="50" width="90" height="70" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
-                    <text x="25" y="88" fill="#e11d48" font-weight="bold" font-size="14">P</text>
+                    <rect x="15" y="44" width="90" height="64" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.2"/>
+                    <text x="28" y="68" fill="#e11d48" font-weight="bold" font-size="13">P</text>
 
-                    <rect x="105" y="50" width="90" height="70" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="1.2"/>
-                    <text x="175" y="88" fill="#0891b2" font-weight="bold" font-size="14">N</text>
+                    <rect x="105" y="44" width="90" height="64" fill="#06b6d4" fill-opacity="0.22" stroke="#06b6d4" stroke-width="1.2"/>
+                    <text x="175" y="68" fill="#0891b2" font-weight="bold" font-size="13">N</text>
 
                     <!-- ZCE Ensanchada -->
-                    <rect x="55" y="50" width="100" height="70" fill="#cbd5e1" fill-opacity="0.5" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,2"/>
-                    <text x="105" y="65" text-anchor="middle" fill="#b91c1c" font-size="8" font-weight="bold">ZCE Ensanchada (W &gt; W_0)</text>
-                    <text x="75" y="90" text-anchor="middle" fill="#e11d48" font-size="11" font-weight="bold">- - -</text>
-                    <text x="135" y="90" text-anchor="middle" fill="#0891b2" font-size="11" font-weight="bold">+ + +</text>
+                    <rect x="55" y="44" width="100" height="64" fill="#cbd5e1" fill-opacity="0.5" stroke="#ef4444" stroke-width="1.4" stroke-dasharray="2,2"/>
+                    <text x="105" y="56" text-anchor="middle" fill="#b91c1c" font-size="7.5" font-weight="bold">ZCE Ensanchada (W &gt; W<tspan baseline-shift="sub" font-size="70%">0</tspan>)</text>
+                    <text x="75" y="76" text-anchor="middle" fill="#e11d48" font-size="10" font-weight="bold">- - -</text>
+                    <text x="135" y="76" text-anchor="middle" fill="#0891b2" font-size="10" font-weight="bold">+ + +</text>
 
                     <!-- Fuente Inversa -->
-                    <path d="M 15 85 L 5 85 L 5 130 L 205 130 L 205 85 L 195 85" fill="none" stroke="#dc2626" stroke-width="1.2"/>
-                    <text x="105" y="142" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="bold">- [ V_R ] +</text>
+                    <path d="M 15 76 L 6 76 L 6 114 L 204 114 L 204 76 L 195 76" fill="none" stroke="#dc2626" stroke-width="1.2"/>
+                    <rect x="75" y="106" width="60" height="15" rx="3" fill="#ffffff" fill-opacity="0.95" stroke="#fca5a5" stroke-width="0.8"/>
+                    <text x="105" y="117" text-anchor="middle" fill="#dc2626" font-size="8.5" font-weight="bold">- [ V<tspan baseline-shift="sub" font-size="70%">R</tspan> ] +</text>
 
-                    <!-- Perfil de Barrera Elevada -->
-                    <path d="M 25 215 L 60 215 Q 105 160 105 150 Q 105 125 185 125" fill="none" stroke="#ef4444" stroke-width="2.5"/>
-                    <text x="105" y="180" text-anchor="middle" fill="#b91c1c" font-size="9" font-weight="bold">Barrera sube a (V_0 + V_R)</text>
-                    <text x="107" y="232" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">I ≈ -I_S (pA a nA)</text>
+                    <!-- Divisoria hacia sección muro -->
+                    <line x1="15" y1="126" x2="200" y2="126" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Perfil de Barrera / Muro Elevado -->
+                    <text x="107" y="139" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="9">Muro de Potencial (Altísimo)</text>
+                    <path d="M 25 204 L 55 204 Q 105 168 105 152 Q 105 136 185 136" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+                    <path d="M 25 210 L 25 204 L 55 204 Q 105 168 105 152 Q 105 136 185 136 L 185 210 Z" fill="#ef4444" fill-opacity="0.08"/>
+
+                    <!-- Cota de altura del muro elevado -->
+                    <line x1="105" y1="138" x2="105" y2="202" stroke="#ef4444" stroke-width="1.3" marker-start="url(#arr-red-p)" marker-end="url(#arr-red-p)"/>
+                    <rect x="36" y="162" width="138" height="16" rx="4" fill="#ffffff" fill-opacity="0.92" stroke="#fca5a5" stroke-width="0.8"/>
+                    <text x="105" y="173" text-anchor="middle" fill="#b91c1c" font-size="8" font-weight="bold">Muro sube: V<tspan baseline-shift="sub" font-size="70%">0</tspan> + V<tspan baseline-shift="sub" font-size="70%">R</tspan> &gt;&gt; 0.7 V</text>
+
+                    <text x="107" y="218" text-anchor="middle" fill="#dc2626" font-size="8">Imposible cruzar para portadores</text>
+                    <text x="107" y="238" text-anchor="middle" fill="#dc2626" font-size="9.5" font-weight="bold">I ≈ -I<tspan baseline-shift="sub" font-size="70%">S</tspan> ≈ 0 (Corriente nula)</text>
                   </g>
                 </svg>
               </div>
@@ -1771,37 +1815,36 @@ const MANUAL_TEORIA_E1 = {
                 📈 Curva Característica I-V del Diodo de Silicio
               </h6>
               <div class="overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 620 280" class="w-full max-w-xl h-auto font-sans text-xs select-none">
+                <svg viewBox="0 0 660 280" class="w-full max-w-xl h-auto font-sans text-xs select-none">
                   <!-- Ejes coordenados -->
-                  <line x1="60" y1="160" x2="560" y2="160" stroke="#64748b" stroke-width="1.5"/>
-                  <line x1="320" y1="20" x2="320" y2="250" stroke="#64748b" stroke-width="1.5"/>
+                  <line x1="40" y1="155" x2="620" y2="155" stroke="#64748b" stroke-width="1.5"/>
+                  <line x1="330" y1="20" x2="330" y2="255" stroke="#64748b" stroke-width="1.5"/>
                   
-                  <!-- Etiquetas de ejes -->
-                  <text x="565" y="164" fill="#64748b" font-weight="bold" font-size="11">V_D (V)</text>
-                  <text x="325" y="25" fill="#64748b" font-weight="bold" font-size="11">I_D (mA)</text>
-                  <text x="325" y="245" fill="#64748b" font-size="10">-I_D (μA)</text>
-                  <text x="70" y="152" fill="#64748b" font-size="10">-V_D (V)</text>
-                  <text x="312" y="174" fill="#64748b" font-size="10">0</text>
+                  <!-- Etiquetas de ejes con subíndices formateados -->
+                  <text x="625" y="159" fill="#64748b" font-weight="bold" font-size="11">V<tspan baseline-shift="sub" font-size="70%">D</tspan> (V)</text>
+                  <text x="335" y="25" fill="#64748b" font-weight="bold" font-size="11">I<tspan baseline-shift="sub" font-size="70%">D</tspan> (mA)</text>
+                  <text x="335" y="255" fill="#64748b" font-size="10">-I<tspan baseline-shift="sub" font-size="70%">D</tspan> (μA)</text>
+                  <text x="48" y="147" fill="#64748b" font-size="10">-V<tspan baseline-shift="sub" font-size="70%">D</tspan> (V)</text>
+                  <text x="320" y="170" fill="#64748b" font-size="10">0</text>
 
                   <!-- Curva Directa -->
-                  <!-- De 320,160 sube suavemente hasta 400 (V_gamma) y luego se dispara exponencialmente hacia arriba -->
-                  <path d="M 120 162 L 320 160 Q 380 160 410 152 Q 430 135 450 40" fill="none" stroke="#10b981" stroke-width="3"/>
+                  <path d="M 170 157 L 330 155 Q 390 155 410 148 Q 435 132 460 38" fill="none" stroke="#10b981" stroke-width="3"/>
                   
                   <!-- Tensión de umbral V_gamma -->
-                  <line x1="410" y1="155" x2="410" y2="165" stroke="#f59e0b" stroke-width="2"/>
-                  <text x="410" y="180" text-anchor="middle" fill="#d97706" font-size="10" font-weight="bold">V_γ ≈ 0.7 V</text>
-                  <text x="475" y="65" fill="#047857" font-weight="bold" font-size="10">Zona Directa (Conducción)</text>
+                  <line x1="410" y1="150" x2="410" y2="160" stroke="#f59e0b" stroke-width="2"/>
+                  <text x="410" y="175" text-anchor="middle" fill="#d97706" font-size="10" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">γ</tspan> ≈ 0.7 V</text>
+                  <text x="475" y="62" fill="#047857" font-weight="bold" font-size="10">Zona Directa (Conducción)</text>
 
                   <!-- Curva Inversa -->
-                  <!-- Línea horizontal casi pegada al eje con corriente de saturación -I_S -->
-                  <line x1="160" y1="162" x2="320" y2="160" stroke="#0ea5e9" stroke-width="2.5"/>
-                  <text x="240" y="177" text-anchor="middle" fill="#0284c7" font-size="9" font-weight="bold">-I_S (pA - nA)</text>
+                  <line x1="170" y1="157" x2="330" y2="155" stroke="#0ea5e9" stroke-width="2.5"/>
+                  <text x="250" y="172" text-anchor="middle" fill="#0284c7" font-size="8.5" font-weight="bold">-I<tspan baseline-shift="sub" font-size="70%">S</tspan> (fuga pA - nA)</text>
 
-                  <!-- Ruptura Zener / Avalancha -->
-                  <path d="M 160 162 Q 150 165 148 185 L 148 240" fill="none" stroke="#ef4444" stroke-width="3"/>
-                  <line x1="148" y1="155" x2="148" y2="165" stroke="#ef4444" stroke-width="1.5"/>
-                  <text x="148" y="148" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">-V_Z (o -V_BR)</text>
-                  <text x="110" y="210" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">Ruptura (Zener / Avalancha)</text>
+                  <!-- Ruptura Zener / Avalancha (Posicionada para no cortarse jamás) -->
+                  <path d="M 170 157 Q 162 160 160 175 L 160 245" fill="none" stroke="#ef4444" stroke-width="3"/>
+                  <line x1="160" y1="150" x2="160" y2="160" stroke="#ef4444" stroke-width="1.5"/>
+                  <text x="160" y="145" text-anchor="middle" fill="#dc2626" font-size="9.5" font-weight="bold">-V<tspan baseline-shift="sub" font-size="70%">Z</tspan> (o -V<tspan baseline-shift="sub" font-size="70%">BR</tspan>)</text>
+                  <text x="150" y="208" text-anchor="end" fill="#dc2626" font-size="9.5" font-weight="bold">Zona de Ruptura</text>
+                  <text x="150" y="222" text-anchor="end" fill="#dc2626" font-size="8.5">(Zener / Avalancha)</text>
                 </svg>
               </div>
             </div>
@@ -1921,7 +1964,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Fuente AC -->
                     <circle cx="50" cy="85" r="18" fill="none" stroke="#2563eb" stroke-width="1.8"/>
                     <path d="M 40 85 Q 45 77 50 85 Q 55 93 60 85" fill="none" stroke="#2563eb" stroke-width="1.6"/>
-                    <text x="50" y="120" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">v_i(t) = V_p·sen(ωt)</text>
+                    <text x="50" y="120" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">i</tspan>(t) = V<tspan baseline-shift="sub" font-size="70%">p</tspan>·sen(ωt)</text>
 
                     <!-- Cables y Diodo -->
                     <line x1="50" y1="67" x2="110" y2="67" stroke="#64748b" stroke-width="1.5"/>
@@ -1940,7 +1983,7 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Resistencia Carga R_L -->
                     <rect x="212" y="80" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
-                    <text x="240" y="104" fill="#475569" font-size="10" font-weight="bold">R_L</text>
+                    <text x="240" y="104" fill="#475569" font-size="10" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
                     
                     <line x1="220" y1="120" x2="220" y2="140" stroke="#64748b" stroke-width="1.5"/>
                     <line x1="220" y1="140" x2="50" y2="140" stroke="#64748b" stroke-width="1.5"/>
@@ -1949,7 +1992,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Tensión de salida v_o -->
                     <text x="210" y="60" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">+</text>
                     <text x="210" y="148" text-anchor="end" fill="#dc2626" font-size="9" font-weight="bold">-</text>
-                    <text x="255" y="80" fill="#dc2626" font-size="9" font-weight="bold">v_o(t)</text>
+                    <text x="255" y="80" fill="#dc2626" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">o</tspan>(t)</text>
                   </g>
 
                   <!-- Lado Derecho: Formas de Onda -->
@@ -1965,16 +2008,16 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Onda de Entrada v_i (punteada azul) -->
                     <path d="M 40 90 Q 75 30 110 90 Q 145 150 180 90 Q 215 30 250 90 Q 285 150 320 90" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="3,3"/>
-                    <text x="120" y="42" fill="#2563eb" font-size="9">v_i (AC)</text>
+                    <text x="120" y="42" fill="#2563eb" font-size="9">v<tspan baseline-shift="sub" font-size="70%">i</tspan> (AC)</text>
 
                     <!-- Onda de Salida v_o (verde sólida) -->
                     <!-- Semiciclo positivo conduce (amplitud menor por V_D), negativo bloquea a 0 -->
                     <path d="M 40 90 Q 75 40 110 90 L 180 90 Q 215 40 250 90 L 320 90" fill="none" stroke="#10b981" stroke-width="2.5"/>
-                    <text x="80" y="32" fill="#047857" font-weight="bold" font-size="10">V_o,pico = V_p - 0.7V</text>
+                    <text x="80" y="32" fill="#047857" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">o,pico</tspan> = V<tspan baseline-shift="sub" font-size="70%">p</tspan> - 0.7V</text>
 
                     <!-- Cota de tensión media V_DC -->
                     <line x1="40" y1="74" x2="320" y2="74" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                    <text x="270" y="70" fill="#d97706" font-size="9" font-weight="bold">V_DC ≈ 0.318·V_pico</text>
+                    <text x="270" y="70" fill="#d97706" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.318·V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
                     <text x="145" y="110" text-anchor="middle" fill="#dc2626" font-size="8">Diodo Bloqueado (0V)</text>
                   </g>
                 </svg>
@@ -2061,7 +2104,7 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="220" y1="100" x2="260" y2="100" stroke="#64748b" stroke-width="1.5"/>
                     <line x1="260" y1="100" x2="260" y2="110" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="253" y="110" width="14" height="32" fill="#f1f5f9" stroke="#475569" stroke-width="1.2"/>
-                    <text x="275" y="130" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+                    <text x="275" y="130" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
                     
                     <!-- Retorno a masa de R_L -->
                     <line x1="260" y1="142" x2="260" y2="155" stroke="#64748b" stroke-width="1.5"/>
@@ -2070,7 +2113,7 @@ const MANUAL_TEORIA_E1 = {
 
                     <text x="248" y="94" fill="#dc2626" font-size="9" font-weight="bold">+</text>
                     <text x="248" y="152" fill="#dc2626" font-size="9" font-weight="bold">-</text>
-                    <text x="280" y="95" fill="#dc2626" font-size="9" font-weight="bold">v_o</text>
+                    <text x="280" y="95" fill="#dc2626" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
                   </g>
 
                   <!-- Formas de Onda -->
@@ -2091,9 +2134,9 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Nivel DC -->
                     <line x1="35" y1="67" x2="295" y2="67" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                    <text x="210" y="63" fill="#d97706" font-size="9" font-weight="bold">V_DC ≈ 0.636·V_pico</text>
+                    <text x="210" y="63" fill="#d97706" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> ≈ 0.636·V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
 
-                    <text x="165" y="145" text-anchor="middle" fill="#64748b" font-size="9">Período de rizado T_r = T_red / 2 (100 Hz)</text>
+                    <text x="165" y="145" text-anchor="middle" fill="#64748b" font-size="9">Período de rizado T<tspan baseline-shift="sub" font-size="70%">r</tspan> = T<tspan baseline-shift="sub" font-size="70%">red</tspan> / 2 (100 Hz)</text>
                   </g>
                 </svg>
               </div>
@@ -2139,7 +2182,7 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Entrada AC -->
                     <circle cx="35" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="1.8"/>
                     <path d="M 26 95 Q 30 88 35 95 Q 40 102 44 95" fill="none" stroke="#2563eb" stroke-width="1.5"/>
-                    <text x="35" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v_s(t)</text>
+                    <text x="35" y="125" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">s</tspan>(t)</text>
 
                     <!-- Cables de entrada al puente -->
                     <line x1="51" y1="90" x2="105" y2="90" stroke="#64748b" stroke-width="1.5"/>
@@ -2191,7 +2234,7 @@ const MANUAL_TEORIA_E1 = {
                     <line x1="270" y1="45" x2="270" y2="75" stroke="#dc2626" stroke-width="1.5"/>
                     
                     <rect x="262" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
-                    <text x="290" y="98" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+                    <text x="290" y="98" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
                     <!-- Negativo: Nodo inferior (155, 145) -->
                     <line x1="155" y1="145" x2="270" y2="145" stroke="#3b82f6" stroke-width="1.5"/>
@@ -2199,7 +2242,7 @@ const MANUAL_TEORIA_E1 = {
 
                     <text x="255" y="60" fill="#dc2626" font-size="10" font-weight="bold">+</text>
                     <text x="255" y="140" fill="#3b82f6" font-size="10" font-weight="bold">-</text>
-                    <text x="295" y="75" fill="#dc2626" font-size="9" font-weight="bold">v_o(t)</text>
+                    <text x="295" y="75" fill="#dc2626" font-size="9" font-weight="bold">v<tspan baseline-shift="sub" font-size="70%">o</tspan>(t)</text>
                   </g>
 
                   <!-- Explicación de Conducción en Cuadrante Derecho -->
@@ -2209,17 +2252,17 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Semiciclo 1 -->
                     <rect x="15" y="35" width="270" height="65" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.4"/>
-                    <text x="25" y="52" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v_s &gt; 0):</text>
+                    <text x="25" y="52" fill="#047857" font-weight="bold" font-size="9.5">Semiciclo Positivo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &gt; 0):</text>
                     <text x="25" y="68" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D1 y D2</strong>.</text>
                     <text x="25" y="82" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D3 y D4</strong>.</text>
-                    <text x="25" y="94" fill="#64748b" font-size="8">Camino: Terminal superior ➔ D1 ➔ R_L ➔ D2 ➔ Terminal inferior</text>
+                    <text x="25" y="94" fill="#64748b" font-size="8">Camino: Terminal superior ➔ D1 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D2 ➔ Terminal inferior</text>
 
                     <!-- Semiciclo 2 -->
                     <rect x="15" y="110" width="270" height="65" rx="6" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.4"/>
-                    <text x="25" y="127" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v_s &lt; 0):</text>
+                    <text x="25" y="127" fill="#6d28d9" font-weight="bold" font-size="9.5">Semiciclo Negativo (v<tspan baseline-shift="sub" font-size="70%">s</tspan> &lt; 0):</text>
                     <text x="25" y="143" fill="#334155" font-size="8.5">• Conducen en serie: <strong>D3 y D4</strong>.</text>
                     <text x="25" y="157" fill="#334155" font-size="8.5">• Bloquean en inversa: <strong>D1 y D2</strong>.</text>
-                    <text x="25" y="169" fill="#64748b" font-size="8">Camino: Terminal inferior ➔ D3 ➔ R_L ➔ D4 ➔ Terminal superior</text>
+                    <text x="25" y="169" fill="#64748b" font-size="8">Camino: Terminal inferior ➔ D3 ➔ R<tspan baseline-shift="sub" font-size="70%">L</tspan> ➔ D4 ➔ Terminal superior</text>
                   </g>
                 </svg>
               </div>
@@ -2264,7 +2307,7 @@ const MANUAL_TEORIA_E1 = {
                   <line x1="40" y1="140" x2="580" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
                   <text x="585" y="143" fill="#64748b" font-size="9">t</text>
                   <line x1="50" y1="30" x2="50" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
-                  <text x="45" y="32" text-anchor="end" fill="#64748b" font-size="9">v_o</text>
+                  <text x="45" y="32" text-anchor="end" fill="#64748b" font-size="9">v<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
 
                   <!-- Pulsos de rectificación en puente (línea tenue discontinua) -->
                   <path d="M 50 140 Q 95 40 140 140 Q 185 40 230 140 Q 275 40 320 140 Q 365 40 410 140 Q 455 40 500 140" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
@@ -2275,17 +2318,17 @@ const MANUAL_TEORIA_E1 = {
 
                   <!-- Cotas de V_pico, V_DC y V_r -->
                   <line x1="50" y1="45" x2="540" y2="45" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                  <text x="545" y="48" fill="#059669" font-weight="bold" font-size="9">V_pico</text>
+                  <text x="545" y="48" fill="#059669" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">pico</tspan></text>
 
                   <line x1="50" y1="65" x2="540" y2="65" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                  <text x="545" y="68" fill="#d97706" font-weight="bold" font-size="9">V_DC = V_pico - V_r/2</text>
+                  <text x="545" y="68" fill="#d97706" font-weight="bold" font-size="9">V<tspan baseline-shift="sub" font-size="70%">DC</tspan> = V<tspan baseline-shift="sub" font-size="70%">pico</tspan> - V<tspan baseline-shift="sub" font-size="70%">r</tspan>/2</text>
 
                   <line x1="50" y1="85" x2="540" y2="85" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
-                  <text x="545" y="88" fill="#64748b" font-size="9">V_valle</text>
+                  <text x="545" y="88" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">valle</tspan></text>
 
                   <!-- Flecha de V_r pico a pico -->
                   <line x1="160" y1="47" x2="160" y2="83" stroke="#dc2626" stroke-width="1.8"/>
-                  <text x="170" y="68" fill="#dc2626" font-weight="bold" font-size="10">V_r (pp)</text>
+                  <text x="170" y="68" fill="#dc2626" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">r</tspan> (pp)</text>
                 </svg>
               </div>
 
@@ -2311,7 +2354,7 @@ const MANUAL_TEORIA_E1 = {
                 <span class="font-bold text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                   <span>⚡</span> 5. Regulador de Tensión con Diodo Zener
                 </span>
-                <span class="text-[11px] font-mono text-slate-400">Operación en Ruptura Inversa (V_out = V_Z)</span>
+                <span class="text-[11px] font-mono text-slate-400">Operación en Ruptura Inversa (V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan>)</span>
               </div>
 
               <!-- Gráfico SVG: Circuito Zener y Curva de Regulación V_out vs V_in -->
@@ -2326,18 +2369,18 @@ const MANUAL_TEORIA_E1 = {
                     <circle cx="45" cy="95" r="15" fill="none" stroke="#2563eb" stroke-width="1.8"/>
                     <text x="45" y="92" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">+</text>
                     <text x="45" y="103" text-anchor="middle" fill="#2563eb" font-size="8" font-weight="bold">-</text>
-                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">V_in (DC)</text>
+                    <text x="45" y="125" text-anchor="middle" fill="#2563eb" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in</tspan> (DC)</text>
 
                     <!-- Resistencia Serie R_s -->
                     <line x1="45" y1="80" x2="45" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     <line x1="45" y1="55" x2="85" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="85" y="47" width="35" height="16" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
-                    <text x="102" y="38" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">R_s</text>
+                    <text x="102" y="38" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
                     <line x1="120" y1="55" x2="180" y2="55" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Corriente I_s -->
                     <line x1="60" y1="48" x2="80" y2="48" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-blue)"/>
-                    <text x="70" y="43" fill="#2563eb" font-size="8" font-weight="bold">I_s</text>
+                    <text x="70" y="43" fill="#2563eb" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
 
                     <!-- Diodo Zener en Rama Vertical (cátodo arriba, ánodo abajo) -->
                     <line x1="180" y1="55" x2="180" y2="75" stroke="#64748b" stroke-width="1.5"/>
@@ -2347,24 +2390,24 @@ const MANUAL_TEORIA_E1 = {
                       <!-- Triángulo apuntando hacia abajo -->
                       <polygon points="-8,-8 8,-8 0,8" fill="#0ea5e9" stroke="#0284c7" stroke-width="1.2"/>
                       <text x="16" y="2" fill="#0284c7" font-weight="bold" font-size="9">Zener</text>
-                      <text x="16" y="14" fill="#0284c7" font-size="8">V_Z</text>
+                      <text x="16" y="14" fill="#0284c7" font-size="8">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
                     </g>
                     <line x1="180" y1="95" x2="180" y2="145" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Corriente I_Z -->
                     <line x1="172" y1="65" x2="172" y2="80" stroke="#0284c7" stroke-width="1.5"/>
-                    <text x="166" y="75" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I_Z</text>
+                    <text x="166" y="75" text-anchor="end" fill="#0284c7" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
 
                     <!-- Rama de Carga R_L -->
                     <line x1="180" y1="55" x2="260" y2="55" stroke="#64748b" stroke-width="1.5"/>
                     
                     <!-- Corriente I_L -->
                     <line x1="210" y1="48" x2="230" y2="48" stroke="#10b981" stroke-width="1.5"/>
-                    <text x="220" y="43" fill="#10b981" font-size="8" font-weight="bold">I_L</text>
+                    <text x="220" y="43" fill="#10b981" font-size="8" font-weight="bold">I<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
 
                     <line x1="260" y1="55" x2="260" y2="75" stroke="#64748b" stroke-width="1.5"/>
                     <rect x="252" y="75" width="16" height="40" fill="#f1f5f9" stroke="#475569" stroke-width="1.4"/>
-                    <text x="278" y="98" fill="#475569" font-size="9" font-weight="bold">R_L</text>
+                    <text x="278" y="98" fill="#475569" font-size="9" font-weight="bold">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
                     <line x1="260" y1="115" x2="260" y2="145" stroke="#64748b" stroke-width="1.5"/>
 
                     <!-- Retorno común a masa -->
@@ -2373,19 +2416,19 @@ const MANUAL_TEORIA_E1 = {
 
                     <text x="250" y="48" fill="#dc2626" font-size="9" font-weight="bold">+</text>
                     <text x="250" y="152" fill="#dc2626" font-size="9" font-weight="bold">-</text>
-                    <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold">V_out</text>
+                    <text x="280" y="60" fill="#dc2626" font-size="9" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
                   </g>
 
                   <!-- Lado Derecho: Curva de Transferencia V_out vs V_in -->
                   <g transform="translate(340, 15)">
                     <rect x="0" y="0" width="330" height="180" rx="10" fill="#3b82f6" fill-opacity="0.04" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
-                    <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V_out vs V_in</text>
+                    <text x="165" y="18" text-anchor="middle" font-weight="bold" fill="#334155" font-size="10">Curva de Transferencia V<tspan baseline-shift="sub" font-size="70%">out</tspan> vs V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
 
                     <!-- Ejes coordenados -->
                     <line x1="35" y1="140" x2="305" y2="140" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="310" y="143" fill="#64748b" font-size="9">V_in</text>
+                    <text x="310" y="143" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">in</tspan></text>
                     <line x1="45" y1="30" x2="45" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
-                    <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9">V_out</text>
+                    <text x="40" y="32" text-anchor="end" fill="#64748b" font-size="9">V<tspan baseline-shift="sub" font-size="70%">out</tspan></text>
 
                     <!-- Zona No Regulada (lineal con pendiente R_L / (R_s + R_L)) -->
                     <line x1="45" y1="140" x2="135" y2="75" stroke="#f59e0b" stroke-width="2.2"/>
@@ -2395,15 +2438,15 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Puntos de referencia -->
                     <line x1="135" y1="75" x2="135" y2="140" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="135" y="153" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">V_in,min</text>
+                    <text x="135" y="153" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">V<tspan baseline-shift="sub" font-size="70%">in,min</tspan></text>
 
                     <line x1="45" y1="75" x2="135" y2="75" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="10">V_Z</text>
+                    <text x="38" y="78" text-anchor="end" fill="#059669" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="70%">Z</tspan></text>
 
                     <!-- Etiquetas en el gráfico -->
                     <text x="90" y="115" fill="#d97706" font-size="8">Zener Apagado</text>
-                    <text x="210" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="10">Zona Regulada: V_out = V_Z = Cte</text>
-                    <text x="210" y="105" text-anchor="middle" fill="#64748b" font-size="8.5">I_s = I_Z + I_L (I_Z absorbe excesos)</text>
+                    <text x="210" y="65" text-anchor="middle" fill="#047857" font-weight="bold" font-size="10">Zona Regulada: V<tspan baseline-shift="sub" font-size="70%">out</tspan> = V<tspan baseline-shift="sub" font-size="70%">Z</tspan> = Cte</text>
+                    <text x="210" y="105" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">s</tspan> = I<tspan baseline-shift="sub" font-size="70%">Z</tspan> + I<tspan baseline-shift="sub" font-size="70%">L</tspan> (I<tspan baseline-shift="sub" font-size="70%">Z</tspan> absorbe excesos)</text>
                   </g>
                 </svg>
               </div>
