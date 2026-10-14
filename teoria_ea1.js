@@ -107,7 +107,7 @@ const MANUAL_TEORIA_EA1 = {
                 </div>
                 <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                   <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">2. Capacitores de Acoplo ($C_1, C_2$)</span>
-                  Aíslan la continua entre etapas ($X_C \to \infty$ en DC) pero transfieren íntegramente la señal alterna hacia la carga $R_L$ ($X_C \approx 0$ en AC).
+                  Aíslan la continua entre etapas ($X_C \\to \\infty$ en DC) pero transfieren íntegramente la señal alterna hacia la carga $R_L$ ($X_C \\approx 0$ en AC).
                 </div>
                 <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                   <span class="font-bold text-amber-600 dark:text-amber-400 block mb-0.5">3. Capacitor de Emisor ($C_E$)</span>
@@ -378,7 +378,7 @@ const MANUAL_TEORIA_EA1 = {
             <!-- 2. ANÁLISIS DE LA RECTA ESTÁTICA DC -->
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Recta de Carga Estática (DC)</h5>
             <p class="mb-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-              En régimen de corriente continua (DC), todos los capacitores se encuentran en estado estacionario y operan como <strong>circuitos abiertos ideales</strong> ($X_C = \frac{1}{\omega C} \to \infty$). Como consecuencia directa (ver figura b):
+              En régimen de corriente continua (DC), todos los capacitores se encuentran en estado estacionario y operan como <strong>circuitos abiertos ideales</strong> ($X_C = \\frac{1}{\\omega C} \\to \\infty$). Como consecuencia directa (ver figura b):
             </p>
             <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400 mb-2">
               <li>El generador de señal $v_s$ queda desacoplado por $C_1$.</li>
@@ -389,16 +389,16 @@ const MANUAL_TEORIA_EA1 = {
             <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
               Aplicando la <strong>Ley de Tensiones de Kirchhoff (KVL)</strong> a lo largo de la <strong>malla Colector-Emisor en continua</strong> (desde $+V_{CC}$ pasando por $R_C$, la juntura C-E del BJT y $R_E$ hasta masa):
             </p>
-            $$V_{CC} - I_C R_C - V_{CE} - I_E R_E = 0 \implies V_{CC} = V_{CE} + I_C R_C + I_E R_E$$
+            $$V_{CC} - I_C R_C - V_{CE} - I_E R_E = 0 \\implies V_{CC} = V_{CE} + I_C R_C + I_E R_E$$
             <p class="my-1 text-xs text-slate-700 dark:text-slate-300">
-              Dado que $I_E = \frac{\beta + 1}{\beta} I_C \approx I_C$, agrupamos los términos resistivos definiendo la <strong>resistencia estática total de continua ($R_{dc}$)</strong>:
+              Dado que $I_E = \\frac{\\beta + 1}{\\beta} I_C \\approx I_C$, agrupamos los términos resistivos definiendo la <strong>resistencia estática total de continua ($R_{dc}$)</strong>:
             </p>
-            $$\mathbf{R_{dc} = R_C + R_E}$$
-            $$V_{CC} \approx V_{CE} + I_C (R_C + R_E) = V_{CE} + I_C R_{dc}$$
+            $$\\mathbf{R_{dc} = R_C + R_E}$$
+            $$V_{CC} \\approx V_{CE} + I_C (R_C + R_E) = V_{CE} + I_C R_{dc}$$
             <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
               Despejando la corriente de colector $i_C$ en función de la tensión $v_{CE}$ para graficar en el plano $(v_{CE}, i_C)$:
             </p>
-            $$\mathbf{i_C = -\frac{1}{R_{dc}} v_{CE} + \frac{V_{CC}}{R_{dc}}}$$
+            $$\\mathbf{i_C = -\\frac{1}{R_{dc}} v_{CE} + \\frac{V_{CC}}{R_{dc}}}$$
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs my-2 font-mono">
               <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
@@ -408,12 +408,12 @@ const MANUAL_TEORIA_EA1 = {
               </div>
               <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                 <span class="text-slate-500 font-sans block text-[10px]">Corte eje de ordenadas ($v_{CE} = 0$):</span>
-                <strong>$i_C = \frac{V_{CC}}{R_{dc}}$</strong>
+                <strong>$i_C = \\frac{V_{CC}}{R_{dc}}$</strong>
                 <span class="text-[10px] text-slate-500 font-sans block mt-0.5">Corriente de cortocircuito DC</span>
               </div>
               <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                 <span class="text-slate-500 font-sans block text-[10px]">Pendiente de la recta:</span>
-                <strong>$m_{dc} = -\frac{1}{R_{dc}}$</strong>
+                <strong>$m_{dc} = -\\frac{1}{R_{dc}}$</strong>
                 <span class="text-[10px] text-slate-500 font-sans block mt-0.5">Inclinación estática</span>
               </div>
             </div>
@@ -421,12 +421,12 @@ const MANUAL_TEORIA_EA1 = {
             <!-- 3. ANÁLISIS DE LA RECTA DINÁMICA AC -->
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Recta de Carga Dinámica (AC) y Cálculo Riguroso de $r_{ac}$</h5>
             <p class="mb-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
-              En la banda de paso de media frecuencia del amplificador, los capacitores presentan reactancias despreciables y se comportan como <strong>cortocircuitos ideales</strong> ($X_C \approx 0$). Asimismo, la fuente ideal de continua $V_{CC}$ no tiene variación temporal, por lo que actúa como <strong>masa dinámica (AC Ground)</strong>. Analizando el circuito equivalente en alterna (ver figura c):
+              En la banda de paso de media frecuencia del amplificador, los capacitores presentan reactancias despreciables y se comportan como <strong>cortocircuitos ideales</strong> ($X_C \\approx 0$). Asimismo, la fuente ideal de continua $V_{CC}$ no tiene variación temporal, por lo que actúa como <strong>masa dinámica (AC Ground)</strong>. Analizando el circuito equivalente en alterna (ver figura c):
             </p>
             <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-2">
               <li>
                 <strong>En el colector:</strong> La resistencia de polarización $R_C$ está conectada entre colector y masa AC. A su vez, la resistencia de carga $R_L$ queda conectada a través de $C_2$ (cortocircuito) entre colector y masa AC. Por tanto, <strong>$R_C$ y $R_L$ quedan en estricto paralelo dinámico</strong>:
-                $$R_C \parallel R_L = \frac{R_C \cdot R_L}{R_C + R_L}$$
+                $$R_C \\parallel R_L = \\frac{R_C \\cdot R_L}{R_C + R_L}$$
               </li>
               <li>
                 <strong>En el emisor:</strong> El capacitor $C_E$ deriva toda la corriente alternada directamente a masa, cortocircuitando la resistencia $R_E$. La resistencia incremental de emisor es nula ($r_E = 0$).
@@ -437,7 +437,7 @@ const MANUAL_TEORIA_EA1 = {
               <strong class="text-emerald-800 dark:text-emerald-300 block mb-1">
                 Fórmula Fundamental de la Resistencia Dinámica de Alterna ($r_{ac}$):
               </strong>
-              $$\mathbf{r_{ac} = R_C \parallel R_L = \frac{R_C \cdot R_L}{R_C + R_L}}$$
+              $$\\mathbf{r_{ac} = R_C \\parallel R_L = \\frac{R_C \\cdot R_L}{R_C + R_L}}$$
               <p class="text-slate-600 dark:text-slate-400 text-[11px] mt-1 leading-relaxed">
                 Esta es la resistencia total que "siente" la corriente incremental de colector $i_c$ al circular por la malla de salida en alterna.
               </p>
@@ -458,7 +458,7 @@ const MANUAL_TEORIA_EA1 = {
                 </div>
                 <div class="p-1.5 rounded bg-white dark:bg-slate-900 border border-purple-100 dark:border-purple-900">
                   <span class="text-slate-500 font-sans block text-[10px]">En Alterna (AC):</span>
-                  $$\mathbf{r_{ac} = (R_C \parallel R_L) + R_{E1}}$$
+                  $$\\mathbf{r_{ac} = (R_C \\parallel R_L) + R_{E1}}$$
                 </div>
               </div>
             </div>
@@ -466,18 +466,18 @@ const MANUAL_TEORIA_EA1 = {
             <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
               La relación de Ohm incremental para la malla de salida de alterna establece que la variación de tensión $v_{ce}$ responde a la corriente incremental $i_c$:
             </p>
-            $$v_{ce} = -i_c \cdot r_{ac} \implies i_c = -\frac{1}{r_{ac}} v_{ce}$$
+            $$v_{ce} = -i_c \\cdot r_{ac} \\implies i_c = -\\frac{1}{r_{ac}} v_{ce}$$
             <p class="text-xs text-slate-500 dark:text-slate-400 italic">
               (El signo negativo proviene de que un aumento de corriente $i_c$ incrementa la caída en $r_{ac}$, haciendo caer el potencial instantáneo de colector $v_{ce}$).
             </p>
             <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
               Como las variables totales son la superposición del punto de reposo y la señal incremental ($i_C = I_{CQ} + i_c$ y $v_{CE} = V_{CEQ} + v_{ce}$):
             </p>
-            $$(i_C - I_{CQ}) = -\frac{1}{r_{ac}} (v_{CE} - V_{CEQ})$$
+            $$(i_C - I_{CQ}) = -\\frac{1}{r_{ac}} (v_{CE} - V_{CEQ})$$
             <p class="my-2 text-xs text-slate-700 dark:text-slate-300">
               Reordenando en la forma explícita de recta $i_C = m_{ac} v_{CE} + b$:
             </p>
-            $$\mathbf{i_C = -\frac{1}{r_{ac}} v_{CE} + \left( I_{CQ} + \frac{V_{CEQ}}{r_{ac}} \right)}$$
+            $$\\mathbf{i_C = -\\frac{1}{r_{ac}} v_{CE} + \\left( I_{CQ} + \\frac{V_{CEQ}}{r_{ac}} \\right)}$$
 
             <!-- 4. COMPARACIÓN DE PENDIENTES -->
             <div class="p-3 my-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-xs space-y-1.5">
@@ -485,16 +485,16 @@ const MANUAL_TEORIA_EA1 = {
                 <span>🔍</span> ¿Por qué la Recta Dinámica es SIEMPRE más empinada que la Estática?
               </strong>
               <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
-                Dado que el paralelo de dos resistencias es siempre menor que cualquiera de ellas ($R_C \parallel R_L < R_C$), y en DC se suma $R_E$:
+                Dado que el paralelo de dos resistencias es siempre menor que cualquiera de ellas ($R_C \\parallel R_L < R_C$), y en DC se suma $R_E$:
               </p>
               <div class="text-center font-mono my-1 font-bold text-amber-900 dark:text-amber-200 text-xs">
-                $$r_{ac} = R_C \parallel R_L < R_C < R_C + R_E = R_{dc} \implies \mathbf{r_{ac} < R_{dc}}$$
+                $$r_{ac} = R_C \\parallel R_L < R_C < R_C + R_E = R_{dc} \\implies \\mathbf{r_{ac} < R_{dc}}$$
               </div>
               <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
                 Al invertir las resistencias para obtener las pendientes de las rectas:
               </p>
               <div class="text-center font-mono my-1 font-bold text-rose-600 dark:text-rose-400 text-xs">
-                $$\left| -\frac{1}{r_{ac}} \right| > \left| -\frac{1}{R_{dc}} \right| \implies \mathbf{|m_{ac}| > |m_{dc}|}$$
+                $$\\left| -\\frac{1}{r_{ac}} \\right| > \\left| -\\frac{1}{R_{dc}} \\right| \\implies \\mathbf{|m_{ac}| > |m_{dc}|}$$
               </div>
               <p class="text-slate-600 dark:text-slate-400 text-[11px]">
                 <strong>Conclusión física:</strong> La recta dinámica es más vertical (empinada). Por ello, cuando la señal oscila alrededor del punto de reposo $Q$, la tensión instantánea $v_{CE}$ alcanza el corte o la saturación mucho antes de lo que sugeriría la recta estática de continua, como se aprecia claramente en el plano $(v_{CE}, i_C)$ a continuación:
@@ -1017,7 +1017,7 @@ const MANUAL_TEORIA_EA1 = {
                   <!-- Análisis y Usos -->
                   <div class="lg:col-span-7 text-xs space-y-2">
                     <p class="text-slate-600 dark:text-slate-400">
-                      <strong>Funcionamiento:</strong> El punto $Q$ se ubica en el centro de la recta dinámica ($V_{CEQ} \approx V_{CC}/2, I_{CQ} > 0$). El transistor se mantiene permanentemente en la Región Activa Directa durante los $360^\circ$ de la onda, logrando una réplica fiel sin distorsión por corte.
+                      <strong>Funcionamiento:</strong> El punto $Q$ se ubica en el centro de la recta dinámica ($V_{CEQ} \\approx V_{CC}/2, I_{CQ} > 0$). El transistor se mantiene permanentemente en la Región Activa Directa durante los $360^\\circ$ de la onda, logrando una réplica fiel sin distorsión por corte.
                     </p>
                     <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-slate-700 dark:text-slate-300">
                       <strong>🔥 Inconveniente Crítico:</strong> Disipación estática altísima en reposo ($P_{D,silencio} = V_{CC} I_{CQ}$). Consume la misma potencia continua tanto si reproduce música como si está en silencio absoluto.
@@ -1104,10 +1104,10 @@ const MANUAL_TEORIA_EA1 = {
                   <!-- Análisis y Usos -->
                   <div class="lg:col-span-7 text-xs space-y-2">
                     <p class="text-slate-600 dark:text-slate-400">
-                      <strong>Funcionamiento:</strong> Cada transistor conduce sólo durante medio ciclo ($180^\circ$): $Q_1$ para $v_i > 0$ y $Q_2$ para $v_i < 0$. En reposo ($v_i = 0$), ambos transistores están en corte ($I_{CQ} = 0$), por lo que no disipan potencia en reposo ($P_{D,silencio} = 0$).
+                      <strong>Funcionamiento:</strong> Cada transistor conduce sólo durante medio ciclo ($180^\\circ$): $Q_1$ para $v_i > 0$ y $Q_2$ para $v_i < 0$. En reposo ($v_i = 0$), ambos transistores están en corte ($I_{CQ} = 0$), por lo que no disipan potencia en reposo ($P_{D,silencio} = 0$).
                     </p>
                     <div class="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-slate-700 dark:text-slate-300">
-                      <strong>⚠️ Grave Problema de Cruce por Cero (Crossover):</strong> Como las bases están unidas directamente, se requiere $|v_i| \ge V_{BE} \approx 0.6\text{ V}$ para encender cada transistor. Durante la franja $[-0.6\text{ V}, +0.6\text{ V}]$, la salida es nula y la onda se aplasta severamente en los pasos por cero.
+                      <strong>⚠️ Grave Problema de Cruce por Cero (Crossover):</strong> Como las bases están unidas directamente, se requiere $|v_i| \\ge V_{BE} \\approx 0.6\\text{ V}$ para encender cada transistor. Durante la franja $[-0.6\\text{ V}, +0.6\\text{ V}]$, la salida es nula y la onda se aplasta severamente en los pasos por cero.
                     </div>
                     <div>
                       <strong class="text-slate-900 dark:text-white">⚙️ Usos y Aplicaciones Reales:</strong>
@@ -1218,7 +1218,7 @@ const MANUAL_TEORIA_EA1 = {
                   <!-- Análisis y Usos -->
                   <div class="lg:col-span-7 text-xs space-y-2">
                     <p class="text-slate-600 dark:text-slate-400">
-                      <strong>Funcionamiento:</strong> Los dos diodos $D_1, D_2$ (o un transistor en configuración multiplicador $V_{BE}$) mantienen una diferencia de potencial constante $\approx 2 V_{BE} \\approx 1.2 - 1.4\\text{ V}$ entre las bases. Esto fija una corriente estática de reposo controlada $I_{CQ} \\approx 15 - 50\\text{ mA}$, eliminando la zona muerta de corte sin comprometer el rendimiento general.
+                      <strong>Funcionamiento:</strong> Los dos diodos $D_1, D_2$ (o un transistor en configuración multiplicador $V_{BE}$) mantienen una diferencia de potencial constante $\\approx 2 V_{BE} \\approx 1.2 - 1.4\\text{ V}$ entre las bases. Esto fija una corriente estática de reposo controlada $I_{CQ} \\approx 15 - 50\\text{ mA}$, eliminando la zona muerta de corte sin comprometer el rendimiento general.
                     </p>
                     <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-slate-700 dark:text-slate-300">
                       <strong>💡 Resistencias de Emisor $R_E$:</strong> Se colocan pequeños resistores degenerativos ($0.1\\,\\Omega - 0.47\\,\\Omega$) para asegurar estabilidad térmica frente al embalamiento (Thermal Runaway).
@@ -1324,17 +1324,17 @@ const MANUAL_TEORIA_EA1 = {
                   <!-- Análisis y Usos -->
                   <div class="lg:col-span-7 text-xs space-y-2">
                     <p class="text-slate-600 dark:text-slate-400">
-                      <strong>Funcionamiento:</strong> La base se polariza negativamente ($V_{BB} < 0$), muy por debajo del corte. La corriente sólo circula en pulsos breves ($2\theta \approx 120^\circ$) cuando la cúspide de $v_i(t)$ vence la polarización inversa. Como la corriente fluye únicamente cuando la caída $v_{CE}$ es mínima, <strong>la potencia disipada por el transistor es pequeñísima y el rendimiento supera el $85\%$</strong>.
+                      <strong>Funcionamiento:</strong> La base se polariza negativamente ($V_{BB} < 0$), muy por debajo del corte. La corriente sólo circula en pulsos breves ($2\\theta \\approx 120^\\circ$) cuando la cúspide de $v_i(t)$ vence la polarización inversa. Como la corriente fluye únicamente cuando la caída $v_{CE}$ es mínima, <strong>la potencia disipada por el transistor es pequeñísima y el rendimiento supera el $85\%$</strong>.
                     </p>
                     <div class="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-slate-700 dark:text-slate-300">
-                      <strong>📡 El rol indispensable del Tanque $LC$:</strong> Los pulsos de corriente excitan el circuito tanque paralelo $LC$, que actúa como filtro resonante pasabanda de alto factor de calidad $Q$. El tanque reconstruye una onda senoidal pura a la frecuencia de resonancia $f_0 = \frac{1}{2\pi\sqrt{LC}}$, filtrando todos los armónicos.
+                      <strong>📡 El rol indispensable del Tanque $LC$:</strong> Los pulsos de corriente excitan el circuito tanque paralelo $LC$, que actúa como filtro resonante pasabanda de alto factor de calidad $Q$. El tanque reconstruye una onda senoidal pura a la frecuencia de resonancia $f_0 = \\frac{1}{2\\pi\\sqrt{LC}}$, filtrando todos los armónicos.
                     </div>
                     <div>
                       <strong class="text-slate-900 dark:text-white">📻 Usos y Aplicaciones Reales:</strong>
                       <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
                         <li><strong>Transmisores de Radiocomunicación (RF):</strong> Etapas finales de potencia en emisoras de FM, AM, transmisores de onda corta y satelitales.</li>
                         <li><strong>Multiplicadores de Frecuencia:</strong> Sintonizando el tanque LC al 2.° o 3.ᵉʳ armónico del pulso de corriente.</li>
-                        <li><strong>¡Inaplicable en Audio!</strong> Al depender de un circuito resonante a una frecuencia fija, no puede amplificar señales de banda ancha audible ($20\text{ Hz} - 20\text{ kHz}$) sin destruirlas.</li>
+                        <li><strong>¡Inaplicable en Audio!</strong> Al depender de un circuito resonante a una frecuencia fija, no puede amplificar señales de banda ancha audible ($20\\text{ Hz} - 20\\text{ kHz}$) sin destruirlas.</li>
                       </ul>
                     </div>
                   </div>
@@ -1424,16 +1424,16 @@ const MANUAL_TEORIA_EA1 = {
                   <!-- Análisis y Usos -->
                   <div class="lg:col-span-7 text-xs space-y-2">
                     <p class="text-slate-600 dark:text-slate-400">
-                      <strong>Funcionamiento:</strong> Los transistores de potencia MOSFET no trabajan en su zona activa lineal, sino como <strong>interruptores en conmutación pura (ON/OFF)</strong> a frecuencias ultrasónicas ($250\text{ kHz} - 1\text{ MHz}$).
+                      <strong>Funcionamiento:</strong> Los transistores de potencia MOSFET no trabajan en su zona activa lineal, sino como <strong>interruptores en conmutación pura (ON/OFF)</strong> a frecuencias ultrasónicas ($250\\text{ kHz} - 1\\text{ MHz}$).
                     </p>
                     <div class="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-slate-700 dark:text-slate-300">
-                      <strong>⚡ ¿Por qué no disipa calor?:</strong> Cuando el MOSFET conduce (ON), su resistencia interna es casi nula ($R_{DS,on} \approx \text{m}\Omega \implies v_{DS} \approx 0 \implies P_D \approx 0$). Cuando está apagado (OFF), la corriente es nula ($i_D = 0 \implies P_D = 0$). El filtro pasabajos $L_f - C_f$ recupera el promedio analógico (audio continuo) entregándolo al parlante sin pérdidas.
+                      <strong>⚡ ¿Por qué no disipa calor?:</strong> Cuando el MOSFET conduce (ON), su resistencia interna es casi nula ($R_{DS,on} \\approx \\text{m}\\Omega \\implies v_{DS} \\approx 0 \\implies P_D \\approx 0$). Cuando está apagado (OFF), la corriente es nula ($i_D = 0 \\implies P_D = 0$). El filtro pasabajos $L_f - C_f$ recupera el promedio analógico (audio continuo) entregándolo al parlante sin pérdidas.
                     </div>
                     <div>
                       <strong class="text-slate-900 dark:text-white">📱 Usos y Aplicaciones Reales:</strong>
                       <ul class="list-disc pl-5 mt-1 text-slate-600 dark:text-slate-400 space-y-0.5">
                         <li><strong>Dispositivos portátiles a batería:</strong> Teléfonos inteligentes, altavoces Bluetooth portátiles (JBL, Sony, etc.), tablets y computadoras portátiles donde la autonomía de la batería manda.</li>
-                        <li><strong>Subwoofers y sistemas de sonido de gran potencia:</strong> Etapas de $500\text{ W} - 5000\text{ W}$ para recitales y autos que no cabrían físicamente con disipadores de Clase AB.</li>
+                        <li><strong>Subwoofers y sistemas de sonido de gran potencia:</strong> Etapas de $500\\text{ W} - 5000\\text{ W}$ para recitales y autos que no cabrían físicamente con disipadores de Clase AB.</li>
                         <li><strong>Barras de sonido y televisores ultra delgados:</strong> Donde no existe espacio para disipadores de aluminio pesados.</li>
                       </ul>
                     </div>
@@ -2375,7 +2375,7 @@ const MANUAL_TEORIA_EA1 = {
                     <rect x="8" y="180" width="219" height="58" rx="4" fill="#ffffff" fill-opacity="0.8" dark:fill="#0f172a" stroke="#d97706" stroke-opacity="0.2"/>
                     <text x="117" y="195" text-anchor="middle" font-weight="bold" fill="#b45309" font-size="8.5">R_E = (V_T / I_o) · ln(I_{ref} / I_o)</text>
                     <text x="117" y="210" text-anchor="middle" fill="#64748b" font-size="8">Ahorro &gt;99% de área en Silicio</text>
-                    <text x="117" y="224" text-anchor="middle" font-weight="bold" fill="#475569" font-size="8">r_{out} ≈ r_{o2}[1 + g_{m2}(R_E || r_{\pi2})]</text>
+                    <text x="117" y="224" text-anchor="middle" font-weight="bold" fill="#475569" font-size="8">r_{out} ≈ r_{o2}[1 + g_{m2}(R_E || r_{π2})]</text>
                   </g>
 
                   <!-- ================= 3. ESPEJO WILSON ================= -->
@@ -2997,10 +2997,10 @@ const MANUAL_TEORIA_EA1 = {
                 <span>💡</span> Regla Mnemotécnica Infalible para el Examen
               </h5>
               <ul class="list-disc pl-5 space-y-1 text-xs">
-                <li><strong>Entrada SERIE:</strong> Compara tensiones en una malla. Desea capturar toda la tensión del generador sin cargarlo $\implies$ Ideal $R_i = \\infty$ $\implies$ <em>Multiplica por $(1+T)$</em>.</li>
-                <li><strong>Entrada PARALELO (Shunt):</strong> Compara corrientes en un nodo. Desea absorber toda la corriente del generador $\implies$ Ideal $R_i = 0$ $\implies$ <em>Divide por $(1+T)$</em>.</li>
-                <li><strong>Salida TENSIÓN (Shunt):</strong> Fuente de tensión ideal. Mantiene constante la tensión independiente de la carga $\implies$ Ideal $R_o = 0$ $\implies$ <em>Divide por $(1+T)$</em>.</li>
-                <li><strong>Salida CORRIENTE (Serie):</strong> Fuente de corriente ideal. Mantiene constante la corriente independiente de la carga $\implies$ Ideal $R_o = \\infty$ $\implies$ <em>Multiplica por $(1+T)$</em>.</li>
+                <li><strong>Entrada SERIE:</strong> Compara tensiones en una malla. Desea capturar toda la tensión del generador sin cargarlo $\\implies$ Ideal $R_i = \\infty$ $\\implies$ <em>Multiplica por $(1+T)$</em>.</li>
+                <li><strong>Entrada PARALELO (Shunt):</strong> Compara corrientes en un nodo. Desea absorber toda la corriente del generador $\\implies$ Ideal $R_i = 0$ $\\implies$ <em>Divide por $(1+T)$</em>.</li>
+                <li><strong>Salida TENSIÓN (Shunt):</strong> Fuente de tensión ideal. Mantiene constante la tensión independiente de la carga $\\implies$ Ideal $R_o = 0$ $\\implies$ <em>Divide por $(1+T)$</em>.</li>
+                <li><strong>Salida CORRIENTE (Serie):</strong> Fuente de corriente ideal. Mantiene constante la corriente independiente de la carga $\\implies$ Ideal $R_o = \\infty$ $\\implies$ <em>Multiplica por $(1+T)$</em>.</li>
               </ul>
             </div>
           `
@@ -3015,8 +3015,8 @@ const MANUAL_TEORIA_EA1 = {
             <ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm">
               <li><strong>Paso 1 (Identificar topología):</strong>
                 <ul class="list-disc pl-5 mt-1 space-y-0.5 text-xs text-slate-600 dark:text-slate-400">
-                  <li>¿Muestreo de salida?: Si haciendo $R_L = 0$ (cortocircuito) la señal realimentada se anula $\implies$ Muestreo de TENSIÓN. Si haciendo $R_L = \\infty$ (abierto) se anula $\implies$ Muestreo de CORRIENTE.</li>
-                  <li>¿Mezcla de entrada?: Si la realimentación entra a la base/emisor restando tensiones de malla $\implies$ SERIE. Si entra al mismo nodo dividiendo corrientes $\implies$ PARALELO.</li>
+                  <li>¿Muestreo de salida?: Si haciendo $R_L = 0$ (cortocircuito) la señal realimentada se anula $\\implies$ Muestreo de TENSIÓN. Si haciendo $R_L = \\infty$ (abierto) se anula $\\implies$ Muestreo de CORRIENTE.</li>
+                  <li>¿Mezcla de entrada?: Si la realimentación entra a la base/emisor restando tensiones de malla $\\implies$ SERIE. Si entra al mismo nodo dividiendo corrientes $\\implies$ PARALELO.</li>
                 </ul>
               </li>
               <li><strong>Paso 2 (Determinar el factor $\\beta$):</strong> Plantear la relación $\\beta = x_f / x_o$ apagando la entrada del amplificador.</li>
