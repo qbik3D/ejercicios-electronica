@@ -762,7 +762,7 @@ const MANUAL_TEORIA_E2 = {
                   2. Resistencia de Salida ($r_o$ o $r_d$)
                 </span>
                 <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-1">
-                  Modulada por el Efecto Early ($\lambda = 1/V_A$):
+                  Modulada por el Efecto Early ($\\lambda = 1/V_A$):
                 </p>
                 $$r_o = \\left( \\left. \\frac{\\partial i_D}{\\partial v_{DS}} \\right|_Q \\right)^{-1} \\approx \\frac{1}{\\lambda I_{DQ}} = \\frac{V_A}{I_{DQ}}$$
                 <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
