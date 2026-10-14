@@ -3617,10 +3617,9 @@ const MANUAL_TEORIA_E1 = {
                   <g transform="translate(10, 0)">
                     <text x="110" y="16" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="11.5">(a) Polarización Fija</text>
                     
-                    <!-- VCC rail -->
-                    <line x1="55" y1="36" x2="150" y2="36" stroke="#475569" stroke-width="1.6"/>
-                    <circle cx="102.5" cy="36" r="2.5" fill="#ef4444"/>
-                    <text x="102.5" y="27" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
+                    <!-- Terminal +VBB (Base) -->
+                    <circle cx="55" cy="36" r="2.5" fill="#3b82f6"/>
+                    <text x="55" y="27" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan></text>
 
                     <!-- Rama Base RB (IEEE zig-zag) -->
                     <line x1="55" y1="36" x2="55" y2="46" stroke="#475569" stroke-width="1.5"/>
@@ -3631,6 +3630,10 @@ const MANUAL_TEORIA_E1 = {
                     <!-- Flecha corriente IB -->
                     <polygon points="96,107 104,110 96,113" fill="#3b82f6"/>
                     <text x="100" y="103" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="1.5">B</tspan></text>
+
+                    <!-- Terminal +VCC (Colector) -->
+                    <circle cx="150" cy="36" r="2.5" fill="#ef4444"/>
+                    <text x="150" y="27" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5">+<tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan></text>
 
                     <!-- Rama Colector RC (IEEE zig-zag) -->
                     <line x1="150" y1="36" x2="150" y2="46" stroke="#475569" stroke-width="1.5"/>
@@ -3655,9 +3658,9 @@ const MANUAL_TEORIA_E1 = {
 
                     <!-- Ecuaciones y advertencia -->
                     <rect x="15" y="174" width="195" height="66" rx="6" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.3"/>
-                    <text x="112" y="191" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> − 0.7) / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
-                    <text x="112" y="206" text-anchor="middle" fill="#475569" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> = β · </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2">  (Sin lazo de control)</tspan></text>
-                    <text x="112" y="224" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">⚠️ Inestable: Δβ mueve Q a saturación</text>
+                    <text x="112" y="190" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> = (</tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BB</tspan><tspan font-size="100%" dy="-2"> − 0.7) / </tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">B</tspan></text>
+                    <text x="112" y="205" text-anchor="middle" fill="#475569" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-size="100%" dy="-2"> = β · </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan><tspan font-size="100%" dy="-2"> | </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE</tspan><tspan font-size="100%" dy="-2"> = </tspan><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CC</tspan><tspan font-size="100%" dy="-2"> − </tspan><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan><tspan font-style="italic">R</tspan><tspan font-size="75%" dy="2">C</tspan></text>
+                    <text x="112" y="223" text-anchor="middle" font-weight="bold" fill="#dc2626" font-size="8.5">⚠️ Inestable: Δβ mueve Q a saturación</text>
                   </g>
 
                   <!-- Divisor vertical -->
@@ -3790,14 +3793,14 @@ const MANUAL_TEORIA_E1 = {
                 <div class="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/40 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-1 mb-2">
-                      <span class="font-bold text-rose-700 dark:text-rose-400 text-xs">1. Polarización Fija</span>
+                      <span class="font-bold text-rose-700 dark:text-rose-400 text-xs">1. Polarización Fija (Fuentes $V_{BB}$ y $V_{CC}$)</span>
                       <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 dark:bg-rose-900/60 text-rose-700 dark:text-rose-300">❌ Inestable</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 mb-2 leading-relaxed">
-                      <strong>¿Por qué es inestable?</strong> La corriente de base queda rígidamente fijada por la malla de entrada sin importar qué ocurra en el transistor:
+                      <strong>¿Por qué es inestable?</strong> Se alimenta la base mediante una fuente fija $V_{BB}$ a través de $R_B$ y el colector con $V_{CC}$. La corriente de base queda rígidamente fijada sin importar qué ocurra en el transistor:
                     </p>
                     <div class="p-1.5 rounded bg-white/80 dark:bg-slate-900/80 border border-rose-100 dark:border-rose-900/30 text-center font-mono my-1.5">
-                      $$I_B = \\frac{V_{CC} - V_{BE}}{R_B} = \\text{cte}$$
+                      $$I_B = \\frac{V_{BB} - V_{BE}}{R_B} = \\text{cte}$$
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
                       Al no haber resistencia en emisor ni realimentación, $I_C$ depende directamente del factor $\\beta$:
@@ -3807,7 +3810,7 @@ const MANUAL_TEORIA_E1 = {
                     </div>
                   </div>
                   <div class="mt-2.5 p-2 rounded-lg bg-rose-100/70 dark:bg-rose-900/40 text-[11px] text-rose-900 dark:text-rose-200">
-                    <strong>Consecuencia:</strong> La dispersión de $\\beta$ entre componentes del mismo modelo (ej. 100 a 300, $+200\\%$) o el aumento térmico ($\\approx +0.5\\%/^{\\circ}\\text{C}$) duplican o triplican $I_C$, colapsando $V_{CE} = V_{CC} - I_C R_C$ hasta la <strong>saturación</strong> o causando embalamiento térmico.
+                    <strong>Consecuencia:</strong> La dispersión de $\\beta$ entre transistores (ej. 100 a 300, $+200\\%$) o el aumento térmico ($\\approx +0.5\\%/^{\\circ}\\text{C}$) multiplican $I_C$, colapsando $V_{CE} = V_{CC} - I_C R_C$ hasta la <strong>saturación</strong>. <em>(Nota: Si se alimenta todo con una única fuente compartida, $V_{BB} = V_{CC}$).</em>
                   </div>
                 </div>
 
