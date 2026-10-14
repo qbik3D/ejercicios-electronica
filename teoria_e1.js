@@ -3091,7 +3091,7 @@ const MANUAL_TEORIA_E1 = {
                 📊 Estructura Física NPN vs. Símbolo Circuital y Convenios de Corriente
               </span>
               <div class="flex justify-center overflow-x-auto">
-                <svg viewBox="0 0 680 230" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 520px;">
+                <svg viewBox="0 0 680 255" class="w-full max-w-[680px] text-xs font-sans select-none" style="min-width: 520px;">
                   <defs>
                     <marker id="bjt-arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
                       <polygon points="0 0, 6 3, 0 6" fill="#3b82f6"/>
@@ -3105,120 +3105,124 @@ const MANUAL_TEORIA_E1 = {
                     <marker id="bjt-arr-amber" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
                       <polygon points="0 0, 6 3, 0 6" fill="#f59e0b"/>
                     </marker>
+                    <marker id="bjt-arr-slate" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#64748b"/>
+                    </marker>
+                    <marker id="bjt-arr-indigo" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#6366f1"/>
+                    </marker>
                   </defs>
 
                   <!-- ================= PARTE IZQUIERDA: FÍSICA NPN ================= -->
                   <g>
                     <!-- Título Física -->
-                    <text x="160" y="22" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Física del Semiconductor (NPN en ZAD)</text>
+                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Física del Semiconductor (NPN en ZAD)</text>
+
+                    <!-- Junturas indicadas arriba de los bloques -->
+                    <text x="105" y="48" text-anchor="middle" fill="#64748b" font-size="8">J<tspan font-size="70%" dy="1.5">BE</tspan><tspan font-size="100%" dy="-1.5"> (Directa)</tspan></text>
+                    <text x="162" y="48" text-anchor="middle" fill="#64748b" font-size="8">J<tspan font-size="70%" dy="1.5">BC</tspan><tspan font-size="100%" dy="-1.5"> (Inversa)</tspan></text>
 
                     <!-- Emisor N+ -->
-                    <rect x="35" y="45" width="75" height="120" rx="3" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="2"/>
-                    <text x="72" y="70" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="12">Emisor (N⁺)</text>
-                    <text x="72" y="86" text-anchor="middle" fill="#64748b" font-size="9">Dopado Alto</text>
-                    <text x="72" y="100" text-anchor="middle" fill="#64748b" font-size="9">Inyección masiva</text>
-                    <text x="72" y="135" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="14">e⁻ e⁻ e⁻</text>
+                    <rect x="25" y="55" width="80" height="125" rx="3" fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="65" y="78" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">Emisor (N⁺)</text>
+                    <text x="65" y="93" text-anchor="middle" fill="#64748b" font-size="8.5">Dopado muy alto</text>
+                    <text x="65" y="106" text-anchor="middle" fill="#64748b" font-size="8.5">Inyección masiva</text>
+                    <text x="65" y="158" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="13">e⁻ e⁻ e⁻</text>
 
-                    <!-- Base P (Estrecha) -->
-                    <rect x="110" y="45" width="38" height="120" rx="2" fill="#ec4899" fill-opacity="0.18" stroke="#ec4899" stroke-width="2"/>
-                    <text x="129" y="70" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">Base</text>
-                    <text x="129" y="85" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">(P)</text>
-                    <text x="129" y="105" text-anchor="middle" fill="#94a3b8" font-size="8">Fina</text>
-                    <text x="129" y="117" text-anchor="middle" fill="#94a3b8" font-size="8">W<tspan baseline-shift="sub" font-size="70%">B</tspan> ≪ L<tspan baseline-shift="sub" font-size="70%">n</tspan></text>
-                    <text x="129" y="145" text-anchor="middle" font-weight="bold" fill="#db2777" font-size="10">h⁺ (~1%)</text>
+                    <!-- Base P (Estrecha pero con ancho suficiente: 55px) -->
+                    <rect x="105" y="55" width="55" height="125" rx="2" fill="#ec4899" fill-opacity="0.14" stroke="#ec4899" stroke-width="2"/>
+                    <text x="132" y="75" text-anchor="middle" font-weight="bold" fill="#db2777" font-size="10.5">Base (P)</text>
+                    <text x="132" y="89" text-anchor="middle" fill="#94a3b8" font-size="8">Muy fina</text>
+                    <text x="132" y="102" text-anchor="middle" fill="#94a3b8" font-size="8"><tspan font-style="italic">W</tspan><tspan font-size="70%" dy="1.5">B</tspan><tspan font-size="100%" dy="-1.5"> ≪ </tspan><tspan font-style="italic">L</tspan><tspan font-size="70%" dy="1.5">n</tspan></text>
+                    <text x="132" y="168" text-anchor="middle" font-weight="bold" fill="#db2777" font-size="9">h⁺ (~1%)</text>
 
                     <!-- Colector N -->
-                    <rect x="148" y="45" width="132" height="120" rx="3" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="2"/>
-                    <text x="214" y="70" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="12">Colector (N)</text>
-                    <text x="214" y="86" text-anchor="middle" fill="#64748b" font-size="9">Dopado Moderado</text>
-                    <text x="214" y="100" text-anchor="middle" fill="#64748b" font-size="9">Gran Área (disipación)</text>
-                    <text x="214" y="135" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">Recolección de e⁻</text>
+                    <rect x="160" y="55" width="135" height="125" rx="3" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-width="2"/>
+                    <text x="227" y="78" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">Colector (N)</text>
+                    <text x="227" y="93" text-anchor="middle" fill="#64748b" font-size="8.5">Dopado moderado</text>
+                    <text x="227" y="106" text-anchor="middle" fill="#64748b" font-size="8.5">Gran área de disipación</text>
+                    <text x="227" y="158" text-anchor="middle" font-weight="bold" fill="#059669" font-size="10">Recolección de e⁻ (~99%)</text>
 
-                    <!-- Flujo principal de electrones (Flecha ámbar) -->
-                    <line x1="85" y1="115" x2="195" y2="115" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 2" marker-end="url(#bjt-arr-amber)"/>
-                    <text x="140" y="132" text-anchor="middle" fill="#d97706" font-size="8.5" font-weight="bold">Difusión ~99% de e⁻</text>
+                    <!-- Flujo principal de electrones (Flecha ámbar, despejada) -->
+                    <line x1="72" y1="130" x2="192" y2="130" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2" marker-end="url(#bjt-arr-amber)"/>
+                    <text x="132" y="123" text-anchor="middle" fill="#d97706" font-size="7.5" font-weight="bold">Difusión ~99% de e⁻</text>
 
-                    <!-- Terminales de conexión y corrientes -->
-                    <!-- E -->
-                    <line x1="72" y1="165" x2="72" y2="200" stroke="#3b82f6" stroke-width="2.5"/>
-                    <circle cx="72" cy="200" r="4" fill="#3b82f6"/>
-                    <text x="72" y="215" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">E</text>
-                    <line x1="86" y1="174" x2="86" y2="194" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#bjt-arr-blue)"/>
-                    <text x="92" y="188" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">E</tspan> ↓</text>
+                    <!-- Terminal Base B (Arriba, bien posicionado) -->
+                    <line x1="132" y1="55" x2="132" y2="35" stroke="#ec4899" stroke-width="2"/>
+                    <circle cx="132" cy="35" r="3.5" fill="#ec4899"/>
+                    <text x="120" y="38" text-anchor="end" font-weight="bold" fill="#db2777" font-size="11">B</text>
+                    <line x1="144" y1="30" x2="144" y2="50" stroke="#ef4444" stroke-width="1.6" marker-end="url(#bjt-arr-red)"/>
+                    <text x="150" y="42" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="8.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan></text>
 
-                    <!-- B -->
-                    <line x1="129" y1="45" x2="129" y2="18" stroke="#ec4899" stroke-width="2"/>
-                    <circle cx="129" cy="18" r="4" fill="#ec4899"/>
-                    <text x="129" y="10" text-anchor="middle" font-weight="bold" fill="#ec4899" font-size="11">B</text>
-                    <line x1="140" y1="20" x2="140" y2="40" stroke="#ef4444" stroke-width="1.6" marker-end="url(#bjt-arr-red)"/>
-                    <text x="146" y="33" text-anchor="start" font-weight="bold" fill="#ef4444" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> ↓</text>
+                    <!-- Terminal Emisor E (Abajo) -->
+                    <line x1="65" y1="180" x2="65" y2="218" stroke="#3b82f6" stroke-width="2.5"/>
+                    <circle cx="65" cy="218" r="3.5" fill="#3b82f6"/>
+                    <text x="65" y="234" text-anchor="middle" font-weight="bold" fill="#3b82f6" font-size="11">E</text>
+                    <line x1="80" y1="188" x2="80" y2="212" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#bjt-arr-blue)"/>
+                    <text x="86" y="203" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">E</tspan></text>
 
-                    <!-- C -->
-                    <line x1="214" y1="165" x2="214" y2="200" stroke="#10b981" stroke-width="2.5"/>
-                    <circle cx="214" cy="200" r="4" fill="#10b981"/>
-                    <text x="214" y="215" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">C</text>
-                    <line x1="228" y1="194" x2="228" y2="174" stroke="#10b981" stroke-width="1.6" marker-end="url(#bjt-arr-green)"/>
-                    <text x="234" y="188" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↑</text>
-
-                    <!-- Junturas indicadas -->
-                    <text x="110" y="40" text-anchor="middle" fill="#64748b" font-size="8">J<tspan baseline-shift="sub" font-size="70%">BE</tspan> (Dir)</text>
-                    <text x="148" y="40" text-anchor="middle" fill="#64748b" font-size="8">J<tspan baseline-shift="sub" font-size="70%">BC</tspan> (Inv)</text>
+                    <!-- Terminal Colector C (Abajo) -->
+                    <line x1="227" y1="180" x2="227" y2="218" stroke="#10b981" stroke-width="2.5"/>
+                    <circle cx="227" cy="218" r="3.5" fill="#10b981"/>
+                    <text x="227" y="234" text-anchor="middle" font-weight="bold" fill="#10b981" font-size="11">C</text>
+                    <line x1="242" y1="212" x2="242" y2="188" stroke="#10b981" stroke-width="1.6" marker-end="url(#bjt-arr-green)"/>
+                    <text x="248" y="203" text-anchor="start" font-weight="bold" fill="#10b981" font-size="9"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan></text>
                   </g>
 
                   <!-- Divisor vertical -->
-                  <line x1="320" y1="20" x2="320" y2="215" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1"/>
+                  <line x1="325" y1="20" x2="325" y2="245" stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1"/>
 
                   <!-- ================= PARTE DERECHA: SÍMBOLO NPN ================= -->
                   <g transform="translate(340, 0)">
                     <!-- Título Símbolo -->
-                    <text x="160" y="22" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Símbolo Esquemático NPN (IEEE)</text>
+                    <text x="160" y="20" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="12">Símbolo Esquemático NPN (IEEE)</text>
 
                     <!-- Transistor NPN Línea Base -->
-                    <line x1="140" y1="80" x2="140" y2="140" stroke="#475569" stroke-width="3.5" stroke-linecap="round"/>
+                    <line x1="140" y1="80" x2="140" y2="145" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
 
                     <!-- Terminal Base -->
-                    <line x1="80" y1="110" x2="140" y2="110" stroke="#475569" stroke-width="2"/>
-                    <circle cx="80" cy="110" r="4" fill="#ec4899"/>
-                    <text x="68" y="114" text-anchor="end" font-weight="bold" fill="#ec4899" font-size="12">B</text>
+                    <line x1="75" y1="112" x2="140" y2="112" stroke="#475569" stroke-width="2"/>
+                    <circle cx="75" cy="112" r="3.5" fill="#ec4899"/>
+                    <text x="63" y="116" text-anchor="end" font-weight="bold" fill="#db2777" font-size="12">B</text>
 
                     <!-- Colector (Rama superior) -->
-                    <line x1="140" y1="92" x2="195" y2="60" stroke="#475569" stroke-width="2"/>
+                    <line x1="140" y1="95" x2="195" y2="60" stroke="#475569" stroke-width="2"/>
                     <line x1="195" y1="60" x2="195" y2="30" stroke="#475569" stroke-width="2"/>
-                    <circle cx="195" cy="30" r="4" fill="#10b981"/>
-                    <text x="208" y="34" text-anchor="start" font-weight="bold" fill="#10b981" font-size="12">C</text>
+                    <circle cx="195" cy="30" r="3.5" fill="#10b981"/>
+                    <text x="195" y="20" text-anchor="middle" font-weight="bold" fill="#059669" font-size="12">C</text>
 
                     <!-- Emisor (Rama inferior con flecha hacia afuera) -->
-                    <line x1="140" y1="128" x2="195" y2="160" stroke="#475569" stroke-width="2"/>
-                    <!-- Flecha saliente NPN -->
-                    <polygon points="180,157 195,160 188,145" fill="#ef4444"/>
-                    <line x1="195" y1="160" x2="195" y2="190" stroke="#475569" stroke-width="2"/>
-                    <circle cx="195" cy="190" r="4" fill="#3b82f6"/>
-                    <text x="208" y="194" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="12">E</text>
+                    <line x1="140" y1="130" x2="195" y2="165" stroke="#475569" stroke-width="2"/>
+                    <!-- Flecha saliente NPN normalizada -->
+                    <polygon points="182,161 195,165 188,150" fill="#ef4444"/>
+                    <line x1="195" y1="165" x2="195" y2="218" stroke="#475569" stroke-width="2"/>
+                    <circle cx="195" cy="218" r="3.5" fill="#3b82f6"/>
+                    <text x="195" y="235" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="12">E</text>
 
-                    <!-- Corrientes (Flechas con marcador) -->
+                    <!-- Corrientes con flechas únicas y limpias (sin flechas redundantes en el texto) -->
                     <!-- I_B entrando a base -->
-                    <line x1="88" y1="100" x2="125" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#bjt-arr-red)"/>
-                    <text x="105" y="93" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">B</tspan> →</text>
+                    <line x1="88" y1="102" x2="122" y2="102" stroke="#ef4444" stroke-width="2" marker-end="url(#bjt-arr-red)"/>
+                    <text x="105" y="96" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">B</tspan></text>
 
                     <!-- I_C bajando a colector -->
-                    <line x1="210" y1="45" x2="210" y2="75" stroke="#10b981" stroke-width="2" marker-end="url(#bjt-arr-green)"/>
-                    <text x="226" y="62" text-anchor="start" font-weight="bold" fill="#10b981" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">C</tspan> ↓</text>
+                    <line x1="210" y1="42" x2="210" y2="70" stroke="#10b981" stroke-width="2" marker-end="url(#bjt-arr-green)"/>
+                    <text x="218" y="58" text-anchor="start" font-weight="bold" fill="#059669" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">C</tspan></text>
 
                     <!-- I_E saliendo de emisor -->
-                    <line x1="210" y1="160" x2="210" y2="185" stroke="#3b82f6" stroke-width="2" marker-end="url(#bjt-arr-blue)"/>
-                    <text x="226" y="175" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="10.5">I<tspan baseline-shift="sub" font-size="70%">E</tspan> ↓</text>
+                    <line x1="210" y1="175" x2="210" y2="205" stroke="#3b82f6" stroke-width="2" marker-end="url(#bjt-arr-blue)"/>
+                    <text x="218" y="192" text-anchor="start" font-weight="bold" fill="#2563eb" font-size="9.5"><tspan font-style="italic">I</tspan><tspan font-size="75%" dy="2">E</tspan></text>
 
-                    <!-- Tensiones indicadas -->
-                    <!-- Tensión V_BE -->
-                    <text x="115" y="150" text-anchor="middle" font-weight="bold" fill="#6366f1" font-size="10.5">V<tspan baseline-shift="sub" font-size="70%">BE</tspan> ≈ 0.7 V</text>
+                    <!-- Caída de tensión V_BE (Base-Emisor): polaridad (+) en Base, (-) en Emisor y flecha de caída -->
+                    <text x="75" y="142" font-size="8.5" font-weight="bold" fill="#db2777">(+)</text>
+                    <text x="175" y="210" font-size="8.5" font-weight="bold" fill="#2563eb">(−)</text>
+                    <path d="M 85 136 Q 105 185 170 198" fill="none" stroke="#6366f1" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#bjt-arr-indigo)"/>
+                    <text x="122" y="180" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="9.5"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">BE</tspan><tspan font-size="100%" dy="-2"> ≈ 0.7 V</tspan></text>
 
-                    <!-- Cota V_CE entre Colector y Emisor -->
-                    <line x1="242" y1="42" x2="242" y2="180" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2,2"/>
-                    <polygon points="240,48 242,40 244,48" fill="#64748b"/>
-                    <polygon points="240,174 242,182 244,174" fill="#64748b"/>
-                    <text x="250" y="114" text-anchor="start" font-weight="bold" fill="#475569" font-size="10.5">V<tspan baseline-shift="sub" font-size="70%">CE</tspan></text>
-                    <text x="250" y="46" text-anchor="start" font-weight="bold" fill="#10b981" font-size="8.5">(+)</text>
-                    <text x="250" y="184" text-anchor="start" font-weight="bold" fill="#3b82f6" font-size="8.5">(−)</text>
+                    <!-- Caída de tensión V_CE (Colector-Emisor): FLECHA ÚNICA hacia abajo (-) de Colector (+) a Emisor (-) -->
+                    <line x1="248" y1="48" x2="248" y2="204" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#bjt-arr-slate)"/>
+                    <text x="248" y="38" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">(+)</text>
+                    <text x="248" y="222" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="8.5">(−)</text>
+                    <text x="258" y="125" text-anchor="start" font-weight="bold" fill="#334155" dark:fill="#cbd5e1" font-size="10"><tspan font-style="italic">V</tspan><tspan font-size="75%" dy="2">CE</tspan></text>
                   </g>
                 </svg>
               </div>
