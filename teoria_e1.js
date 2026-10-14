@@ -3393,8 +3393,8 @@ const MANUAL_TEORIA_E1 = {
                     <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Llave ON</span>
                   </div>
                   <div class="text-[11px] text-slate-500 dark:text-slate-400 mb-2 space-y-0.5">
-                    <div>• Juntura BE: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BE} \\approx 0.7 - 0.8\\text{ V}$)</div>
-                    <div>• Juntura BC: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BC} &gt; 0.4\\text{ V}$)</div>
+                    <div>• Juntura BE: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BE} \approx 0.7 - 0.8\text{ V}$)</div>
+                    <div>• Juntura BC: <strong class="text-amber-600 dark:text-amber-400">Directa</strong> ($V_{BC} > 0.4\text{ V}$)</div>
                   </div>
                   <!-- SVG Circuito Saturación -->
                   <div class="py-1">
