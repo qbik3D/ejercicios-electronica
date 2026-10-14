@@ -705,63 +705,62 @@ const MANUAL_TEORIA_E1 = {
                   <!-- Panel Izquierdo: Esquema del Divisor de Corriente -->
                   <g transform="translate(15, 10)">
                     <rect x="0" y="0" width="350" height="200" rx="10" fill="#6366f1" fill-opacity="0.04" stroke="#6366f1" stroke-opacity="0.4" stroke-width="1.2"/>
-                    <text x="175" y="18" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="11">Divisor de Corriente (2 Ramas en Paralelo)</text>
-                    <text x="175" y="30" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> = I₁ + I₂ | Misma caída V entre nodos comunes</text>
+                    <text x="175" y="16" text-anchor="middle" font-weight="bold" fill="#4f46e5" font-size="11">Divisor de Corriente (2 Ramas en Paralelo)</text>
+                    <text x="175" y="27" text-anchor="middle" fill="#64748b" font-size="8.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> = I₁ + I₂ | Misma caída V entre nodos comunes</text>
 
                     <!-- Corriente de entrada I_in -->
-                    <line x1="25" y1="50" x2="110" y2="50" stroke="#4f46e5" stroke-width="2.2"/>
-                    <polygon points="110,46 118,50 110,54" fill="#4f46e5"/>
-                    <text x="65" y="42" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="10">I<tspan baseline-shift="sub" font-size="70%">in</tspan> ➔</text>
+                    <line x1="25" y1="57" x2="70" y2="57" stroke="#4f46e5" stroke-width="2.2"/>
+                    <polygon points="52,53 60,57 52,61" fill="#4f46e5"/>
+                    <text x="42" y="48" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> ➔</text>
 
                     <!-- Nodo superior de bifurcación -->
-                    <circle cx="130" cy="50" r="4.5" fill="#4f46e5"/>
-                    <text x="130" y="38" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Sup (+)</text>
+                    <line x1="70" y1="57" x2="190" y2="57" stroke="#64748b" stroke-width="2"/>
+                    <polygon points="115,54 121,57 115,60" fill="#4f46e5"/>
+                    <circle cx="130" cy="57" r="4.5" fill="#4f46e5"/>
+                    <text x="130" y="47" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Sup (+)</text>
 
                     <!-- Bifurcación Rama 1 (Izquierda) -->
-                    <line x1="130" y1="50" x2="70" y2="50" stroke="#64748b" stroke-width="2"/>
-                    <line x1="70" y1="50" x2="70" y2="65" stroke="#64748b" stroke-width="2"/>
-                    <line x1="62" y1="62" x2="62" y2="78" stroke="#059669" stroke-width="1.8"/>
-                    <polygon points="59,78 62,84 65,78" fill="#059669"/>
+                    <line x1="70" y1="57" x2="70" y2="68" stroke="#64748b" stroke-width="2"/>
+                    <line x1="60" y1="64" x2="60" y2="80" stroke="#059669" stroke-width="1.8"/>
+                    <polygon points="57,80 60,86 63,80" fill="#059669"/>
                     <text x="50" y="74" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">I₁</text>
-                    <path d="M 70 65 L 64 71 L 76 79 L 64 87 L 76 95 L 64 103 L 70 109" stroke="#334155" stroke-width="2.2" fill="none"/>
-                    <line x1="70" y1="109" x2="70" y2="140" stroke="#64748b" stroke-width="2"/>
-                    <line x1="70" y1="140" x2="130" y2="140" stroke="#64748b" stroke-width="2"/>
-                    <text x="88" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="10.5">R₁</text>
+                    <path d="M 70 68 L 64 74 L 76 82 L 64 90 L 76 98 L 64 106 L 70 112" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="70" y1="112" x2="70" y2="144" stroke="#64748b" stroke-width="2"/>
+                    <text x="88" y="92" text-anchor="start" fill="#334155" font-weight="bold" font-size="10.5">R₁</text>
 
                     <!-- Bifurcación Rama 2 (Derecha) -->
-                    <line x1="130" y1="50" x2="190" y2="50" stroke="#64748b" stroke-width="2"/>
-                    <line x1="190" y1="50" x2="190" y2="65" stroke="#64748b" stroke-width="2"/>
-                    <line x1="182" y1="62" x2="182" y2="78" stroke="#059669" stroke-width="1.8"/>
-                    <polygon points="179,78 182,84 185,78" fill="#059669"/>
+                    <line x1="190" y1="57" x2="190" y2="68" stroke="#64748b" stroke-width="2"/>
+                    <line x1="180" y1="64" x2="180" y2="80" stroke="#059669" stroke-width="1.8"/>
+                    <polygon points="177,80 180,86 183,80" fill="#059669"/>
                     <text x="170" y="74" text-anchor="end" fill="#059669" font-weight="bold" font-size="9">I₂</text>
-                    <path d="M 190 65 L 184 71 L 196 79 L 184 87 L 196 95 L 184 103 L 190 109" stroke="#334155" stroke-width="2.2" fill="none"/>
-                    <line x1="190" y1="109" x2="190" y2="140" stroke="#64748b" stroke-width="2"/>
-                    <line x1="190" y1="140" x2="130" y2="140" stroke="#64748b" stroke-width="2"/>
-                    <text x="208" y="89" text-anchor="start" fill="#334155" font-weight="bold" font-size="10.5">R₂</text>
+                    <path d="M 190 68 L 184 74 L 196 82 L 184 90 L 196 98 L 184 106 L 190 112" stroke="#334155" stroke-width="2.2" fill="none"/>
+                    <line x1="190" y1="112" x2="190" y2="144" stroke="#64748b" stroke-width="2"/>
+                    <text x="208" y="92" text-anchor="start" fill="#334155" font-weight="bold" font-size="10.5">R₂</text>
 
                     <!-- Nodo inferior de recombinación -->
-                    <circle cx="130" cy="140" r="4.5" fill="#4f46e5"/>
-                    <text x="130" y="155" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Inf (-)</text>
+                    <line x1="70" y1="144" x2="190" y2="144" stroke="#64748b" stroke-width="2"/>
+                    <circle cx="130" cy="144" r="4.5" fill="#4f46e5"/>
+                    <text x="130" y="158" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9">Nodo Inf (-)</text>
 
                     <!-- Corriente de salida reunida -->
-                    <line x1="130" y1="140" x2="230" y2="140" stroke="#4f46e5" stroke-width="2.2"/>
-                    <polygon points="230,136 238,140 230,144" fill="#4f46e5"/>
-                    <text x="180" y="132" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> ➔</text>
+                    <line x1="190" y1="144" x2="245" y2="144" stroke="#4f46e5" stroke-width="2.2"/>
+                    <polygon points="245,140 253,144 245,148" fill="#4f46e5"/>
+                    <text x="218" y="136" text-anchor="middle" fill="#4f46e5" font-weight="bold" font-size="9.5">I<tspan baseline-shift="sub" font-size="70%">in</tspan> ➔</text>
 
                     <!-- Cuadro fórmula mnemotécnica -->
-                    <rect x="235" y="55" width="105" height="75" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+                    <rect x="235" y="56" width="105" height="74" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
                     <text x="287" y="70" text-anchor="middle" fill="#3730a3" font-weight="bold" font-size="8.5">Fórmulas:</text>
                     <text x="287" y="86" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₁ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₂/(R₁+R₂)</text>
-                    <text x="287" y="103" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₁/(R₁+R₂)</text>
-                    <text x="287" y="120" text-anchor="middle" fill="#047857" font-size="7.5">Resistencia opuesta</text>
+                    <text x="287" y="102" text-anchor="middle" fill="#1e1b4b" font-weight="bold" font-size="8">I₂ = I<tspan baseline-shift="sub" font-size="70%">in</tspan> · R₁/(R₁+R₂)</text>
+                    <text x="287" y="118" text-anchor="middle" fill="#047857" font-size="7.5">Resistencia opuesta</text>
 
                     <!-- Cota de tensión común V (sentido único del nodo (-) al (+)) -->
-                    <line x1="15" y1="56" x2="15" y2="134" stroke="#ef4444" stroke-width="1.2"/>
-                    <polygon points="12,61 15,55 18,61" fill="#ef4444"/>
-                    <text x="22" y="98" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="8.5">V</text>
+                    <line x1="15" y1="138" x2="15" y2="63" stroke="#ef4444" stroke-width="1.2"/>
+                    <polygon points="12,68 15,62 18,68" fill="#ef4444"/>
+                    <text x="22" y="102" text-anchor="start" fill="#ef4444" font-weight="bold" font-size="8.5">V</text>
 
-                    <rect x="15" y="165" width="320" height="26" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-                    <text x="175" y="182" text-anchor="middle" fill="#334155" font-size="8.5">Principio: La rama de menor resistencia desvía mayor corriente</text>
+                    <rect x="15" y="167" width="320" height="24" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="175" y="183" text-anchor="middle" fill="#334155" font-size="8.5">Principio: La rama de menor resistencia desvía mayor corriente</text>
                   </g>
 
                   <!-- Panel Derecho: Casos Particulares y Límites -->
