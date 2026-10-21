@@ -148,7 +148,7 @@ const MATERIAS_CONFIG = {
         numero: 3,
         titulo: 'Unidad 3: Circuitos Integrados Lineales',
         tituloCompleto: 'Unidad 3: Amplificador Diferencial, Cargas Activas y Amplificadores Operacionales',
-        descripcion: 'Par diferencial BJT/MOS, fuentes y espejos Widlar/Wilson, CMRR, análisis interno del 741 y arquitectura Rail-to-Rail',
+        descripcion: 'Par diferencial BJT/MOS, espejos Widlar/Wilson, topologías de Op-Amp (Inversor, No Inversor, Sumador, Integrador, Derivador), errores estáticos (Vos, IB, Ios, Rc, Offset Null), derivas térmicas y PSRR',
         icono: '🔬',
         badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300'
       },

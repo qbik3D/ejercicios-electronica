@@ -1943,10 +1943,10 @@ const MANUAL_TEORIA_EA1 = {
     {
       id: 'ea1-u3',
       numero: 3,
-      titulo: 'Unidad 3: Circuitos Integrados Lineales, Par Diferencial y Fuentes Activas',
+      titulo: 'Unidad 3: Circuitos Integrados Lineales, Par Diferencial, Fuentes Activas y Amplificadores Operacionales',
       icono: '🔬',
       badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300',
-      introduccion: 'Esta unidad cubre los bloques constitutivos fundamentales de la microelectrónica analógica y del amplificador operacional monolítico: el par diferencial BJT, su respuesta en gran y pequeña señal, el rechazo de modo común (CMRR), fuentes y espejos de corriente activos (simple, Wilson y Widlar), cargas activas con conversión diferencial-asimétrica, y la arquitectura interna de tres etapas del estándar uA741.',
+      introduccion: 'Esta unidad cubre los bloques constitutivos de la microelectrónica analógica y el estudio integral del amplificador operacional: par diferencial BJT en gran y pequeña señal, CMRR, fuentes y espejos activos (simple, Wilson, Widlar), cargas activas, arquitectura interna del uA741, topologías lineales cardinales (inversor, no inversor, sumador, integrador compensado en baja frecuencia, derivador estabilizado en alta frecuencia), modelo real con errores estáticos de continua (Vos, IB, Ios, resistencia de compensación Rc, ajuste por potenciómetro de Offset Null), derivas térmicas y relación de rechazo a la fuente de alimentación (PSRR).',
       secciones: [
         {
           id: 'u3-par-diferencial-teoria',
@@ -2506,63 +2506,358 @@ const MANUAL_TEORIA_EA1 = {
           `
         },
         {
-          id: 'u3-formulario',
-          titulo: '3.5 Formulario de Examen y Síntesis - Unidad 3',
+          id: 'u3-opamp-topologias-lineales',
+          titulo: '3.5 Amplificadores Operacionales: Hipótesis Ideal y Topologías Lineales Fundamentales',
           contenido: `
-            <div class="overflow-x-auto my-3">
-              <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
-                <thead>
-                  <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
-                    <th class="p-2.5 border border-slate-200 dark:border-slate-800">Parámetro</th>
-                    <th class="p-2.5 border border-slate-200 dark:border-slate-800">Expresión Analítica</th>
-                    <th class="p-2.5 border border-slate-200 dark:border-slate-800">Detalle Clave</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ganancia Diferencial Balanceada</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$A_{dd} = -g_m R_C$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Tomada entre ambos colectores</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ganancia Diferencial Asimétrica</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$A_d = -\\frac{1}{2} g_m R_C$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Tomada en un solo colector</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ganancia en Modo Común</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$A_c \\approx -\\frac{R_C}{2 R_{EE}}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Medio circuito con $2 R_{EE}$</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">CMRR</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$g_m R_{EE} = \\frac{I_{EE} R_{EE}}{2 V_T}$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$\\text{CMRR}_{dB} = 20 \\log_{10}(\\text{CMRR})$</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia Entrada Diferencial</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_{id} = 2 r_{\\pi} = 2(1+\\beta)r_e$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Masa virtual en emisor</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ecuación Fuente Widlar</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E = \\frac{V_T}{I_o} \\ln\\left( \\frac{I_{ref}}{I_o} \\right)$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Genera microamperes en CI</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Carga Activa PNP</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800">$A_d = -g_m (r_{o2} \\parallel r_{o4})$</td>
-                    <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ganancia unipolar $\\ge 1000$</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="pt-2 flex justify-end">
-              <button onclick="filtrarUnidad('ea1-u3'); volverAEjercicios();" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1">
-                <span>Practicar ejercicios guiados de la Unidad 3</span>
-                <span>→</span>
-              </button>
-            </div>
+<p class="mb-3">El <strong>Amplificador Operacional (Op-Amp)</strong> es un amplificador diferencial de muy alta ganancia en tensión acoplado en continua, diseñado para operar con redes de realimentación negativa externa que determinen con extrema precisión su función de transferencia global, independizándola de las tolerancias y no-linealidades internas de los transistores integrados.</p>
+
+      <div class="p-3.5 my-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200">
+        <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <span>⚡</span> Hipótesis Cardinales del Amplificador Operacional Ideal
+        </h5>
+        <ul class="list-disc pl-5 space-y-1 text-xs">
+          <li><strong>Ganancia de tensión a lazo abierto infinita:</strong> $A_{OL} \\to \\infty$ (típicamente $10^5 \\text{ a } 10^6\\text{ V/V}$ o $100\\text{ a } 120\\text{ dB}$).</li>
+          <li><strong>Resistencia de entrada diferencial infinita:</strong> $R_{id} \\to \\infty$ ($> 2\\text{ M}\\Omega$ en BJT, $> 10^{12}\\,\\Omega$ en BiFET/CMOS). Por ende, las corrientes entrantes son nulas: $i^+ = i^- = 0$.</li>
+          <li><strong>Resistencia de salida nula:</strong> $R_o = 0$ ($50\\text{ a } 75\\,\\Omega$ en lazo abierto, $< 0.1\\,\\Omega$ en lazo cerrado con realimentación).</li>
+          <li><strong>Ancho de banda infinito:</strong> $BW \\to \\infty$ (sin polos ni retardo de fase parásito en el modelo ideal).</li>
+          <li><strong>Tensión y corrientes de offset nulas:</strong> $V_{os} = 0$, $I_B = 0$, $I_{os} = 0$.</li>
+          <li><strong>Rechazo de Modo Común perfecto:</strong> $\\text{CMRR} \\to \\infty$ ($A_c = 0$).</li>
+        </ul>
+      </div>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Principio de Cortocircuito Virtual y Masa Virtual</h5>
+      <p class="mb-2">Al cerrar un lazo de <em>realimentación negativa</em> desde la salida hacia la entrada inversora, la tensión de salida $v_o$ se mantiene en un rango lineal acotado entre los rieles de alimentación ($pm V_{sat}$). Dado que $v_o = A_{OL}(v^+ - v^-)$ y $A_{OL} \\to \\infty$:</p>
+      $$v^+ - v^- = \\frac{v_o}{A_{OL}} \\approx 0 \\implies \\mathbf{v^+ \\approx v^-}$$
+      <p class="my-2">Esta condición se conoce como <strong>cortocircuito virtual</strong>: los terminales no inversor e inversor se encuentran prácticamente al mismo potencial eléctrico sin existir una conexión galvánica o paso de corriente física entre ellos ($i^+ = i^- = 0$). Si el terminal no inversor está conectado a masa ($v^+ = 0$), el terminal inversor se convierte en una <strong>Masa Virtual ($v^- = 0$)</strong>.</p>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Amplificador Inversor</h5>
+      <p class="mb-2">La señal de entrada $v_i$ se inyecta al terminal inversor a través de $R_1$, con el resistor $R_f$ en lazo cerrado hacia la salida y el terminal no inversor referenciado a masa ($v^+ = 0$):</p>
+      <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+        <li>Por cortocircuito virtual: $v^- = v^+ = 0\\text{ V}$ (masa virtual).</li>
+        <li>Aplicando la Ley de Corrientes de Kirchhoff (LCK) en el nodo inversor (donde $i^- = 0$):
+          $$\\frac{v_i - 0}{R_1} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\frac{R_f}{R_1} v_i}$$
+        </li>
+        <li><strong>Ganancia de tensión a lazo cerrado:</strong> $\\mathbf{A_v = -\\frac{R_f}{R_1}}$. Presenta signo negativo (inversión de fase de $180^{\\circ}$).</li>
+        <li><strong>Resistencia de entrada:</strong> Vista desde la fuente $v_i$, como el otro extremo de $R_1$ está en masa virtual: $\\mathbf{R_{in} = R_1}$. Para no cargar a la etapa previa, $R_1$ debe ser grande, lo que exige resistencias $R_f$ de valores muy elevados cuando se diseñan altas ganancias.</li>
+        <li><strong>Resistencia de salida:</strong> $\\mathbf{R_{out} \\approx 0\\,\\Omega}$.</li>
+      </ol>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Amplificador No Inversor y Seguidor de Tensión (Buffer)</h5>
+      <p class="mb-2">La señal $v_i$ se aplica directamente a la entrada no inversora ($v^+ = v_i$). La red formada por $R_1$ y $R_f$ actúa como un divisor de tensión que muestrea la salida y la realimenta al terminal inversor:</p>
+      <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+        <li>Tensión en el terminal inversor por divisor resistivo (sin carga por $i^- = 0$):
+          $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right)$$
+        </li>
+        <li>Por cortocircuito virtual en lazo cerrado ($v^- = v^+ = v_i$):
+          $$v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) = v_i \\implies \\mathbf{v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) v_i}$$
+        </li>
+        <li><strong>Ganancia de tensión:</strong> $\\mathbf{A_v = 1 + \\frac{R_f}{R_1} \\ge 1}$. Siempre es no inversora (desfasaje de $0^{\\circ}$) y nunca puede ser inferior a la unidad.</li>
+        <li><strong>Resistencia de entrada colosal:</strong> $\\mathbf{R_{in} \\approx R_{id} \\cdot (1 + T) \\to \\infty}$ (decenas de gigaohms en la práctica). No consume corriente de la fuente de señal.</li>
+        <li><strong>Seguidor de Tensión (Buffer de ganancia unitaria):</strong> Haciendo $R_f = 0$ y $R_1 \\to \\infty$ (cortocircuito entre salida y entrada inversora):
+          $$\\mathbf{A_v = 1, \\quad R_{in} \\to \\infty, \\quad R_{out} \\to 0}$$
+          Esencial para adaptación de impedancias: aísla por completo fuentes de alta impedancia interna (como sensores piezoeléctricos o divisores resistivos) frente a cargas de baja resistencia.
+        </li>
+      </ol>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Amplificador Sumador Inversor Ponderado</h5>
+      <p class="mb-2">Permite combinar linealmente múltiples señales de entrada independientes ($v_1, v_2, \\dots, v_n$) acopladas a través de resistores ponderadores ($R_1, R_2, \\dots, R_n$) hacia el nodo de masa virtual:</p>
+      <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
+        $$\\sum_{k=1}^n \\frac{v_k - 0}{R_k} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\left( \\frac{R_f}{R_1} v_1 + \\frac{R_f}{R_2} v_2 + \\dots + \\frac{R_f}{R_n} v_n \\right) = -\\sum_{k=1}^n \\left( \\frac{R_f}{R_k} \\right) v_k}$$
+      </div>
+      <p class="text-xs sm:text-sm my-2"><strong>Propiedad de aislamiento mutuo:</strong> Como el nodo inversor se mantiene rígidamente en potencial de masa virtual ($0\\text{ V}$), la corriente que circula por una rama $i_k = v_k/R_k$ no produce ninguna variación de tensión que afecte a las demás ramas. No existe diafonía (*cross-talk*) entre los diferentes canales.</p>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">4. Amplificador Integrador: Ideal vs. Real Compensado en Baja Frecuencia</h5>
+      <p class="mb-2">El <strong>integrador inversor ideal</strong> sustituye el resistor de realimentación por un capacitor puro $C$:</p>
+      $$i(t) = \\frac{v_i(t)}{R_1} = -C \\frac{dv_o(t)}{dt} \\implies \\mathbf{v_o(t) = -\\frac{1}{R_1 C} \\int_0^t v_i(\\tau) d\\tau + v_o(0)}$$
+      <div class="p-3 my-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs">
+        <strong>⚠️ Vulnerabilidad Fatal del Integrador Ideal en Continua:</strong><br>
+        En continua ($\\omega \\to 0$), la impedancia del capacitor tiende a infinito ($X_C = \\frac{1}{\\omega C} \\to \\infty$). El amplificador se encuentra en lazo abierto ($A_{v,0} \\to A_{OL} \\approx 10^5$). Cualquier mínima tensión de offset de entrada ($V_{os}$) o corriente de polarización ($I_B$) cargará continuamente el capacitor a razón de $\\frac{dv_o}{dt} = -\\frac{V_{os}}{R_1 C} - \\frac{I_B}{C}$, llevando inexorablemente la salida a <strong>saturarse contra los rieles de alimentación ($pm V_{sat}$)</strong> en pocos segundos.
+      </div>
+      <p class="my-2"><strong>Solución de cátedra: Integrador Real Compensado con Fuga (Leaky Integrator):</strong><br>
+      Se conecta un resistor de alto valor $R_p$ en paralelo con el capacitor $C$ (típicamente $R_p \\approx 10 R_1$). Su función de transferencia en el dominio de Laplace es:</p>
+      $$\\mathbf{H(s) = -\\frac{R_p \\parallel \\frac{1}{sC}}{R_1} = -\\frac{R_p}{R_1} \\cdot \\frac{1}{1 + s R_p C}}$$
+      <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
+        <li><strong>Ganancia en continua acotada:</strong> Para $s = 0$, $A_{v,0} = -\\frac{R_p}{R_1}$. Al ser finita, restringe la amplificación del offset e impide la saturación estática.</li>
+        <li><strong>Frecuencia de corte inferior / esquina:</strong> $\\mathbf{f_c = \\frac{1}{2\\pi R_p C}}$. Determina el polo donde la ganancia cae $3\\text{ dB}$.</li>
+        <li><strong>Banda de integración matemática rigurosa:</strong> Para frecuencias $\\mathbf{f \\ge 10 f_c}$, se verifica que $\\omega R_p C \\ge 10 \\gg 1$. La función de transferencia se aproxima a la de un integrador ideal:
+          $$H(j\\omega) \\approx -\\frac{R_p}{R_1} \\frac{1}{j\\omega R_p C} = -\\frac{1}{j\\omega R_1 C}$$
+          con un error de fase menor a $5.7^{\\circ}$ respecto a los $-90^{\\circ}$ ideales.
+        </li>
+      </ul>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">5. Amplificador Derivador: Ideal vs. Real Estabilizado en Alta Frecuencia</h5>
+      <p class="mb-2">El <strong>derivador inversor ideal</strong> ubica un capacitor $C_1$ en serie con la entrada y un resistor $R_f$ en la realimentación:</p>
+      $$i(t) = C_1 \\frac{dv_i(t)}{dt} = -\\frac{v_o(t)}{R_f} \\implies \\mathbf{v_o(t) = -R_f C_1 \\frac{dv_i(t)}{dt}}$$
+      <div class="p-3 my-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200 text-xs">
+        <strong>⚠️ Vulnerabilidades Fatales del Derivador Ideal:</strong><br>
+        1. <strong>Ganancia creciente a $+20\\text{ dB/década}$ con la frecuencia:</strong> $|A_v(j\\omega)| = \\omega R_f C_1$. A altas frecuencias, la ganancia crece sin límite, amplificando exponencialmente el ruido térmico y electromagnético de alta frecuencia hasta eclipsar totalmente la señal útil.<br>
+        2. <strong>Inestabilidad en lazo cerrado:</strong> La reactancia capacitiva de entrada introduce un desfase adicional de $-90^{\\circ}$ en la ganancia de lazo $T(s) = \\beta(s) A_{OL}(s)$, destruyendo el margen de fase ($PM < 0$) y provocando oscilaciones violentas espontáneas.
+      </div>
+      <p class="my-2"><strong>Solución de cátedra: Derivador Práctico Estabilizado:</strong><br>
+      Se añade un resistor serie amortiguador $R_s$ con el capacitor de entrada $C_1$, y un capacitor de compensación en paralelo $C_f$ con el resistor de realimentación $R_f$:</p>
+      $$\\mathbf{H(s) = -\\frac{Z_f(s)}{Z_1(s)} = -\\frac{\\frac{R_f}{1 + s R_f C_f}}{R_s + \\frac{1}{s C_1}} = -\\frac{s R_f C_1}{(1 + s R_s C_1)(1 + s R_f C_f)}}$$
+      <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
+        <li><strong>Diseño simétrico de cátedra:</strong> Se adopta $\\tau_p = R_s C_1 = R_f C_f$, fijando un polo doble en:
+          $$\\mathbf{f_p = \\frac{1}{2\\pi R_s C_1} = \\frac{1}{2\\pi R_f C_f}}$$
+        </li>
+        <li><strong>Comportamiento en frecuencia:</strong>
+          <br>• Para $f < f_p$: el circuito se comporta como derivador lineal con $H(j\\omega) \\approx -j\\omega R_f C_1$.
+          <br>• En $f = f_p$: la ganancia alcanza su máximo absoluto $|A_{v,max}| = \\frac{R_f}{2 R_s}$.
+          <br>• Para $f > f_p$: la ganancia decae a $-20\\text{ dB/década}$, actuando como filtro pasa-bajos que atenúa ruidos y restaura un margen de fase seguro ($PM \\ge 45^{\\circ}$).
+        </li>
+      </ul>
+          `
+        },
+        {
+          id: 'u3-opamp-modelo-real-offset',
+          titulo: '3.6 Errores Estáticos de Continua en el Op-Amp Real: Offset, Corrientes de Polarización y Balance',
+          contenido: `
+<p class="mb-3">En el diseño de amplificadores de precisión, instrumentación y procesamiento en continua, las desviaciones respecto al modelo ideal producen una <strong>tensión de error de continua parásita en la salida</strong> ($V_{o,error}$) aun cuando todas las entradas estén rigurosamente conectadas a masa ($v_i = 0$). Estas imperfecciones se agrupan en tres parámetros fundamentales reflejados a la entrada del circuito integrado:</p>
+
+      <div class="overflow-x-auto my-3">
+        <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+              <th class="p-2 border border-slate-200 dark:border-slate-800">Parámetro</th>
+              <th class="p-2 border border-slate-200 dark:border-slate-800">Símbolo</th>
+              <th class="p-2 border border-slate-200 dark:border-slate-800">Origen Físico Microelectrónico</th>
+              <th class="p-2 border border-slate-200 dark:border-slate-800">Valores Típicos (BJT vs FET)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs">
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Tensión de Offset de Entrada</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$V_{os}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Asimetría de $V_{BE}$ y áreas de emisor en el par diferencial de entrada</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $1\\text{ a } 5\\text{ mV}$<br>Precisión (OP07): $< 75\\,\\mu\\text{V}$<br>FET: $3\\text{ a } 10\\text{ mV}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Corriente de Polarización (Bias)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_B = \\frac{I_{B+} + I_{B-}}{2}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Corrientes de base de reposo para mantener activo el par diferencial</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT (741): $80\\text{ a } 500\\text{ nA}$<br>Precisión: $1\\text{ a } 4\\text{ nA}$<br>BiFET (TL081): $30\\text{ a } 100\\text{ pA}$<br>CMOS: $< 1\\text{ pA}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Corriente de Desbalance (Offset)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_{os} = |I_{B+} - I_{B-}|$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Disparidad en la ganancia de corriente $\\beta$ entre los transistores del par</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $10\\text{ a } 50\\text{ nA}$<br>Precisión: $< 0.5\\text{ nA}$<br>FET: $5\\text{ a } 20\\text{ pA}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Ganancia de Ruido y Tensión de Offset ($V_{os}$)</h5>
+      <p class="mb-2">La tensión de offset de entrada $V_{os}$ se modela como una fuente de tensión continua ideal conectada en serie con cualquiera de los terminales de entrada (típicamente referenciada al terminal no inversor). Por consiguiente, independientemente de si la etapa amplifica en configuración inversora o no inversora para la señal útil, el offset se amplifica hacia la salida mediante la <strong>Ganancia de Ruido (Noise Gain, $A_{v,noise}$)</strong>:</p>
+      <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
+        $$\\mathbf{A_{v,noise} = 1 + \\frac{R_f}{R_1}}$$
+        <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400"><strong>¡Trampa recurrente de parcial y final!</strong> En un amplificador inversor con ganancia de señal $A_v = -R_f/R_1 = -100$, el error de offset en la salida NO es $100 V_{os}$, sino $(1 + 100) V_{os} = 101 V_{os}$.</p>
+      </div>
+      <p class="text-xs sm:text-sm my-2">Tensión de error en la salida provocada únicamente por la tensión de offset:</p>
+      $$V_{o(Vos)} = \\pm A_{v,noise} \\cdot V_{os} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os}$$
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Efecto de las Corrientes de Polarización sin Compensar ($R_c = 0$)</h5>
+      <p class="mb-2">Si el terminal no inversor se conecta directamente a masa ($v^+ = 0$), la corriente de polarización $I_{B-}$ entra al pin inversor drenando directamente por la resistencia de realimentación $R_f$ (ya que la resistencia de entrada del núcleo es infinita):</p>
+      $$V_{o(IB)} = R_f \\cdot I_{B-}$$
+      <p class="my-2">En etapas con valores elevados de realimentación (por ejemplo $R_f = 1\\text{ M}\\Omega$ en BJT con $I_{B-} = 500\\text{ nA}$), este error genera una caída constante de $V_{o(IB)} = 10^6\\,\\Omega \\times 500\\times 10^{-9}\\text{ A} = \\mathbf{500\\text{ mV}}$, superando ampliamente al error por $V_{os}$.</p>
+      <p class="my-2">La tensión de error total de peor caso en la salida sin compensación es:</p>
+      $$\\mathbf{V_{o,total(sin\\,R_c)} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os} + R_f \\cdot I_{B-}}$$
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Deducción Formal de la Resistencia de Compensación Óptima ($R_c$)</h5>
+      <p class="mb-2">Para cancelar la perturbación inducida por la corriente de polarización mayoritaria $I_B$, se intercala un resistor $R_c$ entre el terminal no inversor y masa:</p>
+      <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+        <li>Potencial en la entrada no inversora debido a la corriente de bias $I_{B+}$:
+          $$v^+ = -I_{B+} \\cdot R_c$$
+        </li>
+        <li>Potencial en la entrada inversora por superposición (con $v_o$ y $I_{B-}$):
+          $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} \\cdot (R_1 \\parallel R_f)$$
+        </li>
+        <li>Por cortocircuito virtual en lazo cerrado ($v^+ = v^-$):
+          $$-I_{B+} R_c = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} (R_1 \\parallel R_f)$$
+        </li>
+        <li>Despejando la salida $v_o$ inducida por corrientes:
+          $$v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) \\left[ I_{B-} (R_1 \\parallel R_f) - I_{B+} R_c \\right]$$
+        </li>
+        <li>Asumiendo que las corrientes de polarización son aproximadamente idénticas ($I_{B+} \\approx I_{B-} \\approx I_B$), para que la salida sea exactamente nula ($v_o = 0$), debe cumplirse la <strong>condición de equilibrio estático</strong>:
+          $$\\mathbf{R_c = R_1 \\parallel R_f = \\frac{R_1 R_f}{R_1 + R_f}}$$
+        </li>
+        <li>Para un sumador inversor de $n$ entradas con resistores $R_1, R_2, \\dots, R_n$:
+          $$\\mathbf{R_c = R_1 \\parallel R_2 \\parallel \\dots \\parallel R_n \\parallel R_f}$$
+        </li>
+      </ol>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">4. Error Residual de Peor Caso con Resistencia de Compensación</h5>
+      <p class="mb-2">Con $R_c = R_1 \\parallel R_f$ conectado, la componente común $I_B$ queda cancelada, reduciéndose el error de corriente a la diferencia residual $I_{B+} - I_{B-} = \\pm I_{os}$:</p>
+      $$V_{o(Ios)} = \\pm R_f \\cdot I_{os}$$
+      <p class="my-2">Por lo tanto, la <strong>tensión de error total de peor caso en la salida con compensación</strong> es:</p>
+      <div class="p-3 my-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200 text-xs">
+        $$\\mathbf{V_{o,max(con\\,R_c)} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os} \\pm R_f \\cdot I_{os}}$$
+        <p class="mt-1 text-xs">Como $I_{os} \\ll I_B$ (típicamente $I_{os} \\approx 0.1 \\text{ a } 0.2 I_B$), la adición de $R_c$ atenúa el error por corrientes en un factor de $5$ a $10$ veces sin costo adicional.</p>
+      </div>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">5. Calibración Externa con Potenciómetro de Offset Null</h5>
+      <p class="mb-2">Para anular completamente el error remanente en circuitos de ultra-precisión (balanzas electrónicas, transductores piezoeléctricos o acondicionamiento médico), los encapsulados estándar DIP-8 (uA741, OP07, LF356) disponen de terminales específicos de <strong>Offset Null (habitualmente pines 1 y 5)</strong>:</p>
+      <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
+        <li><strong>Conexión circuital externa:</strong> Se conecta un potenciómetro o trimpot multivueltas de $10\\text{ k}\\Omega$ (o $20\\text{ k}\\Omega$) entre los pines 1 y 5, con su terminal móvil (cursor) conectado directamente al riel de alimentación negativa $-V_{EE}$ (pin 4).</li>
+        <li><strong>Mecanismo físico:</strong> Los extremos del potenciómetro modifican levemente la resistencia de emisor efectiva de cada transistor del par diferencial de entrada. Al girar el cursor, se desbalancea la corriente de polarización de reposo de un colector respecto al otro, generando un offset intencional interno de signo opuesto que contrarresta con exactitud al $V_{os}$ natural.</li>
+        <li><strong>Procedimiento de calibración en laboratorio:</strong>
+          <br>1) Se pasivan todas las fuentes de señal conectando las entradas a masa ($v_i = 0\\text{ V}$).
+          <br>2) Se mide la salida $v_o$ con un multímetro digital de alta resolución.
+          <br>3) Se ajusta el cursor del potenciómetro hasta lograr exactamente $v_o = 0.00\\text{ mV}$.
+        </li>
+      </ul>
+          `
+        },
+        {
+          id: 'u3-opamp-derivas-psrr',
+          titulo: '3.7 Derivas Térmicas y Relación de Rechazo a la Fuente de Alimentación (PSRR)',
+          contenido: `
+<p class="mb-3">Aun cuando un amplificador se calibre cuidadosamente a cero en laboratorio a temperatura ambiente ($T_0 = 25^{\\circ}\\text{C}$) mediante su potenciómetro de Offset Null, la estabilidad del punto de reposo en condiciones operativas reales se ve afectada por dos factores ambientales determinantes: el <strong>gradiente térmico</strong> y el <strong>rizado de las fuentes de alimentación</strong>.</p>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Derivas Térmicas de Continua (Thermal Drifts)</h5>
+      <p class="mb-2">Las junturas semiconductoras presentan una fuerte dependencia de la temperatura: $\\frac{dV_{BE}}{dT} \\approx -2\\text{ mV/}^{\\circ}\\text{C}$, además de la variación exponencial de las corrientes de saturación $I_S(T)$ y la dispersión térmica de $\\beta(T)$. Los fabricantes cuantifican esta degradación mediante los <strong>coeficientes de deriva térmica</strong>:</p>
+      <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
+        <li><strong>Coeficiente de deriva de tensión de offset:</strong> $\\mathbf{\\frac{\\Delta V_{os}}{\\Delta T}}$ (expresado en $\\mu\\text{V/}^{\\circ}\\text{C}$). Típico en uA741: $15\\,\\mu\\text{V/}^{\\circ}\\text{C}$; en OP07: $\\le 0.5\\,\\mu\\text{V/}^{\\circ}\\text{C}$.</li>
+        <li><strong>Coeficiente de deriva de corriente de offset:</strong> $\\mathbf{\\frac{\\Delta I_{os}}{\\Delta T}}$ (expresado en $\\text{nA/}^{\\circ}\\text{C}$ en BJT o $\\text{pA/}^{\\circ}\\text{C}$ en FET). Típico en BJT: $0.2\\text{ a } 1.0\\text{ nA/}^{\\circ}\\text{C}$.</li>
+      </ul>
+      <p class="my-2">Ante una excursión de temperatura $\\Delta T = T_1 - T_0$, las variaciones acumuladas de offset a la entrada son:</p>
+      $$\\Delta V_{os}(T) = \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\cdot \\Delta T, \\quad \\Delta I_{os}(T) = \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\cdot \\Delta T$$
+      <p class="my-2">El <strong>desplazamiento térmico de la tensión de salida (peor caso)</strong> con resistencia de compensación $R_c$ es:</p>
+      <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
+        $$\\mathbf{\\Delta V_o(T) = \\pm A_{v,noise} \\cdot \\Delta V_{os}(T) \\pm R_f \\cdot \\Delta I_{os}(T) = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\Delta T \\pm R_f \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\Delta T}$$
+      </div>
+
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Relación de Rechazo a la Fuente de Alimentación (PSRR / RRF)</h5>
+      <p class="mb-2">Las tensiones continuas de alimentación $+V_{CC}$ y $-V_{EE}$ provienen habitualmente de reguladores lineales o fuentes conmutadas, arrastrando fluctuaciones por carga y un <strong>rizado de alterna residual (*ripple*)</strong> (típicamente a $100\\text{ Hz}$ en rectificación de onda completa a $50\\text{ Hz}$).</p>
+      <p class="mb-2">El <strong>PSRR (Power Supply Rejection Ratio)</strong>, denominado también <em>Relación de Rechazo de Fuente (RRF)</em> o factor $K_{SVR}$, define la aptitud del circuito integrado para rechazar variaciones de tensión en sus rieles de alimentación sin convertirlas en tensión de error en la salida:</p>
+      $$\\text{PSRR} = \\frac{\\Delta V_{supply}}{\\Delta V_{os}} \\quad \\Longleftrightarrow \\quad \\Delta V_{os,PSRR} = \\frac{\\Delta V_{supply}}{\\text{PSRR}}$$
+      <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
+        <li><strong>Expresión en decibeles (dB):</strong>
+          $$\\mathbf{\\text{PSRR}_{dB} = 20 \\log_{10} \\left( \\frac{\\Delta V_{supply}}{\\Delta V_{os}} \\right)}$$
+        </li>
+        <li><strong>Factor de conversión lineal:</strong>
+          $$\\mathbf{\\text{PSRR}_{lineal} = 10^{\\frac{\\text{PSRR}_{dB}}{20}}}$$
+        </li>
+        <li><strong>Variación equivalente de offset de entrada inducida por el rizado:</strong>
+          $$\\mathbf{\\Delta V_{os,PSRR} = \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}} = \\Delta V_{supply} \\cdot 10^{-\\frac{\\text{PSRR}_{dB}}{20}}}$$
+        </li>
+        <li><strong>Rizado de alterna o error inducido en la salida:</strong>
+          $$\\mathbf{\\Delta V_{o,PSRR} = A_{v,noise} \\cdot \\Delta V_{os,PSRR} = \\left( 1 + \\frac{R_f}{R_1} \\right) \\cdot \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}}}$$
+        </li>
+      </ul>
+
+      <div class="p-3.5 my-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs">
+        <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <span>⚠️</span> Criterio Crítico de Diseño: Degradación del PSRR con la Frecuencia
+        </h5>
+        <p>En continua, el PSRR de un Op-Amp típico ronda entre $80\\text{ dB}$ y $110\\text{ dB}$. Sin embargo, debido a las capacidades parásitas internas y a la caída de ganancia a lazo abierto ($A_{OL}$), <strong>el PSRR cae a razón de $-20\\text{ dB/década}$ a partir de frecuencias tan bajas como $10\\text{ Hz}$</strong>.</p>
+        <p class="mt-1">A frecuencias de conmutación de fuentes SMPS ($100\\text{ kHz}$ o superiores), el PSRR puede caer a apenas $20\\text{ dB}$ (rechazo de solo 10 a 1). Por esta razón física, es <strong>estrictamente obligatorio</strong> desacoplar cada integrado con capacitores cerámicos de $100\\text{ nF}$ montados físicamente a milímetros de los pines de alimentación y referenciados a un plano de masa uniforme.</p>
+      </div>
+          `
+        },
+        {
+          id: 'u3-formulario',
+          titulo: '3.8 Formulario de Examen y Síntesis - Unidad 3',
+          contenido: `
+<div class="overflow-x-auto my-3">
+        <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
+              <th class="p-2.5 border border-slate-200 dark:border-slate-800">Parámetro / Topología</th>
+              <th class="p-2.5 border border-slate-200 dark:border-slate-800">Expresión Analítica</th>
+              <th class="p-2.5 border border-slate-200 dark:border-slate-800">Criterio Clave de Examen</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Par Diferencial Balanceado</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_{dd} = -g_m R_C$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Tomada entre ambos colectores</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Par Diferencial Asimétrico</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_d = -\\frac{1}{2} g_m R_C$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Tomada en un solo colector</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ganancia Modo Común y CMRR</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_c \\approx -\\frac{R_C}{2 R_{EE}}, \\quad \\text{CMRR} = \\frac{I_{EE} R_{EE}}{2 V_T}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">$\\text{CMRR}_{dB} = 20 \\log_{10}(\\text{CMRR})$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Fuente Widlar en CI</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$R_E = \\frac{V_T}{I_o} \\ln\\left( \\frac{I_{ref}}{I_o} \\right)$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Genera microamperes en CI con $R_E$ pequeña</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Carga Activa PNP</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_d = -g_m (r_{o2} \\parallel r_{o4}) = -\\frac{V_A}{2 V_T}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Ganancia unipolar $\\ge 1000$ en una sola etapa</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Slew Rate (SR)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$SR = \\frac{I_{EE}}{C_c}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Velocidad máxima en borne del capacitor Miller</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Amplificador Inversor</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_v = -\\frac{R_f}{R_1}, \\quad R_{in} = R_1$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Masa virtual en nodo inversor ($v^- = 0$)</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Amplificador No Inversor</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_v = 1 + \\frac{R_f}{R_1}, \\quad R_{in} \\to \\infty$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Buffer si $R_f = 0 \\implies A_v = 1$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Sumador Inversor</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$v_o = -\\sum_{k=1}^n \\left( \\frac{R_f}{R_k} \\right) v_k$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Aislamiento total entre canales por masa virtual</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Integrador Compensado</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_{v,0} = -\\frac{R_p}{R_1}, \\quad f_c = \\frac{1}{2\\pi R_p C}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Integra puro para $f \\ge 10 f_c$; evita saturación DC</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Derivador Estabilizado</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$f_p = \\frac{1}{2\\pi R_s C_1} = \\frac{1}{2\\pi R_f C_f}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Deriva para $f < f_p$; filtra ruido para $f > f_p$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Ganancia de Ruido (Offset)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$A_{v,noise} = 1 + \\frac{R_f}{R_1}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">¡Aplica a inversores y no inversores por igual!</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Resistencia de Compensación</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$R_c = R_1 \\parallel R_f$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Cancela caída de $I_B$ en terminal no inversor</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Offset Salida con $R_c$ (peor caso)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$V_{o,max} = A_{v,noise} V_{os} + R_f I_{os}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Reduce el error por corriente de $I_B$ a $I_{os}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">Deriva Térmica</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$\\Delta V_o(T) = A_{v,noise} \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\Delta T + R_f \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\Delta T$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Desplazamiento tras ajuste nulo a $25^{\\circ}\\text{C}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans font-semibold">PSRR y Rizado de Salida</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">$\\Delta V_{o,PSRR} = A_{v,noise} \\cdot \\frac{\\Delta V_{supply}}{10^{\\text{PSRR}_{dB}/20}}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Acoplamiento de rizado de $100\\text{ Hz}$ de la fuente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pt-2 flex justify-end">
+        <button onclick="filtrarUnidad('ea1-u3'); volverAEjercicios();" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1">
+          <span>Practicar ejercicios guiados de la Unidad 3</span>
+          <span>→</span>
+        </button>
+      </div>
           `
         }
       ]
