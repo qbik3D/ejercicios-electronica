@@ -2516,516 +2516,596 @@ const MANUAL_TEORIA_EA1 = {
           <span>⚡</span> Hipótesis Cardinales del Amplificador Operacional Ideal
         </h5>
         <ul class="list-disc pl-5 space-y-1 text-xs">
-          <li><strong>Ganancia de tensión a lazo abierto infinita:</strong> $A_{OL} \\to \\infty$ (típicamente $10^5 \\text{ a } 10^6\\text{ V/V}$ o $100\\text{ a } 120\\text{ dB}$).</li>
-          <li><strong>Resistencia de entrada diferencial infinita:</strong> $R_{id} \\to \\infty$ ($> 2\\text{ M}\\Omega$ en BJT, $> 10^{12}\\,\\Omega$ en BiFET/CMOS). Por ende, las corrientes entrantes son nulas: $i^+ = i^- = 0$.</li>
-          <li><strong>Resistencia de salida nula:</strong> $R_o = 0$ ($50\\text{ a } 75\\,\\Omega$ en lazo abierto, $< 0.1\\,\\Omega$ en lazo cerrado con realimentación).</li>
-          <li><strong>Ancho de banda infinito:</strong> $BW \\to \\infty$ (sin polos ni retardo de fase parásito en el modelo ideal).</li>
-          <li><strong>Tensión y corrientes de offset nulas:</strong> $V_{os} = 0$, $I_B = 0$, $I_{os} = 0$.</li>
-          <li><strong>Rechazo de Modo Común perfecto:</strong> $\\text{CMRR} \\to \\infty$ ($A_c = 0$).</li>
+          <li><strong>Ganancia de tensión a lazo abierto infinita:</strong> $A_{OL} \\to \\infty$ (típicamente $10^5 \\text{ a } 10^6$ en continua).</li>
+          <li><strong>Resistencia de entrada diferencial infinita:</strong> $R_{id} \\to \\infty \\implies i^+ = i^- = 0\\text{ A}$ (no drena corriente del circuito).</li>
+          <li><strong>Resistencia de salida nula:</strong> $R_o = 0$ ($50\\text{ a } 75\\,\\Omega$ en lazo abierto, reducida a miliohms por realimentación).</li>
+          <li><strong>Ancho de banda infinito:</strong> $BW \\to \\infty$ (sin polos ni retardos parásitos).</li>
+          <li><strong>Tensión y corrientes de offset nulas:</strong> $V_{os} = 0$, $I_B = 0$, $I_{os} = 0$ (simetría geométrica y física absoluta).</li>
+          <li><strong>Rechazo de Modo Común perfecto:</strong> $\\text{CMRR} \\to \\infty$ (ignora cualquier perturbación común a ambas entradas).</li>
         </ul>
       </div>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Principio de Cortocircuito Virtual y Masa Virtual</h5>
-      <p class="mb-2">Al cerrar un lazo de <em>realimentación negativa</em> desde la salida hacia la entrada inversora, la tensión de salida $v_o$ se mantiene en un rango lineal acotado entre los rieles de alimentación ($pm V_{sat}$). Dado que $v_o = A_{OL}(v^+ - v^-)$ y $A_{OL} \\to \\infty$:</p>
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Principio del Cortocircuito Virtual</h5>
+      <p class="mb-2">Al cerrar un lazo de <em>realimentación negativa</em> desde la salida hacia la entrada inversora, la salida adopta exactamente el valor requerido para forzar la diferencia de potencial entre terminales a cero:</p>
       $$v^+ - v^- = \\frac{v_o}{A_{OL}} \\approx 0 \\implies \\mathbf{v^+ \\approx v^-}$$
-      <p class="my-2">Esta condición se conoce como <strong>cortocircuito virtual</strong>: los terminales no inversor e inversor se encuentran prácticamente al mismo potencial eléctrico sin existir una conexión galvánica o paso de corriente física entre ellos ($i^+ = i^- = 0$). Si el terminal no inversor está conectado a masa ($v^+ = 0$), el terminal inversor se convierte en una <strong>Masa Virtual ($v^- = 0$)</strong>.</p>
+      <p class="my-2">Esta condición se conoce como <strong>cortocircuito virtual</strong>: ambos terminales se encuentran al mismo potencial instantáneo, pero sin que exista conducción física de corriente entre ellos ($i^+ = i^- = 0$).</p>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Amplificador Inversor</h5>
-      <p class="mb-2">La señal de entrada $v_i$ se inyecta al terminal inversor a través de $R_1$, con el resistor $R_f$ en lazo cerrado hacia la salida y el terminal no inversor referenciado a masa ($v^+ = 0$):</p>
+      <!-- 1. INVERSOR -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Amplificador Inversor</h5>
+      <p class="mb-2">La señal de entrada $v_i$ se inyecta al terminal inversor a través del resistor $R_1$, mientras que el terminal no inversor está conectado rígidamente a masa ($v^+ = 0\\text{ V}$):</p>
       <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
-        <li>Por cortocircuito virtual: $v^- = v^+ = 0\\text{ V}$ (masa virtual).</li>
+        <li>Por cortocircuito virtual: $v^- = v^+ = 0\\text{ V}$ (condición denominada <strong>masa virtual</strong>).</li>
         <li>Aplicando la Ley de Corrientes de Kirchhoff (LCK) en el nodo inversor (donde $i^- = 0$):
-          $$\\frac{v_i - 0}{R_1} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\frac{R_f}{R_1} v_i}$$
+        $$\\frac{v_i - 0}{R_1} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\frac{R_f}{R_1} v_i}$$
         </li>
-        <li><strong>Ganancia de tensión a lazo cerrado:</strong> $\\mathbf{A_v = -\\frac{R_f}{R_1}}$. Presenta signo negativo (inversión de fase de $180^{\\circ}$).</li>
-        <li><strong>Resistencia de entrada:</strong> Vista desde la fuente $v_i$, como el otro extremo de $R_1$ está en masa virtual: $\\mathbf{R_{in} = R_1}$. Para no cargar a la etapa previa, $R_1$ debe ser grande, lo que exige resistencias $R_f$ de valores muy elevados cuando se diseñan altas ganancias.</li>
-        <li><strong>Resistencia de salida:</strong> $\\mathbf{R_{out} \\approx 0\\,\\Omega}$.</li>
+        <li><strong>Ganancia de tensión a lazo cerrado:</strong> $\\mathbf{A_v = -\\frac{R_f}{R_1}}$. Presenta signo negativo (inversión de fase de $180^\\circ$).</li>
+        <li><strong>Resistencia de entrada:</strong> Vista desde la fuente $v_i$, como el nodo inversor está clavado en $0\\text{ V}$, $\\mathbf{R_{in} = R_1}$. Debe seleccionarse suficientemente alta para no sobrecargar el generador previo.</li>
+        <li><strong>Resistencia de salida:</strong> $\\mathbf{R_{out} \\approx 0\\,\\Omega}$ por efecto de la realimentación negativa de tensión paralelo.</li>
       </ol>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Esquemático del Amplificador Inversor con Masa Virtual
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 540 180" class="w-full max-w-[540px] h-auto select-none font-sans text-xs" style="min-width: 400px;">
+      <!-- Op-Amp Triangle: (-) arriba en y=62, (+) abajo en y=118, salida en y=90 -->
+      <polygon points="260,40 260,140 330,90" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="2"/>
+      <text x="268" y="68" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+      <text x="268" y="122" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Amplificador No Inversor y Seguidor de Tensión (Buffer)</h5>
-      <p class="mb-2">La señal $v_i$ se aplica directamente a la entrada no inversora ($v^+ = v_i$). La red formada por $R_1$ y $R_f$ actúa como un divisor de tensión que muestrea la salida y la realimenta al terminal inversor:</p>
+      <!-- Entrada vi y R1 -->
+      <circle cx="40" cy="62" r="3.5" fill="#0284c7"/>
+      <text x="40" y="50" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="11">vi</text>
+      <line x1="45" y1="62" x2="85" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <rect x="85" y="52" width="46" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="108" y="66" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="10">R1</text>
+      <line x1="131" y1="62" x2="260" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- Masa Virtual en Nodo Inversor (texto colocado ABAJO a y=84, CERO cruce con la línea que sube) -->
+      <circle cx="185" cy="62" r="4" fill="#059669"/>
+      <ellipse cx="185" cy="62" rx="8" ry="8" fill="none" stroke="#059669" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <text x="185" y="84" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">Masa Virtual (v⁻ ≈ 0V)</text>
+
+      <!-- Feedback Loop Rf (sube libremente sin tocar texto) -->
+      <line x1="185" y1="62" x2="185" y2="18" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="185" y1="18" x2="265" y2="18" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="265" y="8" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="290" y="22" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="10">Rf</text>
+      <line x1="315" y1="18" x2="380" y2="18" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="380" y1="18" x2="380" y2="90" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- (+) a masa -->
+      <line x1="260" y1="118" x2="220" y2="118" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="220" y1="118" x2="220" y2="135" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="208" y1="135" x2="232" y2="135" stroke="#64748b" stroke-width="2.5"/>
+      <line x1="212" y1="140" x2="228" y2="140" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="216" y1="145" x2="224" y2="145" stroke="#64748b" stroke-width="1.2"/>
+
+      <!-- Salida vo -->
+      <line x1="330" y1="90" x2="430" y2="90" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="380" cy="90" r="3.5" fill="#64748b"/>
+      <circle cx="430" cy="90" r="4" fill="#0284c7"/>
+      <text x="442" y="94" font-weight="bold" fill="#0284c7" font-size="12">vo</text>
+
+      <!-- Recuadro síntesis lateral -->
+      <rect x="420" y="115" width="110" height="52" rx="4" fill="#f8fafc" class="dark:fill-slate-800" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+      <text x="475" y="132" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="9.5">Av = −Rf / R1</text>
+      <text x="475" y="146" text-anchor="middle" fill="#64748b" class="dark:fill-slate-300" font-size="8.5">Rin = R1</text>
+      <text x="475" y="159" text-anchor="middle" fill="#059669" font-size="8">Desfasaje: 180°</text>
+    </svg>
+  </div>
+</div>
+
+      <!-- 2. NO INVERSOR Y BUFFER -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Amplificador No Inversor y Seguidor de Tensión (Buffer)</h5>
+      <p class="mb-2">La señal $v_i$ se aplica directamente a la entrada no inversora de alta impedancia ($v^+ = v_i$), mientras que la realimentación negativa se establece mediante el divisor resistivo $R_1 - R_f$ conectado a la entrada inversora:</p>
       <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
         <li>Tensión en el terminal inversor por divisor resistivo (sin carga por $i^- = 0$):
-          $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right)$$
+        $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right)$$
         </li>
         <li>Por cortocircuito virtual en lazo cerrado ($v^- = v^+ = v_i$):
-          $$v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) = v_i \\implies \\mathbf{v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) v_i}$$
+        $$v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) = v_i \\implies \\mathbf{v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) v_i}$$
         </li>
-        <li><strong>Ganancia de tensión:</strong> $\\mathbf{A_v = 1 + \\frac{R_f}{R_1} \\ge 1}$. Siempre es no inversora (desfasaje de $0^{\\circ}$) y nunca puede ser inferior a la unidad.</li>
-        <li><strong>Resistencia de entrada colosal:</strong> $\\mathbf{R_{in} \\approx R_{id} \\cdot (1 + T) \\to \\infty}$ (decenas de gigaohms en la práctica). No consume corriente de la fuente de señal.</li>
-        <li><strong>Seguidor de Tensión (Buffer de ganancia unitaria):</strong> Haciendo $R_f = 0$ y $R_1 \\to \\infty$ (cortocircuito entre salida y entrada inversora):
-          $$\\mathbf{A_v = 1, \\quad R_{in} \\to \\infty, \\quad R_{out} \\to 0}$$
-          Esencial para adaptación de impedancias: aísla por completo fuentes de alta impedancia interna (como sensores piezoeléctricos o divisores resistivos) frente a cargas de baja resistencia.
+        <li><strong>Ganancia de tensión:</strong> $\\mathbf{A_v = 1 + \\frac{R_f}{R_1} \\ge 1}$. Siempre no inversora (desfasaje de $0^\\circ$) y mayor o igual a la unidad.</li>
+        <li><strong>Resistencia de entrada colosal:</strong> $\\mathbf{R_{in} \\approx R_{id} (1 + \\beta A_{OL}) \\to \\infty}$ (del orden de cientos de megaohms a gigaohms en Op-Amps reales).</li>
+        <li><strong>Seguidor de Tensión (Buffer de ganancia unitaria):</strong> Haciendo $R_f = 0$ (cortocircuito directo de realimentación) y $R_1 \\to \\infty$ (resistor omitido):
+        $$\\mathbf{A_v = 1, \\quad R_{in} \\to \\infty, \\quad R_{out} \\to 0}$$
+        Esencial para adaptación de impedancias: aísla por completo fuentes de alta impedancia de carga sin introducir atenuación ni desfasaje.
         </li>
       </ol>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Circuito del Amplificador No Inversor y Seguidor de Tensión (Buffer)
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 680 190" class="w-full max-w-[680px] h-auto select-none font-sans text-xs" style="min-width: 500px;">
+      <!-- PANEL A: No Inversor (Izquierda) -->
+      <g transform="translate(10, 5)">
+        <text x="170" y="14" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="10.5">A) Amplificador No Inversor</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Amplificador Sumador Inversor Ponderado</h5>
-      <p class="mb-2">Permite combinar linealmente múltiples señales de entrada independientes ($v_1, v_2, \\dots, v_n$) acopladas a través de resistores ponderadores ($R_1, R_2, \\dots, R_n$) hacia el nodo de masa virtual:</p>
+        <!-- Op-Amp Triangle: (+) arriba en y=55, (-) abajo en y=105, salida en y=80 -->
+        <polygon points="180,35 180,125 245,80" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#059669" stroke-width="2"/>
+        <text x="188" y="60" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
+        <text x="188" y="110" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+
+        <!-- Entrada vi al terminal (+) sin ningún cruce de cables -->
+        <circle cx="30" cy="55" r="3.5" fill="#059669"/>
+        <text x="30" y="44" text-anchor="middle" font-weight="bold" fill="#059669" font-size="11">vi</text>
+        <line x1="35" y1="55" x2="180" y2="55" stroke="#64748b" stroke-width="1.8"/>
+        <text x="95" y="46" text-anchor="middle" font-weight="semibold" fill="#059669" font-size="8.5">v⁺ = vi</text>
+
+        <!-- Terminal inversor (-) baja directo hacia divisor resistivo inferior -->
+        <line x1="180" y1="105" x2="150" y2="105" stroke="#64748b" stroke-width="1.8"/>
+        <line x1="150" y1="105" x2="150" y2="145" stroke="#64748b" stroke-width="1.8"/>
+        <circle cx="150" cy="145" r="3.5" fill="#059669"/>
+        <text x="150" y="98" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">v⁻ = v⁺</text>
+
+        <!-- Resistencia R1 hacia la izquierda a masa (horizontal, espaciosa, CERO cruces) -->
+        <line x1="150" y1="145" x2="125" y2="145" stroke="#64748b" stroke-width="1.8"/>
+        <rect x="75" y="135" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8" rx="2"/>
+        <text x="100" y="149" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="9.5">R1</text>
+        <line x1="75" y1="145" x2="55" y2="145" stroke="#64748b" stroke-width="1.8"/>
+        <!-- Masa para R1 -->
+        <line x1="55" y1="145" x2="55" y2="155" stroke="#64748b" stroke-width="1.8"/>
+        <line x1="45" y1="155" x2="65" y2="155" stroke="#64748b" stroke-width="2"/>
+        <line x1="48" y1="159" x2="62" y2="159" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="51" y1="163" x2="59" y2="163" stroke="#64748b" stroke-width="1"/>
+
+        <!-- Resistencia Rf hacia la derecha hacia la salida -->
+        <line x1="150" y1="145" x2="185" y2="145" stroke="#64748b" stroke-width="1.8"/>
+        <rect x="185" y="135" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8" rx="2"/>
+        <text x="210" y="149" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="9.5">Rf</text>
+        <line x1="235" y1="145" x2="285" y2="145" stroke="#64748b" stroke-width="1.8"/>
+        <line x1="285" y1="145" x2="285" y2="80" stroke="#64748b" stroke-width="1.8"/>
+
+        <!-- Salida vo -->
+        <line x1="245" y1="80" x2="330" y2="80" stroke="#64748b" stroke-width="1.8"/>
+        <circle cx="285" cy="80" r="3.5" fill="#64748b"/>
+        <circle cx="330" cy="80" r="4" fill="#059669"/>
+        <text x="340" y="84" font-weight="bold" fill="#059669" font-size="11">vo</text>
+
+        <rect x="50" y="170" width="230" height="18" rx="3" fill="#059669" fill-opacity="0.08"/>
+        <text x="165" y="183" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="8.5">Av = 1 + (Rf / R1)  |  Rin → ∞</text>
+      </g>
+
+      <!-- SEPARADOR -->
+      <line x1="375" y1="20" x2="375" y2="175" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- PANEL B: Seguidor de Tensión / Buffer (Derecha) -->
+      <g transform="translate(390, 5)">
+        <text x="135" y="14" text-anchor="middle" font-weight="bold" fill="#0284c7" class="dark:fill-sky-400" font-size="10.5">B) Seguidor de Tensión (Rf = 0, R1 → ∞)</text>
+
+        <!-- Op-Amp Triangle -->
+        <polygon points="110,35 110,125 175,80" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="2"/>
+        <text x="118" y="60" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
+        <text x="118" y="110" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+
+        <!-- Entrada vi -->
+        <circle cx="20" cy="55" r="3.5" fill="#0284c7"/>
+        <text x="20" y="44" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="11">vi</text>
+        <line x1="25" y1="55" x2="110" y2="55" stroke="#64748b" stroke-width="1.8"/>
+
+        <!-- Cortocircuito directo salida a inversora -->
+        <line x1="110" y1="105" x2="80" y2="105" stroke="#0284c7" stroke-width="2"/>
+        <line x1="80" y1="105" x2="80" y2="140" stroke="#0284c7" stroke-width="2"/>
+        <line x1="80" y1="140" x2="205" y2="140" stroke="#0284c7" stroke-width="2"/>
+        <line x1="205" y1="140" x2="205" y2="80" stroke="#0284c7" stroke-width="2"/>
+
+        <!-- Salida vo -->
+        <line x1="175" y1="80" x2="245" y2="80" stroke="#64748b" stroke-width="1.8"/>
+        <circle cx="205" cy="80" r="3.5" fill="#0284c7"/>
+        <circle cx="245" cy="80" r="4" fill="#0284c7"/>
+        <text x="255" y="84" font-weight="bold" fill="#0284c7" font-size="11">vo = vi</text>
+
+        <rect x="50" y="160" width="180" height="22" rx="4" fill="#0284c7" fill-opacity="0.1" stroke="#0284c7" stroke-width="0.8"/>
+        <text x="140" y="175" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="9">Av = 1  |  Rin → ∞  |  Rout ≈ 0</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+      <!-- 3. SUMADOR PONDERADO -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Amplificador Sumador Inversor Ponderado</h5>
+      <p class="mb-2">Permite combinar linealmente múltiples señales de entrada independientes sin que se produzca diafonía o interferencia mutua entre las fuentes:</p>
       <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
-        $$\\sum_{k=1}^n \\frac{v_k - 0}{R_k} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\left( \\frac{R_f}{R_1} v_1 + \\frac{R_f}{R_2} v_2 + \\dots + \\frac{R_f}{R_n} v_n \\right) = -\\sum_{k=1}^n \\left( \\frac{R_f}{R_k} \\right) v_k}$$
+        $$\\sum_{k=1}^n \\frac{v_k - 0}{R_k} + \\frac{v_o - 0}{R_f} = 0 \\implies \\mathbf{v_o = -\\left( \\frac{R_f}{R_1} v_1 + \\frac{R_f}{R_2} v_2 + \\dots + \\frac{R_f}{R_n} v_n \\right)}$$
       </div>
-      <p class="text-xs sm:text-sm my-2"><strong>Propiedad de aislamiento mutuo:</strong> Como el nodo inversor se mantiene rígidamente en potencial de masa virtual ($0\\text{ V}$), la corriente que circula por una rama $i_k = v_k/R_k$ no produce ninguna variación de tensión que afecte a las demás ramas. No existe diafonía (*cross-talk*) entre los diferentes canales.</p>
+      <p class="text-xs sm:text-sm my-2"><strong>Propiedad de aislamiento mutuo:</strong> Debido a que el nodo suma se encuentra en potencial de masa virtual ($0\\text{ V}$), la impedancia de entrada de cada canal $k$ es exactamente $R_{in,k} = R_k$, y las corrientes de cada generador drenan a masa virtual sin modular ni interactuar con las ramas contiguas.</p>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Esquemático del Amplificador Sumador Inversor Ponderado
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 580 190" class="w-full max-w-[580px] h-auto select-none font-sans text-xs" style="min-width: 440px;">
+      <!-- Op-Amp Triangle -->
+      <polygon points="300,50 300,150 370,100" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="308" y="78" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+      <text x="308" y="132" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
 
-<!-- ================= SVG: TOPOLOGÍAS LINEALES CARDINALES ================= -->
-            <div class="my-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
-                <span>📐</span> Topologías Lineales Fundamentales: Inversor, No Inversor y Sumador Ponderado
-              </div>
-              <div class="w-full overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 780 270" class="w-full max-w-[780px] h-auto select-none font-sans text-xs" style="min-width: 600px;">
-                  <defs>
-                    <marker id="op-arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#0284c7"/>
-                    </marker>
-                    <marker id="op-arr-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#059669"/>
-                    </marker>
-                    <marker id="op-arr-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#8b5cf6"/>
-                    </marker>
-                  </defs>
+      <!-- 3 Entradas v1, v2, vn -->
+      <!-- Entrada 1 -->
+      <circle cx="30" cy="40" r="3" fill="#8b5cf6"/>
+      <text x="30" y="30" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="10">v1</text>
+      <line x1="35" y1="40" x2="65" y2="40" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="65" y="32" width="40" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.8" rx="2"/>
+      <text x="85" y="44" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="9">R1</text>
+      <line x1="105" y1="40" x2="160" y2="40" stroke="#64748b" stroke-width="1.8"/>
 
-                  <!-- ================= 1. AMPLIFICADOR INVERSOR (X: 10 a 250) ================= -->
-                  <g transform="translate(10, 10)">
-                    <!-- Marco contenedor -->
-                    <rect x="0" y="0" width="245" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="245" height="28" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="none"/>
-                    <text x="122" y="18" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="11">1. Amplificador Inversor</text>
+      <!-- Entrada 2 -->
+      <circle cx="30" cy="75" r="3" fill="#8b5cf6"/>
+      <text x="30" y="65" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="10">v2</text>
+      <line x1="35" y1="75" x2="65" y2="75" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="65" y="67" width="40" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.8" rx="2"/>
+      <text x="85" y="79" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="9">R2</text>
+      <line x1="105" y1="75" x2="160" y2="75" stroke="#64748b" stroke-width="1.8"/>
 
-                    <!-- Op-Amp Triangle -->
-                    <!-- Inverting input (-) at y=95, Non-inverting (+) at y=135, Output at y=115, x=175 -->
-                    <polygon points="120,75 120,155 175,115" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="2"/>
-                    <text x="127" y="100" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">−</text>
-                    <text x="127" y="139" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">+</text>
+      <!-- Entrada n -->
+      <circle cx="30" cy="110" r="3" fill="#8b5cf6"/>
+      <text x="30" y="100" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="10">vn</text>
+      <line x1="35" y1="110" x2="65" y2="110" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="65" y="102" width="40" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.8" rx="2"/>
+      <text x="85" y="114" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="9">Rn</text>
+      <line x1="105" y1="110" x2="160" y2="110" stroke="#64748b" stroke-width="1.8"/>
 
-                    <!-- Entrada y R1 -->
-                    <!-- vi terminal -->
-                    <circle cx="20" cy="95" r="3.5" fill="#0284c7"/>
-                    <text x="20" y="85" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="10">vi</text>
-                    <line x1="24" y1="95" x2="45" y2="95" stroke="#64748b" stroke-width="1.5"/>
-                    <!-- R1 Resistor box -->
-                    <rect x="45" y="87" width="34" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5" rx="2"/>
-                    <text x="62" y="99" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="9">R1</text>
-                    <line x1="79" y1="95" x2="120" y2="95" stroke="#64748b" stroke-width="1.5"/>
+      <!-- Barra de Suma común hacia nodo inversor -->
+      <line x1="160" y1="40" x2="160" y2="110" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="160" y1="75" x2="300" y2="75" stroke="#64748b" stroke-width="1.8"/>
 
-                    <!-- Nodo Masa Virtual -->
-                    <circle cx="102" cy="95" r="3.5" fill="#059669"/>
-                    <ellipse cx="102" cy="95" rx="8" ry="8" fill="none" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                    <text x="102" y="78" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">v⁻ ≈ 0V</text>
-                    <text x="102" y="66" text-anchor="middle" fill="#059669" font-size="8">Masa Virtual</text>
+      <!-- Nodo de suma y Masa Virtual (colocada ABAJO a y=95 para CERO cruces) -->
+      <circle cx="160" cy="75" r="4" fill="#059669"/>
+      <circle cx="215" cy="75" r="3.5" fill="#059669"/>
+      <text x="215" y="94" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">Masa Virtual (0V)</text>
 
-                    <!-- Feedback Loop (Rf) -->
-                    <line x1="102" y1="95" x2="102" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="102" y1="48" x2="128" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="128" y="40" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5" rx="2"/>
-                    <text x="146" y="52" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="9">Rf</text>
-                    <line x1="164" y1="48" x2="195" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="195" y1="48" x2="195" y2="115" stroke="#64748b" stroke-width="1.5"/>
+      <!-- Feedback Rf (sube a y=20) -->
+      <line x1="215" y1="75" x2="215" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="215" y1="20" x2="305" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="305" y="10" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.8" rx="2"/>
+      <text x="330" y="24" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="10">Rf</text>
+      <line x1="355" y1="20" x2="415" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="415" y1="20" x2="415" y2="100" stroke="#64748b" stroke-width="1.8"/>
 
-                    <!-- Pin (+) a Masa -->
-                    <line x1="120" y1="135" x2="100" y2="135" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="100" y1="135" x2="100" y2="152" stroke="#64748b" stroke-width="1.5"/>
-                    <!-- Símbolo Tierra -->
-                    <line x1="92" y1="152" x2="108" y2="152" stroke="#64748b" stroke-width="2"/>
-                    <line x1="95" y1="156" x2="105" y2="156" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="98" y1="160" x2="102" y2="160" stroke="#64748b" stroke-width="1"/>
+      <!-- (+) a masa -->
+      <line x1="300" y1="128" x2="265" y2="128" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="265" y1="128" x2="265" y2="145" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="255" y1="145" x2="275" y2="145" stroke="#64748b" stroke-width="2"/>
+      <line x1="259" y1="149" x2="271" y2="149" stroke="#64748b" stroke-width="1.5"/>
 
-                    <!-- Salida vo -->
-                    <line x1="175" y1="115" x2="225" y2="115" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="195" cy="115" r="3" fill="#64748b"/>
-                    <circle cx="225" cy="115" r="3.5" fill="#0284c7"/>
-                    <text x="232" y="119" font-weight="bold" fill="#0284c7" font-size="11">vo</text>
+      <!-- Salida vo -->
+      <line x1="370" y1="100" x2="465" y2="100" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="415" cy="100" r="3.5" fill="#64748b"/>
+      <circle cx="465" cy="100" r="4" fill="#8b5cf6"/>
+      <text x="478" y="104" font-weight="bold" fill="#8b5cf6" font-size="11">vo</text>
 
-                    <!-- Ecuaciones clave -->
-                    <rect x="15" y="180" width="215" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="122" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="10">Av = vo / vi = −(Rf / R1)</text>
-                    <text x="122" y="211" text-anchor="middle" fill="#64748b" class="dark:fill-slate-300" font-size="9">Rin = R1  |  Rout ≈ 0 Ω</text>
-                    <text x="122" y="226" text-anchor="middle" fill="#0369a1" class="dark:fill-sky-400" font-weight="semibold" font-size="9">Desfasaje: 180° (Inversión)</text>
-                  </g>
+      <!-- Panel inferior -->
+      <rect x="180" y="152" width="280" height="32" rx="4" fill="#f8fafc" class="dark:fill-slate-800" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+      <text x="320" y="166" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-400" font-size="9">vo = − [ (Rf/R1)·v1 + (Rf/R2)·v2 + ... + (Rf/Rn)·vn ]</text>
+      <text x="320" y="178" text-anchor="middle" fill="#64748b" font-size="7.5">Aislamiento total entre canales por masa virtual: Rin,k = Rk</text>
+    </svg>
+  </div>
+</div>
 
-                  <!-- ================= 2. AMPLIFICADOR NO INVERSOR (X: 265 a 515) ================= -->
-                  <g transform="translate(267, 10)">
-                    <rect x="0" y="0" width="245" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="245" height="28" rx="8" fill="#059669" fill-opacity="0.1" stroke="none"/>
-                    <text x="122" y="18" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="11">2. No Inversor y Buffer</text>
-
-                    <!-- Op-Amp Triangle -->
-                    <!-- Inverting input (-) at y=95, Non-inverting (+) at y=135, Output at y=115, x=175 -->
-                    <polygon points="120,75 120,155 175,115" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#059669" stroke-width="2"/>
-                    <text x="127" y="100" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">−</text>
-                    <text x="127" y="139" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">+</text>
-
-                    <!-- Entrada vi conectada a (+) -->
-                    <line x1="20" y1="135" x2="120" y2="135" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="20" cy="135" r="3.5" fill="#059669"/>
-                    <text x="20" y="125" text-anchor="middle" font-weight="bold" fill="#059669" font-size="10">vi</text>
-                    <text x="50" y="150" fill="#059669" font-size="8">v⁺ = vi</text>
-
-                    <!-- Divisor resistivo en terminal (-) -->
-                    <line x1="120" y1="95" x2="85" y2="95" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="85" cy="95" r="3.5" fill="#059669"/>
-                    <text x="75" y="85" font-weight="bold" fill="#059669" font-size="8">v⁻ = v⁺</text>
-
-                    <!-- R1 a masa hacia abajo -->
-                    <line x1="85" y1="95" x2="85" y2="112" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="73" y="112" width="24" height="28" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.5" rx="2"/>
-                    <text x="85" y="129" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="8">R1</text>
-                    <line x1="85" y1="140" x2="85" y2="152" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="77" y1="152" x2="93" y2="152" stroke="#64748b" stroke-width="2"/>
-                    <line x1="80" y1="156" x2="90" y2="156" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="83" y1="160" x2="87" y2="160" stroke="#64748b" stroke-width="1"/>
-
-                    <!-- Rf hacia la salida -->
-                    <line x1="85" y1="95" x2="85" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="85" y1="48" x2="128" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="128" y="40" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.5" rx="2"/>
-                    <text x="146" y="52" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="9">Rf</text>
-                    <line x1="164" y1="48" x2="195" y2="48" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="195" y1="48" x2="195" y2="115" stroke="#64748b" stroke-width="1.5"/>
-
-                    <!-- Salida vo -->
-                    <line x1="175" y1="115" x2="225" y2="115" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="195" cy="115" r="3" fill="#64748b"/>
-                    <circle cx="225" cy="115" r="3.5" fill="#059669"/>
-                    <text x="232" y="119" font-weight="bold" fill="#059669" font-size="11">vo</text>
-
-                    <!-- Ecuaciones clave -->
-                    <rect x="15" y="180" width="215" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="122" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="10">Av = 1 + (Rf / R1) ≥ 1</text>
-                    <text x="122" y="211" text-anchor="middle" fill="#64748b" class="dark:fill-slate-300" font-size="9">Rin → ∞ (Gigaohms)  |  Rout ≈ 0</text>
-                    <text x="122" y="226" text-anchor="middle" fill="#047857" class="dark:fill-emerald-400" font-weight="semibold" font-size="9">Buffer si Rf=0: Av = 1 (Aislador)</text>
-                  </g>
-
-                  <!-- ================= 3. SUMADOR INVERSOR PONDERADO (X: 525 a 770) ================= -->
-                  <g transform="translate(525, 10)">
-                    <rect x="0" y="0" width="245" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="245" height="28" rx="8" fill="#8b5cf6" fill-opacity="0.1" stroke="none"/>
-                    <text x="122" y="18" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-400" font-size="11">3. Sumador Inversor</text>
-
-                    <!-- Op-Amp Triangle -->
-                    <polygon points="120,75 120,155 175,115" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="2"/>
-                    <text x="127" y="100" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">−</text>
-                    <text x="127" y="139" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="13">+</text>
-
-                    <!-- Canal 1 (v1, R1) -->
-                    <circle cx="15" cy="70" r="3" fill="#8b5cf6"/>
-                    <text x="15" y="62" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="8">v1</text>
-                    <line x1="18" y1="70" x2="35" y2="70" stroke="#64748b" stroke-width="1.2"/>
-                    <rect x="35" y="64" width="28" height="13" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.2" rx="2"/>
-                    <text x="49" y="74" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="8">R1</text>
-                    <line x1="63" y1="70" x2="95" y2="70" stroke="#64748b" stroke-width="1.2"/>
-                    <line x1="95" y1="70" x2="95" y2="95" stroke="#64748b" stroke-width="1.2"/>
-
-                    <!-- Canal 2 (v2, R2) -->
-                    <circle cx="15" cy="95" r="3" fill="#8b5cf6"/>
-                    <text x="15" y="87" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="8">v2</text>
-                    <line x1="18" y1="95" x2="35" y2="95" stroke="#64748b" stroke-width="1.2"/>
-                    <rect x="35" y="89" width="28" height="13" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.2" rx="2"/>
-                    <text x="49" y="99" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="8">R2</text>
-                    <line x1="63" y1="95" x2="95" y2="95" stroke="#64748b" stroke-width="1.2"/>
-
-                    <!-- Canal 3 (vn, Rn) -->
-                    <circle cx="15" cy="120" r="3" fill="#8b5cf6"/>
-                    <text x="15" y="112" text-anchor="middle" font-weight="bold" fill="#8b5cf6" font-size="8">vn</text>
-                    <line x1="18" y1="120" x2="35" y2="120" stroke="#64748b" stroke-width="1.2"/>
-                    <rect x="35" y="114" width="28" height="13" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.2" rx="2"/>
-                    <text x="49" y="124" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="8">Rn</text>
-                    <line x1="63" y1="120" x2="95" y2="120" stroke="#64748b" stroke-width="1.2"/>
-                    <line x1="95" y1="120" x2="95" y2="95" stroke="#64748b" stroke-width="1.2"/>
-
-                    <!-- Nodo sumador en masa virtual -->
-                    <circle cx="95" cy="95" r="3.5" fill="#059669"/>
-                    <line x1="95" y1="95" x2="120" y2="95" stroke="#64748b" stroke-width="1.5"/>
-                    <text x="95" y="58" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">Masa Virtual (0V)</text>
-
-                    <!-- Feedback Rf -->
-                    <line x1="95" y1="95" x2="95" y2="44" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="95" y1="44" x2="128" y2="44" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="128" y="36" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#8b5cf6" stroke-width="1.5" rx="2"/>
-                    <text x="146" y="48" text-anchor="middle" font-weight="bold" fill="#6d28d9" class="dark:fill-purple-300" font-size="9">Rf</text>
-                    <line x1="164" y1="44" x2="195" y2="44" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="195" y1="44" x2="195" y2="115" stroke="#64748b" stroke-width="1.5"/>
-
-                    <!-- Pin (+) a masa -->
-                    <line x1="120" y1="135" x2="105" y2="135" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="105" y1="135" x2="105" y2="152" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="97" y1="152" x2="113" y2="152" stroke="#64748b" stroke-width="2"/>
-                    <line x1="100" y1="156" x2="110" y2="156" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="103" y1="160" x2="107" y2="160" stroke="#64748b" stroke-width="1"/>
-
-                    <!-- Salida vo -->
-                    <line x1="175" y1="115" x2="225" y2="115" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="195" cy="115" r="3" fill="#64748b"/>
-                    <circle cx="225" cy="115" r="3.5" fill="#8b5cf6"/>
-                    <text x="232" y="119" font-weight="bold" fill="#8b5cf6" font-size="11">vo</text>
-
-                    <!-- Ecuaciones clave -->
-                    <rect x="15" y="180" width="215" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="122" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9.5">vo = −Σ (Rf / Rk) · vk</text>
-                    <text x="122" y="211" text-anchor="middle" fill="#64748b" class="dark:fill-slate-300" font-size="8.5">Cero Diafonía (Aislamiento total)</text>
-                    <text x="122" y="226" text-anchor="middle" fill="#6d28d9" class="dark:fill-purple-400" font-weight="semibold" font-size="8.5">Cada entrada ve Rin,k = Rk</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
-
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">4. Amplificador Integrador: Ideal vs. Real Compensado en Baja Frecuencia</h5>
-      <p class="mb-2">El <strong>integrador inversor ideal</strong> sustituye el resistor de realimentación por un capacitor puro $C$:</p>
+      <!-- 4. INTEGRADOR -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">4. Amplificador Integrador: Ideal vs Compensado con Resistencia de Fuga ($R_p$)</h5>
+      <p class="mb-2">El <strong>integrador inversor ideal (puro)</strong> sustituye el resistor de realimentación $R_f$ por un capacitor de valor $C$. La corriente de entrada $v_i/R_1$ carga el capacitor generando en la salida la integral matemática en el tiempo:</p>
       $$i(t) = \\frac{v_i(t)}{R_1} = -C \\frac{dv_o(t)}{dt} \\implies \\mathbf{v_o(t) = -\\frac{1}{R_1 C} \\int_0^t v_i(\\tau) d\\tau + v_o(0)}$$
-      <div class="p-3 my-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs">
+      <div class="p-3 my-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-950 dark:text-amber-200 text-xs">
         <strong>⚠️ Vulnerabilidad Fatal del Integrador Ideal en Continua:</strong><br>
-        En continua ($\\omega \\to 0$), la impedancia del capacitor tiende a infinito ($X_C = \\frac{1}{\\omega C} \\to \\infty$). El amplificador se encuentra en lazo abierto ($A_{v,0} \\to A_{OL} \\approx 10^5$). Cualquier mínima tensión de offset de entrada ($V_{os}$) o corriente de polarización ($I_B$) cargará continuamente el capacitor a razón de $\\frac{dv_o}{dt} = -\\frac{V_{os}}{R_1 C} - \\frac{I_B}{C}$, llevando inexorablemente la salida a <strong>saturarse contra los rieles de alimentación ($pm V_{sat}$)</strong> en pocos segundos.
+        En continua ($\\omega \\to 0$), la impedancia del capacitor tiende a infinito ($X_C \\to \\infty$), dejando al amplificador operando a lazo abierto ($A_{OL} \\approx 10^5$). En consecuencia, cualquier tensión de offset residual $V_{os}$ o corriente de polarización $I_B$ en las entradas se integra indefinidamente como una rampa temporal, saturando irreversiblemente la salida del Op-Amp contra los rieles de alimentación $\\pm V_{sat}$.
       </div>
-      <p class="my-2"><strong>Solución de cátedra: Integrador Real Compensado con Fuga (Leaky Integrator):</strong><br>
-      Se conecta un resistor de alto valor $R_p$ en paralelo con el capacitor $C$ (típicamente $R_p \\approx 10 R_1$). Su función de transferencia en el dominio de Laplace es:</p>
-      $$\\mathbf{H(s) = -\\frac{R_p \\parallel \\frac{1}{sC}}{R_1} = -\\frac{R_p}{R_1} \\cdot \\frac{1}{1 + s R_p C}}$$
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Integrador Inversor Ideal (Puro) y su Limitación en Continua
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 560 180" class="w-full max-w-[560px] h-auto select-none font-sans text-xs" style="min-width: 420px;">
+      <!-- Op-Amp Triangle -->
+      <polygon points="250,40 250,140 320,90" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="2"/>
+      <text x="258" y="68" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+      <text x="258" y="122" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
+
+      <!-- Entrada vi(t) y R1 -->
+      <circle cx="35" cy="62" r="3.5" fill="#0284c7"/>
+      <text x="35" y="50" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="11">vi(t)</text>
+      <line x1="40" y1="62" x2="80" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <rect x="80" y="52" width="46" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="103" y="66" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="10">R1</text>
+      <line x1="126" y1="62" x2="250" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- Nodo de masa virtual con texto colocado ABAJO a y=84 -->
+      <circle cx="170" cy="62" r="3.5" fill="#059669"/>
+      <text x="170" y="84" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">v⁻ ≈ 0V</text>
+
+      <!-- Feedback Capacitor C (sube a y=20) -->
+      <line x1="170" y1="62" x2="170" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="170" y1="20" x2="265" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <!-- Capacitor C -->
+      <line x1="265" y1="8" x2="265" y2="32" stroke="#0284c7" stroke-width="2.5"/>
+      <line x1="273" y1="8" x2="273" y2="32" stroke="#0284c7" stroke-width="2.5"/>
+      <text x="269" y="44" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="10">C</text>
+      <line x1="273" y1="20" x2="365" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="365" y1="20" x2="365" y2="90" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- (+) a masa -->
+      <line x1="250" y1="118" x2="215" y2="118" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="215" y1="118" x2="215" y2="135" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="205" y1="135" x2="225" y2="135" stroke="#64748b" stroke-width="2"/>
+      <line x1="209" y1="139" x2="221" y2="139" stroke="#64748b" stroke-width="1.5"/>
+
+      <!-- Salida vo -->
+      <line x1="320" y1="90" x2="410" y2="90" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="365" cy="90" r="3.5" fill="#64748b"/>
+      <circle cx="410" cy="90" r="4" fill="#0284c7"/>
+      <text x="420" y="94" font-weight="bold" fill="#0284c7" font-size="11">vo(t)</text>
+
+      <!-- Panel explicativo lateral de alerta DC -->
+      <rect x="330" y="115" width="220" height="55" rx="5" fill="#fef3c7" class="dark:fill-amber-950/40" stroke="#f59e0b" stroke-width="1"/>
+      <text x="440" y="130" text-anchor="middle" font-weight="bold" fill="#b45309" class="dark:fill-amber-300" font-size="9">⚠️ Límite del Integrador Ideal</text>
+      <text x="440" y="145" text-anchor="middle" fill="#92400e" class="dark:fill-amber-200" font-size="8">En DC (ω=0), C es circuito abierto.</text>
+      <text x="440" y="158" text-anchor="middle" font-weight="semibold" fill="#b45309" class="dark:fill-amber-300" font-size="8">Offset Vos satura la salida contra rieles ±Vsat.</text>
+    </svg>
+  </div>
+</div>
+
+      <p class="my-2"><strong>Solución de cátedra: Integrador Real Compensado con Fuga ($R_p$) (Leaky Integrator):</strong><br>
+      Se conecta un resistor de alto valor $R_p$ en paralelo con el capacitor $C$ (típicamente $R_p \\approx 10 R_1 \\text{ a } 100 R_1$). La función de transferencia en el dominio de Laplace es:</p>
+      $$\\mathbf{H(s) = -\\frac{R_p \\parallel \\frac{1}{sC}}{R_1} = -\\frac{R_p}{R_1} \\frac{1}{1 + s R_p C} = \\frac{A_{v,0}}{1 + \\frac{s}{\\omega_c}}}$$
       <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
-        <li><strong>Ganancia en continua acotada:</strong> Para $s = 0$, $A_{v,0} = -\\frac{R_p}{R_1}$. Al ser finita, restringe la amplificación del offset e impide la saturación estática.</li>
-        <li><strong>Frecuencia de corte inferior / esquina:</strong> $\\mathbf{f_c = \\frac{1}{2\\pi R_p C}}$. Determina el polo donde la ganancia cae $3\\text{ dB}$.</li>
-        <li><strong>Banda de integración matemática rigurosa:</strong> Para frecuencias $\\mathbf{f \\ge 10 f_c}$, se verifica que $\\omega R_p C \\ge 10 \\gg 1$. La función de transferencia se aproxima a la de un integrador ideal:
-          $$H(j\\omega) \\approx -\\frac{R_p}{R_1} \\frac{1}{j\\omega R_p C} = -\\frac{1}{j\\omega R_1 C}$$
-          con un error de fase menor a $5.7^{\\circ}$ respecto a los $-90^{\\circ}$ ideales.
+        <li><strong>Ganancia en continua acotada:</strong> Para $s = 0$ (DC), el capacitor es circuito abierto y la ganancia queda fijada en $A_{v,0} = -\\frac{R_p}{R_1}$, impidiendo la saturación por offset.</li>
+        <li><strong>Frecuencia de corte inferior / esquina:</strong> $\\mathbf{f_c = \\frac{1}{2\\pi R_p C}}$. Por debajo de $f_c$, el circuito responde como amplificador inversor plano.</li>
+        <li><strong>Banda de integración matemática rigurosa:</strong> Para frecuencias al menos una década por encima de la frecuencia de corte ($f \\ge 10 f_c$), se cumple $\\omega R_p C \\gg 1$, de modo que:
+        $$H(j\\omega) \\approx -\\frac{R_p}{R_1} \\frac{1}{j\\omega R_p C} = -\\frac{1}{j\\omega R_1 C}$$
+        con un error de fase menor a $5.7^{\\circ}$ respecto a los $-90^{\\circ}$ ideales de una integración analógica pura.
         </li>
       </ul>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Integrador Real Compensado con Rp (Leaky Integrator) y Diagrama de Bode
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 680 200" class="w-full max-w-[680px] h-auto select-none font-sans text-xs" style="min-width: 500px;">
+      <!-- LADO IZQUIERDO: Circuito con Rp -->
+      <g transform="translate(10, 10)">
+        <polygon points="170,40 170,130 230,85" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8"/>
+        <text x="177" y="64" fill="#64748b" font-weight="bold" font-size="13">−</text>
+        <text x="177" y="115" fill="#64748b" font-weight="bold" font-size="13">+</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">5. Amplificador Derivador: Ideal vs. Real Estabilizado en Alta Frecuencia</h5>
-      <p class="mb-2">El <strong>derivador inversor ideal</strong> ubica un capacitor $C_1$ en serie con la entrada y un resistor $R_f$ en la realimentación:</p>
+        <circle cx="20" cy="58" r="3" fill="#0284c7"/>
+        <text x="20" y="48" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="10">vi</text>
+        <line x1="25" y1="58" x2="55" y2="58" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="55" y="50" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5" rx="2"/>
+        <text x="73" y="62" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="8.5">R1</text>
+        <line x1="91" y1="58" x2="170" y2="58" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="120" cy="58" r="3" fill="#059669"/>
+
+        <!-- Feedback paralelo: C y Rp -->
+        <line x1="120" y1="58" x2="120" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="120" y1="25" x2="120" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="120" y1="12" x2="155" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="155" y1="5" x2="155" y2="19" stroke="#0284c7" stroke-width="2"/>
+        <line x1="162" y1="5" x2="162" y2="19" stroke="#0284c7" stroke-width="2"/>
+        <text x="158" y="29" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8">C</text>
+        <line x1="162" y1="12" x2="200" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="200" y1="12" x2="200" y2="25" stroke="#64748b" stroke-width="1.2"/>
+
+        <line x1="120" y1="25" x2="140" y2="25" stroke="#64748b" stroke-width="1.2"/>
+        <rect x="140" y="17" width="38" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#f59e0b" stroke-width="1.5" rx="2"/>
+        <text x="159" y="29" text-anchor="middle" font-weight="bold" fill="#d97706" class="dark:fill-amber-400" font-size="8.5">Rp</text>
+        <line x1="178" y1="25" x2="200" y2="25" stroke="#64748b" stroke-width="1.2"/>
+
+        <line x1="200" y1="25" x2="245" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="245" y1="25" x2="245" y2="85" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="230" y1="85" x2="275" y2="85" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="245" cy="85" r="3" fill="#64748b"/>
+        <circle cx="275" cy="85" r="3.5" fill="#0284c7"/>
+        <text x="283" y="88" font-weight="bold" fill="#0284c7" font-size="10">vo</text>
+
+        <!-- (+) a masa -->
+        <line x1="170" y1="110" x2="140" y2="110" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="140" y1="110" x2="140" y2="125" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="130" y1="125" x2="150" y2="125" stroke="#64748b" stroke-width="2"/>
+        <line x1="134" y1="129" x2="146" y2="129" stroke="#64748b" stroke-width="1.5"/>
+      </g>
+
+      <!-- LADO DERECHO: Diagrama de Bode -->
+      <g transform="translate(340, 20)">
+        <text x="160" y="5" text-anchor="middle" font-weight="bold" fill="#475569" class="dark:fill-slate-300" font-size="10">Respuesta en Frecuencia |H(jω)|</text>
+        <line x1="20" y1="130" x2="310" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="300" y="145" fill="#64748b" font-weight="bold" font-size="9">log f</text>
+        <line x1="20" y1="130" x2="20" y2="20" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#64748b" font-weight="bold" font-size="9">|Av|</text>
+
+        <line x1="25" y1="25" x2="240" y2="120" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+        <text x="35" y="38" fill="#94a3b8" font-size="8">Ideal (satura en DC)</text>
+
+        <line x1="20" y1="55" x2="100" y2="55" stroke="#0284c7" stroke-width="2.5"/>
+        <text x="55" y="47" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="9">Av0 = −Rp / R1</text>
+        <path d="M 100 55 Q 125 58 150 78 L 260 125" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+
+        <circle cx="120" cy="62" r="3" fill="#f59e0b"/>
+        <line x1="120" y1="62" x2="120" y2="130" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="120" y="142" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="9">fc</text>
+
+        <circle cx="180" cy="92" r="3" fill="#059669"/>
+        <line x1="180" y1="92" x2="180" y2="130" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="180" y="142" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">10fc</text>
+
+        <rect x="165" y="152" width="125" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+        <text x="227" y="165" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">Banda de Integración Pura</text>
+        <text x="230" y="90" font-weight="bold" fill="#059669" font-size="8.5">−20 dB/dec</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+      <!-- 5. DERIVADOR -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">5. Amplificador Derivador: Simple (Puro) vs Práctico Estabilizado</h5>
+      <p class="mb-2">El <strong>derivador inversor simple (puro / ideal)</strong> ubica un capacitor $C_1$ en la rama de entrada y una resistencia pura $R_f$ en el lazo de realimentación:</p>
       $$i(t) = C_1 \\frac{dv_i(t)}{dt} = -\\frac{v_o(t)}{R_f} \\implies \\mathbf{v_o(t) = -R_f C_1 \\frac{dv_i(t)}{dt}}$$
+      <p class="mb-2">En el dominio de la frecuencia compleja, su función de transferencia es $\\mathbf{H(s) = -s R_f C_1}$, cuya magnitud $|H(j\\omega)| = \\omega R_f C_1$ crece indefinidamente a razón de $+20\\text{ dB/década}$.</p>
+
       <div class="p-3 my-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200 text-xs">
-        <strong>⚠️ Vulnerabilidades Fatales del Derivador Ideal:</strong><br>
-        1. <strong>Ganancia creciente a $+20\\text{ dB/década}$ con la frecuencia:</strong> $|A_v(j\\omega)| = \\omega R_f C_1$. A altas frecuencias, la ganancia crece sin límite, amplificando exponencialmente el ruido térmico y electromagnético de alta frecuencia hasta eclipsar totalmente la señal útil.<br>
-        2. <strong>Inestabilidad en lazo cerrado:</strong> La reactancia capacitiva de entrada introduce un desfase adicional de $-90^{\\circ}$ en la ganancia de lazo $T(s) = \\beta(s) A_{OL}(s)$, destruyendo el margen de fase ($PM < 0$) y provocando oscilaciones violentas espontáneas.
+        <strong>⚠️ Vulnerabilidades Fatales del Derivador Simple (Puro):</strong><br>
+        1. <strong>Ganancia creciente a $+20\\text{ dB/década}$ con la frecuencia:</strong> A altas frecuencias, la reactancia capacitiva $X_{C1} = 1/(\\omega C_1)$ tiende a cero. Cualquier ruido térmico, ripple de conmutación o espurio parásito de alta frecuencia resulta masivamente amplificado, destruyendo la relación señal/ruido ($SNR$) y saturando la salida.<br>
+        2. <strong>Inestabilidad y pérdida crítica de margen de fase:</strong> El capacitor $C_1$ en conjunto con la resistencia interna de entrada del Op-Amp introduce un retraso de fase de $-90^\\circ$. Sumado al polo dominante propio del amplificador a lazo abierto (otros $-90^\\circ$), el desfasaje total alcanza $-180^\\circ$ antes de que la ganancia de lazo caiga por debajo de $0\\text{ dB}$ ($PM < 0^\\circ$), transformando al derivador puro en un <strong>oscilador inestable</strong> inaceptable en ingeniería.
       </div>
-      <p class="my-2"><strong>Solución de cátedra: Derivador Práctico Estabilizado:</strong><br>
-      Se añade un resistor serie amortiguador $R_s$ con el capacitor de entrada $C_1$, y un capacitor de compensación en paralelo $C_f$ con el resistor de realimentación $R_f$:</p>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Derivador Inversor Simple (Puro) y sus Limitaciones Críticas
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 560 180" class="w-full max-w-[560px] h-auto select-none font-sans text-xs" style="min-width: 420px;">
+      <!-- Op-Amp Triangle -->
+      <polygon points="250,40 250,140 320,90" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="2"/>
+      <text x="258" y="68" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">−</text>
+      <text x="258" y="122" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="14">+</text>
+
+      <!-- Entrada vi(t) y C1 -->
+      <circle cx="35" cy="62" r="3.5" fill="#ef4444"/>
+      <text x="35" y="50" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="11">vi(t)</text>
+      <line x1="40" y1="62" x2="90" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <line x1="90" y1="48" x2="90" y2="76" stroke="#ef4444" stroke-width="2.5"/>
+      <line x1="98" y1="48" x2="98" y2="76" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="94" y="90" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">C1</text>
+      <line x1="98" y1="62" x2="250" y2="62" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- Nodo de masa virtual con texto colocado ABAJO a y=84 -->
+      <circle cx="170" cy="62" r="3.5" fill="#059669"/>
+      <text x="170" y="84" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">v⁻ ≈ 0V</text>
+
+      <!-- Feedback Resistor Rf puro (sube a y=20) -->
+      <line x1="170" y1="62" x2="170" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="170" y1="20" x2="260" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="260" y="10" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.8" rx="2"/>
+      <text x="285" y="24" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="10">Rf</text>
+      <line x1="310" y1="20" x2="365" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="365" y1="20" x2="365" y2="90" stroke="#64748b" stroke-width="1.8"/>
+
+      <!-- (+) a masa -->
+      <line x1="250" y1="118" x2="215" y2="118" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="215" y1="118" x2="215" y2="135" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="205" y1="135" x2="225" y2="135" stroke="#64748b" stroke-width="2"/>
+      <line x1="209" y1="139" x2="221" y2="139" stroke="#64748b" stroke-width="1.5"/>
+
+      <!-- Salida vo -->
+      <line x1="320" y1="90" x2="410" y2="90" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="365" cy="90" r="3.5" fill="#64748b"/>
+      <circle cx="410" cy="90" r="4" fill="#ef4444"/>
+      <text x="420" y="94" font-weight="bold" fill="#ef4444" font-size="11">vo(t)</text>
+
+      <rect x="330" y="112" width="220" height="60" rx="5" fill="#ffe4e6" class="dark:fill-rose-950/40" stroke="#ef4444" stroke-width="1"/>
+      <text x="440" y="127" text-anchor="middle" font-weight="bold" fill="#be123c" class="dark:fill-rose-300" font-size="9">⚠️ Inestabilidad del Derivador Puro</text>
+      <text x="440" y="141" text-anchor="middle" fill="#9f1239" class="dark:fill-rose-200" font-size="8">1. Ganancia crece a +20 dB/dec (Ruido extremo).</text>
+      <text x="440" y="154" text-anchor="middle" fill="#9f1239" class="dark:fill-rose-200" font-size="8">2. Pérdida de margen de fase (PM &lt; 0°): oscila.</text>
+      <text x="440" y="166" text-anchor="middle" font-weight="bold" fill="#be123c" class="dark:fill-rose-300" font-size="8">Requiere compensación con Rs y Cf.</text>
+    </svg>
+  </div>
+</div>
+
+      <p class="my-2"><strong>Solución de cátedra: Derivador Práctico Estabilizado ($R_s$ y $C_f$):</strong><br>
+      Se añade un resistor serie amortiguador $R_s$ con el capacitor de entrada $C_1$, y un pequeño capacitor de realimentación $C_f$ en paralelo con $R_f$:</p>
       $$\\mathbf{H(s) = -\\frac{Z_f(s)}{Z_1(s)} = -\\frac{\\frac{R_f}{1 + s R_f C_f}}{R_s + \\frac{1}{s C_1}} = -\\frac{s R_f C_1}{(1 + s R_s C_1)(1 + s R_f C_f)}}$$
       <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
-        <li><strong>Diseño simétrico de cátedra:</strong> Se adopta $\\tau_p = R_s C_1 = R_f C_f$, fijando un polo doble en:
-          $$\\mathbf{f_p = \\frac{1}{2\\pi R_s C_1} = \\frac{1}{2\\pi R_f C_f}}$$
+        <li><strong>Diseño simétrico de cátedra:</strong> Se adopta $\\tau_p = R_s C_1 = R_f C_f$, fijando una frecuencia de polo doble:
+        $$\\mathbf{f_p = \\frac{1}{2\\pi R_s C_1} = \\frac{1}{2\\pi R_f C_f}}$$
         </li>
         <li><strong>Comportamiento en frecuencia:</strong>
-          <br>• Para $f < f_p$: el circuito se comporta como derivador lineal con $H(j\\omega) \\approx -j\\omega R_f C_1$.
-          <br>• En $f = f_p$: la ganancia alcanza su máximo absoluto $|A_{v,max}| = \\frac{R_f}{2 R_s}$.
-          <br>• Para $f > f_p$: la ganancia decae a $-20\\text{ dB/década}$, actuando como filtro pasa-bajos que atenúa ruidos y restaura un margen de fase seguro ($PM \\ge 45^{\\circ}$).
-
-<!-- ================= SVG: INTEGRADOR Y DERIVADOR REALES ================= -->
-            <div class="my-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
-                <span>🔄</span> Integrador Real Compensado en Baja Frecuencia vs Derivador Real Estabilizado en Alta Frecuencia
-              </div>
-              <div class="w-full overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 780 280" class="w-full max-w-[780px] h-auto select-none font-sans text-xs" style="min-width: 600px;">
-                  <defs>
-                    <marker id="bode-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#64748b"/>
-                    </marker>
-                  </defs>
-
-                  <!-- ================= MITAD IZQUIERDA: INTEGRADOR REAL COMPENSADO (X: 10 a 385) ================= -->
-                  <g transform="translate(10, 10)">
-                    <rect x="0" y="0" width="375" height="260" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="375" height="28" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="none"/>
-                    <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="11">Integrador Real con Resistencia Rp (Leaky Integrator)</text>
-
-                    <!-- Sub-panel izquierdo: Esquemático (X: 10 a 180) -->
-                    <g transform="translate(10, 35)">
-                      <!-- Op-Amp Triangle -->
-                      <polygon points="90,45 90,115 138,80" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5"/>
-                      <text x="96" y="65" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="11">−</text>
-                      <text x="96" y="102" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="11">+</text>
-
-                      <!-- vi y R1 -->
-                      <circle cx="10" cy="62" r="3" fill="#0284c7"/>
-                      <text x="10" y="53" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8">vi</text>
-                      <line x1="13" y1="62" x2="30" y2="62" stroke="#64748b" stroke-width="1.2"/>
-                      <rect x="30" y="56" width="28" height="12" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.2" rx="2"/>
-                      <text x="44" y="65" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="7.5">R1</text>
-                      <line x1="58" y1="62" x2="90" y2="62" stroke="#64748b" stroke-width="1.2"/>
-                      <circle cx="76" cy="62" r="2.5" fill="#059669"/>
-
-                      <!-- Red paralelo en feedback: C y Rp -->
-                      <line x1="76" y1="62" x2="76" y2="25" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- Rama C (arriba) -->
-                      <line x1="76" y1="25" x2="76" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <line x1="76" y1="12" x2="95" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <!-- Capacitor plates -->
-                      <line x1="95" y1="6" x2="95" y2="18" stroke="#0284c7" stroke-width="1.8"/>
-                      <line x1="100" y1="6" x2="100" y2="18" stroke="#0284c7" stroke-width="1.8"/>
-                      <text x="97" y="27" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="7.5">C</text>
-                      <line x1="100" y1="12" x2="120" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <line x1="120" y1="12" x2="120" y2="25" stroke="#64748b" stroke-width="1"/>
-
-                      <!-- Rama Rp (abajo) -->
-                      <line x1="76" y1="25" x2="84" y2="25" stroke="#64748b" stroke-width="1"/>
-                      <rect x="84" y="19" width="28" height="12" fill="#ffffff" class="dark:fill-slate-800" stroke="#f59e0b" stroke-width="1.2" rx="2"/>
-                      <text x="98" y="28" text-anchor="middle" font-weight="bold" fill="#d97706" class="dark:fill-amber-400" font-size="7.5">Rp</text>
-                      <line x1="112" y1="25" x2="120" y2="25" stroke="#64748b" stroke-width="1"/>
-
-                      <!-- Recombina y va a out -->
-                      <line x1="120" y1="25" x2="148" y2="25" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="148" y1="25" x2="148" y2="80" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="138" y1="80" x2="170" y2="80" stroke="#64748b" stroke-width="1.2"/>
-                      <circle cx="148" cy="80" r="2.5" fill="#64748b"/>
-                      <circle cx="170" cy="80" r="3" fill="#0284c7"/>
-                      <text x="172" y="73" font-weight="bold" fill="#0284c7" font-size="9">vo</text>
-
-                      <!-- (+) a masa -->
-                      <line x1="90" y1="98" x2="78" y2="98" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="78" y1="98" x2="78" y2="110" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="72" y1="110" x2="84" y2="110" stroke="#64748b" stroke-width="1.5"/>
-                      <line x1="75" y1="113" x2="81" y2="113" stroke="#64748b" stroke-width="1"/>
-                    </g>
-
-                    <!-- Sub-panel derecho: Curva de Bode (X: 195 a 365) -->
-                    <g transform="translate(195, 45)">
-                      <text x="80" y="-2" text-anchor="middle" font-weight="bold" fill="#475569" class="dark:fill-slate-300" font-size="9">Respuesta en Frecuencia |H(jω)|</text>
-                      <!-- Ejes -->
-                      <line x1="15" y1="95" x2="165" y2="95" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#bode-arr)"/>
-                      <text x="160" y="108" fill="#64748b" font-size="8">log f</text>
-                      <line x1="15" y1="95" x2="15" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#bode-arr)"/>
-                      <text x="5" y="10" fill="#64748b" font-size="8">|Av|</text>
-
-                      <!-- Curva Integrador Ideal (punteada gris - sube infinito en DC) -->
-                      <line x1="18" y1="15" x2="135" y2="85" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
-                      <text x="25" y="24" fill="#94a3b8" font-size="7">Ideal: satura en DC</text>
-
-                      <!-- Curva Integrador Real (azul) -->
-                      <!-- Meseta en continua: y=35 de x=15 a x=55 -->
-                      <line x1="15" y1="35" x2="55" y2="35" stroke="#0284c7" stroke-width="2.2"/>
-                      <!-- Curva de esquina hacia caída de -20dB/dec -->
-                      <path d="M 55 35 Q 70 38 85 53 L 145 88" fill="none" stroke="#0284c7" stroke-width="2.2"/>
-
-                      <!-- Marcas fc y 10fc -->
-                      <circle cx="65" cy="38" r="2.5" fill="#f59e0b"/>
-                      <line x1="65" y1="38" x2="65" y2="95" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="65" y="104" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8">fc</text>
-
-                      <circle cx="105" cy="65" r="2.5" fill="#059669"/>
-                      <line x1="105" y1="65" x2="105" y2="95" stroke="#059669" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="105" y="104" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">10fc</text>
-
-                      <!-- Etiquetas en el gráfico -->
-                      <text x="35" y="30" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="7.5">Av0 = −Rp/R1</text>
-                      <text x="125" y="60" font-weight="bold" fill="#059669" font-size="7.5">−20 dB/dec</text>
-                      <rect x="95" y="112" width="65" height="14" rx="2" fill="#059669" fill-opacity="0.15"/>
-                      <text x="127" y="122" text-anchor="middle" font-weight="bold" fill="#059669" font-size="7.5">Zona Integración</text>
-                    </g>
-
-                    <!-- Síntesis inferior -->
-                    <rect x="15" y="188" width="345" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="187" y="204" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9.5">fc = 1 / (2π · Rp · C)  |  Av(DC) = −Rp / R1</text>
-                    <text x="187" y="219" text-anchor="middle" fill="#0284c7" class="dark:fill-sky-400" font-size="8.5">Banda de Integración Pura: f ≥ 10 fc (Error fase &lt; 5.7°)</text>
-                    <text x="187" y="234" text-anchor="middle" fill="#d97706" class="dark:fill-amber-400" font-size="8">Rp drena las corrientes de bias e impide la saturación contra ±Vsat</text>
-                  </g>
-
-                  <!-- ================= MITAD DERECHA: DERIVADOR REAL ESTABILIZADO (X: 395 a 770) ================= -->
-                  <g transform="translate(395, 10)">
-                    <rect x="0" y="0" width="375" height="260" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="375" height="28" rx="8" fill="#ef4444" fill-opacity="0.1" stroke="none"/>
-                    <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="11">Derivador Real Estabilizado (Rs y Cf)</text>
-
-                    <!-- Sub-panel izquierdo: Esquemático (X: 10 a 180) -->
-                    <g transform="translate(10, 35)">
-                      <polygon points="90,45 90,115 138,80" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.5"/>
-                      <text x="96" y="65" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="11">−</text>
-                      <text x="96" y="102" fill="#64748b" class="dark:fill-slate-300" font-weight="bold" font-size="11">+</text>
-
-                      <!-- vi, C1 y Rs -->
-                      <circle cx="5" cy="62" r="3" fill="#ef4444"/>
-                      <text x="5" y="53" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">vi</text>
-                      <line x1="8" y1="62" x2="20" y2="62" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- C1 Capacitor -->
-                      <line x1="20" y1="55" x2="20" y2="69" stroke="#ef4444" stroke-width="1.8"/>
-                      <line x1="25" y1="55" x2="25" y2="69" stroke="#ef4444" stroke-width="1.8"/>
-                      <text x="22" y="77" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="7">C1</text>
-                      <line x1="25" y1="62" x2="38" y2="62" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- Rs Resistor -->
-                      <rect x="38" y="56" width="24" height="12" fill="#ffffff" class="dark:fill-slate-800" stroke="#f59e0b" stroke-width="1.2" rx="2"/>
-                      <text x="50" y="65" text-anchor="middle" font-weight="bold" fill="#d97706" class="dark:fill-amber-400" font-size="7">Rs</text>
-                      <line x1="62" y1="62" x2="90" y2="62" stroke="#64748b" stroke-width="1.2"/>
-                      <circle cx="76" cy="62" r="2.5" fill="#059669"/>
-
-                      <!-- Red paralelo en feedback: Cf y Rf -->
-                      <line x1="76" y1="62" x2="76" y2="25" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- Rama Cf (arriba) -->
-                      <line x1="76" y1="25" x2="76" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <line x1="76" y1="12" x2="95" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <line x1="95" y1="6" x2="95" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
-                      <line x1="100" y1="6" x2="100" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
-                      <text x="97" y="27" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="7.5">Cf</text>
-                      <line x1="100" y1="12" x2="120" y2="12" stroke="#64748b" stroke-width="1"/>
-                      <line x1="120" y1="12" x2="120" y2="25" stroke="#64748b" stroke-width="1"/>
-
-                      <!-- Rama Rf (abajo) -->
-                      <line x1="76" y1="25" x2="84" y2="25" stroke="#64748b" stroke-width="1"/>
-                      <rect x="84" y="19" width="28" height="12" fill="#ffffff" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.2" rx="2"/>
-                      <text x="98" y="28" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="7.5">Rf</text>
-                      <line x1="112" y1="25" x2="120" y2="25" stroke="#64748b" stroke-width="1"/>
-
-                      <!-- Recombina y va a out -->
-                      <line x1="120" y1="25" x2="148" y2="25" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="148" y1="25" x2="148" y2="80" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="138" y1="80" x2="170" y2="80" stroke="#64748b" stroke-width="1.2"/>
-                      <circle cx="148" cy="80" r="2.5" fill="#64748b"/>
-                      <circle cx="170" cy="80" r="3" fill="#ef4444"/>
-                      <text x="172" y="73" font-weight="bold" fill="#ef4444" font-size="9">vo</text>
-
-                      <!-- (+) a masa -->
-                      <line x1="90" y1="98" x2="78" y2="98" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="78" y1="98" x2="78" y2="110" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="72" y1="110" x2="84" y2="110" stroke="#64748b" stroke-width="1.5"/>
-                      <line x1="75" y1="113" x2="81" y2="113" stroke="#64748b" stroke-width="1"/>
-                    </g>
-
-                    <!-- Sub-panel derecho: Curva de Bode (X: 195 a 365) -->
-                    <g transform="translate(195, 45)">
-                      <text x="80" y="-2" text-anchor="middle" font-weight="bold" fill="#475569" class="dark:fill-slate-300" font-size="9">Respuesta en Frecuencia |H(jω)|</text>
-                      <!-- Ejes -->
-                      <line x1="15" y1="95" x2="165" y2="95" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#bode-arr)"/>
-                      <text x="160" y="108" fill="#64748b" font-size="8">log f</text>
-                      <line x1="15" y1="95" x2="15" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#bode-arr)"/>
-                      <text x="5" y="10" fill="#64748b" font-size="8">|Av|</text>
-
-                      <!-- Curva Derivador Puro (punteada gris - sube sin límite a alta frec) -->
-                      <line x1="18" y1="90" x2="140" y2="15" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
-                      <text x="110" y="18" fill="#94a3b8" font-size="7">Ideal: ruido infinito</text>
-
-                      <!-- Curva Derivador Real (rojo/púrpura) -->
-                      <!-- Sube a +20dB/dec de x=18 a x=75, pico en fp, cae a -20dB/dec -->
-                      <path d="M 18 90 L 65 38 Q 78 28 90 38 L 145 88" fill="none" stroke="#ef4444" stroke-width="2.2"/>
-
-                      <!-- Pico fp -->
-                      <circle cx="78" cy="30" r="3" fill="#ef4444"/>
-                      <line x1="78" y1="30" x2="78" y2="95" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="78" y="104" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="8">fp</text>
-
-                      <!-- Etiquetas -->
-                      <text x="40" y="55" font-weight="bold" fill="#059669" font-size="7.5">+20 dB/dec</text>
-                      <text x="115" y="55" font-weight="bold" fill="#ef4444" font-size="7.5">−20 dB/dec</text>
-                      <rect x="18" y="112" width="60" height="14" rx="2" fill="#059669" fill-opacity="0.15"/>
-                      <text x="48" y="122" text-anchor="middle" font-weight="bold" fill="#059669" font-size="7.5">Derivación</text>
-                      <rect x="95" y="112" width="65" height="14" rx="2" fill="#ef4444" fill-opacity="0.15"/>
-                      <text x="127" y="122" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="7.5">Filtro de Ruido</text>
-                    </g>
-
-                    <!-- Síntesis inferior -->
-                    <rect x="15" y="188" width="345" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="187" y="204" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9.5">fp = 1 / (2π · Rs · C1) = 1 / (2π · Rf · Cf)</text>
-                    <text x="187" y="219" text-anchor="middle" fill="#059669" class="dark:fill-emerald-400" font-size="8.5">Banda de Derivación: f &lt; fp  (vo ≈ −Rf · C1 · dvi/dt)</text>
-                    <text x="187" y="234" text-anchor="middle" fill="#ef4444" class="dark:fill-rose-400" font-size="8">Rs y Cf eliminan la auto-oscilación y suprimen el ruido electromagnético</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
+        <br>• Para $f < f_p$: el circuito se comporta como derivador lineal con $H(j\\omega) \\approx -j\\omega R_f C_1$ (pendiente $+20\\text{ dB/década}$).
+        <br>• En $f = f_p$: la ganancia alcanza su máximo absoluto $|A_{v,max}| = \\frac{R_f}{2 R_s}$.
+        <br>• Para $f > f_p$: la ganancia decae a $-20\\text{ dB/década}$, actuando como filtro pasabajos atenuador de ruido y recuperando un margen de fase seguro ($PM > 45^\\circ$).
         </li>
       </ul>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>📐</span> Derivador Práctico Estabilizado (Rs y Cf) y Diagrama de Bode
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 680 200" class="w-full max-w-[680px] h-auto select-none font-sans text-xs" style="min-width: 500px;">
+      <!-- LADO IZQUIERDO: Circuito con Rs y Cf -->
+      <g transform="translate(10, 10)">
+        <polygon points="175,40 175,130 235,85" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.8"/>
+        <text x="182" y="64" fill="#64748b" font-weight="bold" font-size="13">−</text>
+        <text x="182" y="115" fill="#64748b" font-weight="bold" font-size="13">+</text>
+
+        <circle cx="10" cy="58" r="3" fill="#ef4444"/>
+        <text x="10" y="48" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="10">vi</text>
+        <line x1="15" y1="58" x2="35" y2="58" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="35" y1="50" x2="35" y2="66" stroke="#ef4444" stroke-width="2"/>
+        <line x1="41" y1="50" x2="41" y2="66" stroke="#ef4444" stroke-width="2"/>
+        <text x="38" y="76" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">C1</text>
+        <line x1="41" y1="58" x2="65" y2="58" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="65" y="50" width="34" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#f59e0b" stroke-width="1.5" rx="2"/>
+        <text x="82" y="62" text-anchor="middle" font-weight="bold" fill="#d97706" class="dark:fill-amber-400" font-size="8.5">Rs</text>
+        <line x1="99" y1="58" x2="175" y2="58" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="125" cy="58" r="3" fill="#059669"/>
+
+        <!-- Feedback paralelo: Cf y Rf -->
+        <line x1="125" y1="58" x2="125" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="125" y1="25" x2="125" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="125" y1="12" x2="160" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="160" y1="5" x2="160" y2="19" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="167" y1="5" x2="167" y2="19" stroke="#f59e0b" stroke-width="2"/>
+        <text x="163" y="29" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8">Cf</text>
+        <line x1="167" y1="12" x2="205" y2="12" stroke="#64748b" stroke-width="1.2"/>
+        <line x1="205" y1="12" x2="205" y2="25" stroke="#64748b" stroke-width="1.2"/>
+
+        <line x1="125" y1="25" x2="145" y2="25" stroke="#64748b" stroke-width="1.2"/>
+        <rect x="145" y="17" width="38" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.5" rx="2"/>
+        <text x="164" y="29" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="8.5">Rf</text>
+        <line x1="183" y1="25" x2="205" y2="25" stroke="#64748b" stroke-width="1.2"/>
+
+        <line x1="205" y1="25" x2="250" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="250" y1="25" x2="250" y2="85" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="235" y1="85" x2="280" y2="85" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="250" cy="85" r="3" fill="#64748b"/>
+        <circle cx="280" cy="85" r="3.5" fill="#ef4444"/>
+        <text x="288" y="88" font-weight="bold" fill="#ef4444" font-size="10">vo</text>
+
+        <!-- (+) a masa -->
+        <line x1="175" y1="110" x2="145" y2="110" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="145" y1="110" x2="145" y2="125" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="135" y1="125" x2="155" y2="125" stroke="#64748b" stroke-width="2"/>
+        <line x1="139" y1="129" x2="151" y2="129" stroke="#64748b" stroke-width="1.5"/>
+      </g>
+
+      <!-- LADO DERECHO: Diagrama de Bode -->
+      <g transform="translate(340, 20)">
+        <text x="160" y="5" text-anchor="middle" font-weight="bold" fill="#475569" class="dark:fill-slate-300" font-size="10">Respuesta Estabilizada en Frecuencia |H(jω)|</text>
+        <line x1="20" y1="130" x2="310" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="300" y="145" fill="#64748b" font-weight="bold" font-size="9">log f</text>
+        <line x1="20" y1="130" x2="20" y2="20" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#64748b" font-weight="bold" font-size="9">|Av|</text>
+
+        <line x1="30" y1="125" x2="250" y2="20" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+        <text x="220" y="28" fill="#94a3b8" font-size="8">Ideal (ruido infinito)</text>
+
+        <path d="M 30 125 L 140 45 Q 160 30 180 45 L 280 120" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+
+        <circle cx="160" cy="35" r="3.5" fill="#ef4444"/>
+        <line x1="160" y1="35" x2="160" y2="130" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="160" y="142" text-anchor="middle" font-weight="bold" fill="#be123c" class="dark:fill-rose-400" font-size="9">fp</text>
+
+        <text x="90" y="80" font-weight="bold" fill="#059669" font-size="8.5">+20 dB/dec</text>
+        <text x="225" y="80" font-weight="bold" fill="#ef4444" font-size="8.5">−20 dB/dec</text>
+
+        <rect x="35" y="152" width="105" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+        <text x="87" y="165" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8.5">Banda Derivación</text>
+
+        <rect x="195" y="152" width="105" height="18" rx="3" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-width="0.8"/>
+        <text x="247" y="165" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">Filtro Antirruido</text>
+      </g>
+    </svg>
+  </div>
+</div>
           `
         },
-        {
+{
           id: 'u3-opamp-modelo-real-offset',
           titulo: '3.6 Errores Estáticos de Continua en el Op-Amp Real: Offset, Corrientes de Polarización y Balance',
           contenido: `
-<p class="mb-3">En el diseño de amplificadores de precisión, instrumentación y procesamiento en continua, las desviaciones respecto al modelo ideal producen una <strong>tensión de error de continua parásita en la salida</strong> ($V_{o,error}$) aun cuando todas las entradas estén rigurosamente conectadas a masa ($v_i = 0$). Estas imperfecciones se agrupan en tres parámetros fundamentales reflejados a la entrada del circuito integrado:</p>
+<p class="mb-3">En el diseño de amplificadores de precisión, instrumentación y procesamiento analógico, no es posible considerar nulas las asimetrías de continua internas del circuito integrado. Existen tres magnitudes físicas fundamentales que generan tensiones de error espurias a la salida:</p>
 
       <div class="overflow-x-auto my-3">
         <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
@@ -3033,7 +3113,7 @@ const MANUAL_TEORIA_EA1 = {
             <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 font-mono">
               <th class="p-2 border border-slate-200 dark:border-slate-800">Parámetro</th>
               <th class="p-2 border border-slate-200 dark:border-slate-800">Símbolo</th>
-              <th class="p-2 border border-slate-200 dark:border-slate-800">Origen Físico Microelectrónico</th>
+              <th class="p-2 border border-slate-200 dark:border-slate-800">Origen Físico Microscópico</th>
               <th class="p-2 border border-slate-200 dark:border-slate-800">Valores Típicos (BJT vs FET)</th>
             </tr>
           </thead>
@@ -3041,472 +3121,482 @@ const MANUAL_TEORIA_EA1 = {
             <tr>
               <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Tensión de Offset de Entrada</td>
               <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$V_{os}$</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800">Asimetría de $V_{BE}$ y áreas de emisor en el par diferencial de entrada</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $1\\text{ a } 5\\text{ mV}$<br>Precisión (OP07): $< 75\\,\\mu\\text{V}$<br>FET: $3\\text{ a } 10\\text{ mV}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Asimetría de $V_{BE}$ en transistores del par de entrada ($Q_1, Q_2$), tolerancias de $R_C$ y dopados.</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $1\\text{ a } 5\\,\\text{mV}$<br>FET: $5\\text{ a } 15\\,\\text{mV}$<br>Precisión: $< 50\\,\\mu\\text{V}$</td>
             </tr>
             <tr>
               <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Corriente de Polarización (Bias)</td>
               <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_B = \\frac{I_{B+} + I_{B-}}{2}$</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800">Corrientes de base de reposo para mantener activo el par diferencial</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT (741): $80\\text{ a } 500\\text{ nA}$<br>Precisión: $1\\text{ a } 4\\text{ nA}$<br>BiFET (TL081): $30\\text{ a } 100\\text{ pA}$<br>CMOS: $< 1\\text{ pA}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Corrientes de base necesarias para activar la zona activa directa de $Q_1$ y $Q_2$.</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT (741): $80\\text{ a } 500\\,\\text{nA}$<br>JFET (TL071): $30\\,\\text{pA}$<br>CMOS: $< 1\\,\\text{pA}$</td>
             </tr>
             <tr>
-              <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Corriente de Desbalance (Offset)</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-semibold font-sans">Corriente de Offset de Entrada</td>
               <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">$I_{os} = |I_{B+} - I_{B-}|$</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800">Disparidad en la ganancia de corriente $\\beta$ entre los transistores del par</td>
-              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $10\\text{ a } 50\\text{ nA}$<br>Precisión: $< 0.5\\text{ nA}$<br>FET: $5\\text{ a } 20\\text{ pA}$</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800">Disparidad en la ganancia de corriente ($\\beta_1 \\neq \\beta_2$) entre ambos transistores de entrada.</td>
+              <td class="p-2 border border-slate-200 dark:border-slate-800 font-mono">BJT: $10\\text{ a } 50\\,\\text{nA}$ ($10\\% \\text{ a } 20\\% \\text{ de } I_B$)<br>FET: $5\\,\\text{pA}$</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Ganancia de Ruido y Tensión de Offset ($V_{os}$)</h5>
-      <p class="mb-2">La tensión de offset de entrada $V_{os}$ se modela como una fuente de tensión continua ideal conectada en serie con cualquiera de los terminales de entrada (típicamente referenciada al terminal no inversor). Por consiguiente, independientemente de si la etapa amplifica en configuración inversora o no inversora para la señal útil, el offset se amplifica hacia la salida mediante la <strong>Ganancia de Ruido (Noise Gain, $A_{v,noise}$)</strong>:</p>
+      <!-- 1. VOS Y GANANCIA DE RUIDO -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Ganancia de Ruido ($A_{v,noise}$) y Error por Tensión de Offset ($V_{os}$)</h5>
+      <p class="mb-2">La tensión de offset de entrada $V_{os}$ se modela circuitalmente como un generador de tensión continua en serie con el terminal no inversor de un Op-Amp ideal exento de offset. Al anular las fuentes independientes de señal ($v_i = 0$), el circuito siempre adopta la topología de un <strong>amplificador no inversor</strong>, independientemente de que la configuración original sea inversora o no inversora:</p>
       <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
         $$\\mathbf{A_{v,noise} = 1 + \\frac{R_f}{R_1}}$$
-        <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400"><strong>¡Trampa recurrente de parcial y final!</strong> En un amplificador inversor con ganancia de señal $A_v = -R_f/R_1 = -100$, el error de offset en la salida NO es $100 V_{os}$, sino $(1 + 100) V_{os} = 101 V_{os}$.</p>
+        <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400"><strong>¡Trampa recurrente de parcial!</strong> En un amplificador inversor con ganancia de señal $A_v = -\\frac{R_f}{R_1}$, la ganancia con la que se amplifica el offset no es $-\\frac{R_f}{R_1}$, sino $\\mathbf{A_{v,noise} = 1 + \\frac{R_f}{R_1}}$.</p>
       </div>
       <p class="text-xs sm:text-sm my-2">Tensión de error en la salida provocada únicamente por la tensión de offset:</p>
       $$V_{o(Vos)} = \\pm A_{v,noise} \\cdot V_{os} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os}$$
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>⚡</span> Modelo Circuital de Tensión de Offset (Vos) y Ganancia de Ruido (Av,noise)
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 540 180" class="w-full max-w-[540px] h-auto select-none font-sans text-xs" style="min-width: 400px;">
+      <polygon points="230,40 230,140 300,90" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="2"/>
+      <text x="238" y="68" fill="#64748b" font-weight="bold" font-size="14">−</text>
+      <text x="238" y="122" fill="#64748b" font-weight="bold" font-size="14">+</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Efecto de las Corrientes de Polarización sin Compensar ($R_c = 0$)</h5>
-      <p class="mb-2">Si el terminal no inversor se conecta directamente a masa ($v^+ = 0$), la corriente de polarización $I_{B-}$ entra al pin inversor drenando directamente por la resistencia de realimentación $R_f$ (ya que la resistencia de entrada del núcleo es infinita):</p>
+      <line x1="50" y1="62" x2="80" y2="62" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="50" cy="62" r="3.5" fill="#64748b"/>
+      <line x1="50" y1="62" x2="50" y2="78" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="42" y1="78" x2="58" y2="78" stroke="#64748b" stroke-width="2"/>
+      <line x1="45" y1="82" x2="55" y2="82" stroke="#64748b" stroke-width="1.5"/>
+
+      <rect x="80" y="52" width="46" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="103" y="66" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="10">R1</text>
+      <line x1="126" y1="62" x2="230" y2="62" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="160" cy="62" r="3.5" fill="#64748b"/>
+
+      <line x1="160" y1="62" x2="160" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="160" y1="20" x2="235" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <rect x="235" y="10" width="50" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="260" y="24" text-anchor="middle" font-weight="bold" fill="#0369a1" font-size="10">Rf</text>
+      <line x1="285" y1="20" x2="340" y2="20" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="340" y1="20" x2="340" y2="90" stroke="#64748b" stroke-width="1.8"/>
+
+      <line x1="230" y1="118" x2="175" y2="118" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="155" cy="118" r="14" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8"/>
+      <text x="148" y="122" font-size="10" fill="#0284c7" font-weight="bold">+</text>
+      <text x="159" y="122" font-size="10" fill="#0284c7" font-weight="bold">−</text>
+      <text x="155" y="146" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="9.5">Vos</text>
+
+      <line x1="141" y1="118" x2="105" y2="118" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="105" y1="118" x2="105" y2="135" stroke="#64748b" stroke-width="1.8"/>
+      <line x1="97" y1="135" x2="113" y2="135" stroke="#64748b" stroke-width="2"/>
+      <line x1="100" y1="139" x2="110" y2="139" stroke="#64748b" stroke-width="1.5"/>
+
+      <line x1="300" y1="90" x2="390" y2="90" stroke="#64748b" stroke-width="1.8"/>
+      <circle cx="340" cy="90" r="3.5" fill="#64748b"/>
+      <circle cx="390" cy="90" r="4" fill="#0284c7"/>
+      <text x="400" y="94" font-weight="bold" fill="#0284c7" font-size="11">Vo(error)</text>
+
+      <rect x="360" y="115" width="170" height="55" rx="5" fill="#f8fafc" class="dark:fill-slate-800" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+      <text x="445" y="132" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="9.5">Av,noise = 1 + (Rf / R1)</text>
+      <text x="445" y="147" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9">Vo(Vos) = ± Av,noise · Vos</text>
+      <text x="445" y="160" text-anchor="middle" fill="#d97706" font-size="8">¡Aplica a inversores y no inversores!</text>
+    </svg>
+  </div>
+</div>
+
+      <!-- 2. CORRIENTES DE BIAS -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Efecto de las Corrientes de Polarización de Entrada ($I_B$)</h5>
+      <p class="mb-2">Si el terminal no inversor se conecta directamente a masa ($v^+ = 0$), la corriente de polarización de la entrada inversora $I_{B-}$ debe fluir a través de la resistencia de realimentación $R_f$, provocando una caída de potencial que se manifiesta directamente en la salida:</p>
       $$V_{o(IB)} = R_f \\cdot I_{B-}$$
-      <p class="my-2">En etapas con valores elevados de realimentación (por ejemplo $R_f = 1\\text{ M}\\Omega$ en BJT con $I_{B-} = 500\\text{ nA}$), este error genera una caída constante de $V_{o(IB)} = 10^6\\,\\Omega \\times 500\\times 10^{-9}\\text{ A} = \\mathbf{500\\text{ mV}}$, superando ampliamente al error por $V_{os}$.</p>
+      <p class="my-2">En etapas con valores elevados de realimentación (por ejemplo $R_f = 1\\,\\text{M}\\Omega$ con $I_B = 500\\,\\text{nA}$ en un $\\mu\\text{A}741$), este error por sí solo introduce $V_{o(IB)} = 1\\,\\text{M}\\Omega \\cdot 500\\,\\text{nA} = \\mathbf{500\\,\\text{mV}}$, un error inadmisible en señales de bajo nivel.</p>
       <p class="my-2">La tensión de error total de peor caso en la salida sin compensación es:</p>
-      $$\\mathbf{V_{o,total(sin\\,R_c)} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os} + R_f \\cdot I_{B-}}$$
+      $$\\mathbf{V_{o,total(sin\\,R_c)} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os} \\pm R_f I_{B-}}$$
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Deducción Formal de la Resistencia de Compensación Óptima ($R_c$)</h5>
-      <p class="mb-2">Para cancelar la perturbación inducida por la corriente de polarización mayoritaria $I_B$, se intercala un resistor $R_c$ entre el terminal no inversor y masa:</p>
+      <!-- 3 & 4. RESISTENCIA Rc Y OFFSET CURRENT -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Deducción de la Resistencia de Compensación ($R_c$) y Error Residual por $I_{os}$</h5>
+      <p class="mb-2">Para cancelar la perturbación inducida por la corriente de polarización común, se intercala una resistencia de compensación $R_c$ en serie con el terminal no inversor:</p>
       <ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
         <li>Potencial en la entrada no inversora debido a la corriente de bias $I_{B+}$:
-          $$v^+ = -I_{B+} \\cdot R_c$$
+        $$v^+ = -I_{B+} \\cdot R_c$$
         </li>
         <li>Potencial en la entrada inversora por superposición (con $v_o$ y $I_{B-}$):
-          $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} \\cdot (R_1 \\parallel R_f)$$
+        $$v^- = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} \\cdot (R_1 \\parallel R_f)$$
         </li>
         <li>Por cortocircuito virtual en lazo cerrado ($v^+ = v^-$):
-          $$-I_{B+} R_c = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} (R_1 \\parallel R_f)$$
+        $$-I_{B+} R_c = v_o \\left( \\frac{R_1}{R_1 + R_f} \\right) - I_{B-} (R_1 \\parallel R_f)$$
         </li>
         <li>Despejando la salida $v_o$ inducida por corrientes:
-          $$v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) \\left[ I_{B-} (R_1 \\parallel R_f) - I_{B+} R_c \\right]$$
+        $$v_o = \\left( 1 + \\frac{R_f}{R_1} \\right) \\left[ I_{B-} (R_1 \\parallel R_f) - I_{B+} R_c \\right]$$
         </li>
-        <li>Asumiendo que las corrientes de polarización son aproximadamente idénticas ($I_{B+} \\approx I_{B-} \\approx I_B$), para que la salida sea exactamente nula ($v_o = 0$), debe cumplirse la <strong>condición de equilibrio estático</strong>:
-          $$\\mathbf{R_c = R_1 \\parallel R_f = \\frac{R_1 R_f}{R_1 + R_f}}$$
+        <li>Asumiendo que las corrientes de polarización son aproximadamente idénticas ($I_{B+} \\approx I_{B-} = I_B$), para lograr $v_o = 0$ la condición de cancelación exacta es:
+        $$\\mathbf{R_c = R_1 \\parallel R_f = \\frac{R_1 R_f}{R_1 + R_f}}$$
         </li>
         <li>Para un sumador inversor de $n$ entradas con resistores $R_1, R_2, \\dots, R_n$:
-          $$\\mathbf{R_c = R_1 \\parallel R_2 \\parallel \\dots \\parallel R_n \\parallel R_f}$$
+        $$\\mathbf{R_c = R_1 \\parallel R_2 \\parallel \\dots \\parallel R_n \\parallel R_f}$$
         </li>
       </ol>
-
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">4. Error Residual de Peor Caso con Resistencia de Compensación</h5>
-      <p class="mb-2">Con $R_c = R_1 \\parallel R_f$ conectado, la componente común $I_B$ queda cancelada, reduciéndose el error de corriente a la diferencia residual $I_{B+} - I_{B-} = \\pm I_{os}$:</p>
+      <p class="my-2">Con $R_c = R_1 \\parallel R_f$ conectado, la componente común $I_B$ queda perfectamente balanceada, reduciendo el error inducido por corrientes a únicamente la diferencia asimétrica $I_{os} = |I_{B+} - I_{B-}|$:</p>
       $$V_{o(Ios)} = \\pm R_f \\cdot I_{os}$$
-      <p class="my-2">Por lo tanto, la <strong>tensión de error total de peor caso en la salida con compensación</strong> es:</p>
       <div class="p-3 my-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200 text-xs">
         $$\\mathbf{V_{o,max(con\\,R_c)} = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) V_{os} \\pm R_f \\cdot I_{os}}$$
-        <p class="mt-1 text-xs">Como $I_{os} \\ll I_B$ (típicamente $I_{os} \\approx 0.1 \\text{ a } 0.2 I_B$), la adición de $R_c$ atenúa el error por corrientes en un factor de $5$ a $10$ veces sin costo adicional.</p>
-
-<!-- ================= SVG: MODELO REAL DC Y COMPENSACIÓN Rc ================= -->
-            <div class="my-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
-                <span>⚡</span> Modelo Real de Continua: Tensión de Offset (Vos), Corrientes de Bias (IB) y Compensación Óptima con Rc
-              </div>
-              <div class="w-full overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 760 270" class="w-full max-w-[760px] h-auto select-none font-sans text-xs" style="min-width: 580px;">
-                  <defs>
-                    <marker id="err-arr-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#d97706"/>
-                    </marker>
-                    <marker id="err-arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#0284c7"/>
-                    </marker>
-                  </defs>
-
-                  <!-- ================= LADO IZQUIERDO: MODELO INTERNO DE CONTINUA (X: 10 a 375) ================= -->
-                  <g transform="translate(10, 10)">
-                    <rect x="0" y="0" width="365" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="365" height="28" rx="8" fill="#f59e0b" fill-opacity="0.1" stroke="none"/>
-                    <text x="182" y="18" text-anchor="middle" font-weight="bold" fill="#d97706" class="dark:fill-amber-400" font-size="11">Modelo Circuital Real con Fuentes Parásitas Internas</text>
-
-                    <!-- Núcleo Ideal del Op-Amp -->
-                    <polygon points="190,65 190,165 260,115" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.8"/>
-                    <text x="210" y="112" text-anchor="middle" font-weight="bold" fill="#64748b" class="dark:fill-slate-400" font-size="9">Op-Amp</text>
-                    <text x="210" y="124" text-anchor="middle" font-weight="bold" fill="#64748b" class="dark:fill-slate-400" font-size="9">Ideal</text>
-                    <text x="196" y="90" fill="#64748b" font-weight="bold" font-size="12">−</text>
-                    <text x="196" y="148" fill="#64748b" font-weight="bold" font-size="12">+</text>
-
-                    <!-- Terminal Inversor (−) y corriente IB− -->
-                    <line x1="80" y1="85" x2="190" y2="85" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="80" cy="85" r="3.5" fill="#64748b"/>
-                    <text x="45" y="89" font-weight="bold" fill="#64748b" font-size="10">Pin (−)</text>
-
-                    <!-- Generador de corriente IB- hacia el interior -->
-                    <circle cx="140" cy="85" r="11" fill="#ffffff" class="dark:fill-slate-800" stroke="#d97706" stroke-width="1.5"/>
-                    <line x1="133" y1="85" x2="147" y2="85" stroke="#d97706" stroke-width="1.5" marker-end="url(#err-arr-amber)"/>
-                    <text x="140" y="68" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">IB−</text>
-
-                    <!-- Terminal No Inversor (+) con Vos e IB+ -->
-                    <line x1="80" y1="145" x2="105" y2="145" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="80" cy="145" r="3.5" fill="#64748b"/>
-                    <text x="45" y="149" font-weight="bold" fill="#64748b" font-size="10">Pin (+)</text>
-
-                    <!-- Fuente Vos en serie -->
-                    <circle cx="118" cy="145" r="10" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5"/>
-                    <text x="114" y="148" font-size="9" fill="#0284c7" font-weight="bold">+</text>
-                    <text x="122" y="148" font-size="9" fill="#0284c7" font-weight="bold">−</text>
-                    <text x="118" y="167" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8.5">Vos</text>
-
-                    <line x1="128" y1="145" x2="155" y2="145" stroke="#64748b" stroke-width="1.5"/>
-                    <!-- Generador de corriente IB+ hacia el interior -->
-                    <circle cx="165" cy="145" r="11" fill="#ffffff" class="dark:fill-slate-800" stroke="#d97706" stroke-width="1.5"/>
-                    <line x1="158" y1="145" x2="172" y2="145" stroke="#d97706" stroke-width="1.5" marker-end="url(#err-arr-amber)"/>
-                    <text x="165" y="167" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8.5">IB+</text>
-                    <line x1="176" y1="145" x2="190" y2="145" stroke="#64748b" stroke-width="1.5"/>
-
-                    <!-- Salida -->
-                    <line x1="260" y1="115" x2="315" y2="115" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="315" cy="115" r="3.5" fill="#0284c7"/>
-                    <text x="325" y="119" font-weight="bold" fill="#0284c7" font-size="10">vo</text>
-
-                    <!-- Caja de definiciones -->
-                    <rect x="15" y="180" width="335" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="182" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9.5">IB = (IB+ + IB−) / 2  |  Ios = |IB+ − IB−|</text>
-                    <text x="182" y="211" text-anchor="middle" fill="#0284c7" class="dark:fill-sky-400" font-size="8.5">Ganancia de Ruido (Offset): Av,noise = 1 + (Rf / R1)</text>
-                    <text x="182" y="226" text-anchor="middle" fill="#d97706" class="dark:fill-amber-400" font-size="8">Ios representa la asimetría de β (típicamente Ios ≈ 10% a 20% de IB)</text>
-                  </g>
-
-                  <!-- ================= LADO DERECHO: COMPENSACIÓN CON Rc (X: 385 a 750) ================= -->
-                  <g transform="translate(385, 10)">
-                    <rect x="0" y="0" width="365" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="365" height="28" rx="8" fill="#059669" fill-opacity="0.1" stroke="none"/>
-                    <text x="182" y="18" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="11">Cancelación de Bias mediante Rc = R1 || Rf</text>
-
-                    <!-- Circuito con R1, Rf y Rc -->
-                    <polygon points="180,65 180,145 235,105" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8"/>
-                    <text x="186" y="88" fill="#64748b" font-weight="bold" font-size="12">−</text>
-                    <text x="186" y="130" fill="#64748b" font-weight="bold" font-size="12">+</text>
-
-                    <!-- R1 a masa (prueba DC) -->
-                    <line x1="85" y1="85" x2="115" y2="85" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="85" cy="85" r="3" fill="#64748b"/>
-                    <rect x="115" y="77" width="32" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.5" rx="2"/>
-                    <text x="131" y="89" text-anchor="middle" font-weight="bold" fill="#64748b" class="dark:fill-slate-300" font-size="8">R1</text>
-                    <line x1="147" y1="85" x2="180" y2="85" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="165" cy="85" r="3" fill="#64748b"/>
-
-                    <!-- Masa de R1 -->
-                    <line x1="85" y1="85" x2="85" y2="100" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="78" y1="100" x2="92" y2="100" stroke="#64748b" stroke-width="2"/>
-                    <line x1="81" y1="104" x2="89" y2="104" stroke="#64748b" stroke-width="1.5"/>
-
-                    <!-- Rf de realimentación -->
-                    <line x1="165" y1="85" x2="165" y2="45" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="165" y1="45" x2="188" y2="45" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="188" y="37" width="34" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.5" rx="2"/>
-                    <text x="205" y="49" text-anchor="middle" font-weight="bold" fill="#64748b" class="dark:fill-slate-300" font-size="8">Rf</text>
-                    <line x1="222" y1="45" x2="250" y2="45" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="250" y1="45" x2="250" y2="105" stroke="#64748b" stroke-width="1.5"/>
-
-                    <!-- Salida Vo(offset) -->
-                    <line x1="235" y1="105" x2="285" y2="105" stroke="#64748b" stroke-width="1.5"/>
-                    <circle cx="250" cy="105" r="3" fill="#64748b"/>
-                    <circle cx="285" cy="105" r="3.5" fill="#059669"/>
-                    <text x="292" y="102" font-weight="bold" fill="#059669" font-size="9">Vo(error)</text>
-
-                    <!-- Resistencia de compensación Rc en pin (+) -->
-                    <line x1="180" y1="128" x2="145" y2="128" stroke="#64748b" stroke-width="1.5"/>
-                    <rect x="115" y="120" width="30" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8" rx="2"/>
-                    <text x="130" y="132" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="8.5">Rc</text>
-                    <line x1="115" y1="128" x2="95" y2="128" stroke="#64748b" stroke-width="1.5"/>
-                    <!-- Masa de Rc -->
-                    <line x1="95" y1="128" x2="95" y2="142" stroke="#64748b" stroke-width="1.5"/>
-                    <line x1="88" y1="142" x2="102" y2="142" stroke="#059669" stroke-width="2"/>
-                    <line x1="91" y1="146" x2="99" y2="146" stroke="#059669" stroke-width="1.5"/>
-
-                    <!-- Cuadro comparativo: SIN Rc vs CON Rc -->
-                    <rect x="15" y="170" width="335" height="68" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="25" y="186" font-weight="bold" fill="#dc2626" font-size="8.5">❌ Sin Rc (Pin + a masa):</text>
-                    <text x="145" y="186" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="8.5">Vo(error) = ± Av,noise · Vos + Rf · IB−</text>
-
-                    <text x="25" y="206" font-weight="bold" fill="#059669" font-size="8.5">✔ Con Rc = R1 || Rf:</text>
-                    <text x="145" y="206" font-weight="bold" fill="#059669" class="dark:fill-emerald-400" font-size="8.5">Vo(error) = ± Av,noise · Vos ± Rf · Ios</text>
-
-                    <text x="182" y="226" text-anchor="middle" font-weight="semibold" fill="#0369a1" class="dark:fill-sky-400" font-size="8">¡El error por corriente se reduce de IB a Ios (reducción del 80% al 90%)!</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
+        <p class="mt-1 text-xs">Como $I_{os} \\ll I_B$ (típicamente $I_{os} \\approx 0.1 \\cdot I_B$), la resistencia de compensación $R_c$ atenúa el error por corrientes en un factor de $5\\text{ a } 10\\text{ veces}$ sin costo apreciable.</p>
       </div>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>⚡</span> Comparativa: Sin Compensación (Error por IB) vs Con Resistencia Rc = R1 || Rf (Error reducido a Ios)
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 680 190" class="w-full max-w-[680px] h-auto select-none font-sans text-xs" style="min-width: 500px;">
+      <g transform="translate(10, 5)">
+        <rect x="0" y="0" width="320" height="175" rx="6" fill="#f8fafc" class="dark:fill-slate-900/60" stroke="#ef4444" stroke-width="1"/>
+        <text x="160" y="16" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-400" font-size="10">A) Sin Compensar (Pin + a Masa Directa)</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">5. Calibración Externa con Potenciómetro de Offset Null</h5>
-      <p class="mb-2">Para anular completamente el error remanente en circuitos de ultra-precisión (balanzas electrónicas, transductores piezoeléctricos o acondicionamiento médico), los encapsulados estándar DIP-8 (uA741, OP07, LF356) disponen de terminales específicos de <strong>Offset Null (habitualmente pines 1 y 5)</strong>:</p>
+        <polygon points="175,40 175,125 235,82" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.8"/>
+        <text x="182" y="62" fill="#64748b" font-weight="bold" font-size="13">−</text>
+        <text x="182" y="110" fill="#64748b" font-weight="bold" font-size="13">+</text>
+
+        <circle cx="35" cy="55" r="3" fill="#64748b"/>
+        <line x1="35" y1="55" x2="35" y2="70" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="28" y1="70" x2="42" y2="70" stroke="#64748b" stroke-width="2"/>
+        <line x1="35" y1="55" x2="65" y2="55" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="65" y="47" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.5" rx="2"/>
+        <text x="83" y="59" text-anchor="middle" font-size="8.5" fill="#64748b">R1</text>
+        <line x1="101" y1="55" x2="175" y2="55" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="130" cy="55" r="3" fill="#64748b"/>
+
+        <line x1="130" y1="55" x2="130" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="130" y1="25" x2="155" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="155" y="17" width="38" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#ef4444" stroke-width="1.5" rx="2"/>
+        <text x="174" y="29" text-anchor="middle" font-weight="bold" fill="#b91c1c" font-size="8.5">Rf</text>
+        <line x1="193" y1="25" x2="245" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="245" y1="25" x2="245" y2="82" stroke="#64748b" stroke-width="1.5"/>
+
+        <line x1="175" y1="105" x2="145" y2="105" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="145" y1="105" x2="145" y2="120" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="137" y1="120" x2="153" y2="120" stroke="#64748b" stroke-width="2"/>
+
+        <line x1="235" y1="82" x2="280" y2="82" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="280" cy="82" r="3.5" fill="#ef4444"/>
+        <text x="288" y="85" font-weight="bold" fill="#ef4444" font-size="9">Vo</text>
+
+        <rect x="15" y="135" width="290" height="30" rx="4" fill="#fee2e2" class="dark:fill-rose-950/40" stroke="#ef4444" stroke-width="0.8"/>
+        <text x="160" y="148" text-anchor="middle" font-weight="bold" fill="#b91c1c" class="dark:fill-rose-300" font-size="8.5">Vo(IB) = Rf · IB−   (Error Alto)</text>
+        <text x="160" y="159" text-anchor="middle" fill="#991b1b" class="dark:fill-rose-200" font-size="7.5">Ejemplo: Rf=1MΩ, IB=500nA → Vo=500 mV !</text>
+      </g>
+
+      <g transform="translate(350, 5)">
+        <rect x="0" y="0" width="320" height="175" rx="6" fill="#f8fafc" class="dark:fill-slate-900/60" stroke="#059669" stroke-width="1"/>
+        <text x="160" y="16" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="10">B) Compensado con Rc = R1 || Rf</text>
+
+        <polygon points="175,40 175,125 235,82" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8"/>
+        <text x="182" y="62" fill="#64748b" font-weight="bold" font-size="13">−</text>
+        <text x="182" y="110" fill="#64748b" font-weight="bold" font-size="13">+</text>
+
+        <circle cx="35" cy="55" r="3" fill="#64748b"/>
+        <line x1="35" y1="55" x2="35" y2="70" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="28" y1="70" x2="42" y2="70" stroke="#64748b" stroke-width="2"/>
+        <line x1="35" y1="55" x2="65" y2="55" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="65" y="47" width="36" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.5" rx="2"/>
+        <text x="83" y="59" text-anchor="middle" font-size="8.5" fill="#64748b">R1</text>
+        <line x1="101" y1="55" x2="175" y2="55" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="130" cy="55" r="3" fill="#64748b"/>
+
+        <line x1="130" y1="55" x2="130" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="130" y1="25" x2="155" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="155" y="17" width="38" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.5" rx="2"/>
+        <text x="174" y="29" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">Rf</text>
+        <line x1="193" y1="25" x2="245" y2="25" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="245" y1="25" x2="245" y2="82" stroke="#64748b" stroke-width="1.5"/>
+
+        <line x1="175" y1="105" x2="140" y2="105" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="105" y="97" width="35" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.8" rx="2"/>
+        <text x="122" y="109" text-anchor="middle" font-weight="bold" fill="#047857" font-size="8.5">Rc</text>
+        <line x1="105" y1="105" x2="85" y2="105" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="85" y1="105" x2="85" y2="120" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="78" y1="120" x2="92" y2="120" stroke="#059669" stroke-width="2"/>
+
+        <line x1="235" y1="82" x2="280" y2="82" stroke="#64748b" stroke-width="1.5"/>
+        <circle cx="280" cy="82" r="3.5" fill="#059669"/>
+        <text x="288" y="85" font-weight="bold" fill="#059669" font-size="9">Vo</text>
+
+        <rect x="15" y="135" width="290" height="30" rx="4" fill="#d1fae5" class="dark:fill-emerald-950/40" stroke="#059669" stroke-width="0.8"/>
+        <text x="160" y="148" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-300" font-size="8.5">Vo(Ios) = ± Rf · Ios   (Reducción ~90%)</text>
+        <text x="160" y="159" text-anchor="middle" fill="#065f46" class="dark:fill-emerald-200" font-size="7.5">Cancela IB; solo resta la pequeña asimetría Ios</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+      <!-- 5. OFFSET NULL -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">4. Calibración y Ajuste Nulo por Potenciómetro Externo (Offset Null)</h5>
+      <p class="mb-2">Para anular completamente el error remanente en circuitos de ultra-precisión (por ejemplo en amplificadores de instrumentación o balanzas electrónicas), los Op-Amps de uso general disponen de terminales específicos de balance externo denominados <strong>Offset Null</strong> (Pines 1 y 5 en los encapsulados DIP-8 estándar de $\\mu\\text{A}741$, OP-07 y TL071):</p>
       <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
-        <li><strong>Conexión circuital externa:</strong> Se conecta un potenciómetro o trimpot multivueltas de $10\\text{ k}\\Omega$ (o $20\\text{ k}\\Omega$) entre los pines 1 y 5, con su terminal móvil (cursor) conectado directamente al riel de alimentación negativa $-V_{EE}$ (pin 4).</li>
-        <li><strong>Mecanismo físico:</strong> Los extremos del potenciómetro modifican levemente la resistencia de emisor efectiva de cada transistor del par diferencial de entrada. Al girar el cursor, se desbalancea la corriente de polarización de reposo de un colector respecto al otro, generando un offset intencional interno de signo opuesto que contrarresta con exactitud al $V_{os}$ natural.</li>
+        <li><strong>Conexión circuital externa:</strong> Se conecta un potenciómetro o trimpot de $10\\,\\text{k}\\Omega$ entre los pines 1 y 5, con su cursor móvil conectado al riel de alimentación negativa $-V_{EE}$ (Pin 4).</li>
+        <li><strong>Mecanismo físico:</strong> Los extremos del potenciómetro modifican la resistencia efectiva de emisor del par diferencial de entrada ($r_{e1}, r_{e2}$), permitiendo generar un leve desbalance controlado en las corrientes de colector $I_{C1}$ e $I_{C2}$ que compensa exactamente el desfasaje inicial de $\\Delta V_{BE}$ y tolerancias internas de $R_C$.</li>
         <li><strong>Procedimiento de calibración en laboratorio:</strong>
-          <br>1) Se pasivan todas las fuentes de señal conectando las entradas a masa ($v_i = 0\\text{ V}$).
-          <br>2) Se mide la salida $v_o$ con un multímetro digital de alta resolución.
-          <br>3) Se ajusta el cursor del potenciómetro hasta lograr exactamente $v_o = 0.00\\text{ mV}$.
-
-<!-- ================= SVG: CALIBRACIÓN POR POTENCIÓMETRO OFFSET NULL ================= -->
-            <div class="my-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
-                <span>🎛️</span> Circuito de Balance Externo: Ajuste Nulo por Potenciómetro de Offset Null (Pines 1 y 5)
-              </div>
-              <div class="w-full overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 720 260" class="w-full max-w-[720px] h-auto select-none font-sans text-xs" style="min-width: 540px;">
-                  <defs>
-                    <marker id="pot-arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#0284c7"/>
-                    </marker>
-                  </defs>
-
-                  <!-- ================= PANEL PRINCIPAL: PAR DIFERENCIAL Y TRIMPOT ================= -->
-                  <g transform="translate(10, 10)">
-                    <rect x="0" y="0" width="700" height="240" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="700" height="28" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="none"/>
-                    <text x="350" y="18" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="11">Desbalance Controlado del Par Diferencial de Entrada (Estándar uA741 / OP07)</text>
-
-                    <!-- Línea de silicio integrado (Límite chip) -->
-                    <rect x="70" y="38" width="310" height="120" rx="6" fill="#f1f5f9" class="dark:fill-slate-800/60" stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.2"/>
-                    <text x="80" y="52" fill="#64748b" class="dark:fill-slate-400" font-weight="semibold" font-size="8">CHIP INTERNO (uA741)</text>
-
-                    <!-- Transistor Q1 (NPN) -->
-                    <g transform="translate(140, 80)">
-                      <circle cx="0" cy="0" r="16" fill="none" stroke="#64748b" stroke-width="1"/>
-                      <line x1="-10" y1="-10" x2="-10" y2="10" stroke="#64748b" stroke-width="2"/>
-                      <line x1="-16" y1="0" x2="-10" y2="0" stroke="#64748b" stroke-width="1.2"/>
-                      <text x="-24" y="3" font-size="8" fill="#64748b">Pin 2 (−)</text>
-                      <!-- Colector -->
-                      <line x1="-10" y1="-6" x2="6" y2="-14" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="6" y1="-14" x2="6" y2="-22" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- Emisor -->
-                      <line x1="-10" y1="6" x2="6" y2="14" stroke="#64748b" stroke-width="1.2"/>
-                      <polygon points="6,14 1,11 3,16" fill="#64748b"/>
-                      <line x1="6" y1="14" x2="6" y2="28" stroke="#64748b" stroke-width="1.2"/>
-                      <text x="12" y="-5" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="8.5">Q1</text>
-                    </g>
-
-                    <!-- Transistor Q2 (NPN) -->
-                    <g transform="translate(310, 80)">
-                      <circle cx="0" cy="0" r="16" fill="none" stroke="#64748b" stroke-width="1"/>
-                      <line x1="-10" y1="-10" x2="-10" y2="10" stroke="#64748b" stroke-width="2"/>
-                      <line x1="-16" y1="0" x2="-10" y2="0" stroke="#64748b" stroke-width="1.2"/>
-                      <text x="-24" y="3" font-size="8" fill="#64748b">Pin 3 (+)</text>
-                      <!-- Colector -->
-                      <line x1="-10" y1="-6" x2="6" y2="-14" stroke="#64748b" stroke-width="1.2"/>
-                      <line x1="6" y1="-14" x2="6" y2="-22" stroke="#64748b" stroke-width="1.2"/>
-                      <!-- Emisor -->
-                      <line x1="-10" y1="6" x2="6" y2="14" stroke="#64748b" stroke-width="1.2"/>
-                      <polygon points="6,14 1,11 3,16" fill="#64748b"/>
-                      <line x1="6" y1="14" x2="6" y2="28" stroke="#64748b" stroke-width="1.2"/>
-                      <text x="12" y="-5" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="8.5">Q2</text>
-                    </g>
-
-                    <!-- Resistores de emisor internos (re1, re2 ≈ 1k) -->
-                    <rect x="136" y="112" width="20" height="24" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" rx="2"/>
-                    <text x="146" y="127" text-anchor="middle" font-size="7" fill="#64748b">re1</text>
-                    <rect x="306" y="112" width="20" height="24" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" rx="2"/>
-                    <text x="316" y="127" text-anchor="middle" font-size="7" fill="#64748b">re2</text>
-
-                    <!-- Terminales de salida del chip: Pines 1 y 5 -->
-                    <circle cx="146" cy="148" r="4" fill="#0284c7"/>
-                    <text x="120" y="152" font-weight="bold" fill="#0284c7" font-size="9">PIN 1</text>
-                    <circle cx="316" cy="148" r="4" fill="#0284c7"/>
-                    <text x="328" y="152" font-weight="bold" fill="#0284c7" font-size="9">PIN 5</text>
-
-                    <!-- Cables externos que van hacia el potenciómetro -->
-                    <line x1="146" y1="152" x2="146" y2="185" stroke="#0284c7" stroke-width="1.5"/>
-                    <line x1="316" y1="152" x2="316" y2="185" stroke="#0284c7" stroke-width="1.5"/>
-
-                    <!-- Potenciómetro externo de 10k (P1) -->
-                    <rect x="146" y="178" width="170" height="15" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.5" rx="3"/>
-                    <text x="231" y="189" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8.5">Potenciómetro Trimpot 10 kΩ</text>
-
-                    <!-- Cursor (Wiper) móvil -->
-                    <polygon points="231,193 226,204 236,204" fill="#d97706"/>
-                    <line x1="231" y1="204" x2="231" y2="225" stroke="#d97706" stroke-width="2"/>
-                    <circle cx="231" cy="225" r="3.5" fill="#d97706"/>
-                    <text x="245" y="228" font-weight="bold" fill="#d97706" font-size="10">a −VEE (Pin 4: −15V)</text>
-
-                    <!-- Panel Explicativo a la derecha (X: 410 a 685) -->
-                    <g transform="translate(415, 38)">
-                      <rect x="0" y="0" width="270" height="190" rx="6" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                      <text x="135" y="18" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="10">Procedimiento de Calibración Nula</text>
-
-                      <text x="15" y="42" font-weight="semibold" fill="#0284c7" font-size="8.5">1. Cortocircuitar entradas a masa:</text>
-                      <text x="25" y="56" fill="#64748b" class="dark:fill-slate-300" font-size="8">Fijar vi = 0 V (ambas entradas a tierra).</text>
-
-                      <text x="15" y="78" font-weight="semibold" fill="#0284c7" font-size="8.5">2. Medir salida con multímetro digital:</text>
-                      <text x="25" y="92" fill="#64748b" class="dark:fill-slate-300" font-size="8">Conectar voltímetro de 4½ dígitos en borne vo.</text>
-
-                      <text x="15" y="114" font-weight="semibold" fill="#0284c7" font-size="8.5">3. Girar el cursor del trimpot:</text>
-                      <text x="25" y="128" fill="#64748b" class="dark:fill-slate-300" font-size="8">Desbalancea la corriente IC1 e IC2 hasta lograr</text>
-                      <text x="25" y="140" font-weight="bold" fill="#059669" class="dark:fill-emerald-400" font-size="8.5">exactamente vo = 0.00 mV a 25°C.</text>
-
-                      <rect x="15" y="152" width="240" height="28" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-                      <text x="135" y="170" text-anchor="middle" font-weight="bold" fill="#059669" class="dark:fill-emerald-400" font-size="8.5">¡Offset estático inicial cancelado!</text>
-                    </g>
-                  </g>
-                </svg>
-              </div>
-            </div>
+        <br>1) Se pasivan todas las fuentes de señal conectando las entradas a masa ($v_i = 0\\text{ V}$).
+        <br>2) Se mide la salida $v_o$ con un multímetro digital de alta resolución ($4\\frac{1}{2}$ dígitos).
+        <br>3) Se ajusta el cursor del potenciómetro hasta lograr exactamente $v_o = 0.00\\text{ mV}$ a temperatura ambiente ($25^\\circ\\text{C}$).
         </li>
       </ul>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>🎛️</span> Circuito de Balance Externo: Ajuste Nulo por Potenciómetro de Offset Null (Pines 1 y 5)
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 720 250" class="w-full max-w-[720px] h-auto select-none font-sans text-xs" style="min-width: 520px;">
+      <!-- Panel de Fondo -->
+      <rect x="80" y="10" width="560" height="230" rx="8" fill="#f8fafc" class="dark:fill-slate-900" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1.2"/>
+      <rect x="80" y="10" width="560" height="28" rx="8" fill="#e0f2fe" class="dark:fill-sky-950/50"/>
+      <text x="360" y="28" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="11">Desbalance Controlado del Par Diferencial de Entrada (Estándar uA741 / OP07)</text>
+
+      <!-- Caja Circuito Interno Chip -->
+      <rect x="130" y="55" width="250" height="115" rx="6" fill="#ffffff" class="dark:fill-slate-800" stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.2"/>
+      <text x="175" y="72" fill="#64748b" font-weight="semibold" font-size="9">CHIP INTERNO (uA741)</text>
+
+      <!-- Transistor Q1 (BJT NPN) -->
+      <g transform="translate(190, 85)">
+        <circle cx="0" cy="0" r="16" fill="none" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="-25" y1="0" x2="-8" y2="0" stroke="#64748b" stroke-width="1.8"/>
+        <!-- Etiqueta Pin 2 (-) limpia a la izquierda del terminal base -->
+        <text x="-32" y="-5" text-anchor="end" fill="#64748b" font-weight="bold" font-size="9">Pin 2 (−)</text>
+        <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#64748b" stroke-width="2.5"/>
+        <!-- Colector -->
+        <line x1="-4" y1="-6" x2="8" y2="-14" stroke="#64748b" stroke-width="1.8"/>
+        <line x1="8" y1="-14" x2="8" y2="-22" stroke="#64748b" stroke-width="1.8"/>
+        <!-- Emisor -->
+        <line x1="-4" y1="6" x2="8" y2="14" stroke="#64748b" stroke-width="1.8"/>
+        <polygon points="4,11 8,14 5,15" fill="#64748b"/>
+        <line x1="8" y1="14" x2="8" y2="24" stroke="#64748b" stroke-width="1.8"/>
+        <text x="14" y="-2" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="10">Q1</text>
+        <!-- Resistor de emisor interno re1 -->
+        <rect x="0" y="24" width="16" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" rx="1"/>
+        <text x="8" y="37" text-anchor="middle" fill="#64748b" font-size="7.5">re1</text>
+        <line x1="8" y1="44" x2="8" y2="55" stroke="#64748b" stroke-width="1.8"/>
+      </g>
+
+      <!-- Transistor Q2 (BJT NPN) -->
+      <g transform="translate(320, 85)">
+        <circle cx="0" cy="0" r="16" fill="none" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="25" y1="0" x2="8" y2="0" stroke="#64748b" stroke-width="1.8"/>
+        <!-- Etiqueta Pin 3 (+) limpia a la derecha del terminal base -->
+        <text x="32" y="-5" text-anchor="start" fill="#64748b" font-weight="bold" font-size="9">Pin 3 (+)</text>
+        <line x1="8" y1="-10" x2="8" y2="10" stroke="#64748b" stroke-width="2.5"/>
+        <!-- Colector -->
+        <line x1="4" y1="-6" x2="-8" y2="-14" stroke="#64748b" stroke-width="1.8"/>
+        <line x1="-8" y1="-14" x2="-8" y2="-22" stroke="#64748b" stroke-width="1.8"/>
+        <!-- Emisor -->
+        <line x1="4" y1="6" x2="-8" y2="14" stroke="#64748b" stroke-width="1.8"/>
+        <polygon points="-4,11 -8,14 -5,15" fill="#64748b"/>
+        <line x1="-8" y1="14" x2="-8" y2="24" stroke="#64748b" stroke-width="1.8"/>
+        <text x="-16" y="-2" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="10">Q2</text>
+        <!-- Resistor de emisor interno re2 -->
+        <rect x="-16" y="24" width="16" height="20" fill="#ffffff" class="dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" rx="1"/>
+        <text x="-8" y="37" text-anchor="middle" fill="#64748b" font-size="7.5">re2</text>
+        <line x1="-8" y1="44" x2="-8" y2="55" stroke="#64748b" stroke-width="1.8"/>
+      </g>
+
+      <!-- Pines externos PIN 1 y PIN 5 -->
+      <circle cx="198" cy="148" r="4" fill="#0284c7"/>
+      <text x="198" y="162" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="9.5">PIN 1</text>
+
+      <circle cx="312" cy="148" r="4" fill="#0284c7"/>
+      <text x="312" y="162" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="9.5">PIN 5</text>
+
+      <!-- Potenciómetro externo 10k conectado entre PIN 1 y PIN 5 -->
+      <line x1="198" y1="152" x2="198" y2="180" stroke="#0284c7" stroke-width="2"/>
+      <line x1="312" y1="152" x2="312" y2="180" stroke="#0284c7" stroke-width="2"/>
+
+      <line x1="198" y1="180" x2="208" y2="180" stroke="#0284c7" stroke-width="2"/>
+      <rect x="208" y="172" width="94" height="16" fill="#ffffff" class="dark:fill-slate-800" stroke="#0284c7" stroke-width="1.8" rx="2"/>
+      <text x="255" y="184" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-300" font-size="8.5">Potenciómetro 10 kΩ</text>
+      <line x1="302" y1="180" x2="312" y2="180" stroke="#0284c7" stroke-width="2"/>
+
+      <!-- Cursor del trimpot hacia -VEE (Pin 4) -->
+      <line x1="255" y1="188" x2="255" y2="208" stroke="#d97706" stroke-width="2.5"/>
+      <polygon points="255,188 251,196 259,196" fill="#d97706"/>
+      <circle cx="255" cy="214" r="3.5" fill="#d97706"/>
+      <text x="268" y="217" font-weight="bold" fill="#d97706" font-size="9.5">a −VEE (Pin 4: −15V)</text>
+
+      <!-- Panel de Procedimiento a la derecha -->
+      <g transform="translate(415, 55)">
+        <rect x="0" y="0" width="205" height="160" rx="6" fill="#ffffff" class="dark:fill-slate-800" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
+        <text x="102" y="18" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9.5">Procedimiento de Calibración</text>
+
+        <text x="10" y="38" font-weight="bold" fill="#0284c7" font-size="8.5">1. Pasivar entradas:</text>
+        <text x="18" y="50" fill="#64748b" class="dark:fill-slate-300" font-size="7.5">v⁺ = v⁻ = 0 V (ambas a masa).</text>
+
+        <text x="10" y="68" font-weight="bold" fill="#0284c7" font-size="8.5">2. Medir salida vo:</text>
+        <text x="18" y="80" fill="#64748b" class="dark:fill-slate-300" font-size="7.5">Conectar voltímetro DC en vo.</text>
+
+        <text x="10" y="98" font-weight="bold" fill="#0284c7" font-size="8.5">3. Calibrar potenciómetro:</text>
+        <text x="18" y="110" fill="#64748b" class="dark:fill-slate-300" font-size="7.5">Girar hasta vo = 0.00 mV.</text>
+        <text x="18" y="122" fill="#64748b" class="dark:fill-slate-300" font-size="7.5">Compensa asimetría de VBE y re.</text>
+
+        <rect x="10" y="132" width="185" height="20" rx="4" fill="#059669" fill-opacity="0.12" stroke="#059669" stroke-width="0.8"/>
+        <text x="102" y="145" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">¡Offset DC anulado a 25°C!</text>
+      </g>
+    </svg>
+  </div>
+</div>
           `
         },
-        {
+{
           id: 'u3-opamp-derivas-psrr',
           titulo: '3.7 Derivas Térmicas y Relación de Rechazo a la Fuente de Alimentación (PSRR)',
           contenido: `
-<p class="mb-3">Aun cuando un amplificador se calibre cuidadosamente a cero en laboratorio a temperatura ambiente ($T_0 = 25^{\\circ}\\text{C}$) mediante su potenciómetro de Offset Null, la estabilidad del punto de reposo en condiciones operativas reales se ve afectada por dos factores ambientales determinantes: el <strong>gradiente térmico</strong> y el <strong>rizado de las fuentes de alimentación</strong>.</p>
+<p class="mb-3">Aun cuando un amplificador se calibre cuidadosamente a cero en laboratorio mediante potenciómetro de Offset Null a $25^\\circ\\text{C}$, durante la operación en campo surgen dos mecanismos fundamentales que introducen nuevos errores dinámicos de continua: la <strong>deriva por gradientes de temperatura</strong> y las <strong>variaciones de tensión y rizado en las líneas de alimentación</strong>.</p>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Derivas Térmicas de Continua (Thermal Drifts)</h5>
-      <p class="mb-2">Las junturas semiconductoras presentan una fuerte dependencia de la temperatura: $\\frac{dV_{BE}}{dT} \\approx -2\\text{ mV/}^{\\circ}\\text{C}$, además de la variación exponencial de las corrientes de saturación $I_S(T)$ y la dispersión térmica de $\\beta(T)$. Los fabricantes cuantifican esta degradación mediante los <strong>coeficientes de deriva térmica</strong>:</p>
+      <!-- 1. DERIVAS TÉRMICAS -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Derivas Térmicas de Offset (Drift)</h5>
+      <p class="mb-2">Las junturas semiconductoras presentan una fuerte dependencia de la temperatura (el potencial de barrera varía aproximadamente a $-2\\,\\text{mV}/^\\circ\\text{C}$). Aun en pares diferenciales integrados sobre el mismo sustrato de silicio, cualquier micro-gradiente térmico produce una variación de los parámetros de offset:</p>
       <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
-        <li><strong>Coeficiente de deriva de tensión de offset:</strong> $\\mathbf{\\frac{\\Delta V_{os}}{\\Delta T}}$ (expresado en $\\mu\\text{V/}^{\\circ}\\text{C}$). Típico en uA741: $15\\,\\mu\\text{V/}^{\\circ}\\text{C}$; en OP07: $\\le 0.5\\,\\mu\\text{V/}^{\\circ}\\text{C}$.</li>
-        <li><strong>Coeficiente de deriva de corriente de offset:</strong> $\\mathbf{\\frac{\\Delta I_{os}}{\\Delta T}}$ (expresado en $\\text{nA/}^{\\circ}\\text{C}$ en BJT o $\\text{pA/}^{\\circ}\\text{C}$ en FET). Típico en BJT: $0.2\\text{ a } 1.0\\text{ nA/}^{\\circ}\\text{C}$.</li>
+        <li><strong>Coeficiente de deriva de tensión de offset:</strong> $\\mathbf{\\frac{\\Delta V_{os}}{\\Delta T}}$ (típicamente $15\\,\\mu\\text{V}/^\\circ\\text{C}$ en $\\mu\\text{A}741$, y $< 0.3\\,\\mu\\text{V}/^\\circ\\text{C}$ en amplificadores de precisión OP-07).</li>
+        <li><strong>Coeficiente de deriva de corriente de offset:</strong> $\\mathbf{\\frac{\\Delta I_{os}}{\\Delta T}}$ (del orden de $0.5\\text{ a } 2\\,\\text{nA}/^\\circ\\text{C}$ en BJT, y fracciones de $\\text{pA}/^\\circ\\text{C}$ en FET).</li>
       </ul>
-      <p class="my-2">Ante una excursión de temperatura $\\Delta T = T_1 - T_0$, las variaciones acumuladas de offset a la entrada son:</p>
-      $$\\Delta V_{os}(T) = \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\cdot \\Delta T, \\quad \\Delta I_{os}(T) = \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\cdot \\Delta T$$
-      <p class="my-2">El <strong>desplazamiento térmico de la tensión de salida (peor caso)</strong> con resistencia de compensación $R_c$ es:</p>
+      <p class="my-2">Ante una excursión de temperatura $\\Delta T = T_1 - T_0$, las variaciones equivalentes referidas a la entrada son:</p>
+      $$\\Delta V_{os}(T) = \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\cdot \\Delta T, \\qquad \\Delta I_{os}(T) = \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\cdot \\Delta T$$
+      <p class="my-2">El <strong>desplazamiento térmico de la tensión de salida (peor caso)</strong> viene dado por:</p>
       <div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
-        $$\\mathbf{\\Delta V_o(T) = \\pm A_{v,noise} \\cdot \\Delta V_{os}(T) \\pm R_f \\cdot \\Delta I_{os}(T) = \\pm \\left( 1 + \\frac{R_f}{R_1} \\right) \\left( \\frac{\\Delta V_{os}}{\\Delta T} \\right) \\Delta T \\pm R_f \\left( \\frac{\\Delta I_{os}}{\\Delta T} \\right) \\Delta T}$$
+        $$\\mathbf{\\Delta V_o(T) = \\pm A_{v,noise} \\cdot \\Delta V_{os}(T) \\pm R_f \\cdot \\Delta I_{os}(T)}$$
+        <p class="mt-1 text-xs text-slate-600 dark:text-slate-400"><strong>Conclusión fundamental de diseño:</strong> El potenciómetro de Offset Null <em>no puede compensar las derivas térmicas</em>, ya que solo anula el error estático a la temperatura específica a la que se calibró. Para diseños industriales sometidos a rangos de temperatura amplios ($-40^\\circ\\text{C} \\text{ a } +85^\\circ\\text{C}$), debe seleccionarse un Op-Amp de coeficiente de deriva ultra-bajo (serie OP-07 o amplificadores con estabilización por chopper/auto-zero).</p>
       </div>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>🌡️</span> Dispersión Térmica del Offset vs Temperatura (°C)
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 540 210" class="w-full max-w-[540px] h-auto select-none font-sans text-xs" style="min-width: 400px;">
+      <!-- Ejes -->
+      <line x1="40" y1="120" x2="480" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="475" y="135" fill="#64748b" font-weight="bold" font-size="9">T (°C)</text>
 
-      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Relación de Rechazo a la Fuente de Alimentación (PSRR / RRF)</h5>
-      <p class="mb-2">Las tensiones continuas de alimentación $+V_{CC}$ y $-V_{EE}$ provienen habitualmente de reguladores lineales o fuentes conmutadas, arrastrando fluctuaciones por carga y un <strong>rizado de alterna residual (*ripple*)</strong> (típicamente a $100\\text{ Hz}$ en rectificación de onda completa a $50\\text{ Hz}$).</p>
-      <p class="mb-2">El <strong>PSRR (Power Supply Rejection Ratio)</strong>, denominado también <em>Relación de Rechazo de Fuente (RRF)</em> o factor $K_{SVR}$, define la aptitud del circuito integrado para rechazar variaciones de tensión en sus rieles de alimentación sin convertirlas en tensión de error en la salida:</p>
+      <line x1="200" y1="185" x2="200" y2="15" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="165" y="18" fill="#64748b" font-weight="bold" font-size="9">ΔVo (mV)</text>
+
+      <!-- Punto calibrado a 25°C -->
+      <circle cx="200" cy="120" r="5" fill="#059669"/>
+      <text x="200" y="136" text-anchor="middle" font-weight="bold" fill="#059669" font-size="9">25°C (Calibrado Vo = 0)</text>
+
+      <!-- Cono térmico uA741 (15 uV/°C) -->
+      <polygon points="200,120 420,40 420,200" fill="#ef4444" fill-opacity="0.1"/>
+      <line x1="200" y1="120" x2="420" y2="40" stroke="#ef4444" stroke-width="2.2"/>
+      <line x1="200" y1="120" x2="420" y2="200" stroke="#ef4444" stroke-width="2.2"/>
+
+      <circle cx="360" cy="62" r="3.5" fill="#ef4444"/>
+      <line x1="360" y1="62" x2="360" y2="120" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+      <text x="360" y="134" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">75°C</text>
+      <text x="360" y="52" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8.5">+10.75 mV (uA741)</text>
+
+      <!-- Curva OP-07 Ultra bajo drift -->
+      <line x1="200" y1="120" x2="420" y2="114" stroke="#059669" stroke-width="2.2"/>
+      <line x1="200" y1="120" x2="420" y2="126" stroke="#059669" stroke-width="2.2"/>
+      <text x="430" y="117" fill="#059669" font-weight="bold" font-size="8.5">OP07 (&lt; 0.3 mV)</text>
+
+      <rect x="20" y="150" width="160" height="42" rx="4" fill="#f8fafc" class="dark:fill-slate-800" stroke="#cbd5e1" class="dark:stroke-slate-700"/>
+      <text x="100" y="165" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="8.5">Pendiente de Deriva:</text>
+      <text x="100" y="179" text-anchor="middle" fill="#ef4444" class="dark:fill-rose-400" font-size="8">ΔVo/ΔT = Av,noise · (ΔVos/ΔT)</text>
+    </svg>
+  </div>
+</div>
+
+      <!-- 2. PSRR -->
+      <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Relación de Rechazo a la Fuente de Alimentación (PSRR)</h5>
+      <p class="mb-2">Las tensiones continuas de alimentación $+V_{CC}$ y $-V_{EE}$ presentan fluctuaciones debidas a regulación de carga, caídas de línea y, muy especialmente, un <strong>rizado de alterna residual de $100\\text{ Hz}$</strong> proveniente del puente rectificador de la fuente lineal, o espurios de conmutación de alta frecuencia ($100\\text{ kHz} - 1\\text{ MHz}$) en fuentes SMPS.</p>
+      <p class="mb-2">El <strong>PSRR (Power Supply Rejection Ratio)</strong>, denominado también $k_{SVR}$ (Supply Voltage Rejection), cuantifica la capacidad del Op-Amp para aislar la salida frente a variaciones en sus rieles:</p>
       $$\\text{PSRR} = \\frac{\\Delta V_{supply}}{\\Delta V_{os}} \\quad \\Longleftrightarrow \\quad \\Delta V_{os,PSRR} = \\frac{\\Delta V_{supply}}{\\text{PSRR}}$$
       <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm my-2">
         <li><strong>Expresión en decibeles (dB):</strong>
-          $$\\mathbf{\\text{PSRR}_{dB} = 20 \\log_{10} \\left( \\frac{\\Delta V_{supply}}{\\Delta V_{os}} \\right)}$$
+        $$\\mathbf{\\text{PSRR}_{dB} = 20 \\log_{10} \\left( \\frac{\\Delta V_{supply}}{\\Delta V_{os}} \\right)}$$
         </li>
         <li><strong>Factor de conversión lineal:</strong>
-          $$\\mathbf{\\text{PSRR}_{lineal} = 10^{\\frac{\\text{PSRR}_{dB}}{20}}}$$
+        $$\\mathbf{\\text{PSRR}_{lineal} = 10^{\\frac{\\text{PSRR}_{dB}}{20}}}$$
         </li>
         <li><strong>Variación equivalente de offset de entrada inducida por el rizado:</strong>
-          $$\\mathbf{\\Delta V_{os,PSRR} = \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}} = \\Delta V_{supply} \\cdot 10^{-\\frac{\\text{PSRR}_{dB}}{20}}}$$
+        $$\\mathbf{\\Delta V_{os,PSRR} = \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}} = \\Delta V_{supply} \\cdot 10^{-\\frac{\\text{PSRR}_{dB}}{20}}}$$
         </li>
         <li><strong>Rizado de alterna o error inducido en la salida:</strong>
-          $$\\mathbf{\\Delta V_{o,PSRR} = A_{v,noise} \\cdot \\Delta V_{os,PSRR} = \\left( 1 + \\frac{R_f}{R_1} \\right) \\cdot \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}}}$$
+        $$\\mathbf{\\Delta V_{o,PSRR} = A_{v,noise} \\cdot \\Delta V_{os,PSRR} = \\left( 1 + \\frac{R_f}{R_1} \\right) \\frac{\\Delta V_{supply}}{\\text{PSRR}_{lineal}}}$$
         </li>
       </ul>
 
-      <div class="p-3.5 my-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs">
+      <div class="p-3.5 my-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-950 dark:text-amber-200 text-xs">
         <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
           <span>⚠️</span> Criterio Crítico de Diseño: Degradación del PSRR con la Frecuencia
         </h5>
-        <p>En continua, el PSRR de un Op-Amp típico ronda entre $80\\text{ dB}$ y $110\\text{ dB}$. Sin embargo, debido a las capacidades parásitas internas y a la caída de ganancia a lazo abierto ($A_{OL}$), <strong>el PSRR cae a razón de $-20\\text{ dB/década}$ a partir de frecuencias tan bajas como $10\\text{ Hz}$</strong>.</p>
-        <p class="mt-1">A frecuencias de conmutación de fuentes SMPS ($100\\text{ kHz}$ o superiores), el PSRR puede caer a apenas $20\\text{ dB}$ (rechazo de solo 10 a 1). Por esta razón física, es <strong>estrictamente obligatorio</strong> desacoplar cada integrado con capacitores cerámicos de $100\\text{ nF}$ montados físicamente a milímetros de los pines de alimentación y referenciados a un plano de masa uniforme.</p>
-
-<!-- ================= SVG: DERIVAS TÉRMICAS Y RECHAZO DE FUENTE PSRR ================= -->
-            <div class="my-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
-                <span>🌡️</span> Derivas Térmicas de Offset (ΔVos/ΔT) y Relación de Rechazo a la Fuente (PSRR)
-              </div>
-              <div class="w-full overflow-x-auto flex justify-center">
-                <svg viewBox="0 0 780 270" class="w-full max-w-[780px] h-auto select-none font-sans text-xs" style="min-width: 600px;">
-                  <defs>
-                    <marker id="therm-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 0 2 L 8 5 L 0 8 z" fill="#64748b"/>
-                    </marker>
-                  </defs>
-
-                  <!-- ================= MITAD IZQUIERDA: DERIVA TÉRMICA (X: 10 a 385) ================= -->
-                  <g transform="translate(10, 10)">
-                    <rect x="0" y="0" width="375" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="375" height="28" rx="8" fill="#d97706" fill-opacity="0.1" stroke="none"/>
-                    <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#b45309" class="dark:fill-amber-400" font-size="11">Deriva Térmica del Offset vs Temperatura</text>
-
-                    <!-- Gráfico: Vo(error) vs T (°C) -->
-                    <g transform="translate(30, 45)">
-                      <!-- Eje X: Temperatura (-25°C a +100°C) -->
-                      <line x1="20" y1="80" x2="280" y2="80" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#therm-arr)"/>
-                      <text x="275" y="94" fill="#64748b" font-weight="bold" font-size="8">T (°C)</text>
-
-                      <!-- Eje Y: Error de salida Vo -->
-                      <line x1="120" y1="135" x2="120" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#therm-arr)"/>
-                      <text x="95" y="12" fill="#64748b" font-weight="bold" font-size="8">ΔVo (mV)</text>
-
-                      <!-- Punto Calibrado: T0 = 25°C, Vo = 0 -->
-                      <circle cx="120" cy="80" r="4.5" fill="#059669"/>
-                      <text x="120" y="96" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">25°C (Calibrado)</text>
-                      <text x="120" y="70" text-anchor="middle" font-weight="bold" fill="#059669" font-size="7.5">Vo = 0 mV</text>
-
-                      <!-- Curva uA741 (15 uV/°C) - Cono de peor caso (rojo/ámbar) -->
-                      <!-- Pendiente positiva -->
-                      <line x1="120" y1="80" x2="250" y2="25" stroke="#ef4444" stroke-width="2"/>
-                      <!-- Pendiente negativa -->
-                      <line x1="120" y1="80" x2="250" y2="135" stroke="#ef4444" stroke-width="2"/>
-                      <!-- Relleno cono -->
-                      <polygon points="120,80 250,25 250,135" fill="#ef4444" fill-opacity="0.08"/>
-
-                      <circle cx="210" cy="42" r="3" fill="#ef4444"/>
-                      <line x1="210" y1="42" x2="210" y2="80" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="210" y="96" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="8">75°C</text>
-                      <text x="210" y="34" text-anchor="middle" font-weight="bold" fill="#ef4444" font-size="7.5">+10.75 mV (uA741)</text>
-
-                      <!-- Curva OP-07 Ultra baja deriva (0.5 uV/°C) (verde) -->
-                      <line x1="120" y1="80" x2="250" y2="76" stroke="#059669" stroke-width="2"/>
-                      <line x1="120" y1="80" x2="250" y2="84" stroke="#059669" stroke-width="2"/>
-                      <text x="255" y="78" fill="#059669" font-weight="bold" font-size="7.5">OP07 (&lt;0.3 mV)</text>
-                    </g>
-
-                    <!-- Síntesis inferior -->
-                    <rect x="15" y="180" width="345" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="187" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9">ΔVo(T) = ± Av,noise · (ΔVos/ΔT) · ΔT ± Rf · (ΔIos/ΔT) · ΔT</text>
-                    <text x="187" y="211" text-anchor="middle" fill="#ef4444" class="dark:fill-rose-400" font-size="8">El offset térmico reaparece a temperaturas distintas de la calibración</text>
-                    <text x="187" y="226" text-anchor="middle" fill="#059669" class="dark:fill-emerald-400" font-weight="semibold" font-size="8">Op-Amps de instrumentación (OP07, Chopper) reducen el drift en 30x</text>
-                  </g>
-
-                  <!-- ================= MITAD DERECHA: PSRR Y RIZADO (X: 395 a 770) ================= -->
-                  <g transform="translate(395, 10)">
-                    <rect x="0" y="0" width="375" height="250" rx="8" fill="#f8fafc" class="dark:fill-slate-900/80" stroke="#cbd5e1" class="dark:stroke-slate-700" stroke-width="1"/>
-                    <rect x="0" y="0" width="375" height="28" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="none"/>
-                    <text x="187" y="18" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="11">Rechazo a la Fuente (PSRR) y Rizado Residual</text>
-
-                    <!-- Gráfico: PSRR (dB) vs Frecuencia log f -->
-                    <g transform="translate(30, 45)">
-                      <line x1="20" y1="125" x2="280" y2="125" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#therm-arr)"/>
-                      <text x="275" y="138" fill="#64748b" font-weight="bold" font-size="8">frec (Hz)</text>
-
-                      <line x1="20" y1="125" x2="20" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#therm-arr)"/>
-                      <text x="10" y="10" fill="#64748b" font-weight="bold" font-size="8">PSRR (dB)</text>
-
-                      <!-- Curva PSRR: meseta 90dB hasta 10Hz, luego cae a -20dB/dec -->
-                      <!-- 90dB en y=25 de x=20 a x=80 -->
-                      <line x1="20" y1="25" x2="80" y2="25" stroke="#0284c7" stroke-width="2.2"/>
-                      <text x="50" y="18" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="7.5">90 dB (DC)</text>
-
-                      <!-- Caída a partir de 10Hz -->
-                      <path d="M 80 25 Q 95 28 115 45 L 245 115" fill="none" stroke="#0284c7" stroke-width="2.2"/>
-                      <text x="185" y="65" font-weight="bold" fill="#ef4444" font-size="7.5">−20 dB/década</text>
-
-                      <!-- Punto 100 Hz (Rizado de fuente de red rectificada) -->
-                      <circle cx="150" cy="65" r="3" fill="#f59e0b"/>
-                      <line x1="150" y1="65" x2="150" y2="125" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
-                      <text x="150" y="136" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="7.5">100 Hz</text>
-                      <text x="150" y="55" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="7.5">PSRR ≈ 70 dB</text>
-
-                      <!-- Esquema de desacoplo obligatorio -->
-                      <rect x="200" y="15" width="80" height="42" rx="4" fill="#f1f5f9" class="dark:fill-slate-800" stroke="#059669" stroke-width="1"/>
-                      <text x="240" y="27" text-anchor="middle" font-weight="bold" fill="#059669" font-size="7">Desacoplo Clave:</text>
-                      <text x="240" y="38" text-anchor="middle" fill="#059669" font-size="6.5">100 nF Cerámico ||</text>
-                      <text x="240" y="49" text-anchor="middle" fill="#059669" font-size="6.5">10 μF Electrolítico</text>
-                    </g>
-
-                    <!-- Síntesis inferior -->
-                    <rect x="15" y="180" width="345" height="58" rx="5" fill="#f1f5f9" class="dark:fill-slate-800/80" stroke="#e2e8f0" class="dark:stroke-slate-700"/>
-                    <text x="187" y="196" text-anchor="middle" font-weight="bold" fill="#0f172a" class="dark:fill-white" font-size="9">ΔVos,PSRR = ΔVsupply / 10^(PSRR_dB / 20)</text>
-                    <text x="187" y="211" text-anchor="middle" font-weight="bold" fill="#0284c7" class="dark:fill-sky-400" font-size="8.5">ΔVo,PSRR = Av,noise · ΔVos,PSRR</text>
-                    <text x="187" y="226" text-anchor="middle" fill="#d97706" class="dark:fill-amber-400" font-size="8">El rizado de 100 Hz de la fuente se acopla a la salida si no se desacopla</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
+        <p>En continua, el PSRR de un Op-Amp típico ronda entre $80\\text{ dB}$ y $110\\text{ dB}$. Sin embargo, <strong>decae a razón de $-20\\text{ dB/década}$ a partir de frecuencias muy bajas ($10\\text{ a } 100\\text{ Hz}$)</strong> debido a las capacitancias parásitas internas.</p>
+        <p class="mt-1">A frecuencias de conmutación de fuentes SMPS ($100\\text{ kHz}$ a $1\\text{ MHz}$), el PSRR puede caer a apenas $20\\text{ dB}$ ($10:1$), transfiriendo casi la totalidad del ruido de conmutación a la señal analógica procesada.</p>
+        <p class="mt-1 font-semibold">Regla de arte de cátedra: Desacoplo de alimentación local pegado a los pines del circuito integrado combinando:</p>
+        <ul class="list-disc pl-5 mt-1 space-y-0.5">
+          <li><strong>Capacitor cerámico multicapa de $100\\,\\text{nF}$:</strong> Baja inductancia parásita (ESL) y resistencia serie (ESR) para derivar transitorios de alta frecuencia y conmutación.</li>
+          <li><strong>Capacitor electrolítico o de tántalo de $10\\,\\mu\\text{F}$:</strong> Reserva de energía para amortiguar el rizado de baja frecuencia de $100\\,\\text{Hz}$ de la red eléctrica.</li>
+        </ul>
       </div>
+<div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+  <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+    <span>⚡</span> Relación de Rechazo a la Fuente (PSRR) vs Frecuencia y Red de Desacoplo
+  </div>
+  <div class="w-full overflow-x-auto flex justify-center">
+    <svg viewBox="0 0 620 200" class="w-full max-w-[620px] h-auto select-none font-sans text-xs" style="min-width: 460px;">
+      <!-- Curva Bode PSRR a la izquierda -->
+      <g transform="translate(10, 10)">
+        <text x="150" y="10" text-anchor="middle" font-weight="bold" fill="#0369a1" class="dark:fill-sky-400" font-size="10">Curva de PSRR vs Frecuencia</text>
+        <line x1="30" y1="150" x2="280" y2="150" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="270" y="165" fill="#64748b" font-weight="bold" font-size="8.5">log f (Hz)</text>
+        <line x1="30" y1="150" x2="30" y2="25" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="10" y="25" fill="#64748b" font-weight="bold" font-size="8.5">PSRR (dB)</text>
+
+        <!-- Meseta 90dB hasta 10Hz -->
+        <line x1="30" y1="45" x2="95" y2="45" stroke="#0284c7" stroke-width="2.5"/>
+        <text x="60" y="38" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8.5">90 dB (DC)</text>
+
+        <!-- Caída -20dB/dec -->
+        <path d="M 95 45 Q 115 48 135 70 L 250 145" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+        <text x="195" y="85" font-weight="bold" fill="#ef4444" font-size="8.5">−20 dB/década</text>
+
+        <!-- Punto 100 Hz -->
+        <circle cx="160" cy="88" r="3.5" fill="#f59e0b"/>
+        <line x1="160" y1="88" x2="160" y2="150" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="160" y="162" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8">100 Hz</text>
+        <text x="160" y="78" text-anchor="middle" font-weight="bold" fill="#d97706" font-size="8">PSRR ≈ 70 dB</text>
+      </g>
+
+      <!-- Diagrama de Desacoplo a la derecha -->
+      <g transform="translate(340, 15)">
+        <rect x="0" y="0" width="265" height="170" rx="6" fill="#f8fafc" class="dark:fill-slate-800" stroke="#059669" stroke-width="1.2"/>
+        <text x="132" y="18" text-anchor="middle" font-weight="bold" fill="#047857" class="dark:fill-emerald-400" font-size="10">Desacoplo de Alimentación Clave</text>
+
+        <!-- Línea +Vcc con rizado -->
+        <line x1="30" y1="45" x2="235" y2="45" stroke="#ef4444" stroke-width="2"/>
+        <text x="50" y="38" font-weight="bold" fill="#ef4444" font-size="9">+VCC (+15V)</text>
+        <text x="170" y="38" fill="#d97706" font-size="8">Rizado 100Hz</text>
+
+        <!-- Capacitor cerámico 100nF -->
+        <line x1="90" y1="45" x2="90" y2="65" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="82" y1="65" x2="98" y2="65" stroke="#059669" stroke-width="2"/>
+        <line x1="82" y1="71" x2="98" y2="71" stroke="#059669" stroke-width="2"/>
+        <line x1="90" y1="71" x2="90" y2="90" stroke="#64748b" stroke-width="1.5"/>
+        <text x="90" y="103" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">100 nF</text>
+        <text x="90" y="113" text-anchor="middle" fill="#64748b" font-size="7">(Cerámico HF)</text>
+
+        <!-- Capacitor electrolítico 10uF -->
+        <line x1="175" y1="45" x2="175" y2="65" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="167" y1="65" x2="183" y2="65" stroke="#0284c7" stroke-width="2"/>
+        <line x1="167" y1="71" x2="183" y2="71" stroke="#0284c7" stroke-width="2"/>
+        <line x1="175" y1="71" x2="175" y2="90" stroke="#64748b" stroke-width="1.5"/>
+        <text x="175" y="103" text-anchor="middle" font-weight="bold" fill="#0284c7" font-size="8">10 μF</text>
+        <text x="175" y="113" text-anchor="middle" fill="#64748b" font-size="7">(Electrolítico)</text>
+
+        <!-- Masa común -->
+        <line x1="70" y1="90" x2="195" y2="90" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="132" y1="90" x2="132" y2="105" stroke="#64748b" stroke-width="1.5"/>
+        <line x1="120" y1="105" x2="144" y2="105" stroke="#64748b" stroke-width="2"/>
+        <line x1="124" y1="109" x2="140" y2="109" stroke="#64748b" stroke-width="1.5"/>
+
+        <rect x="20" y="125" width="225" height="34" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
+        <text x="132" y="139" text-anchor="middle" font-weight="bold" fill="#059669" font-size="8">Suprime el zumbido de 100 Hz</text>
+        <text x="132" y="151" text-anchor="middle" fill="#059669" font-size="7.5">Montar pegado a pines de alimentación</text>
+      </g>
+    </svg>
+  </div>
+</div>
           `
         },
         {
