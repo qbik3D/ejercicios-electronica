@@ -69,27 +69,27 @@ const MATERIAS_CONFIG = {
       {
         id: 'tc3-u1',
         numero: 1,
-        titulo: 'Unidad 1: Funciones de Red y Bode',
-        tituloCompleto: 'Unidad 1: Introducción, Funciones de Red y Normalización',
-        descripcion: 'Transformada de Laplace, polos y ceros, diagramas de Bode y retardo de grupo',
+        titulo: 'Unidad 1: Funciones de Red y Aproximaciones',
+        tituloCompleto: 'Unidad 1: Funciones de Red, Aproximaciones de Filtros y Normalización',
+        descripcion: 'Descomposición par/impar, reconstrucción (Gewertz/Fase), Butterworth, Chebyshev, normalización y retardo de grupo',
         icono: '📊',
         badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300'
       },
       {
         id: 'tc3-u2',
         numero: 2,
-        titulo: 'Unidad 2: Operacionales, GIC y FDNR',
-        tituloCompleto: 'Unidad 2: Redes Activas con Amplificadores Operacionales',
-        descripcion: 'GIC de Antoniou, Inductores simulados, FDNR (Elemento D) e INIC',
+        titulo: 'Unidad 2: Operacionales, GIC y Capacitores Conmutados',
+        tituloCompleto: 'Unidad 2: Redes Activas con Operacionales, GIC, FDNR y Capacitores Conmutados',
+        descripcion: 'GIC de Antoniou, Inductores simulados, FDNR de Bruton y Filtros de Capacitores Conmutados (SC)',
         icono: '⚡',
         badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300'
       },
       {
         id: 'tc3-u3',
         numero: 3,
-        titulo: 'Unidad 3: Síntesis de Dipolos',
-        tituloCompleto: 'Unidad 3: Síntesis de Funciones de Excitación (Foster y Cauer)',
-        descripcion: 'Dipolos reactivos puros LC y dipolos con pérdidas RC/RL',
+        titulo: 'Unidad 3: Síntesis de Dipolos Pasivos',
+        tituloCompleto: 'Unidad 3: Síntesis de Dipolos Pasivos (Foster, Cauer, Brune y Bott-Duffin)',
+        descripcion: 'Dipolos LC, RC, RL, Funciones Mínimas, Preámbulo de Foster, Método de Brune y Método de Bott-Duffin',
         icono: '🔄',
         badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
       },
@@ -97,8 +97,8 @@ const MATERIAS_CONFIG = {
         id: 'tc3-u4',
         numero: 4,
         titulo: 'Unidad 4: Cuadripolos y MAI',
-        tituloCompleto: 'Unidad 4: Análisis de Cuadripolos y Matriz de Admitancia Indefinida',
-        descripcion: 'Propiedades de la MAI, T puenteada, Doble T Notch y cálculo de transferencias',
+        tituloCompleto: 'Unidad 4: Análisis de Cuadripolos, Interconexiones y MAI',
+        descripcion: 'Las 6 matrices ([z], [y], [T], [h]), interconexiones, ensayo de Brune, bisección de Bartlett y MAI de Puckett',
         icono: '🔲',
         badgeColor: 'border-rose-500/40 bg-rose-950/40 text-rose-300'
       },

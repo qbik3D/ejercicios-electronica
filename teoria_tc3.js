@@ -14,83 +14,391 @@ const MANUAL_TEORIA_TC3 = {
   
   unidades: [
     // ========================================================================
-    // UNIDAD 1: FUNCIONES DE RED Y BODE
+    // UNIDAD 1: FUNCIONES DE RED, TRANSFORMADA DE LAPLACE Y NORMALIZACIÓN
     // ========================================================================
     {
       id: 'tc3-u1',
       numero: 1,
-      titulo: 'Unidad 1: Funciones de Red, Transformada de Laplace y Normalización',
+      titulo: 'Unidad 1: Funciones de Red, Aproximaciones y Normalización',
       icono: '📊',
       badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300',
-      introduccion: 'Esta unidad fundamenta el análisis de redes en el dominio de la variable compleja s de Laplace. Se desarrollan las condiciones de estabilidad de Hurwitz, las técnicas de normalización en frecuencia e impedancia, y el análisis del retardo de grupo en la transmisión de señales analógicas.',
+      introduccion: 'Esta unidad fundamenta el análisis de redes en el plano complejo s de Laplace. Se desarrollan las condiciones de Hurwitz, la descomposición operacional en parte par e impar, los métodos de reconstrucción de funciones (Gewertz y fase), las aproximaciones clásicas de filtros analógicos (Butterworth y Chebyshev), las técnicas de normalización y el retardo de grupo.',
       secciones: [
         {
           id: 'tc3-u1-funciones-red',
           titulo: '1.1 Funciones de Red de 1 y 2 Puertos en el Plano Complejo s',
           contenido: `
-            <p class="mb-3">Una <strong>función de red $H(s)$</strong> relaciona la transformada de Laplace de una respuesta $Y(s)$ con la de una excitación $X(s)$, asumiendo condiciones iniciales nulas:</p>
-            $$H(s) = \\frac{Y(s)}{X(s)} = \\frac{N(s)}{D(s)} = K \\frac{(s - z_1)(s - z_2)\\dots(s - z_m)}{(s - p_1)(s - p_2)\\dots(s - p_n)}$$
-            <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
-              <li><strong>Funciones de Excitación o Inmitancia (1 puerto):</strong> Impedancia $Z(s) = V(s)/I(s)$ o Admitancia $Y(s) = I(s)/V(s)$ vistas desde el mismo par de terminales.</li>
-              <li><strong>Funciones de Transferencia (2 puertos):</strong> Relacionan magnitudes de puertos distintos:
-                Transferencia de tensión $T_v(s) = V_2(s)/V_1(s)$, de corriente $T_i(s) = I_2(s)/I_1(s)$, transimpedancia $Z_{21}(s) = V_2(s)/I_1(s)$ o transadmitancia $Y_{21}(s) = I_2(s)/V_1(s)$.
-              </li>
-            </ul>
+<p class="mb-3">Una <strong>función de red $H(s)$</strong> relaciona la transformada de Laplace de una respuesta $Y(s)$ con la de una excitación $X(s)$, asumiendo condiciones iniciales nulas en una red lineal e invariante en el tiempo (LTI):</p>
+$$H(s) = \\frac{Y(s)}{X(s)} = \\frac{N(s)}{D(s)} = K \\frac{(s - z_1)(s - z_2)\\dots(s - z_m)}{(s - p_1)(s - p_2)\\dots(s - p_n)}$$
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Estabilidad y Polinomios de Hurwitz</h5>
-            <p class="mb-2">Para que una red pasiva o activa sea asintóticamente estable, todos los polos de la función de transferencia deben residir estrictamente en el <strong>semiplano izquierdo abierto (SPI)</strong>: $\\text{Re}\\{p_k\\} < 0$. El denominador $D(s)$ debe ser un <strong>polinomio de Hurwitz</strong>.</p>
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li><strong>Funciones de Excitación o Inmitancia (1 puerto):</strong> Relacionan tensión y corriente en el mismo par de terminales: Impedancia de entrada $Z(s) = V(s)/I(s)$ o Admitancia de entrada $Y(s) = I(s)/V(s)$.</li>
+  <li><strong>Funciones de Transferencia (2 puertos / Cuadripolos):</strong> Relacionan magnitudes de puertos distintos:
+    Transferencia de tensión $T_v(s) = V_2(s)/V_1(s)$, de corriente $T_i(s) = I_2(s)/I_1(s)$, transimpedancia $Z_{21}(s) = V_2(s)/I_1(s)$ o transadmitancia $Y_{21}(s) = I_2(s)/V_1(s)$.
+  </li>
+</ul>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Estabilidad Asintótica y Polinomios de Hurwitz</h5>
+<p class="mb-2">Para que una red física pasiva o activa sea asintóticamente estable (su respuesta impulsional tienda a cero cuando $t \\to \\infty$), todos los polos de su función de transferencia deben residir estrictamente en el <strong>semiplano izquierdo abierto (SPI)</strong>: $\\text{Re}\\{p_k\\} < 0$. El denominador $D(s)$ debe ser un <strong>polinomio de Hurwitz estricto</strong>.</p>
+<div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+  <span class="font-bold text-blue-600 dark:text-blue-400 font-mono">Criterio de Cocientes Continuados de Hurwitz:</span> Se divide la parte par $m(s)$ por la parte impar $n(s)$ de $D(s)$. Si todos los cocientes euclídeos son de la forma $q_k s$ con coeficientes reales estrictamente positivos ($q_k > 0$) y no hay cancelación prematura, el polinomio es estrictamente de Hurwitz.
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u1-partes-reconstruccion',
+          titulo: '1.2 Partes de Funciones de Red, Régimen Armónico y Métodos de Reconstrucción',
+          contenido: `
+<p class="mb-3">En el análisis espectral y la síntesis de filtros analógicos, frecuentemente se conoce únicamente una propiedad en régimen permanente de la red (por ejemplo, su curva de atenuación, su parte real resistiva o su curva de fase) y se requiere determinar la función de red racional compleja completa $F(s) = P(s)/Q(s)$. Para ello, se descompone la función en sus <strong>partes par e impar operacionales</strong>.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Descomposición Polinomial y Operacional</h5>
+<p class="mb-2">Sea una función racional con coeficientes reales $F(s) = \\frac{P(s)}{Q(s)}$. Se descompone el numerador y denominador en sus potencias pares e impares de la variable compleja $s$:</p>
+$$P(s) = m_1(s) + n_1(s), \\qquad Q(s) = m_2(s) + n_2(s)$$
+<p class="text-xs text-slate-600 dark:text-slate-400 mb-2">donde $m_1(-s) = m_1(s)$ y $m_2(-s) = m_2(s)$ (polinomios pares), mientras que $n_1(-s) = -n_1(s)$ y $n_2(-s) = -n_2(s)$ (polinomios impares). Multiplicando numerador y denominador por el conjugado par $Q(-s) = m_2(s) - n_2(s)$:</p>
+$$F(s) = \\frac{(m_1 + n_1)(m_2 - n_2)}{(m_2 + n_2)(m_2 - n_2)} = \\frac{(m_1 m_2 - n_1 n_2) + (n_1 m_2 - m_1 n_2)}{m_2^2(s) - n_2^2(s)} = \\mathbf{M(s) + N(s)}$$
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs sm:text-sm">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-blue-600 dark:text-blue-400 font-mono mb-1">Parte Par Operacional M(s)</div>
+    $$M(s) = \\frac{F(s) + F(-s)}{2} = \\frac{m_1 m_2 - n_1 n_2}{m_2^2 - n_2^2} = \\frac{m_1 m_2 - n_1 n_2}{Q(s) Q(-s)}$$
+    <p class="text-slate-500 text-xs mt-1">Es una función par de $s$: $M(-s) = M(s)$. Sus singularidades son simétricas respecto del eje $j\\omega$.</p>
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-indigo-600 dark:text-indigo-400 font-mono mb-1">Parte Impar Operacional N(s)</div>
+    $$N(s) = \\frac{F(s) - F(-s)}{2} = \\frac{n_1 m_2 - m_1 n_2}{m_2^2 - n_2^2} = \\frac{n_1 m_2 - m_1 n_2}{Q(s) Q(-s)}$$
+    <p class="text-slate-500 text-xs mt-1">Es una función impar de $s$: $N(-s) = -N(s)$. Se anula en el origen si no tiene polo.</p>
+  </div>
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Arquitectura Operacional de una Función de Red: Descomposición Par / Impar y Reconstrucción
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- Marco contenedor -->
+  <rect x="10" y="10" width="840" height="240" rx="12" fill="#0f172a" fill-opacity="0.03" stroke="#cbd5e1" stroke-width="1.2"/>
+
+  <!-- Título principal -->
+  <text x="430" y="32" font-size="13" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    Arquitectura Operacional de una Función de Red: Descomposición Par / Impar y Reconstrucción
+  </text>
+
+  <!-- Paso 1: Función de Red Racional F(s) -->
+  <g transform="translate(30, 55)">
+    <rect x="0" y="0" width="160" height="95" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.8"/>
+    <text x="80" y="24" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Función de Red F(s)</text>
+    <text x="80" y="48" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">F(s) = P(s) / Q(s)</text>
+    <text x="80" y="68" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">P = m₁ + n₁, Q = m₂ + n₂</text>
+    <text x="80" y="84" font-size="9" font-family="system-ui, sans-serif" fill="#64748b" text-anchor="middle">m: potencias pares, n: impares</text>
+  </g>
+
+  <!-- Flecha 1 a 2 -->
+  <line x1="190" y1="102" x2="235" y2="102" stroke="#64748b" stroke-width="2"/>
+  <polygon points="242,102 233,97 233,107" fill="#64748b"/>
+
+  <!-- Paso 2: Descomposición Operacional M(s) + N(s) -->
+  <g transform="translate(245, 50)">
+    <rect x="0" y="0" width="220" height="105" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.8"/>
+    <text x="110" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#6d28d9" text-anchor="middle">Descomposición Operacional</text>
+    <text x="110" y="44" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">F(s) = M(s) + N(s)</text>
+    <text x="110" y="66" font-size="10" font-family="monospace" fill="#334155" text-anchor="middle">M(s) = [m₁m₂ - n₁n₂] / (m₂² - n₂²)</text>
+    <text x="110" y="82" font-size="10" font-family="monospace" fill="#334155" text-anchor="middle">N(s) = [n₁m₂ - m₁n₂] / (m₂² - n₂²)</text>
+    <text x="110" y="98" font-size="9" font-family="system-ui, sans-serif" fill="#7c3aed" text-anchor="middle">M(-s) = M(s),  N(-s) = -N(s)</text>
+  </g>
+
+  <!-- Flecha 2 a 3 -->
+  <line x1="465" y1="102" x2="510" y2="102" stroke="#64748b" stroke-width="2"/>
+  <polygon points="517,102 508,97 508,107" fill="#64748b"/>
+
+  <!-- Paso 3: Régimen Armónico (s = jw) -->
+  <g transform="translate(520, 50)">
+    <rect x="0" y="0" width="160" height="105" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8"/>
+    <text x="80" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#047857" text-anchor="middle">Régimen Armónico</text>
+    <text x="80" y="44" font-size="11" font-family="monospace" font-weight="bold" fill="#065f46" text-anchor="middle">s = jω (Eje Imaginario)</text>
+    <text x="80" y="66" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">Re[F(jω)] = M(jω)</text>
+    <text x="80" y="84" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">j·Im[F(jω)] = N(jω)</text>
+    <text x="80" y="98" font-size="9" font-family="system-ui, sans-serif" fill="#059669" text-anchor="middle">Módulo: |F|² = M² - N²</text>
+  </g>
+
+  <!-- Flecha de retorno / Reconstrucción inferior -->
+  <path d="M 600,155 Q 600,205 440,205" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,4"/>
+  <polygon points="433,205 442,200 442,210" fill="#d97706"/>
+
+  <!-- Paso 4: Reconstrucción en el Semiplano Izquierdo -->
+  <g transform="translate(100, 175)">
+    <rect x="0" y="0" width="325" height="60" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.8"/>
+    <text x="162" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#b45309" text-anchor="middle">
+      Reconstrucción de F(s) a partir de Re[F(jω)] o M(s)
+    </text>
+    <text x="162" y="40" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      F(s) = 2 · [Fracciones simples de M(s) con polos en Re{s} &lt; 0]
+    </text>
+    <text x="162" y="53" font-size="9" font-family="system-ui, sans-serif" fill="#78350f" text-anchor="middle">
+      (Método de Gewertz / Factorización Espectral sin polos en jω)
+    </text>
+  </g>
+
+  <!-- Paso 5: Reconstrucción desde Fase -->
+  <g transform="translate(460, 175)">
+    <rect x="0" y="0" width="370" height="60" rx="8" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.8"/>
+    <text x="185" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#be185d" text-anchor="middle">
+      Reconstrucción de F(s) a partir de la Fase φ(ω)
+    </text>
+    <text x="185" y="40" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      j·tan φ(ω) = N(jω) / M(jω)  ⟹  1 + T(s) = P(s)·Q(-s) / [m₁m₂ - n₁n₂]
+    </text>
+    <text x="185" y="53" font-size="9" font-family="system-ui, sans-serif" fill="#831843" text-anchor="middle">
+      La estabilidad física asigna los polos al denominador Q(s) en Re{s} &lt; 0.
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Propiedades en Régimen Permanente Sinusoidal ($s = j\\omega$)</h5>
+<p class="mb-2">Al sustituir $s = j\\omega$ (frecuencia angular real), dado que los coeficientes son reales, se cumple que $F(-j\\omega) = [F(j\\omega)]^*$. Las partes operacionales se transforman directamente en la parte real e imaginaria de la respuesta:</p>
+$$\\mathbf{M(j\\omega) = \\text{Re}[F(j\\omega)] = A(\\omega)}, \\qquad \\mathbf{N(j\\omega) = j \\cdot \\text{Im}[F(j\\omega)] = j B(\\omega)}$$
+
+<ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+  <li><strong>Módulo al cuadrado:</strong> $|F(j\\omega)|^2 = F(j\\omega) F(-j\\omega) = [M(s)^2 - N(s)^2]_{s=j\\omega} = A^2(\\omega) + B^2(\\omega)$.</li>
+  <li><strong>Función par espectral:</strong> Se define $S(s) = F(s) F(-s) = M^2(s) - N^2(s)$. Sus ceros y polos presentan simetría cuadrantal. Conocer $S(s)$ permite recuperar $F(s)$ mediante <em>factorización espectral</em> seleccionando únicamente los polos del semiplano izquierdo.</li>
+  <li><strong>Fase y tangente angular:</strong>
+    $$\\frac{F(j\\omega)}{F(-j\\omega)} = e^{j 2\\phi(\\omega)} = \\frac{1 + j \\tan \\phi}{1 - j \\tan \\phi} \\implies \\mathbf{j \\tan \\phi(\\omega) = \\left. \\frac{N(s)}{M(s)} \\right|_{s=j\\omega} = \\left. \\frac{n_1 m_2 - m_1 n_2}{m_1 m_2 - n_1 n_2} \\right|_{s=j\\omega}}$$
+  </li>
+</ul>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Métodos de Reconstrucción de la Función de Red Completa</h5>
+<div class="space-y-2.5 my-3 text-xs sm:text-sm">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <span class="font-bold text-emerald-600 dark:text-emerald-400 font-mono">1. Reconstrucción desde la Parte Real o Parte Par M(s) (Método de Fracciones Simples y Gewertz)</span>
+    <p class="mt-1">Si $F(s)$ es estrictamente propia y asintóticamente estable (todos sus polos en $\\text{Re}\\{s\\} < 0$, sin polos en $j\\omega$):</p>
+    $$M(s) = \\frac{1}{2} F(s) + \\frac{1}{2} F(-s)$$
+    <p class="text-slate-600 dark:text-slate-400 mt-1">Al expandir $M(s)$ en fracciones simples, los polos con parte real negativa provienen exclusivamente de $F(s)$, mientras que los polos con parte real positiva provienen de $F(-s)$. Por lo tanto:</p>
+    $$\\mathbf{F(s) = 2 \\times \\left[ \\text{fracciones simples de } M(s) \\text{ asociadas a los polos en el SPI} \\right]}$$
+    <p class="text-slate-500 text-xs mt-1"><em>Ejemplo de la cátedra:</em> Sea $M(s) = \\frac{1}{1 - s^2} = \\frac{1/2}{s + 1} - \\frac{1/2}{s - 1}$. El polo en el SPI es $s = -1$ con residuo $1/2$. Multiplicando por 2: $F(s) = 2 \\left( \\frac{1/2}{s + 1} \\right) = \\frac{1}{s + 1}$, que corresponde a una impedancia realizada por un paralelo $R = 1\\,\\Omega$ y $C = 1\\text{ F}$.</p>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <span class="font-bold text-amber-600 dark:text-amber-400 font-mono">2. Reconstrucción desde la Fase φ(ω)</span>
+    <p class="mt-1">Definiendo $T(s) = N(s)/M(s)$, en el eje imaginario $T(j\\omega) = j \\tan \\phi(\\omega)$. Formando la expresión auxiliar:</p>
+    $$1 + T(s) = 1 + \\frac{n_1 m_2 - m_1 n_2}{m_1 m_2 - n_1 n_2} = \\frac{P(s) Q(-s)}{m_1 m_2 - n_1 n_2}$$
+    <p class="text-slate-600 dark:text-slate-400 mt-1">El numerador reducido aporta todos los ceros de $P(s) Q(-s)$. Asignando las raíces del SPI a $Q(s)$ (por estabilidad) y las raíces restantes según hipótesis de fase mínima a $P(s)$, se reconstruye $F(s)$ salvo una constante de ganancia positiva.</p>
+  </div>
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u1-aproximaciones-filtros',
+          titulo: '1.3 Teoría de Aproximaciones y Diseño de Filtros (Butterworth y Chebyshev)',
+          contenido: `
+<p class="mb-3">El diseño clásico de filtros analógicos consiste en sintetizar una función de transferencia racional $H(s) = V_2(s)/V_1(s)$ cuya respuesta de módulo en frecuencia $|H(j\\omega)|$ satisfaga una <strong>plantilla de atenuación o tolerancia normalizada</strong> impuesta por las especificaciones del sistema.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Plantilla Normalizada y los 6 Pasos del Diseño de Filtros</h5>
+<p class="mb-2">La plantilla de un filtro pasa-bajos define cuatro parámetros críticos:</p>
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li>$\\omega_p$: Frecuencia angular de corte de la banda de paso (en rad/s).</li>
+  <li>$\\omega_s$: Frecuencia angular inicial de la banda de rechazo ($\\omega_s > \\omega_p$). El cociente $k = \\omega_s / \\omega_p > 1$ es el <em>factor de selectividad</em>.</li>
+  <li>$\\alpha_p$: Atenuación o riple máximo tolerable en la banda de paso (típicamente $0.5\\text{ dB}$ a $3\\text{ dB}$).</li>
+  <li>$\\alpha_s$: Atenuación mínima requerida en la banda de rechazo (típicamente $\\ge 20\\text{ dB}$ a $60\\text{ dB}$).</li>
+</ul>
+
+<div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+  <span class="font-bold text-blue-600 dark:text-blue-400 font-mono">Flujo de Diseño Metodológico:</span><br>
+  1. <strong>Especificaciones</strong> $(\\omega_p, \\omega_s, \\alpha_p, \\alpha_s) \\implies$ 
+  2. <strong>Normalización</strong> (llevar $\\Omega_p = 1$, $R_0 = 1\\,\\Omega$) $\\implies$ 
+  3. <strong>Aproximación</strong> (determinar orden $n$ y función $|H(j\\omega)|^2$) $\\implies$ 
+  4. <strong>Función de Red $H(s)$</strong> (factorización y selección de polos en SPI) $\\implies$ 
+  5. <strong>Síntesis Circuital</strong> (escalera LC o celdas activas) $\\implies$ 
+  6. <strong>Desnormalización</strong> en frecuencia e impedancia.
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Plantilla de Tolerancia, Aproximación de Butterworth y Chebyshev Tipo I
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradPass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="gradStop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="gradTrans" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="840" height="300" rx="12" fill="#0f172a" fill-opacity="0.03" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Ejes coordenados -->
+  <line x1="80" y1="260" x2="80" y2="35" stroke="#475569" stroke-width="2"/>
+  <polygon points="80,28 76,40 84,40" fill="#475569"/>
+  <text x="80" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#334155" text-anchor="middle">|H(jω)|</text>
+
+  <line x1="75" y1="260" x2="800" y2="260" stroke="#475569" stroke-width="2"/>
+  <polygon points="808,260 796,256 796,264" fill="#475569"/>
+  <text x="815" y="264" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#334155">ω [rad/s]</text>
+
+  <!-- Zonas de la plantilla -->
+  <rect x="80" y="60" width="200" height="200" fill="url(#gradPass)"/>
+  <rect x="280" y="60" width="160" height="200" fill="url(#gradTrans)"/>
+  <rect x="440" y="60" width="320" height="200" fill="url(#gradStop)"/>
+
+  <!-- Límites de atenuación horizontal -->
+  <line x1="75" y1="65" x2="280" y2="65" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="70" y="69" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="end">1.0 (0 dB)</text>
+
+  <line x1="75" y1="95" x2="280" y2="95" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="70" y="99" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="end">α_p (Riple)</text>
+
+  <line x1="440" y1="220" x2="760" y2="220" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="765" y="224" font-size="11" font-family="monospace" font-weight="bold" fill="#dc2626">α_s (Mínima)</text>
+
+  <!-- Frecuencias críticas -->
+  <line x1="280" y1="60" x2="280" y2="265" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="280" y="280" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#059669" text-anchor="middle">ω_p (Banda Paso)</text>
+
+  <line x1="440" y1="60" x2="440" y2="265" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="440" y="280" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#dc2626" text-anchor="middle">ω_s (Banda Rechazo)</text>
+
+  <text x="180" y="50" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#059669" text-anchor="middle">BANDA DE PASO</text>
+  <text x="360" y="50" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#d97706" text-anchor="middle">TRANSICIÓN</text>
+  <text x="600" y="50" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#dc2626" text-anchor="middle">BANDA DE RECHAZO</text>
+
+  <!-- Curva Butterworth -->
+  <path d="M 80,65 C 160,65 240,75 280,95 C 330,125 390,210 440,230 C 500,248 650,256 750,257" fill="none" stroke="#2563eb" stroke-width="2.8"/>
+
+  <!-- Curva Chebyshev -->
+  <path d="M 80,65 C 100,65 115,95 135,95 C 155,95 170,65 190,65 C 210,65 225,95 245,95 C 260,95 272,70 280,95 C 310,165 370,235 440,245 C 500,252 650,256 750,257" fill="none" stroke="#9333ea" stroke-width="2.8"/>
+
+  <!-- Leyenda -->
+  <g transform="translate(560, 85)">
+    <rect x="0" y="0" width="230" height="75" rx="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="15" y1="24" x2="45" y2="24" stroke="#2563eb" stroke-width="3"/>
+    <text x="55" y="28" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e293b">Butterworth (Máx. Plana)</text>
+    <line x1="15" y1="52" x2="45" y2="52" stroke="#9333ea" stroke-width="3"/>
+    <text x="55" y="56" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e293b">Chebyshev I (Equirriple)</text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">1. Aproximación de Butterworth (Máximamente Plana)</h5>
+<p class="mb-2">La aproximación de Stephen Butterworth se basa en anular la mayor cantidad posible de derivadas de la magnitud en el origen ($\\omega = 0$). Su función de pérdida cuadrática es puramente monótona decreciente:</p>
+$$\\mathbf{|H(j\\omega)|^2 = \\frac{1}{1 + \\left( \\frac{\\omega}{\\omega_c} \\right)^{2n}}}$$
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li>A la frecuencia de corte $\\omega = \\omega_c$: $|H(j\\omega_c)|^2 = 1/2 \\implies |H(j\\omega_c)|_{\\text{dB}} = -3.01\\text{ dB}$.</li>
+  <li>En alta frecuencia ($\\omega \\gg \\omega_c$): la atenuación decae a razón de $\\mathbf{-20n\\text{ dB/década}}$ (o $-6n\\text{ dB/octava}$).</li>
+  <li><strong>Cálculo del orden mínimo $n$:</strong>
+    $$n \\ge \\frac{\\log_{10} \\left( \\frac{10^{0.1 \\alpha_s} - 1}{10^{0.1 \\alpha_p} - 1} \\right)}{2 \\log_{10} \\left( \\frac{\\omega_s}{\\omega_p} \\right)}$$
+  </li>
+  <li><strong>Polos normalizados:</strong> Los $2n$ polos de $|H(s)|^2 = H(s)H(-s)$ están equiespaciados sobre la circunferencia unitaria del plano complejo. Para estabilidad, se seleccionan los $n$ polos del semiplano izquierdo:
+    $$s_k = -\\sin\\left( \\frac{2k - 1}{2n} \\pi \\right) + j \\cos\\left( \\frac{2k - 1}{2n} \\pi \\right), \\qquad k = 1, 2, \\dots, n$$
+  </li>
+</ul>
+
+<div class="overflow-x-auto my-3">
+  <table class="w-full text-left text-xs border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden font-mono">
+    <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold uppercase">
+      <tr>
+        <th class="p-2 border-b border-r border-slate-200 dark:border-slate-700">Orden n</th>
+        <th class="p-2 border-b border-slate-200 dark:border-slate-700">Denominador Normalizado Factorizado B_n(s) (ω_c = 1)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700">1</td><td class="p-2">$s + 1$</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700">2</td><td class="p-2">$s^2 + \\sqrt{2}s + 1 = s^2 + 1.4142s + 1$</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700">3</td><td class="p-2">$(s + 1)(s^2 + s + 1)$</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700">4</td><td class="p-2">$(s^2 + 0.7654s + 1)(s^2 + 1.8478s + 1)$</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700">5</td><td class="p-2">$(s + 1)(s^2 + 0.6180s + 1)(s^2 + 1.6180s + 1)$</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">2. Aproximación de Chebyshev Tipo I (Equirriple)</h5>
+<p class="mb-2">La aproximación de Pafnuti Chebyshev distribuye el error de forma óptima tolerando un riple uniforme $\\alpha_p$ en la banda de paso a cambio de lograr una pendiente de corte mucho más abrupta en la banda de transición que Butterworth para un mismo orden $n$:</p>
+$$\\mathbf{|H(j\\omega)|^2 = \\frac{1}{1 + \\epsilon^2 T_n^2\\left( \\frac{\\omega}{\\omega_p} \\right)}}, \\qquad \\epsilon = \\sqrt{10^{0.1 \\alpha_p} - 1}$$
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li>$T_n(\\omega)$ son los <strong>polinomios ortogonales de Chebyshev</strong> de primera especie:
+    $$T_n(\\omega) = \\begin{cases} \\cos(n \\arccos \\omega) & |\\omega| \\le 1 \\quad (\\text{Banda de paso}) \\\\ \\cosh(n \\operatorname{arcosh} \\omega) & |\\omega| > 1 \\quad (\\text{Banda de rechazo}) \\end{cases}$$
+  </li>
+  <li><strong>Relación de Recurrencia Fundamental:</strong>
+    $$T_0(\\omega) = 1, \\quad T_1(\\omega) = \\omega \\implies \\mathbf{T_n(\\omega) = 2\\omega T_{n-1}(\\omega) - T_{n-2}(\\omega)}$$
+    $$T_2(\\omega) = 2\\omega^2 - 1, \\quad T_3(\\omega) = 4\\omega^3 - 3\\omega, \\quad T_4(\\omega) = 8\\omega^4 - 8\\omega^2 + 1, \\quad T_5(\\omega) = 16\\omega^5 - 20\\omega^3 + 5\\omega$$
+  </li>
+  <li><strong>Cálculo del orden mínimo de Chebyshev:</strong>
+    $$n \\ge \\frac{\\operatorname{arcosh}\\left( \\sqrt{\\frac{10^{0.1 \\alpha_s} - 1}{10^{0.1 \\alpha_p} - 1}} \\right)}{\\operatorname{arcosh}\\left( \\frac{\\omega_s}{\\omega_p} \\right)}$$
+    donde $\\operatorname{arcosh}(x) = \\ln\\left(x + \\sqrt{x^2 - 1}\\right)$.
+  </li>
+</ul>
+
           `
         },
         {
           id: 'tc3-u1-normalizacion-retardo',
-          titulo: '1.2 Normalización de Redes y Retardo de Grupo',
+          titulo: '1.4 Normalización y Desnormalización de Redes y Retardo de Grupo',
           contenido: `
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Normalización en Frecuencia e Impedancia</h5>
-            <p class="mb-2">Para simplificar los cálculos numéricos en síntesis, se eligen una frecuencia de referencia $\\Omega_0$ [rad/s] y una resistencia de referencia $R_0$ [$\\Omega$]:</p>
-            $$\\Omega_n = \\frac{\\omega}{\\Omega_0}, \\quad s_n = \\frac{s}{\\Omega_0}, \\quad z_n(s_n) = \\frac{Z(s)}{R_0}$$
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs">
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Resistencia:</strong><br>
-                $r_n = \\frac{R}{R_0}$<br>
-                $R = r_n \\cdot R_0$
-              </div>
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Inductor:</strong><br>
-                $l_n = \\frac{L \\cdot \\Omega_0}{R_0}$<br>
-                $L = l_n \\frac{R_0}{\\Omega_0}$
-              </div>
-              <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <strong>Capacitor:</strong><br>
-                $c_n = C \\cdot \\Omega_0 \\cdot R_0$<br>
-                $C = \\frac{c_n}{\\Omega_0 R_0}$
-              </div>
-            </div>
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Escalas de Normalización de Magnitud y Frecuencia</h5>
+<p class="mb-2">Para evitar operar con números astronómicos o infinitesimales (faradios, nanohenrios, megaohmios) durante el diseño algebraico, se eligen una frecuencia de referencia $\\Omega_0$ [rad/s] y una resistencia de referencia $R_0$ [$\\Omega$]:</p>
+$$k_f = \\Omega_0 = 2\\pi f_0, \\qquad k_z = R_0$$
+$$\\Omega_n = \\frac{\\omega}{k_f}, \\quad s_n = \\frac{s}{k_f}, \\quad z_n(s_n) = \\frac{Z(s)}{k_z}$$
 
-            <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Retardo de Grupo (Group Delay)</h5>
-            <p class="mb-2">El retardo de grupo $\\tau_g(\\omega)$ cuantifica la demora temporal experimentada por la envolvente de un paquete de ondas a cada frecuencia:</p>
-            $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
-            <p class="text-xs text-slate-600 dark:text-slate-400">Si $\\tau_g(\\omega) = \\text{constante}$ en la banda de paso, la fase $\\phi(\\omega)$ es estrictamente lineal y la señal se transmite sin distorsión de fase (propiedad de los filtros de Bessel/Thomson).</p>
-            <div class="pt-2 flex justify-end">
-              <button onclick="filtrarUnidad('tc3-u1'); volverAEjercicios();" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1">
-                <span>Practicar ejercicios guiados de la Unidad 1</span>
-                <span>→</span>
-              </button>
-            </div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs">
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>Resistencia:</strong><br>
+    $r_n = \\frac{R}{R_0}$<br>
+    $\\mathbf{R = r_n \\cdot R_0}$
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>Inductor:</strong><br>
+    $l_n = \\frac{L \\cdot \\Omega_0}{R_0}$<br>
+    $\\mathbf{L = l_n \\frac{R_0}{\\Omega_0}}$
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>Capacitor:</strong><br>
+    $c_n = C \\cdot \\Omega_0 \\cdot R_0$<br>
+    $\\mathbf{C = \\frac{c_n}{\\Omega_0 R_0}}$
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Retardo de Grupo (Group Delay)</h5>
+<p class="mb-2">El retardo de grupo $\\tau_g(\\omega)$ cuantifica la demora temporal experimentada por la envolvente de una señal modulada al atravesar la red:</p>
+$$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
+<p class="text-xs text-slate-600 dark:text-slate-400">Si $\\tau_g(\\omega)$ es constante en la banda de paso, la fase $\\phi(\\omega)$ es estrictamente lineal y la señal no experimenta distorsión de fase (propiedad optimizada por la aproximación de Bessel/Thomson mediante polinomios de Bessel).</p>
+<div class="pt-2 flex justify-end">
+  <button onclick="filtrarUnidad('tc3-u1'); volverAEjercicios();" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1 font-semibold">
+    <span>Practicar ejercicios interactivos de la Unidad 1</span>
+    <span>→</span>
+  </button>
+</div>
+
           `
         }
       ]
     },
 
     // ========================================================================
-    // UNIDAD 2: OPERACIONALES, GIC Y FDNR
+    // UNIDAD 2: REDES ACTIVAS CON OPERACIONALES, GIC, FDNR Y CAPACITORES CONMUTADOS
     // ========================================================================
     {
       id: 'tc3-u2',
       numero: 2,
-      titulo: 'Unidad 2: Redes Activas con Amplificadores Operacionales, GIC y FDNR',
+      titulo: 'Unidad 2: Redes Activas con Operacionales, GIC, FDNR y Capacitores Conmutados',
       icono: '⚡',
       badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300',
-      introduccion: 'En esta unidad se estudian las redes activas basadas en operacionales diseñadas para sintetizar componentes circuitales que no existen en la naturaleza, como inductores puros sin pérdidas y elementos de inmitancia cuadrática (FDNR o Elemento D de Bruton).',
+      introduccion: 'En esta unidad se estudian las redes activas basadas en operacionales diseñadas para sintetizar componentes circuitales que no existen en la naturaleza (inductores puros con GIC, FDNR de Bruton) y la tecnología analógica de filtros integrados en silicio mediante Capacitores Conmutados (Switched Capacitor).',
       secciones: [
         {
           id: 'tc3-u2-gic-antoniou',
@@ -134,7 +442,7 @@ const MANUAL_TEORIA_TC3 = {
         },
         {
           id: 'tc3-u2-fdnr-bruton',
-          titulo: '2.2 El Elemento D de Bruton (FDNR)',
+          titulo: '2.2 El Elemento D de Bruton (FDNR) y Transformación de Bruton',
           contenido: `
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Síntesis del Elemento D (FDNR)</h5>
             <p class="mb-2">Si en el GIC se eligen dos capacitores en las posiciones $Z_1$ y $Z_3$ ($Z_1 = 1/(s C_1), Z_3 = 1/(s C_3)$) y resistencias en $Z_2, Z_4, Z_5$:</p>
@@ -159,20 +467,196 @@ const MANUAL_TEORIA_TC3 = {
               </button>
             </div>
           `
+        },
+        {
+          id: 'tc3-u2-capacitores-conmutados',
+          titulo: '2.3 Filtros de Capacitores Conmutados (Switched Capacitor Circuits)',
+          contenido: `
+<p class="mb-3">En el diseño de circuitos integrados analógicos en tecnología MOS/CMOS (VLSI y LSI), la integración de resistencias convencionales presenta severas limitaciones: ocupan un área superficial de silicio desproporcionadamente grande y sufren desviaciones de tolerancia de hasta el $\\pm 20\\%-30\\%$ debido a variaciones térmicas y del proceso litográfico. En cambio, los capacitores integrados de óxido-polisilicio ocupan un área mínima y, lo más importante, <strong>la razón entre dos capacidades integradas $\\frac{C_1}{C_2}$ se controla con una precisión superior al $0.1\\%$</strong>.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Principio de Simulación de Resistencia mediante Conmutación de Carga</h5>
+<p class="mb-2">Considérese un capacitor $C_R$ conectado a una llave inversora periódica que conmuta entre dos fuentes de tensión continuas $E_1$ y $E_2$ a una frecuencia de reloj de conmutación $f_c = 1/T$ ($f_c \\gg f_{\\text{señal}}$):</p>
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li>En la fase 1 ($\\phi_1$ cerrada): el capacitor se carga a la tensión $E_1$, almacenando $Q_1 = C_R E_1$.</li>
+  <li>En la fase 2 ($\\phi_2$ cerrada): el capacitor se conmuta a la tensión $E_2$, pasando a almacenar $Q_2 = C_R E_2$.</li>
+  <li>La carga neta transferida en cada ciclo completo $T$ es:
+    $$\\Delta Q = Q_2 - Q_1 = C_R (E_2 - E_1)$$
+  </li>
+  <li>La corriente media transferida durante el período $T$ es:
+    $$I = \\frac{\\Delta Q}{T} = f_c \\cdot C_R \\cdot (E_2 - E_1)$$
+  </li>
+</ul>
+
+<div class="p-4 my-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-200">
+  <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+    <span>📐</span> Resistencia Equivalente Simulada por Capacitor Conmutado
+  </h5>
+  $$\\mathbf{R_{eq} = \\frac{E_2 - E_1}{I} = \\frac{1}{f_c \\cdot C_R}}$$
+  <p class="text-xs mt-1">El valor de resistencia depende exclusivamente de la inversa de la frecuencia de reloj $f_c$ y del capacitor $C_R$. ¡Una frecuencia de reloj de cuarzo de alta precisión fija el valor resistivo con exactitud absoluta!</p>
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Filtros de Capacitores Conmutados (Switched Capacitors): Resistencia Equivalente e Integrador SC
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="395" height="280" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="197" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Simulación de Resistencia por Capacitor Conmutado
+    </text>
+
+    <!-- Fuente E1 -->
+    <circle cx="50" cy="120" r="15" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <text x="50" y="117" font-size="12" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">+</text>
+    <text x="50" y="130" font-size="12" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">-</text>
+    <text x="50" y="152" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e293b" text-anchor="middle">E₁</text>
+    <line x1="50" y1="135" x2="50" y2="175" stroke="#334155" stroke-width="2"/>
+    <line x1="40" y1="175" x2="60" y2="175" stroke="#334155" stroke-width="2"/>
+
+    <line x1="50" y1="105" x2="50" y2="70" stroke="#334155" stroke-width="2"/>
+    <line x1="50" y1="70" x2="110" y2="70" stroke="#334155" stroke-width="2"/>
+    <circle cx="110" cy="70" r="3" fill="#334155"/>
+    <text x="110" y="60" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">1 (φ₁)</text>
+
+    <circle cx="170" cy="70" r="3" fill="#334155"/>
+    <text x="170" y="60" font-size="11" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">2 (φ₂)</text>
+    <line x1="170" y1="70" x2="230" y2="70" stroke="#334155" stroke-width="2"/>
+    <line x1="230" y1="70" x2="230" y2="105" stroke="#334155" stroke-width="2"/>
+
+    <circle cx="140" cy="100" r="3.5" fill="#dc2626"/>
+    <line x1="140" y1="100" x2="115" y2="74" stroke="#dc2626" stroke-width="2.5"/>
+    <path d="M 120,80 Q 140,75 160,80" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="2,2"/>
+
+    <line x1="140" y1="100" x2="140" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="125" y1="135" x2="155" y2="135" stroke="#334155" stroke-width="2.5"/>
+    <line x1="125" y1="142" x2="155" y2="142" stroke="#334155" stroke-width="2.5"/>
+    <line x1="140" y1="142" x2="140" y2="175" stroke="#334155" stroke-width="2"/>
+    <line x1="130" y1="175" x2="150" y2="175" stroke="#334155" stroke-width="2"/>
+    <text x="165" y="142" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a">C_R</text>
+
+    <circle cx="230" cy="120" r="15" fill="#ffffff" stroke="#9333ea" stroke-width="2"/>
+    <text x="230" y="117" font-size="12" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">+</text>
+    <text x="230" y="130" font-size="12" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">-</text>
+    <text x="230" y="152" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e293b" text-anchor="middle">E₂</text>
+    <line x1="230" y1="135" x2="230" y2="175" stroke="#334155" stroke-width="2"/>
+    <line x1="220" y1="175" x2="240" y2="175" stroke="#334155" stroke-width="2"/>
+
+    <rect x="25" y="200" width="345" height="65" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="197" y="222" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      I = f_c · C_R · (E₂ - E₁)  ⟹  R_eq = 1 / (f_c · C_R)
+    </text>
+    <text x="197" y="245" font-size="11" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Reloj bifásico no solapado (f_c = 1/T con fases φ₁ y φ₂)
+    </text>
+  </g>
+
+  <g transform="translate(435, 10)">
+    <rect x="0" y="0" width="410" height="280" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="205" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Integrador Inversor SC con Amplificador Operacional
+    </text>
+
+    <circle cx="40" cy="115" r="13" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <text x="40" y="120" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#2563eb" text-anchor="middle">E₁</text>
+    <line x1="40" y1="128" x2="40" y2="155" stroke="#334155" stroke-width="2"/>
+    <line x1="30" y1="155" x2="50" y2="155" stroke="#334155" stroke-width="2"/>
+
+    <line x1="40" y1="102" x2="40" y2="80" stroke="#334155" stroke-width="2"/>
+    <line x1="40" y1="80" x2="80" y2="80" stroke="#334155" stroke-width="2"/>
+    <circle cx="80" cy="80" r="3" fill="#334155"/>
+    <circle cx="140" cy="80" r="3" fill="#334155"/>
+
+    <circle cx="110" cy="110" r="3.5" fill="#dc2626"/>
+    <line x1="110" y1="110" x2="85" y2="84" stroke="#dc2626" stroke-width="2.2"/>
+    <line x1="110" y1="110" x2="110" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="95" y1="135" x2="125" y2="135" stroke="#334155" stroke-width="2.5"/>
+    <line x1="95" y1="142" x2="125" y2="142" stroke="#334155" stroke-width="2.5"/>
+    <line x1="110" y1="142" x2="110" y2="165" stroke="#334155" stroke-width="2"/>
+    <line x1="100" y1="165" x2="120" y2="165" stroke="#334155" stroke-width="2"/>
+    <text x="135" y="142" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a">C₁</text>
+
+    <line x1="140" y1="80" x2="190" y2="80" stroke="#334155" stroke-width="2"/>
+    <line x1="190" y1="80" x2="190" y2="105" stroke="#334155" stroke-width="2"/>
+
+    <polygon points="210,90 210,150 265,120" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <line x1="190" y1="105" x2="210" y2="105" stroke="#334155" stroke-width="2"/>
+    <text x="215" y="109" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
+    <line x1="190" y1="135" x2="210" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="190" y1="135" x2="190" y2="155" stroke="#334155" stroke-width="2"/>
+    <line x1="180" y1="155" x2="200" y2="155" stroke="#334155" stroke-width="2"/>
+    <text x="215" y="139" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+    <circle cx="200" cy="105" r="3" fill="#334155"/>
+    <line x1="200" y1="105" x2="200" y2="55" stroke="#334155" stroke-width="2"/>
+    <line x1="200" y1="55" x2="230" y2="55" stroke="#334155" stroke-width="2"/>
+    <line x1="230" y1="45" x2="230" y2="65" stroke="#334155" stroke-width="2.5"/>
+    <line x1="237" y1="45" x2="237" y2="65" stroke="#334155" stroke-width="2.5"/>
+    <line x1="237" y1="55" x2="290" y2="55" stroke="#334155" stroke-width="2"/>
+    <line x1="290" y1="55" x2="290" y2="120" stroke="#334155" stroke-width="2"/>
+    <text x="233" y="40" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">C₂</text>
+
+    <line x1="265" y1="120" x2="330" y2="120" stroke="#334155" stroke-width="2"/>
+    <circle cx="290" cy="120" r="3" fill="#334155"/>
+    <circle cx="330" cy="120" r="3.5" fill="#059669"/>
+    <text x="345" y="124" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#059669">E₂</text>
+
+    <rect x="25" y="200" width="360" height="65" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="205" y="222" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      E₂(s) / E₁(s) = - f_c · (C₁ / C₂) · (1 / s)
+    </text>
+    <text x="205" y="245" font-size="11" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      La constante de tiempo depende de la razón de áreas C₁/C₂ (precisión &lt; 0.1%)
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Reloj Bifásico no Solapado y Capacidades Parásitas</h5>
+<p class="mb-2">Las llaves se implementan con transistores MOSFET conducidos por dos fases de reloj no solapadas ($\\phi_1$ y $\\phi_2$) para impedir que ambas llaves conduzcan simultáneamente provocando un cortocircuito entre $E_1$ y $E_2$. Además, la estructura física de los capacitores MOS posee capacidades parásitas hacia el sustrato ($C_P$ en la placa superior y $C_B$ en la placa inferior). Para evitar que alteren la transferencia, se emplean <strong>topologías insensibles a capacidades parásitas</strong>, donde los terminales del capacitor conmutado se conectan alternadamente a masa virtual o a fuentes de baja impedancia.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Bloques Analógicos con Amplificador Operacional y Capacitores Conmutados</h5>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3 text-xs sm:text-sm">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+    <div class="font-bold text-blue-600 dark:text-blue-400 font-mono">1. Integrador Inversor Puro SC</div>
+    <p>Reemplazando la resistencia de entrada de un integrador Miller clásico por el capacitor conmutado $C_1$ ($R_{eq} = 1/(f_c C_1)$):</p>
+    $$\\mathbf{\\frac{E_2(s)}{E_1(s)} = -\\frac{1}{s R_{eq} C_2} = -f_c \\left( \\frac{C_1}{C_2} \\right) \\frac{1}{s}}$$
+    <p class="text-slate-500 text-xs">La constante de tiempo $\\tau = \\frac{1}{f_c} \\frac{C_2}{C_1}$ depende de la razón de capacidades $C_2/C_1$, inmune a la temperatura.</p>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+    <div class="font-bold text-indigo-600 dark:text-indigo-400 font-mono">2. Integrador Inversor con Pérdidas (Pasa-Bajos)</div>
+    <p>Agregando un capacitor conmutado $C_3$ en paralelo con el capacitor de realimentación $C_2$ ($R_{eq3} = 1/(f_c C_3)$):</p>
+    $$\\mathbf{\\frac{E_2(s)}{E_1(s)} = -\\frac{f_c \\frac{C_1}{C_2}}{s + f_c \\frac{C_3}{C_2}}}$$
+    <p class="text-slate-500 text-xs">Polo a frecuencia angular $\\omega_0 = f_c \\frac{C_3}{C_2}$ y ganancia estática $A_0 = -\\frac{C_1}{C_3}$.</p>
+  </div>
+</div>
+<div class="pt-2 flex justify-end">
+  <button onclick="filtrarUnidad('tc3-u2'); volverAEjercicios();" class="text-xs font-mono text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 font-semibold">
+    <span>Practicar ejercicios interactivos de la Unidad 2</span>
+    <span>→</span>
+  </button>
+</div>
+
+          `
         }
       ]
     },
 
     // ========================================================================
-    // UNIDAD 3: SÍNTESIS DE DIPOLOS PASIVOS
+    // UNIDAD 3: SÍNTESIS DE DIPOLOS PASIVOS (FOSTER, CAUER, BRUNE Y BOTT-DUFFIN)
     // ========================================================================
     {
       id: 'tc3-u3',
       numero: 3,
-      titulo: 'Unidad 3: Síntesis de Dipolos Pasivos (Foster y Cauer)',
+      titulo: 'Unidad 3: Síntesis de Dipolos Pasivos (Foster, Cauer, Brune y Bott-Duffin)',
       icono: '🔄',
       badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300',
-      introduccion: 'Esta unidad enseña a sintetizar dipolos pasivos a partir de una función de inmitancia positiva real (PR). Se estudian los dipolos reactivos puros LC (teorema de Foster), los dipolos disipativos RC y RL, y los algoritmos canónicos de Foster I y II y Cauer I y II.',
+      introduccion: 'Esta unidad enseña a sintetizar dipolos pasivos a partir de una función de inmitancia positiva real (PR). Se estudian los dipolos reactivos puros LC (teorema de Foster), los dipolos disipativos RC y RL, las funciones mínimas con el Preámbulo de Foster, y los métodos generales de Brune (con transformador acoplado) y Bott-Duffin (transformerless con función de Richard).',
       secciones: [
         {
           id: 'tc3-u3-funciones-pr',
@@ -246,7 +730,7 @@ $$\\text{Re}\\{F(j\\omega)\\} = \\left. \\frac{M_1(s) M_2(s) - N_1(s) N_2(s)}{M_
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Teorema de Reactancia de Foster: Curva X(ω) y Alternancia de Polos/Ceros en jω
+    📐 Teorema de Reactancia de Foster: Curva X(ω) y Alternancia de Polos/Ceros en jω
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -423,7 +907,7 @@ $$Z(s) = s L_\\infty + \\frac{1}{s C_0} + \\sum_{i=1}^k \\frac{2 k_i s}{s^2 + \\
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Forma Canónica Foster I (LC): Tanques Antirresonantes Paralelos en Serie
+    📐 Forma Canónica Foster I (LC): Tanques Antirresonantes Paralelos en Serie
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -554,7 +1038,7 @@ $$Y(s) = s C_\\infty + \\frac{1}{s L_0} + \\sum_{i=1}^m \\frac{2 k'_i s}{s^2 + \
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Forma Canónica Foster II (LC): Ramas Resonantes Serie Conectadas en Paralelo
+    📐 Forma Canónica Foster II (LC): Ramas Resonantes Serie Conectadas en Paralelo
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -667,7 +1151,7 @@ $$Z(s) = s L_1 + \\cfrac{1}{s C_2 + \\cfrac{1}{s L_3 + \\cfrac{1}{s C_4 + \\dots
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Forma Canónica Cauer I (LC): Red en Escalera con Extracciones en el Infinito (s → ∞)
+    📐 Forma Canónica Cauer I (LC): Red en Escalera con Extracciones en el Infinito (s → ∞)
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -762,7 +1246,7 @@ $$Z(s) = \\frac{1}{s C_1} + \\cfrac{1}{\\frac{1}{s L_2} + \\cfrac{1}{\\frac{1}{s
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Forma Canónica Cauer II (LC): Red en Escalera Inversa con Extracciones en el Origen (s → 0)
+    📐 Forma Canónica Cauer II (LC): Red en Escalera Inversa con Extracciones en el Origen (s → 0)
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -883,7 +1367,7 @@ $$Z(s) = \\frac{1}{s C_1} + \\cfrac{1}{\\frac{1}{s L_2} + \\cfrac{1}{\\frac{1}{s
 
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
   <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
-    Síntesis de Dipolos RC: Foster I, Foster II, Cauer I y Alternancia de Singularidades
+    📐 Síntesis de Dipolos RC: Foster I, Foster II, Cauer I y Alternancia de Singularidades
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
     <div class="my-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -1086,8 +1570,241 @@ $$Z_{RL}(s) = s \\cdot Z_{RC\\text{-aux}}(s) \\iff \\frac{Z_{RL}(s)}{s} = Z_{RC\
           `
         },
         {
+          id: 'tc3-u3-funciones-minimas-preambulo',
+          titulo: '3.6 Funciones Mínimas y Preámbulo de Foster',
+          contenido: `
+<p class="mb-3">Cuando una función de inmitancia positiva real (PR) contiene resistencias, inductores y capacitores simultáneamente ($RLC$), ya no se puede sintetizar directamente mediante los métodos de Foster o Cauer convencionales. Otto Brune demostró que el procedimiento general requiere identificar si la función posee singularidades en el eje imaginario o si se trata de una <strong>función mínima</strong>.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Clasificación Estricta de Funciones de Excitación</h5>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-3 text-xs sm:text-sm">
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-blue-600 dark:text-blue-400 font-mono">Mínima Reactancia:</strong><br>
+    $Z(s)$ <strong>no tiene polos sobre el eje imaginario $j\\omega$</strong> (ni en el origen $s=0$ ni en el infinito $s \\to \\infty$).
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-indigo-600 dark:text-indigo-400 font-mono">Mínima Susceptancia:</strong><br>
+    $Y(s)$ <strong>no tiene polos sobre el eje imaginario $j\\omega$</strong> (es decir, $Z(s)$ no tiene ceros sobre $j\\omega$).
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-amber-600 dark:text-amber-400 font-mono">Mínima Resistencia:</strong><br>
+    Existe al menos una frecuencia finita $\\omega_i$ donde la parte real se anula:<br>
+    $\\mathbf{\\text{Re}[Z(j\\omega_i)] = 0}$.
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-emerald-600 dark:text-emerald-400 font-mono">Función Mínima (Completa):</strong><br>
+    Una inmitancia es <strong>FUNCIÓN MÍNIMA</strong> si es de <strong>mínima parte real y de mínima parte imaginaria simultáneamente</strong>.
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">El Preámbulo de Foster</h5>
+<p class="mb-2">El <strong>Preámbulo de Foster</strong> es el algoritmo previo que <em>transforma cualquier función PR que no sea de mínima parte imaginaria en una función que sí lo sea</em>. Consiste en remover de manera ordenada todos los polos y ceros que residan sobre el eje $j\\omega$:</p>
+
+<ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+  <li><strong>Detección de ceros/polos sobre $j\\omega$ (Terminación Abrupta):</strong> Se toma el numerador o denominador y se realiza la división euclídea entre su parte par y su parte impar. Si la división termina abruptamente con resto cero, el último divisor no nulo contiene exactamente las raíces sobre el eje imaginario $\\mathbf{(s^2 + \\omega_i^2)}$.</li>
+  <li><strong>Remoción de polos de impedancia:</strong> Si $Z(s)$ tiene un polo en $s = \\pm j\\omega_i$, se calcula su residuo $2k_i$ y se resta un tanque LC paralelo en serie:
+    $$Z_2(s) = Z(s) - \\frac{2 k_i s}{s^2 + \\omega_i^2} \\qquad \\left( C_i = \\frac{1}{2 k_i}, \\quad L_i = \\frac{2 k_i}{\\omega_i^2} \\right)$$
+  </li>
+  <li><strong>Remoción de polos de admitancia:</strong> Si la función posee ceros en $j\\omega$, se invierte a admitancia $Y(s) = 1/Z(s)$ (donde pasan a ser polos) y se remueve una rama resonante LC serie conectada en paralelo:
+    $$Y_2(s) = Y(s) - \\frac{2 k'_i s}{s^2 + \\omega_i^2} \\qquad \\left( L_i = \\frac{1}{2 k'_i}, \\quad C_i = \\frac{2 k'_i}{\\omega_i^2} \\right)$$
+  </li>
+  <li>El proceso concluye cuando la función residual no posee ninguna singularidad sobre el eje $j\\omega$, quedando lista para el método de Brune o Bott-Duffin.</li>
+</ol>
+
+          `
+        },
+        {
+          id: 'tc3-u3-metodo-brune',
+          titulo: '3.7 Síntesis de Funciones Mínimas por el Método de Brune',
+          contenido: `
+<p class="mb-3">Propuesto por Otto Brune en su tesis doctoral de 1931 en el MIT, este método es la primera técnica matemática universal capaz de sintetizar <strong>cualquier función Real Positiva (PR) arbitraria</strong>. Se aplica sobre una <strong>función mínima</strong> obtenida tras el Preámbulo de Foster.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">El Algoritmo Clásico de Brune Paso a Paso</h5>
+<ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm mb-3">
+  <li><strong>Extracción de la Resistencia Mínima ($R_{min}$):</strong> Se evalúa la parte real $\\text{Re}[Z(j\\omega)] = \\left. \\frac{m_1 m_2 - n_1 n_2}{m_2^2 - n_2^2} \\right|_{s=j\\omega}$ y se busca su mínimo absoluto derivando respecto a $\\omega$. Sea $R_{min} = \\min_{\\omega} \\text{Re}[Z(j\\omega)]$ en la pulsación $\\omega_0$. Se sustrae en serie:
+    $$Z_2(s) = Z(s) - R_{min} \\implies \\text{Re}[Z_2(j\\omega_0)] = 0$$
+  </li>
+  <li><strong>Evaluación de la Reactancia en $\\omega_0$:</strong> En la frecuencia del mínimo $\\omega_0$, como $\\text{Re}[Z_2(j\\omega_0)] = 0$, la impedancia es puramente reactiva: $Z_2(j\\omega_0) = j X_0$.
+    <ul>
+      <li>Si $X_0 < 0$ (reactancia capacitiva negativa, caso fundamental): Se extrae un <strong>inductor serie de valor negativo</strong>:
+        $$\\mathbf{L_1 = \\frac{X_0}{\\omega_0} < 0}$$
+      </li>
+    </ul>
+  </li>
+  <li><strong>Creación y Remoción de Ceros en $j\\omega$:</strong> Al sustraer el inductor negativo, la nueva impedancia:
+    $$Z_4(s) = Z_2(s) - s L_1 = Z_2(s) + s |L_1|$$
+    satisface obligatoriamente $Z_4(j\\omega_0) = j X_0 - j \\omega_0 L_1 = j X_0 - j X_0 = 0$. ¡Posee un par de ceros sobre el eje imaginario en $s = \\pm j\\omega_0$!
+  </li>
+  <li><strong>Remoción del Polo de Admitancia:</strong> Invirtiendo $Y_4(s) = 1/Z_4(s)$, el par de ceros se convierte en polos en $\\pm j\\omega_0$. Se remueve el polo como una <strong>rama resonante LC serie en derivación</strong> ($L_2, C_2$ con $L_2 C_2 = 1/\\omega_0^2$):
+    $$Y_6(s) = Y_4(s) - \\frac{2 k_2 s}{s^2 + \\omega_0^2} \\implies Z_6(s) = \\frac{1}{Y_6(s)} = s L_3 + R_L$$
+  </li>
+</ol>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Síntesis de Funciones Mínimas: Método de Brune (k=1) vs Método de Bott-Duffin (Transformerless)
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="405" height="300" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="202" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Método de Brune: Inductor Negativo y Transformador (k = 1)
+    </text>
+
+    <circle cx="25" cy="80" r="3.5" fill="#2563eb"/>
+    <circle cx="25" cy="230" r="3.5" fill="#2563eb"/>
+    <text x="35" y="75" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb">Z_in</text>
+
+    <line x1="25" y1="80" x2="65" y2="80" stroke="#334155" stroke-width="2"/>
+    <rect x="65" y="73" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="82" y="66" font-size="10" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">R_min</text>
+    <line x1="100" y1="80" x2="135" y2="80" stroke="#334155" stroke-width="2"/>
+
+    <rect x="135" y="48" width="160" height="150" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="215" y="64" font-size="10" font-family="system-ui, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle">
+      Transformador Ideal (k = 1)
+    </text>
+
+    <path d="M 140,95 Q 148,82 156,95 Q 164,82 172,95 Q 180,82 188,95" fill="none" stroke="#dc2626" stroke-width="2"/>
+    <text x="164" y="80" font-size="10" font-family="monospace" font-weight="bold" fill="#dc2626" text-anchor="middle">L₁ &lt; 0</text>
+
+    <circle cx="205" cy="95" r="3" fill="#334155"/>
+    <line x1="188" y1="95" x2="205" y2="95" stroke="#334155" stroke-width="2"/>
+    <line x1="205" y1="95" x2="225" y2="95" stroke="#334155" stroke-width="2"/>
+
+    <path d="M 225,95 Q 233,82 241,95 Q 249,82 257,95 Q 265,82 273,95" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="249" y="80" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">L₃ &gt; 0</text>
+    <line x1="273" y1="95" x2="295" y2="95" stroke="#334155" stroke-width="2"/>
+
+    <line x1="205" y1="95" x2="205" y2="115" stroke="#334155" stroke-width="2"/>
+    <path d="M 205,115 Q 192,123 205,131 Q 192,139 205,147 Q 192,155 205,163" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="225" y="142" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb">L₂</text>
+    <line x1="205" y1="163" x2="205" y2="180" stroke="#334155" stroke-width="2"/>
+    <line x1="195" y1="180" x2="215" y2="180" stroke="#334155" stroke-width="2"/>
+    <line x1="195" y1="186" x2="215" y2="186" stroke="#334155" stroke-width="2"/>
+    <line x1="205" y1="186" x2="205" y2="230" stroke="#334155" stroke-width="2"/>
+    <text x="225" y="186" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb">C₂</text>
+
+    <line x1="295" y1="95" x2="335" y2="95" stroke="#334155" stroke-width="2"/>
+    <line x1="335" y1="95" x2="335" y2="140" stroke="#334155" stroke-width="2"/>
+    <rect x="328" y="140" width="14" height="35" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="352" y="160" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a">R_L</text>
+    <line x1="335" y1="175" x2="335" y2="230" stroke="#334155" stroke-width="2"/>
+
+    <line x1="25" y1="230" x2="335" y2="230" stroke="#334155" stroke-width="2"/>
+    <circle cx="205" cy="230" r="3" fill="#334155"/>
+
+    <rect x="15" y="245" width="375" height="45" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="202" y="262" font-size="10.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      L_p = L₁ + L₂,  L_s = L₂ + L₃,  M = L₂ = √(L_p · L_s) ⟹ k = 1
+    </text>
+    <text x="202" y="278" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      La inductancia negativa física queda absorbida en el acoplamiento magnético.
+    </text>
+  </g>
+
+  <g transform="translate(435, 10)">
+    <rect x="0" y="0" width="410" height="300" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="205" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Método de Bott-Duffin: Síntesis Sin Transformadores (Richard)
+    </text>
+
+    <circle cx="25" cy="90" r="3.5" fill="#9333ea"/>
+    <circle cx="25" cy="230" r="3.5" fill="#9333ea"/>
+    <text x="35" y="85" font-size="11" font-family="monospace" font-weight="bold" fill="#9333ea">Z_in</text>
+
+    <line x1="25" y1="90" x2="70" y2="90" stroke="#334155" stroke-width="2"/>
+    <circle cx="70" cy="90" r="3" fill="#334155"/>
+    <line x1="70" y1="65" x2="70" y2="115" stroke="#334155" stroke-width="2"/>
+
+    <line x1="70" y1="65" x2="110" y2="65" stroke="#334155" stroke-width="2"/>
+    <line x1="110" y1="57" x2="110" y2="73" stroke="#334155" stroke-width="2.2"/>
+    <line x1="117" y1="57" x2="117" y2="73" stroke="#334155" stroke-width="2.2"/>
+    <line x1="117" y1="65" x2="155" y2="65" stroke="#334155" stroke-width="2"/>
+    <text x="113" y="52" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">C₀ = 1/(k·Z(k))</text>
+
+    <line x1="70" y1="115" x2="95" y2="115" stroke="#334155" stroke-width="2"/>
+    <rect x="95" y="106" width="40" height="18" fill="#ffffff" stroke="#9333ea" stroke-width="1.8"/>
+    <text x="115" y="119" font-size="10" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">Z_A(s)</text>
+    <line x1="135" y1="115" x2="155" y2="115" stroke="#334155" stroke-width="2"/>
+
+    <line x1="155" y1="65" x2="155" y2="115" stroke="#334155" stroke-width="2"/>
+    <circle cx="155" cy="90" r="3" fill="#334155"/>
+    <line x1="155" y1="90" x2="200" y2="90" stroke="#334155" stroke-width="2"/>
+
+    <circle cx="200" cy="90" r="3" fill="#334155"/>
+    <line x1="200" y1="65" x2="200" y2="115" stroke="#334155" stroke-width="2"/>
+
+    <line x1="200" y1="65" x2="220" y2="65" stroke="#334155" stroke-width="2"/>
+    <path d="M 220,65 Q 228,52 236,65 Q 244,52 252,65 Q 260,52 268,65" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <line x1="268" y1="65" x2="290" y2="65" stroke="#334155" stroke-width="2"/>
+    <text x="244" y="52" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">L₀ = Z(k)/k</text>
+
+    <line x1="200" y1="115" x2="225" y2="115" stroke="#334155" stroke-width="2"/>
+    <rect x="225" y="106" width="40" height="18" fill="#ffffff" stroke="#9333ea" stroke-width="1.8"/>
+    <text x="245" y="119" font-size="10" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">Z_B(s)</text>
+    <line x1="265" y1="115" x2="290" y2="115" stroke="#334155" stroke-width="2"/>
+
+    <line x1="290" y1="65" x2="290" y2="115" stroke="#334155" stroke-width="2"/>
+    <circle cx="290" cy="90" r="3" fill="#334155"/>
+    <line x1="290" y1="90" x2="340" y2="90" stroke="#334155" stroke-width="2"/>
+
+    <line x1="340" y1="90" x2="340" y2="230" stroke="#334155" stroke-width="2"/>
+    <line x1="25" y1="230" x2="340" y2="230" stroke="#334155" stroke-width="2"/>
+
+    <rect x="15" y="245" width="380" height="45" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="205" y="262" font-size="10.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Función de Richard: R(s) = [k·Z(s) - s·Z(k)] / [k·Z(k) - s·Z(s)]
+    </text>
+    <text x="205" y="278" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Se elige k &gt; 0 tal que R(±jω₀) = 0. Reduce el grado en 2 unidades sin transformadores.
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Materialización Física: Transformador con Acoplamiento Perfecto (k = 1)</h5>
+<p class="mb-2">La red resultante contiene una T inductiva con $L_1 < 0$ serie, $L_2 > 0$ en derivación y $L_3 > 0$ serie. Aunque no se puede adquirir un inductor negativo individual, Brune demostró que esta T inductiva equivale exactamente a un <strong>par de bobinas acopladas magnéticamente con acoplamiento perfecto</strong> ($k = 1$):</p>
+$$\\mathbf{L_p = L_1 + L_2 > 0}, \\qquad \\mathbf{L_s = L_2 + L_3 > 0}, \\qquad \\mathbf{M = L_2 > 0}$$
+$$\\mathbf{k = \\frac{M}{\\sqrt{L_p \\cdot L_s}} = \\frac{L_2}{\\sqrt{(L_1 + L_2)(L_2 + L_3)}} \\equiv 1}$$
+<p class="text-xs text-slate-600 dark:text-slate-400">El acoplamiento magnético estricto absorbe la inductancia negativa virtual, dando un transformador real perfectamente realizable con bobinado primario $L_p$, secundario $L_s$ e inductancia mutua $M$.</p>
+
+          `
+        },
+        {
+          id: 'tc3-u3-metodo-bott-duffin',
+          titulo: '3.8 Síntesis de Funciones Mínimas por el Método de Bott-Duffin (Transformerless)',
+          contenido: `
+<p class="mb-3">El método de Brune requería inexorablemente un transformador con acoplamiento magnético perfecto ($k=1$), el cual en altas frecuencias presenta pérdidas en el núcleo, capacidades parásitas inter-bobinado y volumen indeseado. En 1949, <strong>Raoul Bott y Richard J. Duffin</strong> sorprendieron a la comunidad académica al demostrar que <strong>toda función Real Positiva puede sintetizarse sin inductancias mutuas ni transformadores (red transformerless)</strong>.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">El Teorema de Richard</h5>
+<p class="mb-2">El método se fundamenta en el teorema postulado por Paul I. Richard (1947). Para cualquier función real positiva $Z(s)$ y cualquier número real estrictamente positivo $k > 0$, la <strong>función de Richard $R(s)$</strong>:</p>
+$$\\mathbf{R(s) = \\frac{k \\cdot Z(s) - s \\cdot Z(k)}{k \\cdot Z(k) - s \\cdot Z(s)}}$$
+<p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-2">es también una función Real Positiva (PR). Despejando algebraicamente $Z(s)$ de la ecuación de Richard, se obtiene una descomposición idéntica a la suma de dos impedancias en paralelo:</p>
+$$Z(s) = \\cfrac{1}{\\cfrac{s}{k Z(k)} + \\cfrac{1}{Z(k) R(s)}} + \\cfrac{1}{\\cfrac{k}{s Z(k)} + \\cfrac{R(s)}{Z(k)}}$$
+
+<div class="p-3.5 my-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs sm:text-sm">
+  <div class="font-bold font-mono mb-1">Topología Canónica de Bott-Duffin:</div>
+  Consta de dos bloques en serie, cada uno compuesto por dos ramas en paralelo:
+  <ul class="list-disc pl-5 mt-1 space-y-1">
+    <li><strong>Bloque 1:</strong> Un capacitor $C_0 = \\frac{1}{k Z(k)}$ en paralelo con la impedancia $Z_A(s) = Z(k) R(s)$.</li>
+    <li><strong>Bloque 2:</strong> Un inductor $L_0 = \\frac{Z(k)}{k}$ en paralelo con la impedancia $Z_B(s) = \\frac{Z(k)}{R(s)}$.</li>
+  </ul>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Elección de la Constante de Richard k</h5>
+<p class="mb-2">Para que el procedimiento reduzca el grado de la función en 2 unidades, se elige el valor de $k$ de modo que la función de Richard $R(s)$ tenga un par de ceros sobre el eje imaginario a la frecuencia $\\omega_0$ del mínimo de resistencia (donde $\\text{Re}[Z(j\\omega_0)] = 0$ y $Z(j\\omega_0) = j\\omega_0 L_0$ ó $1/(j\\omega_0 C_0)$):</p>
+$$k Z(k) = \\frac{1}{C_0} \\quad (\\text{si es capacitivo}) \\qquad \\text{ó} \\qquad \\mathbf{Z(k) - k L_0 = 0} \\quad (\\text{si es inductivo})$$
+<p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Esta ecuación polinomial siempre posee al menos una raíz real positiva $k > 0$. Al calcular $R(s)$ con dicho $k$, los factores $(s^2 + \\omega_0^2)$ se cancelan en el numerador y denominador, reduciendo el grado en 2 unidades y permitiendo sintetizar $Z_A(s)$ y $Z_B(s)$ por etapas elementales hasta agotar la red <em>sin un solo transformador</em>.</p>
+
+          `
+        },
+        {
           id: 'tc3-u3-tabla-resumen',
-          titulo: '3.6 Tabla Comparativa Maestra y Formulario de Examen - Síntesis de Dipolos',
+          titulo: '3.9 Tabla Comparativa Maestra y Formulario de Examen - Síntesis de Dipolos',
           contenido: `
 <p class="mb-3">Para dominar las evaluaciones de la cátedra (exámenes parciales y finales de Teoría de Circuitos III), la siguiente tabla resume los criterios de realizabilidad, ubicación de singularidades, derivadas y procedimientos de expansión para cada familia de dipolos:</p>
 
@@ -1187,14 +1904,298 @@ $$Z_{RL}(s) = s \\cdot Z_{RC\\text{-aux}}(s) \\iff \\frac{Z_{RL}(s)}{s} = Z_{RC\
     {
       id: 'tc3-u4',
       numero: 4,
-      titulo: 'Unidad 4: Análisis de Cuadripolos y Matriz de Admitancia Indefinida (MAI)',
+      titulo: 'Unidad 4: Análisis de Cuadripolos, Interconexiones y MAI',
       icono: '🔲',
       badgeColor: 'border-rose-500/40 bg-rose-950/40 text-rose-300',
-      introduccion: 'Esta unidad desarrolla el método matricial más potente para resolver circuitos con topologías arbitrarias, fuentes controladas y amplificadores operacionales: la Matriz de Admitancia Indefinida (MAI) de Puckett y sus propiedades de reducción.',
+      introduccion: 'Esta unidad desarrolla la teoría completa de redes de dos puertos (cuadripolos), sus seis matrices de parámetros características ([z], [y], [T], [T\'], [h], [g]), las reglas de interconexión con el ensayo de validez de Brune, el teorema de bisección de Bartlett para redes simétricas, y el método nodal más potente: la Matriz de Admitancia Indefinida (MAI) de Puckett.',
       secciones: [
         {
+          id: 'tc3-u4-cuadripolos-fundamentos-matrices',
+          titulo: '4.1 Fundamentos de Redes de Dos Puertos (Cuadripolos) y las 6 Matrices Características',
+          contenido: `
+<p class="mb-3">Un <strong>cuadripolo o red de dos puertos</strong> es un circuito de cuatro terminales agrupados en dos pares (puerto de entrada 1-1' y puerto de salida 2-2') que satisface rigurosamente la <strong>condición de corriente de puerto</strong>: la corriente que ingresa por el terminal superior es exactamente idéntica a la que sale por el terminal inferior homólogo ($I_1 = I'_1$ e $I_2 = I'_2$).</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Clasificación Cardinal de los Cuadripolos</h5>
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm mb-3">
+  <li><strong>Pasivos / Activos:</strong> Según contengan únicamente elementos $R, L, C$ o incluyan fuentes controladas y amplificadores operacionales.</li>
+  <li><strong>Lineales / No lineales:</strong> Si satisfacen el principio de superposición para cualquier nivel de excitación.</li>
+  <li><strong>Bilaterales (Recíprocos) / Unilaterales:</strong> En redes recíprocas, la transferencia en sentido directo es idéntica a la transferencia en sentido inverso ($z_{12} = z_{21}$, $y_{12} = y_{21}$, $AD - BC = 1$). Las fuentes controladas convierten al cuadripolo en no recíproco.</li>
+  <li><strong>Simétricos / Asimétricos:</strong> Un cuadripolo es simétrico si sus puertos pueden intercambiarse sin alterar las tensiones ni corrientes externas ($z_{11} = z_{22}$, $y_{11} = y_{22}$, $A = D$).</li>
+</ul>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Los Tres Problemas de la Teoría de Cuadripolos</h5>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs">
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>a) Problema de la Transferencia:</strong><br>
+    Determinar la respuesta en el puerto 2 cuando se excita el puerto 1 con una fuente conocida.
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>b) Problema de la Transmisión:</strong><br>
+    Calcular las condiciones de entrada requeridas en el puerto 1 para generar una salida especificada en el puerto 2.
+  </div>
+  <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong>c) Problema de la Inserción:</strong><br>
+    Evaluar la pérdida de potencia o cambio de tensión producido al intercalar el cuadripolo entre una fuente con impedancia interna y una carga.
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Las 6 Matrices de Parámetros Características</h5>
+<p class="mb-2">Relacionando las cuatro variables terminales ($V_1, V_2, I_1, I_2$), existen $\\binom{4}{2} = 6$ combinaciones matemáticas posibles:</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3 text-xs sm:text-sm font-mono">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-blue-600 dark:text-blue-400 font-sans">1. Matriz de Impedancia [z]</div>
+    $$\\begin{bmatrix} V_1 \\\\ V_2 \\end{bmatrix} = \\begin{bmatrix} z_{11} & z_{12} \\\\ z_{21} & z_{22} \\end{bmatrix} \\begin{bmatrix} I_1 \\\\ I_2 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Variables indep: $I_1, I_2$ (ensayos en circuito abierto: $I_k = 0$).</span>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-indigo-600 dark:text-indigo-400 font-sans">2. Matriz de Admitancia [y]</div>
+    $$\\begin{bmatrix} I_1 \\\\ I_2 \\end{bmatrix} = \\begin{bmatrix} y_{11} & y_{12} \\\\ y_{21} & y_{22} \\end{bmatrix} \\begin{bmatrix} V_1 \\\\ V_2 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Variables indep: $V_1, V_2$ (ensayos en cortocircuito: $V_k = 0$).</span>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-emerald-600 dark:text-emerald-400 font-sans">3. Matriz de Transmisión o Cadena [T] (ABCD)</div>
+    $$\\begin{bmatrix} V_1 \\\\ I_1 \\end{bmatrix} = \\begin{bmatrix} A & B \\\\ C & D \\end{bmatrix} \\begin{bmatrix} V_2 \\\\ -I_2 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Relaciona magnitudes de entrada en función de la salida. $\\det[T] = AD - BC = 1$ en redes recíprocas.</span>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-amber-600 dark:text-amber-400 font-sans">4. Matriz de Transmisión Inversa [T'] (A'B'C'D')</div>
+    $$\\begin{bmatrix} V_2 \\\\ I_2 \\end{bmatrix} = \\begin{bmatrix} A' & B' \\\\ C' & D' \\end{bmatrix} \\begin{bmatrix} V_1 \\\\ -I_1 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Relaciona magnitudes de salida en función de la entrada.</span>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-purple-600 dark:text-purple-400 font-sans">5. Matriz de Parámetros Híbridos [h]</div>
+    $$\\begin{bmatrix} V_1 \\\\ I_2 \\end{bmatrix} = \\begin{bmatrix} h_{11} & h_{12} \\\\ h_{21} & h_{22} \\end{bmatrix} \\begin{bmatrix} I_1 \\\\ V_2 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Ampliamente utilizada en transistores BJT ($h_{ie}, h_{re}, h_{fe}, h_{oe}$).</span>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <div class="font-bold text-rose-600 dark:text-rose-400 font-sans">6. Matriz de Híbridos Inversos [g]</div>
+    $$\\begin{bmatrix} I_1 \\\\ V_2 \\end{bmatrix} = \\begin{bmatrix} g_{11} & g_{12} \\\\ g_{21} & g_{22} \\end{bmatrix} \\begin{bmatrix} V_1 \\\\ I_2 \\end{bmatrix}$$
+    <span class="text-slate-500 font-sans text-xs">Dual de la matriz híbrida [h].</span>
+  </div>
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u4-interconexion-ensayo-brune',
+          titulo: '4.2 Interconexión de Cuadripolos, Precauciones y Ensayo de Brune',
+          contenido: `
+<p class="mb-3">Para analizar o sintetizar sistemas complejos de dos puertos, los cuadripolos elementales se interconectan según cinco topologías matriciales canónicas:</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 my-3 text-xs sm:text-sm font-mono">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <strong class="text-blue-600 dark:text-blue-400 font-sans">Conexión Serie:</strong><br>
+    $$\\mathbf{[Z] = [Z_A] + [Z_B]}$$
+    $I_1 = I_{1a} = I_{1b}$, $V_1 = V_{1a} + V_{1b}$.
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <strong class="text-indigo-600 dark:text-indigo-400 font-sans">Conexión Paralelo:</strong><br>
+    $$\\mathbf{[Y] = [Y_A] + [Y_B]}$$
+    $V_1 = V_{1a} = V_{1b}$, $I_1 = I_{1a} + I_{1b}$.
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <strong class="text-emerald-600 dark:text-emerald-400 font-sans">Conexión en Cascada:</strong><br>
+    $$\\mathbf{[T] = [T_A] \\times [T_B]}$$
+    El producto de matrices no es conmutativo ($[T_A][T_B] \\ne [T_B][T_A]$).
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <strong class="text-purple-600 dark:text-purple-400 font-sans">Conexión Serie-Paralelo:</strong><br>
+    $$\\mathbf{[H] = [H_A] + [H_B]}$$
+    Entrada serie, salida paralelo.
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+    <strong class="text-amber-600 dark:text-amber-400 font-sans">Conexión Paralelo-Serie:</strong><br>
+    $$\\mathbf{[G] = [G_A] + [G_B]}$$
+    Entrada paralelo, salida serie.
+  </div>
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Red de 2 Puertos, Matrices Características, Interconexión y Ensayo de Brune (Aislamiento 1:1)
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="395" height="290" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="197" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Cuadripolo (Red de 2 Puertos) y Condición de Corriente
+    </text>
+
+    <rect x="130" y="70" width="135" height="110" rx="8" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+    <text x="197" y="130" font-size="13" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Cuadripolo
+    </text>
+    <text x="197" y="148" font-size="10" font-family="monospace" fill="#475569" text-anchor="middle">
+      [Z], [Y], [T], [h]
+    </text>
+
+    <line x1="40" y1="95" x2="130" y2="95" stroke="#334155" stroke-width="2"/>
+    <circle cx="40" cy="95" r="3.5" fill="#2563eb"/>
+    <line x1="40" y1="155" x2="130" y2="155" stroke="#334155" stroke-width="2"/>
+    <circle cx="40" cy="155" r="3.5" fill="#2563eb"/>
+
+    <line x1="55" y1="83" x2="85" y2="83" stroke="#dc2626" stroke-width="2"/>
+    <polygon points="88,83 80,79 80,87" fill="#dc2626"/>
+    <text x="70" y="77" font-size="11" font-family="monospace" font-weight="bold" fill="#dc2626">I₁</text>
+
+    <line x1="85" y1="167" x2="55" y2="167" stroke="#dc2626" stroke-width="2"/>
+    <polygon points="52,167 60,163 60,171" fill="#dc2626"/>
+    <text x="70" y="180" font-size="11" font-family="monospace" font-weight="bold" fill="#dc2626">I'₁ = I₁</text>
+
+    <path d="M 40,145 Q 32,125 40,105" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+    <polygon points="40,105 35,113 43,113" fill="#2563eb"/>
+    <text x="25" y="128" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#2563eb">V₁</text>
+
+    <line x1="265" y1="95" x2="355" y2="95" stroke="#334155" stroke-width="2"/>
+    <circle cx="355" cy="95" r="3.5" fill="#059669"/>
+    <line x1="265" y1="155" x2="355" y2="155" stroke="#334155" stroke-width="2"/>
+    <circle cx="355" cy="155" r="3.5" fill="#059669"/>
+
+    <line x1="340" y1="83" x2="310" y2="83" stroke="#d97706" stroke-width="2"/>
+    <polygon points="307,83 315,79 315,87" fill="#d97706"/>
+    <text x="325" y="77" font-size="11" font-family="monospace" font-weight="bold" fill="#d97706">I₂</text>
+
+    <line x1="310" y1="167" x2="340" y2="167" stroke="#d97706" stroke-width="2"/>
+    <polygon points="343,167 335,163 335,171" fill="#d97706"/>
+    <text x="325" y="180" font-size="11" font-family="monospace" font-weight="bold" fill="#d97706">I'₂ = I₂</text>
+
+    <path d="M 355,145 Q 363,125 355,105" fill="none" stroke="#059669" stroke-width="1.8"/>
+    <polygon points="355,105 351,113 360,113" fill="#059669"/>
+    <text x="372" y="128" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#059669">V₂</text>
+
+    <rect x="15" y="200" width="365" height="75" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="197" y="220" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      [V] = [z]·[I]   |   [I] = [y]·[V]   |   [V₁ I₁]ᵀ = [T]·[V₂ -I₂]ᵀ
+    </text>
+    <text x="197" y="240" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Reciprocidad: z₁₂ = z₂₁, y₁₂ = y₂₁, det[T] = AD - BC = 1
+    </text>
+    <text x="197" y="258" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Simetría: z₁₁ = z₂₂, y₁₁ = y₂₂, A = D
+    </text>
+  </g>
+
+  <g transform="translate(435, 10)">
+    <rect x="0" y="0" width="410" height="290" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="205" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Interconexión y Ensayo de Brune (Aislamiento 1:1)
+    </text>
+
+    <rect x="120" y="55" width="110" height="55" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.8"/>
+    <text x="175" y="87" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e40af" text-anchor="middle">
+      Cuadripolo [A]
+    </text>
+
+    <rect x="120" y="145" width="110" height="55" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.8"/>
+    <text x="175" y="177" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#92400e" text-anchor="middle">
+      Cuadripolo [B]
+    </text>
+
+    <circle cx="35" cy="80" r="3" fill="#2563eb"/>
+    <circle cx="35" cy="180" r="3" fill="#2563eb"/>
+    <line x1="35" y1="80" x2="80" y2="80" stroke="#334155" stroke-width="2"/>
+    <line x1="35" y1="180" x2="80" y2="180" stroke="#334155" stroke-width="2"/>
+    <circle cx="80" cy="80" r="3" fill="#334155"/>
+    <circle cx="80" cy="180" r="3" fill="#334155"/>
+    <line x1="80" y1="65" x2="80" y2="160" stroke="#334155" stroke-width="2"/>
+    <line x1="80" y1="65" x2="120" y2="65" stroke="#334155" stroke-width="2"/>
+    <line x1="80" y1="160" x2="120" y2="160" stroke="#334155" stroke-width="2"/>
+
+    <line x1="230" y1="70" x2="260" y2="70" stroke="#334155" stroke-width="2"/>
+    <line x1="230" y1="95" x2="260" y2="95" stroke="#334155" stroke-width="2"/>
+    <path d="M 260,65 Q 272,72 260,82 Q 272,90 260,100" fill="none" stroke="#059669" stroke-width="2.5"/>
+    <line x1="275" y1="63" x2="275" y2="102" stroke="#64748b" stroke-width="1.8"/>
+    <line x1="279" y1="63" x2="279" y2="102" stroke="#64748b" stroke-width="1.8"/>
+    <path d="M 294,65 Q 282,72 294,82 Q 282,90 294,100" fill="none" stroke="#059669" stroke-width="2.5"/>
+    <text x="277" y="55" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">1:1</text>
+    <line x1="294" y1="70" x2="335" y2="70" stroke="#334155" stroke-width="2"/>
+    <line x1="294" y1="95" x2="335" y2="95" stroke="#334155" stroke-width="2"/>
+
+    <line x1="230" y1="160" x2="335" y2="160" stroke="#334155" stroke-width="2"/>
+    <line x1="230" y1="185" x2="335" y2="185" stroke="#334155" stroke-width="2"/>
+
+    <line x1="335" y1="70" x2="335" y2="160" stroke="#334155" stroke-width="2"/>
+    <line x1="335" y1="95" x2="335" y2="185" stroke="#334155" stroke-width="2"/>
+    <line x1="335" y1="80" x2="375" y2="80" stroke="#334155" stroke-width="2"/>
+    <line x1="335" y1="180" x2="375" y2="180" stroke="#334155" stroke-width="2"/>
+    <circle cx="375" cy="80" r="3.5" fill="#059669"/>
+    <circle cx="375" cy="180" r="3.5" fill="#059669"/>
+
+    <rect x="15" y="215" width="380" height="65" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="205" y="235" font-size="10.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Condición de Brune: V_test = 0 en los terminales de unión
+    </text>
+    <text x="205" y="252" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Si existe camino de corriente parásito entre redes, la relación matricial se invalida.
+    </text>
+    <text x="205" y="268" font-size="10" font-family="system-ui, sans-serif" fill="#059669" font-weight="bold" text-anchor="middle">
+      Solución universal: Transformador ideal de aislamiento 1:1 en un puerto.
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Precauciones en la Interconexión y el Ensayo de Brune</h5>
+<div class="p-4 my-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-950 dark:text-rose-200 text-xs sm:text-sm">
+  <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5 font-sans">
+    <span>⚠️</span> Criterio de Validez de Interconexión (Ensayo de Brune)
+  </h5>
+  <p class="mb-2">La suma directa de matrices ($[Z] = [Z_A] + [Z_B]$ o $[Y] = [Y_A] + [Y_B]$) es matemáticamente válida <strong>si y solo si la interconexión física NO genera corrientes de lazo circulantes entre los dos cuadripolos</strong> que rompan la condición de puerto ($I_k \\ne I'_k$).</p>
+  <ul class="list-disc pl-5 space-y-1">
+    <li><strong>Procedimiento del Ensayo de Brune (Conexión Paralelo):</strong> Se unen los bornes superiores de entrada y salida de $[A]$ y $[B]$. Se mide la tensión entre los bornes inferiores que se planea unir. Si $\\mathbf{V_{test} = 0}$, la unión no alterará las corrientes y la suma matricial $[Y] = [Y_A] + [Y_B]$ es estrictamente exacta.</li>
+    <li><strong>Procedimiento para Conexión Serie:</strong> Se conectan las entradas en serie y se mide la tensión de circuito abierto en los bornes de salida a interconectar antes de cerrarlos. Debe resultar cero.</li>
+    <li><strong>Solución Universal de Desacoplo:</strong> Si $V_{test} \\ne 0$ (como ocurre típicamente al interconectar filtros en T puenteada o Doble T), la interconexión se vuelve físicamente válida insertando un <strong>transformador ideal de aislamiento con relación 1:1</strong> en uno de los puertos. Esto anula toda corriente de retorno parásita sin alterar la función de transferencia del sistema.</li>
+  </ul>
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u4-topologias-bartlett',
+          titulo: '4.3 Topologías Clásicas de Cuadripolos, Circuitos Equivalentes y Teorema de Bartlett',
+          contenido: `
+<p class="mb-3">En el diseño de filtros pasivos, ecualizadores y atenuadores se utilizan topologías canónicas normalizadas:</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+  <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-blue-600 dark:text-blue-400">Red en L:</strong><br>
+    Una rama serie y una rama en derivación (shunt).
+  </div>
+  <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-indigo-600 dark:text-indigo-400">Red en T (Estrella):</strong><br>
+    Dos ramas serie longitudinales y una derivación central.
+  </div>
+  <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-emerald-600 dark:text-emerald-400">Red en Π (Triángulo):</strong><br>
+    Una rama serie y dos ramas shunt en los extremos.
+  </div>
+  <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <strong class="text-purple-600 dark:text-purple-400">Celosía o Puente (Lattice):</strong><br>
+    Cuadripolo balanceado y simétrico de fase no mínima.
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">Teorema de Bisección de Bartlett para Cuadripolos Simétricos</h5>
+<p class="mb-2">El <strong>Teorema de Bisección de Bartlett (1927)</strong> permite transformar cualquier cuadripolo recíproco, simétrico y balanceado de topología arbitraria en una <strong>red en celosía simétrica equivalente (*lattice network*)</strong>:</p>
+$$\\mathbf{Z_a = Z_{cc\\text{-medio}}}, \\qquad \\mathbf{Z_b = Z_{ca\\text{-medio}}}$$
+<p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3">donde $Z_{cc\\text{-medio}}$ es la impedancia de entrada vista desde el puerto 1 cuando el plano de simetría geométrico del circuito se cortocircuita a tierra, y $Z_{ca\\text{-medio}}$ es la impedancia vista cuando el plano de simetría se deja en circuito abierto. Los parámetros de impedancia del cuadripolo completo resultan inmediatamente:</p>
+$$z_{11} = z_{22} = \\frac{Z_b + Z_a}{2}, \\qquad z_{12} = z_{21} = \\frac{Z_b - Z_a}{2}$$
+
+          `
+        },
+        {
           id: 'tc3-u4-mai-propiedades',
-          titulo: '4.1 Fundamentos y Propiedades Cardinales de la MAI',
+          titulo: '4.4 Fundamentos y Propiedades Cardinales de la MAI (Puckett)',
           contenido: `
             <p class="mb-3">La Matriz de Admitancia Indefinida (MAI) $[Y_{ind}]$ describe una red de $n$ nodos donde <em>ningún nodo ha sido elegido como referencia</em> ($[I] = [Y_{ind}] [V]$):</p>
 
@@ -1234,7 +2235,7 @@ $$Z_{RL}(s) = s \\cdot Z_{RC\\text{-aux}}(s) \\iff \\frac{Z_{RL}(s)}{s} = Z_{RC\
         },
         {
           id: 'tc3-u4-mai-calculos-transferencia',
-          titulo: '4.2 Cálculo de Transferencias e Inmitancias mediante la MAI',
+          titulo: '4.5 Cálculo de Transferencias e Inmitancias mediante la MAI',
           contenido: `
             <p class="mb-2">Sean $j$ el nodo excitado, $k$ el nodo de salida y $m$ el nodo de masa (referencia). Aplicando la regla del cociente de cofactores de Puckett:</p>
             <div class="p-3.5 my-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
