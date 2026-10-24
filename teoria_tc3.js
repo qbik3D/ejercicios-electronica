@@ -710,7 +710,48 @@ $$\\text{Ev}\\{F(s)\\} = \\frac{1}{2} [F(s) + F(-s)] = \\frac{M_1(s) M_2(s) - N_
 $$\\text{Re}\\{F(j\\omega)\\} = \\left. \\frac{M_1(s) M_2(s) - N_1(s) N_2(s)}{M_2^2(s) - N_2^2(s)} \\right|_{s=j\\omega} = \\frac{A(\\omega^2)}{|D(j\\omega)|^2}$$
 <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3">Dado que el denominador $|D(j\\omega)|^2 = M_2^2(j\\omega) - N_2^2(j\\omega) \\ge 0$ es el módulo al cuadrado de un número complejo (siempre estrictamente no negativo), la condición $\\text{Re}\\{F(j\\omega)\\} \\ge 0$ se cumple si y solo si el <strong>polinomio par del numerador</strong> $A(\\omega^2) = M_1(j\\omega) M_2(j\\omega) - N_1(j\\omega) N_2(j\\omega) \\ge 0$ para todo $\\omega \\ge 0$. Para que esto ocurra, $A(\\omega^2)$ no debe tener raíces reales positivas de multiplicidad impar ni volverse negativo en ningún intervalo de frecuencias.</p>
 
-          `
+          
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Comportamiento Asintótico a Frecuencias Extremas (Bajas y Altas)</h5>
+<p class="mb-2">Para una función de excitación cuadrática general $Z(s) = \\frac{a_2 s^2 + a_1 s + a_0}{b_2 s^2 + b_1 s + b_0}$, el comportamiento en los límites de frecuencia determina la naturaleza física de los componentes terminales de la red:</p>
+
+<div class="overflow-x-auto my-3">
+  <table class="w-full text-left text-xs border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden font-mono">
+    <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold uppercase">
+      <tr>
+        <th class="p-2 border-b border-r border-slate-200 dark:border-slate-700">Tipo de Impedancia</th>
+        <th class="p-2 border-b border-r border-slate-200 dark:border-slate-700">Modelo Matemático Z(s)</th>
+        <th class="p-2 border-b border-r border-slate-200 dark:border-slate-700 text-blue-600 dark:text-blue-400">Bajas Frecuencias (s → 0)</th>
+        <th class="p-2 border-b border-slate-200 dark:border-slate-700 text-purple-600 dark:text-purple-400">Altas Frecuencias (s → ∞)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">R - R</td><td class="p-2">$\\frac{a_2 s^2 + a_1 s + a_0}{b_2 s^2 + b_1 s + b_0}$</td><td class="p-2">$Z(0) = a_0 / b_0$ (Resistivo)</td><td class="p-2">$Z(\\infty) = a_2 / b_2$ (Resistivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">R - L</td><td class="p-2">$\\frac{a_2 s^2 + a_1 s + a_0}{b_1 s + b_0}$</td><td class="p-2">$Z(0) = a_0 / b_0$ (Resistivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_2}{b_1} s$ (Inductivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">R - C</td><td class="p-2">$\\frac{a_1 s + a_0}{b_2 s^2 + b_1 s + b_0}$</td><td class="p-2">$Z(0) = a_0 / b_0$ (Resistivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_1}{b_2 s}$ (Capacitivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">L - R</td><td class="p-2">$\\frac{a_2 s^2 + a_1 s}{b_2 s^2 + b_1 s + b_0}$</td><td class="p-2">$Z(0) = \\frac{a_1}{b_0} s$ (Inductivo)</td><td class="p-2">$Z(\\infty) = a_2 / b_2$ (Resistivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">L - L</td><td class="p-2">$\\frac{a_1 s}{b_0}$</td><td class="p-2">$Z(0) = \\frac{a_1}{b_0} s$ (Inductivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_1}{b_0} s$ (Inductivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">L - C</td><td class="p-2">$\\frac{a_1 s}{b_2 s^2 + b_0}$</td><td class="p-2">$Z(0) = \\frac{a_1}{b_0} s$ (Inductivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_1}{b_2 s}$ (Capacitivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">C - R</td><td class="p-2">$\\frac{a_2 s^2 + a_1 s + a_0}{b_2 s^2 + b_1 s}$</td><td class="p-2">$Z(0) = \\frac{a_0}{b_1 s}$ (Capacitivo)</td><td class="p-2">$Z(\\infty) = a_2 / b_2$ (Resistivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">C - L</td><td class="p-2">$\\frac{a_2 s^2 + a_1 s + a_0}{b_1 s}$</td><td class="p-2">$Z(0) = \\frac{a_0}{b_1 s}$ (Capacitivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_2}{b_1} s$ (Inductivo)</td></tr>
+      <tr><td class="p-2 font-bold border-r border-slate-200 dark:border-slate-700 font-sans">C - C</td><td class="p-2">$\\frac{a_0}{b_1 s}$</td><td class="p-2">$Z(0) = \\frac{a_0}{b_1 s}$ (Capacitivo)</td><td class="p-2">$Z(\\infty) = \\frac{a_0}{b_1 s}$ (Capacitivo)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Criterio Angular de Brune y Ejemplos de Test de Hurwitz</h5>
+<div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+  <span class="font-bold text-blue-600 dark:text-blue-400 font-mono">Condición Angular de Brune:</span> Para toda función Real Positiva $F(s)$, el argumento angular de la función no puede exceder al argumento de la variable compleja en el semiplano derecho:
+  $$\\mathbf{|\\operatorname{Arg} F(s)| \\le |\\operatorname{Arg} s| \\qquad \\text{para } |\\operatorname{Arg} s| \\le \\frac{\\pi}{2}}$$
+</div>
+
+<p class="text-xs sm:text-sm mt-2"><em>Ejemplos de ensayo de Polinomios de Hurwitz de la cátedra:</em></p>
+<ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+  <li>$A(s) = 8s^4 + 6s^3 + 10s^2 + 3s + 2$: Hurwitz estricto (cocientes euclídeos $m/n$ estrictamente positivos).</li>
+  <li>$B(s) = s^6 + 4s^5 + 6s^4 + 12s^3 + 11s^2 + 8s + 6$: Hurwitz estricto (todos los polos en SPI).</li>
+  <li>$C(s) = s^4 + 6s^2 + 25$: Polinomio par puro con raíces en $\\pm 1 \\pm j2$ (no es Hurwitz estricto, raíces en el semiplano derecho).</li>
+  <li>$D(s) = s^3 + s^2 + s + 2$: No es de Hurwitz (la división euclídea arroja cocientes con signos negativos).</li>
+</ul>
+`
         },
         {
           id: 'tc3-u3-teorema-foster-lc',
@@ -1124,7 +1165,126 @@ $$Y(s) = s C_\\infty + \\frac{1}{s L_0} + \\sum_{i=1}^m \\frac{2 k'_i s}{s^2 + \
 </div>
 
 
-          `
+          
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">El Enfoque de Remociones Totales Sucesivas y Migración de Ceros</h5>
+<p class="mb-2">En lugar de expandir todos los términos simultáneamente, la síntesis de Foster I puede ejecutarse mediante una <strong>secuencia iterativa de sustracciones de impedancia polo a polo</strong>:</p>
+<ol class="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm mb-3">
+  <li><strong>Remoción del polo en el origen:</strong> Si $Z(s)$ tiene polo en $s = 0$, se sustrae $Z_2(s) = Z(s) - \\frac{k_0}{s}$, materializando el capacitor serie $C_0 = 1/k_0$.</li>
+  <li><strong>Efecto en los ceros restantes:</strong> Al restar una reactancia capacitiva negativa, <em>todos los ceros de $Z_2(s)$ se desplazan estrictamente hacia las frecuencias más bajas</em>, acercándose al polo removido.</li>
+  <li><strong>Remoción de tanques antirresonantes:</strong> Se sustrae $Z_4(s) = Z_2(s) - \\frac{2 k_i s}{s^2 + \\omega_i^2}$, materializando el tanque paralelo $L_i \\parallel C_i$.</li>
+  <li><strong>Remoción del polo en el infinito:</strong> La impedancia residual final resulta puramente inductiva: $Z_j(s) = s L_\\infty$.</li>
+</ol>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Concepto de Remoción Total de Polos y Migración de Ceros (Ejemplo Canónico Foster I)
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="840" height="280" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="430" y="30" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    Concepto de Remoción Total de Polos y Migración de Ceros (Ejemplo Canónico Foster I)
+  </text>
+  <text x="430" y="46" font-size="10.5" font-family="monospace" fill="#475569" text-anchor="middle">
+    Z(s) = (s⁴ + 4s² + 3) / (s³ + 2s) = (s² + 1)(s² + 3) / [s(s² + 2)]
+  </text>
+
+  <!-- Eje superior: Valores de pulsación ω -->
+  <!-- w = 0 (x=160), w = 1 (x=300), w = sqrt(2)~1.414 (x=410), w = sqrt(3)~1.732 (x=530), w = inf (x=720) -->
+  <line x1="100" y1="75" x2="760" y2="75" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="160" y="68" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">ω = 0</text>
+  <text x="300" y="68" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">ω = 1</text>
+  <text x="410" y="68" font-size="11" font-family="monospace" font-weight="bold" fill="#dc2626" text-anchor="middle">ω = √2</text>
+  <text x="530" y="68" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">ω = √3</text>
+  <text x="720" y="68" font-size="11" font-family="monospace" font-weight="bold" fill="#dc2626" text-anchor="middle">ω → ∞</text>
+
+  <!-- Línea 1: Z(s) completa -->
+  <g transform="translate(0, 95)">
+    <text x="75" y="5" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="end">Z(s):</text>
+    <line x1="100" y1="0" x2="760" y2="0" stroke="#475569" stroke-width="2"/>
+    <!-- Polo en 0 (Cruz roja) -->
+    <path d="M 154,-6 L 166,6 M 154,6 L 166,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- Cero en 1 (Círculo azul) -->
+    <circle cx="300" cy="0" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="2.2"/>
+    <!-- Polo en sqrt(2) (Cruz roja) -->
+    <path d="M 404,-6 L 416,6 M 404,6 L 416,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- Cero en sqrt(3) (Círculo azul) -->
+    <circle cx="530" cy="0" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="2.2"/>
+    <!-- Polo en inf (Cruz roja) -->
+    <path d="M 714,-6 L 726,6 M 714,6 L 726,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="770" y="4" font-size="10" font-family="system-ui, sans-serif" fill="#64748b">Estado inicial</text>
+  </g>
+
+  <!-- Flecha de remocion 1: Sustraccion de k0/s -->
+  <path d="M 160,105 Q 160,135 220,135" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <polygon points="225,135 217,131 217,139" fill="#d97706"/>
+  <text x="245" y="130" font-size="10" font-family="monospace" font-weight="bold" fill="#d97706">
+    - (3/2)/s (Capacitor C₀ = 2/3 F)
+  </text>
+
+  <!-- Línea 2: Z2(s) tras remover polo en s=0 -->
+  <g transform="translate(0, 155)">
+    <text x="75" y="5" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="end">Z₂(s):</text>
+    <line x1="100" y1="0" x2="760" y2="0" stroke="#475569" stroke-width="2"/>
+    <!-- En w=0 ahora hay un cero trasladado -->
+    <circle cx="160" cy="0" r="5" fill="#ffffff" stroke="#059669" stroke-width="2.2"/>
+    <text x="160" y="16" font-size="9" font-family="monospace" fill="#059669" text-anchor="middle">cero en 0</text>
+    <!-- Cero migrado a sqrt(3/2) ~ 1.22 (x = 350) -->
+    <circle cx="360" cy="0" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="2.2"/>
+    <!-- Flecha curvada mostrando migracion de cero desde 1 hacia sqrt(3/2) -->
+    <path d="M 305,-8 Q 330,-18 355,-8" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+    <polygon points="358,-7 350,-12 354,-5" fill="#2563eb"/>
+    <text x="360" y="-18" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">ω = √(3/2)</text>
+    <!-- Polo en sqrt(2) intacto -->
+    <path d="M 404,-6 L 416,6 M 404,6 L 416,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- Polo en inf intacto -->
+    <path d="M 714,-6 L 726,6 M 714,6 L 726,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="770" y="4" font-size="10" font-family="system-ui, sans-serif" fill="#64748b">Polo en 0 eliminado</text>
+  </g>
+
+  <!-- Flecha de remocion 2: Sustraccion de tanque LC paralelo -->
+  <path d="M 410,165 Q 410,195 470,195" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <polygon points="475,195 467,191 467,199" fill="#d97706"/>
+  <text x="495" y="190" font-size="10" font-family="monospace" font-weight="bold" fill="#d97706">
+    - (1/2 s)/(s² + 2) (Tanque: L = 1/4 H, C = 2 F)
+  </text>
+
+  <!-- Línea 3: Z4(s) tras remover tanque en sqrt(2) -->
+  <g transform="translate(0, 215)">
+    <text x="75" y="5" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="end">Z₄(s):</text>
+    <line x1="100" y1="0" x2="760" y2="0" stroke="#475569" stroke-width="2"/>
+    <!-- Cero en 0 -->
+    <circle cx="160" cy="0" r="5" fill="#ffffff" stroke="#059669" stroke-width="2.2"/>
+    <!-- Polo en inf restante -->
+    <path d="M 714,-6 L 726,6 M 714,6 L 726,-6" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="440" y="-8" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Z₄(s) = s  ⟹  Inductor serie L_∞ = 1 H
+    </text>
+    <text x="770" y="4" font-size="10" font-family="system-ui, sans-serif" fill="#64748b">Red sintetizada</text>
+  </g>
+
+  <!-- Cuadro inferior de conclusion -->
+  <rect x="25" y="245" width="810" height="35" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="430" y="267" font-size="10.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    Conclusión física: Al sustraer un polo, los ceros se desplazan estrictamente hacia la frecuencia del polo removido (migración monotónica).
+  </text>
+</svg>
+  </div>
+</div>
+
+
+<div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+  <span class="font-bold text-emerald-600 dark:text-emerald-400 font-mono">Ejemplo Canónico Resuelto Paso a Paso (Cátedra TC3):</span>
+  $$Z(s) = \\frac{s^4 + 4s^2 + 3}{s^3 + 2s} = \\frac{(s^2 + 1)(s^2 + 3)}{s(s^2 + 2)}$$
+  <ul class="list-disc pl-5 mt-1 space-y-1">
+    <li>Polo en el origen: $k_0 = \\lim_{s \\to 0} s Z(s) = \\frac{3}{2} \\implies \\mathbf{C_0 = \\frac{2}{3}\\text{ F}}$.</li>
+    <li>Polo en $\\omega_2 = \\sqrt{2}$: $2k_2 = \\lim_{s^2 \\to -2} \\frac{s^2 + 2}{s} Z(s) = \\frac{(-2+1)(-2+3)}{-2} = \\frac{1}{2} \\implies \\mathbf{C_2 = 2\\text{ F}}, \\; \\mathbf{L_2 = \\frac{2 k_2}{\\omega_2^2} = \\frac{1/2}{2} = \\frac{1}{4}\\text{ H}}$.</li>
+    <li>Polo en el infinito: $k_\\infty = \\lim_{s \\to \\infty} \\frac{Z(s)}{s} = 1 \\implies \\mathbf{L_\\infty = 1\\text{ H}}$.</li>
+    <li>Red resultante: Capacitor serie de $2/3\\text{ F}$, tanque paralelo en serie ($L=1/4\\text{ H}, C=2\\text{ F}$), e inductor serie de $1\\text{ H}$.</li>
+  </ul>
+</div>
+`
         },
         {
           id: 'tc3-u3-cauer-1-2-lc',
@@ -1567,7 +1727,162 @@ $$Z_{RL}(s) = s \\cdot Z_{RC\\text{-aux}}(s) \\iff \\frac{Z_{RL}(s)}{s} = Z_{RC\
   </ul>
 </div>
 
-          `
+          
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Comportamiento de Dipolos RC y RL en el Semieje Real Negativo y Reglas Cardinales
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- PANEL IZQUIERDO: Curva de Impedancia RC en el semieje real negativo sigma -->
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="405" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="202" y="22" font-size="11.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Dipolo RC: Impedancia Z_RC(σ) sobre el Semieje Real Negativo
+    </text>
+
+    <!-- Ejes coordenados -->
+    <!-- Eje Y: Z_RC(s) en s = sigma -->
+    <line x1="330" y1="230" x2="330" y2="40" stroke="#475569" stroke-width="2"/>
+    <polygon points="330,34 326,44 334,44" fill="#475569"/>
+    <text x="340" y="45" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">Z_RC(σ)</text>
+    <text x="330" y="242" font-size="10" font-family="monospace" fill="#64748b" text-anchor="middle">σ = 0</text>
+
+    <!-- Eje X: sigma < 0 -->
+    <line x1="30" y1="150" x2="370" y2="150" stroke="#475569" stroke-width="2"/>
+    <polygon points="375,150 367,146 367,154" fill="#475569"/>
+    <text x="40" y="142" font-size="11" font-family="monospace" font-weight="bold" fill="#475569">-σ</text>
+
+    <!-- Asintota horizontal Z(inf) = R_inf -->
+    <line x1="30" y1="110" x2="330" y2="110" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="35" y="105" font-size="10" font-family="monospace" fill="#059669">R_∞ = Z(∞)</text>
+
+    <!-- Asintota vertical de polo en -sigma_p1 (ej. x=230) -->
+    <line x1="230" y1="45" x2="230" y2="230" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <path d="M 225,145 L 235,155 M 225,155 L 235,145" stroke="#dc2626" stroke-width="2"/>
+    <text x="230" y="168" font-size="10" font-family="monospace" font-weight="bold" fill="#dc2626" text-anchor="middle">-σ_p1</text>
+
+    <!-- Cero en -sigma_z1 (ej. x=130) -->
+    <circle cx="130" cy="150" r="4.5" fill="#ffffff" stroke="#2563eb" stroke-width="2.2"/>
+    <text x="130" y="168" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">-σ_z1</text>
+
+    <!-- Polo en el origen sigma=0 si es capacitivo en DC -->
+    <path d="M 325,145 L 335,155 M 325,155 L 335,145" stroke="#dc2626" stroke-width="2.2"/>
+
+    <!-- Rama 1: de 0 a polo 1 (cae monotónicamente hacia -infinito) -->
+    <path d="M 328,55 C 320,110 280,140 236,225" fill="none" stroke="#2563eb" stroke-width="2.4"/>
+
+    <!-- Rama 2: de +infinito en el polo 1 pasando por el cero hacia R_inf -->
+    <path d="M 224,55 C 210,120 170,145 130,150 C 90,155 50,115 35,112" fill="none" stroke="#2563eb" stroke-width="2.4"/>
+
+    <!-- Cuadro resumen de propiedad derivada -->
+    <rect x="25" y="195" width="180" height="45" rx="5" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+    <text x="115" y="214" font-size="11" font-family="monospace" font-weight="bold" fill="#1e40af" text-anchor="middle">
+      dZ_RC(σ) / dσ &lt; 0
+    </text>
+    <text x="115" y="230" font-size="9.5" font-family="system-ui, sans-serif" fill="#1e3a8a" text-anchor="middle">
+      Pendiente estrictamente negativa
+    </text>
+  </g>
+
+  <!-- PANEL DERECHO: Resumen de Reglas de Dipolos Disipativos RC vs RL -->
+  <g transform="translate(435, 10)">
+    <rect x="0" y="0" width="410" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="205" y="22" font-size="11.5" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Reglas Cardinales de Singularidades (Cátedra TC3)
+    </text>
+
+    <g transform="translate(15, 40)">
+      <rect x="0" y="0" width="380" height="85" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="15" y="18" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e40af">
+        1. Para Impedancias RC ó Admitancias RL:
+      </text>
+      <text x="15" y="36" font-size="10" font-family="system-ui, sans-serif" fill="#334155">
+        • La singularidad más próxima al origen es siempre un <strong style="fill:#dc2626;">POLO</strong> (o en σ = 0).
+      </text>
+      <text x="15" y="52" font-size="10" font-family="system-ui, sans-serif" fill="#334155">
+        • En el infinito tiende a un CERO o a una constante finita: Z(0) &gt; Z(∞).
+      </text>
+      <text x="15" y="68" font-size="10" font-family="monospace" font-weight="bold" fill="#047857">
+        Foster I: Expandir Z_RC(s) directamente (residuos reales y positivos).
+      </text>
+    </g>
+
+    <g transform="translate(15, 140)">
+      <rect x="0" y="0" width="380" height="85" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="15" y="18" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#92400e">
+        2. Para Admitancias RC ó Impedancias RL:
+      </text>
+      <text x="15" y="36" font-size="10" font-family="system-ui, sans-serif" fill="#334155">
+        • La singularidad más próxima al origen es siempre un <strong style="fill:#2563eb;">CERO</strong> (o en σ = 0).
+      </text>
+      <text x="15" y="52" font-size="10" font-family="system-ui, sans-serif" fill="#334155">
+        • En el infinito tiende a un POLO o a una constante finita: Y(0) &lt; Y(∞).
+      </text>
+      <text x="15" y="68" font-size="10" font-family="monospace" font-weight="bold" fill="#7c3aed">
+        Foster II: Expandir Y_RC(s)/s (para garantizar residuos positivos).
+      </text>
+    </g>
+
+    <text x="205" y="245" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Dualidad exacta: Z_RL(s) = s · Z_RC(s) | Y_RC(s) = s · Y_RL(s)
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Las Conclusiones Cardinales de la Cátedra para Dipolos RC y RL</h5>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3 text-xs sm:text-sm">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+    <div class="font-bold text-blue-600 dark:text-blue-400 font-mono">Reglas para Impedancias RC / Admitancias RL</div>
+    <ol class="list-decimal pl-5 space-y-1">
+      <li>Función racional cociente de polinomios en $s$.</li>
+      <li>Polos y ceros simples alternados en el semieje real negativo: $\\mathbf{\\frac{\\partial Z_{RC}}{\\partial \\sigma} < 0}$ y $\\mathbf{\\frac{\\partial Y_{RL}}{\\partial \\sigma} < 0}$ para $-\\infty < \\sigma < 0$.</li>
+      <li>En continua (CC): exhibe un polo (comportamiento capacitivo) o valor real (resistivo) para $Z_{RC}$.</li>
+      <li>En CC: exhibe un polo (comportamiento inductivo) o valor real (resistivo) para $Y_{RL}$.</li>
+      <li>En alta frecuencia: valor real (resistivo) o un cero (capacitivo/inductivo).</li>
+      <li>Diferencia de grados de potencias extremas: $-1$ o $0$.</li>
+      <li><strong>La primera singularidad más próxima al origen es obligatoriamente un POLO:</strong><br>
+        $$\\mathbf{Z_{RC}(0) > Z_{RC}(\\infty)}, \\qquad \\mathbf{Y_{RL}(0) > Y_{RL}(\\infty)}$$
+      </li>
+    </ol>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+    <div class="font-bold text-indigo-600 dark:text-indigo-400 font-mono">Reglas para Admitancias RC / Impedancias RL</div>
+    <ol class="list-decimal pl-5 space-y-1">
+      <li>Función racional cociente de polinomios en $s$.</li>
+      <li>Polos y ceros simples alternados en el semieje real negativo: $\\mathbf{\\frac{\\partial Y_{RC}}{\\partial \\sigma} < 0}$ y $\\mathbf{\\frac{\\partial Z_{RL}}{\\partial \\sigma} < 0}$.</li>
+      <li>En continua (CC): exhibe un cero (capacitivo/inductivo) o valor real (resistivo).</li>
+      <li>En alta frecuencia: valor real o un polo (capacitivo/inductivo).</li>
+      <li>Diferencia de grados de potencias extremas: $+1$ o $0$.</li>
+      <li><strong>La primera singularidad más próxima al origen es obligatoriamente un CERO:</strong><br>
+        $$\\mathbf{Y_{RC}(0) < Y_{RC}(\\infty)}, \\qquad \\mathbf{Z_{RL}(0) < Z_{RL}(\\infty)}$$
+      </li>
+      <li>Para Foster II RC se expande $\\mathbf{\\frac{Y_{RC}(s)}{s}}$ asegurando residuos positivos.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="p-3.5 my-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs sm:text-sm">
+  <span class="font-bold text-emerald-950 dark:text-emerald-300 font-mono">Ejemplo Resuelto en Clase: Síntesis de Dipolo RC</span>
+  $$Z(s) = \\frac{s^2 + 4s + 3}{s^2 + 2s} = \\frac{(s+1)(s+3)}{s(s+2)}$$
+  <p class="mt-1">Polo en $s=0$, cero en $s=-1$, polo en $s=-2$, cero en $s=-3$. Se verifica la alternancia en el semieje negativo y polo más próximo al origen.</p>
+  <ul class="list-disc pl-5 mt-1 space-y-1">
+    <li><strong>Por Foster I RC:</strong><br>
+      $$Z(s) = Z(\\infty) + \\frac{k_0}{s} + \\frac{k_1}{s + 2} = 1 + \\frac{3/2}{s} + \\frac{1/2}{s + 2}$$
+      Elementos: Resistencia serie $R_\\infty = 1\\,\\Omega$, capacitor serie $C_0 = 1/k_0 = \\mathbf{2/3\\text{ F}}$, y celda paralela $R_1 \\parallel C_1$ con $C_1 = 1/k_1 = \\mathbf{2\\text{ F}}$ y $R_1 = k_1 / \\sigma_1 = (1/2)/2 = \\mathbf{1/4\\,\\Omega}$.
+    </li>
+    <li><strong>Por Foster II RC:</strong><br>
+      $$\\frac{Y(s)}{s} = \\frac{s + 2}{(s+1)(s+3)} = \\frac{1/2}{s+1} + \\frac{1/2}{s+3} \\implies Y(s) = \\frac{1/2 s}{s+1} + \\frac{1/2 s}{s+3}$$
+      Elementos: Dos ramas serie $R-C$ conectadas en paralelo: rama 1 ($C_a = 1/2\\text{ F}, R_a = 2\\,\\Omega$) en paralelo con rama 2 ($C_b = 1/2\\text{ F}, R_b = 6\\,\\Omega$).
+    </li>
+  </ul>
+</div>
+`
         },
         {
           id: 'tc3-u3-funciones-minimas-preambulo',

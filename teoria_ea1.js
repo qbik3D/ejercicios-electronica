@@ -3597,7 +3597,156 @@ const MANUAL_TEORIA_EA1 = {
     </svg>
   </div>
 </div>
-          `
+          
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Dinámica del Amplificador Operacional: Slew Rate (741 vs LF351 vs LM318), Rise Time y Overshoot
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- PANEL IZQUIERDO: Slew Rate (SR = dVo/dt|max) -->
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="405" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="202" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Slew Rate (SR): Limitación por Corriente de Carga Miller
+    </text>
+
+    <!-- Ejes coordenados -->
+    <line x1="40" y1="180" x2="380" y2="180" stroke="#475569" stroke-width="1.8"/>
+    <line x1="60" y1="210" x2="60" y2="45" stroke="#475569" stroke-width="1.8"/>
+    <text x="60" y="40" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a">v_o(t)</text>
+    <text x="385" y="184" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a">t</text>
+
+    <!-- Escalón ideal de entrada (trazo discontinuo) -->
+    <path d="M 60,180 L 100,180 L 100,75 L 360,75" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="105" y="70" font-size="10" font-family="monospace" fill="#64748b">V_in (Escalón ideal)</text>
+
+    <!-- Rampa LM318 (70 V/us) - Verde -->
+    <line x1="100" y1="180" x2="115" y2="75" stroke="#059669" stroke-width="2.5"/>
+    <text x="120" y="90" font-size="9.5" font-family="monospace" font-weight="bold" fill="#059669">LM318 (70 V/μs)</text>
+
+    <!-- Rampa LF351 BiFET (13 V/us) - Azul -->
+    <line x1="100" y1="180" x2="180" y2="75" stroke="#2563eb" stroke-width="2.5"/>
+    <text x="185" y="105" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb">LF351 (13 V/μs)</text>
+
+    <!-- Rampa uA741 (0.5 V/us) - Rojo -->
+    <line x1="100" y1="180" x2="320" y2="75" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="280" y="130" font-size="9.5" font-family="monospace" font-weight="bold" fill="#dc2626">μA741 (0.5 V/μs)</text>
+
+    <!-- Caja de formulas al pie -->
+    <rect x="25" y="200" width="355" height="48" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="202" y="220" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      SR = (dv_o/dt)|_max = I_EE / C_c = 20 μA / 30 pF ≈ 0.67 V/μs
+    </text>
+    <text x="202" y="238" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Determina la máxima frecuencia a plena potencia sin distorsión triangular (FPBW)
+    </text>
+  </g>
+
+  <!-- PANEL DERECHO: Rise Time y Overshoot en Respuesta al Escalón -->
+  <g transform="translate(435, 10)">
+    <rect x="0" y="0" width="410" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="205" y="24" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Respuesta al Escalón: Rise Time (t_r) y Sobreimpulso (Overshoot)
+    </text>
+
+    <!-- Ejes coordenados -->
+    <line x1="40" y1="200" x2="380" y2="200" stroke="#475569" stroke-width="1.8"/>
+    <line x1="55" y1="210" x2="55" y2="45" stroke="#475569" stroke-width="1.8"/>
+    <text x="55" y="40" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a">v_o(t)</text>
+    <text x="385" y="204" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a">t</text>
+
+    <!-- Nivel de regimen permanente Vo (ej. y=110) -->
+    <line x1="55" y1="110" x2="380" y2="110" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="35" y="113" font-size="10" font-family="monospace" fill="#0f172a">V_o</text>
+
+    <!-- Nivel 0.9 Vo (y = 119) -->
+    <line x1="55" y1="119" x2="160" y2="119" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="25" y="122" font-size="9" font-family="monospace" fill="#64748b">0.9 V_o</text>
+
+    <!-- Nivel 0.1 Vo (y = 191) -->
+    <line x1="55" y1="191" x2="110" y2="191" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="25" y="194" font-size="9" font-family="monospace" fill="#64748b">0.1 V_o</text>
+
+    <!-- Curva de respuesta con sobreimpulso -->
+    <path d="M 55,200 C 85,200 100,190 120,130 C 135,80 150,65 170,65 C 190,65 210,125 240,118 C 270,112 300,110 370,110" fill="none" stroke="#9333ea" stroke-width="2.6"/>
+
+    <!-- Pico Vop -->
+    <line x1="170" y1="65" x2="170" y2="110" stroke="#dc2626" stroke-width="1.5"/>
+    <circle cx="170" cy="65" r="3.5" fill="#dc2626"/>
+    <text x="180" y="75" font-size="10" font-family="monospace" font-weight="bold" fill="#dc2626">V_op (Pico)</text>
+
+    <!-- Indicador de Rise Time t_r entre 10% y 90% -->
+    <line x1="102" y1="191" x2="102" y2="215" stroke="#059669" stroke-width="1.2"/>
+    <line x1="135" y1="119" x2="135" y2="215" stroke="#059669" stroke-width="1.2"/>
+    <line x1="102" y1="210" x2="135" y2="210" stroke="#059669" stroke-width="1.5"/>
+    <polygon points="102,210 107,207 107,213" fill="#059669"/>
+    <polygon points="135,210 130,207 130,213" fill="#059669"/>
+    <text x="118" y="225" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">t_r</text>
+
+    <!-- Formulas al pie -->
+    <rect x="25" y="228" width="360" height="26" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+    <text x="205" y="245" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Overshoot = [(V_op - V_o)/V_o] · 100%   |   t_r ≈ 0.35 / BW
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-6 mb-2">Respuesta Dinámica y Comparativa Comercial: Slew Rate, Rise Time y Overshoot</h5>
+<div class="overflow-x-auto my-3">
+  <table class="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800 font-mono">
+    <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold uppercase">
+      <tr>
+        <th class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Modelo de Op-Amp</th>
+        <th class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Tecnología de Entrada</th>
+        <th class="p-2 border border-slate-200 dark:border-slate-800 text-blue-600 dark:text-blue-400">Slew Rate (SR)</th>
+        <th class="p-2 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400">Ancho de Banda (GBW)</th>
+        <th class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Aplicación Típica</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+      <tr>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold font-sans">μA741C</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">BJT NPN/PNP lateral</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 text-rose-600 dark:text-rose-400 font-bold">$0.5\\text{ V}/\\mu\\text{s}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">$1\\text{ MHz}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Propósito general, baja frecuencia, audio básico</td>
+      </tr>
+      <tr>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold font-sans">LF351 / TL081</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">BiFET (JFET canal P de entrada)</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 text-blue-600 dark:text-blue-400 font-bold">$13\\text{ V}/\\mu\\text{s}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">$4\\text{ MHz}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Alta impedancia de entrada, audio de alta fidelidad</td>
+      </tr>
+      <tr>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-bold font-sans">LM318</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">BJT alta velocidad con feed-forward</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">$70\\text{ V}/\\mu\\text{s}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800">$15\\text{ MHz}$</td>
+        <td class="p-2 border border-slate-200 dark:border-slate-800 font-sans">Video, pulsos de alta velocidad, instrumentación rápida</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 text-xs sm:text-sm">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+    <div class="font-bold text-blue-600 dark:text-blue-400 font-mono">Tiempo de Crecimiento (Rise Time t_r)</div>
+    <p>Intervalo temporal en el que la salida asciende del $10\\%$ al $90\\%$ de su valor final ante una excitación en escalón en lazo cerrado:</p>
+    $$\\mathbf{t_r \\approx \\frac{0.35}{BW_{\\text{lazo cerrado}}}}$$
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+    <div class="font-bold text-indigo-600 dark:text-indigo-400 font-mono">Sobreimpulso (Overshoot M_p)</div>
+    <p>Cuantifica el pico transitorio que sobrepasa el valor de régimen permanente $V_o$, vinculado directamente al margen de fase $\\text{PM}$:</p>
+    $$\\mathbf{\\text{Overshoot [\\%]} = \\frac{V_{op} - V_o}{V_o} \\times 100\\%}$$
+  </div>
+</div>
+`
         },
         {
           id: 'u3-formulario',
