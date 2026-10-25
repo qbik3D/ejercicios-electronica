@@ -288,14 +288,21 @@ input[type="number"] {
   stroke: rgba(16, 185, 129, 0.5);
 }
 
-.dark #vista-compendio-teoria svg rect[fill="#fef3c7"] {
-  fill: rgba(120, 53, 15, 0.4);
-  stroke: rgba(245, 158, 11, 0.5);
+.dark #vista-compendio-teoria svg rect[fill="#fef3c7"],
+.dark #vista-compendio-teoria svg rect[fill="#fffbeb"] {
+  fill: rgba(120, 53, 15, 0.35);
+  stroke: rgba(245, 158, 11, 0.6);
 }
 
-.dark #vista-compendio-teoria svg rect[fill="#f3e8ff"] {
-  fill: rgba(88, 28, 135, 0.4);
-  stroke: rgba(168, 85, 247, 0.5);
+.dark #vista-compendio-teoria svg rect[fill="#fdf2f8"] {
+  fill: rgba(157, 23, 77, 0.35);
+  stroke: rgba(236, 72, 153, 0.6);
+}
+
+.dark #vista-compendio-teoria svg rect[fill="#f3e8ff"],
+.dark #vista-compendio-teoria svg rect[fill="#f5f3ff"] {
+  fill: rgba(88, 28, 135, 0.35);
+  stroke: rgba(139, 92, 246, 0.6);
 }
 
 .dark #vista-compendio-teoria svg rect[fill="#e0e7ff"] {
@@ -314,23 +321,34 @@ input[type="number"] {
 }
 
 /* Resaltado de textos específicos en modo oscuro */
-.dark #vista-compendio-teoria svg text[fill="#1e40af"] {
+.dark #vista-compendio-teoria svg text[fill="#1e40af"],
+.dark #vista-compendio-teoria svg text[fill="#1d4ed8"] {
   fill: #93c5fd;
 }
 
 .dark #vista-compendio-teoria svg text[fill="#047857"],
 .dark #vista-compendio-teoria svg text[fill="#065f46"],
+.dark #vista-compendio-teoria svg text[fill="#059669"],
 .dark #vista-compendio-teoria svg text[fill="#166534"] {
   fill: #6ee7b7;
 }
 
 .dark #vista-compendio-teoria svg text[fill="#b45309"],
-.dark #vista-compendio-teoria svg text[fill="#92400e"] {
+.dark #vista-compendio-teoria svg text[fill="#92400e"],
+.dark #vista-compendio-teoria svg text[fill="#78350f"] {
   fill: #fcd34d;
 }
 
+.dark #vista-compendio-teoria svg text[fill="#be185d"],
+.dark #vista-compendio-teoria svg text[fill="#831843"],
+.dark #vista-compendio-teoria svg text[fill="#9d174d"] {
+  fill: #f472b6;
+}
+
 .dark #vista-compendio-teoria svg text[fill="#6b21a8"],
-.dark #vista-compendio-teoria svg text[fill="#7e22ce"] {
+.dark #vista-compendio-teoria svg text[fill="#7e22ce"],
+.dark #vista-compendio-teoria svg text[fill="#6d28d9"],
+.dark #vista-compendio-teoria svg text[fill="#7c3aed"] {
   fill: #d8b4fe;
 }
 

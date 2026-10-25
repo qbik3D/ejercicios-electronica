@@ -77,81 +77,124 @@ $$F(s) = \\frac{(m_1 + n_1)(m_2 - n_2)}{(m_2 + n_2)(m_2 - n_2)} = \\frac{(m_1 m_
     📐 Arquitectura Operacional de una Función de Red: Descomposición Par / Impar y Reconstrucción
   </span>
   <div class="flex justify-center overflow-x-auto py-1">
-    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
   <!-- Marco contenedor -->
-  <rect x="10" y="10" width="840" height="240" rx="12" fill="#0f172a" fill-opacity="0.03" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="10" y="10" width="880" height="280" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
 
   <!-- Título principal -->
-  <text x="430" y="32" font-size="13" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+  <text x="450" y="32" font-size="13" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
     Arquitectura Operacional de una Función de Red: Descomposición Par / Impar y Reconstrucción
   </text>
 
+  <!-- FILA SUPERIOR: ANÁLISIS DIRECTO -->
+
   <!-- Paso 1: Función de Red Racional F(s) -->
-  <g transform="translate(30, 55)">
-    <rect x="0" y="0" width="160" height="95" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.8"/>
-    <text x="80" y="24" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Función de Red F(s)</text>
-    <text x="80" y="48" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">F(s) = P(s) / Q(s)</text>
-    <text x="80" y="68" font-size="10" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">P = m₁ + n₁, Q = m₂ + n₂</text>
-    <text x="80" y="84" font-size="9" font-family="system-ui, sans-serif" fill="#64748b" text-anchor="middle">m: potencias pares, n: impares</text>
+  <g transform="translate(30, 50)">
+    <rect x="0" y="0" width="235" height="100" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.8"/>
+    <text x="117" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle">
+      1. Función de Red Racional F(s)
+    </text>
+    <text x="117" y="44" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      F(s) = P(s) / Q(s)
+    </text>
+    <text x="117" y="66" font-size="10" font-family="system-ui, sans-serif" fill="#334155" text-anchor="middle">
+      P(s) = m₁ + n₁,   Q(s) = m₂ + n₂
+    </text>
+    <text x="117" y="84" font-size="9" font-family="system-ui, sans-serif" fill="#64748b" text-anchor="middle">
+      m: potencias pares,   n: potencias impares
+    </text>
   </g>
 
   <!-- Flecha 1 a 2 -->
-  <line x1="190" y1="102" x2="235" y2="102" stroke="#64748b" stroke-width="2"/>
-  <polygon points="242,102 233,97 233,107" fill="#64748b"/>
+  <line x1="265" y1="100" x2="310" y2="100" stroke="#64748b" stroke-width="2"/>
+  <polygon points="317,100 308,95 308,105" fill="#64748b"/>
 
   <!-- Paso 2: Descomposición Operacional M(s) + N(s) -->
-  <g transform="translate(245, 50)">
-    <rect x="0" y="0" width="220" height="105" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.8"/>
-    <text x="110" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#6d28d9" text-anchor="middle">Descomposición Operacional</text>
-    <text x="110" y="44" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">F(s) = M(s) + N(s)</text>
-    <text x="110" y="66" font-size="10" font-family="monospace" fill="#334155" text-anchor="middle">M(s) = [m₁m₂ - n₁n₂] / (m₂² - n₂²)</text>
-    <text x="110" y="82" font-size="10" font-family="monospace" fill="#334155" text-anchor="middle">N(s) = [n₁m₂ - m₁n₂] / (m₂² - n₂²)</text>
-    <text x="110" y="98" font-size="9" font-family="system-ui, sans-serif" fill="#7c3aed" text-anchor="middle">M(-s) = M(s),  N(-s) = -N(s)</text>
+  <g transform="translate(320, 50)">
+    <rect x="0" y="0" width="275" height="100" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.8"/>
+    <text x="137" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#6d28d9" text-anchor="middle">
+      2. Descomposición Operacional
+    </text>
+    <text x="137" y="42" font-size="11.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      F(s) = M(s) + N(s)
+    </text>
+    <text x="137" y="62" font-size="9.5" font-family="monospace" fill="#334155" text-anchor="middle">
+      Par: M(s) = [m₁m₂ - n₁n₂] / (m₂² - n₂²)
+    </text>
+    <text x="137" y="77" font-size="9.5" font-family="monospace" fill="#334155" text-anchor="middle">
+      Impar: N(s) = [n₁m₂ - m₁n₂] / (m₂² - n₂²)
+    </text>
+    <text x="137" y="92" font-size="8.5" font-family="system-ui, sans-serif" fill="#7c3aed" text-anchor="middle">
+      Propiedad par/impar: M(-s) = M(s),   N(-s) = -N(s)
+    </text>
   </g>
 
   <!-- Flecha 2 a 3 -->
-  <line x1="465" y1="102" x2="510" y2="102" stroke="#64748b" stroke-width="2"/>
-  <polygon points="517,102 508,97 508,107" fill="#64748b"/>
+  <line x1="595" y1="100" x2="635" y2="100" stroke="#64748b" stroke-width="2"/>
+  <polygon points="642,100 633,95 633,105" fill="#64748b"/>
 
   <!-- Paso 3: Régimen Armónico (s = jw) -->
-  <g transform="translate(520, 50)">
-    <rect x="0" y="0" width="160" height="105" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8"/>
-    <text x="80" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#047857" text-anchor="middle">Régimen Armónico</text>
-    <text x="80" y="44" font-size="11" font-family="monospace" font-weight="bold" fill="#065f46" text-anchor="middle">s = jω (Eje Imaginario)</text>
-    <text x="80" y="66" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">Re[F(jω)] = M(jω)</text>
-    <text x="80" y="84" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">j·Im[F(jω)] = N(jω)</text>
-    <text x="80" y="98" font-size="9" font-family="system-ui, sans-serif" fill="#059669" text-anchor="middle">Módulo: |F|² = M² - N²</text>
+  <g transform="translate(645, 50)">
+    <rect x="0" y="0" width="225" height="100" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8"/>
+    <text x="112" y="22" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#047857" text-anchor="middle">
+      3. Régimen Armónico (s = jω)
+    </text>
+    <text x="112" y="44" font-size="10.5" font-family="monospace" font-weight="bold" fill="#065f46" text-anchor="middle">
+      s = jω (Eje Imaginario)
+    </text>
+    <text x="112" y="63" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Re[F(jω)] = M(jω)
+    </text>
+    <text x="112" y="78" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      j·Im[F(jω)] = N(jω)
+    </text>
+    <text x="112" y="93" font-size="9" font-family="system-ui, sans-serif" fill="#059669" text-anchor="middle">
+      Módulo: |F(jω)|² = M²(jω) - N²(jω)
+    </text>
   </g>
 
-  <!-- Flecha de retorno / Reconstrucción inferior -->
-  <path d="M 600,155 Q 600,205 440,205" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,4"/>
-  <polygon points="433,205 442,200 442,210" fill="#d97706"/>
+  <!-- FLECHAS DE RETORNO / RECONSTRUCCIÓN INVERSA -->
+  <!-- Camino hacia Reconstrucción Real (Ámbar) -->
+  <path d="M 720,150 L 720,165 Q 720,175 700,175 L 260,175 Q 240,175 240,183" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <polygon points="240,188 236,180 244,180" fill="#d97706"/>
 
-  <!-- Paso 4: Reconstrucción en el Semiplano Izquierdo -->
-  <g transform="translate(100, 175)">
-    <rect x="0" y="0" width="325" height="60" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.8"/>
-    <text x="162" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#b45309" text-anchor="middle">
-      Reconstrucción de F(s) a partir de Re[F(jω)] o M(s)
+  <!-- Camino hacia Reconstrucción Fase (Rosa) -->
+  <path d="M 790,150 L 790,165 Q 790,175 770,175 L 685,175 Q 675,175 675,183" fill="none" stroke="#db2777" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <polygon points="675,188 671,180 679,180" fill="#db2777"/>
+
+  <!-- FILA INFERIOR: MÉTODOS DE RECONSTRUCCIÓN -->
+
+  <!-- Paso 4: Reconstrucción desde Parte Real -->
+  <g transform="translate(30, 190)">
+    <rect x="0" y="0" width="410" height="88" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.8"/>
+    <text x="205" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#b45309" text-anchor="middle">
+      Reconstrucción a partir de Re[F(jω)] o M(s)
     </text>
-    <text x="162" y="40" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      F(s) = 2 · [Fracciones simples de M(s) con polos en Re{s} &lt; 0]
+    <text x="205" y="42" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      F(s) = 2 · [Fracciones de M(s) con polos en Re{s} &lt; 0] + M(∞)
     </text>
-    <text x="162" y="53" font-size="9" font-family="system-ui, sans-serif" fill="#78350f" text-anchor="middle">
-      (Método de Gewertz / Factorización Espectral sin polos en jω)
+    <text x="205" y="60" font-size="9.5" font-family="system-ui, sans-serif" fill="#78350f" text-anchor="middle">
+      Método de Gewertz (sistema de ecuaciones) / Fracciones simples en SPI
+    </text>
+    <text x="205" y="75" font-size="9" font-family="system-ui, sans-serif" fill="#92400e" text-anchor="middle">
+      Factorización espectral: Q(s)·Q(-s) sin polos sobre el eje jω
     </text>
   </g>
 
   <!-- Paso 5: Reconstrucción desde Fase -->
-  <g transform="translate(460, 175)">
-    <rect x="0" y="0" width="370" height="60" rx="8" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.8"/>
-    <text x="185" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#be185d" text-anchor="middle">
-      Reconstrucción de F(s) a partir de la Fase φ(ω)
+  <g transform="translate(460, 190)">
+    <rect x="0" y="0" width="410" height="88" rx="8" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.8"/>
+    <text x="205" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#be185d" text-anchor="middle">
+      Reconstrucción a partir de la Fase φ(ω)
     </text>
-    <text x="185" y="40" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      j·tan φ(ω) = N(jω) / M(jω)  ⟹  1 + T(s) = P(s)·Q(-s) / [m₁m₂ - n₁n₂]
+    <text x="205" y="40" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      j·tan φ(ω) = N(jω) / M(jω) = [n₁m₂ - m₁n₂] / [m₁m₂ - n₁n₂]
     </text>
-    <text x="185" y="53" font-size="9" font-family="system-ui, sans-serif" fill="#831843" text-anchor="middle">
-      La estabilidad física asigna los polos al denominador Q(s) en Re{s} &lt; 0.
+    <text x="205" y="58" font-size="9.5" font-family="monospace" fill="#831843" text-anchor="middle">
+      exp(j·2φ) = [1 + j tan φ] / [1 - j tan φ] = [P(s)·Q(-s)] / [P(-s)·Q(s)]
+    </text>
+    <text x="205" y="75" font-size="9" font-family="system-ui, sans-serif" fill="#9d174d" text-anchor="middle">
+      Estabilidad física: asigna estrictamente los polos a Q(s) en Re{s} &lt; 0
     </text>
   </g>
 </svg>
@@ -350,26 +393,34 @@ $$\\mathbf{|H(j\\omega)|^2 = \\frac{1}{1 + \\epsilon^2 T_n^2\\left( \\frac{\\ome
           id: 'tc3-u1-normalizacion-retardo',
           titulo: '1.4 Normalización y Desnormalización de Redes y Retardo de Grupo',
           contenido: `
-<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Escalas de Normalización de Magnitud y Frecuencia</h5>
-<p class="mb-2">Para evitar operar con números astronómicos o infinitesimales (faradios, nanohenrios, megaohmios) durante el diseño algebraico, se eligen una frecuencia de referencia $\\Omega_0$ [rad/s] y una resistencia de referencia $R_0$ [$\\Omega$]:</p>
-$$k_f = \\Omega_0 = 2\\pi f_0, \\qquad k_z = R_0$$
-$$\\Omega_n = \\frac{\\omega}{k_f}, \\quad s_n = \\frac{s}{k_f}, \\quad z_n(s_n) = \\frac{Z(s)}{k_z}$$
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Escalas de Normalización de Impedancia y Frecuencia</h5>
+<p class="mb-2">Para evitar operar con números astronómicos o infinitesimales (faradios, nanohenrios, megaohmios) durante el diseño algebraico, se eligen una <strong>pulsación de referencia $\\omega_0$</strong> [rad/s] (donde $\\omega_0 = 2\\pi f_0$) y una <strong>resistencia de referencia $R_0$</strong> [$\\Omega$]. Los dos factores de escala fundamentales son:</p>
+
+<div class="p-3 my-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200 text-xs sm:text-sm">
+  <span class="font-bold font-mono">Factores de Escala Universales:</span>
+  $$\\mathbf{k_f = \\omega_0 = 2\\pi f_0} \\quad \\text{[rad/s]}, \\qquad \\mathbf{k_z = R_0} \\quad [\\Omega]$$
+  <ul class="list-disc pl-5 mt-2 space-y-1 text-xs">
+    <li><strong>Frecuencia normalizada adimensional:</strong> $\\Omega = \\frac{\\omega}{\\omega_0} = \\frac{\\omega}{k_f}$ (donde $\\Omega = 1$ corresponde a la pulsación de referencia o corte).</li>
+    <li><strong>Variable compleja $s$ normalizada:</strong> $s_n = \\frac{s}{\\omega_0} = \\frac{s}{k_f}$.</li>
+    <li><strong>Impedancia normalizada:</strong> $z_n(s_n) = \\frac{Z(s)}{R_0} = \\frac{Z(s)}{k_z}$.</li>
+  </ul>
+</div>
 
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs">
   <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <strong>Resistencia:</strong><br>
-    $r_n = \\frac{R}{R_0}$<br>
-    $\\mathbf{R = r_n \\cdot R_0}$
+    <strong class="text-blue-600 dark:text-blue-400">Resistencia:</strong><br>
+    Valor normalizado: $r_n = \\frac{R}{R_0}$<br>
+    <span class="font-bold text-slate-900 dark:text-white mt-1 block">$\\mathbf{R = r_n \\cdot R_0 = r_n \\cdot k_z}$</span>
   </div>
   <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <strong>Inductor:</strong><br>
-    $l_n = \\frac{L \\cdot \\Omega_0}{R_0}$<br>
-    $\\mathbf{L = l_n \\frac{R_0}{\\Omega_0}}$
+    <strong class="text-emerald-600 dark:text-emerald-400">Inductor:</strong><br>
+    Valor normalizado: $l_n = \\frac{L \\cdot \\omega_0}{R_0} = \\frac{L \\cdot k_f}{k_z}$<br>
+    <span class="font-bold text-slate-900 dark:text-white mt-1 block">$\\mathbf{L = l_n \\frac{R_0}{\\omega_0} = l_n \\frac{k_z}{k_f}}$</span>
   </div>
   <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <strong>Capacitor:</strong><br>
-    $c_n = C \\cdot \\Omega_0 \\cdot R_0$<br>
-    $\\mathbf{C = \\frac{c_n}{\\Omega_0 R_0}}$
+    <strong class="text-purple-600 dark:text-purple-400">Capacitor:</strong><br>
+    Valor normalizado: $c_n = C \\cdot \\omega_0 \\cdot R_0 = C \\cdot k_f \\cdot k_z$<br>
+    <span class="font-bold text-slate-900 dark:text-white mt-1 block">$\\mathbf{C = \\frac{c_n}{\\omega_0 R_0} = \\frac{c_n}{k_f k_z}}$</span>
   </div>
 </div>
 
