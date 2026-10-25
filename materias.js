@@ -71,7 +71,7 @@ const MATERIAS_CONFIG = {
         numero: 1,
         titulo: 'Unidad 1: Funciones de Red y Aproximaciones',
         tituloCompleto: 'Unidad 1: Funciones de Red, Aproximaciones de Filtros y Normalización',
-        descripcion: 'Descomposición par/impar, reconstrucción (Gewertz/Fase), Butterworth, Chebyshev, normalización y retardo de grupo',
+        descripcion: 'Descomposición par/impar, reconstrucción (Gewertz/Fase), Butterworth, Chebyshev, normalización, retardo de grupo, Bode y Nyquist',
         icono: '📊',
         badgeColor: 'border-cyan-500/40 bg-cyan-950/40 text-cyan-300'
       },
@@ -80,7 +80,7 @@ const MATERIAS_CONFIG = {
         numero: 2,
         titulo: 'Unidad 2: Operacionales, GIC y Capacitores Conmutados',
         tituloCompleto: 'Unidad 2: Redes Activas con Operacionales, GIC, FDNR y Capacitores Conmutados',
-        descripcion: 'GIC de Antoniou, Inductores simulados, FDNR de Bruton y Filtros de Capacitores Conmutados (SC)',
+        descripcion: 'Op-Amp lineal e instrumentación, integrador/derivador, OTA, rotadores All-Pass, NIC, giradores, GIC de Antoniou, FDNR y Capacitores Conmutados',
         icono: '⚡',
         badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300'
       },
@@ -89,7 +89,7 @@ const MATERIAS_CONFIG = {
         numero: 3,
         titulo: 'Unidad 3: Síntesis de Dipolos Pasivos',
         tituloCompleto: 'Unidad 3: Síntesis de Dipolos Pasivos (Foster, Cauer, Brune y Bott-Duffin)',
-        descripcion: 'Dipolos LC, RC, RL, Funciones Mínimas, Preámbulo de Foster, Método de Brune y Método de Bott-Duffin',
+        descripcion: 'Dipolos LC, RC, RL, remoción parcial, Preámbulo de Foster, Brune, Bott-Duffin y Método de Miyata',
         icono: '🔄',
         badgeColor: 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
       },
@@ -98,7 +98,7 @@ const MATERIAS_CONFIG = {
         numero: 4,
         titulo: 'Unidad 4: Cuadripolos y MAI',
         tituloCompleto: 'Unidad 4: Análisis de Cuadripolos, Interconexiones y MAI',
-        descripcion: 'Las 6 matrices ([z], [y], [T], [h]), interconexiones, ensayo de Brune, bisección de Bartlett y MAI de Puckett',
+        descripcion: 'Las 6 matrices, cuadripolos cargados, SFG (Mason), ensayo de Brune, bisección de Bartlett y MAI de Puckett',
         icono: '🔲',
         badgeColor: 'border-rose-500/40 bg-rose-950/40 text-rose-300'
       },

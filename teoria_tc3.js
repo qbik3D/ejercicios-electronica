@@ -385,6 +385,212 @@ $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
 </div>
 
           `
+        },
+        {
+          id: 'tc3-u1-modos-frecuenciales-bode-nyquist',
+          titulo: '1.5 Modos de Representación Frecuencial: Diagramas de Bode Asintóticos y Polares de Nyquist',
+          contenido: `
+<p class="mb-3">En el análisis y diseño de redes lineales, la respuesta en régimen permanente ante excitaciones senoidales se describe mediante la <strong>función de respuesta en frecuencia</strong> $H(j\\omega) = |H(j\\omega)| e^{j \\phi(\\omega)}$. Para representar y predecir el comportamiento dinámico a lo largo de amplios rangos espectrales, se utilizan dos representaciones gráficas fundamentales: los <strong>Diagramas Logarítmicos de Bode</strong> y los <strong>Gráficos Polares de Nyquist</strong>.</p>
+
+<div class="p-4 my-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200">
+  <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+    <span>📊</span> Fundamento de la Escala Logarítmica de Bode
+  </h5>
+  <p class="text-xs">Al descomponer una función racional $H(s)$ factorizada en polos y ceros:
+  $$H(s) = K \\cdot \\frac{\\prod (1 + s/z_i)}{\\prod (1 + s/p_k)}$$
+  Al calcular su logaritmo decimal y multiplicar por $20$, los productos y cocientes de factores se transforman en <strong>sumas y restas algebraicas de trazas independientes</strong>:
+  $$\\mathbf{|H(j\\omega)|_{\\text{dB}} = 20\\log_{10}|K| + \\sum 20\\log_{10}|1 + j\\omega/z_i| - \\sum 20\\log_{10}|1 + j\\omega/p_k|}$$
+  $$\\mathbf{\\phi(\\omega) = \\arg(K) + \\sum \\arctan(\\omega/z_i) - \\sum \\arctan(\\omega/p_k)}$$
+  </p>
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Diagrama de Bode de Magnitud y Fase: Trazas Asintóticas y Curvas Exactas
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Marco general -->
+  <rect x="10" y="10" width="840" height="280" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="430" y="28" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    Diagrama de Bode de Magnitud y Fase: Polo Simple H(s) = 1 / (1 + s/ω₀)
+  </text>
+
+  <!-- PANEL IZQUIERDO: Magnitud |H(jw)|dB -->
+  <g transform="translate(25, 40)">
+    <rect x="0" y="0" width="385" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="192" y="18" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#1e40af" text-anchor="middle">
+      Curva de Magnitud [dB] vs Pulsación Logarítmica
+    </text>
+
+    <!-- Ejes coordenados -->
+    <line x1="50" y1="60" x2="360" y2="60" stroke="#475569" stroke-width="1.5"/>
+    <line x1="50" y1="210" x2="50" y2="40" stroke="#475569" stroke-width="1.5"/>
+    <text x="40" y="64" font-size="10" font-family="monospace" font-weight="bold" fill="#059669">0 dB</text>
+    <text x="40" y="125" font-size="10" font-family="monospace" fill="#dc2626">-20 dB</text>
+    <text x="40" y="185" font-size="10" font-family="monospace" fill="#dc2626">-40 dB</text>
+    <text x="365" y="64" font-size="10" font-family="monospace" fill="#0f172a">ω</text>
+
+    <!-- Marcas de frecuencia: 0.1w0 (x=110), w0 (x=190), 10w0 (x=270), 100w0 (x=350) -->
+    <line x1="110" y1="57" x2="110" y2="63" stroke="#475569" stroke-width="1.5"/>
+    <text x="110" y="75" font-size="9.5" font-family="monospace" fill="#475569" text-anchor="middle">0.1ω₀</text>
+
+    <line x1="190" y1="45" x2="190" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="190" y="75" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">ω₀ (Corte)</text>
+
+    <line x1="270" y1="57" x2="270" y2="63" stroke="#475569" stroke-width="1.5"/>
+    <text x="270" y="75" font-size="9.5" font-family="monospace" fill="#475569" text-anchor="middle">10ω₀</text>
+
+    <!-- Asintota ideal (Verde trazo punteado): 0 dB hasta w0, luego pendiente -20 dB/dec -->
+    <line x1="50" y1="60" x2="190" y2="60" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="190" y1="60" x2="270" y2="120" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="270" y1="120" x2="350" y2="180" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="280" y="105" font-size="9.5" font-family="monospace" font-weight="bold" fill="#059669">-20 dB/década</text>
+
+    <!-- Curva real continua (Azul) -->
+    <path d="M 50,60 C 120,60 160,63 190,69 C 220,78 250,110 270,123 C 310,150 335,170 355,182" fill="none" stroke="#2563eb" stroke-width="2.6"/>
+
+    <!-- Error exacto a w0: -3.01 dB -->
+    <line x1="190" y1="60" x2="190" y2="69" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="190" cy="69" r="3.5" fill="#dc2626"/>
+    <text x="200" y="55" font-size="9.5" font-family="monospace" font-weight="bold" fill="#dc2626">Error: -3 dB</text>
+
+    <rect x="15" y="195" width="355" height="25" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="192" y="211" font-size="9.5" font-family="system-ui, sans-serif" fill="#334155" text-anchor="middle">
+      Atenuación exacta: |H(jω₀)| = 1/√2 ⟹ 20 log₁₀(1/√2) = -3.01 dB
+    </text>
+  </g>
+
+  <!-- PANEL DERECHO: Fase phi(w) en grados -->
+  <g transform="translate(435, 40)">
+    <rect x="0" y="0" width="395" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="197" y="18" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#7c3aed" text-anchor="middle">
+      Curva de Fase [Grados] vs Pulsación Logarítmica
+    </text>
+
+    <!-- Ejes coordenados -->
+    <line x1="50" y1="60" x2="370" y2="60" stroke="#475569" stroke-width="1.5"/>
+    <line x1="50" y1="210" x2="50" y2="40" stroke="#475569" stroke-width="1.5"/>
+    <text x="40" y="64" font-size="10" font-family="monospace" font-weight="bold" fill="#059669">0°</text>
+    <text x="40" y="125" font-size="10" font-family="monospace" fill="#2563eb">-45°</text>
+    <text x="40" y="185" font-size="10" font-family="monospace" fill="#dc2626">-90°</text>
+    <text x="375" y="64" font-size="10" font-family="monospace" fill="#0f172a">ω</text>
+
+    <!-- Marcas de frecuencia -->
+    <line x1="110" y1="45" x2="110" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="110" y="52" font-size="9.5" font-family="monospace" fill="#475569" text-anchor="middle">0.1ω₀</text>
+
+    <line x1="190" y1="45" x2="190" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="190" y="52" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">ω₀</text>
+
+    <line x1="270" y1="45" x2="270" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="270" y="52" font-size="9.5" font-family="monospace" fill="#475569" text-anchor="middle">10ω₀</text>
+
+    <!-- Asintota ideal de fase (Verde trazo punteado): 0° hasta 0.1w0, rampa a -90° en 10w0 (-45°/dec) -->
+    <line x1="50" y1="60" x2="110" y2="60" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="110" y1="60" x2="270" y2="180" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="270" y1="180" x2="360" y2="180" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="240" y="105" font-size="9.5" font-family="monospace" font-weight="bold" fill="#059669">-45°/década</text>
+
+    <!-- Curva real continua de fase phi(w) = -arctan(w/w0) (Purpura) -->
+    <path d="M 50,60 C 90,61 110,65 140,85 C 165,102 175,115 190,120 C 205,125 215,138 240,155 C 270,175 290,179 360,180" fill="none" stroke="#9333ea" stroke-width="2.6"/>
+
+    <!-- Punto exacto a w0: -45° -->
+    <circle cx="190" cy="120" r="4" fill="#2563eb"/>
+    <text x="200" y="130" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb">Exacto: -45°</text>
+
+    <rect x="15" y="195" width="365" height="25" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="197" y="211" font-size="9.5" font-family="system-ui, sans-serif" fill="#334155" text-anchor="middle">
+      Fase exacta: φ(ω₀) = -arctan(1) = -45.0° (en 0.1ω₀: -5.7°, en 10ω₀: -84.3°)
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Factores Elementales y Trazas Asintóticas de Bode</h5>
+<div class="overflow-x-auto my-3">
+  <table class="w-full text-xs text-left border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+    <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+      <tr>
+        <th class="p-2 border-b">Factor Canónico</th>
+        <th class="p-2 border-b">Asíntota de Magnitud [dB]</th>
+        <th class="p-2 border-b">Asíntota de Fase [°]</th>
+        <th class="p-2 border-b">Corrección Exacta en $\\omega_0$</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono text-[11px]">
+      <tr>
+        <td class="p-2 font-bold text-blue-600 dark:text-blue-400">Ganancia $K$</td>
+        <td class="p-2">$20\\log_{10}|K|$ (plana)</td>
+        <td class="p-2">$0^\\circ$ ($K>0$) ó $-180^\\circ$ ($K<0$)</td>
+        <td class="p-2">Exacta (0 dB, 0°)</td>
+      </tr>
+      <tr>
+        <td class="p-2 font-bold text-red-600 dark:text-red-400">Polo en origen $\\frac{1}{s}$</td>
+        <td class="p-2">$-20\\text{ dB/década}$ (cruza 0 dB en $\\omega=1$)</td>
+        <td class="p-2">$-90^\\circ$ (constante)</td>
+        <td class="p-2">Exacta en todo $\\omega$</td>
+      </tr>
+      <tr>
+        <td class="p-2 font-bold text-emerald-600 dark:text-emerald-400">Cero en origen $s$</td>
+        <td class="p-2">$+20\\text{ dB/década}$ (cruza 0 dB en $\\omega=1$)</td>
+        <td class="p-2">$+90^\\circ$ (constante)</td>
+        <td class="p-2">Exacta en todo $\\omega$</td>
+      </tr>
+      <tr>
+        <td class="p-2 font-bold text-amber-600 dark:text-amber-400">Polo simple $\\frac{1}{1 + s/\\omega_0}$</td>
+        <td class="p-2">$0\\text{ dB}$ ($\\omega < \\omega_0$), $-20\\text{ dB/déc}$ ($\\omega > \\omega_0$)</td>
+        <td class="p-2">$0^\\circ$ ($\\le 0.1\\omega_0$), rampa $-45^\\circ/\\text{déc}$, $-90^\\circ$ ($\\ge 10\\omega_0$)</td>
+        <td class="p-2 text-rose-600 font-bold">$-3.01\\text{ dB}$, $-45.0^\\circ$</td>
+      </tr>
+      <tr>
+        <td class="p-2 font-bold text-cyan-600 dark:text-cyan-400">Cero simple $1 + s/\\omega_z$</td>
+        <td class="p-2">$0\\text{ dB}$ ($\\omega < \\omega_z$), $+20\\text{ dB/déc}$ ($\\omega > \\omega_z$)</td>
+        <td class="p-2">$0^\\circ$ ($\\le 0.1\\omega_z$), rampa $+45^\\circ/\\text{déc}$, $+90^\\circ$ ($\\ge 10\\omega_z$)</td>
+        <td class="p-2 text-emerald-600 font-bold">$+3.01\\text{ dB}$, $+45.0^\\circ$</td>
+      </tr>
+      <tr>
+        <td class="p-2 font-bold text-purple-600 dark:text-purple-400">Factor 2° orden $\\frac{1}{1 + \\frac{s}{Q\\omega_0} + \\frac{s^2}{\\omega_0^2}}$</td>
+        <td class="p-2">$0\\text{ dB}$ ($\\omega < \\omega_0$), $-40\\text{ dB/déc}$ ($\\omega > \\omega_0$)</td>
+        <td class="p-2">$0^\\circ \\to -180^\\circ$, $-90^\\circ$ en $\\omega_0$</td>
+        <td class="p-2">Pico: $M_r = \\frac{Q}{\\sqrt{1 - 1/(4Q^2)}}$</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Corrección de Error entre Trazas Asintóticas y Curvas Reales</h5>
+<p class="mb-2 text-xs sm:text-sm">Las asíntotas lineales de Bode son aproximaciones prácticas. La función analítica exacta para un polo simple $H(j\\omega) = \\frac{1}{1 + j\\omega/\\omega_0}$ posee un desvío conocido:</p>
+<ul class="list-disc pl-5 space-y-1 text-xs mb-3">
+  <li><strong>En la pulsación de corte ($\\omega = \\omega_0$):</strong> La atenuación real es $|H(j\\omega_0)| = \\frac{1}{\\sqrt{1 + 1}} = \\frac{1}{\\sqrt{2}} \\implies 20\\log_{10}(1/\\sqrt{2}) = -3.0103\\text{ dB}$. La asíntota predice $0\\text{ dB}$, por lo que el error es exactamente de $\\mathbf{-3\\text{ dB}}$.</li>
+  <li><strong>Una octava por debajo ($\\omega = 0.5\\omega_0$) y por encima ($\\omega = 2\\omega_0$):</strong> El error respecto a la asíntota es de $\\mathbf{-0.97\\text{ dB}} \\approx -1\\text{ dB}$.</li>
+  <li><strong>Una década por debajo ($\\omega = 0.1\\omega_0$) y por encima ($\\omega = 10\\omega_0$):</strong> El error de módulo es despreciable: $-0.043\\text{ dB}$.</li>
+  <li><strong>Desvío de fase:</strong> En $\\omega = \\omega_0$ la fase es exactamente $-45^\\circ$. En los vértices de la rampa ($0.1\\omega_0$ y $10\\omega_0$), la fase real es $-\\arctan(0.1) = -5.71^\\circ$ y $-\\arctan(10) = -84.29^\\circ$, dando un error máximo de $\\mathbf{5.71^\\circ}$.</li>
+</ul>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Gráficos Polares de Nyquist y Márgenes de Estabilidad</h5>
+<p class="mb-2 text-xs sm:text-sm">El <strong>Diagrama Polar o Gráfico de Nyquist</strong> traza el lugar geométrico del vector complejo $H(j\\omega) = \\text{Re}[H(j\\omega)] + j \\text{Im}[H(j\\omega)]$ en el plano complejo al variar $\\omega$ de $0$ a $+\\infty$:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">Morfología Polar</span>
+    <ul class="list-disc pl-4 space-y-1 text-slate-600 dark:text-slate-300">
+      <li><strong>Polo simple:</strong> Semicírculo en el 4to cuadrante con diámetro unitario sobre el eje real entre $(1, 0)$ en $\\omega=0$ y el origen $(0,0)$ cuando $\\omega \\to \\infty$.</li>
+      <li><strong>Segundo orden subamortiguado:</strong> Sale de $(1,0)$, cruza el eje imaginario negativo en $\\omega_0$ en el punto $(0, -jQ)$ y entra tangencialmente al origen formando un lazo circular ensanchado.</li>
+    </ul>
+  </div>
+  <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1">Márgenes de Estabilidad Relativa</span>
+    <ul class="list-disc pl-4 space-y-1 text-slate-600 dark:text-slate-300">
+      <li><strong>Margen de Ganancia ($MG$):</strong> Inverso de la magnitud $|G(j\\omega_{180})|$ en la pulsación donde la fase cruza $-180^\\circ$: $MG = \\frac{1}{|G(j\\omega_{180})|}$ ($MG_{\\text{dB}} = -20\\log_{10}|G(j\\omega_{180})|$).</li>
+      <li><strong>Margen de Fase ($MF$):</strong> Desfase remanente respecto a $-180^\\circ$ en la pulsación de cruce de ganancia $\\omega_c$ donde $|G(j\\omega_c)| = 1$ (0 dB): $\\mathbf{MF = 180^\\circ + \\phi(\\omega_c)}$.</li>
+    </ul>
+  </div>
+</div>
+
+          `
         }
       ]
     },
@@ -398,11 +604,479 @@ $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
       titulo: 'Unidad 2: Redes Activas con Operacionales, GIC, FDNR y Capacitores Conmutados',
       icono: '⚡',
       badgeColor: 'border-amber-500/40 bg-amber-950/40 text-amber-300',
-      introduccion: 'En esta unidad se estudian las redes activas basadas en operacionales diseñadas para sintetizar componentes circuitales que no existen en la naturaleza (inductores puros con GIC, FDNR de Bruton) y la tecnología analógica de filtros integrados en silicio mediante Capacitores Conmutados (Switched Capacitor).',
+      introduccion: 'Esta unidad abarca el estudio exhaustivo de las redes activas basadas en amplificadores operacionales: desde los modelos reales y las topologías lineales básicas (inversor, no inversor, instrumentación, derivador, integrador, OTA, rotadores de fase y conversores de impedancia negativa), hasta la síntesis de componentes que no existen en la naturaleza (inductores con GIC de Antoniou, elemento FDNR de Bruton) y filtros integrados por Capacitores Conmutados.',
       secciones: [
         {
+          id: 'tc3-u2-opamp-modelos-topologias-lineales',
+          titulo: '2.1 El Amplificador Operacional: Modelos y Topologías Lineales Fundamentales',
+          contenido: `
+<p class="mb-3">El <strong>amplificador operacional (Op-Amp)</strong> es el bloque activo central en la síntesis de filtros activos y convertidores de inmitancia. Se analiza primero bajo el modelo ideal y posteriormente incorporando sus restricciones dinámicas y no linealidades de continua.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+  <div class="p-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-950 dark:text-blue-200 text-xs">
+    <h6 class="font-bold text-xs uppercase tracking-wider mb-1">Modelo Ideal (Reglas de Oro)</h6>
+    <ul class="list-disc pl-4 space-y-1">
+      <li>Ganancia a lazo abierto infinita: $A_{OL} \\to \\infty$.</li>
+      <li>Impedancia de entrada infinita: $R_{in} \\to \\infty \\implies I^+ = I^- = 0$.</li>
+      <li>Impedancia de salida nula: $R_{out} \\to 0$.</li>
+      <li>Ancho de banda infinito: $BW \\to \\infty$.</li>
+      <li>Rechazo de modo común infinito: $\\text{CMRR} \\to \\infty$.</li>
+      <li><strong>Principio de Cortocircuito Virtual:</strong> Con realimentación negativa estable, el lazo fuerza $V^+ - V^- = 0 \\implies V^- = V^+$.</li>
+    </ul>
+  </div>
+
+  <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-950 dark:text-amber-200 text-xs">
+    <h6 class="font-bold text-xs uppercase tracking-wider mb-1">Limitaciones del Op-Amp Real</h6>
+    <ul class="list-disc pl-4 space-y-1">
+      <li><strong>Respuesta de 1 polo:</strong> $A_{OL}(s) = \\frac{A_0}{1 + s/\\omega_b}$ con $GBW = A_0 \\cdot \\omega_b = \\omega_t$.</li>
+      <li><strong>Tensión y Corriente de Offset:</strong> Tensión de desbalance de entrada $V_{OS}$ y corrientes de polarización $I_B = (I_B^+ + I_B^-)/2$, $I_{OS} = |I_B^+ - I_B^-|$.</li>
+      <li><strong>Slew Rate ($SR$):</strong> Máxima tasa de variación de la tensión de salida: $SR = \\max|dv_o/dt|$ [$\\text{V}/\\mu\\text{s}$]. Limita la amplitud a alta frecuencia sin distorsión senoidal a $f_{\\max} = \\frac{SR}{2\\pi V_p}$.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Topologías Lineales con Op-Amp e Instrumentación INA de 3 Op-Amps
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Marco contenedor -->
+  <rect x="10" y="10" width="840" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+
+  <!-- PANEL 1: Amplificador Inversor -->
+  <g transform="translate(25, 20)">
+    <rect x="0" y="0" width="245" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="122" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Amplificador Inversor
+    </text>
+
+    <!-- Entrada Vin -->
+    <circle cx="20" cy="100" r="3" fill="#2563eb"/>
+    <text x="20" y="90" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
+    <line x1="20" y1="100" x2="45" y2="100" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- R1 -->
+    <rect x="45" y="93" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="62" y="87" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R₁</text>
+    <line x1="80" y1="100" x2="110" y2="100" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Nodo inversor (-) -->
+    <circle cx="110" cy="100" r="3" fill="#334155"/>
+    <line x1="110" y1="100" x2="135" y2="100" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Op-Amp -->
+    <polygon points="135,85 135,145 185,115" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="140" y="104" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
+    <text x="140" y="134" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+    <!-- Terminal (+) a masa -->
+    <line x1="110" y1="130" x2="135" y2="130" stroke="#334155" stroke-width="1.8"/>
+    <line x1="110" y1="130" x2="110" y2="155" stroke="#334155" stroke-width="1.8"/>
+    <line x1="100" y1="155" x2="120" y2="155" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Lazo de realimentacion con Rf -->
+    <line x1="110" y1="100" x2="110" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="110" y1="55" x2="130" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <rect x="130" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="147" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
+    <line x1="165" y1="55" x2="200" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="200" y1="55" x2="200" y2="115" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Salida Vo -->
+    <line x1="185" y1="115" x2="225" y2="115" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="200" cy="115" r="3" fill="#334155"/>
+    <circle cx="225" cy="115" r="3" fill="#059669"/>
+    <text x="225" y="105" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+
+    <!-- Formula caja -->
+    <rect x="10" y="180" width="225" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="122" y="200" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      V_o / V_in = - R_f / R₁
+    </text>
+    <text x="122" y="218" font-size="9.5" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      R_in = R₁,  R_out ≈ 0
+    </text>
+  </g>
+
+  <!-- PANEL 2: Amplificador No Inversor y Buffer -->
+  <g transform="translate(295, 20)">
+    <rect x="0" y="0" width="250" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="125" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Amplificador No Inversor
+    </text>
+
+    <!-- Entrada Vin al terminal (+) -->
+    <circle cx="20" cy="130" r="3" fill="#2563eb"/>
+    <text x="20" y="120" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
+    <line x1="20" y1="130" x2="135" y2="130" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Op-Amp -->
+    <polygon points="135,85 135,145 185,115" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="140" y="104" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
+    <text x="140" y="134" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+    <!-- Divisor de realimentacion al terminal (-) -->
+    <line x1="100" y1="100" x2="135" y2="100" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="100" cy="100" r="3" fill="#334155"/>
+
+    <!-- R1 hacia masa -->
+    <line x1="100" y1="100" x2="100" y2="130" stroke="#334155" stroke-width="1.8"/>
+    <rect x="93" y="130" width="14" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="80" y="148" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a">R₁</text>
+    <line x1="100" y1="160" x2="100" y2="175" stroke="#334155" stroke-width="1.8"/>
+    <line x1="90" y1="175" x2="110" y2="175" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Rf hacia salida -->
+    <line x1="100" y1="100" x2="100" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="100" y1="55" x2="130" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <rect x="130" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="147" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
+    <line x1="165" y1="55" x2="200" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="200" y1="55" x2="200" y2="115" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Salida Vo -->
+    <line x1="185" y1="115" x2="230" y2="115" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="200" cy="115" r="3" fill="#334155"/>
+    <circle cx="230" cy="115" r="3" fill="#059669"/>
+    <text x="230" y="105" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+
+    <rect x="10" y="180" width="230" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="125" y="200" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      V_o / V_in = 1 + R_f / R₁
+    </text>
+    <text x="125" y="218" font-size="9.5" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      Buffer si R_f = 0, R₁ = ∞ ⟹ V_o = V_in (R_in → ∞)
+    </text>
+  </g>
+
+  <!-- PANEL 3: Amplificador de Instrumentación (INA de 3 Op-Amps) -->
+  <g transform="translate(570, 20)">
+    <rect x="0" y="0" width="265" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="132" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Amplificador de Instrumentación (INA)
+    </text>
+
+    <!-- Entradas diferenciales V1 y V2 -->
+    <text x="15" y="60" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb">V₁</text>
+    <text x="15" y="165" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb">V₂</text>
+
+    <!-- Bloques simbolicos OA1, OA2 (Buffer con Rg) -->
+    <rect x="35" y="45" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="57" y="64" font-size="9" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₁</text>
+
+    <rect x="35" y="145" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="57" y="164" font-size="9" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₂</text>
+
+    <!-- Resistencia de ganancia Rg entre OA1 y OA2 -->
+    <line x1="57" y1="75" x2="57" y2="95" stroke="#334155" stroke-width="1.5"/>
+    <rect x="50" y="95" width="14" height="30" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="35" y="113" font-size="9" font-family="monospace" font-weight="bold" fill="#dc2626">R_G</text>
+    <line x1="57" y1="125" x2="57" y2="145" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Lineas hacia OA3 (diferencial) -->
+    <line x1="80" y1="60" x2="135" y2="85" stroke="#334155" stroke-width="1.5"/>
+    <line x1="80" y1="160" x2="135" y2="135" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Bloque OA3 Diferencial -->
+    <polygon points="135,75 135,145 190,110" fill="#f8fafc" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="155" y="114" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a">OA₃</text>
+
+    <line x1="190" y1="110" x2="245" y2="110" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="245" cy="110" r="3" fill="#059669"/>
+    <text x="245" y="100" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+
+    <rect x="10" y="180" width="245" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="132" y="200" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      V_o = (1 + 2R / R_G) · (R₄ / R₃) · (V₂ - V₁)
+    </text>
+    <text x="132" y="218" font-size="9" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
+      CMRR extremadamente elevado (&gt; 100 dB)
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Análisis Sistemático de Topologías Lineales Fundamentales</h5>
+<div class="space-y-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-blue-600 dark:text-blue-400 font-mono">A. Amplificador Inversor:</span>
+    La señal entra por $R_1$ al terminal inversor ($-$), y el terminal $(+)$ está conectado a masa ($V^+ = 0$). Por cortocircuito virtual, $V^- = 0$ (<strong>masa virtual</strong>).
+    $$I_{in} = \\frac{V_{in} - 0}{R_1} = - I_f = - \\frac{0 - V_o}{R_f} \\implies \\mathbf{\\frac{V_o}{V_{in}} = - \\frac{R_f}{R_1}}$$
+    Impedancia de entrada: $\\mathbf{R_{in} = R_1}$ (carga a la fuente de excitación).
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-indigo-600 dark:text-indigo-400 font-mono">B. Amplificador No Inversor y Buffer Seguidor:</span>
+    La señal ingresa directamente al terminal $(+)$ ($V^+ = V_{in}$). El divisor de tensión formado por $R_1$ y $R_f$ fija la tensión en el borne $(-)$ a $V^- = V_o \\frac{R_1}{R_1 + R_f}$. Igualando $V^- = V^+$:
+    $$\\mathbf{\\frac{V_o}{V_{in}} = 1 + \\frac{R_f}{R_1}}$$
+    Impedancia de entrada colosal: $\\mathbf{R_{in} \\approx R_{in,op} (1 + T) \\to \\infty}$. Si $R_f = 0$ y $R_1 = \\infty$, se obtiene el <strong>Seguidor de Tensión (Buffer)</strong> con $\\mathbf{V_o = V_{in}}$, ideal para desacoplar impedancias entre etapas en cascada sin introducir atenuación.
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-purple-600 dark:text-purple-400 font-mono">C. Amplificador Diferencial (Restador):</span>
+    Aplica una tensión $V_1$ al terminal inversor vía $R_1$ con realimentación $R_2$, y $V_2$ al terminal no inversor vía un divisor $R_3-R_4$. Por superposición:
+    $$V_o = -\\frac{R_2}{R_1} V_1 + \\left(1 + \\frac{R_2}{R_1}\\right) \\left(\\frac{R_4}{R_3 + R_4}\\right) V_2$$
+    Si se cumple la condición de apareamiento exacto $\\mathbf{\\frac{R_2}{R_1} = \\frac{R_4}{R_3}}$:
+    $$\\mathbf{V_o = \\frac{R_2}{R_1} (V_2 - V_1)}$$
+    La tensión en modo común $V_{cm} = (V_1+V_2)/2$ se anula por completo en la salida ($A_{cm} = 0$).
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-rose-600 dark:text-rose-400 font-mono">D. Amplificador de Instrumentación Clásico de 3 Op-Amps (INA):</span>
+    Resuelve la baja impedancia de entrada y la sensibilidad de apareamiento del restador simple mediante una etapa de entrada diferencial simétrica con dos op-amps y resistencia de ganancia flotante $R_G$:
+    $$\\mathbf{V_o = \\left( 1 + \\frac{2R}{R_G} \\right) \\cdot \\frac{R_4}{R_3} \\cdot (V_2 - V_1)}$$
+    <ul class="list-disc pl-5 mt-2 space-y-1 text-xs">
+      <li><strong>Impedancia de entrada infinita</strong> en ambos terminales (la señal ve las puertas de los Op-Amps de entrada).</li>
+      <li><strong>Ajuste de ganancia con un solo componente:</strong> Variando únicamente la resistencia pasiva flotante $R_G$ se modula la ganancia diferencial sin degradar el $\\text{CMRR}$ de la etapa de salida.</li>
+      <li>Rechazo de modo común extraordinario: $\\mathbf{\\text{CMRR} > 100\\text{ dB} - 120\\text{ dB}}$.</li>
+    </ul>
+  </div>
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u2-circuitos-lineales-rotadores-fase-allpass',
+          titulo: '2.2 Circuitos de Procesamiento Lineal y Rotadores de Fase (All-Pass de 1° y 2° Orden)',
+          contenido: `
+<p class="mb-3">Los circuitos lineales operacionales no solo realizan amplificación estática, sino operaciones de <strong>cálculo integro-diferencial</strong> y transformaciones de fase independientes de la amplitud (<strong>filtros pasa-todo o rotadores de fase</strong>).</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Integradores y Derivadores: Ideal vs Práctico Compensado</h5>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">Integrador de Miller</span>
+    <p class="mb-1"><strong>Ideal:</strong> Capacitor $C$ en la realimentación: $H(s) = -\\frac{1}{s R C}$. Posee polo en $s=0$ (ganancia infinita en continua $\\to$ satura ante mínimas tensiones de offset $V_{OS}$).</p>
+    <p><strong>Compensado (Práctico):</strong> Se coloca una resistencia $R_f$ en paralelo con $C$.
+    $$\\mathbf{H(s) = - \\frac{R_f / R_1}{1 + s R_f C}}$$
+    Limita la ganancia en continua a $-R_f/R_1$. Para $\\omega \\gg \\frac{1}{R_f C}$ se comporta como un integrador puro con desfasaje de $+90^\\circ$ relativo a la inversión.</p>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1">Derivador Activo</span>
+    <p class="mb-1"><strong>Ideal:</strong> Capacitor $C$ en serie a la entrada: $H(s) = -s R_f C$. Posee un cero en el origen: su ganancia crece $+20\\text{ dB/déc}$ indefinidamente, amplificando el ruido de alta frecuencia y volviendo el sistema inestable.</p>
+    <p><strong>Estabilizado en HF:</strong> Se agrega $R_1$ en serie con $C$ y $C_f$ en paralelo con $R_f$. Opera como derivador en la banda útil $\\omega < 1/(R_1 C)$ y como atenuador en alta frecuencia.</p>
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. Amplificador Operacional de Transconductancia (OTA)</h5>
+<p class="mb-2 text-xs sm:text-sm">El <strong>OTA (Operational Transconductance Amplifier)</strong> entrega una <strong>corriente de salida</strong> proporcional a la tensión diferencial entre sus entradas:
+$$\\mathbf{I_{out} = g_m (V^+ - V^-)}$$
+A diferencia del Op-Amp estándar, la transconductancia $g_m$ es modulable dinámicamente mediante una corriente de polarización auxiliar externa $I_{ABC}$ (Amplifier Bias Current):
+$$g_m = \\frac{I_{ABC}}{2 V_T} \\quad (V_T \\approx 26\\text{ mV a } 300\\text{ K})$$
+El OTA permite construir filtros analógicos continuos integrados en silicio (<strong>filtros $G_m\\text{-}C$</strong>) cuya frecuencia de corte se sintoniza electrónicamente mediante software o tensión, prescindiendo por completo de resistores de difusión.</p>
+
+
+<div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+    📐 Conversor de Impedancia Negativa (INIC) y Rotador de Fase (All-Pass)
+  </span>
+  <div class="flex justify-center overflow-x-auto py-1">
+    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+  <!-- Marco contenedor -->
+  <rect x="10" y="10" width="840" height="250" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+
+  <!-- PANEL IZQUIERDO: Conversor de Impedancia Negativa (INIC) -->
+  <g transform="translate(25, 20)">
+    <rect x="0" y="0" width="385" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="192" y="22" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Conversor de Impedancia Negativa (INIC)
+    </text>
+
+    <!-- Entrada Zin -->
+    <circle cx="30" cy="95" r="3.5" fill="#2563eb"/>
+    <text x="30" y="85" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb">Z_in</text>
+    <line x1="30" y1="95" x2="100" y2="95" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Op-Amp con realimentacion dual (positiva y negativa) -->
+    <polygon points="140,80 140,140 190,110" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="145" y="98" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
+    <text x="145" y="128" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+    <!-- Conexión entrada a terminal (+) mediante R1 -->
+    <line x1="100" y1="95" x2="100" y2="125" stroke="#334155" stroke-width="1.8"/>
+    <line x1="100" y1="125" x2="140" y2="125" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- R2 hacia salida (realimentacion positiva) -->
+    <circle cx="100" cy="125" r="3" fill="#334155"/>
+    <line x1="100" y1="125" x2="100" y2="165" stroke="#334155" stroke-width="1.8"/>
+    <line x1="100" y1="165" x2="120" y2="165" stroke="#334155" stroke-width="1.8"/>
+    <rect x="120" y="158" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="137" y="152" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_b</text>
+    <line x1="155" y1="165" x2="210" y2="165" stroke="#334155" stroke-width="1.8"/>
+    <line x1="210" y1="165" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Lazo de realimentacion negativa R1 -->
+    <line x1="115" y1="95" x2="140" y2="95" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="115" cy="95" r="3" fill="#334155"/>
+    <line x1="115" y1="95" x2="115" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="115" y1="55" x2="135" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <rect x="135" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="152" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_a</text>
+    <line x1="170" y1="55" x2="210" y2="55" stroke="#334155" stroke-width="1.8"/>
+    <line x1="210" y1="55" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Carga Z_L conectada al terminal (-) a masa -->
+    <line x1="115" y1="95" x2="115" y2="115" stroke="#334155" stroke-width="1.8"/>
+    <rect x="108" y="115" width="14" height="30" fill="#ffffff" stroke="#9333ea" stroke-width="1.8"/>
+    <text x="90" y="133" font-size="9.5" font-family="monospace" font-weight="bold" fill="#9333ea">Z_L</text>
+    <line x1="115" y1="145" x2="115" y2="175" stroke="#334155" stroke-width="1.8"/>
+    <line x1="105" y1="175" x2="125" y2="175" stroke="#334155" stroke-width="1.8"/>
+
+    <line x1="190" y1="110" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
+
+    <rect x="20" y="185" width="345" height="35" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="192" y="206" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Z_in = - (R_b / R_a) · Z_L ⟹ R_in = - R_L (si R_a = R_b)
+    </text>
+  </g>
+
+  <!-- PANEL DERECHO: Rotador de Fase (Filtro All-Pass / Pasa-Todo) -->
+  <g transform="translate(435, 20)">
+    <rect x="0" y="0" width="395" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="197" y="22" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Rotador de Fase (Filtro Pasa-Todo / All-Pass de 1° Orden)
+    </text>
+
+    <!-- Entrada Vin bifurcada -->
+    <circle cx="25" cy="110" r="3.5" fill="#2563eb"/>
+    <text x="25" y="100" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb">V_in</text>
+    <line x1="25" y1="110" x2="60" y2="110" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="60" cy="110" r="3" fill="#334155"/>
+
+    <!-- Rama superior: R hacia terminal (-) -->
+    <line x1="60" y1="110" x2="60" y2="75" stroke="#334155" stroke-width="1.8"/>
+    <line x1="60" y1="75" x2="90" y2="75" stroke="#334155" stroke-width="1.8"/>
+    <rect x="90" y="68" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="107" y="62" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
+    <line x1="125" y1="75" x2="160" y2="75" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Realimentacion R hacia salida -->
+    <circle cx="160" cy="75" r="3" fill="#334155"/>
+    <line x1="160" y1="75" x2="160" y2="45" stroke="#334155" stroke-width="1.8"/>
+    <line x1="160" y1="45" x2="185" y2="45" stroke="#334155" stroke-width="1.8"/>
+    <rect x="185" y="38" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="202" y="32" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
+    <line x1="220" y1="45" x2="260" y2="45" stroke="#334155" stroke-width="1.8"/>
+    <line x1="260" y1="45" x2="260" y2="105" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Rama inferior: Red RC al terminal (+) -->
+    <line x1="60" y1="110" x2="60" y2="145" stroke="#334155" stroke-width="1.8"/>
+    <line x1="60" y1="145" x2="90" y2="145" stroke="#334155" stroke-width="1.8"/>
+    <!-- Capacitor C -->
+    <line x1="90" y1="137" x2="90" y2="153" stroke="#334155" stroke-width="2"/>
+    <line x1="96" y1="137" x2="96" y2="153" stroke="#334155" stroke-width="2"/>
+    <text x="93" y="130" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
+    <line x1="96" y1="145" x2="160" y2="145" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Resistencia R0 a masa -->
+    <circle cx="140" cy="145" r="3" fill="#334155"/>
+    <line x1="140" y1="145" x2="140" y2="165" stroke="#334155" stroke-width="1.8"/>
+    <rect x="133" y="165" width="14" height="28" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+    <text x="120" y="182" font-size="9" font-family="monospace" font-weight="bold" fill="#0f172a">R₀</text>
+    <line x1="140" y1="193" x2="140" y2="205" stroke="#334155" stroke-width="1.8"/>
+    <line x1="130" y1="205" x2="150" y2="205" stroke="#334155" stroke-width="1.8"/>
+
+    <!-- Op-Amp -->
+    <polygon points="180,80 180,140 230,110" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <line x1="160" y1="75" x2="180" y2="95" stroke="#334155" stroke-width="1.8"/>
+    <line x1="160" y1="145" x2="180" y2="125" stroke="#334155" stroke-width="1.8"/>
+    <text x="185" y="99" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
+    <text x="185" y="129" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+    <!-- Salida Vo -->
+    <line x1="230" y1="110" x2="290" y2="110" stroke="#334155" stroke-width="1.8"/>
+    <circle cx="260" cy="110" r="3" fill="#334155"/>
+    <circle cx="290" cy="110" r="3" fill="#059669"/>
+    <text x="290" y="100" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+
+    <rect x="15" y="185" width="365" height="35" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="197" y="206" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      H(s) = (s - 1/R₀C) / (s + 1/R₀C) ⟹ |H(jω)| ≡ 1, φ(ω) = -2·arctan(ω·R₀C)
+    </text>
+  </g>
+</svg>
+  </div>
+</div>
+
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Rotadores de Fase (Filtros Pasa-Todo / All-Pass)</h5>
+<p class="mb-2 text-xs sm:text-sm">Un <strong>rotador de fase</strong> o filtro pasa-todo tiene la propiedad cardinal de mantener una <strong>ganancia de módulo rigurosamente unitaria y plana ($|H(j\\omega)| = 1 = 0\\text{ dB}$)</strong> para cualquier pulsación $\\omega$, al mismo tiempo que produce una rotación de fase monótona controlada:</p>
+
+<div class="space-y-3 my-3">
+  <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-950 dark:text-purple-200 text-xs sm:text-sm">
+    <h6 class="font-bold text-xs uppercase tracking-wider mb-1">Rotador de Fase de 1° Orden</h6>
+    $$H(s) = \\frac{s - \\omega_0}{s + \\omega_0} = \\frac{s - 1/(R_0 C)}{s + 1/(R_0 C)}$$
+    Posee un cero en el semiplano derecho en $s = +\\omega_0$ y un polo simétrico en el semiplano izquierdo en $s = -\\omega_0$.
+    $$\\mathbf{|H(j\\omega)| = \\left| \\frac{j\\omega - \\omega_0}{j\\omega + \\omega_0} \\right| = \\frac{\\sqrt{\\omega^2 + \\omega_0^2}}{\\sqrt{\\omega^2 + \\omega_0^2}} \\equiv 1 \\quad (0\\text{ dB})}$$
+    $$\\mathbf{\\phi(\\omega) = \\pi - 2\\arctan\\left(\\frac{\\omega}{\\omega_0}\\right) = -2\\arctan(\\omega R_0 C)}$$
+    La fase rota suavemente desde $0^\\circ$ (en $\\omega = 0$), pasando por exactamente $\\mathbf{-90^\\circ}$ en $\\omega = \\omega_0$, hasta alcanzar $-180^\\circ$ cuando $\\omega \\to \\infty$.
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <h6 class="font-bold text-xs uppercase tracking-wider mb-1">Rotador de Fase de 2° Orden y Ecualización de Retardo</h6>
+    $$H(s) = \\frac{s^2 - \\frac{\\omega_0}{Q}s + \\omega_0^2}{s^2 + \\frac{\\omega_0}{Q}s + \\omega_0^2}$$
+    Proporciona una rotación de fase continua de $\\mathbf{360^\\circ}$ (desde $0^\\circ$ hasta $-360^\\circ$), cruzando $-180^\\circ$ en $\\omega = \\omega_0$.
+    <p class="mt-2 text-xs text-slate-600 dark:text-slate-300"><strong>Aplicación Cardinal:</strong> Ecualización de retardo de grupo $\\tau_g(\\omega) = -d\\phi/d\\omega$ en sistemas de telecomunicaciones, telefonía y audio digital. Permite aplanar el retardo temporal en la banda pasante sin alterar la atenuación espectral del canal.</p>
+  </div>
+</div>
+
+          `
+        },
+        {
+          id: 'tc3-u2-nic-giradores-simuladores-inductancia',
+          titulo: '2.3 Conversores de Impedancia Negativa (NIC), Giradores (GYR) y Simuladores de Inductancia',
+          contenido: `
+<p class="mb-3">En la síntesis activa de redes, se emplean componentes multipuerto que transforman o invierten la naturaleza de una impedancia pasiva conectada en sus bornes de carga. Los más notables son el <strong>Conversor de Impedancia Negativa (NIC)</strong> y el <strong>Girador de Tellegen (GYR)</strong>.</p>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Conversor de Impedancia Negativa (NIC)</h5>
+<p class="mb-2 text-xs sm:text-sm">Un <strong>NIC (Negative Impedance Converter)</strong> es un cuadripolo lineal activo que refleja en sus terminales de entrada el negativo proporcional de la impedancia de carga conectada en el puerto 2:</p>
+$$\\mathbf{Z_{in}(s) = - k \\cdot Z_L(s)}$$
+Existen dos variedades fundamentales según la variable invertida:
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">INIC (Inversión de Corriente)</span>
+    Invierte el sentido relativo de la corriente manteniendo igual tensión:
+    $$V_1 = V_2, \\quad I_1 = - k I_2 \\implies [T] = \\begin{bmatrix} 1 & 0 \\\\ 0 & -k \\end{bmatrix}$$
+    Implementado con Op-Amp, si $R_a = R_b$, se obtiene rigurosamente $\\mathbf{Z_{in} = - Z_L}$.
+  </div>
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">VNIC (Inversión de Tensión)</span>
+    Invierte el signo de la tensión manteniendo el sentido de corriente:
+    $$V_1 = -k V_2, \\quad I_1 = I_2 \\implies [T] = \\begin{bmatrix} -k & 0 \\\\ 0 & 1 \\end{bmatrix}$$
+  </div>
+</div>
+<div class="p-3 my-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-950 dark:text-amber-200">
+  <span class="font-bold font-mono">Criterio de Estabilidad OCS vs SCS:</span> Por contener realimentación positiva y negativa simultáneas, un NIC posee un puerto <strong>estable a circuito abierto (OCS - Open Circuit Stable)</strong> y otro <strong>estable a cortocircuito (SCS - Short Circuit Stable)</strong>. Para garantizar estabilidad asintótica, la impedancia conectada en el puerto OCS debe ser mayor que la del puerto SCS, asegurando que el lazo de realimentación negativa predomine sobre el positivo.
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">2. El Girador de Tellegen (GYR)</h5>
+<p class="mb-2 text-xs sm:text-sm">Propuesto por Bernard Tellegen en 1948, el <strong>girador</strong> es un cuadripolo no recíproco lineal ($y_{12} = -y_{21}$) con matrices constitutivas:</p>
+$$[y] = \\begin{bmatrix} 0 & g \\\\ -g & 0 \\end{bmatrix}, \\quad [z] = \\begin{bmatrix} 0 & -R_g \\\\ R_g & 0 \\end{bmatrix}$$
+donde $g = 1/R_g$ es la conductancia de giración y $R_g$ la resistencia de giración.
+<div class="p-4 my-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-200 text-xs sm:text-sm">
+  <h6 class="font-bold text-xs uppercase tracking-wider mb-1">Propiedad de Inversión de Impedancia del Girador</h6>
+  $$\\mathbf{Z_{in}(s) = \\frac{R_g^2}{Z_L(s)} = R_g^2 \\cdot Y_L(s)}$$
+  Si se conecta como carga un <strong>capacitor puro</strong> $Z_L(s) = \\frac{1}{s C}$:
+  $$\\mathbf{Z_{in}(s) = R_g^2 \\cdot (s C) = s \\cdot (R_g^2 C) \\equiv s L_{eq}}$$
+  El circuito simula con exactitud un <strong>inductor puro a masa sin ninguna bobina magnética</strong> de inductancia $\\mathbf{L_{eq} = R_g^2 C}$.
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Circuitos Simuladores de Inductancia Activa (Riordan y Prescott)</h5>
+<p class="mb-2 text-xs sm:text-sm">Para prescindir de bobinas voluminosas y con pérdidas en frecuencias de audio y telecomunicaciones, se emplean dos topologías célebres:</p>
+<ul class="list-disc pl-5 space-y-1 text-xs">
+  <li><strong>Simulador de Riordan:</strong> Utiliza dos amplificadores operacionales, cuatro resistencias y un capacitor. Implementa un girador activo de alta estabilidad térmica que simula inductancias referidas a masa con factores de calidad $Q > 500$.</li>
+  <li><strong>Simulador de Prescott:</strong> Estructura activa diseñada específicamente para simular <strong>inductores flotantes</strong> (ninguno de sus bornes está unido a la masa de referencia), indispensable para reemplazar inductores serie en filtros escalera pasivos en PI o T.</li>
+</ul>
+
+          `
+        },
+        {
           id: 'tc3-u2-gic-antoniou',
-          titulo: '2.1 El Convertidor de Inmitancia Generalizado (GIC de Antoniou)',
+          titulo: '2.4 El Convertidor de Inmitancia Generalizado (GIC de Antoniou)',
           contenido: `
             <p class="mb-3">El circuito GIC de Antoniou consta de 2 amplificadores operacionales ideales y 5 impedancias pasivas ($Z_1, Z_2, Z_3, Z_4, Z_5$) interconectadas:</p>
 
@@ -442,7 +1116,7 @@ $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
         },
         {
           id: 'tc3-u2-fdnr-bruton',
-          titulo: '2.2 El Elemento D de Bruton (FDNR) y Transformación de Bruton',
+          titulo: '2.5 El Elemento D de Bruton (FDNR) y Transformación de Bruton',
           contenido: `
             <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-2 mb-2">Síntesis del Elemento D (FDNR)</h5>
             <p class="mb-2">Si en el GIC se eligen dos capacitores en las posiciones $Z_1$ y $Z_3$ ($Z_1 = 1/(s C_1), Z_3 = 1/(s C_3)$) y resistencias en $Z_2, Z_4, Z_5$:</p>
@@ -470,7 +1144,7 @@ $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
         },
         {
           id: 'tc3-u2-capacitores-conmutados',
-          titulo: '2.3 Filtros de Capacitores Conmutados (Switched Capacitor Circuits)',
+          titulo: '2.6 Filtros de Capacitores Conmutados (Switched Capacitor Circuits)',
           contenido: `
 <p class="mb-3">En el diseño de circuitos integrados analógicos en tecnología MOS/CMOS (VLSI y LSI), la integración de resistencias convencionales presenta severas limitaciones: ocupan un área superficial de silicio desproporcionadamente grande y sufren desviaciones de tolerancia de hasta el $\\pm 20\\%-30\\%$ debido a variaciones térmicas y del proceso litográfico. En cambio, los capacitores integrados de óxido-polisilicio ocupan un área mínima y, lo más importante, <strong>la razón entre dos capacidades integradas $\\frac{C_1}{C_2}$ se controla con una precisión superior al $0.1\\%$</strong>.</p>
 
@@ -1483,7 +2157,18 @@ $$Z(s) = \\frac{1}{s C_1} + \\cfrac{1}{\\frac{1}{s L_2} + \\cfrac{1}{\\frac{1}{s
 </div>
 
 
-          `
+          
+<div class="p-3 my-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-950 dark:text-cyan-200">
+  <h6 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+    <span>🔍</span> Remoción Total vs. Remoción Parcial de Polos y Dipolos No Canónicos
+  </h6>
+  <p class="text-xs mb-2">En la síntesis canónica de Foster y Cauer se efectúa la <strong>remoción total</strong> de un polo en $s = j\\omega_i$, sustrayendo todo su residuo $k_i = \\lim_{s \\to j\\omega_i} \\frac{s^2 + \\omega_i^2}{s} Z(s)$, lo que deja a la función remanente sin ningún polo en esa frecuencia y con el menor grado polinómico posible (red canónica con número mínimo estricto de componentes).</p>
+  <p class="text-xs mb-2">Por el contrario, en una <strong>Remoción Parcial de Polo</strong>, se sustrae únicamente una fracción del residuo $0 < k_i' < k_i$ (o en $\\omega = \\infty$ una inductancia menor $L' < L_\\infty$, o en $\\omega = 0$ una capacidad menor):
+  $$Z_{rem}(s) = Z(s) - \\frac{2 k_i' s}{s^2 + \\omega_i^2}$$
+  El residuo remanente $k_i - k_i' > 0$ garantiza que $Z_{rem}(s)$ <strong>siga siendo una Función Real Positiva (PR)</strong>.</p>
+  <p class="text-xs"><strong>Objetivo Cardinal:</strong> Al restar $k_i'$, la curva de reactancia o susceptancia desciende de forma controlada, <strong>forzando a que la función remanente tenga un cero de transmisión en una pulsación arbitraria prefijada $\\omega_z$</strong>: $Z_{rem}(j\\omega_z) = 0$. Luego, al invertir $Y_{rem}(s) = 1/Z_{rem}(s)$, aparece un polo en $\\omega_z$ que se remueve totalmente como un tanque resonante serie LC. Este proceso engendra <strong>dipolos no canónicos</strong> (con más componentes que el grado mínimo), indispensables para satisfacer ceros de atenuación específicos y absorber capacidades parásitas de montaje.</p>
+</div>
+`
         },
         {
           id: 'tc3-u3-sintesis-rc-rl',
@@ -2118,8 +2803,59 @@ $$k Z(k) = \\frac{1}{C_0} \\quad (\\text{si es capacitivo}) \\qquad \\text{ó} \
           `
         },
         {
+          id: 'tc3-u3-metodo-miyata',
+          titulo: '3.9 Síntesis Sistemática de Funciones Mínimas por el Método de Miyata',
+          contenido: `
+<p class="mb-3">El <strong>Método de Akira Miyata (1955)</strong> constituye uno de los hitos más elegantes de la teoría de síntesis de redes. Proporciona una solución sistemática para sintetizar funciones PR mínimas (que carecen de ceros y polos sobre el eje $j\\omega$ y tienen parte real mínima no nula) <strong>sin recurrir a transformadores ideales ni inductancias mutuamente acopladas</strong> (evitando la principal desventaja de Brune) y <strong>sin multiplicar artificiosamente el grado del circuito</strong> (evitando el inflado polinómico exponencial de Bott-Duffin).</p>
+
+<div class="p-4 my-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-950 dark:text-emerald-200">
+  <h5 class="font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+    <span>📜</span> Condición Estricta de Aplicabilidad de Miyata
+  </h5>
+  <p class="text-xs">Sea una impedancia Real Positiva $Z(s) = \\frac{P(s)}{Q(s)}$ cuyo denominador $Q(s)$ es estrictamente de Hurwitz. Su parte real evaluada sobre el eje imaginario $s = j\\omega$ es:
+  $$\\text{Re}[Z(j\\omega)] = \\frac{A(\\omega^2)}{B(\\omega^2)} = \\frac{a_0 + a_2 \\omega^2 + a_4 \\omega^4 + \\dots + a_{2n}\\omega^{2n}}{B(\\omega^2)}$$
+  El Teorema de Miyata establece que si todos los coeficientes del polinomio par del numerador son <strong>estrictamente no negativos</strong>:
+  $$\\mathbf{a_{2k} \\ge 0 \\quad \\forall k \\in \\{0, 1, 2, \\dots, n\\}}$$
+  entonces $Z(s)$ puede sintetizarse como la <strong>conexión en serie de $n+1$ redes en escalera LC puras sin acoplamiento magnético, cada una terminada en un resistor pasivo positivo $R_k$</strong>.</p>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Algoritmo Constructivo de Descomposición de Miyata</h5>
+<div class="space-y-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-blue-600 dark:text-blue-400 font-mono">Paso 1: Desglose de la Parte Real</span>
+    Se descompone la función parte real en la suma de $n+1$ fracciones elementales:
+    $$\\text{Re}[Z(j\\omega)] = \\sum_{k=0}^n \\text{Re}[Z_k(j\\omega)] = \\frac{a_0}{B(\\omega^2)} + \\frac{a_2 \\omega^2}{B(\\omega^2)} + \\dots + \\frac{a_{2n}\\omega^{2n}}{B(\\omega^2)}$$
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-indigo-600 dark:text-indigo-400 font-mono">Paso 2: Reconstrucción de cada Sub-Impedancia $Z_k(s)$</span>
+    A partir de la descomposición de Hurwitz del denominador $Q(s) = m(s) + n(s)$ donde $B(\\omega^2) = m^2 - n^2|_{s=j\\omega}$:
+    $$\\text{Ev}[Z_k(s)] = \\frac{a_{2k} (-s^2)^k}{m^2(s) - n^2(s)}$$
+    Se reconstruye analíticamente cada $Z_k(s) = \\frac{m_k(s) + n_k(s)}{m(s) + n(s)}$ aplicando el método de Gewertz o expansión algebraica directa. Cada $Z_k(s)$ es por construcción una función Real Positiva PR.
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+    <span class="font-bold text-emerald-600 dark:text-emerald-400 font-mono">Paso 3: Síntesis en Escalera Canónica de cada Rama</span>
+    Cada sub-impedancia $Z_k(s)$ tiene una propiedad topológica formidable:
+    <ul class="list-disc pl-5 mt-1 space-y-1 text-xs">
+      <li><strong>Término $Z_0(s)$ (con numerador $a_0$):</strong> Posee todos sus ceros de transmisión agrupados en $\\mathbf{\\omega = \\infty}$. Se sintetiza directamente mediante divisiones sucesivas continuadas tipo <strong>Cauer I</strong> (inductores en serie y capacitores en paralelo), terminando en un resistor $R_0 = a_0 / B(0)$.</li>
+      <li><strong>Término $Z_n(s)$ (con numerador $a_{2n}\\omega^{2n}$):</strong> Posee todos sus ceros de transmisión concentrados en $\\mathbf{\\omega = 0}$. Se sintetiza directamente mediante divisiones sucesivas tipo <strong>Cauer II</strong> (capacitores en serie e inductores en paralelo), terminando en un resistor $R_n$.</li>
+      <li><strong>Términos intermedios $Z_k(s)$ (con $\\omega^{2k}$):</strong> Poseen ceros de transmisión compartidos entre $\\omega=0$ y $\\omega=\\infty$. Se alternan extracciones de Cauer I y Cauer II.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="p-3 my-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs">
+  <span class="font-bold text-slate-800 dark:text-slate-200 font-mono">Topología Final:</span> La impedancia total $Z(s)$ resulta de conectar las ramas resultantes en serie:
+  $$\\mathbf{Z(s) = Z_0(s) + Z_1(s) + \\dots + Z_n(s)}$$
+  Es una red enteramente pasiva, recíproca, sin transformadores ni acoplamientos mutuos, con un número de elementos notablemente inferior al de Bott-Duffin.
+</div>
+
+          `
+        },
+        {
           id: 'tc3-u3-tabla-resumen',
-          titulo: '3.9 Tabla Comparativa Maestra y Formulario de Examen - Síntesis de Dipolos',
+          titulo: '3.10 Tabla Comparativa Maestra y Formulario de Examen - Síntesis de Dipolos',
           contenido: `
 <p class="mb-3">Para dominar las evaluaciones de la cátedra (exámenes parciales y finales de Teoría de Circuitos III), la siguiente tabla resume los criterios de realizabilidad, ubicación de singularidades, derivadas y procedimientos de expansión para cada familia de dipolos:</p>
 
@@ -2295,7 +3031,38 @@ $$k Z(k) = \\frac{1}{C_0} \\quad (\\text{si es capacitivo}) \\qquad \\text{ó} \
   </div>
 </div>
 
-          `
+          
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Cuadripolos Cargados: Inmitancias Operacionales y Funciones de Transferencia</h5>
+<p class="mb-2 text-xs sm:text-sm">En aplicaciones prácticas, una red de dos puertos opera conectada a un generador real con impedancia interna $Z_g(s)$ en el puerto 1 y una carga pasiva $Z_L(s)$ en el puerto 2. Empleando la <strong>matriz de transmisión $[T]$</strong> ($A, B, C, D$):</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">Impedancias de Entrada y Salida</span>
+    <ul class="list-disc pl-4 space-y-1">
+      <li><strong>Impedancia de entrada ante carga $Z_L$:</strong>
+      $$\\mathbf{Z_{in}(s) = \\frac{V_1}{I_1} = \\frac{A Z_L + B}{C Z_L + D}}$$</li>
+      <li><strong>Impedancia de salida ante generador $Z_g$:</strong>
+      $$\\mathbf{Z_{out}(s) = \\frac{D Z_g + B}{C Z_g + A}}$$</li>
+    </ul>
+  </div>
+
+  <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs">
+    <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">Ganancias Operacionales con Carga</span>
+    <ul class="list-disc pl-4 space-y-1">
+      <li><strong>Ganancia de tensión $A_v(s) = \\frac{V_2}{V_1}$:</strong>
+      $$\\mathbf{A_v(s) = \\frac{Z_L}{A Z_L + B}}$$</li>
+      <li><strong>Ganancia de corriente $A_i(s) = \\frac{I_2}{I_1}$:</strong>
+      $$\\mathbf{A_i(s) = \\frac{-1}{C Z_L + D}}$$</li>
+      <li><strong>Transimpedancia $Z_{21}(s) = \\frac{V_2}{I_1} = \\frac{Z_L}{C Z_L + D}$</strong></li>
+    </ul>
+  </div>
+</div>
+
+<h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">4. Gráficos de Flujo de Señal (SFG) y Regla de Mason en Cuadripolos</h5>
+<p class="mb-2 text-xs sm:text-sm">El <strong>Gráfico de Flujo de Señal (SFG - Signal Flow Graph)</strong> representa visualmente las ecuaciones algebraicas de los cuadripolos interconectados mediante nodos (variables de tensión y corriente) y ramas dirigidas (transmitancias). Permite resolver transferencias globales en sistemas multietapa con realimentaciones complejas aplicando la célebre <strong>Fórmula de Ganancia de Mason</strong>:</p>
+$$\\mathbf{T = \\frac{\\sum_k P_k \\Delta_k}{\\Delta}}$$
+donde $P_k$ es la transmitancia del $k$-ésimo camino directo desde la entrada a la salida, $\\Delta = 1 - \\sum L_i + \\sum L_i L_j - \\dots$ es el determinante del grafo calculado a partir de todos los lazos cerrados disjuntos, y $\\Delta_k$ es el cofactor del camino $P_k$ (determinante del subgrafo que no toca al camino $P_k$).
+`
         },
         {
           id: 'tc3-u4-interconexion-ensayo-brune',
