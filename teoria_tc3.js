@@ -687,168 +687,163 @@ $$\\mathbf{\\tau_g(\\omega) = -\\frac{d\\phi(\\omega)}{d\\omega}}$$
 </div>
 
 
+
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
-  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-3 text-center">
     📐 Topologías Lineales con Op-Amp e Instrumentación INA de 3 Op-Amps
   </span>
-  <div class="flex justify-center overflow-x-auto py-1">
-    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
-  <!-- Marco contenedor -->
-  <rect x="10" y="10" width="840" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <!-- PANEL 1: INVERSOR -->
+    <div class="p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-2xs">
+      <h6 class="text-xs font-bold text-slate-800 dark:text-slate-200 text-center mb-2">Amplificador Inversor</h6>
+      <div class="flex justify-center items-center py-1">
+        <svg class="w-full h-auto max-w-[240px] mx-auto select-none" viewBox="0 0 250 155" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entrada Vin -->
+  <circle cx="20" cy="85" r="3.5" fill="#2563eb"/>
+  <text x="20" y="74" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
+  <line x1="20" y1="85" x2="45" y2="85" stroke="#334155" stroke-width="1.8"/>
 
-  <!-- PANEL 1: Amplificador Inversor -->
-  <g transform="translate(25, 20)">
-    <rect x="0" y="0" width="245" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="122" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Amplificador Inversor
-    </text>
+  <!-- R1 -->
+  <rect x="45" y="78" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="62.5" y="72" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R₁</text>
+  <line x1="80" y1="85" x2="105" y2="85" stroke="#334155" stroke-width="1.8"/>
 
-    <!-- Entrada Vin -->
-    <circle cx="20" cy="100" r="3" fill="#2563eb"/>
-    <text x="20" y="90" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
-    <line x1="20" y1="100" x2="45" y2="100" stroke="#334155" stroke-width="1.8"/>
+  <!-- Nodo inversor (-) -->
+  <circle cx="105" cy="85" r="3.5" fill="#334155"/>
+  <line x1="105" y1="85" x2="130" y2="85" stroke="#334155" stroke-width="1.8"/>
 
-    <!-- R1 -->
-    <rect x="45" y="93" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="62" y="87" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R₁</text>
-    <line x1="80" y1="100" x2="110" y2="100" stroke="#334155" stroke-width="1.8"/>
+  <!-- Op-Amp -->
+  <polygon points="130,65 130,135 185,100" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+  <text x="135" y="89" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">−</text>
+  <text x="135" y="123" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
 
-    <!-- Nodo inversor (-) -->
-    <circle cx="110" cy="100" r="3" fill="#334155"/>
-    <line x1="110" y1="100" x2="135" y2="100" stroke="#334155" stroke-width="1.8"/>
+  <!-- Terminal (+) a masa -->
+  <line x1="130" y1="118" x2="105" y2="118" stroke="#334155" stroke-width="1.8"/>
+  <line x1="105" y1="118" x2="105" y2="138" stroke="#334155" stroke-width="1.8"/>
+  <line x1="95" y1="138" x2="115" y2="138" stroke="#334155" stroke-width="1.8"/>
+  <line x1="98" y1="142" x2="112" y2="142" stroke="#334155" stroke-width="1.4"/>
+  <line x1="102" y1="146" x2="108" y2="146" stroke="#334155" stroke-width="1.2"/>
 
-    <!-- Op-Amp -->
-    <polygon points="135,85 135,145 185,115" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
-    <text x="140" y="104" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
-    <text x="140" y="134" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+  <!-- Lazo de realimentacion con Rf -->
+  <line x1="105" y1="85" x2="105" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <line x1="105" y1="40" x2="125" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <rect x="125" y="33" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="142.5" y="27" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
+  <line x1="160" y1="40" x2="200" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <line x1="200" y1="40" x2="200" y2="100" stroke="#334155" stroke-width="1.8"/>
 
-    <!-- Terminal (+) a masa -->
-    <line x1="110" y1="130" x2="135" y2="130" stroke="#334155" stroke-width="1.8"/>
-    <line x1="110" y1="130" x2="110" y2="155" stroke="#334155" stroke-width="1.8"/>
-    <line x1="100" y1="155" x2="120" y2="155" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Lazo de realimentacion con Rf -->
-    <line x1="110" y1="100" x2="110" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="110" y1="55" x2="130" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <rect x="130" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="147" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
-    <line x1="165" y1="55" x2="200" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="200" y1="55" x2="200" y2="115" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Salida Vo -->
-    <line x1="185" y1="115" x2="225" y2="115" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="200" cy="115" r="3" fill="#334155"/>
-    <circle cx="225" cy="115" r="3" fill="#059669"/>
-    <text x="225" y="105" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
-
-    <!-- Formula caja -->
-    <rect x="10" y="180" width="225" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="122" y="200" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      V_o / V_in = - R_f / R₁
-    </text>
-    <text x="122" y="218" font-size="9.5" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
-      R_in = R₁,  R_out ≈ 0
-    </text>
-  </g>
-
-  <!-- PANEL 2: Amplificador No Inversor y Buffer -->
-  <g transform="translate(295, 20)">
-    <rect x="0" y="0" width="250" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="125" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Amplificador No Inversor
-    </text>
-
-    <!-- Entrada Vin al terminal (+) -->
-    <circle cx="20" cy="130" r="3" fill="#2563eb"/>
-    <text x="20" y="120" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
-    <line x1="20" y1="130" x2="135" y2="130" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Op-Amp -->
-    <polygon points="135,85 135,145 185,115" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
-    <text x="140" y="104" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
-    <text x="140" y="134" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
-
-    <!-- Divisor de realimentacion al terminal (-) -->
-    <line x1="100" y1="100" x2="135" y2="100" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="100" cy="100" r="3" fill="#334155"/>
-
-    <!-- R1 hacia masa -->
-    <line x1="100" y1="100" x2="100" y2="130" stroke="#334155" stroke-width="1.8"/>
-    <rect x="93" y="130" width="14" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="80" y="148" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a">R₁</text>
-    <line x1="100" y1="160" x2="100" y2="175" stroke="#334155" stroke-width="1.8"/>
-    <line x1="90" y1="175" x2="110" y2="175" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Rf hacia salida -->
-    <line x1="100" y1="100" x2="100" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="100" y1="55" x2="130" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <rect x="130" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="147" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
-    <line x1="165" y1="55" x2="200" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="200" y1="55" x2="200" y2="115" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Salida Vo -->
-    <line x1="185" y1="115" x2="230" y2="115" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="200" cy="115" r="3" fill="#334155"/>
-    <circle cx="230" cy="115" r="3" fill="#059669"/>
-    <text x="230" y="105" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
-
-    <rect x="10" y="180" width="230" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="125" y="200" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      V_o / V_in = 1 + R_f / R₁
-    </text>
-    <text x="125" y="218" font-size="9.5" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
-      Buffer si R_f = 0, R₁ = ∞ ⟹ V_o = V_in (R_in → ∞)
-    </text>
-  </g>
-
-  <!-- PANEL 3: Amplificador de Instrumentación (INA de 3 Op-Amps) -->
-  <g transform="translate(570, 20)">
-    <rect x="0" y="0" width="265" height="240" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="132" y="20" font-size="11" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Amplificador de Instrumentación (INA)
-    </text>
-
-    <!-- Entradas diferenciales V1 y V2 -->
-    <text x="15" y="60" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb">V₁</text>
-    <text x="15" y="165" font-size="9.5" font-family="monospace" font-weight="bold" fill="#2563eb">V₂</text>
-
-    <!-- Bloques simbolicos OA1, OA2 (Buffer con Rg) -->
-    <rect x="35" y="45" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="57" y="64" font-size="9" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₁</text>
-
-    <rect x="35" y="145" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="57" y="164" font-size="9" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₂</text>
-
-    <!-- Resistencia de ganancia Rg entre OA1 y OA2 -->
-    <line x1="57" y1="75" x2="57" y2="95" stroke="#334155" stroke-width="1.5"/>
-    <rect x="50" y="95" width="14" height="30" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
-    <text x="35" y="113" font-size="9" font-family="monospace" font-weight="bold" fill="#dc2626">R_G</text>
-    <line x1="57" y1="125" x2="57" y2="145" stroke="#334155" stroke-width="1.5"/>
-
-    <!-- Lineas hacia OA3 (diferencial) -->
-    <line x1="80" y1="60" x2="135" y2="85" stroke="#334155" stroke-width="1.5"/>
-    <line x1="80" y1="160" x2="135" y2="135" stroke="#334155" stroke-width="1.5"/>
-
-    <!-- Bloque OA3 Diferencial -->
-    <polygon points="135,75 135,145 190,110" fill="#f8fafc" stroke="#0f172a" stroke-width="1.8"/>
-    <text x="155" y="114" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a">OA₃</text>
-
-    <line x1="190" y1="110" x2="245" y2="110" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="245" cy="110" r="3" fill="#059669"/>
-    <text x="245" y="100" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
-
-    <rect x="10" y="180" width="245" height="48" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="132" y="200" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      V_o = (1 + 2R / R_G) · (R₄ / R₃) · (V₂ - V₁)
-    </text>
-    <text x="132" y="218" font-size="9" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">
-      CMRR extremadamente elevado (&gt; 100 dB)
-    </text>
-  </g>
+  <!-- Salida Vo -->
+  <line x1="185" y1="100" x2="230" y2="100" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="200" cy="100" r="3.5" fill="#334155"/>
+  <circle cx="230" cy="100" r="3.5" fill="#059669"/>
+  <text x="230" y="89" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
 </svg>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-center mt-2">
+        $$\\mathbf{\\frac{V_o}{V_{in}} = - \\frac{R_f}{R_1}}$$
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">$R_{in} = R_1, \\quad R_{out} \\approx 0$</p>
+      </div>
+    </div>
+
+    <!-- PANEL 2: NO INVERSOR -->
+    <div class="p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-2xs">
+      <h6 class="text-xs font-bold text-slate-800 dark:text-slate-200 text-center mb-2">Amplificador No Inversor</h6>
+      <div class="flex justify-center items-center py-1">
+        <svg class="w-full h-auto max-w-[240px] mx-auto select-none" viewBox="0 0 250 155" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entrada Vin directa al terminal (+) en la pista inferior -->
+  <circle cx="20" cy="118" r="3.5" fill="#2563eb"/>
+  <text x="20" y="107" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
+  <line x1="20" y1="118" x2="130" y2="118" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Op-Amp -->
+  <polygon points="130,65 130,135 185,100" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+  <text x="135" y="89" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">−</text>
+  <text x="135" y="123" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+  <!-- Conexión desde (-) hacia el divisor en la pista superior -->
+  <line x1="130" y1="85" x2="95" y2="85" stroke="#334155" stroke-width="1.8"/>
+  <line x1="95" y1="85" x2="95" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="95" cy="40" r="3.5" fill="#334155"/>
+
+  <!-- Rama izquierda: R1 hacia masa en la parte superior (NUNCA cruza Vin) -->
+  <line x1="95" y1="40" x2="80" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <rect x="45" y="33" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="62.5" y="27" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R₁</text>
+  <line x1="45" y1="40" x2="25" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <line x1="25" y1="40" x2="25" y2="58" stroke="#334155" stroke-width="1.8"/>
+  <line x1="17" y1="58" x2="33" y2="58" stroke="#334155" stroke-width="1.8"/>
+  <line x1="20" y1="62" x2="30" y2="62" stroke="#334155" stroke-width="1.4"/>
+  <line x1="23" y1="66" x2="27" y2="66" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Rama derecha: Rf hacia la salida -->
+  <line x1="95" y1="40" x2="125" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <rect x="125" y="33" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="142.5" y="27" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_f</text>
+  <line x1="160" y1="40" x2="200" y2="40" stroke="#334155" stroke-width="1.8"/>
+  <line x1="200" y1="40" x2="200" y2="100" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Salida Vo -->
+  <line x1="185" y1="100" x2="230" y2="100" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="200" cy="100" r="3.5" fill="#334155"/>
+  <circle cx="230" cy="100" r="3.5" fill="#059669"/>
+  <text x="230" y="89" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+</svg>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-center mt-2">
+        $$\\mathbf{\\frac{V_o}{V_{in}} = 1 + \\frac{R_f}{R_1}}$$
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Buffer si $R_f = 0, R_1 \\to \\infty \\implies V_o = V_{in}$</p>
+      </div>
+    </div>
+
+    <!-- PANEL 3: INA DE 3 OP-AMPS -->
+    <div class="p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-2xs">
+      <h6 class="text-xs font-bold text-slate-800 dark:text-slate-200 text-center mb-2">Amplificador de Instrumentación (INA)</h6>
+      <div class="flex justify-center items-center py-1">
+        <svg class="w-full h-auto max-w-[240px] mx-auto select-none" viewBox="0 0 250 155" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entradas diferenciales V1 y V2 -->
+  <circle cx="15" cy="45" r="3.5" fill="#2563eb"/>
+  <text x="15" y="34" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V₁</text>
+  <line x1="15" y1="45" x2="35" y2="45" stroke="#334155" stroke-width="1.8"/>
+
+  <circle cx="15" cy="130" r="3.5" fill="#2563eb"/>
+  <text x="15" y="145" font-size="10" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V₂</text>
+  <line x1="15" y1="130" x2="35" y2="130" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Bloques buffers OA1 y OA2 -->
+  <rect x="35" y="30" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="57.5" y="49" font-size="10" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₁</text>
+
+  <rect x="35" y="115" width="45" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="57.5" y="134" font-size="10" font-family="monospace" font-weight="bold" fill="#1d4ed8" text-anchor="middle">OA₂</text>
+
+  <!-- Resistencia Rg entre OA1 y OA2 -->
+  <line x1="57.5" y1="60" x2="57.5" y2="73" stroke="#334155" stroke-width="1.5"/>
+  <rect x="50.5" y="73" width="14" height="28" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="36" y="91" font-size="10" font-family="monospace" font-weight="bold" fill="#dc2626">R_G</text>
+  <line x1="57.5" y1="101" x2="57.5" y2="115" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Líneas hacia OA3 -->
+  <line x1="80" y1="45" x2="130" y2="73" stroke="#334155" stroke-width="1.5"/>
+  <line x1="80" y1="130" x2="130" y2="103" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Bloque OA3 Diferencial -->
+  <polygon points="130,58 130,118 185,88" fill="#f8fafc" stroke="#0f172a" stroke-width="1.8"/>
+  <text x="150" y="92" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a">OA₃</text>
+
+  <!-- Salida Vo -->
+  <line x1="185" y1="88" x2="230" y2="88" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="230" cy="88" r="3.5" fill="#059669"/>
+  <text x="230" y="78" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+</svg>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-center mt-2">
+        $$\\mathbf{V_o = \\left( 1 + \\frac{2R}{R_G} \\right) \\frac{R_4}{R_3} (V_2 - V_1)}$$
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">$\\text{CMRR} > 100\\text{ dB}, \\quad R_{in} \\to \\infty$</p>
+      </div>
+    </div>
   </div>
 </div>
+
 
 
 <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">1. Análisis Sistemático de Topologías Lineales Fundamentales</h5>
@@ -921,137 +916,137 @@ $$g_m = \\frac{I_{ABC}}{2 V_T} \\quad (V_T \\approx 26\\text{ mV a } 300\\text{ 
 El OTA permite construir filtros analógicos continuos integrados en silicio (<strong>filtros $G_m\\text{-}C$</strong>) cuya frecuencia de corte se sintoniza electrónicamente mediante software o tensión, prescindiendo por completo de resistores de difusión.</p>
 
 
+
 <div class="my-4 p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xs">
-  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 text-center">
+  <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-3 text-center">
     📐 Conversor de Impedancia Negativa (INIC) y Rotador de Fase (All-Pass)
   </span>
-  <div class="flex justify-center overflow-x-auto py-1">
-    <svg class="w-full h-auto max-w-4xl mx-auto select-none" viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
-  <!-- Marco contenedor -->
-  <rect x="10" y="10" width="840" height="250" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+    <!-- PANEL IZQUIERDO: INIC -->
+    <div class="p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-2xs">
+      <h6 class="text-xs font-bold text-slate-800 dark:text-slate-200 text-center mb-2">Conversor de Impedancia Negativa (INIC)</h6>
+      <div class="flex justify-center items-center py-1">
+        <svg class="w-full h-auto max-w-[340px] mx-auto select-none" viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Op-Amp central -->
+  <polygon points="150,60 150,130 205,95" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+  <text x="155" y="84" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">−</text>
+  <text x="155" y="118" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
 
-  <!-- PANEL IZQUIERDO: Conversor de Impedancia Negativa (INIC) -->
-  <g transform="translate(25, 20)">
-    <rect x="0" y="0" width="385" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="192" y="22" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Conversor de Impedancia Negativa (INIC)
-    </text>
+  <!-- Salida Vo y nodo común de realimentación -->
+  <line x1="205" y1="95" x2="230" y2="95" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="230" cy="95" r="3.5" fill="#334155"/>
+  <line x1="230" y1="95" x2="260" y2="95" stroke="#334155" stroke-width="1.8"/>
+  <text x="260" y="90" font-size="10" font-family="monospace" fill="#64748b">V_o</text>
 
-    <!-- Entrada Zin -->
-    <circle cx="30" cy="95" r="3.5" fill="#2563eb"/>
-    <text x="30" y="85" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb">Z_in</text>
-    <line x1="30" y1="95" x2="100" y2="95" stroke="#334155" stroke-width="1.8"/>
+  <!-- Lazo superior: realimentación negativa a (-) con Ra y carga ZL -->
+  <line x1="230" y1="95" x2="230" y2="45" stroke="#334155" stroke-width="1.8"/>
+  <line x1="230" y1="45" x2="195" y2="45" stroke="#334155" stroke-width="1.8"/>
+  <!-- Ra -->
+  <rect x="160" y="38" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="177.5" y="32" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_a</text>
+  <line x1="160" y1="45" x2="125" y2="45" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="125" cy="45" r="3.5" fill="#334155"/>
+  <line x1="125" y1="45" x2="125" y2="80" stroke="#334155" stroke-width="1.8"/>
+  <line x1="125" y1="80" x2="150" y2="80" stroke="#334155" stroke-width="1.8"/>
 
-    <!-- Op-Amp con realimentacion dual (positiva y negativa) -->
-    <polygon points="140,80 140,140 190,110" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
-    <text x="145" y="98" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
-    <text x="145" y="128" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+  <!-- Carga ZL conectada desde el nodo (-) hacia masa en el cuadrante superior izquierdo -->
+  <line x1="125" y1="45" x2="90" y2="45" stroke="#334155" stroke-width="1.8"/>
+  <rect x="55" y="38" width="35" height="14" fill="#ffffff" stroke="#9333ea" stroke-width="1.8"/>
+  <text x="72.5" y="32" font-size="10" font-family="monospace" font-weight="bold" fill="#9333ea" text-anchor="middle">Z_L</text>
+  <line x1="55" y1="45" x2="35" y2="45" stroke="#334155" stroke-width="1.8"/>
+  <line x1="35" y1="45" x2="35" y2="60" stroke="#334155" stroke-width="1.8"/>
+  <line x1="27" y1="60" x2="43" y2="60" stroke="#334155" stroke-width="1.8"/>
+  <line x1="30" y1="64" x2="40" y2="64" stroke="#334155" stroke-width="1.4"/>
+  <line x1="33" y1="68" x2="37" y2="68" stroke="#334155" stroke-width="1.2"/>
 
-    <!-- Conexión entrada a terminal (+) mediante R1 -->
-    <line x1="100" y1="95" x2="100" y2="125" stroke="#334155" stroke-width="1.8"/>
-    <line x1="100" y1="125" x2="140" y2="125" stroke="#334155" stroke-width="1.8"/>
+  <!-- Lazo inferior: realimentación positiva a (+) con Rb y entrada Zin -->
+  <line x1="230" y1="95" x2="230" y2="140" stroke="#334155" stroke-width="1.8"/>
+  <line x1="230" y1="140" x2="195" y2="140" stroke="#334155" stroke-width="1.8"/>
+  <!-- Rb -->
+  <rect x="160" y="133" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="177.5" y="127" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_b</text>
+  <line x1="160" y1="140" x2="125" y2="140" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="125" cy="140" r="3.5" fill="#334155"/>
+  <line x1="125" y1="140" x2="125" y2="115" stroke="#334155" stroke-width="1.8"/>
+  <line x1="125" y1="115" x2="150" y2="115" stroke="#334155" stroke-width="1.8"/>
 
-    <!-- R2 hacia salida (realimentacion positiva) -->
-    <circle cx="100" cy="125" r="3" fill="#334155"/>
-    <line x1="100" y1="125" x2="100" y2="165" stroke="#334155" stroke-width="1.8"/>
-    <line x1="100" y1="165" x2="120" y2="165" stroke="#334155" stroke-width="1.8"/>
-    <rect x="120" y="158" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="137" y="152" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_b</text>
-    <line x1="155" y1="165" x2="210" y2="165" stroke="#334155" stroke-width="1.8"/>
-    <line x1="210" y1="165" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Lazo de realimentacion negativa R1 -->
-    <line x1="115" y1="95" x2="140" y2="95" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="115" cy="95" r="3" fill="#334155"/>
-    <line x1="115" y1="95" x2="115" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="115" y1="55" x2="135" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <rect x="135" y="48" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="152" y="42" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R_a</text>
-    <line x1="170" y1="55" x2="210" y2="55" stroke="#334155" stroke-width="1.8"/>
-    <line x1="210" y1="55" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Carga Z_L conectada al terminal (-) a masa -->
-    <line x1="115" y1="95" x2="115" y2="115" stroke="#334155" stroke-width="1.8"/>
-    <rect x="108" y="115" width="14" height="30" fill="#ffffff" stroke="#9333ea" stroke-width="1.8"/>
-    <text x="90" y="133" font-size="9.5" font-family="monospace" font-weight="bold" fill="#9333ea">Z_L</text>
-    <line x1="115" y1="145" x2="115" y2="175" stroke="#334155" stroke-width="1.8"/>
-    <line x1="105" y1="175" x2="125" y2="175" stroke="#334155" stroke-width="1.8"/>
-
-    <line x1="190" y1="110" x2="210" y2="110" stroke="#334155" stroke-width="1.8"/>
-
-    <rect x="20" y="185" width="345" height="35" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="192" y="206" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Z_in = - (R_b / R_a) · Z_L ⟹ R_in = - R_L (si R_a = R_b)
-    </text>
-  </g>
-
-  <!-- PANEL DERECHO: Rotador de Fase (Filtro All-Pass / Pasa-Todo) -->
-  <g transform="translate(435, 20)">
-    <rect x="0" y="0" width="395" height="230" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="197" y="22" font-size="12" font-family="system-ui, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      Rotador de Fase (Filtro Pasa-Todo / All-Pass de 1° Orden)
-    </text>
-
-    <!-- Entrada Vin bifurcada -->
-    <circle cx="25" cy="110" r="3.5" fill="#2563eb"/>
-    <text x="25" y="100" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb">V_in</text>
-    <line x1="25" y1="110" x2="60" y2="110" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="60" cy="110" r="3" fill="#334155"/>
-
-    <!-- Rama superior: R hacia terminal (-) -->
-    <line x1="60" y1="110" x2="60" y2="75" stroke="#334155" stroke-width="1.8"/>
-    <line x1="60" y1="75" x2="90" y2="75" stroke="#334155" stroke-width="1.8"/>
-    <rect x="90" y="68" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="107" y="62" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
-    <line x1="125" y1="75" x2="160" y2="75" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Realimentacion R hacia salida -->
-    <circle cx="160" cy="75" r="3" fill="#334155"/>
-    <line x1="160" y1="75" x2="160" y2="45" stroke="#334155" stroke-width="1.8"/>
-    <line x1="160" y1="45" x2="185" y2="45" stroke="#334155" stroke-width="1.8"/>
-    <rect x="185" y="38" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="202" y="32" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
-    <line x1="220" y1="45" x2="260" y2="45" stroke="#334155" stroke-width="1.8"/>
-    <line x1="260" y1="45" x2="260" y2="105" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Rama inferior: Red RC al terminal (+) -->
-    <line x1="60" y1="110" x2="60" y2="145" stroke="#334155" stroke-width="1.8"/>
-    <line x1="60" y1="145" x2="90" y2="145" stroke="#334155" stroke-width="1.8"/>
-    <!-- Capacitor C -->
-    <line x1="90" y1="137" x2="90" y2="153" stroke="#334155" stroke-width="2"/>
-    <line x1="96" y1="137" x2="96" y2="153" stroke="#334155" stroke-width="2"/>
-    <text x="93" y="130" font-size="9.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
-    <line x1="96" y1="145" x2="160" y2="145" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Resistencia R0 a masa -->
-    <circle cx="140" cy="145" r="3" fill="#334155"/>
-    <line x1="140" y1="145" x2="140" y2="165" stroke="#334155" stroke-width="1.8"/>
-    <rect x="133" y="165" width="14" height="28" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
-    <text x="120" y="182" font-size="9" font-family="monospace" font-weight="bold" fill="#0f172a">R₀</text>
-    <line x1="140" y1="193" x2="140" y2="205" stroke="#334155" stroke-width="1.8"/>
-    <line x1="130" y1="205" x2="150" y2="205" stroke="#334155" stroke-width="1.8"/>
-
-    <!-- Op-Amp -->
-    <polygon points="180,80 180,140 230,110" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
-    <line x1="160" y1="75" x2="180" y2="95" stroke="#334155" stroke-width="1.8"/>
-    <line x1="160" y1="145" x2="180" y2="125" stroke="#334155" stroke-width="1.8"/>
-    <text x="185" y="99" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">-</text>
-    <text x="185" y="129" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
-
-    <!-- Salida Vo -->
-    <line x1="230" y1="110" x2="290" y2="110" stroke="#334155" stroke-width="1.8"/>
-    <circle cx="260" cy="110" r="3" fill="#334155"/>
-    <circle cx="290" cy="110" r="3" fill="#059669"/>
-    <text x="290" y="100" font-size="10" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
-
-    <rect x="15" y="185" width="365" height="35" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="197" y="206" font-size="10.5" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">
-      H(s) = (s - 1/R₀C) / (s + 1/R₀C) ⟹ |H(jω)| ≡ 1, φ(ω) = -2·arctan(ω·R₀C)
-    </text>
-  </g>
+  <!-- Borne de entrada Zin -->
+  <line x1="125" y1="140" x2="35" y2="140" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="35" cy="140" r="3.5" fill="#2563eb"/>
+  <text x="35" y="129" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">Z_in</text>
 </svg>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-center mt-2">
+        $$\\mathbf{Z_{in}(s) = - \\frac{R_b}{R_a} Z_L(s) \\implies R_{in} = - R_L \\quad (\\text{si } R_a = R_b)}$$
+      </div>
+    </div>
+
+    <!-- PANEL DERECHO: ALL-PASS -->
+    <div class="p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-2xs">
+      <h6 class="text-xs font-bold text-slate-800 dark:text-slate-200 text-center mb-2">Rotador de Fase (Filtro Pasa-Todo / All-Pass de 1° Orden)</h6>
+      <div class="flex justify-center items-center py-1">
+        <svg class="w-full h-auto max-w-[340px] mx-auto select-none" viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entrada Vin bifurcada -->
+  <circle cx="20" cy="95" r="3.5" fill="#2563eb"/>
+  <text x="20" y="84" font-size="11" font-family="monospace" font-weight="bold" fill="#2563eb" text-anchor="middle">V_in</text>
+  <line x1="20" y1="95" x2="50" y2="95" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="50" cy="95" r="3.5" fill="#334155"/>
+
+  <!-- Rama superior: R hacia terminal (-) -->
+  <line x1="50" y1="95" x2="50" y2="60" stroke="#334155" stroke-width="1.8"/>
+  <line x1="50" y1="60" x2="75" y2="60" stroke="#334155" stroke-width="1.8"/>
+  <rect x="75" y="53" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="92.5" y="47" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
+  <line x1="110" y1="60" x2="145" y2="60" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Realimentacion R hacia salida -->
+  <circle cx="145" cy="60" r="3.5" fill="#334155"/>
+  <line x1="145" y1="60" x2="145" y2="35" stroke="#334155" stroke-width="1.8"/>
+  <line x1="145" y1="35" x2="175" y2="35" stroke="#334155" stroke-width="1.8"/>
+  <rect x="175" y="28" width="35" height="14" fill="#ffffff" stroke="#334155" stroke-width="1.8"/>
+  <text x="192.5" y="22" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">R</text>
+  <line x1="210" y1="35" x2="250" y2="35" stroke="#334155" stroke-width="1.8"/>
+  <line x1="250" y1="35" x2="250" y2="95" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Rama inferior: Red C - R0 al terminal (+) -->
+  <line x1="50" y1="95" x2="50" y2="125" stroke="#334155" stroke-width="1.8"/>
+  <line x1="50" y1="125" x2="80" y2="125" stroke="#334155" stroke-width="1.8"/>
+  <!-- Capacitor C -->
+  <line x1="80" y1="117" x2="80" y2="133" stroke="#334155" stroke-width="2"/>
+  <line x1="86" y1="117" x2="86" y2="133" stroke="#334155" stroke-width="2"/>
+  <text x="83" y="110" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
+  <line x1="86" y1="125" x2="125" y2="125" stroke="#334155" stroke-width="1.8"/>
+
+  <!-- Resistencia R0 a masa -->
+  <circle cx="125" cy="125" r="3.5" fill="#334155"/>
+  <line x1="125" y1="125" x2="125" y2="138" stroke="#334155" stroke-width="1.8"/>
+  <line x1="117" y1="138" x2="133" y2="138" stroke="#334155" stroke-width="1.8"/>
+  <line x1="120" y1="142" x2="130" y2="142" stroke="#334155" stroke-width="1.4"/>
+  <line x1="123" y1="146" x2="127" y2="146" stroke="#334155" stroke-width="1.2"/>
+  <text x="145" y="140" font-size="10" font-family="monospace" font-weight="bold" fill="#0f172a">R₀</text>
+
+  <!-- Op-Amp -->
+  <polygon points="170,65 170,125 220,95" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+  <line x1="145" y1="60" x2="170" y2="80" stroke="#334155" stroke-width="1.8"/>
+  <line x1="125" y1="125" x2="170" y2="110" stroke="#334155" stroke-width="1.8"/>
+  <text x="175" y="84" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">−</text>
+  <text x="175" y="114" font-size="11" font-family="monospace" font-weight="bold" fill="#0f172a">+</text>
+
+  <!-- Salida Vo -->
+  <line x1="220" y1="95" x2="280" y2="95" stroke="#334155" stroke-width="1.8"/>
+  <circle cx="250" cy="95" r="3.5" fill="#334155"/>
+  <circle cx="280" cy="95" r="3.5" fill="#059669"/>
+  <text x="280" y="85" font-size="11" font-family="monospace" font-weight="bold" fill="#059669" text-anchor="middle">V_o</text>
+</svg>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-center mt-2">
+        $$\\mathbf{H(s) = \\frac{s - \\omega_0}{s + \\omega_0} = \\frac{s - 1/(R_0 C)}{s + 1/(R_0 C)}}$$
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">$\\mathbf{|H(j\\omega)| \\equiv 1}, \\qquad \\mathbf{\\phi(\\omega) = -2\\arctan(\\omega R_0 C)}$</p>
+      </div>
+    </div>
   </div>
 </div>
+
 
 
 <h5 class="text-sm font-bold text-slate-900 dark:text-white mt-4 mb-2">3. Rotadores de Fase (Filtros Pasa-Todo / All-Pass)</h5>
